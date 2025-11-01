@@ -4,7 +4,6 @@ import { Problem } from "@/components/problem"
 import { Stack } from "@/components/stack"
 import { MissionVision } from "@/components/mission-vision"
 import { Agents } from "@/components/agents"
-import { CTA } from "@/components/cta"
 import { SiteFooter } from "@/components/site-footer"
 
 export default function HomePage() {
@@ -17,7 +16,6 @@ export default function HomePage() {
         <Stack />
         <MissionVision />
         <Agents />
-        <CTA />
       </main>
       <SiteFooter />
     </div>

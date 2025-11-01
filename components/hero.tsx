@@ -15,12 +15,9 @@ export function Hero() {
             Build the operating system for private AI — one core that powers infinite local agents.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link href="https://notes.avantle.ai">
-              <Button size="lg" className="text-lg px-8 py-6 w-full">Launch Notes.Avantle.ai</Button>
-            </Link>
-            <Link href="/manifesto">
-              <Button variant="outline" size="lg" className="text-lg px-8 py-6 w-full">Read the Manifesto</Button>
+              <Button size="lg" className="text-lg px-8 py-6">Launch Notes.Avantle.ai</Button>
             </Link>
           </div>
         </div>
