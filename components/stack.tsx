@@ -9,10 +9,18 @@ export function Stack() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h2 className="text-3xl font-bold">
-              AvantleCore Architecture
+              Avantle.ai Architecture
             </h2>
             
             <div className="space-y-4">
+              <div className="flex items-start space-x-3">
+                <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
+                <div>
+                  <div className="font-semibold">Your Device</div>
+                  <div className="text-sm text-muted-foreground">All processing happens locally on your hardware</div>
+                </div>
+              </div>
+              
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
                 <div>
@@ -24,8 +32,8 @@ export function Stack() {
               <div className="flex items-start space-x-3">
                 <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
                 <div>
-                  <div className="font-semibold">Local-First Computing</div>
-                  <div className="text-sm text-muted-foreground">AI runs where your data lives</div>
+                  <div className="font-semibold">Private Agents</div>
+                  <div className="text-sm text-muted-foreground">Specialized AI modules for notes, GDPR, and more</div>
                 </div>
               </div>
               
@@ -34,14 +42,6 @@ export function Stack() {
                 <div>
                   <div className="font-semibold">End-to-End Encryption</div>
                   <div className="text-sm text-muted-foreground">AES-256 with zero-knowledge architecture</div>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                <div>
-                  <div className="font-semibold">Offline Intelligence</div>
-                  <div className="text-sm text-muted-foreground">Works without internet connectivity</div>
                 </div>
               </div>
               
