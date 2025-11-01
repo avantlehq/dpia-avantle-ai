@@ -12,8 +12,6 @@ export function SiteFooter() {
             <span>Made in EU</span>
             <span>|</span>
             <span>Privacy by Design</span>
-            <span>|</span>
-            <span>Intelligence by Default</span>
           </div>
           
           <div className="flex items-center space-x-4">

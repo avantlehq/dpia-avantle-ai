@@ -1,19 +1,8 @@
-"use client"
-
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Download } from "lucide-react"
 
 export default function ManifestoPage() {
-  const handleDownload = () => {
-    const downloadUrl = process.env.NEXT_PUBLIC_DOWNLOAD_URL || "#"
-    if (downloadUrl !== "#") {
-      window.open(downloadUrl, "_blank")
-    }
-  }
-
   return (
     <div className="min-h-screen">
       <SiteHeader />
@@ -22,13 +11,13 @@ export default function ManifestoPage() {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4">The Avantle Manifesto</h1>
             <p className="text-xl text-muted-foreground">
-              Privacy by Design. Intelligence by Default.
+              Privacy by Design.
             </p>
           </div>
           
-          <Card className="mb-8">
+          <Card>
             <CardHeader>
-              <CardTitle>Executive Summary</CardTitle>
+              <CardTitle>Our Vision</CardTitle>
             </CardHeader>
             <CardContent className="prose prose-invert max-w-none">
               <p className="text-muted-foreground mb-4">
@@ -47,21 +36,6 @@ export default function ManifestoPage() {
               </p>
             </CardContent>
           </Card>
-          
-          <div className="text-center">
-            <Button 
-              onClick={handleDownload}
-              size="lg" 
-              className="text-lg px-8 py-6"
-              aria-label="Download full manifesto document"
-            >
-              <Download className="w-5 h-5 mr-2" />
-              Download Full Manifesto (DOCX)
-            </Button>
-            <p className="text-sm text-muted-foreground mt-4">
-              Complete document with technical specifications and roadmap
-            </p>
-          </div>
         </div>
       </main>
       <SiteFooter />

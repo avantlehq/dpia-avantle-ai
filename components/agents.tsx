@@ -14,20 +14,8 @@ const agents = [
   },
   {
     icon: Shield,
-    title: "dpo.avantle.ai",
+    title: "dpia.avantle.ai",
     description: "Automated DPIA, RoPA, DSAR → GDPR compliance, zero exposure",
-    href: "#"
-  },
-  {
-    icon: BarChart3,
-    title: "risk.avantle.ai",
-    description: "ISO 27001 audits, live heatmaps → Air-gapped analytics",
-    href: "#"
-  },
-  {
-    icon: Plane,
-    title: "travel.avantle.ai",
-    description: "Offline itineraries, visa rules, packing → Works even in warzones",
     href: "#"
   }
 ]
@@ -43,7 +31,7 @@ export function Agents() {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {agents.map((agent, index) => (
             <Card key={index} className="group hover:shadow-lg transition-shadow">
               <CardHeader>

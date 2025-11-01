@@ -6,16 +6,16 @@ import { cn } from '../lib/utils'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Avantle.ai — Privacy by Design. Intelligence by Default.',
+  title: 'Avantle.ai — Privacy by Design.',
   description: 'Build the operating system for private AI — one core that powers infinite local agents.',
   openGraph: {
-    title: 'Avantle.ai — Privacy by Design. Intelligence by Default.',
+    title: 'Avantle.ai — Privacy by Design.',
     description: 'Build the operating system for private AI — one core that powers infinite local agents.',
     images: ['/og.png'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Avantle.ai — Privacy by Design. Intelligence by Default.',
+    title: 'Avantle.ai — Privacy by Design.',
     description: 'Build the operating system for private AI — one core that powers infinite local agents.',
     images: ['/og.png'],
   },
