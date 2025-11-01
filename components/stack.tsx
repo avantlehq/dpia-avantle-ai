@@ -78,13 +78,6 @@ export function Stack() {
                     <span className="text-sm font-mono">Private Agents</span>
                     <span className="text-xs text-green-500">●</span>
                   </div>
-                  <div className="flex items-center justify-center">
-                    <div className="w-px h-6 bg-border"></div>
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-background rounded border opacity-50">
-                    <span className="text-sm font-mono">External Servers</span>
-                    <span className="text-xs text-red-500">●</span>
-                  </div>
                 </div>
               </div>
             </div>
