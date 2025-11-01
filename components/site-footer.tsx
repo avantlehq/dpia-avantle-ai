@@ -11,9 +11,9 @@ export function SiteFooter() {
           <div className="flex items-center space-x-4 text-sm text-muted-foreground">
             <span>Made in EU</span>
             <span>|</span>
-            <span>Privacy by Design</span>
+            <span>Platform for Secure AI Agents</span>
             <span>|</span>
-            <span>v1.1</span>
+            <span>v1.2</span>
           </div>
           
           <div className="flex items-center space-x-4">
