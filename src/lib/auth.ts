@@ -5,6 +5,10 @@ import type { User } from './types'
 export async function getUser(): Promise<User | null> {
   const supabase = createServerClient()
   
+  if (!supabase) {
+    return null
+  }
+  
   const { data: { user } } = await supabase.auth.getUser()
   
   if (!user) {
@@ -31,6 +35,11 @@ export async function requireAuth(): Promise<User> {
 export async function requireWorkspace(workspaceId: string) {
   const user = await requireAuth()
   const supabase = createServerClient()
+  
+  if (!supabase) {
+    redirect('/dashboard')
+    return
+  }
   
   const { data: member } = await supabase
     .from('members')
