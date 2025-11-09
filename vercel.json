@@ -9,7 +9,6 @@
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": ".next",
-  "regions": ["fra1", "iad1"],
   "functions": {
     "src/app/api/**/*.ts": {
       "maxDuration": 30
