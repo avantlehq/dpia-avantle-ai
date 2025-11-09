@@ -1,0 +1,68 @@
+{
+  "common": {
+    "loading": "Lädt...",
+    "error": "Ein Fehler ist aufgetreten",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "continue": "Fortfahren",
+    "back": "Zurück",
+    "next": "Weiter",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "export": "Exportieren"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "signup": "Registrieren",
+    "logout": "Abmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "forgotPassword": "Passwort vergessen?",
+    "signInWithEmail": "Mit E-Mail anmelden",
+    "signUpWithEmail": "Mit E-Mail registrieren",
+    "checkEmail": "Überprüfen Sie Ihre E-Mail für den Anmeldelink",
+    "welcome": "Willkommen bei DPIA Agent",
+    "getStarted": "Beginnen Sie mit Ihrer ersten DSFA-Bewertung"
+  },
+  "dashboard": {
+    "title": "DSFA Bewertungen",
+    "newAssessment": "Neue DSFA",
+    "assessments": "Bewertungen",
+    "settings": "Einstellungen",
+    "noAssessments": "Noch keine Bewertungen",
+    "createFirstAssessment": "Erstellen Sie Ihre erste DSFA-Bewertung",
+    "status": {
+      "draft": "Entwurf",
+      "in_progress": "In Bearbeitung",
+      "submitted": "Eingereicht",
+      "completed": "Abgeschlossen"
+    }
+  },
+  "wizard": {
+    "title": "DSFA Bewertungsassistent",
+    "step": "Schritt",
+    "of": "von",
+    "steps": {
+      "identification": "Verarbeitungsidentifikation",
+      "legalBasis": "Rechtsgrundlage",
+      "dataTypes": "Datentypen",
+      "purposes": "Verarbeitungszwecke",
+      "risks": "Risikobewertung",
+      "measures": "Abhilfemaßnahmen",
+      "safeguards": "Schutzmaßnahmen",
+      "impact": "Auswirkungsanalyse",
+      "review": "Überprüfung",
+      "conclusion": "Fazit"
+    }
+  },
+  "export": {
+    "title": "Bewertung Exportieren",
+    "format": "Exportformat",
+    "pdf": "PDF-Dokument",
+    "docx": "Word-Dokument",
+    "generating": "Export wird generiert...",
+    "success": "Export erfolgreich erstellt",
+    "download": "Herunterladen"
+  }
+}

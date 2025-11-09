@@ -1,0 +1,68 @@
+{
+  "common": {
+    "loading": "Načítava sa...",
+    "error": "Vyskytla sa chyba",
+    "save": "Uložiť",
+    "cancel": "Zrušiť",
+    "continue": "Pokračovať",
+    "back": "Späť",
+    "next": "Ďalej",
+    "delete": "Vymazať",
+    "edit": "Upraviť",
+    "create": "Vytvoriť",
+    "export": "Exportovať"
+  },
+  "auth": {
+    "login": "Prihlásenie",
+    "signup": "Registrácia",
+    "logout": "Odhlásiť sa",
+    "email": "E-mail",
+    "password": "Heslo",
+    "forgotPassword": "Zabudli ste heslo?",
+    "signInWithEmail": "Prihlásiť sa e-mailom",
+    "signUpWithEmail": "Registrovať sa e-mailom",
+    "checkEmail": "Skontrolujte svoj e-mail pre prihlasovací odkaz",
+    "welcome": "Vitajte v DPIA Agent",
+    "getStarted": "Začnite s prvým DPIA hodnotením"
+  },
+  "dashboard": {
+    "title": "DPIA Hodnotenia",
+    "newAssessment": "Nové DPIA",
+    "assessments": "Hodnotenia",
+    "settings": "Nastavenia",
+    "noAssessments": "Zatiaľ žiadne hodnotenia",
+    "createFirstAssessment": "Vytvorte svoje prvé DPIA hodnotenie",
+    "status": {
+      "draft": "Koncept",
+      "in_progress": "Prebieha",
+      "submitted": "Odoslané",
+      "completed": "Dokončené"
+    }
+  },
+  "wizard": {
+    "title": "DPIA Sprievodca Hodnotením",
+    "step": "Krok",
+    "of": "z",
+    "steps": {
+      "identification": "Identifikácia Spracovania",
+      "legalBasis": "Právny Základ",
+      "dataTypes": "Typy Údajov",
+      "purposes": "Účely Spracovania",
+      "risks": "Hodnotenie Rizík",
+      "measures": "Zmierňujúce Opatrenia",
+      "safeguards": "Ochranné Opatrenia",
+      "impact": "Analýza Vplyvu",
+      "review": "Kontrola",
+      "conclusion": "Záver"
+    }
+  },
+  "export": {
+    "title": "Export Hodnotenia",
+    "format": "Formát Exportu",
+    "pdf": "PDF Dokument",
+    "docx": "Word Dokument",
+    "generating": "Generuje sa export...",
+    "success": "Export úspešne vytvorený",
+    "download": "Stiahnuť"
+  }
+}

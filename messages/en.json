@@ -1,0 +1,68 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "export": "Export"
+  },
+  "auth": {
+    "login": "Sign In",
+    "signup": "Sign Up",
+    "logout": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot password?",
+    "signInWithEmail": "Sign in with email",
+    "signUpWithEmail": "Sign up with email",
+    "checkEmail": "Check your email for the login link",
+    "welcome": "Welcome to DPIA Agent",
+    "getStarted": "Get started with your first DPIA assessment"
+  },
+  "dashboard": {
+    "title": "DPIA Assessments",
+    "newAssessment": "New DPIA",
+    "assessments": "Assessments",
+    "settings": "Settings",
+    "noAssessments": "No assessments yet",
+    "createFirstAssessment": "Create your first DPIA assessment",
+    "status": {
+      "draft": "Draft",
+      "in_progress": "In Progress",
+      "submitted": "Submitted",
+      "completed": "Completed"
+    }
+  },
+  "wizard": {
+    "title": "DPIA Assessment Wizard",
+    "step": "Step",
+    "of": "of",
+    "steps": {
+      "identification": "Processing Identification",
+      "legalBasis": "Legal Basis",
+      "dataTypes": "Data Types",
+      "purposes": "Processing Purposes",
+      "risks": "Risk Assessment",
+      "measures": "Mitigation Measures",
+      "safeguards": "Safeguards",
+      "impact": "Impact Analysis",
+      "review": "Review",
+      "conclusion": "Conclusion"
+    }
+  },
+  "export": {
+    "title": "Export Assessment",
+    "format": "Export Format",
+    "pdf": "PDF Document",
+    "docx": "Word Document",
+    "generating": "Generating export...",
+    "success": "Export generated successfully",
+    "download": "Download"
+  }
+}
