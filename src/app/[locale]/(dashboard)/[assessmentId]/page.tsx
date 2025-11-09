@@ -8,26 +8,25 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft } from 'lucide-react'
 import { Link } from '../../../../../i18n/routing'
 import { toast } from 'sonner'
 
 interface AssessmentData {
-  identification: {
-    processing_name: string
-    controller: string
-    data_protection_officer: string
+  identification?: {
+    processing_name?: string
+    controller?: string
+    data_protection_officer?: string
   }
-  legal_basis: {
-    lawfulness_basis: string
-    description: string
+  legal_basis?: {
+    lawfulness_basis?: string
+    description?: string
   }
-  data_types: {
-    personal_data: string[]
-    special_categories: string[]
-    criminal_data: boolean
+  data_types?: {
+    personal_data?: string[]
+    special_categories?: string[]
+    criminal_data?: boolean
   }
   // Add more steps as needed
 }
@@ -63,7 +62,7 @@ export default function AssessmentPage() {
       // TODO: Save to API
       await new Promise(resolve => setTimeout(resolve, 1000))
       toast.success('Progress saved')
-    } catch (error) {
+    } catch {
       toast.error('Failed to save progress')
     } finally {
       setLoading(false)
@@ -94,7 +93,7 @@ export default function AssessmentPage() {
                     identification: {
                       ...assessmentData.identification,
                       processing_name: e.target.value
-                    } as any
+                    }
                   })}
                 />
               </div>
@@ -110,7 +109,7 @@ export default function AssessmentPage() {
                     identification: {
                       ...assessmentData.identification,
                       controller: e.target.value
-                    } as any
+                    }
                   })}
                 />
               </div>
@@ -126,7 +125,7 @@ export default function AssessmentPage() {
                     identification: {
                       ...assessmentData.identification,
                       data_protection_officer: e.target.value
-                    } as any
+                    }
                   })}
                 />
               </div>
@@ -154,7 +153,7 @@ export default function AssessmentPage() {
                     legal_basis: {
                       ...assessmentData.legal_basis,
                       lawfulness_basis: value
-                    } as any
+                    }
                   })}
                 >
                   <SelectTrigger>
@@ -183,7 +182,7 @@ export default function AssessmentPage() {
                     legal_basis: {
                       ...assessmentData.legal_basis,
                       description: e.target.value
-                    } as any
+                    }
                   })}
                 />
               </div>

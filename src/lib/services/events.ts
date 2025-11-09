@@ -26,7 +26,7 @@ export class EventService {
     await this.logEvent('assessment.submitted', assessmentId, { userId })
   }
 
-  async getEvents(entityId: string): Promise<DomainEvent[]> {
+  async getEvents(_entityId: string): Promise<DomainEvent[]> {
     // Mock events for now
     return []
   }

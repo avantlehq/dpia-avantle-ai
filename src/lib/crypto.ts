@@ -18,7 +18,7 @@ export function generateEncryptionKey(): string {
   return 'placeholder-key'
 }
 
-export function deriveKeyFromPassword(password: string, salt: string): Promise<string> {
+export function deriveKeyFromPassword(_password: string, _salt: string): Promise<string> {
   // TODO: Implement PBKDF2 key derivation
   return Promise.resolve('placeholder-derived-key')
 }

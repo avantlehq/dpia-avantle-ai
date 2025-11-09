@@ -30,9 +30,7 @@ export default function NewAssessmentPage() {
     setLoading(true)
     
     try {
-      // TODO: Create assessment via API
-      const assessmentId = 'new-assessment-' + Date.now()
-      
+      // TODO: Create assessment via API  
       toast.success('Assessment created successfully')
       router.push('/dashboard')
     } catch (error) {
