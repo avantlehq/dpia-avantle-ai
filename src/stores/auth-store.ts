@@ -10,6 +10,11 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ loading: true })
     const supabase = createClient()
     
+    if (!supabase) {
+      set({ loading: false })
+      throw new Error('Authentication service unavailable in demo mode')
+    }
+    
     try {
       const { error } = await supabase.auth.signInWithOtp({
         email,
@@ -28,6 +33,12 @@ export const useAuthStore = create<AuthState>((set) => ({
   
   signOut: async () => {
     const supabase = createClient()
+    
+    if (!supabase) {
+      set({ user: null })
+      return
+    }
+    
     const { error } = await supabase.auth.signOut()
     
     if (!error) {
