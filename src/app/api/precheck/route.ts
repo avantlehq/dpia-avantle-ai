@@ -43,6 +43,7 @@ export async function POST(request: NextRequest) {
     const result = precheckEngine.evaluate(validatedData)
 
     // Save pre-check to database
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: precheckData, error: insertError } = await (supabase as any)
       .from('assessment_precheck')
       .insert({
@@ -64,6 +65,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Log audit event
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await (supabase as any)
       .from('domain_events')
       .insert({
@@ -100,7 +102,7 @@ export async function POST(request: NextRequest) {
 }
 
 // Get template questions
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const questions = precheckEngine.getQuestions()
     const metadata = precheckEngine.getMetadata()

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -133,7 +133,7 @@ export default function PrecheckPage() {
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div>
-                  <h3 className="font-medium mb-2">What you'll get:</h3>
+                  <h3 className="font-medium mb-2">What you&apos;ll get:</h3>
                   <ul className="space-y-1 text-muted-foreground">
                     <li>• Clear recommendation</li>
                     <li>• Risk assessment score</li>
@@ -201,7 +201,7 @@ export default function PrecheckPage() {
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold mb-2">Assessment Results</h1>
           <p className="text-muted-foreground">
-            Based on your answers, here's our recommendation
+            Based on your answers, here&apos;s our recommendation
           </p>
         </div>
 

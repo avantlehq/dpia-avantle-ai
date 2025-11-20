@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
 import { Textarea } from '@/components/ui/textarea'
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { riskEngine } from '@/lib/risk/risk-engine'
 import { RiskAssessment } from '@/lib/validations/dpia'
 import { Control } from 'react-hook-form'
@@ -15,6 +15,7 @@ interface RiskAssessmentFieldProps {
   name: string
   label: string
   description?: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>
   required?: boolean
 }

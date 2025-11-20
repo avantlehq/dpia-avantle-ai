@@ -169,6 +169,7 @@ export interface Assessment {
   description?: string
   status: AssessmentStatus
   template_version: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: Record<string, any>
   created_by: string
   submitted_at?: string

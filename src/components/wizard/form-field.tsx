@@ -9,10 +9,11 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { RiskAssessmentField } from './risk-assessment-field'
-import { FormField as FieldConfig, FieldType } from '@/lib/validations/dpia'
+import { FormField as FieldConfig } from '@/lib/validations/dpia'
 
 interface UniversalFormFieldProps {
   field: FieldConfig
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>
   disabled?: boolean
 }
