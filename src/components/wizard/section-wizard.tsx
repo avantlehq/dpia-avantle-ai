@@ -31,8 +31,8 @@ interface TemplateSection {
 
 interface SectionWizardProps {
   section: TemplateSection
-  answers: Record<string, any>
-  onFieldChange: (fieldId: string, value: any) => void
+  answers: Record<string, unknown>
+  onFieldChange: (fieldId: string, value: unknown) => void
   onFieldBlur: () => void
   onNext: () => void
   onPrevious: () => void

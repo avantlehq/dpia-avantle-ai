@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 interface SaveAnswersRequest {
   section_id: string
-  answers: Record<string, any>
+  answers: Record<string, unknown>
 }
 
 export async function POST(

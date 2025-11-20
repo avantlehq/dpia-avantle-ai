@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
@@ -19,8 +19,8 @@ interface TemplateField {
 
 interface RiskAssessmentFieldProps {
   field: TemplateField
-  value: any
-  onChange: (value: any) => void
+  value: unknown
+  onChange: (value: unknown) => void
   onBlur: () => void
 }
 
@@ -54,12 +54,8 @@ export function RiskAssessmentField({
   onChange, 
   onBlur 
 }: RiskAssessmentFieldProps) {
-  const [currentRisk, setCurrentRisk] = useState<Partial<RiskAssessment>>(value || {})
-
-  // Update local state when value prop changes
-  useEffect(() => {
-    setCurrentRisk(value || {})
-  }, [value])
+  // Use value prop directly instead of local state to avoid sync issues
+  const currentRisk = (value as Partial<RiskAssessment>) || {}
 
   const handleLikelihoodChange = (selectedValue: string) => {
     const likelihood = parseInt(selectedValue)
@@ -69,10 +65,8 @@ export function RiskAssessmentField({
       const score = riskEngine.calculateRiskScore(likelihood, updated.impact)
       const level = riskEngine.determineRiskLevel(score)
       const fullRisk = { ...updated, score, level } as RiskAssessment
-      setCurrentRisk(fullRisk)
       onChange(fullRisk)
     } else {
-      setCurrentRisk(updated)
       onChange(updated)
     }
   }
@@ -85,17 +79,14 @@ export function RiskAssessmentField({
       const score = riskEngine.calculateRiskScore(updated.likelihood, impact)
       const level = riskEngine.determineRiskLevel(score)
       const fullRisk = { ...updated, score, level } as RiskAssessment
-      setCurrentRisk(fullRisk)
       onChange(fullRisk)
     } else {
-      setCurrentRisk(updated)
       onChange(updated)
     }
   }
 
   const handleDescriptionChange = (description: string) => {
     const updated = { ...currentRisk, description }
-    setCurrentRisk(updated)
     onChange(updated)
   }
 

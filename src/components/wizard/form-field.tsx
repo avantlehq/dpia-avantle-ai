@@ -19,8 +19,8 @@ interface TemplateField {
 
 interface FormFieldProps {
   field: TemplateField
-  value: any
-  onChange: (value: any) => void
+  value: unknown
+  onChange: (value: unknown) => void
   onBlur: () => void
 }
 
@@ -31,7 +31,7 @@ export function FormField({ field, value, onChange, onBlur }: FormFieldProps) {
       case 'text':
         return (
           <Input
-            value={value || ''}
+            value={typeof value === 'string' ? value : ''}
             onChange={(e) => onChange(e.target.value)}
             onBlur={onBlur}
             placeholder={field.placeholder}
@@ -42,7 +42,7 @@ export function FormField({ field, value, onChange, onBlur }: FormFieldProps) {
       case 'textarea':
         return (
           <Textarea
-            value={value || ''}
+            value={typeof value === 'string' ? value : ''}
             onChange={(e) => onChange(e.target.value)}
             onBlur={onBlur}
             placeholder={field.placeholder}
@@ -53,7 +53,7 @@ export function FormField({ field, value, onChange, onBlur }: FormFieldProps) {
 
       case 'select':
         return (
-          <Select value={value || ''} onValueChange={onChange}>
+          <Select value={typeof value === 'string' ? value : ''} onValueChange={onChange}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder={field.placeholder || `Select ${field.label}`} />
             </SelectTrigger>
@@ -70,7 +70,7 @@ export function FormField({ field, value, onChange, onBlur }: FormFieldProps) {
       case 'radio':
         return (
           <RadioGroup
-            value={value || ''}
+            value={typeof value === 'string' ? value : ''}
             onValueChange={onChange}
             className="space-y-2"
           >
@@ -94,7 +94,7 @@ export function FormField({ field, value, onChange, onBlur }: FormFieldProps) {
         )
 
       case 'checkboxGroup':
-        const currentValues = value || []
+        const currentValues = Array.isArray(value) ? value : []
         return (
           <div className="space-y-3">
             {field.options?.map((option) => (

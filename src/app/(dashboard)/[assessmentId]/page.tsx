@@ -18,7 +18,7 @@ export default function AssessmentPage() {
   
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
   const [completedSections, setCompletedSections] = useState<string[]>([])
-  const [assessmentAnswers, setAssessmentAnswers] = useState<Record<string, any>>({})
+  const [assessmentAnswers, setAssessmentAnswers] = useState<Record<string, Record<string, unknown>>>({})
   const [loading, setLoading] = useState(false)
   const [autoSaveTimer, setAutoSaveTimer] = useState<NodeJS.Timeout | null>(null)
 
@@ -57,7 +57,7 @@ export default function AssessmentPage() {
       if (!silent) {
         toast.success('Progress saved')
       }
-    } catch (error) {
+    } catch {
       if (!silent) {
         toast.error('Failed to save progress')
       }
@@ -67,7 +67,7 @@ export default function AssessmentPage() {
   }
 
   // Handle field changes
-  const handleFieldChange = (fieldId: string, value: any) => {
+  const handleFieldChange = (fieldId: string, value: unknown) => {
     setAssessmentAnswers(prev => ({
       ...prev,
       [currentSection.id]: {
@@ -122,7 +122,7 @@ export default function AssessmentPage() {
       
       toast.success('Assessment submitted for review')
       // TODO: Redirect to review page
-    } catch (error) {
+    } catch {
       toast.error('Failed to submit assessment')
     } finally {
       setLoading(false)
@@ -147,13 +147,13 @@ export default function AssessmentPage() {
             setCurrentSectionIndex(lastIncompleteIndex)
           }
         }
-      } catch (error) {
-        console.error('Failed to load assessment:', error)
+      } catch {
+        console.error('Failed to load assessment')
       }
     }
 
     loadAssessment()
-  }, [assessmentId])
+  }, [assessmentId, sections])
 
   // Cleanup auto-save timer
   useEffect(() => {
