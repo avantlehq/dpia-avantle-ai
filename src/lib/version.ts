@@ -1,6 +1,6 @@
 // DPIA Suite Version Information
-export const VERSION = "1.0.0-beta.1" as const
-export const VERSION_NAME = "Phase 1B MVP" as const
+export const VERSION = "1.1" as const
+export const VERSION_NAME = "Phase 1B" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,9 +13,9 @@ export const getVersionInfo = () => ({
 
 // Version changelog for Phase 1B
 export const CHANGELOG = {
-  "1.0.0-beta.1": {
+  "1.1": {
     date: "2024-11-20",
-    name: "Phase 1B MVP",
+    name: "Phase 1B",
     features: [
       "DPIA Assessment pre-check wizard (8-question evaluation)",
       "3-section DPIA Builder core framework", 
