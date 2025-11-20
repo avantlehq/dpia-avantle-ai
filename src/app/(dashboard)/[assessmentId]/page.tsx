@@ -168,7 +168,7 @@ export default function AssessmentPage() {
     <div className="h-full flex">
       <div className="absolute top-4 left-4 z-10">
         <Link href="/dashboard">
-          <Button variant="ghost" size="sm">
+          <Button variant="ghost" size="sm" className="avantle-border">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Dashboard
           </Button>

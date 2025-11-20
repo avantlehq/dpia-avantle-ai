@@ -86,23 +86,24 @@ export function SectionWizard({
   }
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="flex-1 flex flex-col min-h-screen avantle-gradient">
       <div className="flex-1 p-6 overflow-y-auto">
-        <Card className="max-w-4xl mx-auto">
+        <Card className="max-w-4xl mx-auto avantle-border bg-card/50 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle className="flex items-center justify-between">
+            <CardTitle className="flex items-center justify-between text-card-foreground">
               {section.title}
               <Button
                 variant="outline"
                 size="sm"
                 onClick={onSave}
                 disabled={loading}
+                className="avantle-border"
               >
                 <Save className="mr-2 h-4 w-4" />
                 Save Progress
               </Button>
             </CardTitle>
-            <CardDescription className="text-base">
+            <CardDescription className="text-base text-muted-foreground leading-relaxed">
               {section.description}
             </CardDescription>
           </CardHeader>
@@ -116,7 +117,7 @@ export function SectionWizard({
       </div>
 
       {/* Navigation Footer */}
-      <div className="border-t bg-background p-4">
+      <div className="border-t border-border bg-background/80 backdrop-blur-sm p-4">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <div>
             {!isFirstSection && (
@@ -124,6 +125,7 @@ export function SectionWizard({
                 variant="outline"
                 onClick={onPrevious}
                 disabled={loading}
+                className="avantle-border"
               >
                 <ChevronLeft className="mr-2 h-4 w-4" />
                 Previous
@@ -132,7 +134,7 @@ export function SectionWizard({
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">
+            <span className="text-sm text-muted-foreground font-light">
               Section {section.order} of 3
             </span>
           </div>
@@ -141,6 +143,7 @@ export function SectionWizard({
             <Button
               onClick={onNext}
               disabled={loading || !canGoNext}
+              className="avantle-glow"
             >
               {isLastSection ? 'Submit Assessment' : 'Next Section'}
               {!isLastSection && <ChevronRight className="ml-2 h-4 w-4" />}

@@ -110,26 +110,29 @@ export default function PrecheckPage() {
 
   if (viewState === 'intro') {
     return (
-      <div className="container mx-auto py-8">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-8">
-            <div className="flex justify-center mb-4">
-              <FileSearch className="h-12 w-12 text-primary" />
+      <div className="min-h-screen avantle-gradient">
+        <div className="container mx-auto py-16">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-12">
+              <div className="flex justify-center mb-6">
+                <div className="p-4 rounded-lg bg-primary/10 avantle-glow">
+                  <FileSearch className="h-12 w-12 text-primary" />
+                </div>
+              </div>
+              <h1 className="text-4xl font-light tracking-tight mb-4 text-foreground">Do I Need a DPIA?</h1>
+              <p className="text-xl text-muted-foreground font-light leading-relaxed">
+                Quick assessment to determine if a Data Protection Impact Assessment is required under European privacy law
+              </p>
             </div>
-            <h1 className="text-3xl font-bold mb-2">Do I Need a DPIA?</h1>
-            <p className="text-lg text-muted-foreground">
-              Quick assessment to determine if a Data Protection Impact Assessment is required
-            </p>
-          </div>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>About This Assessment</CardTitle>
-              <CardDescription>
-                This quick assessment will help you determine whether your data processing activities 
-                require a Data Protection Impact Assessment (DPIA) under GDPR Article 35.
-              </CardDescription>
-            </CardHeader>
+            <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-card-foreground">About This Assessment</CardTitle>
+                <CardDescription className="text-muted-foreground leading-relaxed">
+                  This quick assessment will help you determine whether your data processing activities 
+                  require a Data Protection Impact Assessment (DPIA) under GDPR Article 35.
+                </CardDescription>
+              </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid md:grid-cols-2 gap-4 text-sm">
                 <div>
@@ -152,12 +155,12 @@ export default function PrecheckPage() {
                 </div>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-6">
                 <Button 
                   size="lg" 
                   onClick={loadQuestions}
                   disabled={isLoadingQuestions}
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto avantle-glow"
                 >
                   {isLoadingQuestions ? (
                     <>
@@ -178,39 +181,43 @@ export default function PrecheckPage() {
 
   if (viewState === 'form') {
     return (
-      <div className="container mx-auto py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold mb-2">DPIA Pre-check Assessment</h1>
-          <p className="text-muted-foreground">
-            Answer the following questions about your data processing activities
-          </p>
-        </div>
+      <div className="min-h-screen avantle-gradient">
+        <div className="container mx-auto py-16">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl font-light tracking-tight mb-4 text-foreground">DPIA Pre-check Assessment</h1>
+            <p className="text-muted-foreground font-light leading-relaxed">
+              Answer the following questions about your data processing activities
+            </p>
+          </div>
 
-        <PrecheckForm 
-          questions={questions}
-          onSubmit={handleSubmit}
-          isLoading={isLoading}
-        />
+          <PrecheckForm 
+            questions={questions}
+            onSubmit={handleSubmit}
+            isLoading={isLoading}
+          />
+        </div>
       </div>
     )
   }
 
   if (viewState === 'results' && result) {
     return (
-      <div className="container mx-auto py-8">
-        <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold mb-2">Assessment Results</h1>
-          <p className="text-muted-foreground">
-            Based on your answers, here&apos;s our recommendation
-          </p>
-        </div>
+      <div className="min-h-screen avantle-gradient">
+        <div className="container mx-auto py-16">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl font-light tracking-tight mb-4 text-foreground">Assessment Results</h1>
+            <p className="text-muted-foreground font-light leading-relaxed">
+              Based on your answers, here&apos;s our recommendation
+            </p>
+          </div>
 
-        <PrecheckResults
-          result={result}
-          onStartDPIA={handleStartDPIA}
-          onExportReport={handleExportReport}
-          onRetakeAssessment={handleRetakeAssessment}
-        />
+          <PrecheckResults
+            result={result}
+            onStartDPIA={handleStartDPIA}
+            onExportReport={handleExportReport}
+            onRetakeAssessment={handleRetakeAssessment}
+          />
+        </div>
       </div>
     )
   }

@@ -67,17 +67,17 @@ function getStatusVariant(status: string): "default" | "secondary" | "destructiv
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen avantle-gradient">
       <div className="container mx-auto p-6 space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">DPIA Dashboard</h1>
-            <p className="text-muted-foreground">
-              Manage your GDPR compliance assessments
+            <h1 className="text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
+            <p className="text-muted-foreground font-light">
+              Manage your GDPR compliance assessments with European privacy values
             </p>
           </div>
           <Link href="/precheck">
-            <Button>
+            <Button className="avantle-glow">
               <Plus className="mr-2 h-4 w-4" />
               New Assessment
             </Button>
@@ -85,64 +85,72 @@ export default function DashboardPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">
-          <Card>
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-sm font-medium text-card-foreground">
                 Total Assessments
               </CardTitle>
-              <FileText className="h-4 w-4 text-muted-foreground" />
+              <div className="p-2 rounded-lg bg-primary/10">
+                <FileText className="h-4 w-4 text-primary" />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{mockAssessments.length}</div>
+              <div className="text-2xl font-light text-foreground">{mockAssessments.length}</div>
             </CardContent>
           </Card>
           
-          <Card>
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-sm font-medium text-card-foreground">
                 In Progress
               </CardTitle>
-              <Clock className="h-4 w-4 text-muted-foreground" />
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Clock className="h-4 w-4 text-primary" />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
+              <div className="text-2xl font-light text-foreground">
                 {mockAssessments.filter(a => a.status === 'in_progress').length}
               </div>
             </CardContent>
           </Card>
           
-          <Card>
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-sm font-medium text-card-foreground">
                 Completed
               </CardTitle>
-              <CheckCircle className="h-4 w-4 text-muted-foreground" />
+              <div className="p-2 rounded-lg bg-primary/10">
+                <CheckCircle className="h-4 w-4 text-primary" />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
+              <div className="text-2xl font-light text-foreground">
                 {mockAssessments.filter(a => a.status === 'completed').length}
               </div>
             </CardContent>
           </Card>
           
-          <Card>
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">
+              <CardTitle className="text-sm font-medium text-card-foreground">
                 Drafts
               </CardTitle>
-              <AlertCircle className="h-4 w-4 text-muted-foreground" />
+              <div className="p-2 rounded-lg bg-primary/10">
+                <AlertCircle className="h-4 w-4 text-primary" />
+              </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">
+              <div className="text-2xl font-light text-foreground">
                 {mockAssessments.filter(a => a.status === 'draft').length}
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <Card>
+        <Card className="avantle-border bg-card/50 backdrop-blur-sm">
           <CardHeader>
-            <CardTitle>Recent Assessments</CardTitle>
+            <CardTitle className="text-card-foreground">Recent Assessments</CardTitle>
           </CardHeader>
           <CardContent>
             {mockAssessments.length === 0 ? (

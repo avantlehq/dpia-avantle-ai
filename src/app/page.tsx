@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Shield, CheckCircle, FileText, ArrowRight } from 'lucide-react'
+import { Shield, CheckCircle, FileText, ArrowRight, Lock, Zap } from 'lucide-react'
 import Link from 'next/link'
 import { getVersionInfo } from '@/lib/version'
 
@@ -9,33 +9,34 @@ export default function Home() {
   const versionInfo = getVersionInfo()
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="min-h-screen avantle-gradient">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center gap-2 mb-4">
-            <Badge variant="secondary">
-              GDPR Compliance Tool
+        <div className="text-center mb-20">
+          <div className="flex justify-center gap-3 mb-6">
+            <Badge variant="secondary" className="avantle-border bg-card text-card-foreground">
+              <Lock className="mr-2 h-3 w-3" />
+              Privacy by Design
             </Badge>
-            <Badge variant="outline">
+            <Badge variant="outline" className="avantle-border border-primary/30">
               {versionInfo.displayName}
             </Badge>
           </div>
-          <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
-            DPIA Suite
+          <h1 className="text-5xl lg:text-7xl font-light tracking-tight mb-8 text-foreground">
+            DPIA Agent
           </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            Professional Data Protection Impact Assessment platform. Evaluate privacy risks, 
-            ensure GDPR compliance, and generate comprehensive DPIA documentation.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 font-light leading-relaxed">
+            One core that powers infinite local agents. <br/>
+            Professional GDPR assessments with European values of data sovereignty.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" asChild>
+            <Button size="lg" className="avantle-glow" asChild>
               <Link href="/precheck">
                 <CheckCircle className="mr-2 h-5 w-5" />
-                Do I Need a DPIA?
+                Start Assessment
               </Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="outline" size="lg" className="avantle-border" asChild>
               <Link href="/dashboard">
                 Dashboard
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -45,46 +46,52 @@ export default function Home() {
         </div>
 
         {/* Features */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          <Card>
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
             <CardHeader>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="h-6 w-6 text-green-500" />
-                <CardTitle>Quick Assessment</CardTitle>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <CheckCircle className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle className="text-card-foreground">Quick Assessment</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
-              <CardDescription>
+              <CardDescription className="text-muted-foreground leading-relaxed">
                 8-question smart evaluation to determine if your project requires a full DPIA 
                 under GDPR Article 35.
               </CardDescription>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
             <CardHeader>
-              <div className="flex items-center gap-2">
-                <Shield className="h-6 w-6 text-blue-500" />
-                <CardTitle>Risk Scoring</CardTitle>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Zap className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle className="text-card-foreground">Risk Scoring</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
-              <CardDescription>
+              <CardDescription className="text-muted-foreground leading-relaxed">
                 Advanced risk engine calculating likelihood × impact scores with specific 
                 mitigation recommendations.
               </CardDescription>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
             <CardHeader>
-              <div className="flex items-center gap-2">
-                <FileText className="h-6 w-6 text-purple-500" />
-                <CardTitle>Professional Reports</CardTitle>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <FileText className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle className="text-card-foreground">Professional Reports</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
-              <CardDescription>
+              <CardDescription className="text-muted-foreground leading-relaxed">
                 Generate comprehensive DPIA documents in PDF and DOCX formats ready 
                 for regulatory submission.
               </CardDescription>
@@ -92,42 +99,13 @@ export default function Home() {
           </Card>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center">
-          <Card className="max-w-2xl mx-auto">
-            <CardHeader>
-              <CardTitle className="text-2xl">Ready to Start?</CardTitle>
-              <CardDescription>
-                Begin with our quick assessment or dive directly into a full DPIA evaluation
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Button className="w-full" asChild>
-                  <Link href="/precheck">
-                    Start Quick Assessment
-                  </Link>
-                </Button>
-                <Button variant="outline" className="w-full" asChild>
-                  <Link href="/dashboard">
-                    Go to Dashboard
-                  </Link>
-                </Button>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Professional GDPR compliance tools for modern organizations
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Footer with version info */}
-        <div className="text-center mt-16 pt-8 border-t border-gray-200">
-          <p className="text-sm text-gray-500">
+        {/* Minimal Footer - Avantle.ai style */}
+        <div className="text-center mt-20 pt-8 border-t border-border">
+          <p className="text-sm text-muted-foreground font-light">
             {versionInfo.fullDisplayName} • Built on {versionInfo.buildDate}
           </p>
-          <p className="text-xs text-gray-400 mt-1">
-            Professional GDPR compliance platform for modern organizations
+          <p className="text-xs text-muted-foreground/70 mt-2">
+            Privacy by Design. One core that powers infinite local agents.
           </p>
         </div>
       </div>

@@ -116,15 +116,15 @@ export function RiskAssessmentField({
         <p className="text-sm text-muted-foreground">{field.description}</p>
       )}
       
-      <Card>
+      <Card className="avantle-border bg-card/50 backdrop-blur-sm">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle className="text-lg">Risk Assessment</CardTitle>
+            <CardTitle className="text-lg text-card-foreground">Risk Assessment</CardTitle>
             {currentRisk.level && (
               <div className="flex items-center gap-2">
                 {getRiskLevelBadge(currentRisk.level)}
                 {currentRisk.score && (
-                  <span className="text-sm font-medium">
+                  <span className="text-sm font-light text-foreground">
                     Score: {currentRisk.score}/25
                   </span>
                 )}
