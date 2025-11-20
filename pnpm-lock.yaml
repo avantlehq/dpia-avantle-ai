@@ -56,6 +56,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.80.0
         version: 2.80.0
+      '@tailwindcss/postcss':
+        specifier: ^4
+        version: 4.1.17
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -92,6 +95,9 @@ importers:
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.3.1
+      tailwindcss:
+        specifier: ^4
+        version: 4.1.17
       zod:
         specifier: ^4.1.12
         version: 4.1.12
@@ -99,9 +105,6 @@ importers:
         specifier: ^5.0.8
         version: 5.0.8(@types/react@19.2.2)(react@19.2.0)(use-sync-external-store@1.6.0(react@19.2.0))
     devDependencies:
-      '@tailwindcss/postcss':
-        specifier: ^4
-        version: 4.1.17
       '@types/node':
         specifier: ^20
         version: 20.19.24
@@ -117,9 +120,6 @@ importers:
       eslint-config-next:
         specifier: 16.0.1
         version: 16.0.1(@typescript-eslint/parser@8.46.3(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.1(jiti@2.6.1))(typescript@5.9.3)
-      tailwindcss:
-        specifier: ^4
-        version: 4.1.17
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0
