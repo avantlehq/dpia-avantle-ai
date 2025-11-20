@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Shield, CheckCircle, FileText, ArrowRight, Lock, Zap } from 'lucide-react'
+import { CheckCircle, FileText, ArrowRight, Lock, Zap } from 'lucide-react'
 import Link from 'next/link'
 import { getVersionInfo } from '@/lib/version'
 

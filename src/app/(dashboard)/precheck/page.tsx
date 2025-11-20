@@ -133,47 +133,48 @@ export default function PrecheckPage() {
                   require a Data Protection Impact Assessment (DPIA) under GDPR Article 35.
                 </CardDescription>
               </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4 text-sm">
-                <div>
-                  <h3 className="font-medium mb-2">What you&apos;ll get:</h3>
-                  <ul className="space-y-1 text-muted-foreground">
-                    <li>• Clear recommendation</li>
-                    <li>• Risk assessment score</li>
-                    <li>• Next steps guidance</li>
-                    <li>• Option to start full DPIA</li>
-                  </ul>
+              <CardContent className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <h3 className="font-medium mb-2">What you&apos;ll get:</h3>
+                    <ul className="space-y-1 text-muted-foreground">
+                      <li>• Clear recommendation</li>
+                      <li>• Risk assessment score</li>
+                      <li>• Next steps guidance</li>
+                      <li>• Option to start full DPIA</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-medium mb-2">Assessment details:</h3>
+                    <ul className="space-y-1 text-muted-foreground">
+                      <li>• 8 targeted questions</li>
+                      <li>• Takes 3-5 minutes</li>
+                      <li>• Based on GDPR criteria</li>
+                      <li>• Results saved to your account</li>
+                    </ul>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium mb-2">Assessment details:</h3>
-                  <ul className="space-y-1 text-muted-foreground">
-                    <li>• 8 targeted questions</li>
-                    <li>• Takes 3-5 minutes</li>
-                    <li>• Based on GDPR criteria</li>
-                    <li>• Results saved to your account</li>
-                  </ul>
-                </div>
-              </div>
 
-              <div className="pt-6">
-                <Button 
-                  size="lg" 
-                  onClick={loadQuestions}
-                  disabled={isLoadingQuestions}
-                  className="w-full sm:w-auto avantle-glow"
-                >
-                  {isLoadingQuestions ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Loading Assessment...
-                    </>
-                  ) : (
-                    'Start Assessment'
-                  )}
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+                <div className="pt-6">
+                  <Button 
+                    size="lg" 
+                    onClick={loadQuestions}
+                    disabled={isLoadingQuestions}
+                    className="w-full sm:w-auto avantle-glow"
+                  >
+                    {isLoadingQuestions ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Loading Assessment...
+                      </>
+                    ) : (
+                      'Start Assessment'
+                    )}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     )
