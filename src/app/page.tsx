@@ -3,16 +3,24 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Shield, CheckCircle, FileText, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import { getVersionInfo } from '@/lib/version'
 
 export default function Home() {
+  const versionInfo = getVersionInfo()
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className="container mx-auto px-4 py-16">
         {/* Header */}
         <div className="text-center mb-16">
-          <Badge variant="secondary" className="mb-4">
-            GDPR Compliance Tool
-          </Badge>
+          <div className="flex justify-center gap-2 mb-4">
+            <Badge variant="secondary">
+              GDPR Compliance Tool
+            </Badge>
+            <Badge variant="outline">
+              {versionInfo.displayName}
+            </Badge>
+          </div>
           <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
             DPIA Suite
           </h1>
@@ -111,6 +119,16 @@ export default function Home() {
               </p>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Footer with version info */}
+        <div className="text-center mt-16 pt-8 border-t border-gray-200">
+          <p className="text-sm text-gray-500">
+            {versionInfo.fullDisplayName} • Built on {versionInfo.buildDate}
+          </p>
+          <p className="text-xs text-gray-400 mt-1">
+            Professional GDPR compliance platform for modern organizations
+          </p>
         </div>
       </div>
     </div>
