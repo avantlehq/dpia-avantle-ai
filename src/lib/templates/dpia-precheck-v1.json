@@ -1,0 +1,148 @@
+{
+  "template": {
+    "id": "dpia-precheck-v1",
+    "name": "DPIA Pre-check Assessment",
+    "description": "Quick assessment to determine if a full DPIA is required",
+    "version": "1.0",
+    "questions": [
+      {
+        "id": "q1",
+        "question": "Does your processing involve systematic monitoring of a publicly accessible area on a large scale?",
+        "description": "Examples: CCTV surveillance, facial recognition systems in public spaces",
+        "type": "radio",
+        "required": true,
+        "options": [
+          { "value": "yes", "label": "Yes", "score": 3 },
+          { "value": "no", "label": "No", "score": 0 },
+          { "value": "unsure", "label": "I'm not sure", "score": 1 }
+        ]
+      },
+      {
+        "id": "q2", 
+        "question": "Are you processing special categories of personal data or data relating to criminal convictions?",
+        "description": "Special categories: racial/ethnic origin, political opinions, religious beliefs, health data, biometric data, etc.",
+        "type": "radio",
+        "required": true,
+        "options": [
+          { "value": "yes", "label": "Yes", "score": 3 },
+          { "value": "no", "label": "No", "score": 0 },
+          { "value": "unsure", "label": "I'm not sure", "score": 1 }
+        ]
+      },
+      {
+        "id": "q3",
+        "question": "Does your processing involve evaluation or scoring of individuals on a large scale?",
+        "description": "Examples: credit scoring, profiling, automated decision-making affecting many individuals",
+        "type": "radio", 
+        "required": true,
+        "options": [
+          { "value": "yes", "label": "Yes", "score": 3 },
+          { "value": "no", "label": "No", "score": 0 },
+          { "value": "unsure", "label": "I'm not sure", "score": 1 }
+        ]
+      },
+      {
+        "id": "q4",
+        "question": "Are you processing personal data on a large scale?",
+        "description": "Large scale typically means processing affecting a substantial number of data subjects (1000+ individuals)",
+        "type": "radio",
+        "required": true, 
+        "options": [
+          { "value": "yes", "label": "Yes", "score": 2 },
+          { "value": "no", "label": "No", "score": 0 },
+          { "value": "unsure", "label": "I'm not sure", "score": 1 }
+        ]
+      },
+      {
+        "id": "q5",
+        "question": "Does your processing involve innovative technology or novel applications?",
+        "description": "Examples: AI/ML systems, IoT devices, new tracking technologies, blockchain",
+        "type": "radio",
+        "required": true,
+        "options": [
+          { "value": "yes", "label": "Yes", "score": 2 },
+          { "value": "no", "label": "No", "score": 0 },
+          { "value": "unsure", "label": "I'm not sure", "score": 1 }
+        ]
+      },
+      {
+        "id": "q6",
+        "question": "Could your processing prevent individuals from exercising a right or using a service?",
+        "description": "Examples: automated decision-making that could deny access to services, employment, or benefits",
+        "type": "radio",
+        "required": true,
+        "options": [
+          { "value": "yes", "label": "Yes", "score": 3 },
+          { "value": "no", "label": "No", "score": 0 },
+          { "value": "unsure", "label": "I'm not sure", "score": 1 }
+        ]
+      },
+      {
+        "id": "q7",
+        "question": "Are you processing personal data of vulnerable individuals?",
+        "description": "Examples: children under 16, elderly, mentally impaired, employees, patients",
+        "type": "radio",
+        "required": true,
+        "options": [
+          { "value": "yes", "label": "Yes", "score": 2 },
+          { "value": "no", "label": "No", "score": 0 },
+          { "value": "unsure", "label": "I'm not sure", "score": 1 }
+        ]
+      },
+      {
+        "id": "q8",
+        "question": "Does your processing involve matching or combining datasets from different sources?",
+        "description": "Examples: combining customer data with third-party data, data enrichment, data linking",
+        "type": "radio",
+        "required": true,
+        "options": [
+          { "value": "yes", "label": "Yes", "score": 2 },
+          { "value": "no", "label": "No", "score": 0 },
+          { "value": "unsure", "label": "I'm not sure", "score": 1 }
+        ]
+      }
+    ],
+    "scoring": {
+      "thresholds": {
+        "required": 9,
+        "recommended": 5,
+        "not_required": 0
+      },
+      "results": {
+        "required": {
+          "title": "DPIA Required",
+          "description": "Based on your answers, a Data Protection Impact Assessment is likely required for your processing activities.",
+          "recommendation": "We strongly recommend conducting a full DPIA before proceeding with your data processing. This will help ensure GDPR compliance and identify potential risks.",
+          "next_steps": [
+            "Start a full DPIA assessment",
+            "Consult with your DPO or privacy team",
+            "Review GDPR Article 35 requirements",
+            "Consider seeking legal advice if needed"
+          ]
+        },
+        "recommended": {
+          "title": "DPIA Recommended", 
+          "description": "While not strictly required, a DPIA would be beneficial for your processing activities.",
+          "recommendation": "We recommend conducting a DPIA as a best practice to identify and mitigate potential privacy risks.",
+          "next_steps": [
+            "Consider conducting a full DPIA",
+            "Review your data processing practices",
+            "Implement additional privacy safeguards",
+            "Monitor for changes that might require a DPIA"
+          ]
+        },
+        "not_required": {
+          "title": "DPIA Not Required",
+          "description": "Based on your answers, a formal DPIA does not appear to be required for your processing activities.",
+          "recommendation": "While a DPIA isn't required, continue to monitor your processing activities for changes that might necessitate one.",
+          "next_steps": [
+            "Document your processing activities",
+            "Implement basic privacy safeguards", 
+            "Review periodically for changes",
+            "Stay informed about GDPR requirements"
+          ]
+        }
+      }
+    }
+  }
+}
