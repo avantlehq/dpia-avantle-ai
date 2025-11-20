@@ -1,273 +1,153 @@
 'use client'
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Form } from '@/components/ui/form'
-import { Progress } from '@/components/ui/progress'
-import { Badge } from '@/components/ui/badge'
-import { Loader2, Save, Check, ArrowLeft, ArrowRight } from 'lucide-react'
-import { UniversalFormField } from './form-field'
-import { FormSection, SectionStatus, FieldValue } from '@/lib/validations/dpia'
-import { z } from 'zod'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { FormField } from './form-field'
+import { RiskAssessmentField } from './risk-assessment-field'
+import { Save, ChevronLeft, ChevronRight } from 'lucide-react'
+
+interface TemplateField {
+  id: string
+  label: string
+  type: string
+  required?: boolean
+  placeholder?: string
+  description?: string
+  options?: Array<{ value: string; label: string }>
+  validation?: {
+    min?: number
+    max?: number
+    pattern?: string
+  }
+}
+
+interface TemplateSection {
+  id: string
+  title: string
+  description: string
+  order: number
+  fields: TemplateField[]
+}
 
 interface SectionWizardProps {
-  section: FormSection
-  initialData?: Record<string, FieldValue>
-  onSave: (sectionId: string, data: Record<string, FieldValue>) => Promise<void>
-  onNext?: () => void
-  onPrevious?: () => void
-  isLoading?: boolean
-  isFirstSection?: boolean
-  isLastSection?: boolean
-  status?: SectionStatus
-  completionPercent?: number
+  section: TemplateSection
+  answers: Record<string, any>
+  onFieldChange: (fieldId: string, value: any) => void
+  onFieldBlur: () => void
+  onNext: () => void
+  onPrevious: () => void
+  onSave: () => void
+  loading: boolean
+  isFirstSection: boolean
+  isLastSection: boolean
+  canGoNext: boolean
 }
 
 export function SectionWizard({
   section,
-  initialData = {},
-  onSave,
+  answers,
+  onFieldChange,
+  onFieldBlur,
   onNext,
   onPrevious,
-  isLoading = false,
-  isFirstSection = false,
-  isLastSection = false,
-  status = 'not_started',
-  completionPercent = 0,
+  onSave,
+  loading,
+  isFirstSection,
+  isLastSection,
+  canGoNext
 }: SectionWizardProps) {
-  const [isSaving, setIsSaving] = useState(false)
 
-  // Create dynamic schema based on section fields
-  const createSectionSchema = () => {
-    const schemaFields: Record<string, z.ZodTypeAny> = {}
+  const renderField = (field: TemplateField) => {
+    const value = answers[field.id] || ''
     
-    section.fields.forEach(field => {
-      let fieldSchema: z.ZodTypeAny
-      
-      switch (field.type) {
-        case 'text':
-        case 'textarea':
-          if (field.required) {
-            fieldSchema = z.string().min(1, `${field.label} is required`)
-          } else {
-            fieldSchema = z.string().optional()
-          }
-          break
-          
-        case 'select':
-        case 'radio':
-          if (field.required) {
-            fieldSchema = z.string().min(1, `${field.label} is required`)
-          } else {
-            fieldSchema = z.string().optional()
-          }
-          break
-          
-        case 'checkboxGroup':
-          if (field.required) {
-            fieldSchema = z.array(z.string()).min(1, `Select at least one option for ${field.label}`)
-          } else {
-            fieldSchema = z.array(z.string()).optional()
-          }
-          break
-          
-        case 'riskAssessment':
-          const riskSchema = z.object({
-            likelihood: z.number().min(1).max(5),
-            impact: z.number().min(1).max(5),
-            score: z.number().min(1).max(25),
-            level: z.enum(['low', 'medium', 'high', 'critical']),
-            description: z.string().optional(),
-          })
-          fieldSchema = field.required ? riskSchema : riskSchema.optional()
-          break
-          
-        default:
-          fieldSchema = z.any()
-      }
-      
-      schemaFields[field.id] = fieldSchema
-    })
-    
-    return z.object(schemaFields)
-  }
-
-  const form = useForm({
-    resolver: zodResolver(createSectionSchema()),
-    defaultValues: initialData,
-  })
-
-  const handleSave = async (data: Record<string, FieldValue>) => {
-    setIsSaving(true)
-    try {
-      await onSave(section.id, data)
-    } catch (error) {
-      console.error('Error saving section:', error)
-    } finally {
-      setIsSaving(false)
+    // Handle special risk assessment fields
+    if (field.type === 'risk_assessment') {
+      return (
+        <RiskAssessmentField
+          key={field.id}
+          field={field}
+          value={value}
+          onChange={(value) => onFieldChange(field.id, value)}
+          onBlur={onFieldBlur}
+        />
+      )
     }
-  }
 
-  const handleFormSubmit = async (data: Record<string, unknown>) => {
-    await handleSave(data as Record<string, FieldValue>)
-  }
-
-  const handleSaveAndNext = async () => {
-    const isValid = await form.trigger()
-    if (isValid) {
-      const data = form.getValues() as Record<string, FieldValue>
-      await handleSave(data)
-      if (onNext) {
-        onNext()
-      }
-    }
-  }
-
-  const handleAutoSave = async () => {
-    const data = form.getValues() as Record<string, FieldValue>
-    await handleSave(data)
-  }
-
-  const getStatusBadge = () => {
-    switch (status) {
-      case 'completed':
-        return <Badge className="bg-green-100 text-green-800"><Check className="h-3 w-3 mr-1" />Completed</Badge>
-      case 'in_progress':
-        return <Badge variant="secondary">In Progress</Badge>
-      case 'not_started':
-        return <Badge variant="outline">Not Started</Badge>
-      default:
-        return null
-    }
+    // Handle regular form fields
+    return (
+      <FormField
+        key={field.id}
+        field={field}
+        value={value}
+        onChange={(value) => onFieldChange(field.id, value)}
+        onBlur={onFieldBlur}
+      />
+    )
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      {/* Section Header */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold">{section.title}</h1>
-            {section.description && (
-              <p className="text-muted-foreground mt-1">{section.description}</p>
-            )}
-          </div>
-          {getStatusBadge()}
-        </div>
-        
-        {/* Progress */}
-        {status !== 'not_started' && (
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm text-muted-foreground">
-              <span>Section Progress</span>
-              <span>{Math.round(completionPercent)}%</span>
+    <div className="flex-1 flex flex-col">
+      <div className="flex-1 p-6 overflow-y-auto">
+        <Card className="max-w-4xl mx-auto">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between">
+              {section.title}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={onSave}
+                disabled={loading}
+              >
+                <Save className="mr-2 h-4 w-4" />
+                Save Progress
+              </Button>
+            </CardTitle>
+            <CardDescription className="text-base">
+              {section.description}
+            </CardDescription>
+          </CardHeader>
+          
+          <CardContent className="space-y-6">
+            <div className="grid gap-6">
+              {section.fields.map(renderField)}
             </div>
-            <Progress value={completionPercent} className="w-full" />
-          </div>
-        )}
+          </CardContent>
+        </Card>
       </div>
 
-      {/* Form */}
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-8">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Section Details</CardTitle>
-              <CardDescription>
-                Complete all required fields to proceed to the next section
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {section.fields.map((field) => (
-                <UniversalFormField
-                  key={field.id}
-                  field={field}
-                  control={form.control}
-                  disabled={isLoading}
-                />
-              ))}
-            </CardContent>
-          </Card>
-
-          {/* Auto-save and Navigation */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              {!isFirstSection && (
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={onPrevious}
-                  disabled={isLoading}
-                >
-                  <ArrowLeft className="h-4 w-4 mr-1" />
-                  Previous
-                </Button>
-              )}
-            </div>
-
-            <div className="flex items-center gap-2">
+      {/* Navigation Footer */}
+      <div className="border-t bg-background p-4">
+        <div className="max-w-4xl mx-auto flex justify-between items-center">
+          <div>
+            {!isFirstSection && (
               <Button
-                type="button"
                 variant="outline"
-                onClick={handleAutoSave}
-                disabled={isSaving || isLoading}
+                onClick={onPrevious}
+                disabled={loading}
               >
-                {isSaving ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-1 animate-spin" />
-                    Saving...
-                  </>
-                ) : (
-                  <>
-                    <Save className="h-4 w-4 mr-1" />
-                    Save Progress
-                  </>
-                )}
+                <ChevronLeft className="mr-2 h-4 w-4" />
+                Previous
               </Button>
-
-              {isLastSection ? (
-                <Button
-                  type="submit"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="h-4 w-4 mr-1 animate-spin" />
-                      Saving...
-                    </>
-                  ) : (
-                    <>
-                      <Check className="h-4 w-4 mr-1" />
-                      Complete Section
-                    </>
-                  )}
-                </Button>
-              ) : (
-                <Button
-                  type="button"
-                  onClick={handleSaveAndNext}
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="h-4 w-4 mr-1 animate-spin" />
-                      Saving...
-                    </>
-                  ) : (
-                    <>
-                      Save & Next
-                      <ArrowRight className="h-4 w-4 ml-1" />
-                    </>
-                  )}
-                </Button>
-              )}
-            </div>
+            )}
           </div>
-        </form>
-      </Form>
+
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">
+              Section {section.order} of 3
+            </span>
+          </div>
+
+          <div>
+            <Button
+              onClick={onNext}
+              disabled={loading || !canGoNext}
+            >
+              {isLastSection ? 'Submit Assessment' : 'Next Section'}
+              {!isLastSection && <ChevronRight className="ml-2 h-4 w-4" />}
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

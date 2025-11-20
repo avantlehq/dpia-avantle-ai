@@ -1,46 +1,46 @@
-import { useTranslations } from 'next-intl'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle } from 'lucide-react'
 
-const steps = [
-  'identification',
-  'legalBasis',
-  'dataTypes', 
-  'purposes',
-  'risks',
-  'measures',
-  'safeguards',
-  'impact',
-  'review',
-  'conclusion'
-] as const
+interface Step {
+  id: string
+  title: string
+  description: string
+}
 
 interface WizardProgressProps {
   currentStep: number
   completedSteps: number[]
+  steps?: Step[]
 }
 
-export function WizardProgress({ currentStep, completedSteps }: WizardProgressProps) {
-  const t = useTranslations('wizard')
+export function WizardProgress({ currentStep, completedSteps, steps }: WizardProgressProps) {
+  // Default steps if not provided
+  const defaultSteps: Step[] = [
+    { id: 'context_scope', title: 'Context & Scope', description: 'Define data processing operation' },
+    { id: 'legal_basis', title: 'Legal Basis', description: 'Establish lawful basis for processing' },
+    { id: 'risk_factors', title: 'Risk Factors', description: 'Identify and assess privacy risks' }
+  ]
+  
+  const displaySteps = steps || defaultSteps
 
   return (
     <div className="w-64 bg-card border-r border-border p-6">
       <div className="space-y-1 mb-6">
-        <h2 className="text-lg font-semibold">{t('title')}</h2>
+        <h2 className="text-lg font-semibold">DPIA Assessment</h2>
         <p className="text-sm text-muted-foreground">
-          {t('step')} {currentStep + 1} {t('of')} {steps.length}
+          Step {currentStep + 1} of {displaySteps.length}
         </p>
       </div>
       
       <div className="space-y-4">
-        {steps.map((step, index) => {
+        {displaySteps.map((step, index) => {
           const isCompleted = completedSteps.includes(index)
           const isCurrent = index === currentStep
           const isAccessible = index <= currentStep || isCompleted
           
           return (
             <div 
-              key={step}
+              key={step.id}
               className={`flex items-center space-x-3 p-2 rounded-lg transition-colors ${
                 isCurrent ? 'bg-primary/10 border border-primary/20' : ''
               } ${!isAccessible ? 'opacity-50' : ''}`}
@@ -63,7 +63,10 @@ export function WizardProgress({ currentStep, completedSteps }: WizardProgressPr
                 <div className={`text-sm font-medium ${
                   isCurrent ? 'text-primary' : 'text-foreground'
                 }`}>
-                  {t(`steps.${step}`)}
+                  {step.title}
+                </div>
+                <div className="text-xs text-muted-foreground truncate">
+                  {step.description}
                 </div>
               </div>
               

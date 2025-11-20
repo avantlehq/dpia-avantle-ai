@@ -177,7 +177,7 @@ export default function DashboardPage() {
                     <TableRow key={assessment.id}>
                       <TableCell className="font-medium">
                         <Link 
-                          href={`/assessment/${assessment.id}`}
+                          href={`/${assessment.id}`}
                           className="hover:underline"
                         >
                           {assessment.name}
