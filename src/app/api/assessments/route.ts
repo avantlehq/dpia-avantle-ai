@@ -3,7 +3,7 @@ import { DatabaseService } from '@/lib/services/database'
 
 export async function GET() {
   try {
-    const db = new DatabaseService()
+    const db = await DatabaseService.create()
     const workspaceId = await db.getDefaultWorkspace()
     const assessments = await db.getAssessments(workspaceId)
 
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
   const body = await request.json()
   
   try {
-    const db = new DatabaseService()
+    const db = await DatabaseService.create()
     
     const workspaceId = await db.getDefaultWorkspace()
     const user = await db.getCurrentUser()

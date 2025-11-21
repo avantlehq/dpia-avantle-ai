@@ -23,7 +23,7 @@ export async function POST(
       )
     }
 
-    const db = new DatabaseService()
+    const db = await DatabaseService.create()
     
     // Save answers to database
     await db.saveAssessmentAnswers(assessmentId, body.section_id, body.answers)

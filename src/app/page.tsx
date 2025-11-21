@@ -31,9 +31,15 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" className="avantle-glow" asChild>
+              <Link href="/onboarding">
+                <Zap className="mr-2 h-5 w-5" />
+                Get Started
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" className="avantle-border" asChild>
               <Link href="/precheck">
                 <CheckCircle className="mr-2 h-5 w-5" />
-                Start Assessment
+                Quick Pre-check
               </Link>
             </Button>
             <Button variant="outline" size="lg" className="avantle-border" asChild>

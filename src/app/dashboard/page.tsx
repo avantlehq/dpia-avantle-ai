@@ -1,5 +1,3 @@
-'use client'
-
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -11,33 +9,47 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Plus, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react'
+import { Plus, FileText, Clock, CheckCircle, AlertCircle, MoreHorizontal, Copy, Trash2, Download } from 'lucide-react'
 import Link from 'next/link'
+import { DatabaseService } from '@/lib/services/database'
+import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
+import { AssessmentActions } from '@/components/dashboard/assessment-actions'
+import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
 
-// Mock data for assessments
-const mockAssessments = [
-  {
-    id: '1',
-    name: 'Employee Data Processing',
-    status: 'completed',
-    created_at: '2024-01-15',
-    updated_at: '2024-01-20'
-  },
-  {
-    id: '2', 
-    name: 'Customer CRM System',
-    status: 'in_progress',
-    created_at: '2024-01-18',
-    updated_at: '2024-01-19'
-  },
-  {
-    id: '3',
-    name: 'Marketing Analytics',
-    status: 'draft',
-    created_at: '2024-01-20',
-    updated_at: '2024-01-20'
+async function getAssessments() {
+  try {
+    const db = await DatabaseService.create()
+    const workspaceId = await db.getDefaultWorkspace()
+    const assessments = await db.getAssessments(workspaceId)
+    return assessments
+  } catch (error) {
+    console.error('Error fetching assessments:', error)
+    // Fallback to mock data
+    return [
+      {
+        id: '1',
+        name: 'Employee Data Processing',
+        status: 'completed',
+        created_at: '2024-01-15',
+        updated_at: '2024-01-20'
+      },
+      {
+        id: '2', 
+        name: 'Customer CRM System',
+        status: 'in_progress',
+        created_at: '2024-01-18',
+        updated_at: '2024-01-19'
+      },
+      {
+        id: '3',
+        name: 'Marketing Analytics',
+        status: 'draft',
+        created_at: '2024-01-20',
+        updated_at: '2024-01-20'
+      }
+    ]
   }
-]
+}
 
 function getStatusIcon(status: string) {
   switch (status) {
@@ -65,10 +77,12 @@ function getStatusVariant(status: string): "default" | "secondary" | "destructiv
   }
 }
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const assessments = await getAssessments()
   return (
     <div className="min-h-screen avantle-gradient">
       <div className="container mx-auto p-6 space-y-6">
+        <OnboardingBanner />
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
@@ -76,12 +90,7 @@ export default function DashboardPage() {
               Manage your GDPR compliance assessments with European privacy values
             </p>
           </div>
-          <Link href="/precheck">
-            <Button className="avantle-glow">
-              <Plus className="mr-2 h-4 w-4" />
-              New Assessment
-            </Button>
-          </Link>
+          <CreateAssessmentDialog />
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">
@@ -95,7 +104,7 @@ export default function DashboardPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-foreground">{mockAssessments.length}</div>
+              <div className="text-2xl font-light text-foreground">{assessments.length}</div>
             </CardContent>
           </Card>
           
@@ -110,7 +119,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-light text-foreground">
-                {mockAssessments.filter(a => a.status === 'in_progress').length}
+                {assessments.filter(a => a.status === 'in_progress').length}
               </div>
             </CardContent>
           </Card>
@@ -126,7 +135,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-light text-foreground">
-                {mockAssessments.filter(a => a.status === 'completed').length}
+                {assessments.filter(a => a.status === 'completed').length}
               </div>
             </CardContent>
           </Card>
@@ -142,7 +151,7 @@ export default function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-light text-foreground">
-                {mockAssessments.filter(a => a.status === 'draft').length}
+                {assessments.filter(a => a.status === 'draft').length}
               </div>
             </CardContent>
           </Card>
@@ -153,7 +162,7 @@ export default function DashboardPage() {
             <CardTitle className="text-card-foreground">Recent Assessments</CardTitle>
           </CardHeader>
           <CardContent>
-            {mockAssessments.length === 0 ? (
+            {assessments.length === 0 ? (
               <div className="text-center py-8">
                 <FileText className="mx-auto h-12 w-12 text-muted-foreground" />
                 <h3 className="mt-2 text-sm font-semibold">No assessments yet</h3>
@@ -181,7 +190,7 @@ export default function DashboardPage() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {mockAssessments.map((assessment) => (
+                  {assessments.map((assessment) => (
                     <TableRow key={assessment.id}>
                       <TableCell className="font-medium">
                         <Link 
@@ -200,11 +209,11 @@ export default function DashboardPage() {
                       <TableCell>{assessment.created_at}</TableCell>
                       <TableCell>{assessment.updated_at}</TableCell>
                       <TableCell>
-                        <Link href={`/assessment/${assessment.id}`}>
-                          <Button variant="ghost" size="sm">
-                            Edit
-                          </Button>
-                        </Link>
+                        <AssessmentActions
+                          assessmentId={assessment.id}
+                          assessmentName={assessment.name}
+                          status={assessment.status}
+                        />
                       </TableCell>
                     </TableRow>
                   ))}

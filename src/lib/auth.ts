@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation'
 import type { User } from './types'
 
 export async function getUser(): Promise<User | null> {
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
   
   if (!supabase) {
     return null
@@ -34,7 +34,7 @@ export async function requireAuth(): Promise<User> {
 
 export async function requireWorkspace(workspaceId: string) {
   const user = await requireAuth()
-  const supabase = createServerClient()
+  const supabase = await createServerClient()
   
   if (!supabase) {
     redirect('/dashboard')
@@ -44,8 +44,8 @@ export async function requireWorkspace(workspaceId: string) {
   const { data: member } = await supabase
     .from('members')
     .select('role')
-    .eq('user_id', user.id)
-    .eq('workspace_id', workspaceId)
+    .eq('user_id', user.id as any)
+    .eq('workspace_id', workspaceId as any)
     .single()
   
   if (!member) {

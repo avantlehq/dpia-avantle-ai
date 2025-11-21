@@ -8,7 +8,7 @@ export async function GET(
   const { id: assessmentId } = await params
   
   try {
-    const db = new DatabaseService()
+    const db = await DatabaseService.create()
     
     const assessment = await db.getAssessment(assessmentId)
     
@@ -69,7 +69,7 @@ export async function PATCH(
   
   try {
     const updates = await request.json()
-    const db = new DatabaseService()
+    const db = await DatabaseService.create()
     
     const assessment = await db.updateAssessment(assessmentId, updates)
 

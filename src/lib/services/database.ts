@@ -9,22 +9,36 @@ type AssessmentAnswer = Tables['assessment_answers']['Row']
 type PrecheckAssessment = Tables['precheck_assessments']['Row']
 
 export class DatabaseService {
-  private supabase: NonNullable<ReturnType<typeof createServerClient | typeof createClient>>
+  private supabase: any
   private isServer: boolean
 
-  constructor(isServer = true) {
+  private constructor(supabaseClient: any, isServer = true) {
     this.isServer = isServer
-    const client = isServer ? createServerClient() : createClient()
-    
-    if (!client) {
-      throw new Error('Supabase client not initialized. Please check environment variables.')
+    this.supabase = supabaseClient
+  }
+
+  static async create(isServer = true) {
+    try {
+      const client = isServer ? await createServerClient() : createClient()
+      
+      if (!client) {
+        console.warn('Supabase client not initialized. Please check environment variables.')
+        return new DatabaseService(null, isServer)
+      }
+      
+      return new DatabaseService(client, isServer)
+    } catch (error) {
+      console.warn('Supabase client initialization failed:', error)
+      return new DatabaseService(null, isServer)
     }
-    
-    this.supabase = client
   }
 
   // Assessment CRUD operations
   async getAssessments(workspaceId: string): Promise<Assessment[]> {
+    if (!this.supabase) {
+      throw new Error('Database not configured')
+    }
+
     const { data, error } = await this.supabase
       .from('assessments')
       .select('*')
@@ -40,6 +54,10 @@ export class DatabaseService {
   }
 
   async getAssessment(id: string): Promise<Assessment | null> {
+    if (!this.supabase) {
+      throw new Error('Database not configured')
+    }
+
     const { data, error } = await this.supabase
       .from('assessments')
       .select('*')
@@ -56,9 +74,13 @@ export class DatabaseService {
   }
 
   async createAssessment(data: AssessmentInsert): Promise<Assessment> {
+    if (!this.supabase) {
+      throw new Error('Database not configured')
+    }
+
     const { data: assessment, error } = await this.supabase
       .from('assessments')
-      .insert(data as any)
+      .insert(data)
       .select()
       .single()
 
@@ -71,9 +93,13 @@ export class DatabaseService {
   }
 
   async updateAssessment(id: string, updates: Partial<Assessment>): Promise<Assessment> {
+    if (!this.supabase) {
+      throw new Error('Database not configured')
+    }
+
     const { data, error } = await this.supabase
       .from('assessments')
-      .update(updates as any)
+      .update(updates)
       .eq('id', id)
       .select()
       .single()
@@ -87,6 +113,10 @@ export class DatabaseService {
   }
 
   async deleteAssessment(id: string): Promise<void> {
+    if (!this.supabase) {
+      throw new Error('Database not configured')
+    }
+
     const { error } = await this.supabase
       .from('assessments')
       .delete()
@@ -100,6 +130,10 @@ export class DatabaseService {
 
   // Assessment answers CRUD operations
   async getAssessmentAnswers(assessmentId: string): Promise<Record<string, Record<string, any>>> {
+    if (!this.supabase) {
+      throw new Error('Database not configured')
+    }
+
     const { data, error } = await this.supabase
       .from('assessment_answers')
       .select('*')
@@ -112,7 +146,7 @@ export class DatabaseService {
 
     // Transform flat array into nested object structure
     const answers: Record<string, Record<string, any>> = {}
-    data?.forEach(answer => {
+    data?.forEach((answer: any) => {
       if (!answers[answer.section_id]) {
         answers[answer.section_id] = {}
       }
@@ -127,6 +161,10 @@ export class DatabaseService {
     sectionId: string, 
     answers: Record<string, any>
   ): Promise<void> {
+    if (!this.supabase) {
+      throw new Error('Database not configured')
+    }
+
     const operations = Object.entries(answers).map(([fieldId, value]) => ({
       assessment_id: assessmentId,
       section_id: sectionId,
@@ -155,6 +193,10 @@ export class DatabaseService {
     answers: Record<string, any>
     result: any
   }): Promise<PrecheckAssessment> {
+    if (!this.supabase) {
+      throw new Error('Database not configured')
+    }
+
     const { data: precheck, error } = await this.supabase
       .from('precheck_assessments')
       .insert({
@@ -174,6 +216,10 @@ export class DatabaseService {
   }
 
   async getPrecheckAssessments(workspaceId: string): Promise<PrecheckAssessment[]> {
+    if (!this.supabase) {
+      throw new Error('Database not configured')
+    }
+
     const { data, error } = await this.supabase
       .from('precheck_assessments')
       .select('*')
@@ -196,6 +242,10 @@ export class DatabaseService {
   }
 
   async getCurrentUser() {
+    if (!this.supabase) {
+      return null
+    }
+
     const { data: { user }, error } = await this.supabase.auth.getUser()
     
     if (error) {
@@ -214,6 +264,11 @@ export class DatabaseService {
     workspaceId?: string
     payload?: Record<string, any>
   }): Promise<void> {
+    if (!this.supabase) {
+      console.warn('Database not configured, skipping event logging')
+      return
+    }
+
     try {
       const { error } = await this.supabase
         .from('domain_events')

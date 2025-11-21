@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
     try {
       // Save to database
-      const db = new DatabaseService()
+      const db = await DatabaseService.create()
       const workspaceId = await db.getDefaultWorkspace()
       
       await db.createPrecheckAssessment({

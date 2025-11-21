@@ -23,11 +23,11 @@ export async function POST(request: Request) {
 
     try {
       // Try real export service first
-      const exportService = new RealExportService()
+      const exportService = await RealExportService.create()
       const result = await exportService.generate(body)
 
       // Get assessment details for response
-      const db = new DatabaseService()
+      const db = await DatabaseService.create()
       const assessment = await db.getAssessment(body.assessment_id)
 
       return NextResponse.json({
