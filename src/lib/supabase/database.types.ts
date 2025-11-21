@@ -13,17 +13,26 @@ export type Database = {
         Row: {
           id: string
           email: string
+          full_name: string | null
+          avatar_url: string | null
           created_at: string
+          updated_at: string
         }
         Insert: {
           id: string
           email: string
+          full_name?: string | null
+          avatar_url?: string | null
           created_at?: string
+          updated_at?: string
         }
         Update: {
           id?: string
           email?: string
+          full_name?: string | null
+          avatar_url?: string | null
           created_at?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -31,17 +40,26 @@ export type Database = {
         Row: {
           id: string
           name: string
+          domain: string | null
+          settings: Json
           created_at: string
+          updated_at: string
         }
         Insert: {
           id?: string
           name: string
+          domain?: string | null
+          settings?: Json
           created_at?: string
+          updated_at?: string
         }
         Update: {
           id?: string
           name?: string
+          domain?: string | null
+          settings?: Json
           created_at?: string
+          updated_at?: string
         }
         Relationships: []
       }
@@ -114,33 +132,42 @@ export type Database = {
         Row: {
           id: string
           workspace_id: string
+          created_by: string | null
           name: string
           description: string | null
           status: string
           schema_version: string
           data: Json
+          completed_sections: string[]
+          precheck_result: Json | null
           created_at: string
           updated_at: string
         }
         Insert: {
           id?: string
           workspace_id: string
+          created_by?: string | null
           name: string
           description?: string | null
           status?: string
           schema_version?: string
           data?: Json
+          completed_sections?: string[]
+          precheck_result?: Json | null
           created_at?: string
           updated_at?: string
         }
         Update: {
           id?: string
           workspace_id?: string
+          created_by?: string | null
           name?: string
           description?: string | null
           status?: string
           schema_version?: string
           data?: Json
+          completed_sections?: string[]
+          precheck_result?: Json | null
           created_at?: string
           updated_at?: string
         }
@@ -154,29 +181,167 @@ export type Database = {
           }
         ]
       }
+      assessment_answers: {
+        Row: {
+          id: string
+          assessment_id: string
+          section_id: string
+          field_id: string
+          value: Json
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          assessment_id: string
+          section_id: string
+          field_id: string
+          value: Json
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          assessment_id?: string
+          section_id?: string
+          field_id?: string
+          value?: Json
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assessment_answers_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      precheck_assessments: {
+        Row: {
+          id: string
+          workspace_id: string | null
+          created_by: string | null
+          answers: Json
+          result: Json
+          assessment_id: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          workspace_id?: string | null
+          created_by?: string | null
+          answers: Json
+          result: Json
+          assessment_id?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          workspace_id?: string | null
+          created_by?: string | null
+          answers?: Json
+          result?: Json
+          assessment_id?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "precheck_assessments_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "precheck_assessments_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       domain_events: {
         Row: {
           id: string
           type: string
+          entity_type: string
           entity_id: string
+          workspace_id: string | null
+          created_by: string | null
           payload: Json
           created_at: string
         }
         Insert: {
           id?: string
           type: string
+          entity_type: string
           entity_id: string
+          workspace_id?: string | null
+          created_by?: string | null
           payload?: Json
           created_at?: string
         }
         Update: {
           id?: string
           type?: string
+          entity_type?: string
           entity_id?: string
+          workspace_id?: string | null
+          created_by?: string | null
           payload?: Json
           created_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "domain_events_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      export_history: {
+        Row: {
+          id: string
+          assessment_id: string
+          export_type: string
+          file_path: string | null
+          file_size: number | null
+          created_by: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          assessment_id: string
+          export_type: string
+          file_path?: string | null
+          file_size?: number | null
+          created_by?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          assessment_id?: string
+          export_type?: string
+          file_path?: string | null
+          file_size?: number | null
+          created_by?: string | null
+          created_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "export_history_assessment_id_fkey"
+            columns: ["assessment_id"]
+            isOneToOne: false
+            referencedRelation: "assessments"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { precheckEngine } from '@/lib/precheck/engine'
 import { precheckSubmissionSchema } from '@/lib/validations/precheck'
+import { DatabaseService } from '@/lib/services/database'
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,13 +24,34 @@ export async function POST(request: NextRequest) {
     // Evaluate answers
     const result = precheckEngine.evaluate(validatedData)
 
-    // TODO: Save to database when auth system is implemented
-    console.log('Precheck evaluation completed:', {
-      score: result.score,
-      result: result.result,
-      timestamp: new Date().toISOString(),
-      answers_count: Object.keys(validatedData.answers).length
-    })
+    try {
+      // Save to database
+      const db = new DatabaseService()
+      const workspaceId = await db.getDefaultWorkspace()
+      
+      await db.createPrecheckAssessment({
+        workspaceId,
+        answers: validatedData.answers,
+        result
+      })
+
+      // Log completion event
+      await db.logEvent({
+        type: 'precheck.completed',
+        entityType: 'precheck_assessment',
+        entityId: crypto.randomUUID(),
+        workspaceId,
+        payload: { 
+          score: result.score,
+          result: result.result,
+          answers_count: Object.keys(validatedData.answers).length
+        }
+      })
+
+    } catch (dbError) {
+      // Don't fail the request if database save fails
+      console.error('Failed to save precheck to database:', dbError)
+    }
 
     return NextResponse.json({
       success: true,
