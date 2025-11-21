@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "2.1" as const
-export const VERSION_NAME = "Avantle Design Fixed" as const
+export const VERSION = "2.2" as const
+export const VERSION_NAME = "CI Fixed & Production Ready" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,30 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "2.2": {
+    date: "2024-11-21",
+    name: "CI Fixed & Production Ready",
+    features: [
+      "Fixed CI/CD pipeline ESLint errors",
+      "Resolved Avantle.ai styling issues",
+      "Production deployment with proper dark theme",
+      "All tests passing with comprehensive error handling"
+    ],
+    improvements: [
+      "ESLint configured for production deployment",
+      "Clean CI/CD pipeline without build failures",
+      "Proper semantic versioning implemented"
+    ]
+  },
+  "2.1": {
+    date: "2024-11-21", 
+    name: "Avantle Design Fixed",
+    features: [
+      "Fixed Tailwind CSS configuration",
+      "Implemented proper dark mode theming",
+      "Added Tailwind config with CSS variables"
+    ]
+  },
   "2.0": {
     date: "2024-11-21",
     name: "Phase 1B Complete", 
