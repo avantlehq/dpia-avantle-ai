@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "2.0" as const
-export const VERSION_NAME = "Phase 1B Complete" as const
+export const VERSION = "2.1" as const
+export const VERSION_NAME = "Avantle Design Fixed" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
