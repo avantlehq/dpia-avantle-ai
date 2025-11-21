@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Plus, FileText, Clock, CheckCircle, AlertCircle, MoreHorizontal, Copy, Trash2, Download } from 'lucide-react'
+import { Plus, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { DatabaseService } from '@/lib/services/database'
 import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
