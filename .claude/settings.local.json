@@ -12,7 +12,8 @@
       "Bash(git commit:*)",
       "Bash(rm:*)",
       "Bash(TURBO_TEAM= pnpm build)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "WebFetch(domain:avantle.ai)"
     ],
     "deny": [],
     "ask": [],

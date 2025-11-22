@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.1.5" as const
-export const VERSION_NAME = "Light Blue Background Theme" as const
+export const VERSION = "3.1.6" as const
+export const VERSION_NAME = "Deep Blue Hero Theme" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

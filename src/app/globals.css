@@ -12,13 +12,13 @@
   --sidebar-collapsed-width: 64px;
   --topbar-height: 72px;
   --right-panel-width: 320px;
-  /* Light blue background to match avantle.ai but lighter */
-  --background: oklch(0.94 0.02 240);
-  --foreground: oklch(0.15 0 0);
-  --card: oklch(0.96 0.015 240);
-  --card-foreground: oklch(0.15 0 0);
-  --popover: oklch(0.96 0.015 240);
-  --popover-foreground: oklch(0.15 0 0);
+  /* Deep blue background inspired by avantle.ai hero section */
+  --background: oklch(0.15 0.05 240);
+  --foreground: oklch(0.95 0 0);
+  --card: oklch(0.18 0.04 240);
+  --card-foreground: oklch(0.95 0 0);
+  --popover: oklch(0.18 0.04 240);
+  --popover-foreground: oklch(0.95 0 0);
   --primary: #4A90E2; /* Vibrant Blue for primary accent */
   --primary-foreground: oklch(0.98 0 0);
   
@@ -26,17 +26,17 @@
   --dashboard-orange: #F5A623; /* In Progress */
   --dashboard-green: #7ED321; /* Completed */
   --dashboard-gray: #A9A9A9; /* Drafts */
-  --secondary: oklch(0.85 0.02 240);
-  --secondary-foreground: oklch(0.25 0 0);
-  --muted: oklch(0.88 0.015 240);
-  --muted-foreground: oklch(0.45 0 0);
-  --accent: oklch(0.85 0.02 240);
-  --accent-foreground: oklch(0.25 0 0);
+  --secondary: oklch(0.22 0.04 240);
+  --secondary-foreground: oklch(0.85 0 0);
+  --muted: oklch(0.20 0.03 240);
+  --muted-foreground: oklch(0.65 0 0);
+  --accent: oklch(0.22 0.04 240);
+  --accent-foreground: oklch(0.85 0 0);
   --destructive: oklch(0.65 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.82 0.02 240);
-  --input: oklch(0.92 0.015 240);
-  --ring: oklch(0.7 0.15 240);
+  --border: oklch(0.25 0.04 240);
+  --input: oklch(0.20 0.03 240);
+  --ring: oklch(0.6 0.15 240);
   --chart-1: oklch(0.6 0.15 260);
   --chart-2: oklch(0.65 0.12 180);
   --chart-3: oklch(0.55 0.18 300);
@@ -105,13 +105,13 @@
     overflow-x: hidden;
   }
   
-  /* Avantle.ai minimalist aesthetic - lighter blue */
+  /* Avantle.ai minimalist aesthetic - deep blue like hero section */
   .avantle-gradient {
-    background: linear-gradient(135deg, oklch(0.94 0.02 240) 0%, oklch(0.96 0.015 240) 100%);
+    background: linear-gradient(135deg, oklch(0.12 0.06 240) 0%, oklch(0.18 0.04 240) 100%);
   }
   
   .avantle-border {
-    border: 1px solid oklch(0.82 0.02 240);
+    border: 1px solid oklch(0.25 0.04 240);
   }
   
   .avantle-glow {
