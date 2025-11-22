@@ -10,7 +10,7 @@
   /* Layout Variables */
   --sidebar-width: 240px;
   --sidebar-collapsed-width: 64px;
-  --topbar-height: 64px;
+  --topbar-height: 72px;
   --right-panel-width: 320px;
   /* Dark mode as default to match avantle.ai */
   --background: oklch(0.08 0 0);
