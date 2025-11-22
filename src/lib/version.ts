@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.0.0" as const
-export const VERSION_NAME = "Fundamental Layout Redesign" as const
+export const VERSION = "3.0.1" as const
+export const VERSION_NAME = "CI Build Fixes" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

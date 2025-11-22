@@ -81,16 +81,14 @@ export default async function AssessmentsPage() {
     }
     
     return (
-      <LayoutShell>
-        <div className="p-6">
-          <ErrorState 
-            title="Unable to load assessments"
-            message={result.message}
-            details={result.details}
-            onRetry={() => window.location.reload()}
-          />
-        </div>
-      </LayoutShell>
+      <div>
+        <ErrorState 
+          title="Unable to load assessments"
+          message={result.message}
+          details={result.details}
+          onRetry={() => window.location.reload()}
+        />
+      </div>
     )
   }
   
@@ -99,27 +97,25 @@ export default async function AssessmentsPage() {
   // Handle empty state
   if (assessments.length === 0) {
     return (
-      <LayoutShell>
-        <div className="p-6 space-y-6">
-          <OnboardingBanner />
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Builder</h1>
-              <p className="text-sm sm:text-base text-muted-foreground font-light">
-                Create and manage your GDPR Data Protection Impact Assessments
-              </p>
-            </div>
-            <CreateAssessmentDialog />
+      <div className="space-y-6">
+        <OnboardingBanner />
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Builder</h1>
+            <p className="text-sm sm:text-base text-muted-foreground font-light">
+              Create and manage your GDPR Data Protection Impact Assessments
+            </p>
           </div>
-          <EmptyState 
-            title="No assessments yet"
-            description="Get started by creating your first DPIA assessment"
-            actionLabel="Create Assessment"
-            onAction={() => document.getElementById('create-assessment-trigger')?.click()}
-            icon={<FileText className="h-12 w-12 text-muted-foreground" />}
-          />
+          <CreateAssessmentDialog />
         </div>
-      </LayoutShell>
+        <EmptyState 
+          title="No assessments yet"
+          description="Get started by creating your first DPIA assessment"
+          actionLabel="Create Assessment"
+          onAction={() => document.getElementById('create-assessment-trigger')?.click()}
+          icon={<FileText className="h-12 w-12 text-muted-foreground" />}
+        />
+      </div>
     )
   }
 

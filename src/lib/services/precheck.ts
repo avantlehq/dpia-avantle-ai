@@ -114,7 +114,7 @@ export class PrecheckService {
    */
   static getQuestions(): PrecheckQuestion[] {
     try {
-      return (precheckTemplate as any).template.questions as PrecheckQuestion[]
+      return (precheckTemplate as { template: { questions: PrecheckQuestion[] } }).template.questions
     } catch (error) {
       console.error('Failed to load precheck template:', error)
       // Fallback questions
