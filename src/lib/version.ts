@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "2.4.0" as const
-export const VERSION_NAME = "CSS Grid Layout Rewrite" as const
+export const VERSION = "2.4.1" as const
+export const VERSION_NAME = "Emergency Grid Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

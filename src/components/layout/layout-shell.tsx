@@ -44,9 +44,13 @@ function LayoutShellContent({
         className="grid transition-all duration-300"
         style={{
           height: showTopbar ? 'calc(100vh - 4rem)' : '100vh',
-          gridTemplateColumns: showSidebar 
-            ? `${sidebarWidth}px 1fr ${rightPanelWidth}px`
-            : `1fr ${rightPanelWidth}px`
+          gridTemplateColumns: (() => {
+            const cols = []
+            if (showSidebar) cols.push(`${sidebarWidth}px`)
+            cols.push('1fr')
+            if (rightPanel && rightPanelOpen) cols.push('320px')
+            return cols.join(' ')
+          })()
         }}
       >
         {/* Left Sidebar */}
