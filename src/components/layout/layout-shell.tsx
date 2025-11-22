@@ -35,7 +35,10 @@ function LayoutShellContent({
       )}
 
       {/* Main Content Area */}
-      <div className="flex flex-col flex-1 transition-all duration-300">
+      <div className={cn(
+        "flex flex-col flex-1 transition-all duration-300",
+        showSidebar && leftSidebarOpen ? "lg:ml-60" : showSidebar ? "lg:ml-16" : ""
+      )}>
         {/* Topbar */}
         {showTopbar && <Topbar />}
 
