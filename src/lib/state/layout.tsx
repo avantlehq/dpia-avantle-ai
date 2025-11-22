@@ -32,11 +32,24 @@ interface LayoutProviderProps {
 }
 
 export function LayoutProvider({ children }: LayoutProviderProps) {
-  // State - force sidebar open by default
+  // State with localStorage persistence
   const [leftSidebarOpen, setLeftSidebarOpen] = useState(true)
   const [rightPanelOpen, setRightPanelOpen] = useState(false)
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
   const [wizardStepsOpen, setWizardStepsOpen] = useState(true)
+
+  // Initialize from localStorage on mount
+  React.useEffect(() => {
+    const saved = localStorage.getItem('dpia-sidebar-open')
+    if (saved !== null) {
+      setLeftSidebarOpen(JSON.parse(saved))
+    }
+  }, [])
+
+  // Persist to localStorage when changed
+  React.useEffect(() => {
+    localStorage.setItem('dpia-sidebar-open', JSON.stringify(leftSidebarOpen))
+  }, [leftSidebarOpen])
   
   // Actions
   const toggleLeftSidebar = () => setLeftSidebarOpen(prev => !prev)
