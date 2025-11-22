@@ -82,6 +82,7 @@ export default async function AssessmentsPage() {
     
     return (
       <div>
+        {/* Error state for failed assessment loading */}
         <ErrorState 
           title="Unable to load assessments"
           message={result.message}
