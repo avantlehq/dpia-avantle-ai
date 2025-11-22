@@ -47,7 +47,7 @@ function AppLayoutContent({ children }: AppLayoutWrapperProps) {
       </div>
       
       {/* Main Content */}
-      <div className="app-main">
+      <div className="app-main bg-background">
         <div className="flex-1 p-6 lg:p-8">
           <div className="max-w-7xl mx-auto space-y-6">
             {children}
