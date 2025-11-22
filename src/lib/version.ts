@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.1.1" as const
-export const VERSION_NAME = "Module Skeleton System" as const
+export const VERSION = "3.1.2" as const
+export const VERSION_NAME = "Theme Toggle Fixes" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
