@@ -21,7 +21,7 @@ export function SidebarLeft() {
     <>
       {/* Desktop Sidebar */}
       <aside className={cn(
-        "hidden lg:flex flex-col transition-all duration-300 ease-in-out",
+        "hidden lg:flex flex-col transition-all duration-300 ease-in-out flex-shrink-0",
         "bg-card/30 backdrop-blur-sm border-r avantle-border",
         "h-full",
         leftSidebarOpen ? "w-60" : "w-16"
@@ -31,7 +31,7 @@ export function SidebarLeft() {
           {leftSidebarOpen && (
             <div className="flex items-center gap-2">
               <div className="font-semibold text-foreground">DPIA Agent</div>
-              <Badge variant="secondary" className="text-xs">v2.3.0</Badge>
+              <Badge variant="secondary" className="text-xs">v2.3.1</Badge>
             </div>
           )}
           <Button
@@ -86,7 +86,7 @@ export function SidebarLeft() {
             <div className="flex items-center justify-between p-4 border-b border-border">
               <div className="flex items-center gap-2">
                 <div className="font-semibold text-foreground">DPIA Agent</div>
-                <Badge variant="secondary" className="text-xs">v2.3.0</Badge>
+                <Badge variant="secondary" className="text-xs">v2.3.1</Badge>
               </div>
               <Button
                 variant="ghost"

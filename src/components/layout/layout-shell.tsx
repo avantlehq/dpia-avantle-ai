@@ -30,28 +30,18 @@ function LayoutShellContent({
       {showTopbar && <Topbar />}
       
       {/* Main layout below topbar */}
-      <div className={cn(
-        "flex flex-1 transition-all duration-300",
-        showSidebar && leftSidebarOpen 
-          ? "lg:grid lg:grid-cols-[240px_1fr]" 
-          : showSidebar 
-          ? "lg:grid lg:grid-cols-[64px_1fr]"
-          : "flex"
-      )}>
+      <div className="flex flex-1 transition-all duration-300">
         {/* Left Sidebar */}
         {showSidebar && (
           <SidebarLeft />
         )}
 
         {/* Main Content Area */}
-        <div className="flex flex-col flex-1 overflow-hidden">
+        <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
           {/* Main Content + Right Panel */}
-          <main className={cn(
-            "flex flex-1 overflow-hidden",
-            rightPanel && rightPanelOpen ? "lg:grid lg:grid-cols-[1fr_320px]" : "flex"
-          )}>
+          <main className="flex flex-1 overflow-hidden">
             {/* Content Area */}
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 min-w-0 overflow-y-auto">
               <div className="p-4 lg:p-6">
                 {children}
               </div>
