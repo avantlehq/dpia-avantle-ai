@@ -121,7 +121,7 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
           <AlertDialogHeader>
             <AlertDialogTitle className="text-foreground">Delete Assessment</AlertDialogTitle>
             <AlertDialogDescription className="text-muted-foreground">
-              Are you sure you want to delete "{assessmentName}"? This action cannot be undone.
+              Are you sure you want to delete &quot;{assessmentName}&quot;? This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

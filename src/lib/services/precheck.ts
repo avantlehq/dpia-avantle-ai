@@ -114,6 +114,8 @@ export class PrecheckService {
   static getQuestions(): PrecheckQuestion[] {
     // Import template dynamically to avoid build issues
     try {
+      // Using dynamic import with require() for synchronous loading
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const template = require('@/lib/templates/dpia-precheck-v1.json')
       return template.template.questions as PrecheckQuestion[]
     } catch (error) {

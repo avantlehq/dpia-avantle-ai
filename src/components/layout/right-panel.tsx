@@ -61,7 +61,7 @@ function DefaultRightPanelContent() {
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="p-3 rounded-lg bg-muted/50 text-sm">
-            <p className="text-muted-foreground mb-2">👋 Hi! I'm here to help with:</p>
+            <p className="text-muted-foreground mb-2">👋 Hi! I&apos;m here to help with:</p>
             <ul className="text-xs space-y-1 text-muted-foreground">
               <li>• GDPR Article interpretation</li>
               <li>• Risk assessment guidance</li>
@@ -149,7 +149,7 @@ export function AIAssistantPanel({ context }: { context?: string }) {
         <CardContent>
           <div className="p-3 rounded-lg bg-muted/50 text-sm mb-3">
             <p className="text-muted-foreground">
-              🤖 I'm analyzing this {context || 'page'} to provide relevant guidance...
+              🤖 I&apos;m analyzing this {context || `page`} to provide relevant guidance...
             </p>
           </div>
           <Button size="sm" className="w-full" disabled>

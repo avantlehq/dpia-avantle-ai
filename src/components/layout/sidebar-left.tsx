@@ -5,13 +5,11 @@ import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { useLayoutState, useLayoutActions } from '@/lib/state/layout'
 import { navigationConfig, getActiveNavItem } from '@/lib/state/navigation'
 import { NavGroup } from '@/components/navigation/nav-group'
 import { ChevronLeft, Menu } from 'lucide-react'
-import Link from 'next/link'
 
 export function SidebarLeft() {
   const pathname = usePathname()

@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Progress } from '@/components/ui/progress'
 import { Badge } from '@/components/ui/badge'
 import { 
   ShieldCheck, 
@@ -86,7 +85,7 @@ export default async function OnboardingPage() {
         <Card className="avantle-border bg-card/50 backdrop-blur-sm mb-8">
           <CardHeader>
             <CardTitle className="text-2xl text-center text-card-foreground">
-              Let's Get You Started
+              Let&apos;s Get You Started
             </CardTitle>
             <p className="text-center text-muted-foreground">
               Choose your path based on your current needs
