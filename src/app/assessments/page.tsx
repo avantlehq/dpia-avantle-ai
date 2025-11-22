@@ -18,7 +18,8 @@ import { EmptyState } from '@/components/ui/empty-state'
 import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
-// Layout now handled at app level
+import { PageHeader } from '@/components/layout/page-header'
+import { Breadcrumbs } from '@/components/navigation/breadcrumbs'
 
 // Force dynamic rendering - assessments uses cookies/sessions
 export const dynamic = 'force-dynamic'
@@ -100,15 +101,19 @@ export default async function AssessmentsPage() {
     return (
       <div className="space-y-6">
         <OnboardingBanner />
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Builder</h1>
-            <p className="text-sm sm:text-base text-muted-foreground font-light">
-              Create and manage your GDPR Data Protection Impact Assessments
-            </p>
-          </div>
-          <CreateAssessmentDialog />
-        </div>
+        
+        <PageHeader
+          title="DPIA Builder"
+          description="Create and manage your GDPR Data Protection Impact Assessments"
+          action={<CreateAssessmentDialog />}
+        />
+
+        <Breadcrumbs
+          items={[
+            { label: "Builder", href: "/assessments", current: true }
+          ]}
+        />
+        
         <EmptyState 
           title="No assessments yet"
           description="Get started by creating your first DPIA assessment"
@@ -124,16 +129,17 @@ export default async function AssessmentsPage() {
     <div className="space-y-6">
         <OnboardingBanner />
         
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Builder</h1>
-            <p className="text-sm sm:text-base text-muted-foreground font-light">
-              Create and manage your GDPR Data Protection Impact Assessments
-            </p>
-          </div>
-          <CreateAssessmentDialog />
-        </div>
+        <PageHeader
+          title="DPIA Builder"
+          description="Create and manage your GDPR Data Protection Impact Assessments"
+          action={<CreateAssessmentDialog />}
+        />
+
+        <Breadcrumbs
+          items={[
+            { label: "Builder", href: "/assessments", current: true }
+          ]}
+        />
 
         {/* Quick Actions */}
         <div className="grid gap-4 md:grid-cols-3">
