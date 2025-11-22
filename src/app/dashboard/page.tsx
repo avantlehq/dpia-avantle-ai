@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Plus, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react'
+import { Plus, FileText, Clock, CheckCircle, AlertCircle, Edit3 } from 'lucide-react'
 import Link from 'next/link'
 import { DashboardService } from '@/lib/services/dashboard'
 import { isError } from '@/lib/types/result'
@@ -23,29 +23,64 @@ import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
 // Force dynamic rendering - dashboard uses cookies/sessions
 export const dynamic = 'force-dynamic'
 
-function getStatusIcon(status: string) {
-  switch (status) {
-    case 'completed':
-      return <CheckCircle className="h-4 w-4 text-green-600" />
-    case 'in_progress':
-      return <Clock className="h-4 w-4 text-blue-600" />
-    case 'submitted':
-      return <AlertCircle className="h-4 w-4 text-orange-600" />
-    default:
-      return <FileText className="h-4 w-4 text-gray-600" />
+function formatDate(dateString: string): string {
+  try {
+    const date = new Date(dateString)
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
+  } catch {
+    return dateString
   }
 }
 
-function getStatusVariant(status: string): "default" | "secondary" | "destructive" | "outline" {
+function getStatusIcon(status: string) {
   switch (status) {
     case 'completed':
-      return 'default'
+      return <CheckCircle className="h-4 w-4" style={{color: 'var(--dashboard-green)'}} />
     case 'in_progress':
-      return 'secondary'
+      return <Clock className="h-4 w-4" style={{color: 'var(--dashboard-orange)'}} />
     case 'submitted':
-      return 'outline'
+      return <AlertCircle className="h-4 w-4" style={{color: 'var(--dashboard-orange)'}} />
     default:
-      return 'outline'
+      return <Edit3 className="h-4 w-4" style={{color: 'var(--dashboard-gray)'}} />
+  }
+}
+
+function getStatusBadge(status: string) {
+  const baseClasses = "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium"
+  
+  switch (status) {
+    case 'completed':
+      return (
+        <span className={`${baseClasses} text-white`} style={{backgroundColor: 'var(--dashboard-green)'}}>
+          <CheckCircle className="h-3 w-3" />
+          Completed
+        </span>
+      )
+    case 'in_progress':
+      return (
+        <span className={`${baseClasses} text-white`} style={{backgroundColor: 'var(--dashboard-orange)'}}>
+          <Clock className="h-3 w-3" />
+          In Progress
+        </span>
+      )
+    case 'submitted':
+      return (
+        <span className={`${baseClasses} text-white`} style={{backgroundColor: 'var(--dashboard-orange)'}}>
+          <AlertCircle className="h-3 w-3" />
+          Submitted
+        </span>
+      )
+    default:
+      return (
+        <span className={`${baseClasses} text-white`} style={{backgroundColor: 'var(--dashboard-gray)'}}>
+          <Edit3 className="h-3 w-3" />
+          Draft
+        </span>
+      )
   }
 }
 
@@ -152,12 +187,12 @@ export default async function DashboardPage() {
               <CardTitle className="text-sm font-medium text-card-foreground">
                 In Progress
               </CardTitle>
-              <div className="p-2 rounded-lg bg-primary/10">
-                <Clock className="h-4 w-4 text-primary" />
+              <div className="p-2 rounded-lg" style={{backgroundColor: 'var(--dashboard-orange)', opacity: 0.2}}>
+                <Clock className="h-4 w-4" style={{color: 'var(--dashboard-orange)'}} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-foreground">
+              <div className="text-2xl font-light" style={{color: 'var(--dashboard-orange)'}}>
                 {stats.inProgress}
               </div>
             </CardContent>
@@ -168,12 +203,12 @@ export default async function DashboardPage() {
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Completed
               </CardTitle>
-              <div className="p-2 rounded-lg bg-primary/10">
-                <CheckCircle className="h-4 w-4 text-primary" />
+              <div className="p-2 rounded-lg" style={{backgroundColor: 'var(--dashboard-green)', opacity: 0.2}}>
+                <CheckCircle className="h-4 w-4" style={{color: 'var(--dashboard-green)'}} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-foreground">
+              <div className="text-2xl font-light" style={{color: 'var(--dashboard-green)'}}>
                 {stats.completed}
               </div>
             </CardContent>
@@ -184,12 +219,12 @@ export default async function DashboardPage() {
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Drafts
               </CardTitle>
-              <div className="p-2 rounded-lg bg-primary/10">
-                <AlertCircle className="h-4 w-4 text-primary" />
+              <div className="p-2 rounded-lg" style={{backgroundColor: 'var(--dashboard-gray)', opacity: 0.2}}>
+                <Edit3 className="h-4 w-4" style={{color: 'var(--dashboard-gray)'}} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-foreground">
+              <div className="text-2xl font-light" style={{color: 'var(--dashboard-gray)'}}>
                 {stats.drafts}
               </div>
             </CardContent>
@@ -221,33 +256,34 @@ export default async function DashboardPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Created</TableHead>
-                    <TableHead>Updated</TableHead>
-                    <TableHead>Actions</TableHead>
+                    <TableHead className="py-4">Name</TableHead>
+                    <TableHead className="py-4">Status</TableHead>
+                    <TableHead className="py-4">Created</TableHead>
+                    <TableHead className="py-4">Updated</TableHead>
+                    <TableHead className="py-4">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {assessments.map((assessment) => (
-                    <TableRow key={assessment.id}>
-                      <TableCell className="font-medium">
+                    <TableRow key={assessment.id} className="h-16">
+                      <TableCell className="font-medium py-4">
                         <Link 
                           href={`/${assessment.id}`}
-                          className="hover:underline"
+                          className="hover:underline text-primary hover:text-primary/80"
                         >
                           {assessment.name}
                         </Link>
                       </TableCell>
-                      <TableCell>
-                        <Badge variant={getStatusVariant(assessment.status)} className="flex items-center gap-1 w-fit">
-                          {getStatusIcon(assessment.status)}
-                          {assessment.status}
-                        </Badge>
+                      <TableCell className="py-4">
+                        {getStatusBadge(assessment.status)}
                       </TableCell>
-                      <TableCell>{assessment.created_at}</TableCell>
-                      <TableCell>{assessment.updated_at}</TableCell>
-                      <TableCell>
+                      <TableCell className="py-4 text-sm text-muted-foreground">
+                        {formatDate(assessment.created_at)}
+                      </TableCell>
+                      <TableCell className="py-4 text-sm text-muted-foreground">
+                        {formatDate(assessment.updated_at)}
+                      </TableCell>
+                      <TableCell className="py-4">
                         <AssessmentActions
                           assessmentId={assessment.id}
                           assessmentName={assessment.name}

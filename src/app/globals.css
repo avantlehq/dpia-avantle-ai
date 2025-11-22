@@ -19,8 +19,13 @@
   --card-foreground: oklch(0.95 0 0);
   --popover: oklch(0.12 0 0);
   --popover-foreground: oklch(0.95 0 0);
-  --primary: oklch(0.7 0.15 270);
-  --primary-foreground: oklch(0.08 0 0);
+  --primary: #4A90E2; /* Vibrant Blue for primary accent */
+  --primary-foreground: oklch(0.98 0 0);
+  
+  /* Dashboard color scheme */
+  --dashboard-orange: #F5A623; /* In Progress */
+  --dashboard-green: #7ED321; /* Completed */
+  --dashboard-gray: #A9A9A9; /* Drafts */
   --secondary: oklch(0.18 0 0);
   --secondary-foreground: oklch(0.9 0 0);
   --muted: oklch(0.15 0 0);
@@ -157,9 +162,20 @@
   flex-direction: column;
 }
 
-/* Light theme main content background */
+/* Light theme main content background and text */
 .light .app-main {
   background: oklch(0.98 0 0); /* Light background for light theme */
+  color: oklch(0.2 0 0); /* Dark text for light theme */
+}
+
+.light .app-main h1,
+.light .app-main h2, 
+.light .app-main h3,
+.light .app-main h4,
+.light .app-main p,
+.light .app-main span,
+.light .app-main div {
+  color: oklch(0.2 0 0); /* Ensure all text is dark in light mode */
 }
 
 .app-right {
