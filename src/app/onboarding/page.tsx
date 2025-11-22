@@ -15,12 +15,10 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { OnboardingWizard } from '@/components/onboarding/onboarding-wizard'
-import { LayoutShell } from '@/components/layout/layout-shell'
 
 export default async function OnboardingPage() {
   return (
-    <LayoutShell>
-      <div className="py-12 px-6 max-w-4xl mx-auto">
+    <div className="py-12 px-6 max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-6">
@@ -209,7 +207,6 @@ export default async function OnboardingPage() {
             </Button>
           </Link>
         </div>
-      </div>
-    </LayoutShell>
+    </div>
   )
 }

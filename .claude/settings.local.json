@@ -9,7 +9,9 @@
       "Bash(git push:*)",
       "WebFetch(domain:dpia.avantle.ai)",
       "Bash(grep:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(rm:*)",
+      "Bash(TURBO_TEAM= pnpm build)"
     ],
     "deny": [],
     "ask": [],

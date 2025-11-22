@@ -14,7 +14,6 @@ import { isError, isSuccess } from '@/lib/types/result'
 import { ErrorState } from '@/components/ui/error-state'
 import { LoadingSkeleton } from '@/components/ui/loading-skeleton'
 import type { PrecheckSubmission } from '@/lib/validations/precheck'
-import { LayoutShell } from '@/components/layout/layout-shell'
 
 export default function PrecheckPage() {
   const [results, setResults] = useState<PrecheckResult | null>(null)
@@ -45,8 +44,7 @@ export default function PrecheckPage() {
   }
 
   return (
-    <LayoutShell>
-      <div className="px-4 py-16 max-w-4xl mx-auto">
+    <div className="px-4 py-16 max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-12">
           <div className="flex items-center gap-4 mb-6">
@@ -117,6 +115,5 @@ export default function PrecheckPage() {
           </p>
         </div>
       </div>
-    </LayoutShell>
   )
 }
