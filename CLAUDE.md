@@ -8,17 +8,17 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 ### Aktuálny stav projektu (November 2024)
 
-**🎯 PHASE 2A+: ✅ COMPLETE - PRODUCTION READY WITH POLISHED UX**
-- ✅ Version 3.0.6 deployed na https://dpia.avantle.ai
+**🎯 PHASE 2A: ✅ COMPLETE - UNIFIED LAYOUT + UI POLISH**
+- ✅ Version 3.1.4 deployed na https://dpia.avantle.ai
 - ✅ **Real Supabase database integration** (no longer mock mode)
-- ✅ Kompletný 3-sekciový DPIA Builder
-- ✅ Pre-check wizard "Do I need a DPIA?" - **FIXED routing & double sidebar issue**
+- ✅ **DPIA Pre-check Assessment** - 8-question "Do I need a DPIA?" wizard ✅ COMPLETE
+- ✅ **DPIA Builder** - ❌ SKELETON ONLY (needs full implementation tomorrow)
 - ✅ Professional PDF/DOCX export system
 - ✅ Onboarding flow + personalized wizard
 - ✅ Risk scoring engine (likelihood × impact)
-- ✅ **Complete unified layout architecture** - CSS Grid Template Areas
-- ✅ **Polished UX** - proper margins, aligned footers, clean topbar
-- ✅ **Footer implementation** - GDPR compliance badges in main content
+- ✅ **Complete unified layout architecture** - AppLayoutWrapper, SidebarLeft, Topbar, RightPanel
+- ✅ **UI Polish** - fixed navigation issues, table alignment, proper margins
+- ✅ **Theme system** - working light/dark mode toggle
 - ✅ CI/CD pipeline + comprehensive testing
 - ✅ **6/6 test suite passing** (real database backend)
 
@@ -29,16 +29,16 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 - Framework: Next.js 15, Tailwind, shadcn/ui
 - Účel: Lead generation, SEO, conversion
 
-**B) dpia.avantle.ai — Application Runtime** 📍 **✅ PHASE 2A+ COMPLETE - POLISHED UX**
+**B) dpia.avantle.ai — Application Runtime** 📍 **✅ PHASE 2A COMPLETE - LAYOUT + POLISH**
 - **URL**: https://dpia.avantle.ai
-- **Version**: 3.0.6 "Final Polish - Complete UX"
+- **Version**: 3.1.4 "UI Polish & Navigation Fixes"
 - **Framework**: Next.js 16 + App Router + TypeScript
 - **Styling**: Tailwind CSS v4 + Avantle.ai design system + mobile responsive
 - **Backend**: Supabase (real database with RLS policies)
 - **Security**: AuthGuard services, defensive programming, proper error handling
-- **Layout**: Complete unified layout architecture with CSS Grid Template Areas
-- **UX**: Professional margins, aligned footers, clean interface design
-- **Features**: Bulletproof DPIA Suite s Result<T> pattern a comprehensive error boundaries
+- **Layout**: Complete unified layout architecture with React Context state management
+- **UX**: Professional navigation, fixed table alignment, proper content margins
+- **Features**: DPIA Pre-check ✅ COMPLETE | DPIA Builder ❌ SKELETON (next phase)
 
 ### Databázová architektúra (Supabase)
 
@@ -151,20 +151,18 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 - ✅ GitHub Actions CI/CD pipeline
 - ✅ Vercel production deployment
 
-**Layout Architecture - ✅ HOTOVÉ (Phase 2A+):**
-- ✅ **CSS Grid Template Areas** - precise 4-window layout (topbar, sidebar, main, right)
-- ✅ **AppLayoutWrapper** - unified page structure at app level (replaced LayoutShell)
-- ✅ **SidebarLeft** - collapsible navigation s GDPR module routing + aligned footer
-- ✅ **Topbar** - clean ShieldCheck branding, no transparency, user controls
-- ✅ **RightPanel** - AI assistant a context-aware help (when opened)
-- ✅ **Footer** - comprehensive footer in main content (GDPR badges, version info)
-- ✅ **SidebarSteps** - wizard step navigation v assessments
-- ✅ **React Context** - complete layout state management
-- ✅ **Responsive design** - mobile-first s touch-optimized controls
+**Layout Architecture - ✅ HOTOVÉ (Phase 2A):**
+- ✅ **AppLayoutWrapper** - unified layout with React Context state management
+- ✅ **SidebarLeft** - collapsible navigation with GDPR module routing
+- ✅ **Topbar** - user controls, workspace switcher, theme toggle, version display
+- ✅ **RightPanel** - AI assistant and context-aware help
+- ✅ **SidebarSteps** - wizard step navigation for assessments (ready for DPIA Builder)
+- ✅ **React Context** - layout state management (LayoutProvider, useLayoutState)
+- ✅ **Responsive design** - mobile-first with touch-optimized controls
 - ✅ **NavGroup/NavItem** - modular navigation components
 - ✅ **Radix UI primitives** - ScrollArea, Tooltip, Separator integration
-- ✅ **Professional UX** - proper margins (p-6 lg:p-8), max-width containers
-- ✅ **Avantle.ai design system** - restored proper colors, no grey debugging
+- ✅ **Professional UX** - proper content margins, fixed table alignment
+- ✅ **Avantle.ai design system** - dark mode branding, proper color scheme
 
 **Security & Error Handling - ✅ HOTOVÉ (Phase 1C):**
 - ✅ AuthGuard service pre authentication a workspace access validation
@@ -199,9 +197,9 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 - ✅ Export history and audit logging
 - ✅ Ready for production deployment
 
-**Core Features - ✅ IMPLEMENTED:**
-- ✅ **DPIA Builder** - 3-section wizard complete
-- ✅ **DPIA Pre-check** - 8-question evaluation
+**Core Features - STATUS:**
+- ✅ **DPIA Pre-check Assessment** - 8-question "Do I need a DPIA?" wizard ✅ COMPLETE
+- ❌ **DPIA Builder** - actual DPIA document creation wizard ❌ SKELETON ONLY
 - ✅ **Risk Scoring Engine** - likelihood × impact
 - ✅ **PDF/DOCX Export** - professional document generation
 - ✅ **Onboarding Flow** - personalized user journey
@@ -288,34 +286,43 @@ git add . && git commit -m "message" && git push origin main
 
 ## 🎯 Next Steps
 
-**Phase 2A: Unified Layout Architecture ✅ COMPLETE (November 22, 2024)**
-- ✅ All layout components implemented and production-ready
-- ✅ Navigation structure prepared for future GDPR compliance modules
-- ✅ Mobile-responsive design with professional UX
-- ✅ All existing pages retrofitted with new layout system
+**Phase 2A: Layout Architecture + UI Polish ✅ COMPLETE (November 22, 2024)**
+- ✅ Complete unified layout system with AppLayoutWrapper
+- ✅ Navigation fixes (removed Back to Home from precheck)
+- ✅ Table alignment fixes (status column properly sized)
+- ✅ Content margin improvements (proper spacing)
+- ✅ Theme toggle working correctly
 
-**Future Enhancements (Phase 2B):**
+**Phase 2B: DPIA Builder Implementation ❌ NEXT (Tomorrow)**
+- ❌ **CRITICAL**: Implement actual DPIA Builder wizard at `/assessments/[id]`
+- ❌ **4 Sections**: Context & Scope, Data Flow, Risk Assessment, Mitigation Measures
+- ❌ **Form Engine**: React Hook Form + Zod validation + auto-save
+- ❌ **Integration**: Use existing database schema (assessments, assessment_answers, form_sections)
+- ❌ **Export**: Generate GDPR-compliant PDF/DOCX documents
+- **Prompt Ready**: See `DPIA_BUILDER_PROMPT.md` for complete implementation guide
+
+**Future Enhancements (Phase 2C):**
 1. **Marketing Site** - Implement dpia.ai landing page
-2. **Extended DPIA** - Add remaining 7 sections to wizard  
-3. **Advanced Features** - Whitelabel, analytics, multi-tenant customization
-4. **GDPR Modules** - Implement Risk Management, ROPA, LIA/TIA modules using new navigation structure
+2. **Advanced Features** - Whitelabel, analytics, multi-tenant customization
+3. **GDPR Modules** - Risk Management, ROPA, LIA/TIA modules
 
 ## ✅ Success Metrics
 
-**Current Status: PHASE 2A+ COMPLETE - Polished UX & Layout Architecture**
-- ✅ All core functionality implemented and tested
-- ✅ Production deployment successful (Version 3.0.6)
-- ✅ **Professional polished UI/UX** with complete Avantle.ai branding
+**Current Status: PHASE 2A COMPLETE - Layout Architecture + UI Polish (v3.1.4)**
+- ✅ Complete unified layout architecture implemented
+- ✅ Production deployment successful (Version 3.1.4)
+- ✅ **DPIA Pre-check Assessment** ✅ COMPLETE and working
+- ✅ **DPIA Builder** ❌ SKELETON ONLY (needs implementation tomorrow)
+- ✅ Professional UI/UX with Avantle.ai branding
 - ✅ 6/6 comprehensive tests passing
 - ✅ **Real Supabase database connected and working**
-- ✅ **All routing and layout issues fixed** (precheck double sidebar resolved)
-- ✅ **Complete CSS Grid Template Areas layout system**
-- ✅ **Professional margins and spacing** throughout application
-- ✅ **Aligned footers** in sidebar and main content areas
-- ✅ **Clean topbar design** with ShieldCheck branding, no transparency
+- ✅ **All navigation and layout issues fixed**
+- ✅ **Unified layout system** with React Context state management
+- ✅ **Professional content margins and table alignment**
+- ✅ **Theme toggle working correctly**
 - ✅ **Mobile-responsive design** across all pages
-- ✅ **Navigation structure ready** for future GDPR modules
+- ✅ **Ready for DPIA Builder implementation**
 
-The DPIA Agent is **production-ready** with polished UX as a comprehensive GDPR compliance platform! 🎉
+The DPIA Agent platform has **complete architecture and polish** - ready for core DPIA Builder implementation! 🎯
 
-**Major Achievement**: Successfully implemented enterprise-grade CSS Grid Template Areas layout system with polished UX, proper content margins, aligned footers, clean topbar design, and comprehensive footer with GDPR compliance badges. Ready for future GDPR compliance modules (Risk Management, ROPA, LIA/TIA, Templates).
+**Next Critical Step**: Implement the actual DPIA Builder wizard using `DPIA_BUILDER_PROMPT.md` to create the core compliance functionality that users need.
