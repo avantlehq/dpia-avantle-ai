@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.1.7" as const
-export const VERSION_NAME = "Unified Background Fix" as const
+export const VERSION = "3.1.8" as const
+export const VERSION_NAME = "Card Background Consistency" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

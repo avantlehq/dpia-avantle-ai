@@ -168,7 +168,7 @@ export default async function DashboardPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Total Assessments
@@ -182,7 +182,7 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
           
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 In Progress
@@ -198,7 +198,7 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
           
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Completed
@@ -214,7 +214,7 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
           
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Drafts
@@ -231,7 +231,7 @@ export default async function DashboardPage() {
           </Card>
         </div>
 
-        <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+        <Card className="avantle-border bg-card backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="text-card-foreground">Recent Assessments</CardTitle>
           </CardHeader>

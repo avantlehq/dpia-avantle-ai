@@ -68,7 +68,7 @@ export default function PrecheckPage() {
             showHomeButton={false}
           />
         ) : !results ? (
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-card-foreground">
                 GDPR Article 35 Assessment

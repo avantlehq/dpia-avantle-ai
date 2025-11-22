@@ -36,7 +36,7 @@ export default async function OnboardingPage() {
 
         {/* Feature Overview */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader className="text-center">
               <div className="p-3 rounded-lg bg-primary/10 w-fit mx-auto mb-4">
                 <Zap className="h-6 w-6 text-primary" />
@@ -50,7 +50,7 @@ export default async function OnboardingPage() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader className="text-center">
               <div className="p-3 rounded-lg bg-primary/10 w-fit mx-auto mb-4">
                 <FileText className="h-6 w-6 text-primary" />
@@ -64,7 +64,7 @@ export default async function OnboardingPage() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader className="text-center">
               <div className="p-3 rounded-lg bg-primary/10 w-fit mx-auto mb-4">
                 <Globe className="h-6 w-6 text-primary" />
@@ -80,7 +80,7 @@ export default async function OnboardingPage() {
         </div>
 
         {/* Interactive Onboarding Wizard */}
-        <Card className="avantle-border bg-card/50 backdrop-blur-sm mb-8">
+        <Card className="avantle-border bg-card backdrop-blur-sm mb-8">
           <CardHeader>
             <CardTitle className="text-2xl text-center text-card-foreground">
               Let&apos;s Get You Started
@@ -96,7 +96,7 @@ export default async function OnboardingPage() {
 
         {/* Quick Start Options */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-blue-500/10">
@@ -131,7 +131,7 @@ export default async function OnboardingPage() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-lg bg-green-500/10">
@@ -168,7 +168,7 @@ export default async function OnboardingPage() {
         </div>
 
         {/* Learning Resources */}
-        <Card className="avantle-border bg-card/50 backdrop-blur-sm mb-8">
+        <Card className="avantle-border bg-card backdrop-blur-sm mb-8">
           <CardHeader>
             <div className="flex items-center gap-3">
               <BookOpen className="h-6 w-6 text-primary" />

@@ -13,7 +13,8 @@
       "Bash(rm:*)",
       "Bash(TURBO_TEAM= pnpm build)",
       "Bash(mkdir:*)",
-      "WebFetch(domain:avantle.ai)"
+      "WebFetch(domain:avantle.ai)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": [],
