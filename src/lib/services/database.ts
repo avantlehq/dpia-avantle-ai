@@ -9,10 +9,11 @@ type AssessmentAnswer = Tables['assessment_answers']['Row']
 type PrecheckAssessment = Tables['precheck_assessments']['Row']
 
 export class DatabaseService {
-  private supabase: any
+  // Using any for internal client to avoid complex type issues while maintaining type safety on public methods
+  private supabase: any // eslint-disable-line @typescript-eslint/no-explicit-any
   private isServer: boolean
 
-  private constructor(supabaseClient: any, isServer = true) {
+  private constructor(supabaseClient: any, isServer = true) { // eslint-disable-line @typescript-eslint/no-explicit-any
     this.isServer = isServer
     this.supabase = supabaseClient
   }
@@ -145,8 +146,8 @@ export class DatabaseService {
     }
 
     // Transform flat array into nested object structure
-    const answers: Record<string, Record<string, any>> = {}
-    data?.forEach((answer: any) => {
+    const answers: Record<string, Record<string, unknown>> = {}
+    data?.forEach((answer: AssessmentAnswer) => {
       if (!answers[answer.section_id]) {
         answers[answer.section_id] = {}
       }

@@ -15,7 +15,7 @@ export default function NotFound() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="text-center">
-            <div className="text-6xl font-bold text-gray-300 mb-4">404</div>
+            <div className="text-4xl sm:text-6xl font-bold text-gray-300 mb-4">404</div>
           </div>
           
           <div className="space-y-2">

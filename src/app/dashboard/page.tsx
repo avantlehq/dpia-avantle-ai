@@ -98,10 +98,10 @@ export default async function DashboardPage() {
       <div className="min-h-screen avantle-gradient">
         <div className="container mx-auto p-6 space-y-6">
           <OnboardingBanner />
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h1 className="text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
-              <p className="text-muted-foreground font-light">
+              <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
+              <p className="text-sm sm:text-base text-muted-foreground font-light">
                 Manage your GDPR compliance assessments with European privacy values
               </p>
             </div>
@@ -122,10 +122,10 @@ export default async function DashboardPage() {
     <div className="min-h-screen avantle-gradient">
       <div className="container mx-auto p-6 space-y-6">
         <OnboardingBanner />
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
-            <p className="text-muted-foreground font-light">
+            <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
+            <p className="text-sm sm:text-base text-muted-foreground font-light">
               Manage your GDPR compliance assessments with European privacy values
             </p>
           </div>

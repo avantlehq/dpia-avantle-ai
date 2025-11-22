@@ -17,7 +17,7 @@ export interface PrecheckSubmissionResult {
 }
 
 export async function submitPrecheckAction(
-  answers: Record<string, any>
+  answers: Record<string, string | string[]>
 ): Promise<PrecheckSubmissionResult> {
   try {
     // Calculate DPIA necessity based on answers
@@ -99,7 +99,7 @@ export async function submitPrecheckAction(
   }
 }
 
-function calculatePrecheckResult(answers: Record<string, any>) {
+function calculatePrecheckResult(answers: Record<string, string | string[]>) {
   // GDPR Article 35 criteria for DPIA necessity
   const criteria = {
     systematicEvaluation: answers.automaticDecisionMaking === 'yes' || answers.profilingActivities === 'yes',

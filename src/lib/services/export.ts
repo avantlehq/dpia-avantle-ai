@@ -396,7 +396,10 @@ export class RealExportService {
       return 'No risk assessments have been completed for this DPIA.'
     }
 
-    const totalScore = risks.reduce((sum, risk: any) => sum + (risk.score || 0), 0)
+    const totalScore = risks.reduce((sum, risk: unknown) => {
+      const riskObj = risk as { score?: number }
+      return sum + (riskObj.score || 0)
+    }, 0)
     const averageScore = Math.round(totalScore / risks.length)
     
     let riskLevel = 'low'
@@ -404,8 +407,9 @@ export class RealExportService {
     else if (averageScore >= 10) riskLevel = 'high'
     else if (averageScore >= 6) riskLevel = 'medium'
 
-    const riskCounts = risks.reduce((counts, risk: any) => {
-      const level = risk.level || 'unknown'
+    const riskCounts = risks.reduce((counts, risk: unknown) => {
+      const riskObj = risk as { level?: string }
+      const level = riskObj.level || 'unknown'
       counts[level] = (counts[level] || 0) + 1
       return counts
     }, {} as Record<string, number>)

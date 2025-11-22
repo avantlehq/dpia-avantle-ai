@@ -47,6 +47,33 @@ export function FormSkeleton({ fields = 5 }: { fields?: number }) {
   )
 }
 
+export function LoadingSkeleton({ 
+  title = "Loading...", 
+  description 
+}: { 
+  title?: string
+  description?: string 
+}) {
+  return (
+    <div className="flex flex-col items-center justify-center py-12 space-y-4">
+      <div className="text-center space-y-2">
+        <div className="flex justify-center">
+          <Skeleton className="h-8 w-8 rounded-full animate-pulse" />
+        </div>
+        <h3 className="text-lg font-medium text-foreground">{title}</h3>
+        {description && (
+          <p className="text-sm text-muted-foreground">{description}</p>
+        )}
+      </div>
+      <div className="space-y-3 w-full max-w-md">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-3/4" />
+        <Skeleton className="h-4 w-1/2" />
+      </div>
+    </div>
+  )
+}
+
 export function DashboardSkeleton() {
   return (
     <div className="min-h-screen avantle-gradient p-4">

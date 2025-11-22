@@ -16,7 +16,8 @@ import {
   Users,
   Building,
   Zap,
-  Target
+  Target,
+  type LucideIcon
 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
@@ -24,7 +25,7 @@ interface OnboardingStep {
   id: string
   title: string
   description: string
-  icon: any
+  icon: LucideIcon
   options: {
     value: string
     label: string
@@ -228,10 +229,10 @@ export function OnboardingWizard() {
           </CardContent>
         </Card>
 
-        <div className="flex gap-3 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button 
             onClick={() => router.push(recommendation.path)}
-            className="avantle-glow"
+            className="avantle-glow w-full sm:w-auto"
           >
             {recommendation.title}
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -239,7 +240,7 @@ export function OnboardingWizard() {
           <Button 
             variant="outline" 
             onClick={() => router.push('/dashboard')}
-            className="avantle-border"
+            className="avantle-border w-full sm:w-auto"
           >
             Go to Dashboard
           </Button>

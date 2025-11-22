@@ -1,5 +1,6 @@
 import { DatabaseService } from './database'
-import { Result, createSuccess, createError } from '@/lib/types/result'
+import { AuthGuard } from './auth-guard'
+import { Result, createSuccess, createError, isError } from '@/lib/types/result'
 import type { Database } from '@/lib/supabase/database.types'
 
 // Use database types
@@ -14,20 +15,19 @@ export interface DashboardStats {
 
 export class DashboardService {
   /**
-   * Load assessments with proper error handling
+   * Load assessments with proper authentication and error handling
    */
   static async loadAssessments(): Promise<Result<Assessment[]>> {
     try {
-      const db = await DatabaseService.create()
-      const workspaceId = await db.getDefaultWorkspace()
+      // Check user authentication and workspace access first
+      const authResult = await AuthGuard.checkUserAccess()
       
-      if (!workspaceId) {
-        return createError(
-          'NOT_FOUND',
-          'No workspace found. Please complete onboarding first.'
-        )
+      if (isError(authResult)) {
+        return authResult
       }
 
+      const { workspaceId } = authResult.data
+      const db = await DatabaseService.create()
       const assessments = await db.getAssessments(workspaceId)
       
       return createSuccess(assessments || [])

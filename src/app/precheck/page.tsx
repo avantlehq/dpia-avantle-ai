@@ -8,21 +8,36 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { PrecheckForm } from '@/components/precheck/precheck-form'
 import { PrecheckResults } from '@/components/precheck/precheck-results'
-import precheckTemplate from '@/lib/templates/dpia-precheck-v1.json'
-import { submitPrecheckAction } from '@/lib/actions/precheck-actions'
+import { PrecheckService } from '@/lib/services/precheck'
+import type { PrecheckResult } from '@/lib/validations/precheck'
+import { isError, isSuccess } from '@/lib/types/result'
+import { ErrorState } from '@/components/ui/error-state'
+import { LoadingSkeleton } from '@/components/ui/loading-skeleton'
 import type { PrecheckSubmission } from '@/lib/validations/precheck'
 
 export default function PrecheckPage() {
-  const [results, setResults] = useState<any>(null)
+  const [results, setResults] = useState<PrecheckResult | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (data: PrecheckSubmission) => {
     setIsLoading(true)
+    setError(null)
+    
     try {
-      const result = await submitPrecheckAction(data.answers)
-      setResults(result)
+      const result = await PrecheckService.submitAssessment(data.answers)
+      
+      if (isError(result)) {
+        setError(result.message)
+        return
+      }
+      
+      if (isSuccess(result)) {
+        setResults(result.data)
+      }
     } catch (error) {
       console.error('Error submitting precheck:', error)
+      setError('An unexpected error occurred. Please try again.')
     } finally {
       setIsLoading(false)
     }
@@ -54,7 +69,14 @@ export default function PrecheckPage() {
         </div>
 
         {/* Content */}
-        {!results ? (
+        {error ? (
+          <ErrorState 
+            title="Assessment Failed"
+            message={error}
+            onRetry={() => setError(null)}
+            showHomeButton={false}
+          />
+        ) : !results ? (
           <Card className="avantle-border bg-card/50 backdrop-blur-sm">
             <CardHeader>
               <CardTitle className="text-card-foreground">
@@ -62,18 +84,28 @@ export default function PrecheckPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <PrecheckForm
-                questions={precheckTemplate.template.questions as any}
-                onSubmit={handleSubmit}
-                isLoading={isLoading}
-              />
+              {isLoading ? (
+                <LoadingSkeleton 
+                  title="Processing assessment..."
+                  description="Analyzing your answers against GDPR Article 35 criteria"
+                />
+              ) : (
+                <PrecheckForm
+                  questions={PrecheckService.getQuestions()}
+                  onSubmit={handleSubmit}
+                  isLoading={isLoading}
+                />
+              )}
             </CardContent>
           </Card>
         ) : (
           <PrecheckResults 
             result={results}
             onStartDPIA={() => window.location.href = '/onboarding'}
-            onRetakeAssessment={() => setResults(null)}
+            onRetakeAssessment={() => {
+              setResults(null)
+              setError(null)
+            }}
           />
         )}
 
