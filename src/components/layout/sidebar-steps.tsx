@@ -16,21 +16,21 @@ import {
 import { 
   CheckCircle, 
   Circle, 
-  ChevronRight, 
+  
   ChevronDown,
   ChevronLeft
 } from 'lucide-react'
 
 interface SidebarStepsProps {
   steps?: WizardStep[]
-  currentStepId?: string
+  _currentStepId?: string
   assessmentId?: string
   className?: string
 }
 
 export function SidebarSteps({ 
   steps = dpiaWizardSteps, 
-  currentStepId,
+  _currentStepId,
   assessmentId,
   className 
 }: SidebarStepsProps) {
@@ -38,8 +38,8 @@ export function SidebarSteps({
   const { toggleWizardSteps } = useLayoutActions()
   
   // Update step status based on current step
-  const stepsWithStatus = currentStepId 
-    ? updateWizardStepStatus(steps, currentStepId)
+  const stepsWithStatus = _currentStepId 
+    ? updateWizardStepStatus(steps, _currentStepId)
     : steps
 
   // Calculate progress
@@ -110,7 +110,7 @@ export function SidebarSteps({
       <div className="lg:hidden mb-6">
         <MobileStepsDropdown 
           steps={stepsWithStatus}
-          currentStepId={currentStepId}
+          _currentStepId={_currentStepId}
           assessmentId={assessmentId}
         />
       </div>
@@ -199,11 +199,11 @@ function StepItem({ step, index, assessmentId, collapsed = false }: StepItemProp
 
 interface MobileStepsDropdownProps {
   steps: WizardStep[]
-  currentStepId?: string
+  _currentStepId?: string
   assessmentId?: string
 }
 
-function MobileStepsDropdown({ steps, currentStepId, assessmentId }: MobileStepsDropdownProps) {
+function MobileStepsDropdown({ steps, _currentStepId, assessmentId }: MobileStepsDropdownProps) {
   const [isOpen, setIsOpen] = React.useState(false)
   const currentStep = steps.find(step => step.current) || steps[0]
   const completedSteps = steps.filter(step => step.completed).length

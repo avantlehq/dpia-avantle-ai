@@ -2,7 +2,6 @@
 
 import { DatabaseService } from '@/lib/services/database'
 import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
 
 export interface CreateAssessmentResult {
   success: boolean

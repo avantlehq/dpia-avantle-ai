@@ -29,7 +29,7 @@ import { useTheme } from 'next-themes'
 
 export function Topbar() {
   const { toggleRightPanel } = useLayoutActions()
-  const { theme, setTheme } = useTheme()
+  const { theme: _theme, setTheme } = useTheme()
 
   return (
     <header className="flex items-center justify-between px-4 lg:px-6 h-14 lg:h-16 border-b avantle-border bg-card/50 backdrop-blur-sm">

@@ -15,7 +15,7 @@ export function SidebarLeft() {
   const pathname = usePathname()
   const { leftSidebarOpen, mobileSidebarOpen } = useLayoutState()
   const { toggleLeftSidebar, setMobileSidebarOpen } = useLayoutActions()
-  const activeItem = getActiveNavItem(pathname)
+  const _activeItem = getActiveNavItem(pathname)
 
   return (
     <>
@@ -49,7 +49,7 @@ export function SidebarLeft() {
         {/* Navigation */}
         <ScrollArea className="flex-1 px-3 py-4">
           <div className="space-y-6">
-            {navigationConfig.map((group, index) => (
+            {navigationConfig.map((group, _index) => (
               <NavGroup
                 key={group.name}
                 group={group}

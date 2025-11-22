@@ -3,7 +3,6 @@
 import React from 'react'
 import { NavItem } from './nav-item'
 import { type NavGroup as NavGroupType } from '@/lib/state/navigation'
-import { cn } from '@/lib/utils'
 
 interface NavGroupProps {
   group: NavGroupType

@@ -206,7 +206,7 @@ export function OnboardingWizard() {
         </div>
         
         <h3 className="text-xl font-medium text-foreground mb-2">
-          Perfect! Here's what we recommend:
+          Perfect! Here&apos;s what we recommend:
         </h3>
         
         <Card className="avantle-border bg-primary/5 max-w-md mx-auto mb-6">
