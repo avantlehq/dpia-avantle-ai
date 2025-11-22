@@ -18,6 +18,7 @@ import { EmptyState } from '@/components/ui/empty-state'
 import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
+import { LayoutShell } from '@/components/layout/layout-shell'
 
 // Force dynamic rendering - dashboard uses cookies/sessions
 export const dynamic = 'force-dynamic'
@@ -55,8 +56,8 @@ export default async function DashboardPage() {
   if (isError(result)) {
     if (result.error === 'NOT_FOUND') {
       return (
-        <div className="min-h-screen avantle-gradient">
-          <div className="container mx-auto p-6">
+        <LayoutShell>
+          <div className="p-6">
             <OnboardingBanner />
             <EmptyState 
               title="No workspace found"
@@ -65,27 +66,35 @@ export default async function DashboardPage() {
               onAction={() => window.location.href = '/onboarding'}
             />
           </div>
-        </div>
+        </LayoutShell>
       )
     }
     
     if (result.error === 'UNAUTHORIZED') {
       return (
-        <ErrorState 
-          title="Access Denied"
-          message={result.message}
-          details={result.details}
-        />
+        <LayoutShell>
+          <div className="p-6">
+            <ErrorState 
+              title="Access Denied"
+              message={result.message}
+              details={result.details}
+            />
+          </div>
+        </LayoutShell>
       )
     }
     
     return (
-      <ErrorState 
-        title="Unable to load dashboard"
-        message={result.message}
-        details={result.details}
-        onRetry={() => window.location.reload()}
-      />
+      <LayoutShell>
+        <div className="p-6">
+          <ErrorState 
+            title="Unable to load dashboard"
+            message={result.message}
+            details={result.details}
+            onRetry={() => window.location.reload()}
+          />
+        </div>
+      </LayoutShell>
     )
   }
   
@@ -95,8 +104,8 @@ export default async function DashboardPage() {
   // Handle empty state
   if (assessments.length === 0) {
     return (
-      <div className="min-h-screen avantle-gradient">
-        <div className="container mx-auto p-6 space-y-6">
+      <LayoutShell>
+        <div className="p-6 space-y-6">
           <OnboardingBanner />
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
@@ -114,13 +123,13 @@ export default async function DashboardPage() {
             icon={<FileText className="h-12 w-12 text-muted-foreground" />}
           />
         </div>
-      </div>
+      </LayoutShell>
     )
   }
 
   return (
-    <div className="min-h-screen avantle-gradient">
-      <div className="container mx-auto p-6 space-y-6">
+    <LayoutShell>
+      <div className="p-6 space-y-6">
         <OnboardingBanner />
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
@@ -262,6 +271,6 @@ export default async function DashboardPage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </LayoutShell>
   )
 }
