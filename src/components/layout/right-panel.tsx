@@ -20,7 +20,7 @@ export function RightPanel({ children, className }: RightPanelProps) {
   return (
     <aside className={cn(
       "border-l avantle-border bg-card/20 backdrop-blur-sm flex flex-col",
-      "animate-in slide-in-from-right duration-300 overflow-hidden w-full h-full",
+      "h-full overflow-hidden",
       className
     )}>
       {/* Header */}

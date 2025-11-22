@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
+import { AppLayoutWrapper } from '@/components/layout/app-layout-wrapper'
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -22,7 +23,9 @@ export default function RootLayout({
           enableSystem={true}
           disableTransitionOnChange={false}
         >
-          {children}
+          <AppLayoutWrapper>
+            {children}
+          </AppLayoutWrapper>
           <Toaster />
         </ThemeProvider>
       </body>

@@ -18,7 +18,7 @@ import { EmptyState } from '@/components/ui/empty-state'
 import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
-import { LayoutShell } from '@/components/layout/layout-shell'
+// Layout now handled at app level
 
 // Force dynamic rendering - assessments uses cookies/sessions
 export const dynamic = 'force-dynamic'
@@ -56,8 +56,7 @@ export default async function AssessmentsPage() {
   if (isError(result)) {
     if (result.error === 'NOT_FOUND') {
       return (
-        <LayoutShell>
-          <div className="p-6">
+        <div>
             <OnboardingBanner />
             <EmptyState 
               title="No workspace found"
@@ -65,22 +64,19 @@ export default async function AssessmentsPage() {
               actionLabel="Start Onboarding"
               onAction={() => window.location.href = '/onboarding'}
             />
-          </div>
-        </LayoutShell>
+        </div>
       )
     }
     
     if (result.error === 'UNAUTHORIZED') {
       return (
-        <LayoutShell>
-          <div className="p-6">
+        <div>
             <ErrorState 
               title="Access Denied"
               message={result.message}
               details={result.details}
             />
-          </div>
-        </LayoutShell>
+        </div>
       )
     }
     
@@ -128,8 +124,7 @@ export default async function AssessmentsPage() {
   }
 
   return (
-    <LayoutShell>
-      <div className="p-6 space-y-6">
+    <div className="space-y-6">
         <OnboardingBanner />
         
         {/* Header */}
@@ -245,7 +240,6 @@ export default async function AssessmentsPage() {
             </Table>
           </CardContent>
         </Card>
-      </div>
-    </LayoutShell>
+    </div>
   )
 }

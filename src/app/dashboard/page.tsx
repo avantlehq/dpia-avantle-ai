@@ -18,7 +18,7 @@ import { EmptyState } from '@/components/ui/empty-state'
 import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
-import { LayoutShell } from '@/components/layout/layout-shell'
+// Layout now handled at app level
 
 // Force dynamic rendering - dashboard uses cookies/sessions
 export const dynamic = 'force-dynamic'
@@ -56,45 +56,39 @@ export default async function DashboardPage() {
   if (isError(result)) {
     if (result.error === 'NOT_FOUND') {
       return (
-        <LayoutShell>
-          <div className="p-6">
-            <OnboardingBanner />
-            <EmptyState 
-              title="No workspace found"
-              description="Please complete the onboarding process to get started"
-              actionLabel="Start Onboarding"
-              onAction={() => window.location.href = '/onboarding'}
-            />
-          </div>
-        </LayoutShell>
+        <div className="p-6">
+          <OnboardingBanner />
+          <EmptyState 
+            title="No workspace found"
+            description="Please complete the onboarding process to get started"
+            actionLabel="Start Onboarding"
+            onAction={() => window.location.href = '/onboarding'}
+          />
+        </div>
       )
     }
     
     if (result.error === 'UNAUTHORIZED') {
       return (
-        <LayoutShell>
-          <div className="p-6">
-            <ErrorState 
-              title="Access Denied"
-              message={result.message}
-              details={result.details}
-            />
-          </div>
-        </LayoutShell>
+        <div className="p-6">
+          <ErrorState 
+            title="Access Denied"
+            message={result.message}
+            details={result.details}
+          />
+        </div>
       )
     }
     
     return (
-      <LayoutShell>
-        <div className="p-6">
-          <ErrorState 
-            title="Unable to load dashboard"
-            message={result.message}
-            details={result.details}
-            onRetry={() => window.location.reload()}
-          />
-        </div>
-      </LayoutShell>
+      <div className="p-6">
+        <ErrorState 
+          title="Unable to load dashboard"
+          message={result.message}
+          details={result.details}
+          onRetry={() => window.location.reload()}
+        />
+      </div>
     )
   }
   
@@ -104,32 +98,29 @@ export default async function DashboardPage() {
   // Handle empty state
   if (assessments.length === 0) {
     return (
-      <LayoutShell>
-        <div className="p-6 space-y-6">
-          <OnboardingBanner />
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
-              <p className="text-sm sm:text-base text-muted-foreground font-light">
-                Manage your GDPR compliance assessments with European privacy values
-              </p>
-            </div>
+      <div className="space-y-6">
+        <OnboardingBanner />
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
+            <p className="text-sm sm:text-base text-muted-foreground font-light">
+              Manage your GDPR compliance assessments with European privacy values
+            </p>
           </div>
-          <EmptyState 
-            title="No assessments yet"
-            description="Get started by creating your first DPIA assessment"
-            actionLabel="Create Assessment"
-            onAction={() => document.getElementById('create-assessment-trigger')?.click()}
-            icon={<FileText className="h-12 w-12 text-muted-foreground" />}
-          />
         </div>
-      </LayoutShell>
+        <EmptyState 
+          title="No assessments yet"
+          description="Get started by creating your first DPIA assessment"
+          actionLabel="Create Assessment"
+          onAction={() => document.getElementById('create-assessment-trigger')?.click()}
+          icon={<FileText className="h-12 w-12 text-muted-foreground" />}
+        />
+      </div>
     )
   }
 
   return (
-    <LayoutShell>
-      <div className="p-6 space-y-6">
+    <div className="space-y-6">
         <OnboardingBanner />
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
@@ -270,7 +261,6 @@ export default async function DashboardPage() {
             )}
           </CardContent>
         </Card>
-      </div>
-    </LayoutShell>
+    </div>
   )
 }
