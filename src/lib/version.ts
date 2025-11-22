@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "2.5" as const
-export const VERSION_NAME = "Phase 1C Complete - Stability & Polish" as const
+export const VERSION = "2.2.4" as const
+export const VERSION_NAME = "Layout Skeleton Fixed" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
