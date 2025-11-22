@@ -124,8 +124,6 @@
   grid-template-rows: var(--topbar-height) 1fr;
   grid-template-columns: var(--sidebar-width) 1fr 0;
   transition: grid-template-columns 300ms ease;
-  gap: 1px; /* Add visible gaps between grid areas */
-  background: oklch(0.3 0 0); /* Dark background to show gaps */
 }
 
 .app-layout.sidebar-collapsed {
@@ -143,15 +141,11 @@
 .app-topbar {
   grid-area: topbar;
   z-index: 30;
-  background: var(--card);
-  border: 2px solid oklch(0.4 0 0); /* Visible border */
 }
 
 .app-sidebar {
   grid-area: sidebar;
   z-index: 20;
-  background: var(--sidebar);
-  border: 2px solid oklch(0.4 0 0); /* Visible border */
 }
 
 .app-main {
@@ -159,7 +153,6 @@
   overflow-y: auto;
   z-index: 10;
   background: var(--background);
-  border: 2px solid oklch(0.4 0 0); /* Visible border */
   display: flex;
   flex-direction: column;
 }
@@ -167,8 +160,6 @@
 .app-right {
   grid-area: right;
   z-index: 20;
-  background: var(--card);
-  border: 2px solid oklch(0.4 0 0); /* Visible border */
 }
 
 /* Simple layout for homepage */

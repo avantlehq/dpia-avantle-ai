@@ -31,7 +31,7 @@ export function Topbar() {
   const { theme: _theme, setTheme } = useTheme()
 
   return (
-    <header className="flex items-center justify-between px-4 lg:px-6 h-18 border-b avantle-border bg-card/50 backdrop-blur-sm">
+    <header className="flex items-center justify-between px-4 lg:px-6 h-18 border-b avantle-border bg-card">
       {/* Left Section - App Title */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">

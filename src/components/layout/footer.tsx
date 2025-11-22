@@ -11,7 +11,7 @@ export function Footer() {
 
   return (
     <footer className="mt-auto border-t border-border bg-card/30 backdrop-blur-sm">
-      <div className="px-4 py-3">
+      <div className="px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between text-xs text-muted-foreground">
           {/* Left Section */}
           <div className="flex items-center gap-3">

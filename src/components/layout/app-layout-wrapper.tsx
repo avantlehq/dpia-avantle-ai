@@ -48,8 +48,10 @@ function AppLayoutContent({ children }: AppLayoutWrapperProps) {
       
       {/* Main Content */}
       <div className="app-main">
-        <div className="flex-1 p-4 lg:p-6">
-          {children}
+        <div className="flex-1 p-6 lg:p-8">
+          <div className="max-w-7xl mx-auto">
+            {children}
+          </div>
         </div>
         <Footer />
       </div>
