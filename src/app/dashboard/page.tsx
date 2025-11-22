@@ -256,34 +256,36 @@ export default async function DashboardPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="py-4 text-base font-semibold">Name</TableHead>
-                    <TableHead className="py-4 text-base font-semibold">Status</TableHead>
-                    <TableHead className="py-4 text-base font-semibold">Created</TableHead>
-                    <TableHead className="py-4 text-base font-semibold">Updated</TableHead>
-                    <TableHead className="py-4 text-base font-semibold">Actions</TableHead>
+                    <TableHead className="py-4 text-base font-semibold w-[30%]">Name</TableHead>
+                    <TableHead className="py-4 text-base font-semibold w-[20%]">Status</TableHead>
+                    <TableHead className="py-4 text-base font-semibold w-[15%]">Created</TableHead>
+                    <TableHead className="py-4 text-base font-semibold w-[15%]">Updated</TableHead>
+                    <TableHead className="py-4 text-base font-semibold w-[20%]">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {assessments.map((assessment) => (
-                    <TableRow key={assessment.id} className="h-20 border-b hover:bg-accent/5">
-                      <TableCell className="font-medium py-6 text-base">
+                    <TableRow key={assessment.id} className="border-b hover:bg-accent/5">
+                      <TableCell className="font-medium py-4 text-base align-top">
                         <Link 
                           href={`/${assessment.id}`}
-                          className="hover:underline text-primary hover:text-primary/80"
+                          className="hover:underline text-primary hover:text-primary/80 block"
                         >
                           {assessment.name}
                         </Link>
                       </TableCell>
-                      <TableCell className="py-6">
-                        {getStatusBadge(assessment.status)}
+                      <TableCell className="py-4 align-top">
+                        <div className="flex items-start">
+                          {getStatusBadge(assessment.status)}
+                        </div>
                       </TableCell>
-                      <TableCell className="py-6 text-base text-muted-foreground">
+                      <TableCell className="py-4 text-base text-muted-foreground align-top">
                         {formatDate(assessment.created_at)}
                       </TableCell>
-                      <TableCell className="py-6 text-base text-muted-foreground">
+                      <TableCell className="py-4 text-base text-muted-foreground align-top">
                         {formatDate(assessment.updated_at)}
                       </TableCell>
-                      <TableCell className="py-6">
+                      <TableCell className="py-4 align-top">
                         <AssessmentActions
                           assessmentId={assessment.id}
                           assessmentName={assessment.name}
