@@ -75,7 +75,7 @@ export async function createAssessmentAction(
 export async function saveAssessmentAnswersAction(
   assessmentId: string,
   sectionId: string,
-  answers: Record<string, any>
+  answers: Record<string, unknown>
 ): Promise<SaveAnswersResult> {
   try {
     const db = await DatabaseService.create()

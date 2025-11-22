@@ -130,7 +130,7 @@ export class DatabaseService {
   }
 
   // Assessment answers CRUD operations
-  async getAssessmentAnswers(assessmentId: string): Promise<Record<string, Record<string, any>>> {
+  async getAssessmentAnswers(assessmentId: string): Promise<Record<string, Record<string, unknown>>> {
     if (!this.supabase) {
       throw new Error('Database not configured')
     }
@@ -160,7 +160,7 @@ export class DatabaseService {
   async saveAssessmentAnswers(
     assessmentId: string, 
     sectionId: string, 
-    answers: Record<string, any>
+    answers: Record<string, unknown>
   ): Promise<void> {
     if (!this.supabase) {
       throw new Error('Database not configured')
@@ -191,8 +191,8 @@ export class DatabaseService {
   // Precheck assessment operations
   async createPrecheckAssessment(data: {
     workspaceId: string
-    answers: Record<string, any>
-    result: any
+    answers: Record<string, unknown>
+    result: unknown
   }): Promise<PrecheckAssessment> {
     if (!this.supabase) {
       throw new Error('Database not configured')
@@ -263,7 +263,7 @@ export class DatabaseService {
     entityType: string
     entityId: string
     workspaceId?: string
-    payload?: Record<string, any>
+    payload?: Record<string, unknown>
   }): Promise<void> {
     if (!this.supabase) {
       console.warn('Database not configured, skipping event logging')

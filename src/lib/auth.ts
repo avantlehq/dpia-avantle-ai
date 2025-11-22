@@ -44,8 +44,8 @@ export async function requireWorkspace(workspaceId: string) {
   const { data: member } = await supabase
     .from('members')
     .select('role')
-    .eq('user_id', user.id as any)
-    .eq('workspace_id', workspaceId as any)
+    .eq('user_id', user.id as string)
+    .eq('workspace_id', workspaceId as string)
     .single()
   
   if (!member) {
