@@ -25,37 +25,44 @@ function LayoutShellContent({
   const { leftSidebarOpen, rightPanelOpen } = useLayoutState()
 
   return (
-    <div className={cn(
-      "flex min-h-screen w-full avantle-gradient",
-      className
-    )}>
-      {/* Left Sidebar */}
-      {showSidebar && (
-        <SidebarLeft />
-      )}
-
-      {/* Main Content Area */}
+    <div className={cn("min-h-screen w-full avantle-gradient flex flex-col", className)}>
+      {/* Topbar spans full width at top */}
+      {showTopbar && <Topbar />}
+      
+      {/* Main layout below topbar */}
       <div className={cn(
-        "flex flex-col flex-1 transition-all duration-300",
-        showSidebar && leftSidebarOpen ? "lg:ml-60" : showSidebar ? "lg:ml-16" : ""
+        "flex flex-1 transition-all duration-300",
+        showSidebar && leftSidebarOpen 
+          ? "lg:grid lg:grid-cols-[240px_1fr]" 
+          : showSidebar 
+          ? "lg:grid lg:grid-cols-[64px_1fr]"
+          : "flex"
       )}>
-        {/* Topbar */}
-        {showTopbar && <Topbar />}
+        {/* Left Sidebar */}
+        {showSidebar && (
+          <SidebarLeft />
+        )}
 
-        {/* Main Content + Right Panel */}
-        <main className="flex flex-1 overflow-hidden">
-          {/* Content Area */}
-          <div className="flex-1 overflow-y-auto">
-            <div className="p-4 lg:p-6">
-              {children}
+        {/* Main Content Area */}
+        <div className="flex flex-col flex-1 overflow-hidden">
+          {/* Main Content + Right Panel */}
+          <main className={cn(
+            "flex flex-1 overflow-hidden",
+            rightPanel && rightPanelOpen ? "lg:grid lg:grid-cols-[1fr_320px]" : "flex"
+          )}>
+            {/* Content Area */}
+            <div className="flex-1 overflow-y-auto">
+              <div className="p-4 lg:p-6">
+                {children}
+              </div>
             </div>
-          </div>
 
-          {/* Right Panel */}
-          {rightPanel && rightPanelOpen && (
-            <RightPanel>{rightPanel}</RightPanel>
-          )}
-        </main>
+            {/* Right Panel */}
+            {rightPanel && rightPanelOpen && (
+              <RightPanel>{rightPanel}</RightPanel>
+            )}
+          </main>
+        </div>
       </div>
     </div>
   )

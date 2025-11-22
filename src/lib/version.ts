@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "2.2.4" as const
-export const VERSION_NAME = "Layout Skeleton Fixed" as const
+export const VERSION = "2.3.0" as const
+export const VERSION_NAME = "Complete Layout Overhaul" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

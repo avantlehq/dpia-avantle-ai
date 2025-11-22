@@ -6,7 +6,8 @@
       "Bash(pnpm build:*)",
       "Bash(timeout:*)",
       "Bash(git add:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "WebFetch(domain:dpia.avantle.ai)"
     ],
     "deny": [],
     "ask": [],
