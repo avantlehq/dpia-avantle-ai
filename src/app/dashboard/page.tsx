@@ -257,10 +257,10 @@ export default async function DashboardPage() {
                 <TableHeader>
                   <TableRow>
                     <TableHead className="py-4 text-base font-semibold w-[30%]">Name</TableHead>
-                    <TableHead className="py-4 text-base font-semibold w-[20%]">Status</TableHead>
+                    <TableHead className="py-4 text-base font-semibold w-[25%]">Status</TableHead>
                     <TableHead className="py-4 text-base font-semibold w-[15%]">Created</TableHead>
                     <TableHead className="py-4 text-base font-semibold w-[15%]">Updated</TableHead>
-                    <TableHead className="py-4 text-base font-semibold w-[20%]">Actions</TableHead>
+                    <TableHead className="py-4 text-base font-semibold w-[15%]">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

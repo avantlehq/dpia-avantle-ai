@@ -42,8 +42,6 @@ export default async function AssessmentPage({ params }: AssessmentPageProps) {
       <EmptyState
         title="DPIA Wizard"
         description="The guided DPIA assessment wizard will be implemented here. This will include step-by-step forms for context, legal basis, risk assessment, and mitigation measures."
-        actionLabel="Start Wizard"
-        onAction={() => console.log('Start wizard clicked')}
         icon={<FileText className="h-12 w-12 text-muted-foreground" />}
       />
     </div>
