@@ -11,45 +11,16 @@ import {
 } from '@/components/ui/table'
 import { Plus, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
-import { DatabaseService } from '@/lib/services/database'
+import { DashboardService, Assessment } from '@/lib/services/dashboard'
+import { isSuccess, isError } from '@/lib/types/result'
+import { ErrorState } from '@/components/ui/error-state'
+import { EmptyState } from '@/components/ui/empty-state'
 import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
 
-async function getAssessments() {
-  try {
-    const db = await DatabaseService.create()
-    const workspaceId = await db.getDefaultWorkspace()
-    const assessments = await db.getAssessments(workspaceId)
-    return assessments
-  } catch (error) {
-    console.error('Error fetching assessments:', error)
-    // Fallback to mock data
-    return [
-      {
-        id: '1',
-        name: 'Employee Data Processing',
-        status: 'completed',
-        created_at: '2024-01-15',
-        updated_at: '2024-01-20'
-      },
-      {
-        id: '2', 
-        name: 'Customer CRM System',
-        status: 'in_progress',
-        created_at: '2024-01-18',
-        updated_at: '2024-01-19'
-      },
-      {
-        id: '3',
-        name: 'Marketing Analytics',
-        status: 'draft',
-        created_at: '2024-01-20',
-        updated_at: '2024-01-20'
-      }
-    ]
-  }
-}
+// Force dynamic rendering - dashboard uses cookies/sessions
+export const dynamic = 'force-dynamic'
 
 function getStatusIcon(status: string) {
   switch (status) {
@@ -78,7 +49,75 @@ function getStatusVariant(status: string): "default" | "secondary" | "destructiv
 }
 
 export default async function DashboardPage() {
-  const assessments = await getAssessments()
+  const result = await DashboardService.loadAssessments()
+  
+  // Handle error states
+  if (isError(result)) {
+    if (result.error === 'NOT_FOUND') {
+      return (
+        <div className="min-h-screen avantle-gradient">
+          <div className="container mx-auto p-6">
+            <OnboardingBanner />
+            <EmptyState 
+              title="No workspace found"
+              description="Please complete the onboarding process to get started"
+              actionLabel="Start Onboarding"
+              onAction={() => window.location.href = '/onboarding'}
+            />
+          </div>
+        </div>
+      )
+    }
+    
+    if (result.error === 'UNAUTHORIZED') {
+      return (
+        <ErrorState 
+          title="Access Denied"
+          message={result.message}
+          details={result.details}
+        />
+      )
+    }
+    
+    return (
+      <ErrorState 
+        title="Unable to load dashboard"
+        message={result.message}
+        details={result.details}
+        onRetry={() => window.location.reload()}
+      />
+    )
+  }
+  
+  const assessments = result.data
+  const stats = DashboardService.calculateStats(assessments)
+  
+  // Handle empty state
+  if (assessments.length === 0) {
+    return (
+      <div className="min-h-screen avantle-gradient">
+        <div className="container mx-auto p-6 space-y-6">
+          <OnboardingBanner />
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
+              <p className="text-muted-foreground font-light">
+                Manage your GDPR compliance assessments with European privacy values
+              </p>
+            </div>
+          </div>
+          <EmptyState 
+            title="No assessments yet"
+            description="Get started by creating your first DPIA assessment"
+            actionLabel="Create Assessment"
+            onAction={() => document.getElementById('create-assessment-trigger')?.click()}
+            icon={<FileText className="h-12 w-12 text-muted-foreground" />}
+          />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen avantle-gradient">
       <div className="container mx-auto p-6 space-y-6">
@@ -104,7 +143,7 @@ export default async function DashboardPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-foreground">{assessments.length}</div>
+              <div className="text-2xl font-light text-foreground">{stats.totalAssessments}</div>
             </CardContent>
           </Card>
           
@@ -119,7 +158,7 @@ export default async function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-light text-foreground">
-                {assessments.filter(a => a.status === 'in_progress').length}
+                {stats.inProgress}
               </div>
             </CardContent>
           </Card>
@@ -135,7 +174,7 @@ export default async function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-light text-foreground">
-                {assessments.filter(a => a.status === 'completed').length}
+                {stats.completed}
               </div>
             </CardContent>
           </Card>
@@ -151,7 +190,7 @@ export default async function DashboardPage() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-light text-foreground">
-                {assessments.filter(a => a.status === 'draft').length}
+                {stats.drafts}
               </div>
             </CardContent>
           </Card>
