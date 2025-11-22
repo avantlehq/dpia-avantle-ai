@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { SidebarLeft } from './sidebar-left'
 import { Topbar } from './topbar'
 import { RightPanel } from './right-panel'
+import { Footer } from './footer'
 import { LayoutProvider, useLayoutState } from '@/lib/state/layout'
 import { cn } from '@/lib/utils'
 
@@ -47,9 +48,10 @@ function AppLayoutContent({ children }: AppLayoutWrapperProps) {
       
       {/* Main Content */}
       <div className="app-main">
-        <div className="p-4 lg:p-6">
+        <div className="flex-1 p-4 lg:p-6">
           {children}
         </div>
+        <Footer />
       </div>
       
       {/* Right Panel */}

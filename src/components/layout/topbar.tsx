@@ -21,7 +21,8 @@ import {
   Sun, 
   Moon,
   Monitor,
-  LogOut
+  LogOut,
+  ShieldCheck
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
@@ -31,42 +32,15 @@ export function Topbar() {
 
   return (
     <header className="flex items-center justify-between px-4 lg:px-6 h-18 border-b avantle-border bg-card/50 backdrop-blur-sm">
-      {/* Left Section */}
+      {/* Left Section - App Title */}
       <div className="flex items-center gap-4">
-        {/* Workspace Switcher */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex items-center gap-2">
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded bg-primary/20 flex items-center justify-center">
-                  <span className="text-xs font-medium text-primary">A</span>
-                </div>
-                <span className="hidden sm:inline font-medium text-sm">Avantle Demo</span>
-              </div>
-              <ChevronDown className="h-4 w-4 text-muted-foreground" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="start" className="w-64">
-            <DropdownMenuLabel>Workspace</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded bg-primary/20 flex items-center justify-center">
-                  <span className="text-xs font-medium text-primary">A</span>
-                </div>
-                <div className="flex-1">
-                  <div className="font-medium text-sm">Avantle Demo</div>
-                  <div className="text-xs text-muted-foreground">Demo workspace</div>
-                </div>
-                <Badge variant="outline" className="text-xs">Demo</Badge>
-              </div>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem disabled>
-              <Settings className="h-4 w-4 mr-2" />
-              Workspace Settings
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="h-5 w-5 text-primary" />
+            <span className="font-semibold text-sm">DPIA Agent</span>
+          </div>
+          <Badge variant="secondary" className="text-xs">Demo</Badge>
+        </div>
       </div>
 
       {/* Right Section */}
