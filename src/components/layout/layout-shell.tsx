@@ -24,40 +24,25 @@ function LayoutShellContent({
 }: LayoutShellProps) {
   const { leftSidebarOpen, rightPanelOpen } = useLayoutState()
 
-  // Calculate layout variables
-  const sidebarWidth = showSidebar ? (leftSidebarOpen ? 240 : 64) : 0
-  const rightPanelWidth = rightPanel && rightPanelOpen ? 320 : 0
-
   return (
-    <div 
-      className={cn("min-h-screen w-full avantle-gradient", className)}
-      style={{
-        '--sidebar-width': `${sidebarWidth}px`,
-        '--right-panel-width': `${rightPanelWidth}px`,
-      } as React.CSSProperties}
-    >
+    <div className={cn("min-h-screen w-full avantle-gradient flex flex-col", className)}>
       {/* Topbar spans full width at top */}
       {showTopbar && <Topbar />}
       
-      {/* Main layout below topbar with CSS Grid */}
-      <div 
-        className="grid transition-all duration-300"
-        style={{
-          height: showTopbar ? 'calc(100vh - 4rem)' : '100vh',
-          gridTemplateColumns: (() => {
-            const cols = []
-            if (showSidebar) cols.push(`${sidebarWidth}px`)
-            cols.push('1fr')
-            if (rightPanel && rightPanelOpen) cols.push('320px')
-            return cols.join(' ')
-          })()
-        }}
-      >
+      {/* Main layout below topbar - Simple Flexbox */}
+      <div className="flex flex-1">
         {/* Left Sidebar */}
-        {showSidebar && <SidebarLeft />}
+        {showSidebar && (
+          <div className={cn(
+            "transition-all duration-300 flex-shrink-0",
+            leftSidebarOpen ? "w-60" : "w-16"
+          )}>
+            <SidebarLeft />
+          </div>
+        )}
 
         {/* Main Content Area */}
-        <div className="flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col min-w-0">
           <main className="flex-1 overflow-y-auto">
             <div className="p-4 lg:p-6">
               {children}
@@ -66,7 +51,11 @@ function LayoutShellContent({
         </div>
 
         {/* Right Panel */}
-        {rightPanel && rightPanelOpen && <RightPanel />}
+        {rightPanel && rightPanelOpen && (
+          <div className="w-80 flex-shrink-0">
+            <RightPanel />
+          </div>
+        )}
       </div>
     </div>
   )
