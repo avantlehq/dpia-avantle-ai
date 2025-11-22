@@ -256,17 +256,17 @@ export default async function DashboardPage() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="py-4">Name</TableHead>
-                    <TableHead className="py-4">Status</TableHead>
-                    <TableHead className="py-4">Created</TableHead>
-                    <TableHead className="py-4">Updated</TableHead>
-                    <TableHead className="py-4">Actions</TableHead>
+                    <TableHead className="py-4 text-base font-semibold">Name</TableHead>
+                    <TableHead className="py-4 text-base font-semibold">Status</TableHead>
+                    <TableHead className="py-4 text-base font-semibold">Created</TableHead>
+                    <TableHead className="py-4 text-base font-semibold">Updated</TableHead>
+                    <TableHead className="py-4 text-base font-semibold">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {assessments.map((assessment) => (
-                    <TableRow key={assessment.id} className="h-16">
-                      <TableCell className="font-medium py-4">
+                    <TableRow key={assessment.id} className="h-20 border-b hover:bg-accent/5">
+                      <TableCell className="font-medium py-6 text-base">
                         <Link 
                           href={`/${assessment.id}`}
                           className="hover:underline text-primary hover:text-primary/80"
@@ -274,16 +274,16 @@ export default async function DashboardPage() {
                           {assessment.name}
                         </Link>
                       </TableCell>
-                      <TableCell className="py-4">
+                      <TableCell className="py-6">
                         {getStatusBadge(assessment.status)}
                       </TableCell>
-                      <TableCell className="py-4 text-sm text-muted-foreground">
+                      <TableCell className="py-6 text-base text-muted-foreground">
                         {formatDate(assessment.created_at)}
                       </TableCell>
-                      <TableCell className="py-4 text-sm text-muted-foreground">
+                      <TableCell className="py-6 text-base text-muted-foreground">
                         {formatDate(assessment.updated_at)}
                       </TableCell>
-                      <TableCell className="py-4">
+                      <TableCell className="py-6">
                         <AssessmentActions
                           assessmentId={assessment.id}
                           assessmentName={assessment.name}

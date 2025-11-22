@@ -1,4 +1,5 @@
 import { 
+  Home,
   LayoutDashboard, 
   CheckCircle, 
   FileText, 
@@ -9,6 +10,7 @@ import {
   Scale, 
   File, 
   Users,
+  AlertTriangle,
   type LucideIcon
 } from 'lucide-react'
 
@@ -29,20 +31,30 @@ export interface NavGroup {
 // Complete module structure for DPIA Agent
 export const navigationConfig: NavGroup[] = [
   {
-    name: "Assessment",
+    name: "Main",
     items: [
       { 
-        name: "Dashboard", 
+        name: "Home", 
         href: "/dashboard", 
-        icon: LayoutDashboard,
-        description: "Overview of all assessments and analytics"
+        icon: Home,
+        description: "Dashboard overview of all assessments"
       },
+    ]
+  },
+  {
+    name: "Assessment", 
+    items: [
       { 
         name: "Pre-check", 
         href: "/precheck", 
         icon: CheckCircle,
         description: "Quick GDPR Article 35 evaluation"
       },
+    ]
+  },
+  {
+    name: "Builder",
+    items: [
       { 
         name: "DPIA Builder", 
         href: "/assessments", 
@@ -57,14 +69,14 @@ export const navigationConfig: NavGroup[] = [
       { 
         name: "Risk Registry", 
         href: "/risks", 
-        icon: Shield,
+        icon: AlertTriangle,
         description: "Manage identified risks and threats",
         disabled: true // Future feature
       },
       { 
         name: "Controls", 
         href: "/controls", 
-        icon: Settings,
+        icon: Shield,
         description: "Security controls and measures",
         disabled: true // Future feature
       },
@@ -73,32 +85,6 @@ export const navigationConfig: NavGroup[] = [
         href: "/mitigation", 
         icon: CheckSquare,
         description: "Risk mitigation strategies",
-        disabled: true // Future feature
-      },
-    ]
-  },
-  {
-    name: "Compliance",
-    items: [
-      { 
-        name: "ROPA", 
-        href: "/ropa", 
-        icon: Database,
-        description: "Records of Processing Activities",
-        disabled: true // Future feature
-      },
-      { 
-        name: "LIA/TIA", 
-        href: "/lia", 
-        icon: Scale,
-        description: "Legitimate Interest & Transfer Impact Assessments",
-        disabled: true // Future feature
-      },
-      { 
-        name: "Templates", 
-        href: "/templates", 
-        icon: File,
-        description: "Assessment templates and forms",
         disabled: true // Future feature
       },
     ]

@@ -162,20 +162,28 @@
   flex-direction: column;
 }
 
-/* Light theme main content background and text */
-.light .app-main {
-  background: oklch(0.98 0 0); /* Light background for light theme */
-  color: oklch(0.2 0 0); /* Dark text for light theme */
+/* Light theme for entire app */
+.light {
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.2 0 0);
+  --card: oklch(0.95 0 0);
+  --card-foreground: oklch(0.15 0 0);
+  --sidebar: oklch(0.95 0 0);
+  --sidebar-foreground: oklch(0.15 0 0);
+  --muted-foreground: oklch(0.5 0 0);
+  --border: oklch(0.85 0 0);
 }
 
-.light .app-main h1,
-.light .app-main h2, 
-.light .app-main h3,
-.light .app-main h4,
-.light .app-main p,
-.light .app-main span,
-.light .app-main div {
-  color: oklch(0.2 0 0); /* Ensure all text is dark in light mode */
+.light .app-main {
+  background: oklch(0.98 0 0);
+}
+
+.light .app-topbar {
+  background: oklch(0.95 0 0);
+}
+
+.light .app-sidebar {
+  background: oklch(0.95 0 0);
 }
 
 .app-right {
