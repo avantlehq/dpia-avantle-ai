@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "2.2" as const
-export const VERSION_NAME = "CI Fixed & Production Ready" as const
+export const VERSION = "2.3" as const
+export const VERSION_NAME = "Database Integration Complete" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,23 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "2.3": {
+    date: "2024-11-22",
+    name: "Database Integration Complete",
+    features: [
+      "Successfully connected to Supabase database",
+      "Ran complete database migration with 9 tables",
+      "Fixed RLS policies security warnings",
+      "Real data persistence instead of mock mode",
+      "Security-hardened database functions"
+    ],
+    improvements: [
+      "6/6 test suite now passing with real database",
+      "Assessment API using real Supabase backend",
+      "Production-ready database architecture",
+      "Multi-tenant RLS policies fully functional"
+    ]
+  },
   "2.2": {
     date: "2024-11-21",
     name: "CI Fixed & Production Ready",
