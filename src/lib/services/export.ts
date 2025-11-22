@@ -8,7 +8,7 @@ type Assessment = Database['public']['Tables']['assessments']['Row']
 
 interface ExportData {
   assessment: Assessment
-  answers: Record<string, Record<string, any>>
+  answers: Record<string, Record<string, unknown>>
   template: typeof dpiaTemplate
   metadata: {
     exportedAt: string
@@ -55,7 +55,7 @@ export class RealExportService {
     }
 
     // For now, create a blob URL (in production this would upload to Supabase Storage)
-    const blob = new Blob([fileBuffer as BlobPart], {
+    const _blob = new Blob([fileBuffer as BlobPart], {
       type: request.format === 'pdf' ? 'application/pdf' : 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
     })
     
@@ -132,7 +132,7 @@ export class RealExportService {
           addText(`${field.label}:`, 10, true)
           
           if (field.type === 'risk_assessment' && typeof answer === 'object') {
-            const risk = answer as any
+            const risk = answer as Record<string, unknown>
             addText(`Likelihood: ${risk.likelihood}/5`, 10)
             addText(`Impact: ${risk.impact}/5`, 10)
             addText(`Risk Score: ${risk.score}/25 (${risk.level})`, 10)
@@ -266,7 +266,7 @@ export class RealExportService {
           )
           
           if (field.type === 'risk_assessment' && typeof answer === 'object') {
-            const risk = answer as any
+            const risk = answer as Record<string, unknown>
             children.push(
               new Paragraph({
                 children: [
@@ -396,7 +396,7 @@ export class RealExportService {
       return 'No risk assessments have been completed for this DPIA.'
     }
 
-    const totalScore = risks.reduce((sum, risk: unknown) => {
+    const totalScore = risks.reduce((sum: number, risk: unknown) => {
       const riskObj = risk as { score?: number }
       return sum + (riskObj.score || 0)
     }, 0)
@@ -407,7 +407,7 @@ export class RealExportService {
     else if (averageScore >= 10) riskLevel = 'high'
     else if (averageScore >= 6) riskLevel = 'medium'
 
-    const riskCounts = risks.reduce((counts, risk: unknown) => {
+    const riskCounts = risks.reduce((counts: Record<string, number>, risk: unknown) => {
       const riskObj = risk as { level?: string }
       const level = riskObj.level || 'unknown'
       counts[level] = (counts[level] || 0) + 1
@@ -430,7 +430,7 @@ export class RealExportService {
     const riskFactors = data.answers.risk_factors || {}
     const risks = Object.values(riskFactors).filter(risk => 
       risk && typeof risk === 'object' && 'score' in risk
-    ) as any[]
+    ) as Array<Record<string, unknown>>
 
     const recommendations = []
 
@@ -443,7 +443,10 @@ export class RealExportService {
     )
 
     // Risk-specific recommendations
-    const highRisks = risks.filter(risk => risk.score >= 10)
+    const highRisks = risks.filter(risk => {
+      const riskObj = risk as { score?: number }
+      return (riskObj.score || 0) >= 10
+    })
     if (highRisks.length > 0) {
       recommendations.push(
         '5. Address high-risk factors identified in the risk assessment',
@@ -452,7 +455,10 @@ export class RealExportService {
       )
     }
 
-    const criticalRisks = risks.filter(risk => risk.score >= 15)
+    const criticalRisks = risks.filter(risk => {
+      const riskObj = risk as { score?: number }
+      return (riskObj.score || 0) >= 15
+    })
     if (criticalRisks.length > 0) {
       recommendations.push(
         '8. URGENT: Critical risks require immediate mitigation before processing begins',

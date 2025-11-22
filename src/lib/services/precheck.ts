@@ -1,5 +1,6 @@
 import { Result, createSuccess, createError } from '@/lib/types/result'
 import { submitPrecheckAction, PrecheckSubmissionResult } from '@/lib/actions/precheck-actions'
+import precheckTemplate from '@/lib/templates/dpia-precheck-v1.json'
 
 // Import types for compatibility
 import type { PrecheckResult as ValidationPrecheckResult } from '@/lib/validations/precheck'
@@ -112,12 +113,8 @@ export class PrecheckService {
    * Get precheck questions from template
    */
   static getQuestions(): PrecheckQuestion[] {
-    // Import template dynamically to avoid build issues
     try {
-      // Using dynamic import with require() for synchronous loading
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const template = require('@/lib/templates/dpia-precheck-v1.json')
-      return template.template.questions as PrecheckQuestion[]
+      return (precheckTemplate as any).template.questions as PrecheckQuestion[]
     } catch (error) {
       console.error('Failed to load precheck template:', error)
       // Fallback questions
