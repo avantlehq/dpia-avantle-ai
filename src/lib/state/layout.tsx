@@ -32,7 +32,7 @@ interface LayoutProviderProps {
 }
 
 export function LayoutProvider({ children }: LayoutProviderProps) {
-  // State
+  // State - force sidebar open by default
   const [leftSidebarOpen, setLeftSidebarOpen] = useState(true)
   const [rightPanelOpen, setRightPanelOpen] = useState(false)
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
