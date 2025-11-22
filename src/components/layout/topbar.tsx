@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { useLayoutActions } from '@/lib/state/layout'
+import { getVersionInfo } from '@/lib/version'
 import { 
   ChevronDown, 
   Globe, 
@@ -29,6 +30,7 @@ import { useTheme } from 'next-themes'
 export function Topbar() {
   const { toggleRightPanel } = useLayoutActions()
   const { theme: _theme, setTheme } = useTheme()
+  const versionInfo = getVersionInfo()
 
   return (
     <header className="flex items-center justify-between px-4 lg:px-6 h-18 border-b avantle-border bg-card">
@@ -39,7 +41,7 @@ export function Topbar() {
             <ShieldCheck className="h-5 w-5 text-primary" />
             <span className="font-semibold text-sm">DPIA Agent</span>
           </div>
-          <Badge variant="secondary" className="text-xs">Demo</Badge>
+          <Badge variant="secondary" className="text-xs">{versionInfo.displayName}</Badge>
         </div>
       </div>
 

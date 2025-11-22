@@ -30,7 +30,6 @@ export function SidebarLeft() {
           {leftSidebarOpen && (
             <div className="flex items-center gap-2">
               <div className="font-semibold text-foreground">DPIA Agent</div>
-              <Badge variant="secondary" className="text-xs">v3.0.7</Badge>
             </div>
           )}
           <Button
@@ -87,7 +86,6 @@ export function SidebarLeft() {
             <div className="flex items-center justify-between p-4 border-b border-border">
               <div className="flex items-center gap-2">
                 <div className="font-semibold text-foreground">DPIA Agent</div>
-                <Badge variant="secondary" className="text-xs">v3.0.7</Badge>
               </div>
               <Button
                 variant="ghost"

@@ -152,9 +152,14 @@
   grid-area: main;
   overflow-y: auto;
   z-index: 10;
-  background: var(--background);
+  background: oklch(0.15 0 0); /* Lighter than default background (dark mode) */
   display: flex;
   flex-direction: column;
+}
+
+/* Light theme main content background */
+.light .app-main {
+  background: oklch(0.98 0 0); /* Light background for light theme */
 }
 
 .app-right {
