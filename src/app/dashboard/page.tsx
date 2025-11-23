@@ -159,7 +159,10 @@ export default async function DashboardPage() {
         <OnboardingBanner />
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
+            <div className="flex items-center gap-3 mb-2">
+              <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"></div>
+              <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
+            </div>
             <p className="text-sm sm:text-base text-muted-foreground font-light">
               Manage your GDPR compliance assessments with European privacy values
             </p>
@@ -168,63 +171,63 @@ export default async function DashboardPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">
-          <Card className="avantle-border bg-card backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-blue-500">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Total Assessments
               </CardTitle>
-              <div className="p-2 rounded-lg bg-primary/10">
-                <FileText className="h-4 w-4 text-primary" />
+              <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500/20 to-blue-600/20">
+                <FileText className="h-4 w-4" style={{ color: '#4A90E2' }} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-foreground">{stats.totalAssessments}</div>
+              <div className="text-2xl font-light" style={{ color: '#4A90E2' }}>{stats.totalAssessments}</div>
             </CardContent>
           </Card>
           
-          <Card className="avantle-border bg-card backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-orange-500">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 In Progress
               </CardTitle>
-              <div className="p-2 rounded-lg" style={{backgroundColor: 'var(--dashboard-orange)', opacity: 0.2}}>
-                <Clock className="h-4 w-4" style={{color: 'var(--dashboard-orange)'}} />
+              <div className="p-2 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-600/20">
+                <Clock className="h-4 w-4" style={{color: '#F5A623'}} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light" style={{color: 'var(--dashboard-orange)'}}>
+              <div className="text-2xl font-light" style={{color: '#F5A623'}}>
                 {stats.inProgress}
               </div>
             </CardContent>
           </Card>
           
-          <Card className="avantle-border bg-card backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-green-500">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Completed
               </CardTitle>
-              <div className="p-2 rounded-lg" style={{backgroundColor: 'var(--dashboard-green)', opacity: 0.2}}>
-                <CheckCircle className="h-4 w-4" style={{color: 'var(--dashboard-green)'}} />
+              <div className="p-2 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-600/20">
+                <CheckCircle className="h-4 w-4" style={{color: '#7ED321'}} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light" style={{color: 'var(--dashboard-green)'}}>
+              <div className="text-2xl font-light" style={{color: '#7ED321'}}>
                 {stats.completed}
               </div>
             </CardContent>
           </Card>
           
-          <Card className="avantle-border bg-card backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-gray-500">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Drafts
               </CardTitle>
-              <div className="p-2 rounded-lg" style={{backgroundColor: 'var(--dashboard-gray)', opacity: 0.2}}>
-                <Edit3 className="h-4 w-4" style={{color: 'var(--dashboard-gray)'}} />
+              <div className="p-2 rounded-lg bg-gradient-to-br from-gray-500/20 to-slate-600/20">
+                <Edit3 className="h-4 w-4" style={{color: '#A9A9A9'}} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light" style={{color: 'var(--dashboard-gray)'}}>
+              <div className="text-2xl font-light" style={{color: '#A9A9A9'}}>
                 {stats.drafts}
               </div>
             </CardContent>

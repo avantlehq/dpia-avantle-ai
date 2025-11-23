@@ -22,13 +22,16 @@ export default async function OnboardingPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-6">
-            <div className="p-4 rounded-full bg-primary/20 backdrop-blur-sm border border-primary/30">
-              <ShieldCheck className="h-12 w-12 text-primary" />
+            <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-sm border border-blue-500/30">
+              <ShieldCheck className="h-12 w-12" style={{ color: '#4A90E2' }} />
             </div>
           </div>
-          <h1 className="text-4xl font-light tracking-tight text-foreground mb-4">
-            Welcome to DPIA Agent
-          </h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"></div>
+            <h1 className="text-4xl font-light tracking-tight text-foreground">
+              Welcome to DPIA Agent
+            </h1>
+          </div>
           <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
             Your AI-powered companion for GDPR compliance. Create professional Data Protection Impact Assessments with European privacy values.
           </p>
@@ -36,10 +39,10 @@ export default async function OnboardingPage() {
 
         {/* Feature Overview */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="avantle-border bg-card backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-green-500">
             <CardHeader className="text-center">
-              <div className="p-3 rounded-lg bg-primary/10 w-fit mx-auto mb-4">
-                <Zap className="h-6 w-6 text-primary" />
+              <div className="p-3 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-600/20 w-fit mx-auto mb-4">
+                <Zap className="h-6 w-6" style={{ color: '#7ED321' }} />
               </div>
               <CardTitle className="text-lg text-card-foreground">Smart Pre-check</CardTitle>
             </CardHeader>
@@ -50,10 +53,10 @@ export default async function OnboardingPage() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-orange-500">
             <CardHeader className="text-center">
-              <div className="p-3 rounded-lg bg-primary/10 w-fit mx-auto mb-4">
-                <FileText className="h-6 w-6 text-primary" />
+              <div className="p-3 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-600/20 w-fit mx-auto mb-4">
+                <FileText className="h-6 w-6" style={{ color: '#F5A623' }} />
               </div>
               <CardTitle className="text-lg text-card-foreground">Guided Assessment</CardTitle>
             </CardHeader>
@@ -64,10 +67,10 @@ export default async function OnboardingPage() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-purple-500">
             <CardHeader className="text-center">
-              <div className="p-3 rounded-lg bg-primary/10 w-fit mx-auto mb-4">
-                <Globe className="h-6 w-6 text-primary" />
+              <div className="p-3 rounded-lg bg-gradient-to-br from-purple-500/20 to-indigo-600/20 w-fit mx-auto mb-4">
+                <Globe className="h-6 w-6" style={{ color: '#9B59B6' }} />
               </div>
               <CardTitle className="text-lg text-card-foreground">Professional Export</CardTitle>
             </CardHeader>

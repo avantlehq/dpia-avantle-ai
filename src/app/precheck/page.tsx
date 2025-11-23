@@ -46,14 +46,17 @@ export default function PrecheckPage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-6">
-            <Badge variant="secondary" className="avantle-border bg-card text-card-foreground">
-              <CheckCircle className="mr-2 h-3 w-3" />
+            <Badge variant="secondary" className="avantle-border bg-gradient-to-r from-green-500/20 to-emerald-600/20 text-green-600 border-green-500/30">
+              <CheckCircle className="mr-2 h-3 w-3" style={{ color: '#7ED321' }} />
               DPIA Pre-check
             </Badge>
           </div>
-          <h1 className="text-4xl lg:text-5xl font-light tracking-tight mb-4 text-foreground">
-            Do I need a DPIA?
-          </h1>
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-4 h-4 rounded-full bg-gradient-to-r from-green-500 to-emerald-600"></div>
+            <h1 className="text-4xl lg:text-5xl font-light tracking-tight text-foreground">
+              Do I need a DPIA?
+            </h1>
+          </div>
           <p className="text-lg text-muted-foreground max-w-2xl font-light leading-relaxed">
             Quick 8-question evaluation to determine if your project requires a Data Protection Impact Assessment under GDPR Article 35.
           </p>
@@ -68,11 +71,16 @@ export default function PrecheckPage() {
             showHomeButton={false}
           />
         ) : !results ? (
-          <Card className="avantle-border bg-card backdrop-blur-sm">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-green-500">
             <CardHeader>
-              <CardTitle className="text-card-foreground">
-                GDPR Article 35 Assessment
-              </CardTitle>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-600/20">
+                  <CheckCircle className="h-5 w-5" style={{ color: '#7ED321' }} />
+                </div>
+                <CardTitle className="text-card-foreground">
+                  GDPR Article 35 Assessment
+                </CardTitle>
+              </div>
             </CardHeader>
             <CardContent>
               {isLoading ? (
