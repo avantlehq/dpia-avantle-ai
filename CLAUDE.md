@@ -76,13 +76,16 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 **App-Level Light Mode Control**
 ```css
-/* Single light mode mechanism - app-level control only */
-[data-theme="light"] {
+/* Class-based light mode (works with next-themes) */
+.light {
   /* Light mode backgrounds */
   --background: #FFFFFF;
   --foreground: #0F172A;
   --card: #F8F9FA;
+  --card-foreground: #0F172A;
   --border: #E2E8F0;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
   
   /* Light mode category colors (darker for contrast) */
   --color-blue: #2563EB;
@@ -100,7 +103,7 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
   --underline-opacity: 0.4;
 }
 
-/* NO @media (prefers-color-scheme) - app controls theme completely */
+/* Works with ThemeProvider attribute="class" */
 ```
 
 ### **Component Styling Patterns**
