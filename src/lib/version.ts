@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.2.0" as const
-export const VERSION_NAME = "Modern Colorful Content Design" as const
+export const VERSION = "3.2.1" as const
+export const VERSION_NAME = "Complete Colorful UI Polish" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
