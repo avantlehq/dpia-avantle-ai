@@ -21,7 +21,7 @@ export function SidebarLeft() {
       {/* Desktop Sidebar */}
       <aside className={cn(
         "flex flex-col transition-all duration-300 ease-in-out",
-        "bg-card/30 backdrop-blur-sm border-r avantle-border",
+        "bg-card border-r border-border",
         "h-full overflow-hidden"
       )}>
         {/* Header */}
@@ -60,10 +60,10 @@ export function SidebarLeft() {
 
         {/* Footer */}
         {leftSidebarOpen && (
-          <div className="mt-auto border-t border-border bg-card/30 backdrop-blur-sm">
+          <div className="mt-auto border-t border-border bg-muted">
             <div className="p-4">
               <div className="text-xs text-muted-foreground">
-                Version 3.2.1
+                Version 3.2.10
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@ export function SidebarLeft() {
           />
 
           {/* Mobile Sidebar */}
-          <aside className="fixed left-0 top-0 h-full w-64 bg-card border-r avantle-border lg:hidden z-50 animate-in slide-in-from-left duration-300">
+          <aside className="fixed left-0 top-0 h-full w-64 bg-card border-r border-border lg:hidden z-50 animate-in slide-in-from-left duration-300">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-border">
               <div className="flex items-center gap-2">

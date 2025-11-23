@@ -32,17 +32,17 @@ export function Topbar() {
   const versionInfo = getVersionInfo()
 
   return (
-    <header className="flex items-center justify-between px-4 lg:px-6 h-18 border-b avantle-border bg-card">
+    <header className="flex items-center justify-between px-4 lg:px-6 h-18 border-b border-border bg-background">
       {/* Left Section - App Title */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
-            <div className="p-1.5 rounded-lg bg-icon-gradient-blue">
+            <div className="p-1.5 rounded-lg bg-icon-blue hover:bg-icon-blue-hover transition-colors">
               <ShieldCheck className="h-5 w-5" style={{ color: 'var(--color-blue)' }} />
             </div>
-            <span className="font-semibold text-sm">DPIA Agent</span>
+            <span className="font-semibold text-sm text-foreground">DPIA Agent</span>
           </div>
-          <Badge variant="secondary" className="text-xs bg-gradient-blue border-blue-500/30" style={{ color: 'var(--color-blue)' }}>
+          <Badge variant="secondary" className="text-xs bg-icon-blue border-dpia-blue" style={{ color: 'var(--color-blue)' }}>
             {versionInfo.displayName}
           </Badge>
         </div>
