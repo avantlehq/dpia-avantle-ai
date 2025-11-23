@@ -29,6 +29,15 @@
   --color-purple-light: #B670C7;
   --color-gray-light: #BFBFBF;
   
+  /* NEW: Standardized Opacity Variables */
+  --border-opacity: 0.3;     /* 30% for border accents */
+  --icon-opacity: 0.15;      /* 15% for icon backgrounds */
+  --hover-opacity: 0.25;     /* 25% for hover states */
+  
+  /* NEW: Underline Accent Standards */
+  --underline-thickness: 2px;
+  --underline-opacity: 0.4;
+  
   /* Ultra-soft dark blue background RGB(25,39,52) = #192734 */
   --background: #192734;
   --foreground: oklch(0.95 0 0);
@@ -174,23 +183,56 @@
   flex-direction: column;
 }
 
+/* NEW: Light Mode Fallbacks */
+[data-theme="light"] {
+  /* Light mode category colors (slightly darker for contrast) */
+  --color-blue: #2563EB;
+  --color-green: #16A34A;
+  --color-orange: #EA580C;
+  --color-red: #DC2626;
+  --color-purple: #7C3AED;
+  --color-gray: #6B7280;
+  
+  /* Light mode lighter tints */
+  --color-blue-light: #3B82F6;
+  --color-green-light: #22C55E;
+  --color-orange-light: #F97316;
+  --color-red-light: #EF4444;
+  --color-purple-light: #8B5CF6;
+  --color-gray-light: #9CA3AF;
+  
+  /* Same opacity standards */
+  --border-opacity: 0.3;
+  --icon-opacity: 0.15;
+  --hover-opacity: 0.25;
+  --underline-thickness: 2px;
+  --underline-opacity: 0.4;
+}
+
 /* Light theme for entire app */
 .light {
   /* DPIA Color System - same colors for both themes */
-  --color-blue: #4A90E2;    /* Main/Dashboard */
-  --color-green: #7ED321;   /* Assessment/Pre-check */
-  --color-orange: #F5A623;  /* Builder/DPIA */
-  --color-red: #FF6B6B;     /* Risk Management */
-  --color-purple: #9B59B6;  /* Settings/Export */
-  --color-gray: #A9A9A9;    /* Drafts/Neutral */
+  --color-blue: #2563EB;    /* Main/Dashboard - darker for light mode */
+  --color-green: #16A34A;   /* Assessment/Pre-check - darker */
+  --color-orange: #EA580C;  /* Builder/DPIA - darker */
+  --color-red: #DC2626;     /* Risk Management - darker */
+  --color-purple: #7C3AED;  /* Settings/Export - darker */
+  --color-gray: #6B7280;    /* Drafts/Neutral - darker */
   
   /* Lighter tints for sidebar (reduced visual weight) */
-  --color-blue-light: #6BA3E8;
-  --color-green-light: #96DA47;
-  --color-orange-light: #F7B649;
-  --color-red-light: #FF8A8A;
-  --color-purple-light: #B670C7;
-  --color-gray-light: #BFBFBF;
+  --color-blue-light: #3B82F6;
+  --color-green-light: #22C55E;
+  --color-orange-light: #F97316;
+  --color-red-light: #EF4444;
+  --color-purple-light: #8B5CF6;
+  --color-gray-light: #9CA3AF;
+  
+  /* Same opacity standards */
+  --border-opacity: 0.3;
+  --icon-opacity: 0.15;
+  --hover-opacity: 0.25;
+  --underline-thickness: 2px;
+  --underline-opacity: 0.4;
   
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.15 0 0);

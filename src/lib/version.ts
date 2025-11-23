@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.2.6" as const
-export const VERSION_NAME = "Ultra-Soft Dark Theme" as const
+export const VERSION = "3.2.8" as const
+export const VERSION_NAME = "Complete Styling System" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

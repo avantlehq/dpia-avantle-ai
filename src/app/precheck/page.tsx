@@ -46,13 +46,13 @@ export default function PrecheckPage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-6">
-            <Badge variant="secondary" className="avantle-border bg-gradient-to-r from-green-500/20 to-emerald-600/20 text-green-600 border-green-500/30">
-              <CheckCircle className="mr-2 h-3 w-3" style={{ color: '#7ED321' }} />
+            <Badge variant="secondary" className="avantle-border" style={{ backgroundColor: `rgb(126 211 33 / var(--icon-opacity))`, borderColor: `rgb(126 211 33 / var(--border-opacity))`, color: 'var(--color-green)' }}>
+              <CheckCircle className="mr-2 h-3 w-3" style={{ color: 'var(--color-green)' }} />
               DPIA Pre-check
             </Badge>
           </div>
           <div className="flex items-center gap-4 mb-4">
-            <div className="w-4 h-4 rounded-full bg-gradient-to-r from-green-500 to-emerald-600"></div>
+            <div className="w-4 h-4 rounded-full" style={{ backgroundColor: 'var(--color-green)' }}></div>
             <h1 className="text-4xl lg:text-5xl font-light tracking-tight text-foreground">
               Do I need a DPIA?
             </h1>
@@ -71,11 +71,11 @@ export default function PrecheckPage() {
             showHomeButton={false}
           />
         ) : !results ? (
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-green-500">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(126 211 33 / var(--border-opacity))` }}>
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-600/20">
-                  <CheckCircle className="h-5 w-5" style={{ color: '#7ED321' }} />
+                <div className="p-2 rounded-lg" style={{ backgroundColor: `rgb(126 211 33 / var(--icon-opacity))` }}>
+                  <CheckCircle className="h-5 w-5" style={{ color: 'var(--color-green)' }} />
                 </div>
                 <CardTitle className="text-card-foreground">
                   GDPR Article 35 Assessment

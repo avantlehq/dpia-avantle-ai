@@ -22,12 +22,12 @@ export default async function OnboardingPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-6">
-            <div className="p-4 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/20 backdrop-blur-sm border border-blue-500/30">
-              <ShieldCheck className="h-12 w-12" style={{ color: '#4A90E2' }} />
+            <div className="p-4 rounded-full backdrop-blur-sm border" style={{ backgroundColor: `rgb(74 144 226 / var(--icon-opacity))`, borderColor: `rgb(74 144 226 / var(--border-opacity))` }}>
+              <ShieldCheck className="h-12 w-12" style={{ color: 'var(--color-blue)' }} />
             </div>
           </div>
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-600"></div>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--color-blue)' }}></div>
             <h1 className="text-4xl font-light tracking-tight text-foreground">
               Welcome to DPIA Agent
             </h1>
@@ -39,10 +39,10 @@ export default async function OnboardingPage() {
 
         {/* Feature Overview */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-green-500">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(126 211 33 / var(--border-opacity))` }}>
             <CardHeader className="text-center">
-              <div className="p-3 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-600/20 w-fit mx-auto mb-4">
-                <Zap className="h-6 w-6" style={{ color: '#7ED321' }} />
+              <div className="p-3 rounded-lg w-fit mx-auto mb-4" style={{ backgroundColor: `rgb(126 211 33 / var(--icon-opacity))` }}>
+                <Zap className="h-6 w-6" style={{ color: 'var(--color-green)' }} />
               </div>
               <CardTitle className="text-lg text-card-foreground">Smart Pre-check</CardTitle>
             </CardHeader>
@@ -53,10 +53,10 @@ export default async function OnboardingPage() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-orange-500">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(245 166 35 / var(--border-opacity))` }}>
             <CardHeader className="text-center">
-              <div className="p-3 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-600/20 w-fit mx-auto mb-4">
-                <FileText className="h-6 w-6" style={{ color: '#F5A623' }} />
+              <div className="p-3 rounded-lg w-fit mx-auto mb-4" style={{ backgroundColor: `rgb(245 166 35 / var(--icon-opacity))` }}>
+                <FileText className="h-6 w-6" style={{ color: 'var(--color-orange)' }} />
               </div>
               <CardTitle className="text-lg text-card-foreground">Guided Assessment</CardTitle>
             </CardHeader>
@@ -67,10 +67,10 @@ export default async function OnboardingPage() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-purple-500">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(155 89 182 / var(--border-opacity))` }}>
             <CardHeader className="text-center">
-              <div className="p-3 rounded-lg bg-gradient-to-br from-purple-500/20 to-indigo-600/20 w-fit mx-auto mb-4">
-                <Globe className="h-6 w-6" style={{ color: '#9B59B6' }} />
+              <div className="p-3 rounded-lg w-fit mx-auto mb-4" style={{ backgroundColor: `rgb(155 89 182 / var(--icon-opacity))` }}>
+                <Globe className="h-6 w-6" style={{ color: 'var(--color-purple)' }} />
               </div>
               <CardTitle className="text-lg text-card-foreground">Professional Export</CardTitle>
             </CardHeader>
@@ -102,8 +102,8 @@ export default async function OnboardingPage() {
           <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-blue-500/10">
-                  <Scale className="h-5 w-5 text-blue-500" />
+                <div className="p-2 rounded-lg" style={{ backgroundColor: `rgb(74 144 226 / var(--icon-opacity))` }}>
+                  <Scale className="h-5 w-5" style={{ color: 'var(--color-blue)' }} />
                 </div>
                 <div>
                   <CardTitle className="text-lg text-card-foreground">I Need to Check if DPIA is Required</CardTitle>
@@ -137,8 +137,8 @@ export default async function OnboardingPage() {
           <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-green-500/10">
-                  <FileText className="h-5 w-5 text-green-500" />
+                <div className="p-2 rounded-lg" style={{ backgroundColor: `rgb(126 211 33 / var(--icon-opacity))` }}>
+                  <FileText className="h-5 w-5" style={{ color: 'var(--color-green)' }} />
                 </div>
                 <div>
                   <CardTitle className="text-lg text-card-foreground">I Need to Create a Full DPIA</CardTitle>

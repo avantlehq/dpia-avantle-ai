@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
+    <div className="min-h-screen avantle-gradient flex items-center justify-center px-4">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Page Not Found</CardTitle>
