@@ -93,9 +93,19 @@
     overflow-x: hidden;
   }
   
-  /* Ultra-soft dark blue aesthetic - RGB(25,39,52) based palette */
+  /* Theme-aware gradient background */
   .avantle-gradient {
+    background: var(--background);
+  }
+  
+  /* Dark mode gradient */
+  .dark .avantle-gradient {
     background: linear-gradient(135deg, #15212C 0%, #192734 100%);
+  }
+  
+  /* Light mode gradient */  
+  .light .avantle-gradient {
+    background: linear-gradient(135deg, #FAFAFA 0%, #FFFFFF 100%);
   }
   
   .avantle-border {
