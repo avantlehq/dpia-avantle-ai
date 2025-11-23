@@ -16,7 +16,8 @@
       "WebFetch(domain:avantle.ai)",
       "Bash(find:*)",
       "Bash(gh workflow:*)",
-      "Bash(gh run list:*)"
+      "Bash(gh run list:*)",
+      "Bash(gh run view:*)"
     ],
     "deny": [],
     "ask": [],
