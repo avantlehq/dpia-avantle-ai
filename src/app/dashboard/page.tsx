@@ -164,11 +164,11 @@ export default async function DashboardPage() {
                 Total Assessments
               </CardTitle>
               <div className="p-2 rounded-lg bg-icon-gradient-blue">
-                <FileText className="h-4 w-4 text-dpia-blue" />
+                <FileText className="h-4 w-4" style={{ color: 'var(--color-blue)' }} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-dpia-blue">{stats.totalAssessments}</div>
+              <div className="text-2xl font-light" style={{ color: 'var(--color-blue)' }}>{stats.totalAssessments}</div>
             </CardContent>
           </Card>
           
@@ -178,11 +178,11 @@ export default async function DashboardPage() {
                 In Progress
               </CardTitle>
               <div className="p-2 rounded-lg bg-icon-gradient-orange">
-                <Clock className="h-4 w-4 text-dpia-orange" />
+                <Clock className="h-4 w-4" style={{ color: 'var(--color-orange)' }} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-dpia-orange">
+              <div className="text-2xl font-light" style={{ color: 'var(--color-orange)' }}>
                 {stats.inProgress}
               </div>
             </CardContent>
@@ -194,11 +194,11 @@ export default async function DashboardPage() {
                 Completed
               </CardTitle>
               <div className="p-2 rounded-lg bg-icon-gradient-green">
-                <CheckCircle className="h-4 w-4 text-dpia-green" />
+                <CheckCircle className="h-4 w-4" style={{ color: 'var(--color-green)' }} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-dpia-green">
+              <div className="text-2xl font-light" style={{ color: 'var(--color-green)' }}>
                 {stats.completed}
               </div>
             </CardContent>
@@ -210,11 +210,11 @@ export default async function DashboardPage() {
                 Drafts
               </CardTitle>
               <div className="p-2 rounded-lg bg-icon-gradient-gray">
-                <Edit3 className="h-4 w-4 text-dpia-gray" />
+                <Edit3 className="h-4 w-4" style={{ color: 'var(--color-gray)' }} />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light text-dpia-gray">
+              <div className="text-2xl font-light" style={{ color: 'var(--color-gray)' }}>
                 {stats.drafts}
               </div>
             </CardContent>

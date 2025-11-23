@@ -16,12 +16,12 @@ export function Footer() {
           {/* Left Section - Remove gradients for neutral footer */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-1">
-              <Shield className="h-3 w-3 text-dpia-green" />
+              <Shield className="h-3 w-3" style={{ color: 'var(--color-green)' }} />
               <span>GDPR Compliant</span>
             </div>
             <Separator orientation="vertical" className="h-3 bg-border" />
             <div className="flex items-center gap-1">
-              <Globe className="h-3 w-3 text-dpia-purple" />
+              <Globe className="h-3 w-3" style={{ color: 'var(--color-purple)' }} />
               <span>European Privacy Values</span>
             </div>
           </div>
@@ -29,7 +29,7 @@ export function Footer() {
           {/* Center Section - Remove gradients for neutral footer */}
           <div className="hidden sm:flex items-center gap-1">
             <span>Built with</span>
-            <Heart className="h-3 w-3 fill-current text-dpia-red" />
+            <Heart className="h-3 w-3 fill-current" style={{ color: 'var(--color-red)' }} />
             <span>for privacy professionals</span>
           </div>
 

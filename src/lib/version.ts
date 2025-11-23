@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.2.3" as const
-export const VERSION_NAME = "Professional Styling System" as const
+export const VERSION = "3.2.4" as const
+export const VERSION_NAME = "Fixed Color System" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

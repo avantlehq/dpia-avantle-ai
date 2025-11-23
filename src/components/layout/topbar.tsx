@@ -38,11 +38,11 @@ export function Topbar() {
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-2">
             <div className="p-1.5 rounded-lg bg-icon-gradient-blue">
-              <ShieldCheck className="h-5 w-5 text-dpia-blue" />
+              <ShieldCheck className="h-5 w-5" style={{ color: 'var(--color-blue)' }} />
             </div>
             <span className="font-semibold text-sm">DPIA Agent</span>
           </div>
-          <Badge variant="secondary" className="text-xs bg-gradient-blue text-dpia-blue border-dpia-blue/30">
+          <Badge variant="secondary" className="text-xs bg-gradient-blue border-blue-500/30" style={{ color: 'var(--color-blue)' }}>
             {versionInfo.displayName}
           </Badge>
         </div>
