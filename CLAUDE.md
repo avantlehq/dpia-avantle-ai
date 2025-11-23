@@ -351,9 +351,9 @@ The DPIA Agent platform has **complete architecture and polish** - ready for cor
 - Gray Light: `#BFBFBF` → `var(--color-gray-light)`
 
 **Background System:**
-- **Base Background**: Twitter dark blue `RGB(34,48,60)` = `#22303C` - professional and easy on eyes
-- **Card Background**: Slightly lighter `#253441`
-- **Gradient Background**: `linear-gradient(135deg, #1E2A34 0%, #22303C 100%)`
+- **Base Background**: Ultra-soft dark blue `RGB(25,39,52)` = `#192734` - extremely gentle on eyes
+- **Card Background**: Slightly lighter `#1F2D3A`
+- **Gradient Background**: `linear-gradient(135deg, #15212C 0%, #192734 100%)`
 - **Unified backgrounds** across sidebar, topbar, and main content
 
 ### **Predefined Gradient System (Tailwind v4 Compatible)**
@@ -435,16 +435,16 @@ The DPIA Agent platform has **complete architecture and polish** - ready for cor
   --color-green-light: #96DA47;
   /* ... */
   
-  /* Twitter-inspired dark blue backgrounds */
-  --background: #22303C;    /* RGB(34,48,60) */
-  --card: #253441;          /* Slightly lighter */
-  --border: #3A4B58;        /* Border color */
-  --muted: #293945;         /* Muted backgrounds */
+  /* Ultra-soft dark blue backgrounds */
+  --background: #192734;    /* RGB(25,39,52) */
+  --card: #1F2D3A;          /* Slightly lighter */
+  --border: #2F404E;        /* Border color */
+  --muted: #202E3B;         /* Muted backgrounds */
 }
 
 /* Avantle gradient class */
 .avantle-gradient {
-  background: linear-gradient(135deg, #1E2A34 0%, #22303C 100%);
+  background: linear-gradient(135deg, #15212C 0%, #192734 100%);
 }
 ```
 

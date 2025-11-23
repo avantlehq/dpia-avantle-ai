@@ -29,25 +29,25 @@
   --color-purple-light: #B670C7;
   --color-gray-light: #BFBFBF;
   
-  /* Twitter-inspired dark blue background RGB(34,48,60) = #22303C */
-  --background: #22303C;
+  /* Ultra-soft dark blue background RGB(25,39,52) = #192734 */
+  --background: #192734;
   --foreground: oklch(0.95 0 0);
-  --card: #253441;
+  --card: #1F2D3A;
   --card-foreground: oklch(0.95 0 0);
-  --popover: #2A3A47;
+  --popover: #243240;
   --popover-foreground: oklch(0.95 0 0);
   --primary: var(--color-blue); /* Using DPIA blue for primary accent */
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: #2F404E;
+  --secondary: #2A3946;
   --secondary-foreground: oklch(0.85 0 0);
-  --muted: #293945;
+  --muted: #202E3B;
   --muted-foreground: oklch(0.65 0 0);
-  --accent: #2F404E;
+  --accent: #2A3946;
   --accent-foreground: oklch(0.85 0 0);
   --destructive: oklch(0.65 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: #3A4B58;
-  --input: #293945;
+  --border: #2F404E;
+  --input: #202E3B;
   --ring: var(--color-blue);
   --chart-1: oklch(0.6 0.15 260);
   --chart-2: oklch(0.65 0.12 180);
@@ -117,9 +117,9 @@
     overflow-x: hidden;
   }
   
-  /* Twitter-inspired dark blue aesthetic - professional and easy on eyes */
+  /* Ultra-soft dark blue aesthetic - RGB(25,39,52) based palette */
   .avantle-gradient {
-    background: linear-gradient(135deg, #1E2A34 0%, #22303C 100%);
+    background: linear-gradient(135deg, #15212C 0%, #192734 100%);
   }
   
   .avantle-border {
