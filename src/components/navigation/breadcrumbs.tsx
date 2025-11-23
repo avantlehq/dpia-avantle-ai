@@ -22,7 +22,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
         Home
       </Link>
       
-      {items.map((item, index) => (
+      {items.map((item, _index) => (
         <React.Fragment key={item.href}>
           <ChevronRight className="h-4 w-4 text-muted-foreground/50" />
           {item.current ? (

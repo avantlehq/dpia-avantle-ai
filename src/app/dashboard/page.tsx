@@ -1,6 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import {
   Table,
   TableBody,
@@ -36,18 +35,6 @@ function formatDate(dateString: string): string {
   }
 }
 
-function getStatusIcon(status: string) {
-  switch (status) {
-    case 'completed':
-      return <CheckCircle className="h-4 w-4" style={{color: 'var(--dashboard-green)'}} />
-    case 'in_progress':
-      return <Clock className="h-4 w-4" style={{color: 'var(--dashboard-orange)'}} />
-    case 'submitted':
-      return <AlertCircle className="h-4 w-4" style={{color: 'var(--dashboard-orange)'}} />
-    default:
-      return <Edit3 className="h-4 w-4" style={{color: 'var(--dashboard-gray)'}} />
-  }
-}
 
 function getStatusBadge(status: string) {
   const baseClasses = "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium"

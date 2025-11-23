@@ -21,7 +21,6 @@ import {
   HelpCircle, 
   Sun, 
   Moon,
-  Monitor,
   LogOut,
   ShieldCheck
 } from 'lucide-react'

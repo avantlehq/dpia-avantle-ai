@@ -14,7 +14,9 @@
       "Bash(TURBO_TEAM= pnpm build)",
       "Bash(mkdir:*)",
       "WebFetch(domain:avantle.ai)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(gh workflow:*)",
+      "Bash(gh run list:*)"
     ],
     "deny": [],
     "ask": [],
