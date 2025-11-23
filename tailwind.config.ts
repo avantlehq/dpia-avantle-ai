@@ -60,6 +60,29 @@ const config: Config = {
           border: 'var(--sidebar-border)',
           ring: 'var(--sidebar-ring)',
         },
+        // DPIA Color System
+        'dpia-blue': 'var(--color-blue)',
+        'dpia-green': 'var(--color-green)', 
+        'dpia-orange': 'var(--color-orange)',
+        'dpia-red': 'var(--color-red)',
+        'dpia-purple': 'var(--color-purple)',
+        'dpia-gray': 'var(--color-gray)',
+      },
+      backgroundImage: {
+        // Predefined gradients for DPIA categories
+        'gradient-blue': 'linear-gradient(135deg, rgb(74 144 226 / 0.1) 0%, rgb(74 144 226 / 0.2) 100%)',
+        'gradient-green': 'linear-gradient(135deg, rgb(126 211 33 / 0.1) 0%, rgb(126 211 33 / 0.2) 100%)',
+        'gradient-orange': 'linear-gradient(135deg, rgb(245 166 35 / 0.1) 0%, rgb(245 166 35 / 0.2) 100%)',
+        'gradient-red': 'linear-gradient(135deg, rgb(255 107 107 / 0.1) 0%, rgb(255 107 107 / 0.2) 100%)',
+        'gradient-purple': 'linear-gradient(135deg, rgb(155 89 182 / 0.1) 0%, rgb(155 89 182 / 0.2) 100%)',
+        'gradient-gray': 'linear-gradient(135deg, rgb(169 169 169 / 0.1) 0%, rgb(169 169 169 / 0.2) 100%)',
+        // Icon container gradients (smaller opacity)
+        'icon-gradient-blue': 'linear-gradient(135deg, rgb(74 144 226 / 0.15) 0%, rgb(74 144 226 / 0.25) 100%)',
+        'icon-gradient-green': 'linear-gradient(135deg, rgb(126 211 33 / 0.15) 0%, rgb(126 211 33 / 0.25) 100%)',
+        'icon-gradient-orange': 'linear-gradient(135deg, rgb(245 166 35 / 0.15) 0%, rgb(245 166 35 / 0.25) 100%)',
+        'icon-gradient-red': 'linear-gradient(135deg, rgb(255 107 107 / 0.15) 0%, rgb(255 107 107 / 0.25) 100%)',
+        'icon-gradient-purple': 'linear-gradient(135deg, rgb(155 89 182 / 0.15) 0%, rgb(155 89 182 / 0.25) 100%)',
+        'icon-gradient-gray': 'linear-gradient(135deg, rgb(169 169 169 / 0.15) 0%, rgb(169 169 169 / 0.25) 100%)',
       },
       borderRadius: {
         lg: 'var(--radius)',

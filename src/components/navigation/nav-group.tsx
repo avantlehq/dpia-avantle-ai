@@ -31,23 +31,38 @@ export function NavGroup({ group, collapsed = false, activePath, onItemClick }: 
 
   return (
     <div className="space-y-3">
-      {/* Group Title - Modern Colorful Header */}
+      {/* Group Title - Modern Colorful Header with CSS Variables */}
       <div className="px-2">
         <div className="flex items-center gap-2">
           <div 
-            className="w-2 h-2 rounded-full"
-            style={{ backgroundColor: group.color || '#4A90E2' }}
+            className={
+              group.colorClass === 'dpia-green' ? 'w-2 h-2 rounded-full bg-dpia-green' :
+              group.colorClass === 'dpia-orange' ? 'w-2 h-2 rounded-full bg-dpia-orange' :
+              group.colorClass === 'dpia-red' ? 'w-2 h-2 rounded-full bg-dpia-red' :
+              group.colorClass === 'dpia-purple' ? 'w-2 h-2 rounded-full bg-dpia-purple' :
+              'w-2 h-2 rounded-full bg-dpia-blue'
+            }
           />
           <h3 
-            className="text-xs font-semibold uppercase tracking-wider"
-            style={{ color: group.color || '#4A90E2' }}
+            className={`text-xs font-semibold uppercase tracking-wider ${
+              group.colorClass === 'dpia-green' ? 'text-green-400' :
+              group.colorClass === 'dpia-orange' ? 'text-orange-400' :
+              group.colorClass === 'dpia-red' ? 'text-red-400' :
+              group.colorClass === 'dpia-purple' ? 'text-purple-400' :
+              'text-blue-400'
+            }`}
           >
             {group.name}
           </h3>
         </div>
         <div 
-          className="mt-1 h-0.5 rounded-full opacity-30"
-          style={{ backgroundColor: group.color || '#4A90E2' }}
+          className={
+            group.colorClass === 'dpia-green' ? 'mt-1 h-0.5 rounded-full opacity-30 bg-dpia-green' :
+            group.colorClass === 'dpia-orange' ? 'mt-1 h-0.5 rounded-full opacity-30 bg-dpia-orange' :
+            group.colorClass === 'dpia-red' ? 'mt-1 h-0.5 rounded-full opacity-30 bg-dpia-red' :
+            group.colorClass === 'dpia-purple' ? 'mt-1 h-0.5 rounded-full opacity-30 bg-dpia-purple' :
+            'mt-1 h-0.5 rounded-full opacity-30 bg-dpia-blue'
+          }
         />
       </div>
 

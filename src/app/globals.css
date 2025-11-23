@@ -12,6 +12,23 @@
   --sidebar-collapsed-width: 64px;
   --topbar-height: 72px;
   --right-panel-width: 320px;
+  
+  /* DPIA Color System - CSS Variables */
+  --color-blue: #4A90E2;    /* Main/Dashboard */
+  --color-green: #7ED321;   /* Assessment/Pre-check */
+  --color-orange: #F5A623;  /* Builder/DPIA */
+  --color-red: #FF6B6B;     /* Risk Management */
+  --color-purple: #9B59B6;  /* Settings/Export */
+  --color-gray: #A9A9A9;    /* Drafts/Neutral */
+  
+  /* Lighter tints for sidebar (reduced visual weight) */
+  --color-blue-light: #6BA3E8;
+  --color-green-light: #96DA47;
+  --color-orange-light: #F7B649;
+  --color-red-light: #FF8A8A;
+  --color-purple-light: #B670C7;
+  --color-gray-light: #BFBFBF;
+  
   /* Deep blue background inspired by avantle.ai hero section */
   --background: oklch(0.15 0.05 240);
   --foreground: oklch(0.95 0 0);
@@ -19,13 +36,8 @@
   --card-foreground: oklch(0.95 0 0);
   --popover: oklch(0.18 0.04 240);
   --popover-foreground: oklch(0.95 0 0);
-  --primary: #4A90E2; /* Vibrant Blue for primary accent */
+  --primary: var(--color-blue); /* Using DPIA blue for primary accent */
   --primary-foreground: oklch(0.98 0 0);
-  
-  /* Dashboard color scheme */
-  --dashboard-orange: #F5A623; /* In Progress */
-  --dashboard-green: #7ED321; /* Completed */
-  --dashboard-gray: #A9A9A9; /* Drafts */
   --secondary: oklch(0.22 0.04 240);
   --secondary-foreground: oklch(0.85 0 0);
   --muted: oklch(0.20 0.03 240);
@@ -164,6 +176,22 @@
 
 /* Light theme for entire app */
 .light {
+  /* DPIA Color System - same colors for both themes */
+  --color-blue: #4A90E2;    /* Main/Dashboard */
+  --color-green: #7ED321;   /* Assessment/Pre-check */
+  --color-orange: #F5A623;  /* Builder/DPIA */
+  --color-red: #FF6B6B;     /* Risk Management */
+  --color-purple: #9B59B6;  /* Settings/Export */
+  --color-gray: #A9A9A9;    /* Drafts/Neutral */
+  
+  /* Lighter tints for sidebar (reduced visual weight) */
+  --color-blue-light: #6BA3E8;
+  --color-green-light: #96DA47;
+  --color-orange-light: #F7B649;
+  --color-red-light: #FF8A8A;
+  --color-purple-light: #B670C7;
+  --color-gray-light: #BFBFBF;
+  
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.15 0 0);
   --card: oklch(0.95 0 0);
@@ -176,7 +204,7 @@
   --muted-foreground: oklch(0.4 0 0);
   --border: oklch(0.85 0 0);
   --input: oklch(0.9 0 0);
-  --ring: #4A90E2;
+  --ring: var(--color-blue); /* Using DPIA blue */
   --accent: oklch(0.9 0 0);
   --accent-foreground: oklch(0.1 0 0);
   --secondary: oklch(0.9 0 0);

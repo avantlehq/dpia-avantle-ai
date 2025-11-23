@@ -15,7 +15,6 @@ interface AppLayoutWrapperProps {
 
 function AppLayoutContent({ children }: AppLayoutWrapperProps) {
   const pathname = usePathname()
-  const { leftSidebarOpen, rightPanelOpen } = useLayoutState()
   
   // Determine if this route should use the app layout or simple layout
   const useAppLayout = pathname !== '/' // Homepage uses simple layout
@@ -28,6 +27,9 @@ function AppLayoutContent({ children }: AppLayoutWrapperProps) {
       </div>
     )
   }
+  
+  // Hook used only when needed
+  const { leftSidebarOpen, rightPanelOpen } = useLayoutState()
   
   // App layout with sidebar/topbar/right panel
   return (

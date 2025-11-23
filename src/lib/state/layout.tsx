@@ -38,17 +38,21 @@ export function LayoutProvider({ children }: LayoutProviderProps) {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false)
   const [wizardStepsOpen, setWizardStepsOpen] = useState(true)
 
-  // Initialize from localStorage on mount
+  // Initialize from localStorage on mount (client-side only)
   React.useEffect(() => {
-    const saved = localStorage.getItem('dpia-sidebar-open')
-    if (saved !== null) {
-      setLeftSidebarOpen(JSON.parse(saved))
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('dpia-sidebar-open')
+      if (saved !== null) {
+        setLeftSidebarOpen(JSON.parse(saved))
+      }
     }
   }, [])
 
-  // Persist to localStorage when changed
+  // Persist to localStorage when changed (client-side only)
   React.useEffect(() => {
-    localStorage.setItem('dpia-sidebar-open', JSON.stringify(leftSidebarOpen))
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('dpia-sidebar-open', JSON.stringify(leftSidebarOpen))
+    }
   }, [leftSidebarOpen])
   
   // Actions

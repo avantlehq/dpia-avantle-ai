@@ -171,70 +171,70 @@ export default async function DashboardPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-blue-500">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Total Assessments
               </CardTitle>
-              <div className="p-2 rounded-lg bg-gradient-to-br from-blue-500/20 to-blue-600/20">
-                <FileText className="h-4 w-4" style={{ color: '#4A90E2' }} />
+              <div className="p-2 rounded-lg bg-icon-gradient-blue">
+                <FileText className="h-4 w-4 text-dpia-blue" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light" style={{ color: '#4A90E2' }}>{stats.totalAssessments}</div>
+              <div className="text-2xl font-light text-dpia-blue">{stats.totalAssessments}</div>
             </CardContent>
           </Card>
           
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-orange-500">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-orange-500 shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 In Progress
               </CardTitle>
-              <div className="p-2 rounded-lg bg-gradient-to-br from-orange-500/20 to-amber-600/20">
-                <Clock className="h-4 w-4" style={{color: '#F5A623'}} />
+              <div className="p-2 rounded-lg bg-icon-gradient-orange">
+                <Clock className="h-4 w-4 text-dpia-orange" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light" style={{color: '#F5A623'}}>
+              <div className="text-2xl font-light text-dpia-orange">
                 {stats.inProgress}
               </div>
             </CardContent>
           </Card>
           
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-green-500">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Completed
               </CardTitle>
-              <div className="p-2 rounded-lg bg-gradient-to-br from-green-500/20 to-emerald-600/20">
-                <CheckCircle className="h-4 w-4" style={{color: '#7ED321'}} />
+              <div className="p-2 rounded-lg bg-icon-gradient-green">
+                <CheckCircle className="h-4 w-4 text-dpia-green" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light" style={{color: '#7ED321'}}>
+              <div className="text-2xl font-light text-dpia-green">
                 {stats.completed}
               </div>
             </CardContent>
           </Card>
           
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-gray-500">
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-gray-500 shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium text-card-foreground">
                 Drafts
               </CardTitle>
-              <div className="p-2 rounded-lg bg-gradient-to-br from-gray-500/20 to-slate-600/20">
-                <Edit3 className="h-4 w-4" style={{color: '#A9A9A9'}} />
+              <div className="p-2 rounded-lg bg-icon-gradient-gray">
+                <Edit3 className="h-4 w-4 text-dpia-gray" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-light" style={{color: '#A9A9A9'}}>
+              <div className="text-2xl font-light text-dpia-gray">
                 {stats.drafts}
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <Card className="avantle-border bg-card backdrop-blur-sm">
+        <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
           <CardHeader>
             <CardTitle className="text-card-foreground">Recent Assessments</CardTitle>
           </CardHeader>
