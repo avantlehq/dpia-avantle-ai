@@ -330,58 +330,178 @@ The DPIA Agent platform has **complete architecture and polish** - ready for cor
 
 **Next Critical Step**: Implement the actual DPIA Builder wizard using `DPIA_BUILDER_PROMPT.md` to create the core compliance functionality that users need.
 
-## 🎨 **Modern Colorful Design System (v3.2.1)**
+## 🎨 **Professional Styling System (v3.2.4)**
 
-### **Color Palette & Theme System**
+### **Color Palette & CSS Variables System**
 
 **Primary Color Categories:**
-- 🔵 **Main/Dashboard** - Blue `#4A90E2`
-- 🟢 **Assessment/Pre-check** - Green `#7ED321` 
-- 🟠 **Builder/DPIA** - Orange `#F5A623`
-- 🔴 **Risk Management** - Red/Pink `#FF6B6B`
-- 🟣 **Settings/Export** - Purple `#9B59B6`
-- ⚫ **Drafts/Neutral** - Gray `#A9A9A9`
+- 🔵 **Main/Dashboard** - Blue `#4A90E2` → `var(--color-blue)`
+- 🟢 **Assessment/Pre-check** - Green `#7ED321` → `var(--color-green)`
+- 🟠 **Builder/DPIA** - Orange `#F5A623` → `var(--color-orange)`
+- 🔴 **Risk Management** - Red/Pink `#FF6B6B` → `var(--color-red)`
+- 🟣 **Settings/Export** - Purple `#9B59B6` → `var(--color-purple)`
+- ⚫ **Drafts/Neutral** - Gray `#A9A9A9` → `var(--color-gray)`
+
+**Lighter Tints (for reduced visual weight):**
+- Blue Light: `#6BA3E8` → `var(--color-blue-light)`
+- Green Light: `#96DA47` → `var(--color-green-light)`
+- Orange Light: `#F7B649` → `var(--color-orange-light)`
+- Red Light: `#FF8A8A` → `var(--color-red-light)`
+- Purple Light: `#B670C7` → `var(--color-purple-light)`
+- Gray Light: `#BFBFBF` → `var(--color-gray-light)`
 
 **Background System:**
-- **Base Background**: Deep blue `oklch(0.15 0.05 240)` - matching Avantle.ai hero sections
-- **Card Background**: Slightly lighter `oklch(0.16 0.04 240)`
+- **Base Background**: Twitter dark blue `RGB(34,48,60)` = `#22303C` - professional and easy on eyes
+- **Card Background**: Slightly lighter `#253441`
+- **Gradient Background**: `linear-gradient(135deg, #1E2A34 0%, #22303C 100%)`
 - **Unified backgrounds** across sidebar, topbar, and main content
+
+### **Predefined Gradient System (Tailwind v4 Compatible)**
+
+**Background Gradients:**
+- `bg-gradient-blue` - Blue gradient (10-20% opacity)
+- `bg-gradient-green` - Green gradient (10-20% opacity)
+- `bg-gradient-orange` - Orange gradient (10-20% opacity)
+- `bg-gradient-red` - Red gradient (10-20% opacity)
+- `bg-gradient-purple` - Purple gradient (10-20% opacity)
+- `bg-gradient-gray` - Gray gradient (10-20% opacity)
+
+**Icon Container Gradients (<20% opacity):**
+- `bg-icon-gradient-blue` - Blue icon background (15-25% opacity)
+- `bg-icon-gradient-green` - Green icon background (15-25% opacity)
+- `bg-icon-gradient-orange` - Orange icon background (15-25% opacity)
+- `bg-icon-gradient-red` - Red icon background (15-25% opacity)
+- `bg-icon-gradient-purple` - Purple icon background (15-25% opacity)
+- `bg-icon-gradient-gray` - Gray icon background (15-25% opacity)
 
 ### **Component Styling Patterns**
 
 **1. Navigation Sidebar**
-- **Group Headers**: Colored dots + colored titles + underline accent
-- **Menu Items**: Active state with colored background + left border + colored icon
-- **Modern Icons**: `LayoutDashboard`, `Sparkles`, `Target`, `ShieldCheck`, `Activity`, `UserCog`
+- **Group Headers**: Colored dots + lighter tint titles + underline accent using CSS variables
+- **Colored Dots**: `style={{ backgroundColor: 'var(--color-green)' }}`
+- **Group Titles**: `style={{ color: 'var(--color-green-light)' }}` for reduced visual weight
+- **Active States**: Colored background + left border + colored icon
 
 **2. Content Cards**
-- **Left Border**: 4px colored border (`border-l-4`) matching category
-- **Icon Backgrounds**: Gradient backgrounds with 20% opacity
-- **Pattern**: `bg-gradient-to-br from-{color}-500/20 to-{color}-600/20`
+- **Left Border**: 4px colored border (`border-l-4 border-l-green-500`) 
+- **Icon Backgrounds**: Predefined gradients (`bg-icon-gradient-green`)
+- **Text Colors**: CSS variables (`style={{ color: 'var(--color-green)' }}`)
+- **Elevation**: `shadow-sm hover:shadow-md transition-shadow` for professional depth
 
-**3. Page Headers**
-- **Gradient Dots**: Circular indicators with category gradient
-- **Badges**: Colored background with matching border and text
+**3. Page Headers & Badges**
+- **Icon Treatment**: Small gradient containers with CSS variable colors
+- **Badge Styling**: Predefined gradients with CSS variable text colors
 
-**4. Topbar & Footer**
-- **Icon Treatment**: Small gradient backgrounds for all icons
-- **Badge Styling**: Blue gradient theme for version displays
+**4. Footer (Neutral Design)**
+- **No Gradients**: Clean icons with CSS variable colors only
+- **Minimal Styling**: `text-dpia-green`, `text-dpia-purple`, `text-dpia-red` replaced with inline styles
 
 ### **Design Principles**
-- **Color Consistency**: Each functional area has dedicated color that cascades through all elements
-- **Visual Hierarchy**: Category Color → Gradient Background → Border Accent → Icon Color → Text Color
-- **Modern Elements**: Gradients, border accents, icon containers, subtle shadows
+
+1. **Color Consistency**
+   - Each functional area has dedicated color using CSS variables
+   - Colors cascade: Navigation → Content → Details
+   - Theme-aware (works in light/dark modes)
+
+2. **Visual Hierarchy**
+   - Category Color → CSS Variable → Gradient Background → Border Accent → Icon Color
+
+3. **Enterprise-Grade Polish**
+   - Subtle elevation with shadows (`shadow-sm` → `shadow-md`)
+   - Professional opacity levels (<20% for icons)
+   - Neutral footer design
+   - Consistent transitions (`transition-shadow`)
+
+4. **One Category Color Per Page**
+   - Sidebar shows multiple colors for navigation
+   - Main content follows single category color rule
+   - Prevents visual noise and maintains focus
 
 ### **Technical Implementation**
+
+**CSS Variables (globals.css):**
 ```css
-/* Background gradients */
-bg-gradient-to-br from-blue-500/20 to-blue-600/20
+:root {
+  /* DPIA Color System */
+  --color-blue: #4A90E2;    /* Main/Dashboard */
+  --color-green: #7ED321;   /* Assessment/Pre-check */
+  --color-orange: #F5A623;  /* Builder/DPIA */
+  --color-red: #FF6B6B;     /* Risk Management */
+  --color-purple: #9B59B6;  /* Settings/Export */
+  --color-gray: #A9A9A9;    /* Drafts/Neutral */
+  
+  /* Lighter tints for reduced visual weight */
+  --color-blue-light: #6BA3E8;
+  --color-green-light: #96DA47;
+  /* ... */
+  
+  /* Twitter-inspired dark blue backgrounds */
+  --background: #22303C;    /* RGB(34,48,60) */
+  --card: #253441;          /* Slightly lighter */
+  --border: #3A4B58;        /* Border color */
+  --muted: #293945;         /* Muted backgrounds */
+}
 
-/* Border accents */
-border-l-4 border-l-blue-500
-
-/* Icon colors */
-style={{ color: '#4A90E2' }}
+/* Avantle gradient class */
+.avantle-gradient {
+  background: linear-gradient(135deg, #1E2A34 0%, #22303C 100%);
+}
 ```
 
-**Result**: Unified, modern, colorful interface with enterprise-grade polish across all components!
+**Tailwind Config (tailwind.config.ts):**
+```typescript
+colors: {
+  'dpia-blue': 'var(--color-blue)',
+  'dpia-green': 'var(--color-green)',
+  // ...
+},
+backgroundImage: {
+  'gradient-blue': 'linear-gradient(135deg, rgb(74 144 226 / 0.1) 0%, rgb(74 144 226 / 0.2) 100%)',
+  'icon-gradient-blue': 'linear-gradient(135deg, rgb(74 144 226 / 0.15) 0%, rgb(74 144 226 / 0.25) 100%)',
+  // ...
+}
+```
+
+**React Component Usage:**
+```tsx
+// ✅ Correct: CSS Variables with inline styles
+<div style={{ color: 'var(--color-green)' }}>Green Text</div>
+<div style={{ backgroundColor: 'var(--color-blue)' }}>Blue Background</div>
+
+// ✅ Correct: Predefined gradient classes
+<div className="bg-icon-gradient-orange">Icon Container</div>
+<div className="bg-gradient-green">Content Background</div>
+
+// ✅ Correct: Border classes work normally
+<Card className="border-l-4 border-l-green-500">Card with border</Card>
+
+// ❌ Wrong: These classes don't exist
+<div className="text-dpia-green bg-dpia-blue">Don't use these</div>
+```
+
+### **Component Examples**
+
+**Navigation Group:**
+```tsx
+<div style={{ backgroundColor: 'var(--color-green)' }} className="w-2 h-2 rounded-full" />
+<h3 style={{ color: 'var(--color-green-light)' }} className="text-xs font-semibold">Assessment</h3>
+```
+
+**Dashboard Card:**
+```tsx
+<Card className="border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
+  <div className="bg-icon-gradient-green p-2 rounded-lg">
+    <Icon className="h-4 w-4" style={{ color: 'var(--color-green)' }} />
+  </div>
+  <div style={{ color: 'var(--color-green)' }}>42</div>
+</Card>
+```
+
+### **✅ Result: Enterprise-Grade Professional UI**
+
+- **Theme Consistent**: Works across light/dark modes
+- **Production Ready**: No undefined classes, proper Tailwind v4 compatibility  
+- **Scalable**: New categories easily adopt same patterns
+- **Professional**: Subtle gradients, proper elevation, enterprise polish
+- **Accessible**: Good contrast ratios, proper color hierarchy
+- **Performance**: CSS variables enable dynamic theming without class generation

@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.2.4" as const
-export const VERSION_NAME = "Fixed Color System" as const
+export const VERSION = "3.2.5" as const
+export const VERSION_NAME = "Twitter Dark Blue Theme" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

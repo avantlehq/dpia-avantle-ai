@@ -29,26 +29,26 @@
   --color-purple-light: #B670C7;
   --color-gray-light: #BFBFBF;
   
-  /* Deep blue background inspired by avantle.ai hero section */
-  --background: oklch(0.15 0.05 240);
+  /* Twitter-inspired dark blue background RGB(34,48,60) = #22303C */
+  --background: #22303C;
   --foreground: oklch(0.95 0 0);
-  --card: oklch(0.16 0.04 240);
+  --card: #253441;
   --card-foreground: oklch(0.95 0 0);
-  --popover: oklch(0.18 0.04 240);
+  --popover: #2A3A47;
   --popover-foreground: oklch(0.95 0 0);
   --primary: var(--color-blue); /* Using DPIA blue for primary accent */
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.22 0.04 240);
+  --secondary: #2F404E;
   --secondary-foreground: oklch(0.85 0 0);
-  --muted: oklch(0.20 0.03 240);
+  --muted: #293945;
   --muted-foreground: oklch(0.65 0 0);
-  --accent: oklch(0.22 0.04 240);
+  --accent: #2F404E;
   --accent-foreground: oklch(0.85 0 0);
   --destructive: oklch(0.65 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.25 0.04 240);
-  --input: oklch(0.20 0.03 240);
-  --ring: oklch(0.6 0.15 240);
+  --border: #3A4B58;
+  --input: #293945;
+  --ring: var(--color-blue);
   --chart-1: oklch(0.6 0.15 260);
   --chart-2: oklch(0.65 0.12 180);
   --chart-3: oklch(0.55 0.18 300);
@@ -117,13 +117,13 @@
     overflow-x: hidden;
   }
   
-  /* Avantle.ai minimalist aesthetic - deep blue like hero section */
+  /* Twitter-inspired dark blue aesthetic - professional and easy on eyes */
   .avantle-gradient {
-    background: linear-gradient(135deg, oklch(0.12 0.06 240) 0%, oklch(0.18 0.04 240) 100%);
+    background: linear-gradient(135deg, #1E2A34 0%, #22303C 100%);
   }
   
   .avantle-border {
-    border: 1px solid oklch(0.25 0.04 240);
+    border: 1px solid var(--border);
   }
   
   .avantle-glow {
@@ -169,7 +169,7 @@
   grid-area: main;
   overflow-y: auto;
   z-index: 10;
-  background: oklch(0.15 0 0); /* Lighter than default background (dark mode) */
+  background: var(--background); /* Uses Twitter dark blue theme */
   display: flex;
   flex-direction: column;
 }
