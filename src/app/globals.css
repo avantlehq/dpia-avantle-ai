@@ -183,9 +183,30 @@
   flex-direction: column;
 }
 
-/* NEW: Light Mode Fallbacks */
+/* App-level light mode control (via data-theme attribute) */
 [data-theme="light"] {
-  /* Light mode category colors (slightly darker for contrast) */
+  /* Light mode backgrounds */
+  --background: #FFFFFF;
+  --foreground: #0F172A;
+  --card: #F8F9FA;
+  --card-foreground: #0F172A;
+  --popover: #FFFFFF;
+  --popover-foreground: #0F172A;
+  --primary: #2563EB;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #F1F5F9;
+  --accent-foreground: #0F172A;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #2563EB;
+  
+  /* Light mode category colors (darker for contrast) */
   --color-blue: #2563EB;
   --color-green: #16A34A;
   --color-orange: #EA580C;
@@ -209,66 +230,6 @@
   --underline-opacity: 0.4;
 }
 
-/* Light theme for entire app */
-.light {
-  /* DPIA Color System - same colors for both themes */
-  --color-blue: #2563EB;    /* Main/Dashboard - darker for light mode */
-  --color-green: #16A34A;   /* Assessment/Pre-check - darker */
-  --color-orange: #EA580C;  /* Builder/DPIA - darker */
-  --color-red: #DC2626;     /* Risk Management - darker */
-  --color-purple: #7C3AED;  /* Settings/Export - darker */
-  --color-gray: #6B7280;    /* Drafts/Neutral - darker */
-  
-  /* Lighter tints for sidebar (reduced visual weight) */
-  --color-blue-light: #3B82F6;
-  --color-green-light: #22C55E;
-  --color-orange-light: #F97316;
-  --color-red-light: #EF4444;
-  --color-purple-light: #8B5CF6;
-  --color-gray-light: #9CA3AF;
-  
-  /* Same opacity standards */
-  --border-opacity: 0.3;
-  --icon-opacity: 0.15;
-  --hover-opacity: 0.25;
-  --underline-thickness: 2px;
-  --underline-opacity: 0.4;
-  
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.15 0 0);
-  --card: oklch(0.95 0 0);
-  --card-foreground: oklch(0.1 0 0);
-  --popover: oklch(0.95 0 0);
-  --popover-foreground: oklch(0.1 0 0);
-  --sidebar: oklch(0.95 0 0);
-  --sidebar-foreground: oklch(0.1 0 0);
-  --muted: oklch(0.9 0 0);
-  --muted-foreground: oklch(0.4 0 0);
-  --border: oklch(0.85 0 0);
-  --input: oklch(0.9 0 0);
-  --ring: var(--color-blue); /* Using DPIA blue */
-  --accent: oklch(0.9 0 0);
-  --accent-foreground: oklch(0.1 0 0);
-  --secondary: oklch(0.9 0 0);
-  --secondary-foreground: oklch(0.1 0 0);
-  --destructive: oklch(0.65 0.2 25);
-  --destructive-foreground: oklch(0.98 0 0);
-}
-
-.light .app-main {
-  background: oklch(0.98 0 0);
-  color: oklch(0.15 0 0);
-}
-
-.light .app-topbar {
-  background: oklch(0.95 0 0);
-  color: oklch(0.15 0 0);
-}
-
-.light .app-sidebar {
-  background: oklch(0.95 0 0);
-  color: oklch(0.15 0 0);
-}
 
 .app-right {
   grid-area: right;

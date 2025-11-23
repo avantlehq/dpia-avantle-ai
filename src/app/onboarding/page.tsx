@@ -22,7 +22,7 @@ export default async function OnboardingPage() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex items-center justify-center mb-6">
-            <div className="p-4 rounded-full backdrop-blur-sm border" style={{ backgroundColor: `rgb(74 144 226 / var(--icon-opacity))`, borderColor: `rgb(74 144 226 / var(--border-opacity))` }}>
+            <div className="p-4 rounded-full backdrop-blur-sm border border-dpia-blue bg-icon-blue hover:bg-icon-blue-hover transition-colors duration-200">
               <ShieldCheck className="h-12 w-12" style={{ color: 'var(--color-blue)' }} />
             </div>
           </div>
@@ -39,9 +39,9 @@ export default async function OnboardingPage() {
 
         {/* Feature Overview */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(126 211 33 / var(--border-opacity))` }}>
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-dpia-green shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="text-center">
-              <div className="p-3 rounded-lg w-fit mx-auto mb-4" style={{ backgroundColor: `rgb(126 211 33 / var(--icon-opacity))` }}>
+              <div className="p-3 rounded-lg w-fit mx-auto mb-4 bg-icon-green hover:bg-icon-green-hover transition-colors duration-200">
                 <Zap className="h-6 w-6" style={{ color: 'var(--color-green)' }} />
               </div>
               <CardTitle className="text-lg text-card-foreground">Smart Pre-check</CardTitle>
@@ -53,9 +53,9 @@ export default async function OnboardingPage() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(245 166 35 / var(--border-opacity))` }}>
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-dpia-orange shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="text-center">
-              <div className="p-3 rounded-lg w-fit mx-auto mb-4" style={{ backgroundColor: `rgb(245 166 35 / var(--icon-opacity))` }}>
+              <div className="p-3 rounded-lg w-fit mx-auto mb-4 bg-icon-orange hover:bg-icon-orange-hover transition-colors duration-200">
                 <FileText className="h-6 w-6" style={{ color: 'var(--color-orange)' }} />
               </div>
               <CardTitle className="text-lg text-card-foreground">Guided Assessment</CardTitle>
@@ -67,9 +67,9 @@ export default async function OnboardingPage() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(155 89 182 / var(--border-opacity))` }}>
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-dpia-purple shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="text-center">
-              <div className="p-3 rounded-lg w-fit mx-auto mb-4" style={{ backgroundColor: `rgb(155 89 182 / var(--icon-opacity))` }}>
+              <div className="p-3 rounded-lg w-fit mx-auto mb-4 bg-icon-purple hover:bg-icon-purple-hover transition-colors duration-200">
                 <Globe className="h-6 w-6" style={{ color: 'var(--color-purple)' }} />
               </div>
               <CardTitle className="text-lg text-card-foreground">Professional Export</CardTitle>
@@ -102,7 +102,7 @@ export default async function OnboardingPage() {
           <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg" style={{ backgroundColor: `rgb(74 144 226 / var(--icon-opacity))` }}>
+                <div className="p-2 rounded-lg bg-icon-blue hover:bg-icon-blue-hover transition-colors duration-200">
                   <Scale className="h-5 w-5" style={{ color: 'var(--color-blue)' }} />
                 </div>
                 <div>
@@ -137,7 +137,7 @@ export default async function OnboardingPage() {
           <Card className="avantle-border bg-card backdrop-blur-sm">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg" style={{ backgroundColor: `rgb(126 211 33 / var(--icon-opacity))` }}>
+                <div className="p-2 rounded-lg bg-icon-green hover:bg-icon-green-hover transition-colors duration-200">
                   <FileText className="h-5 w-5" style={{ color: 'var(--color-green)' }} />
                 </div>
                 <div>

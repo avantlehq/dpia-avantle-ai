@@ -46,7 +46,7 @@ export default function PrecheckPage() {
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-6">
-            <Badge variant="secondary" className="avantle-border" style={{ backgroundColor: `rgb(126 211 33 / var(--icon-opacity))`, borderColor: `rgb(126 211 33 / var(--border-opacity))`, color: 'var(--color-green)' }}>
+            <Badge variant="secondary" className="avantle-border bg-icon-green border-dpia-green" style={{ color: 'var(--color-green)' }}>
               <CheckCircle className="mr-2 h-3 w-3" style={{ color: 'var(--color-green)' }} />
               DPIA Pre-check
             </Badge>
@@ -71,10 +71,10 @@ export default function PrecheckPage() {
             showHomeButton={false}
           />
         ) : !results ? (
-          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(126 211 33 / var(--border-opacity))` }}>
+          <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-dpia-green shadow-sm hover:shadow-md transition-shadow">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg" style={{ backgroundColor: `rgb(126 211 33 / var(--icon-opacity))` }}>
+                <div className="p-2 rounded-lg bg-icon-green hover:bg-icon-green-hover transition-colors duration-200">
                   <CheckCircle className="h-5 w-5" style={{ color: 'var(--color-green)' }} />
                 </div>
                 <CardTitle className="text-card-foreground">

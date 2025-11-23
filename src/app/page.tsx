@@ -53,10 +53,10 @@ export default function Home() {
 
         {/* Features */}
         <div className="grid md:grid-cols-3 gap-8 mb-20">
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(126 211 33 / var(--border-opacity))` }}>
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm border-l-4 border-l-dpia-green shadow-sm hover:shadow-md transition-shadow">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg" style={{ backgroundColor: `rgb(126 211 33 / var(--icon-opacity))` }}>
+                <div className="p-2 rounded-lg bg-icon-green hover:bg-icon-green-hover transition-colors duration-200">
                   <CheckCircle className="h-6 w-6" style={{ color: 'var(--color-green)' }} />
                 </div>
                 <CardTitle className="text-card-foreground">Quick Assessment</CardTitle>
@@ -70,10 +70,10 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(245 166 35 / var(--border-opacity))` }}>
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm border-l-4 border-l-dpia-orange shadow-sm hover:shadow-md transition-shadow">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg" style={{ backgroundColor: `rgb(245 166 35 / var(--icon-opacity))` }}>
+                <div className="p-2 rounded-lg bg-icon-orange hover:bg-icon-orange-hover transition-colors duration-200">
                   <Zap className="h-6 w-6" style={{ color: 'var(--color-orange)' }} />
                 </div>
                 <CardTitle className="text-card-foreground">Risk Scoring</CardTitle>
@@ -87,10 +87,10 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm border-l-4 shadow-sm hover:shadow-md transition-shadow" style={{ borderLeftColor: `rgb(155 89 182 / var(--border-opacity))` }}>
+          <Card className="avantle-border bg-card/50 backdrop-blur-sm border-l-4 border-l-dpia-purple shadow-sm hover:shadow-md transition-shadow">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg" style={{ backgroundColor: `rgb(155 89 182 / var(--icon-opacity))` }}>
+                <div className="p-2 rounded-lg bg-icon-purple hover:bg-icon-purple-hover transition-colors duration-200">
                   <FileText className="h-6 w-6" style={{ color: 'var(--color-purple)' }} />
                 </div>
                 <CardTitle className="text-card-foreground">Professional Reports</CardTitle>

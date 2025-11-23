@@ -69,24 +69,40 @@ const config: Config = {
         'dpia-gray': 'var(--color-gray)',
       },
       backgroundImage: {
-        // Standardized gradients using CSS opacity variables
-        'gradient-blue': 'linear-gradient(135deg, rgb(74 144 226 / var(--icon-opacity)) 0%, rgb(74 144 226 / var(--hover-opacity)) 100%)',
-        'gradient-green': 'linear-gradient(135deg, rgb(126 211 33 / var(--icon-opacity)) 0%, rgb(126 211 33 / var(--hover-opacity)) 100%)',
-        'gradient-orange': 'linear-gradient(135deg, rgb(245 166 35 / var(--icon-opacity)) 0%, rgb(245 166 35 / var(--hover-opacity)) 100%)',
-        'gradient-red': 'linear-gradient(135deg, rgb(255 107 107 / var(--icon-opacity)) 0%, rgb(255 107 107 / var(--hover-opacity)) 100%)',
-        'gradient-purple': 'linear-gradient(135deg, rgb(155 89 182 / var(--icon-opacity)) 0%, rgb(155 89 182 / var(--hover-opacity)) 100%)',
-        'gradient-gray': 'linear-gradient(135deg, rgb(169 169 169 / var(--icon-opacity)) 0%, rgb(169 169 169 / var(--hover-opacity)) 100%)',
-        // Icon container gradients using standardized opacity
-        'icon-gradient-blue': 'linear-gradient(135deg, rgb(74 144 226 / var(--icon-opacity)) 0%, rgb(74 144 226 / var(--hover-opacity)) 100%)',
-        'icon-gradient-green': 'linear-gradient(135deg, rgb(126 211 33 / var(--icon-opacity)) 0%, rgb(126 211 33 / var(--hover-opacity)) 100%)',
-        'icon-gradient-orange': 'linear-gradient(135deg, rgb(245 166 35 / var(--icon-opacity)) 0%, rgb(245 166 35 / var(--hover-opacity)) 100%)',
-        'icon-gradient-red': 'linear-gradient(135deg, rgb(255 107 107 / var(--icon-opacity)) 0%, rgb(255 107 107 / var(--hover-opacity)) 100%)',
-        'icon-gradient-purple': 'linear-gradient(135deg, rgb(155 89 182 / var(--icon-opacity)) 0%, rgb(155 89 182 / var(--hover-opacity)) 100%)',
-        'icon-gradient-gray': 'linear-gradient(135deg, rgb(169 169 169 / var(--icon-opacity)) 0%, rgb(169 169 169 / var(--hover-opacity)) 100%)',
+        // Base icon gradients (default state)
+        'icon-blue': 'linear-gradient(135deg, rgb(74 144 226 / var(--icon-opacity)) 0%, rgb(74 144 226 / var(--icon-opacity)) 100%)',
+        'icon-green': 'linear-gradient(135deg, rgb(126 211 33 / var(--icon-opacity)) 0%, rgb(126 211 33 / var(--icon-opacity)) 100%)',
+        'icon-orange': 'linear-gradient(135deg, rgb(245 166 35 / var(--icon-opacity)) 0%, rgb(245 166 35 / var(--icon-opacity)) 100%)',
+        'icon-red': 'linear-gradient(135deg, rgb(255 107 107 / var(--icon-opacity)) 0%, rgb(255 107 107 / var(--icon-opacity)) 100%)',
+        'icon-purple': 'linear-gradient(135deg, rgb(155 89 182 / var(--icon-opacity)) 0%, rgb(155 89 182 / var(--icon-opacity)) 100%)',
+        'icon-gray': 'linear-gradient(135deg, rgb(169 169 169 / var(--icon-opacity)) 0%, rgb(169 169 169 / var(--icon-opacity)) 100%)',
+        // Hover state gradients (higher opacity)
+        'icon-blue-hover': 'linear-gradient(135deg, rgb(74 144 226 / var(--hover-opacity)) 0%, rgb(74 144 226 / var(--hover-opacity)) 100%)',
+        'icon-green-hover': 'linear-gradient(135deg, rgb(126 211 33 / var(--hover-opacity)) 0%, rgb(126 211 33 / var(--hover-opacity)) 100%)',
+        'icon-orange-hover': 'linear-gradient(135deg, rgb(245 166 35 / var(--hover-opacity)) 0%, rgb(245 166 35 / var(--hover-opacity)) 100%)',
+        'icon-red-hover': 'linear-gradient(135deg, rgb(255 107 107 / var(--hover-opacity)) 0%, rgb(255 107 107 / var(--hover-opacity)) 100%)',
+        'icon-purple-hover': 'linear-gradient(135deg, rgb(155 89 182 / var(--hover-opacity)) 0%, rgb(155 89 182 / var(--hover-opacity)) 100%)',
+        'icon-gray-hover': 'linear-gradient(135deg, rgb(169 169 169 / var(--hover-opacity)) 0%, rgb(169 169 169 / var(--hover-opacity)) 100%)',
       },
       borderWidth: {
         'standard': 'var(--border-thickness)',
         'underline': 'var(--underline-thickness)',
+      },
+      borderColor: {
+        // Category border colors with opacity
+        'dpia-blue': 'rgb(74 144 226 / var(--border-opacity))',
+        'dpia-green': 'rgb(126 211 33 / var(--border-opacity))',
+        'dpia-orange': 'rgb(245 166 35 / var(--border-opacity))',
+        'dpia-red': 'rgb(255 107 107 / var(--border-opacity))',
+        'dpia-purple': 'rgb(155 89 182 / var(--border-opacity))',
+        'dpia-gray': 'rgb(169 169 169 / var(--border-opacity))',
+        // Underline colors with opacity
+        'underline-blue': 'rgb(74 144 226 / var(--underline-opacity))',
+        'underline-green': 'rgb(126 211 33 / var(--underline-opacity))',
+        'underline-orange': 'rgb(245 166 35 / var(--underline-opacity))',
+        'underline-red': 'rgb(255 107 107 / var(--underline-opacity))',
+        'underline-purple': 'rgb(155 89 182 / var(--underline-opacity))',
+        'underline-gray': 'rgb(169 169 169 / var(--underline-opacity))',
       },
       borderRadius: {
         lg: 'var(--radius)',
