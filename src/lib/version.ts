@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.1.8" as const
-export const VERSION_NAME = "Card Background Consistency" as const
+export const VERSION = "3.1.9" as const
+export const VERSION_NAME = "Modern Colorful Navigation" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

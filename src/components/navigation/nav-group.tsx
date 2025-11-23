@@ -31,11 +31,24 @@ export function NavGroup({ group, collapsed = false, activePath, onItemClick }: 
 
   return (
     <div className="space-y-3">
-      {/* Group Title */}
+      {/* Group Title - Modern Colorful Header */}
       <div className="px-2">
-        <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-          {group.name}
-        </h3>
+        <div className="flex items-center gap-2">
+          <div 
+            className="w-2 h-2 rounded-full"
+            style={{ backgroundColor: group.color || '#4A90E2' }}
+          />
+          <h3 
+            className="text-xs font-semibold uppercase tracking-wider"
+            style={{ color: group.color || '#4A90E2' }}
+          >
+            {group.name}
+          </h3>
+        </div>
+        <div 
+          className="mt-1 h-0.5 rounded-full opacity-30"
+          style={{ backgroundColor: group.color || '#4A90E2' }}
+        />
       </div>
 
       {/* Group Items */}

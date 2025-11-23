@@ -30,16 +30,25 @@ export function NavItem({ item, collapsed = false, active = false, onClick }: Na
       className={cn(
         "w-full justify-start relative transition-all duration-200",
         collapsed ? "px-2" : "px-3",
-        active && "avantle-glow bg-primary/10 text-primary",
+        active && "shadow-md",
         item.disabled && "opacity-50 cursor-not-allowed"
       )}
+      style={active ? {
+        backgroundColor: `${item.color || '#4A90E2'}20`,
+        borderLeft: `3px solid ${item.color || '#4A90E2'}`
+      } : {}}
       disabled={item.disabled}
       onClick={onClick}
     >
-      <Icon className={cn(
-        "h-4 w-4 flex-shrink-0",
-        !collapsed && "mr-3"
-      )} />
+      <Icon 
+        className={cn(
+          "h-4 w-4 flex-shrink-0",
+          !collapsed && "mr-3"
+        )} 
+        style={{ 
+          color: active ? item.color || '#4A90E2' : undefined 
+        }}
+      />
       
       {!collapsed && (
         <>
@@ -50,10 +59,6 @@ export function NavItem({ item, collapsed = false, active = false, onClick }: Na
             </Badge>
           )}
         </>
-      )}
-      
-      {active && (
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full" />
       )}
     </Button>
   )

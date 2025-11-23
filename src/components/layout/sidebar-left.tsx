@@ -64,7 +64,7 @@ export function SidebarLeft() {
           <div className="mt-auto border-t border-border bg-card/30 backdrop-blur-sm">
             <div className="p-4">
               <div className="text-xs text-muted-foreground">
-                Version 3.1.8
+                Version 3.1.9
               </div>
             </div>
           </div>

@@ -11,6 +11,11 @@ import {
   File, 
   Users,
   AlertTriangle,
+  Sparkles,
+  Target,
+  ShieldCheck,
+  Activity,
+  UserCog,
   type LucideIcon
 } from 'lucide-react'
 
@@ -21,69 +26,86 @@ export interface NavItem {
   badge?: string | number
   description?: string
   disabled?: boolean
+  color?: string
 }
 
 export interface NavGroup {
   name: string
   items: NavItem[]
+  color?: string
+  gradient?: string
 }
 
 // Complete module structure for DPIA Agent
 export const navigationConfig: NavGroup[] = [
   {
     name: "Main",
+    color: "#4A90E2", // Primary blue
+    gradient: "from-blue-500 to-blue-600",
     items: [
       { 
-        name: "Home", 
+        name: "Dashboard", 
         href: "/dashboard", 
-        icon: Home,
+        icon: LayoutDashboard,
+        color: "#4A90E2",
         description: "Dashboard overview of all assessments"
       },
     ]
   },
   {
     name: "Assessment", 
+    color: "#7ED321", // Green
+    gradient: "from-green-500 to-emerald-600",
     items: [
       { 
         name: "Pre-check", 
         href: "/precheck", 
-        icon: CheckCircle,
+        icon: Sparkles,
+        color: "#7ED321",
         description: "Quick GDPR Article 35 evaluation"
       },
     ]
   },
   {
     name: "Builder",
+    color: "#F5A623", // Orange
+    gradient: "from-orange-500 to-amber-600",
     items: [
       { 
         name: "DPIA Builder", 
         href: "/assessments", 
-        icon: FileText,
+        icon: Target,
+        color: "#F5A623",
         description: "Create and manage DPIA assessments"
       },
     ]
   },
   {
     name: "Risk Management",
+    color: "#FF6B6B", // Red/Pink
+    gradient: "from-red-500 to-pink-600",
     items: [
       { 
         name: "Risk Registry", 
         href: "/risks", 
         icon: AlertTriangle,
+        color: "#FF6B6B",
         description: "Manage identified risks and threats",
         disabled: true // Future feature
       },
       { 
         name: "Controls", 
         href: "/controls", 
-        icon: Shield,
+        icon: ShieldCheck,
+        color: "#FF6B6B",
         description: "Security controls and measures",
         disabled: true // Future feature
       },
       { 
         name: "Mitigation", 
         href: "/mitigation", 
-        icon: CheckSquare,
+        icon: Activity,
+        color: "#FF6B6B",
         description: "Risk mitigation strategies",
         disabled: true // Future feature
       },
@@ -91,18 +113,22 @@ export const navigationConfig: NavGroup[] = [
   },
   {
     name: "Settings",
+    color: "#9B59B6", // Purple
+    gradient: "from-purple-500 to-indigo-600",
     items: [
       { 
         name: "Workspace", 
         href: "/settings", 
         icon: Settings,
+        color: "#9B59B6",
         description: "Workspace configuration and preferences",
         disabled: true // Future feature
       },
       { 
         name: "Team", 
         href: "/team", 
-        icon: Users,
+        icon: UserCog,
+        color: "#9B59B6",
         description: "Team members and permissions",
         disabled: true // Future feature
       },
