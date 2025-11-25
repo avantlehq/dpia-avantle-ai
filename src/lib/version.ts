@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.4.0" as const
-export const VERSION_NAME = "Dedicated Assessment Creation Page" as const
+export const VERSION = "3.5.0" as const
+export const VERSION_NAME = "Alternative Routing System Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.5.0": {
+    date: "2024-11-25",
+    name: "Alternative Routing System Fix", 
+    features: [
+      "Created alternative URL parameter-based routing at /assessment?id=xxx",
+      "Replaces problematic dynamic routing /assessments/[assessmentId]",
+      "Assessment creation now navigates to working parameter-based route",
+      "Fixed 404 errors after successful assessment creation",
+      "Comprehensive debugging logs for assessment flow troubleshooting"
+    ],
+    improvements: [
+      "Assessment pages now load correctly after creation",
+      "Eliminated dynamic routing issues causing 404 errors",
+      "Better debugging with console logging throughout flow",
+      "Alternative route provides stable assessment page access",
+      "Professional success page confirming assessment creation works"
+    ],
+    technical: [
+      "Created /app/assessment/page.tsx with useSearchParams",
+      "Updated createAssessmentAction navigation to use parameter routing", 
+      "Added comprehensive console logging for troubleshooting",
+      "Removed problematic global-error.tsx causing build issues",
+      "Simplified routing architecture for better reliability"
+    ]
+  },
   "3.4.0": {
     date: "2024-11-25",
     name: "Dedicated Assessment Creation Page",

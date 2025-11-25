@@ -35,7 +35,7 @@ export default function NewAssessmentPage() {
         console.log('Assessment created with ID:', result.assessmentId)
         console.log('Navigating to:', `/assessments/${result.assessmentId}`)
         toast.success('Assessment created successfully!')
-        router.push(`/assessments/${result.assessmentId}`)
+        router.push(`/assessment?id=${result.assessmentId}`)
       } else {
         toast.error(`Failed to create assessment: ${result.error || 'Unknown error'}`)
       }
