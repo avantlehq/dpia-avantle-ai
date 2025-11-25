@@ -32,6 +32,8 @@ export default function NewAssessmentPage() {
       const result = await createAssessmentAction(name.trim(), description.trim() || undefined)
       
       if (result.success && result.assessmentId) {
+        console.log('Assessment created with ID:', result.assessmentId)
+        console.log('Navigating to:', `/assessments/${result.assessmentId}`)
         toast.success('Assessment created successfully!')
         router.push(`/assessments/${result.assessmentId}`)
       } else {

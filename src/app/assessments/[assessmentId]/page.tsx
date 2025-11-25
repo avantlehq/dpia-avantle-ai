@@ -19,8 +19,14 @@ interface AssessmentPageProps {
 export default async function AssessmentPage({ params }: AssessmentPageProps) {
   const { assessmentId } = params
 
+  // Debug logging
+  console.log('Assessment page accessed with ID:', assessmentId)
+  console.log('Assessment ID type:', typeof assessmentId)
+  console.log('Assessment ID length:', assessmentId?.length)
+
   // Validate assessmentId format (basic check)
   if (!assessmentId || assessmentId.length < 5) {
+    console.log('Assessment ID validation failed, returning 404')
     return notFound()
   }
 
