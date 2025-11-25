@@ -6,25 +6,24 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 **DPIA Suite** je európska platforma pre automatizované GDPR Data Protection Impact Assessments s kompletným workflow od pre-check až po export dokumentov.
 
-### Aktuálny stav projektu (November 2024)
+### Aktuálny stav projektu (November 25, 2024)
 
-**🎯 VERSION 3.3.1: ✅ ASSESSMENT CREATION FIXES**
-- ✅ **Fixed assessment creation 404 errors** - proper routing from /en/ to /assessments/ structure
-- ✅ **Improved create assessment dialog UI** - professional sizing, no more full-width overlay
-- ✅ **Enhanced dialog styling** - solid background, border accents, proper shadows
-- ✅ **End-to-end assessment workflow** - creation → navigation → DPIA Builder working perfectly
+**🎯 VERSION 3.6.0: ✅ COMPLETE ASSESSMENT WORKFLOW RESTORED**
+- ✅ **MAJOR BREAKTHROUGH:** Fixed all assessment creation and routing issues completely
+- ✅ **Professional dedicated creation page** - replaced problematic popup dialog with /assessments/new
+- ✅ **Alternative routing system** - parameter-based URLs (/assessment?id=xxx) bypassing dynamic route issues  
+- ✅ **Next.js 16 full compatibility** - Suspense boundaries, React 19, TypeScript clean builds
+- ✅ **Complete DPIA wizard functionality** - 4-section assessment (Context, Data Flow, Risk, Mitigation)
+- ✅ **CI/CD pipeline fixed** - ESLint compliance, React hooks optimization, clean production builds
+- ✅ **End-to-end workflow verified** - creation → routing → wizard loading → data persistence
+- ✅ **Production deployment stable** - v3.6.0 deployed and tested on dpia.avantle.ai
+- ✅ **Professional UX** - eliminated all "transparent popup" and "page not found" issues
 - ✅ **Complete JSON-driven dynamic form generation** - eliminated 400+ lines of hardcoded forms
-- ✅ **DynamicFormGenerator component** - supports all HTML5 field types (text, textarea, select, multiselect, radio, checkbox)
-- ✅ **Production-ready JSON templates** - GDPR Article 35 compliant field definitions
-- ✅ **Automatic Zod schema validation** - type-safe form generation from JSON
-- ✅ **DPIA Builder Section 1** - ✅ COMPLETE with JSON template integration
-- ✅ **Scalable architecture** - adding new sections requires only JSON configuration
-- ✅ **Clean Styling Architecture** - ultra-soft RGB(25,39,52) theme, professional elevation
-- ✅ **Real Supabase database integration** - full production backend
+- ✅ **DynamicFormGenerator component** - supports all HTML5 field types with Zod validation
+- ✅ **Real Supabase database integration** - full production backend with RLS policies
 - ✅ **DPIA Pre-check Assessment** - 8-question "Do I need a DPIA?" wizard ✅ COMPLETE
+- ✅ **Clean Styling Architecture** - ultra-soft RGB(25,39,52) theme, professional elevation
 - ✅ **Complete unified layout architecture** - AppLayoutWrapper, SidebarLeft, Topbar, RightPanel
-- ✅ **SSR-Safe React Context** - Fixed useContext errors during build/prerendering
-- ✅ **Production deployment stable** - Build errors resolved, dpia.avantle.ai LIVE
 
 ### Produktová architektúra
 
@@ -33,17 +32,18 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 - Framework: Next.js 15, Tailwind, shadcn/ui
 - Účel: Lead generation, SEO, conversion
 
-**B) dpia.avantle.ai — Application Runtime** 📍 **✅ VERSION 3.3.1 LIVE & STABLE**
-- **URL**: https://dpia.avantle.ai ✅ **LIVE**
-- **Version**: 3.3.1 "Assessment Creation Fixes"
-- **Framework**: Next.js 16 + App Router + TypeScript
+**B) dpia.avantle.ai — Application Runtime** 📍 **✅ VERSION 3.6.0 PRODUCTION READY**
+- **URL**: https://dpia.avantle.ai ✅ **LIVE & FULLY FUNCTIONAL**
+- **Version**: 3.6.0 "Full DPIA Wizard Restored"
+- **Framework**: Next.js 16 + App Router + TypeScript + React 19
 - **Styling**: Tailwind CSS v4 + Complete enterprise styling system
 - **Backend**: Supabase (real database with RLS policies)
 - **Security**: AuthGuard services, defensive programming, proper error handling
-- **Layout**: Complete unified layout architecture with SSR-safe React Context
+- **Layout**: Complete unified layout architecture with Suspense boundaries
 - **Theme**: Ultra-soft RGB(25,39,52) with light mode fallbacks
-- **Build**: SSR-safe context initialization, production deployment stable
-- **Features**: DPIA Pre-check ✅ COMPLETE | DPIA Builder Section 1 ✅ COMPLETE (JSON-driven) | Assessment Creation ✅ WORKING
+- **Build**: Clean CI/CD pipeline, Next.js 16 compatibility, ESLint compliant
+- **Routing**: Parameter-based alternative routing system (/assessment?id=xxx)
+- **Features**: DPIA Pre-check ✅ COMPLETE | Full 4-Section DPIA Wizard ✅ COMPLETE | Assessment Creation ✅ FULLY WORKING
 
 ## 🎨 **Clean Styling Architecture (v3.2.9)**
 
@@ -365,17 +365,24 @@ git add . && git commit -m "message" && git push origin main
 
 ## 🎯 Success Metrics
 
-**Current Status: VERSION 3.3.1 COMPLETE - Assessment Creation Fixes**
+**Current Status: VERSION 3.6.0 COMPLETE - Full Assessment Workflow Restored**
+
+### 🏆 **Major Session Achievement (November 25, 2024):**
+**PROBLEM SOLVED:** Complete resolution of assessment creation issues from user feedback
+- **User Issue**: "transparent pop up window with width on full screen overlapping text. But even if i fill it in i get Page Not Found 404"
+- **Solution Delivered**: Professional dedicated creation page + working parameter-based routing + full DPIA wizard
+
+### ✅ **Technical Excellence Achieved:**
+- ✅ **Complete assessment workflow** - creation → routing → wizard → data persistence working end-to-end
+- ✅ **Alternative routing system** - parameter-based URLs bypassing Next.js dynamic route issues  
+- ✅ **Next.js 16 full compatibility** - Suspense boundaries, React 19, clean CI/CD builds
+- ✅ **Professional UX design** - dedicated /assessments/new page eliminates popup confusion
+- ✅ **Production deployment** - v3.6.0 deployed and tested on https://dpia.avantle.ai
+- ✅ **Full 4-section DPIA wizard** - Context, Data Flow, Risk Assessment, Mitigation restored
+- ✅ **Clean build pipeline** - TypeScript, ESLint, React hooks compliance achieved
 - ✅ **SSR-Safe React Context** - Fixed all useContext errors during build/prerendering
-- ✅ **Production deployment stable** - Build errors resolved, dpia.avantle.ai LIVE
-- ✅ **Clean styling architecture** - fixed all weak spots and conflicts
-- ✅ **Single light mode mechanism** - app-level control, no OS conflicts  
-- ✅ **Pure CSS/Tailwind hover** - removed all inline JS hover logic
-- ✅ **Predefined utilities** - border-l-dpia-{color}, bg-icon-{color} classes
-- ✅ **Ultra-soft RGB(25,39,52) theme** unified across all pages
-- ✅ **Professional elevation** with shadow transitions  
-- ✅ **Category-based color coding** for perfect visual hierarchy
-- ✅ **Production deployment** successful (Version 3.2.13)
+- ✅ **Clean styling architecture** - ultra-soft RGB(25,39,52) theme, professional elevation
+- ✅ **Real Supabase database integration** - full production backend with RLS policies
 - ✅ **DPIA Pre-check Assessment** ✅ COMPLETE and working
 - ✅ **Real Supabase database** connected and functional
 - ✅ **6/6 comprehensive tests** passing
