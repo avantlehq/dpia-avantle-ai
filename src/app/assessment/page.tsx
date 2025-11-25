@@ -13,6 +13,8 @@ export default function AssessmentPage() {
   useEffect(() => {
     const id = searchParams.get('id')
     console.log('🚀 Assessment page LOADED with ID from params:', id)
+    console.log('🔍 Full URL search params:', searchParams.toString())
+    console.log('🔍 All available params:', Array.from(searchParams.entries()))
     setAssessmentId(id)
   }, [searchParams])
 
@@ -20,8 +22,21 @@ export default function AssessmentPage() {
     return (
       <div className="min-h-screen bg-background p-8">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold mb-4">Loading Assessment...</h1>
-          <p>Getting assessment ID from URL parameters...</p>
+          <h1 className="text-3xl font-bold mb-4">No Assessment ID Found</h1>
+          <p className="mb-4">This page requires an assessment ID parameter.</p>
+          <div className="bg-muted p-4 rounded-lg">
+            <p><strong>Expected URL format:</strong> /assessment?id=assessment-xxxxx</p>
+            <p><strong>Current URL params:</strong> {searchParams.toString() || 'none'}</p>
+            <p><strong>Available params:</strong> {JSON.stringify(Array.from(searchParams.entries()))}</p>
+          </div>
+          <div className="mt-4">
+            <Link href="/dashboard">
+              <Button variant="outline">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Dashboard
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     )

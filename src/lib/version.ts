@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.5.0" as const
-export const VERSION_NAME = "Alternative Routing System Fix" as const
+export const VERSION = "3.5.1" as const
+export const VERSION_NAME = "Assessment Page Debugging" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
