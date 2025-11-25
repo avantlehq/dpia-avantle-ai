@@ -13,25 +13,17 @@ interface AppLayoutWrapperProps {
   children: ReactNode
 }
 
-function AppLayoutContent({ children }: AppLayoutWrapperProps) {
-  const pathname = usePathname()
-  
-  // Always call hooks at top level (React rules)
+function SimpleLayout({ children }: { children: ReactNode }) {
+  return (
+    <div className="simple-layout avantle-gradient">
+      {children}
+    </div>
+  )
+}
+
+function AppLayoutWithSidebar({ children }: { children: ReactNode }) {
   const { leftSidebarOpen, rightPanelOpen } = useLayoutState()
   
-  // Determine if this route should use the app layout or simple layout
-  const useAppLayout = pathname !== '/' // Homepage uses simple layout
-  
-  if (!useAppLayout) {
-    // Simple layout for homepage
-    return (
-      <div className="simple-layout avantle-gradient">
-        {children}
-      </div>
-    )
-  }
-  
-  // App layout with sidebar/topbar/right panel
   return (
     <div className={cn(
       "app-layout avantle-gradient",
@@ -66,6 +58,19 @@ function AppLayoutContent({ children }: AppLayoutWrapperProps) {
       )}
     </div>
   )
+}
+
+function AppLayoutContent({ children }: AppLayoutWrapperProps) {
+  const pathname = usePathname()
+  
+  // Determine if this route should use the app layout or simple layout
+  const useAppLayout = pathname !== '/' && !pathname.includes('not-found')
+  
+  if (!useAppLayout) {
+    return <SimpleLayout>{children}</SimpleLayout>
+  }
+  
+  return <AppLayoutWithSidebar>{children}</AppLayoutWithSidebar>
 }
 
 export function AppLayoutWrapper({ children }: AppLayoutWrapperProps) {
