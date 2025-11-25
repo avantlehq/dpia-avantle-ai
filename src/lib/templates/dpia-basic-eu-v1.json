@@ -1,263 +1,149 @@
 {
-  "template": {
-    "id": "dpia-basic-eu-v1",
-    "name": "Basic EU DPIA Template",
-    "description": "Standard DPIA template based on GDPR Article 35 requirements",
-    "version": "1.0",
-    "sections": [
-      {
-        "id": "context_scope",
-        "title": "Context & Scope",
-        "description": "Define the data processing operation and its context",
-        "order": 1,
-        "fields": [
-          {
-            "id": "project_name",
-            "label": "Project/Processing Name",
-            "type": "text",
-            "required": true,
-            "placeholder": "e.g., Customer Analytics Platform",
-            "description": "A clear, descriptive name for the data processing operation"
-          },
-          {
-            "id": "description",
-            "label": "Processing Description",
-            "type": "textarea",
-            "required": true,
-            "placeholder": "Describe what personal data will be processed and how...",
-            "description": "Detailed description of the processing operation, including purpose and methods"
-          },
-          {
-            "id": "data_controller",
-            "label": "Data Controller",
-            "type": "text",
-            "required": true,
-            "placeholder": "Organization name",
-            "description": "The organization determining the purposes and means of processing"
-          },
-          {
-            "id": "data_processor",
-            "label": "Data Processor(s)",
-            "type": "textarea",
-            "required": false,
-            "placeholder": "List any third-party processors...",
-            "description": "Third parties processing data on behalf of the controller"
-          },
-          {
-            "id": "processing_purpose",
-            "label": "Purpose of Processing",
-            "type": "textarea",
-            "required": true,
-            "placeholder": "Specify the purpose(s) for processing personal data...",
-            "description": "Clear statement of why personal data is being processed"
-          },
-          {
-            "id": "data_categories",
-            "label": "Categories of Personal Data",
-            "type": "checkboxGroup",
-            "required": true,
-            "options": [
-              { "value": "basic_identity", "label": "Basic identity data (name, ID numbers)" },
-              { "value": "contact", "label": "Contact information (email, phone, address)" },
-              { "value": "demographic", "label": "Demographic data (age, gender)" },
-              { "value": "financial", "label": "Financial data (bank details, payment info)" },
-              { "value": "employment", "label": "Employment data" },
-              { "value": "health", "label": "Health data" },
-              { "value": "biometric", "label": "Biometric data" },
-              { "value": "location", "label": "Location/tracking data" },
-              { "value": "online", "label": "Online identifiers (IP, cookies)" },
-              { "value": "behavioral", "label": "Behavioral data" },
-              { "value": "other", "label": "Other categories" }
-            ],
-            "description": "Select all categories of personal data that will be processed"
-          },
-          {
-            "id": "data_subjects",
-            "label": "Categories of Data Subjects",
-            "type": "checkboxGroup",
-            "required": true,
-            "options": [
-              { "value": "customers", "label": "Customers" },
-              { "value": "employees", "label": "Employees" },
-              { "value": "prospects", "label": "Prospects/leads" },
-              { "value": "suppliers", "label": "Suppliers/partners" },
-              { "value": "website_visitors", "label": "Website visitors" },
-              { "value": "children", "label": "Children (under 16)" },
-              { "value": "vulnerable", "label": "Vulnerable individuals" },
-              { "value": "other", "label": "Other categories" }
-            ],
-            "description": "Select all categories of individuals whose data will be processed"
-          },
-          {
-            "id": "data_volume",
-            "label": "Volume of Data",
-            "type": "select",
-            "required": true,
-            "options": [
-              { "value": "small", "label": "Small scale (< 1,000 individuals)" },
-              { "value": "medium", "label": "Medium scale (1,000 - 10,000 individuals)" },
-              { "value": "large", "label": "Large scale (10,000+ individuals)" },
-              { "value": "unknown", "label": "Volume unknown" }
-            ],
-            "description": "Estimated number of data subjects affected"
-          }
-        ]
-      },
-      {
-        "id": "legal_basis",
-        "title": "Legal Basis",
-        "description": "Establish the lawful basis for processing under GDPR",
-        "order": 2,
-        "fields": [
-          {
-            "id": "lawful_basis",
-            "label": "Primary Lawful Basis (Article 6)",
-            "type": "select",
-            "required": true,
-            "options": [
-              { "value": "consent", "label": "Consent of the data subject" },
-              { "value": "contract", "label": "Performance of a contract" },
-              { "value": "legal_obligation", "label": "Compliance with legal obligation" },
-              { "value": "vital_interests", "label": "Protection of vital interests" },
-              { "value": "public_task", "label": "Performance of public task" },
-              { "value": "legitimate_interests", "label": "Legitimate interests" }
-            ],
-            "description": "Select the primary lawful basis under GDPR Article 6"
-          },
-          {
-            "id": "lawful_basis_details",
-            "label": "Lawful Basis Details",
-            "type": "textarea",
-            "required": true,
-            "placeholder": "Provide specific details about the chosen lawful basis...",
-            "description": "Explain how the selected lawful basis applies to your processing"
-          },
-          {
-            "id": "special_category_basis",
-            "label": "Special Category Basis (Article 9)",
-            "type": "select",
-            "required": false,
-            "options": [
-              { "value": "none", "label": "Not processing special category data" },
-              { "value": "explicit_consent", "label": "Explicit consent" },
-              { "value": "employment", "label": "Employment, social security law" },
-              { "value": "vital_interests", "label": "Vital interests (life/death)" },
-              { "value": "public_health", "label": "Public health" },
-              { "value": "research", "label": "Research/statistics" },
-              { "value": "other", "label": "Other Article 9 basis" }
-            ],
-            "description": "Required only if processing special categories of data"
-          },
-          {
-            "id": "data_minimization",
-            "label": "Data Minimization Measures",
-            "type": "textarea",
-            "required": true,
-            "placeholder": "Describe how you ensure only necessary data is processed...",
-            "description": "Explain measures to ensure processing is limited to what is necessary"
-          },
-          {
-            "id": "retention_period",
-            "label": "Retention Period",
-            "type": "text",
-            "required": true,
-            "placeholder": "e.g., 3 years after contract termination",
-            "description": "How long will personal data be retained?"
-          },
-          {
-            "id": "international_transfers",
-            "label": "International Data Transfers",
-            "type": "radio",
-            "required": true,
-            "options": [
-              { "value": "none", "label": "No international transfers" },
-              { "value": "adequacy", "label": "Transfers to adequate countries" },
-              { "value": "safeguards", "label": "Transfers with appropriate safeguards" },
-              { "value": "derogations", "label": "Transfers under derogations" }
-            ],
-            "description": "Will personal data be transferred outside the EU/EEA?"
-          }
-        ]
-      },
-      {
-        "id": "risk_factors",
-        "title": "Risk Factors",
-        "description": "Identify and assess potential privacy risks",
-        "order": 3,
-        "fields": [
-          {
-            "id": "risk_systematic_monitoring",
-            "label": "Systematic Monitoring Risk",
-            "type": "riskAssessment",
-            "required": true,
-            "description": "Risk from systematic monitoring of individuals",
-            "riskFactors": ["location_tracking", "behavior_analysis", "public_surveillance"]
-          },
-          {
-            "id": "risk_large_scale",
-            "label": "Large Scale Processing Risk", 
-            "type": "riskAssessment",
-            "required": true,
-            "description": "Risk from processing large volumes of personal data",
-            "riskFactors": ["volume_of_data", "number_of_subjects", "geographical_scope"]
-          },
-          {
-            "id": "risk_vulnerable_subjects",
-            "label": "Vulnerable Data Subjects Risk",
-            "type": "riskAssessment", 
-            "required": true,
-            "description": "Risk to vulnerable individuals (children, employees, etc.)",
-            "riskFactors": ["children_data", "employee_monitoring", "patient_data"]
-          },
-          {
-            "id": "risk_innovative_tech",
-            "label": "Innovative Technology Risk",
-            "type": "riskAssessment",
-            "required": true,
-            "description": "Risk from use of innovative or emerging technologies",
-            "riskFactors": ["ai_ml_systems", "biometric_tech", "iot_devices"]
-          },
-          {
-            "id": "risk_automated_decisions",
-            "label": "Automated Decision-Making Risk",
-            "type": "riskAssessment",
-            "required": true,
-            "description": "Risk from automated individual decision-making",
-            "riskFactors": ["profiling", "automated_rejection", "significant_effects"]
-          },
-          {
-            "id": "additional_risks",
-            "label": "Additional Risk Factors",
-            "type": "textarea",
-            "required": false,
-            "placeholder": "Describe any other privacy risks specific to your processing...",
-            "description": "Any other privacy risks not covered above"
-          },
-          {
-            "id": "mitigation_measures",
-            "label": "Planned Mitigation Measures",
-            "type": "textarea",
-            "required": true,
-            "placeholder": "Describe measures to reduce identified risks...",
-            "description": "Technical and organizational measures to address identified risks"
-          }
-        ]
-      }
-    ],
-    "riskAssessmentScale": {
-      "likelihood": [
-        { "value": 1, "label": "Very Low", "description": "Highly unlikely to occur" },
-        { "value": 2, "label": "Low", "description": "Unlikely to occur" },
-        { "value": 3, "label": "Medium", "description": "May occur occasionally" },
-        { "value": 4, "label": "High", "description": "Likely to occur" },
-        { "value": 5, "label": "Very High", "description": "Almost certain to occur" }
-      ],
-      "impact": [
-        { "value": 1, "label": "Minimal", "description": "Little or no impact on individuals" },
-        { "value": 2, "label": "Minor", "description": "Some inconvenience to individuals" },
-        { "value": 3, "label": "Moderate", "description": "Significant impact on individuals" },
-        { "value": 4, "label": "Major", "description": "Substantial harm to individuals" },
-        { "value": 5, "label": "Severe", "description": "Serious harm or distress to individuals" }
+  "schemaVersion": "1.0",
+  "templateId": "dpia-basic-eu-v1",
+  "title": "GDPR DPIA Template (EU Basic)",
+  "description": "Standard GDPR Article 35 Data Protection Impact Assessment template for EU organizations",
+  "sections": {
+    "context_scope": {
+      "sectionId": "context_scope",
+      "title": "Context & Scope",
+      "description": "Describe the processing activity, involved data, subjects, and operational boundaries.",
+      "fields": [
+        {
+          "id": "processing_name",
+          "type": "text",
+          "label": "Processing Activity Name",
+          "placeholder": "Example: Employee Attendance System",
+          "required": true
+        },
+        {
+          "id": "processing_description",
+          "type": "textarea",
+          "label": "Description of Processing",
+          "placeholder": "Explain what personal data is processed and why...",
+          "required": true
+        },
+        {
+          "id": "data_subjects",
+          "type": "multiselect",
+          "label": "Categories of Data Subjects",
+          "options": [
+            "Employees",
+            "Customers",
+            "Children",
+            "Suppliers",
+            "Website Visitors",
+            "App Users",
+            "Patients",
+            "Job Applicants",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "personal_data_categories",
+          "type": "multiselect",
+          "label": "Categories of Personal Data",
+          "options": [
+            "Identification Data",
+            "Contact Data",
+            "Financial Data",
+            "Location Data",
+            "Online Identifiers",
+            "HR Data",
+            "Health Data",
+            "Biometric Data",
+            "Criminal Offence Data",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "special_categories_processed",
+          "type": "radio",
+          "label": "Does processing involve special categories of data (Article 9)?",
+          "options": ["Yes", "No"],
+          "required": true
+        },
+        {
+          "id": "processing_purposes",
+          "type": "textarea",
+          "label": "Purpose(s) of Processing",
+          "placeholder": "Describe why the data is being processed...",
+          "required": true
+        },
+        {
+          "id": "legal_basis",
+          "type": "select",
+          "label": "Primary Legal Basis (Article 6)",
+          "options": [
+            "Consent (Art. 6(1)(a))",
+            "Contract (Art. 6(1)(b))",
+            "Legal Obligation (Art. 6(1)(c))",
+            "Vital Interests (Art. 6(1)(d))",
+            "Public Task (Art. 6(1)(e))",
+            "Legitimate Interests (Art. 6(1)(f))"
+          ],
+          "required": true
+        },
+        {
+          "id": "data_sources",
+          "type": "textarea",
+          "label": "Data Sources",
+          "placeholder": "Internal systems, users, devices, third parties, etc.",
+          "required": false
+        },
+        {
+          "id": "retention_period",
+          "type": "text",
+          "label": "Data Retention Period",
+          "placeholder": "Example: 2 years after contract termination",
+          "required": true
+        },
+        {
+          "id": "processing_frequency",
+          "type": "select",
+          "label": "Frequency of Processing",
+          "options": [
+            "Continuous",
+            "Daily",
+            "Weekly",
+            "Monthly",
+            "Occasional"
+          ],
+          "required": true
+        },
+        {
+          "id": "volume_scale",
+          "type": "select",
+          "label": "Estimated Volume of Data",
+          "options": [
+            "Small (1–100 subjects)",
+            "Medium (100–10,000 subjects)",
+            "Large (10,000–1,000,000 subjects)",
+            "Very Large (>1,000,000 subjects)"
+          ],
+          "required": true
+        },
+        {
+          "id": "data_processing_location",
+          "type": "multiselect",
+          "label": "Data Processing Location",
+          "options": [
+            "EU/EEA",
+            "United Kingdom", 
+            "United States",
+            "Other Third Countries"
+          ],
+          "required": true
+        },
+        {
+          "id": "comments",
+          "type": "textarea",
+          "label": "Additional Notes",
+          "placeholder": "Optional context or comments",
+          "required": false
+        }
       ]
     }
   }

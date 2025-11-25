@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.2.16" as const
-export const VERSION_NAME = "DPIA Builder Implementation" as const
+export const VERSION = "3.3.0" as const
+export const VERSION_NAME = "JSON-Driven Dynamic Form System" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,37 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.3.0": {
+    date: "2024-11-25",
+    name: "JSON-Driven Dynamic Form System",
+    features: [
+      "Complete refactoring to JSON-driven dynamic form generation",
+      "Replaced hardcoded forms with DynamicFormGenerator component",
+      "Production-ready JSON template structure from user specifications",
+      "GDPR Article 35 compliant field definitions in JSON format",
+      "Type-safe form generation with Zod schema validation",
+      "Support for all HTML5 form field types: text, textarea, select, multiselect, radio, checkbox",
+      "Seamless integration with existing React Hook Form and server actions",
+      "Scalable architecture for adding new sections via JSON templates"
+    ],
+    improvements: [
+      "Eliminated 400+ lines of hardcoded form definitions",
+      "Achieved true template-driven form architecture",
+      "Enhanced maintainability through JSON configuration",
+      "Consistent form field rendering across all sections",
+      "Improved TypeScript type safety for dynamic forms",
+      "Streamlined form validation using JSON field definitions",
+      "Future-proof architecture for adding new DPIA sections"
+    ],
+    technical: [
+      "Created DynamicFormGenerator component with full field type support",
+      "Implemented automatic Zod schema generation from JSON definitions", 
+      "Updated context-scope-form.tsx to use JSON template",
+      "Fixed toast notifications to use Sonner instead of custom hook",
+      "Enhanced export service to work with new JSON template structure",
+      "Maintained backward compatibility with existing assessment data"
+    ]
+  },
   "2.5": {
     date: "2024-11-22",
     name: "Phase 1C Complete - Stability & Polish",

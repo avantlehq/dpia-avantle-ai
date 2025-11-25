@@ -118,13 +118,13 @@ export class RealExportService {
     yPosition += 10
 
     // Process each section
-    for (const section of exportData.template.template.sections) {
+    for (const section of Object.values(exportData.template.sections)) {
       addText(section.title.toUpperCase(), 12, true)
       yPosition += 5
       addText(section.description, 10)
       yPosition += 5
 
-      const sectionAnswers = exportData.answers[section.id] || {}
+      const sectionAnswers = exportData.answers[section.sectionId] || {}
       
       for (const field of section.fields) {
         const answer = sectionAnswers[field.id]
@@ -230,7 +230,7 @@ export class RealExportService {
     )
 
     // Process each section
-    for (const section of exportData.template.template.sections) {
+    for (const section of Object.values(exportData.template.sections)) {
       children.push(
         new Paragraph({
           children: [
@@ -249,7 +249,7 @@ export class RealExportService {
         })
       )
 
-      const sectionAnswers = exportData.answers[section.id] || {}
+      const sectionAnswers = exportData.answers[section.sectionId] || {}
       
       for (const field of section.fields) {
         const answer = sectionAnswers[field.id]
@@ -364,7 +364,7 @@ export class RealExportService {
     const { assessment, answers } = data
     
     // Calculate completion percentage
-    const totalFields = data.template.template.sections.reduce(
+    const totalFields = Object.values(data.template.sections).reduce(
       (total, section) => total + section.fields.length, 0
     )
     
