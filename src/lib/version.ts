@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.5.5" as const
-export const VERSION_NAME = "Suspense Boundary Fix" as const
+export const VERSION = "3.6.0" as const
+export const VERSION_NAME = "Full DPIA Wizard Restored" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
