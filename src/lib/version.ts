@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.3.0" as const
-export const VERSION_NAME = "JSON-Driven Dynamic Form System" as const
+export const VERSION = "3.3.1" as const
+export const VERSION_NAME = "Assessment Creation Fixes" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,32 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.3.1": {
+    date: "2024-11-25",
+    name: "Assessment Creation Fixes",
+    features: [
+      "Fixed 404 error when creating new assessments",
+      "Improved create assessment dialog UI/UX with proper sizing",
+      "Professional dialog styling with solid background and border accents",
+      "Fixed routing from /en/ pattern to /assessments/ structure",
+      "Enhanced delete and duplicate assessment dialog styling"
+    ],
+    improvements: [
+      "Assessment creation flow now works end-to-end",
+      "Removed full-width transparent overlay issues",
+      "Professional max-width dialog (max-w-md) for better UX",
+      "Proper navigation after assessment creation",
+      "All assessment actions (edit, duplicate, delete) route correctly",
+      "Enhanced form input visibility and styling"
+    ],
+    technical: [
+      "Updated all routing references from /en/ to /assessments/",
+      "Fixed revalidatePath calls in assessment actions",
+      "Improved dialog component styling consistency",
+      "Enhanced dropdown menu and alert dialog appearances",
+      "Maintained backward compatibility with existing assessments"
+    ]
+  },
   "3.3.0": {
     date: "2024-11-25",
     name: "JSON-Driven Dynamic Form System",

@@ -8,7 +8,11 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 ### Aktuálny stav projektu (November 2024)
 
-**🎯 VERSION 3.3.0: ✅ JSON-DRIVEN DYNAMIC FORM SYSTEM**
+**🎯 VERSION 3.3.1: ✅ ASSESSMENT CREATION FIXES**
+- ✅ **Fixed assessment creation 404 errors** - proper routing from /en/ to /assessments/ structure
+- ✅ **Improved create assessment dialog UI** - professional sizing, no more full-width overlay
+- ✅ **Enhanced dialog styling** - solid background, border accents, proper shadows
+- ✅ **End-to-end assessment workflow** - creation → navigation → DPIA Builder working perfectly
 - ✅ **Complete JSON-driven dynamic form generation** - eliminated 400+ lines of hardcoded forms
 - ✅ **DynamicFormGenerator component** - supports all HTML5 field types (text, textarea, select, multiselect, radio, checkbox)
 - ✅ **Production-ready JSON templates** - GDPR Article 35 compliant field definitions
@@ -29,9 +33,9 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 - Framework: Next.js 15, Tailwind, shadcn/ui
 - Účel: Lead generation, SEO, conversion
 
-**B) dpia.avantle.ai — Application Runtime** 📍 **✅ VERSION 3.3.0 LIVE & STABLE**
+**B) dpia.avantle.ai — Application Runtime** 📍 **✅ VERSION 3.3.1 LIVE & STABLE**
 - **URL**: https://dpia.avantle.ai ✅ **LIVE**
-- **Version**: 3.3.0 "JSON-Driven Dynamic Form System"
+- **Version**: 3.3.1 "Assessment Creation Fixes"
 - **Framework**: Next.js 16 + App Router + TypeScript
 - **Styling**: Tailwind CSS v4 + Complete enterprise styling system
 - **Backend**: Supabase (real database with RLS policies)
@@ -39,7 +43,7 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 - **Layout**: Complete unified layout architecture with SSR-safe React Context
 - **Theme**: Ultra-soft RGB(25,39,52) with light mode fallbacks
 - **Build**: SSR-safe context initialization, production deployment stable
-- **Features**: DPIA Pre-check ✅ COMPLETE | DPIA Builder Section 1 ✅ COMPLETE (JSON-driven)
+- **Features**: DPIA Pre-check ✅ COMPLETE | DPIA Builder Section 1 ✅ COMPLETE (JSON-driven) | Assessment Creation ✅ WORKING
 
 ## 🎨 **Clean Styling Architecture (v3.2.9)**
 
@@ -337,9 +341,31 @@ node test-application.js     # Run comprehensive test suite
 git add . && git commit -m "message" && git push origin main
 ```
 
+## 🔄 **MANDATORY VERSION UPDATE RULE**
+
+**⚠️ CRITICAL RULE: Always update version after every deployment!**
+
+```bash
+# After each deployment, ALWAYS:
+1. Update src/lib/version.ts (VERSION, VERSION_NAME, CHANGELOG entry)
+2. Update package.json version  
+3. Update CLAUDE.md current version status
+4. Commit with version bump: git commit -m "Version bump to vX.X.X"
+5. Push to production: git push origin main
+```
+
+**🎯 This ensures:**
+- ✅ Clear version tracking in production
+- ✅ Proper changelog documentation  
+- ✅ Easy rollback identification
+- ✅ Professional deployment process
+- ✅ User-visible version information in UI
+
+**❌ NEVER skip version updates after deployment!**
+
 ## 🎯 Success Metrics
 
-**Current Status: VERSION 3.2.13 COMPLETE - Production-Ready Build Fixes**
+**Current Status: VERSION 3.3.1 COMPLETE - Assessment Creation Fixes**
 - ✅ **SSR-Safe React Context** - Fixed all useContext errors during build/prerendering
 - ✅ **Production deployment stable** - Build errors resolved, dpia.avantle.ai LIVE
 - ✅ **Clean styling architecture** - fixed all weak spots and conflicts
