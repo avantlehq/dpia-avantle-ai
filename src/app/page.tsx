@@ -24,7 +24,7 @@ export default function Home() {
       </div>
 
       <div className="relative z-10">
-        <div className="container mx-auto px-4 py-24 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 py-24 lg:py-32">
           {/* Modern Hero Section */}
           <div className="text-center mb-32">
             {/* Badge Section with Modern Design */}
@@ -122,8 +122,8 @@ export default function Home() {
             </div>
 
             {/* Modern Feature Grid - Centered with max width */}
-            <div className="max-w-6xl mx-auto">
-              <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
+            <div className="max-w-4xl mx-auto px-4">
+              <div className="grid md:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
               <Card className="group backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/10">
                 <CardHeader className="pb-4">
                   <div className="flex items-center gap-4 mb-4">
