@@ -12,7 +12,7 @@ interface RiskAssessmentFormProps {
   onNext: () => void
 }
 
-export function RiskAssessmentForm({ assessmentId, onComplete, onNext }: RiskAssessmentFormProps) {
+export function RiskAssessmentForm({ onComplete, onNext }: RiskAssessmentFormProps) {
   return (
     <div className="space-y-6">
       {/* Header */}

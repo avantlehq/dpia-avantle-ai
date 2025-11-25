@@ -12,7 +12,7 @@ interface MitigationFormProps {
   onNext: () => void
 }
 
-export function MitigationForm({ assessmentId, onComplete, onNext }: MitigationFormProps) {
+export function MitigationForm({ onComplete }: MitigationFormProps) {
   return (
     <div className="space-y-6">
       {/* Header */}

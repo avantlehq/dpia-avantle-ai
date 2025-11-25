@@ -12,7 +12,7 @@ interface DataFlowFormProps {
   onNext: () => void
 }
 
-export function DataFlowForm({ assessmentId, onComplete, onNext }: DataFlowFormProps) {
+export function DataFlowForm({ onComplete, onNext }: DataFlowFormProps) {
   return (
     <div className="space-y-6">
       {/* Header */}

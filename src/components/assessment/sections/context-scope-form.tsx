@@ -18,14 +18,15 @@ interface ContextScopeFormProps {
   onNext: () => void
 }
 
-export function ContextScopeForm({ assessmentId, onComplete, onNext }: ContextScopeFormProps) {
+export function ContextScopeForm({ assessmentId, onComplete }: ContextScopeFormProps) {
   const [loading, setLoading] = useState(false)
-  const [autoSaving, setAutoSaving] = useState(false)
+  const [autoSaving] = useState(false)
   const [formData, setFormData] = useState<Record<string, unknown>>({})
 
   // Load existing data on mount
   useEffect(() => {
     loadSectionData()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assessmentId])
 
   const loadSectionData = async () => {
@@ -53,7 +54,7 @@ export function ContextScopeForm({ assessmentId, onComplete, onNext }: ContextSc
       } else {
         throw new Error(result.error || 'Failed to save')
       }
-    } catch (error) {
+    } catch {
       toast.error('Failed to save section. Please try again.')
     } finally {
       setLoading(false)
@@ -71,7 +72,7 @@ export function ContextScopeForm({ assessmentId, onComplete, onNext }: ContextSc
       } else {
         throw new Error(result.error || 'Failed to save')
       }
-    } catch (error) {
+    } catch {
       toast.error('Failed to complete section. Please try again.')
     } finally {
       setLoading(false)

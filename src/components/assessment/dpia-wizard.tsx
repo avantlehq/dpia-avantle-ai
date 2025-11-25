@@ -7,7 +7,7 @@ import { DataFlowForm } from './sections/data-flow-form'
 import { RiskAssessmentForm } from './sections/risk-assessment-form'
 import { MitigationForm } from './sections/mitigation-form'
 import { WizardNavigation } from './wizard-navigation'
-import { dpiaWizardSteps } from '@/lib/state/navigation'
+// import { dpiaWizardSteps } from '@/lib/state/navigation'
 import { Loader2 } from 'lucide-react'
 
 interface DPIAWizardProps {
@@ -20,7 +20,7 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [currentSection, setCurrentSection] = useState<SectionId>('context')
-  const [loading, setLoading] = useState(false)
+  const [loading] = useState(false)
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set())
 
   // Initialize current section from URL or default to first
