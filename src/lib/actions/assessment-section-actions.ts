@@ -10,7 +10,7 @@ export interface SaveSectionResult {
 
 export interface GetSectionResult {
   success: boolean
-  data?: Record<string, any>
+  data?: Record<string, unknown>
   error?: string
 }
 

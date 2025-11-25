@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.5.1" as const
-export const VERSION_NAME = "Assessment Page Debugging" as const
+export const VERSION = "3.5.2" as const
+export const VERSION_NAME = "TypeScript Build Fixes" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
