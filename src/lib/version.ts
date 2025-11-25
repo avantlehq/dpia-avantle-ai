@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.3.1" as const
-export const VERSION_NAME = "Assessment Creation Fixes" as const
+export const VERSION = "3.3.2" as const
+export const VERSION_NAME = "Enhanced Assessment Dialog Hotfix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,32 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.3.2": {
+    date: "2024-11-25",
+    name: "Enhanced Assessment Dialog Hotfix",
+    features: [
+      "Significantly enlarged dialog size from max-w-md to max-w-xl",
+      "Enhanced form field visibility with better sizing and padding",
+      "Improved error handling with detailed debugging alerts",
+      "Professional button styling with blue accent and proper spacing",
+      "Better placeholder text with descriptive examples"
+    ],
+    improvements: [
+      "Much larger dialog for better user experience",
+      "Enhanced spacing and typography for clarity",
+      "Comprehensive debugging with console logs and error feedback",
+      "Better textarea sizing (min-h-[80px]) for description field",
+      "Professional footer layout with proper spacing",
+      "Improved form field padding and text sizing"
+    ],
+    technical: [
+      "Added detailed console logging for assessment creation debugging",
+      "Enhanced error handling with user-friendly alerts",
+      "Better CSS classes for improved visual hierarchy",
+      "Responsive design improvements with sm:mx-auto",
+      "Maintained existing functionality while improving UX"
+    ]
+  },
   "3.3.1": {
     date: "2024-11-25",
     name: "Assessment Creation Fixes",
