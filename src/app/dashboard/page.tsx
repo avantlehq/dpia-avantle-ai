@@ -14,7 +14,7 @@ import { DashboardService } from '@/lib/services/dashboard'
 import { isError } from '@/lib/types/result'
 import { ErrorState } from '@/components/ui/error-state'
 import { EmptyState } from '@/components/ui/empty-state'
-import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
+// import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
 // Layout now handled at app level
@@ -154,7 +154,12 @@ export default async function DashboardPage() {
               Manage your GDPR compliance assessments with European privacy values
             </p>
           </div>
-          <CreateAssessmentDialog />
+          <Link href="/assessments/new">
+            <Button className="avantle-glow">
+              <Plus className="mr-2 h-4 w-4" />
+              New Assessment
+            </Button>
+          </Link>
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">

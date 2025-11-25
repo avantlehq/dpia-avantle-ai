@@ -15,7 +15,7 @@ import { DashboardService } from '@/lib/services/dashboard'
 import { isError } from '@/lib/types/result'
 import { ErrorState } from '@/components/ui/error-state'
 import { EmptyState } from '@/components/ui/empty-state'
-import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
+// import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
 import { PageHeader } from '@/components/layout/page-header'
@@ -105,7 +105,14 @@ export default async function AssessmentsPage() {
         <PageHeader
           title="DPIA Builder"
           description="Create and manage your GDPR Data Protection Impact Assessments"
-          action={<CreateAssessmentDialog />}
+          action={
+            <Link href="/assessments/new">
+              <Button className="avantle-glow">
+                <Plus className="mr-2 h-4 w-4" />
+                New Assessment
+              </Button>
+            </Link>
+          }
         />
 
         <Breadcrumbs
@@ -132,7 +139,14 @@ export default async function AssessmentsPage() {
         <PageHeader
           title="DPIA Builder"
           description="Create and manage your GDPR Data Protection Impact Assessments"
-          action={<CreateAssessmentDialog />}
+          action={
+            <Link href="/assessments/new">
+              <Button className="avantle-glow">
+                <Plus className="mr-2 h-4 w-4" />
+                New Assessment
+              </Button>
+            </Link>
+          }
         />
 
         <Breadcrumbs
@@ -154,7 +168,12 @@ export default async function AssessmentsPage() {
               <p className="text-sm text-muted-foreground mb-3">
                 Start a fresh DPIA from scratch with guided wizard
               </p>
-              <CreateAssessmentDialog />
+              <Link href="/assessments/new">
+                <Button className="avantle-glow">
+                  <Plus className="mr-2 h-4 w-4" />
+                  Create Your First Assessment
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
