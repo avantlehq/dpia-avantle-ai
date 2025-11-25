@@ -1,11 +1,6 @@
-import { PageHeader } from '@/components/layout/page-header'
-import { Breadcrumbs } from '@/components/navigation/breadcrumbs'
-import { SidebarSteps } from '@/components/layout/sidebar-steps'
-import { DPIAWizard } from '@/components/assessment/dpia-wizard'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
 
 // Force dynamic rendering to ensure proper authentication
 export const dynamic = 'force-dynamic'
@@ -16,57 +11,38 @@ interface AssessmentPageProps {
   }
 }
 
-export default async function AssessmentPage({ params }: AssessmentPageProps) {
+export default function AssessmentPage({ params }: AssessmentPageProps) {
   const { assessmentId } = params
 
-  // Debug logging
-  console.log('Assessment page accessed with ID:', assessmentId)
-  console.log('Assessment ID type:', typeof assessmentId)
-  console.log('Assessment ID length:', assessmentId?.length)
-
-  // Validate assessmentId format (basic check)
-  if (!assessmentId || assessmentId.length < 5) {
-    console.log('Assessment ID validation failed, returning 404')
-    return notFound()
-  }
-
+  // Debug logging - simplified
+  console.log('🚀 Assessment page LOADED with ID:', assessmentId)
+  
   return (
-    <div className="flex h-full">
-      {/* Steps Sidebar */}
-      <SidebarSteps 
-        assessmentId={assessmentId}
-        className="h-full"
-      />
-
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col min-h-0">
-        <div className="p-6 border-b border-border">
-          <PageHeader
-            title={`Assessment ${assessmentId}`}
-            description="Complete your Data Protection Impact Assessment step by step."
-            action={
-              <Button variant="outline" asChild>
-                <Link href="/assessments">
-                  <ArrowLeft className="h-4 w-4 mr-2" />
-                  Back to Assessments
-                </Link>
-              </Button>
-            }
-          />
-
-          <div className="mt-4">
-            <Breadcrumbs
-              items={[
-                { label: "Builder", href: "/assessments" },
-                { label: `Assessment ${assessmentId}`, href: `/assessments/${assessmentId}`, current: true }
-              ]}
-            />
+    <div className="min-h-screen bg-background p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-4">Assessment Page Working!</h1>
+        <p className="text-lg mb-4">Assessment ID: <code className="bg-muted px-2 py-1 rounded">{assessmentId}</code></p>
+        
+        <div className="bg-card p-6 rounded-lg border">
+          <h2 className="text-xl font-semibold mb-2">✅ Success!</h2>
+          <p className="text-muted-foreground mb-4">
+            The assessment page is now loading correctly. We can add the DPIA wizard back once this is working.
+          </p>
+          
+          <div className="space-y-2">
+            <p><strong>Assessment ID:</strong> {assessmentId}</p>
+            <p><strong>ID Length:</strong> {assessmentId?.length}</p>
+            <p><strong>Route:</strong> /assessments/{assessmentId}</p>
           </div>
-        </div>
-
-        {/* Wizard Content */}
-        <div className="flex-1 overflow-auto">
-          <DPIAWizard assessmentId={assessmentId} />
+          
+          <div className="mt-4">
+            <Link href="/dashboard">
+              <Button variant="outline">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Dashboard
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
