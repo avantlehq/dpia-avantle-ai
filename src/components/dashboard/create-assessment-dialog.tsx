@@ -39,7 +39,7 @@ export function CreateAssessmentDialog() {
         setOpen(false)
         setName('')
         setDescription('')
-        router.push(`/en/${result.assessmentId}`)
+        router.push(`/assessments/${result.assessmentId}`)
       }
     } catch (error) {
       console.error('Error creating assessment:', error)
@@ -56,7 +56,7 @@ export function CreateAssessmentDialog() {
           New Assessment
         </Button>
       </DialogTrigger>
-      <DialogContent className="avantle-border bg-card/95 backdrop-blur-sm">
+      <DialogContent className="avantle-border bg-card border-l-4 border-l-dpia-blue shadow-lg max-w-md w-full mx-4">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle className="text-foreground">Create New Assessment</DialogTitle>
@@ -74,7 +74,7 @@ export function CreateAssessmentDialog() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g., Customer CRM System"
-                className="avantle-border bg-background/50"
+                className="avantle-border bg-background"
                 required
                 disabled={isLoading}
               />
@@ -88,7 +88,7 @@ export function CreateAssessmentDialog() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Brief description of the data processing activity..."
-                className="avantle-border bg-background/50"
+                className="avantle-border bg-background"
                 disabled={isLoading}
               />
             </div>

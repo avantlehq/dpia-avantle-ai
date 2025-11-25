@@ -93,7 +93,7 @@ export async function saveAssessmentAnswersAction(
       }
     })
 
-    revalidatePath(`/en/${assessmentId}`)
+    revalidatePath(`/assessments/${assessmentId}`)
     revalidatePath('/dashboard')
     
     return { success: true }
@@ -128,7 +128,7 @@ export async function updateAssessmentProgressAction(
       }
     })
 
-    revalidatePath(`/en/${assessmentId}`)
+    revalidatePath(`/assessments/${assessmentId}`)
     revalidatePath('/dashboard')
     
     return { success: true }
@@ -161,7 +161,7 @@ export async function submitAssessmentAction(
     })
 
     revalidatePath('/dashboard')
-    revalidatePath(`/en/${assessmentId}`)
+    revalidatePath(`/assessments/${assessmentId}`)
     
     return { success: true }
   } catch (error) {

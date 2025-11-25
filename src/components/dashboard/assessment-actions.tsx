@@ -43,7 +43,7 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
       )
       
       if (result.success && result.assessmentId) {
-        router.push(`/en/${result.assessmentId}`)
+        router.push(`/assessments/${result.assessmentId}`)
       }
     } catch (error) {
       console.error('Error duplicating assessment:', error)
@@ -81,9 +81,9 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
             <MoreHorizontal className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="avantle-border bg-card/95 backdrop-blur-sm">
+        <DropdownMenuContent align="end" className="avantle-border bg-card shadow-lg">
           <DropdownMenuItem 
-            onClick={() => router.push(`/en/${assessmentId}`)}
+            onClick={() => router.push(`/assessments/${assessmentId}`)}
             className="text-foreground hover:bg-primary/10"
           >
             <Edit className="mr-2 h-4 w-4" />
@@ -117,7 +117,7 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
       </DropdownMenu>
 
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-        <AlertDialogContent className="avantle-border bg-card/95 backdrop-blur-sm">
+        <AlertDialogContent className="avantle-border bg-card border-l-4 border-l-red-500 shadow-lg max-w-md w-full mx-4">
           <AlertDialogHeader>
             <AlertDialogTitle className="text-foreground">Delete Assessment</AlertDialogTitle>
             <AlertDialogDescription className="text-muted-foreground">
