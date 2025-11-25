@@ -4,9 +4,9 @@ import { useSearchParams } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { useMemo } from 'react'
+import { useMemo, Suspense } from 'react'
 
-export default function AssessmentPage() {
+function AssessmentContent() {
   const searchParams = useSearchParams()
   
   const assessmentId = useMemo(() => {
@@ -73,5 +73,20 @@ export default function AssessmentPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AssessmentPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background p-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold mb-4">Loading Assessment...</h1>
+          <p>Getting assessment details...</p>
+        </div>
+      </div>
+    }>
+      <AssessmentContent />
+    </Suspense>
   )
 }
