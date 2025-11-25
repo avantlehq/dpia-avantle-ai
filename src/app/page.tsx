@@ -121,8 +121,9 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Modern Feature Grid */}
-            <div className="grid md:grid-cols-3 gap-8">
+            {/* Modern Feature Grid - Centered with max width */}
+            <div className="max-w-6xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
               <Card className="group backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/10">
                 <CardHeader className="pb-4">
                   <div className="flex items-center gap-4 mb-4">
@@ -188,6 +189,7 @@ export default function Home() {
                   </div>
                 </CardContent>
               </Card>
+              </div>
             </div>
           </div>
 
