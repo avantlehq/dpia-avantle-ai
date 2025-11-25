@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.3.2" as const
-export const VERSION_NAME = "Enhanced Assessment Dialog Hotfix" as const
+export const VERSION = "3.4.0" as const
+export const VERSION_NAME = "Dedicated Assessment Creation Page" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,36 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.4.0": {
+    date: "2024-11-25",
+    name: "Dedicated Assessment Creation Page",
+    features: [
+      "Complete replacement of popup dialog with dedicated /assessments/new page",
+      "Professional wizard-style assessment creation form",
+      "Clear 4-step process visualization and guidance",
+      "Full-page professional design with DPIA orange theme branding",
+      "Enhanced form fields with descriptive placeholders and help text",
+      "Toast notifications for better user feedback and error handling",
+      "Contextual navigation with proper back button and cancel options"
+    ],
+    improvements: [
+      "Eliminated confusing popup dialog UX completely", 
+      "Professional full-screen dedicated space for creation",
+      "Clear visual hierarchy and responsive design",
+      "Better error handling with detailed feedback",
+      "Improved accessibility and mobile experience",
+      "Contextual help links to precheck and assessment guides",
+      "Professional branding consistency with rest of application"
+    ],
+    technical: [
+      "Created new /assessments/new route with Next.js app router",
+      "Updated all navigation references from dialog to dedicated page",
+      "Removed CreateAssessmentDialog imports and usage", 
+      "Maintained existing server action compatibility",
+      "Added comprehensive form validation and error states",
+      "Implemented proper routing and navigation patterns"
+    ]
+  },
   "3.3.2": {
     date: "2024-11-25",
     name: "Enhanced Assessment Dialog Hotfix",
