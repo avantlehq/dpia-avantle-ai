@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.5.3" as const
-export const VERSION_NAME = "Routing Ready for Testing" as const
+export const VERSION = "3.5.4" as const
+export const VERSION_NAME = "React Hook ESLint Fixes" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

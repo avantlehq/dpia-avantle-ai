@@ -4,18 +4,17 @@ import { useSearchParams } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useMemo } from 'react'
 
 export default function AssessmentPage() {
   const searchParams = useSearchParams()
-  const [assessmentId, setAssessmentId] = useState<string | null>(null)
-
-  useEffect(() => {
+  
+  const assessmentId = useMemo(() => {
     const id = searchParams.get('id')
     console.log('🚀 Assessment page LOADED with ID from params:', id)
     console.log('🔍 Full URL search params:', searchParams.toString())
     console.log('🔍 All available params:', Array.from(searchParams.entries()))
-    setAssessmentId(id)
+    return id
   }, [searchParams])
 
   if (!assessmentId) {
