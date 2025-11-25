@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.2.14" as const
-export const VERSION_NAME = "Modern Landing Page Design" as const
+export const VERSION = "3.2.15" as const
+export const VERSION_NAME = "Professional Desktop Layout" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
