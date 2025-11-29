@@ -371,6 +371,27 @@ git add . && git commit -m "message" && git push origin main
 
 **❌ NEVER skip version updates after deployment!**
 
+## 📢 **MANDATORY DEPLOYMENT COMMUNICATION RULE**
+
+**⚠️ CRITICAL RULE: Always announce deployment version in user communication!**
+
+```bash
+# VŽDY pri každom deploymente/push MUSÍM výslovne napísať:
+# "✅ VERSION X.Y.Z DEPLOYED SUCCESSFULLY!"
+# "Live na: https://dpia.avantle.ai 🚀"
+# "Vercel deployment: vX.Y.Z - Feature Name"
+
+# This must appear in EVERY deployment response to the user
+```
+
+**🎯 This ensures:**
+- ✅ User vždy vie akú verziu má v production  
+- ✅ Jasná komunikácia o stave deploymentu
+- ✅ Verziovanie je viditeľné v konverzácii
+- ✅ Professional deployment communication
+
+**❌ NEVER deploy without announcing version to user!**
+
 ## 🎯 Success Metrics
 
 **Current Status: VERSION 3.7.0 COMPLETE - Modern UI Containers**
