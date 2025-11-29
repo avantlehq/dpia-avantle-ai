@@ -392,6 +392,40 @@ git add . && git commit -m "message" && git push origin main
 
 **❌ NEVER deploy without announcing version to user!**
 
+## 📋 **MANDATORY DEPLOYMENT STATUS ACCURACY RULE**
+
+**⚠️ CRITICAL RULE: Distinguish between PUSHED, DEPLOYING, and DEPLOYED!**
+
+```bash
+# ✅ CORRECT Communication Flow:
+# 1. After git push:
+"✅ VERSION X.Y.Z PUSHED TO REPO! 🚀
+📤 Git commit: [hash] pushed to main branch
+⏳ Vercel deployment starting...
+🔄 Will be live on https://dpia.avantle.ai in 2-3 minutes"
+
+# 2. After Vercel deployment completes (if checking):
+"✅ VERSION X.Y.Z DEPLOYED SUCCESSFULLY! 🚀
+🌐 Live na: https://dpia.avantle.ai
+✨ Version info updated in UI"
+
+# ❌ WRONG - Never say "DEPLOYED SUCCESSFULLY" immediately after git push
+"✅ VERSION X.Y.Z DEPLOYED SUCCESSFULLY!" # <- This is misleading!
+```
+
+**🎯 Accurate Deployment Phases:**
+- 📤 **PUSHED** = git push completed, code in repository
+- 🔄 **DEPLOYING** = Vercel building and deploying 
+- ✅ **DEPLOYED** = Actually live and accessible on production URL
+
+**🚫 NEVER claim deployment is complete until:**
+- ✅ Git push is done
+- ✅ Version numbers updated in code (src/lib/version.ts + package.json)
+- ✅ Vercel build process completed
+- ✅ Production URL shows new changes
+
+**❌ NEVER say "DEPLOYED SUCCESSFULLY" immediately after git push!**
+
 ## 🎯 Success Metrics
 
 **Current Status: VERSION 3.7.1 COMPLETE - Enhanced Button Visibility**
