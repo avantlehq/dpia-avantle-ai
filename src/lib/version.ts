@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.8.2" as const
-export const VERSION_NAME = "Fix Enter Platform Button" as const
+export const VERSION = "3.8.5" as const
+export const VERSION_NAME = "Clean Modern Login Button" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.8.5": {
+    date: "2024-11-29",
+    name: "Clean Modern Login Button",
+    features: [
+      "Increased font size from text-lg to text-2xl (50% larger text)",
+      "Added inline color: #ffffff for guaranteed bright white text visibility",
+      "Removed Shield icon for cleaner, more modern appearance",
+      "Clean button design without unnecessary decorative elements",
+      "Professional modern login button aesthetic",
+      "Optimized button proportions for better readability"
+    ],
+    improvements: [
+      "Much more readable text with 50% size increase",
+      "Eliminated gray/faded text appearance with guaranteed white color",
+      "Cleaner modern design without icon clutter",
+      "Professional enterprise login button appearance",
+      "Better focus on core action without distractions",
+      "Improved accessibility with larger, brighter text"
+    ],
+    technical: [
+      "Updated from text-lg to text-2xl for better visibility",
+      "Added inline style color: '#ffffff' to guarantee text brightness",
+      "Removed Shield icon component and group hover animations",
+      "Simplified button structure for better performance",
+      "Maintained px-8 py-4 proportions and min-w-[280px]",
+      "Preserved blue background and hover effects"
+    ]
+  },
   "3.8.2": {
     date: "2024-11-29",
     name: "Fix Enter Platform Button",
