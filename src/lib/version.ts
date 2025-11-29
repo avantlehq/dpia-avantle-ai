@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.7.0" as const
-export const VERSION_NAME = "Modern UI Containers" as const
+export const VERSION = "3.7.1" as const
+export const VERSION_NAME = "Enhanced Button Visibility" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,33 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.7.1": {
+    date: "2024-11-29",
+    name: "Enhanced Button Visibility",
+    features: [
+      "Made Quick Pre-check button solid emerald for much better visibility",
+      "Dashboard button converted to solid outline with white hover effect",
+      "All feature card buttons converted to solid colored variants",
+      "Enhanced button contrast and visual prominence across homepage",
+      "Added proper Link components for navigation functionality",
+      "Dramatically improved user guidance and call-to-action visibility"
+    ],
+    improvements: [
+      "Eliminated barely visible bg-white/5 Quick Pre-check button",
+      "Replaced ghost variant Dashboard button with prominent outline",
+      "Feature cards now have actionable, visible buttons",
+      "Better visual hierarchy and user experience",
+      "Professional button styling with hover effects and shadows",
+      "Much clearer navigation and user guidance"
+    ],
+    technical: [
+      "Updated button variants from ghost/outline to solid implementations",
+      "Added transform scale effects and proper hover states",
+      "Implemented shadow-md hover:shadow-lg for better elevation",
+      "Added Link components for proper navigation routing",
+      "Maintained existing color system and design consistency"
+    ]
+  },
   "3.7.0": {
     date: "2024-11-29",
     name: "Modern UI Containers",

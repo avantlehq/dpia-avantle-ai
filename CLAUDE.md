@@ -8,13 +8,13 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 ### Aktuálny stav projektu (November 29, 2024)
 
-**🎯 VERSION 3.7.0: ✅ MODERN UI CONTAINERS**
-- ✅ **HOMEPAGE MODERNIZATION:** Replaced full-width design with professional centered containers
-- ✅ **Smart container system** - optimal content width with responsive padding system
-- ✅ **Enhanced visual hierarchy** - max-w-5xl for hero, max-w-6xl for features, max-w-3xl for headers
-- ✅ **Professional responsive design** - container mx-auto with px-6 sm:px-8 lg:px-12 xl:px-16 padding
-- ✅ **Better mobile experience** - w-full sm:w-auto buttons, enhanced typography scaling
-- ✅ **Enterprise-grade layout standards** - maintained styling architecture, improved readability
+**🎯 VERSION 3.7.1: ✅ ENHANCED BUTTON VISIBILITY**
+- ✅ **BUTTON VISIBILITY REVOLUTION:** Dramatically improved all CTA and navigation buttons
+- ✅ **Quick Pre-check button** - solid emerald gradient replacing barely visible bg-white/5
+- ✅ **Dashboard button** - solid outline with white hover replacing weak ghost variant
+- ✅ **Feature card buttons** - all converted to solid colored variants with proper navigation
+- ✅ **Enhanced user guidance** - much better visual hierarchy and call-to-action prominence
+- ✅ **Professional button styling** - hover effects, shadows, and transform animations
 
 **Previous Major Achievement (v3.6.0):**
 - ✅ **MAJOR BREAKTHROUGH:** Fixed all assessment creation and routing issues completely
@@ -40,9 +40,9 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 - Framework: Next.js 15, Tailwind, shadcn/ui
 - Účel: Lead generation, SEO, conversion
 
-**B) dpia.avantle.ai — Application Runtime** 📍 **✅ VERSION 3.7.0 PRODUCTION READY**
+**B) dpia.avantle.ai — Application Runtime** 📍 **✅ VERSION 3.7.1 PRODUCTION READY**
 - **URL**: https://dpia.avantle.ai ✅ **LIVE & FULLY FUNCTIONAL**
-- **Version**: 3.7.0 "Modern UI Containers"
+- **Version**: 3.7.1 "Enhanced Button Visibility"
 - **Framework**: Next.js 16 + App Router + TypeScript + React 19
 - **Styling**: Tailwind CSS v4 + Complete enterprise styling system
 - **Backend**: Supabase (real database with RLS policies)
@@ -394,7 +394,7 @@ git add . && git commit -m "message" && git push origin main
 
 ## 🎯 Success Metrics
 
-**Current Status: VERSION 3.7.0 COMPLETE - Modern UI Containers**
+**Current Status: VERSION 3.7.1 COMPLETE - Enhanced Button Visibility**
 
 ### 🏆 **Major Session Achievement (November 25, 2024):**
 **PROBLEM SOLVED:** Complete resolution of assessment creation issues from user feedback
