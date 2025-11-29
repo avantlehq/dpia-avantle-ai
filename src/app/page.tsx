@@ -73,7 +73,7 @@ export default function Home() {
             </div>
 
             {/* Clean Modern Login Button */}
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-16">
               <Link 
                 href="/dashboard"
                 className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer min-w-[280px]"
