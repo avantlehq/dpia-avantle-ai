@@ -72,18 +72,18 @@ export default function Home() {
               </p>
             </div>
 
-            {/* MASSIVE Central Platform Entry Button */}
+            {/* Modern Login Button */}
             <div className="flex justify-center mb-8">
               <Link 
                 href="/dashboard"
-                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white shadow-2xl hover:shadow-blue-500/50 border-4 border-blue-400 hover:border-blue-300 transform hover:scale-105 transition-all duration-300 px-20 py-8 text-3xl font-bold rounded-2xl cursor-pointer min-w-[400px] min-h-[80px]"
+                className="group inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-lg cursor-pointer min-w-[280px]"
                 style={{
                   backgroundColor: '#2563eb',
-                  borderColor: '#60a5fa',
-                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(37, 99, 235, 0.1)'
+                  borderColor: '#3b82f6',
+                  borderRadius: '8px'
                 }}
               >
-                <Shield className="mr-6 h-10 w-10" />
+                <Shield className="mr-3 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
                 Enter Platform
               </Link>
             </div>
