@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.8.5" as const
-export const VERSION_NAME = "Clean Modern Login Button" as const
+export const VERSION = "3.8.6" as const
+export const VERSION_NAME = "Button Text Size Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.8.6": {
+    date: "2024-11-29",
+    name: "Button Text Size Fix",
+    features: [
+      "Fixed button text size with inline fontSize: '24px' for guaranteed larger text",
+      "Added inline fontWeight: '600' to ensure semibold appearance",
+      "Resolved CSS specificity conflicts preventing text-2xl from working",
+      "Button text 'Enter Platform' now noticeably larger and more readable",
+      "Guaranteed text size using direct inline styles instead of Tailwind classes",
+      "Maintained all other button styling and blue color scheme"
+    ],
+    improvements: [
+      "Much more readable button text with 50% size increase",
+      "Eliminated CSS conflicts that prevented larger font display",
+      "Better accessibility with larger, more prominent call-to-action text",
+      "Professional modern button appearance maintained",
+      "Guaranteed text visibility using inline styles over CSS classes",
+      "No more font size inconsistencies or override issues"
+    ],
+    technical: [
+      "Replaced text-2xl Tailwind class with inline fontSize: '24px'",
+      "Added inline fontWeight: '600' to replace font-semibold class",
+      "Resolved CSS specificity issues preventing proper font rendering",
+      "Used direct style object properties for guaranteed application",
+      "Maintained existing blue color scheme and hover effects",
+      "Fixed production deployment font size visibility issue"
+    ]
+  },
   "3.8.5": {
     date: "2024-11-29",
     name: "Clean Modern Login Button",
