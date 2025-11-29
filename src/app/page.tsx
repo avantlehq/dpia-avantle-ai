@@ -72,18 +72,18 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Modern Login Button */}
+            {/* Clean Modern Login Button */}
             <div className="flex justify-center mb-8">
               <Link 
                 href="/dashboard"
-                className="group inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 text-lg font-semibold rounded-lg cursor-pointer min-w-[280px]"
+                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 text-2xl font-semibold rounded-lg cursor-pointer min-w-[280px]"
                 style={{
                   backgroundColor: '#2563eb',
                   borderColor: '#3b82f6',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  color: '#ffffff'
                 }}
               >
-                <Shield className="mr-3 h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
                 Enter Platform
               </Link>
             </div>
