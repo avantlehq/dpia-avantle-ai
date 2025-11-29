@@ -72,13 +72,18 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Large Central Platform Entry Button */}
-            <div className="flex justify-center">
+            {/* MASSIVE Central Platform Entry Button */}
+            <div className="flex justify-center mb-8">
               <Link 
                 href="/dashboard"
-                className="inline-flex items-center justify-center bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white shadow-2xl hover:shadow-emerald-500/25 border-2 border-emerald-400/50 hover:border-emerald-300/70 transform hover:scale-110 transition-all duration-300 px-16 py-6 text-2xl font-semibold rounded-xl cursor-pointer"
+                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white shadow-2xl hover:shadow-blue-500/50 border-4 border-blue-400 hover:border-blue-300 transform hover:scale-105 transition-all duration-300 px-20 py-8 text-3xl font-bold rounded-2xl cursor-pointer min-w-[400px] min-h-[80px]"
+                style={{
+                  backgroundColor: '#2563eb',
+                  borderColor: '#60a5fa',
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(37, 99, 235, 0.1)'
+                }}
               >
-                <Shield className="mr-4 h-8 w-8" />
+                <Shield className="mr-6 h-10 w-10" />
                 Enter Platform
               </Link>
             </div>
