@@ -89,21 +89,20 @@ export default function Home() {
               </Button>
               
               <Button 
-                variant="outline" 
                 size="lg" 
-                className="backdrop-blur-sm bg-white/5 border border-white/20 text-white hover:bg-white/10 hover:border-white/30 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium w-full sm:w-auto" 
+                className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white shadow-lg hover:shadow-xl border border-emerald-500/50 hover:border-emerald-400/70 transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium w-full sm:w-auto" 
                 asChild
               >
                 <Link href="/precheck">
-                  <CheckCircle className="mr-3 h-5 w-5 text-emerald-400" />
+                  <CheckCircle className="mr-3 h-5 w-5" />
                   Quick Pre-check
                 </Link>
               </Button>
               
               <Button 
-                variant="ghost" 
+                variant="outline" 
                 size="lg" 
-                className="text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-300 px-6 py-4 text-lg font-medium group w-full sm:w-auto" 
+                className="border-2 border-slate-400/50 text-white hover:text-slate-900 hover:bg-white hover:border-white bg-slate-800/50 backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium w-full sm:w-auto" 
                 asChild
               >
                 <Link href="/dashboard">
@@ -145,8 +144,14 @@ export default function Home() {
                     under GDPR Article 35.
                   </CardDescription>
                   <div className="mt-6">
-                    <Button variant="ghost" size="sm" className="text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 p-0 h-auto font-medium group-hover:translate-x-1 transition-transform duration-300">
-                      Try Pre-check →
+                    <Button 
+                      size="sm" 
+                      className="bg-emerald-600 hover:bg-emerald-700 text-white border border-emerald-500 hover:border-emerald-400 shadow-md hover:shadow-lg px-4 py-2 font-medium transform hover:scale-105 transition-all duration-200"
+                      asChild
+                    >
+                      <Link href="/precheck">
+                        Try Pre-check →
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -167,8 +172,14 @@ export default function Home() {
                     mitigation recommendations.
                   </CardDescription>
                   <div className="mt-6">
-                    <Button variant="ghost" size="sm" className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 p-0 h-auto font-medium group-hover:translate-x-1 transition-transform duration-300">
-                      Learn More →
+                    <Button 
+                      size="sm" 
+                      className="bg-blue-600 hover:bg-blue-700 text-white border border-blue-500 hover:border-blue-400 shadow-md hover:shadow-lg px-4 py-2 font-medium transform hover:scale-105 transition-all duration-200"
+                      asChild
+                    >
+                      <Link href="/dashboard">
+                        Learn More →
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -189,8 +200,14 @@ export default function Home() {
                     for regulatory submission.
                   </CardDescription>
                   <div className="mt-6">
-                    <Button variant="ghost" size="sm" className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 p-0 h-auto font-medium group-hover:translate-x-1 transition-transform duration-300">
-                      View Sample →
+                    <Button 
+                      size="sm" 
+                      className="bg-purple-600 hover:bg-purple-700 text-white border border-purple-500 hover:border-purple-400 shadow-md hover:shadow-lg px-4 py-2 font-medium transform hover:scale-105 transition-all duration-200"
+                      asChild
+                    >
+                      <Link href="/dashboard">
+                        View Sample →
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
