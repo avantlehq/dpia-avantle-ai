@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.8.0" as const
-export const VERSION_NAME = "Simplified Landing + Platform Rebrand" as const
+export const VERSION = "3.8.1" as const
+export const VERSION_NAME = "Prominent Enter Platform Button" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,33 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.8.1": {
+    date: "2024-11-29",
+    name: "Prominent Enter Platform Button",
+    features: [
+      "Dramatically increased Enter Platform button size - px-16 py-6 text-2xl",
+      "Changed to emerald gradient for better visibility and GDPR branding",
+      "Larger Shield icon (h-8 w-8) with improved spacing",
+      "Enhanced hover effects with scale-110 transformation",
+      "Professional rounded-xl design with emerald border accents",
+      "Impossible to miss CTA for clear user guidance"
+    ],
+    improvements: [
+      "Much more prominent and visible primary action",
+      "Emerald color aligns with privacy/compliance branding",
+      "Stronger visual hierarchy on simplified landing page",
+      "Better accessibility with larger touch target",
+      "Professional enterprise-grade button design",
+      "Clear single path to platform entry"
+    ],
+    technical: [
+      "Updated button sizing from px-12 py-4 text-xl to px-16 py-6 text-2xl",
+      "Implemented emerald gradient from-emerald-500 to-emerald-600",
+      "Added border-2 border-emerald-400/50 hover:border-emerald-300/70",
+      "Enhanced transform hover:scale-110 with emerald shadow effects",
+      "Increased Shield icon from h-6 w-6 to h-8 w-8"
+    ]
+  },
   "3.8.0": {
     date: "2024-11-29",
     name: "Simplified Landing + Platform Rebrand",
