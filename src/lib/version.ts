@@ -1,6 +1,6 @@
-// DPIA Agent Version Information
-export const VERSION = "3.7.1" as const
-export const VERSION_NAME = "Enhanced Button Visibility" as const
+// DPIA.ai Privacy Platform Version Information
+export const VERSION = "3.8.0" as const
+export const VERSION_NAME = "Simplified Landing + Platform Rebrand" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -8,11 +8,38 @@ export const getVersionInfo = () => ({
   name: VERSION_NAME,
   buildDate: BUILD_DATE,
   displayName: `v${VERSION} (${VERSION_NAME})`,
-  fullDisplayName: `DPIA Agent v${VERSION} - ${VERSION_NAME}`,
+  fullDisplayName: `DPIA.ai Privacy Platform v${VERSION} - ${VERSION_NAME}`,
 })
 
 // Version changelog
 export const CHANGELOG = {
+  "3.8.0": {
+    date: "2024-11-29",
+    name: "Simplified Landing + Platform Rebrand",
+    features: [
+      "Complete landing page simplification - removed confusing multiple links",
+      "Single central 'Enter Platform' button for clear user guidance",
+      "Rebranded from 'DPIA Agent' to 'DPIA.ai Privacy Platform'",
+      "Removed feature cards section - focused on essential information only",
+      "Clean, minimal design with just description, version, and login",
+      "Updated all branding across version info and metadata"
+    ],
+    improvements: [
+      "Eliminated user confusion from multiple CTA buttons",
+      "Clear single path: Enter Platform → Dashboard",
+      "Professional branding aligned with domain name (dpia.avantle.ai)",
+      "Simplified footer with essential compliance information",
+      "Better focus on core value proposition",
+      "Reduced cognitive load and decision paralysis"
+    ],
+    technical: [
+      "Updated src/lib/version.ts branding to DPIA.ai Privacy Platform", 
+      "Updated layout.tsx metadata for better SEO and branding",
+      "Removed complex feature grid and multiple navigation options",
+      "Streamlined component structure and reduced bundle size",
+      "Single Button component with Shield icon for platform entry"
+    ]
+  },
   "3.7.1": {
     date: "2024-11-29",
     name: "Enhanced Button Visibility",

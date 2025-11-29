@@ -5,8 +5,8 @@ import { AppLayoutWrapper } from '@/components/layout/app-layout-wrapper'
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "DPIA Agent - Automated GDPR Assessments",
-  description: "Create, manage and export GDPR-compliant Data Protection Impact Assessments with AI assistance.",
+  title: "DPIA.ai Privacy Platform - European GDPR Compliance",
+  description: "European GDPR compliance platform for Data Protection Impact Assessments with privacy by design.",
 };
 
 export default function RootLayout({

@@ -57,176 +57,45 @@ export default function Home() {
 
             {/* Hero Title with Modern Typography */}
             <div className="mb-8">
-              <h1 className="text-5xl sm:text-6xl lg:text-8xl xl:text-9xl font-extralight tracking-tighter mb-4 bg-gradient-to-r from-white via-blue-100 to-emerald-100 bg-clip-text text-transparent leading-[0.9]">
-                DPIA
+              <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-extralight tracking-tighter mb-4 bg-gradient-to-r from-white via-blue-100 to-emerald-100 bg-clip-text text-transparent leading-[0.9]">
+                DPIA.ai
               </h1>
-              <h2 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-light tracking-tight text-white/90 mb-6">
-                Agent
+              <h2 className="text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light tracking-tight text-white/90 mb-6">
+                Privacy Platform
               </h2>
             </div>
 
-            {/* Modern Subtitle with Better Container */}
-            <div className="max-w-4xl mx-auto mb-12">
-              <p className="text-lg sm:text-xl lg:text-2xl text-slate-300 mb-4 font-light leading-relaxed">
-                One core that powers infinite local agents.
-              </p>
-              <p className="text-base sm:text-lg lg:text-xl text-slate-400 font-light leading-relaxed max-w-3xl mx-auto">
-                Professional GDPR assessments with European values of data sovereignty.
+            {/* Simple Description */}
+            <div className="max-w-3xl mx-auto mb-12">
+              <p className="text-lg sm:text-xl lg:text-2xl text-slate-300 mb-6 font-light leading-relaxed">
+                European GDPR compliance platform for Data Protection Impact Assessments
               </p>
             </div>
 
-            {/* Modern CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+            {/* Single Central Login Button */}
+            <div className="flex justify-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium w-full sm:w-auto" 
-                asChild
-              >
-                <Link href="/onboarding">
-                  <Zap className="mr-3 h-5 w-5" />
-                  Get Started
-                </Link>
-              </Button>
-              
-              <Button 
-                size="lg" 
-                className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white shadow-lg hover:shadow-xl border border-emerald-500/50 hover:border-emerald-400/70 transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium w-full sm:w-auto" 
-                asChild
-              >
-                <Link href="/precheck">
-                  <CheckCircle className="mr-3 h-5 w-5" />
-                  Quick Pre-check
-                </Link>
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-2 border-slate-400/50 text-white hover:text-slate-900 hover:bg-white hover:border-white bg-slate-800/50 backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium w-full sm:w-auto" 
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 px-12 py-4 text-xl font-medium" 
                 asChild
               >
                 <Link href="/dashboard">
-                  Dashboard
-                  <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  <Shield className="mr-3 h-6 w-6" />
+                  Enter Platform
                 </Link>
               </Button>
             </div>
           </div>
 
-          {/* Modern Features Section with Better Container */}
-          <div className="mb-24 sm:mb-32">
-            
-            {/* Section Header with Proper Container */}
-            <div className="max-w-3xl mx-auto text-center mb-16 px-4">
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white mb-4">
-                Powerful Features
-              </h3>
-              <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
-                Everything you need for comprehensive GDPR compliance
-              </p>
-            </div>
 
-            {/* Modern Feature Grid - Centered with Better Responsive Container */}
-            <div className="max-w-6xl mx-auto px-4">
-              <div className="grid md:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
-              <Card className="group backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/10">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/30 group-hover:from-emerald-400/30 group-hover:to-emerald-500/40 transition-all duration-300">
-                      <CheckCircle className="h-8 w-8 text-emerald-400" />
-                    </div>
-                    <CardTitle className="text-xl font-medium text-white">Quick Assessment</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-slate-300 leading-relaxed text-base">
-                    8-question smart evaluation to determine if your project requires a full DPIA 
-                    under GDPR Article 35.
-                  </CardDescription>
-                  <div className="mt-6">
-                    <Button 
-                      size="sm" 
-                      className="bg-emerald-600 hover:bg-emerald-700 text-white border border-emerald-500 hover:border-emerald-400 shadow-md hover:shadow-lg px-4 py-2 font-medium transform hover:scale-105 transition-all duration-200"
-                      asChild
-                    >
-                      <Link href="/precheck">
-                        Try Pre-check →
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="group backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-400/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/10">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-600/30 group-hover:from-blue-400/30 group-hover:to-blue-500/40 transition-all duration-300">
-                      <Zap className="h-8 w-8 text-blue-400" />
-                    </div>
-                    <CardTitle className="text-xl font-medium text-white">Risk Scoring</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-slate-300 leading-relaxed text-base">
-                    Advanced risk engine calculating likelihood × impact scores with specific 
-                    mitigation recommendations.
-                  </CardDescription>
-                  <div className="mt-6">
-                    <Button 
-                      size="sm" 
-                      className="bg-blue-600 hover:bg-blue-700 text-white border border-blue-500 hover:border-blue-400 shadow-md hover:shadow-lg px-4 py-2 font-medium transform hover:scale-105 transition-all duration-200"
-                      asChild
-                    >
-                      <Link href="/dashboard">
-                        Learn More →
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="group backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 hover:border-purple-400/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/10">
-                <CardHeader className="pb-4">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-600/30 group-hover:from-purple-400/30 group-hover:to-purple-500/40 transition-all duration-300">
-                      <FileText className="h-8 w-8 text-purple-400" />
-                    </div>
-                    <CardTitle className="text-xl font-medium text-white">Professional Reports</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-slate-300 leading-relaxed text-base">
-                    Generate comprehensive DPIA documents in PDF and DOCX formats ready 
-                    for regulatory submission.
-                  </CardDescription>
-                  <div className="mt-6">
-                    <Button 
-                      size="sm" 
-                      className="bg-purple-600 hover:bg-purple-700 text-white border border-purple-500 hover:border-purple-400 shadow-md hover:shadow-lg px-4 py-2 font-medium transform hover:scale-105 transition-all duration-200"
-                      asChild
-                    >
-                      <Link href="/dashboard">
-                        View Sample →
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-              </div>
-            </div>
-          </div>
-
-          {/* Modern Footer with Better Container */}
+          {/* Simple Footer */}
           <div className="text-center pt-12 sm:pt-16 mt-24 sm:mt-32 border-t border-white/10">
             <div className="max-w-3xl mx-auto px-4">
               <p className="text-sm text-slate-400 font-light mb-3">
                 {versionInfo.fullDisplayName} • Built on {versionInfo.buildDate}
               </p>
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Privacy by Design. One core that powers infinite local agents.
-              </p>
               <p className="text-xs text-slate-600 mt-3">
-                🇪🇺 European values • Data sovereignty • GDPR compliant by default
+                🇪🇺 European GDPR compliance • Privacy by Design
               </p>
             </div>
           </div>
