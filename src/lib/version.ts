@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.8.1" as const
-export const VERSION_NAME = "Prominent Enter Platform Button" as const
+export const VERSION = "3.8.2" as const
+export const VERSION_NAME = "Fix Enter Platform Button" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.8.2": {
+    date: "2024-11-29",
+    name: "Fix Enter Platform Button",
+    features: [
+      "Replaced Button component with direct Link to avoid CSS conflicts",
+      "Fixed emerald gradient visibility with guaranteed Tailwind rendering",
+      "Implemented inline-flex items-center justify-center for proper button appearance",
+      "Large prominent button with emerald gradient now displays correctly",
+      "Professional hover effects and scaling preserved",
+      "Direct navigation to /dashboard without component interference"
+    ],
+    improvements: [
+      "Eliminated Button component CSS specificity conflicts",
+      "Guaranteed emerald gradient visibility on landing page",
+      "Better reliability with direct Tailwind implementation",
+      "Consistent button appearance across all browsers",
+      "Simplified component structure for better maintainability",
+      "Clear visual hierarchy with impossible-to-miss CTA"
+    ],
+    technical: [
+      "Removed Button component wrapper causing CSS conflicts",
+      "Implemented direct Link with custom Tailwind classes",
+      "Added inline-flex items-center justify-center layout",
+      "Preserved px-16 py-6 text-2xl font-semibold sizing",
+      "Maintained emerald gradient and hover transform effects",
+      "Fixed component rendering issues preventing button visibility"
+    ]
+  },
   "3.8.1": {
     date: "2024-11-29",
     name: "Prominent Enter Platform Button",
