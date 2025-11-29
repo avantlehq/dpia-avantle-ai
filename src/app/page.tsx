@@ -24,9 +24,12 @@ export default function Home() {
       </div>
 
       <div className="relative z-10">
-        <div className="max-w-7xl mx-auto px-4 py-24 lg:py-32">
-          {/* Modern Hero Section */}
-          <div className="text-center mb-32">
+        {/* Modern Container with Responsive Padding */}
+        <div className="container mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-20 sm:py-24 lg:py-32">
+          
+          {/* Modern Hero Section - Centered Content Container */}
+          <div className="max-w-5xl mx-auto text-center mb-24 sm:mb-32">
+            
             {/* Badge Section with Modern Design */}
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               <Badge 
@@ -54,27 +57,29 @@ export default function Home() {
 
             {/* Hero Title with Modern Typography */}
             <div className="mb-8">
-              <h1 className="text-6xl lg:text-8xl xl:text-9xl font-extralight tracking-tighter mb-4 bg-gradient-to-r from-white via-blue-100 to-emerald-100 bg-clip-text text-transparent leading-[0.9]">
+              <h1 className="text-5xl sm:text-6xl lg:text-8xl xl:text-9xl font-extralight tracking-tighter mb-4 bg-gradient-to-r from-white via-blue-100 to-emerald-100 bg-clip-text text-transparent leading-[0.9]">
                 DPIA
               </h1>
-              <h2 className="text-4xl lg:text-6xl xl:text-7xl font-light tracking-tight text-white/90 mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-light tracking-tight text-white/90 mb-6">
                 Agent
               </h2>
             </div>
 
-            {/* Modern Subtitle */}
-            <p className="text-xl lg:text-2xl text-slate-300 max-w-4xl mx-auto mb-4 font-light leading-relaxed">
-              One core that powers infinite local agents.
-            </p>
-            <p className="text-lg lg:text-xl text-slate-400 max-w-3xl mx-auto mb-12 font-light leading-relaxed">
-              Professional GDPR assessments with European values of data sovereignty.
-            </p>
+            {/* Modern Subtitle with Better Container */}
+            <div className="max-w-4xl mx-auto mb-12">
+              <p className="text-lg sm:text-xl lg:text-2xl text-slate-300 mb-4 font-light leading-relaxed">
+                One core that powers infinite local agents.
+              </p>
+              <p className="text-base sm:text-lg lg:text-xl text-slate-400 font-light leading-relaxed max-w-3xl mx-auto">
+                Professional GDPR assessments with European values of data sovereignty.
+              </p>
+            </div>
 
             {/* Modern CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium" 
+                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium w-full sm:w-auto" 
                 asChild
               >
                 <Link href="/onboarding">
@@ -86,7 +91,7 @@ export default function Home() {
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="backdrop-blur-sm bg-white/5 border border-white/20 text-white hover:bg-white/10 hover:border-white/30 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium" 
+                className="backdrop-blur-sm bg-white/5 border border-white/20 text-white hover:bg-white/10 hover:border-white/30 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-8 py-4 text-lg font-medium w-full sm:w-auto" 
                 asChild
               >
                 <Link href="/precheck">
@@ -98,7 +103,7 @@ export default function Home() {
               <Button 
                 variant="ghost" 
                 size="lg" 
-                className="text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-300 px-6 py-4 text-lg font-medium group" 
+                className="text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-300 px-6 py-4 text-lg font-medium group w-full sm:w-auto" 
                 asChild
               >
                 <Link href="/dashboard">
@@ -109,20 +114,21 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Modern Features Section */}
-          <div className="mb-32">
-            {/* Section Header */}
-            <div className="text-center mb-16">
-              <h3 className="text-3xl lg:text-4xl font-light text-white mb-4">
+          {/* Modern Features Section with Better Container */}
+          <div className="mb-24 sm:mb-32">
+            
+            {/* Section Header with Proper Container */}
+            <div className="max-w-3xl mx-auto text-center mb-16 px-4">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-light text-white mb-4">
                 Powerful Features
               </h3>
-              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
                 Everything you need for comprehensive GDPR compliance
               </p>
             </div>
 
-            {/* Modern Feature Grid - Centered with max width */}
-            <div className="max-w-4xl mx-auto px-4">
+            {/* Modern Feature Grid - Centered with Better Responsive Container */}
+            <div className="max-w-6xl mx-auto px-4">
               <div className="grid md:grid-cols-3 gap-6 lg:gap-8 xl:gap-10">
               <Card className="group backdrop-blur-md bg-white/5 border border-white/10 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/10">
                 <CardHeader className="pb-4">
@@ -193,9 +199,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Modern Footer */}
-          <div className="text-center pt-16 mt-32 border-t border-white/10">
-            <div className="max-w-2xl mx-auto">
+          {/* Modern Footer with Better Container */}
+          <div className="text-center pt-12 sm:pt-16 mt-24 sm:mt-32 border-t border-white/10">
+            <div className="max-w-3xl mx-auto px-4">
               <p className="text-sm text-slate-400 font-light mb-3">
                 {versionInfo.fullDisplayName} • Built on {versionInfo.buildDate}
               </p>

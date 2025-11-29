@@ -1,6 +1,6 @@
 // DPIA Agent Version Information
-export const VERSION = "3.6.0" as const
-export const VERSION_NAME = "Full DPIA Wizard Restored" as const
+export const VERSION = "3.7.0" as const
+export const VERSION_NAME = "Modern UI Containers" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,41 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.7.0": {
+    date: "2024-11-29",
+    name: "Modern UI Containers",
+    features: [
+      "Modernized homepage layout with smart container system",
+      "Replaced full-width design with professional centered containers",
+      "Enhanced responsive design with optimal content width",
+      "Improved visual hierarchy and reading experience"
+    ],
+    improvements: [
+      "Hero section uses max-w-5xl container for optimal content presentation",
+      "Features section uses max-w-6xl container for better 3-column grid",
+      "Professional responsive padding system (px-6 sm:px-8 lg:px-12 xl:px-16)",
+      "Better mobile experience with w-full sm:w-auto button styling",
+      "Enhanced typography scaling for all device sizes"
+    ],
+    technical: [
+      "Implemented container mx-auto with responsive padding system",
+      "Updated all content sections with appropriate max-width containers",
+      "Enhanced mobile-first responsive design principles",
+      "Maintained existing styling architecture and color system",
+      "Professional enterprise-grade layout standards"
+    ]
+  },
+  "3.6.0": {
+    date: "2024-11-25",
+    name: "Full DPIA Wizard Restored",
+    features: [
+      "Complete resolution of assessment creation and routing issues",
+      "Professional dedicated creation page replacing popup dialog",
+      "Alternative parameter-based routing system (/assessment?id=xxx)",
+      "Full 4-section DPIA wizard functionality restored",
+      "Next.js 16 full compatibility with Suspense boundaries"
+    ]
+  },
   "3.5.0": {
     date: "2024-11-25",
     name: "Alternative Routing System Fix", 
