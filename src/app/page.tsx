@@ -72,15 +72,15 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Single Central Login Button */}
+            {/* Large Central Platform Entry Button */}
             <div className="flex justify-center">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 px-12 py-4 text-xl font-medium" 
+                className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white shadow-2xl hover:shadow-emerald-500/25 border-2 border-emerald-400/50 hover:border-emerald-300/70 transform hover:scale-110 transition-all duration-300 px-16 py-6 text-2xl font-semibold rounded-xl" 
                 asChild
               >
                 <Link href="/dashboard">
-                  <Shield className="mr-3 h-6 w-6" />
+                  <Shield className="mr-4 h-8 w-8" />
                   Enter Platform
                 </Link>
               </Button>
