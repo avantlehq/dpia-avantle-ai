@@ -155,7 +155,17 @@ export default async function DashboardPage() {
             </p>
           </div>
           <Link href="/assessments/new">
-            <Button className="avantle-glow">
+            <Button 
+              className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+              style={{
+                backgroundColor: '#2563eb',
+                borderColor: '#3b82f6',
+                borderRadius: '8px',
+                color: '#ffffff',
+                fontSize: '18px',
+                fontWeight: '600'
+              }}
+            >
               <Plus className="mr-2 h-4 w-4" />
               New Assessment
             </Button>
@@ -240,7 +250,17 @@ export default async function DashboardPage() {
                 </p>
                 <div className="mt-6">
                   <Link href="/precheck">
-                    <Button>
+                    <Button
+                      className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                      style={{
+                        backgroundColor: '#2563eb',
+                        borderColor: '#3b82f6',
+                        borderRadius: '8px',
+                        color: '#ffffff',
+                        fontSize: '18px',
+                        fontWeight: '600'
+                      }}
+                    >
                       <Plus className="mr-2 h-4 w-4" />
                       New Assessment
                     </Button>

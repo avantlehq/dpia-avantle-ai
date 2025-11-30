@@ -232,7 +232,15 @@ export function OnboardingWizard() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button 
             onClick={() => router.push(recommendation.path)}
-            className="avantle-glow w-full sm:w-auto"
+            className="w-full sm:w-auto inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+            style={{
+              backgroundColor: '#2563eb',
+              borderColor: '#3b82f6',
+              borderRadius: '8px',
+              color: '#ffffff',
+              fontSize: '18px',
+              fontWeight: '600'
+            }}
           >
             {recommendation.title}
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -240,7 +248,15 @@ export function OnboardingWizard() {
           <Button 
             variant="outline" 
             onClick={() => router.push('/dashboard')}
-            className="avantle-border w-full sm:w-auto"
+            className="w-full sm:w-auto inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+            style={{
+              backgroundColor: '#2563eb',
+              borderColor: '#3b82f6',
+              borderRadius: '8px',
+              color: '#ffffff',
+              fontSize: '18px',
+              fontWeight: '600'
+            }}
           >
             Go to Dashboard
           </Button>
@@ -324,7 +340,15 @@ export function OnboardingWizard() {
           variant="outline"
           onClick={handlePrevious}
           disabled={currentStep === 0}
-          className="avantle-border"
+          className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+          style={{
+            backgroundColor: '#2563eb',
+            borderColor: '#3b82f6',
+            borderRadius: '8px',
+            color: '#ffffff',
+            fontSize: '18px',
+            fontWeight: '600'
+          }}
         >
           <ArrowLeft className="mr-2 h-4 w-4" />
           Previous
@@ -333,7 +357,15 @@ export function OnboardingWizard() {
         <Button
           onClick={handleNext}
           disabled={!currentAnswer}
-          className="avantle-glow"
+          className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+          style={{
+            backgroundColor: '#2563eb',
+            borderColor: '#3b82f6',
+            borderRadius: '8px',
+            color: '#ffffff',
+            fontSize: '18px',
+            fontWeight: '600'
+          }}
         >
           {currentStep === onboardingSteps.length - 1 ? 'Complete' : 'Next'}
           <ArrowRight className="ml-2 h-4 w-4" />

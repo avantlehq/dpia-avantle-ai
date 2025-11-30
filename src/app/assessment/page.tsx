@@ -28,7 +28,18 @@ function AssessmentContent() {
           </div>
           <div className="mt-4">
             <Link href="/dashboard">
-              <Button variant="outline">
+              <Button 
+                variant="outline"
+                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                style={{
+                  backgroundColor: '#2563eb',
+                  borderColor: '#3b82f6',
+                  borderRadius: '8px',
+                  color: '#ffffff',
+                  fontSize: '18px',
+                  fontWeight: '600'
+                }}
+              >
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Dashboard
               </Button>

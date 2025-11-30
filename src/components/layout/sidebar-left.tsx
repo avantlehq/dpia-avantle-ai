@@ -28,7 +28,7 @@ export function SidebarLeft() {
         <div className="flex items-center justify-between p-4 border-b border-border">
           {leftSidebarOpen && (
             <div className="flex items-center gap-2">
-              <div className="font-semibold text-foreground">DPIA Agent</div>
+              <div className="font-semibold text-foreground">DPIA.ai</div>
             </div>
           )}
           <Button
@@ -84,7 +84,7 @@ export function SidebarLeft() {
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-border">
               <div className="flex items-center gap-2">
-                <div className="font-semibold text-foreground">DPIA Agent</div>
+                <div className="font-semibold text-foreground">DPIA.ai</div>
               </div>
               <Button
                 variant="ghost"

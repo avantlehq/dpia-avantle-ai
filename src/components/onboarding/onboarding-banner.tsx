@@ -41,7 +41,7 @@ export function OnboardingBanner() {
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-medium text-foreground">New to DPIA Agent?</h3>
+                <h3 className="font-medium text-foreground">New to DPIA.ai?</h3>
                 <Badge variant="secondary" className="text-xs">
                   2 minutes
                 </Badge>
@@ -55,7 +55,15 @@ export function OnboardingBanner() {
           <div className="flex items-center gap-2">
             <Button 
               size="sm" 
-              className="avantle-glow whitespace-nowrap" 
+              className="whitespace-nowrap inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer" 
+              style={{
+                backgroundColor: '#2563eb',
+                borderColor: '#3b82f6',
+                borderRadius: '8px',
+                color: '#ffffff',
+                fontSize: '18px',
+                fontWeight: '600'
+              }}
               asChild
             >
               <Link href="/onboarding">
@@ -67,7 +75,15 @@ export function OnboardingBanner() {
               variant="ghost"
               size="sm"
               onClick={handleDismiss}
-              className="h-8 w-8 p-0 hover:bg-destructive/10"
+              className="h-8 w-8 p-0 hover:bg-destructive/10 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 font-semibold rounded-lg cursor-pointer"
+              style={{
+                backgroundColor: '#2563eb',
+                borderColor: '#3b82f6',
+                borderRadius: '8px',
+                color: '#ffffff',
+                fontSize: '18px',
+                fontWeight: '600'
+              }}
             >
               <X className="h-4 w-4" />
             </Button>

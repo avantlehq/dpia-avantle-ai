@@ -91,14 +91,39 @@ export function PrecheckResults({
       {/* Action buttons */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         {shouldShowDPIAButton && (
-          <Button size="lg" onClick={onStartDPIA} className="flex items-center gap-2">
+          <Button 
+            size="lg" 
+            onClick={onStartDPIA} 
+            className="flex items-center gap-2 inline-flex justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+            style={{
+              backgroundColor: '#2563eb',
+              borderColor: '#3b82f6',
+              borderRadius: '8px',
+              color: '#ffffff',
+              fontSize: '18px',
+              fontWeight: '600'
+            }}
+          >
             <ArrowRight className="h-4 w-4" />
             Start Full DPIA Assessment
           </Button>
         )}
         
         {onExportReport && (
-          <Button variant="outline" size="lg" onClick={onExportReport} className="flex items-center gap-2">
+          <Button 
+            variant="outline" 
+            size="lg" 
+            onClick={onExportReport} 
+            className="flex items-center gap-2 inline-flex justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+            style={{
+              backgroundColor: '#2563eb',
+              borderColor: '#3b82f6',
+              borderRadius: '8px',
+              color: '#ffffff',
+              fontSize: '18px',
+              fontWeight: '600'
+            }}
+          >
             <FileText className="h-4 w-4" />
             Export Report
           </Button>
@@ -107,7 +132,19 @@ export function PrecheckResults({
 
       {/* Secondary actions */}
       <div className="flex justify-center pt-4">
-        <Button variant="ghost" onClick={onRetakeAssessment}>
+        <Button 
+          variant="ghost" 
+          onClick={onRetakeAssessment}
+          className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+          style={{
+            backgroundColor: '#2563eb',
+            borderColor: '#3b82f6',
+            borderRadius: '8px',
+            color: '#ffffff',
+            fontSize: '18px',
+            fontWeight: '600'
+          }}
+        >
           Retake Assessment
         </Button>
       </div>

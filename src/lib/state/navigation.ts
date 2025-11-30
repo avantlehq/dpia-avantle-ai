@@ -28,7 +28,7 @@ export interface NavGroup {
   gradient?: string
 }
 
-// Complete module structure for DPIA Agent
+// Complete module structure for DPIA.ai
 export const navigationConfig: NavGroup[] = [
   {
     name: "Main",

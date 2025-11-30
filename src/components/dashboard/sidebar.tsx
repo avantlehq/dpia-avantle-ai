@@ -14,7 +14,7 @@ export function Sidebar() {
   return (
     <div className="w-64 bg-card border-r border-border flex flex-col">
       <div className="p-6">
-        <h2 className="text-xl font-bold">DPIA Agent</h2>
+        <h2 className="text-xl font-bold">DPIA.ai</h2>
       </div>
       
       <nav className="flex-1 px-4 space-y-2">

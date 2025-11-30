@@ -40,7 +40,7 @@ export function Topbar() {
             <div className="p-1.5 rounded-lg bg-icon-blue hover:bg-icon-blue-hover transition-colors">
               <ShieldCheck className="h-5 w-5" style={{ color: 'var(--color-blue)' }} />
             </div>
-            <span className="font-semibold text-sm text-foreground">DPIA Agent</span>
+            <span className="font-semibold text-sm text-foreground">DPIA.ai</span>
           </div>
           <Badge variant="secondary" className="text-xs bg-icon-blue border-dpia-blue" style={{ color: 'var(--color-blue)' }}>
             {versionInfo.displayName}

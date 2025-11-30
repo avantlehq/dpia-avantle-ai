@@ -54,7 +54,19 @@ export default function NewAssessmentPage() {
         <div className="max-w-4xl mx-auto px-6 py-4">
           <div className="flex items-center gap-4">
             <Link href="/dashboard">
-              <Button variant="ghost" size="sm" className="gap-2">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer gap-2"
+                style={{
+                  backgroundColor: '#2563eb',
+                  borderColor: '#3b82f6',
+                  borderRadius: '8px',
+                  color: '#ffffff',
+                  fontSize: '18px',
+                  fontWeight: '600'
+                }}
+              >
                 <ArrowLeft className="h-4 w-4" />
                 Back to Dashboard
               </Button>
@@ -144,7 +156,15 @@ export default function NewAssessmentPage() {
                   <Button 
                     type="button"
                     variant="outline" 
-                    className="w-full avantle-border"
+                    className="w-full inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                    style={{
+                      backgroundColor: '#2563eb',
+                      borderColor: '#3b82f6',
+                      borderRadius: '8px',
+                      color: '#ffffff',
+                      fontSize: '18px',
+                      fontWeight: '600'
+                    }}
                     disabled={isLoading}
                   >
                     Cancel
@@ -153,7 +173,15 @@ export default function NewAssessmentPage() {
                 <Button
                   type="submit"
                   disabled={!name.trim() || isLoading}
-                  className="flex-1 bg-dpia-orange hover:bg-dpia-orange/90 text-white"
+                  className="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                  style={{
+                    backgroundColor: '#2563eb',
+                    borderColor: '#3b82f6',
+                    borderRadius: '8px',
+                    color: '#ffffff',
+                    fontSize: '18px',
+                    fontWeight: '600'
+                  }}
                 >
                   {isLoading ? 'Creating Assessment...' : 'Start DPIA Assessment'}
                 </Button>

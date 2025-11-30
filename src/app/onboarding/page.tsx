@@ -29,7 +29,7 @@ export default async function OnboardingPage() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--color-blue)' }}></div>
             <h1 className="text-4xl font-light tracking-tight text-foreground">
-              Welcome to DPIA Agent
+              Welcome to DPIA.ai
             </h1>
           </div>
           <p className="text-xl text-muted-foreground font-light max-w-2xl mx-auto">

@@ -120,6 +120,15 @@ export function PrecheckForm({ questions, onSubmit, isLoading = false }: Prechec
               variant="outline" 
               onClick={handlePrevious}
               disabled={isFirstQuestion || isLoading}
+              className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+              style={{
+                backgroundColor: '#2563eb',
+                borderColor: '#3b82f6',
+                borderRadius: '8px',
+                color: '#ffffff',
+                fontSize: '18px',
+                fontWeight: '600'
+              }}
             >
               Previous
             </Button>
@@ -130,6 +139,15 @@ export function PrecheckForm({ questions, onSubmit, isLoading = false }: Prechec
                   type="button"
                   onClick={handleNext}
                   disabled={!currentAnswer || isLoading}
+                  className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                  style={{
+                    backgroundColor: '#2563eb',
+                    borderColor: '#3b82f6',
+                    borderRadius: '8px',
+                    color: '#ffffff',
+                    fontSize: '18px',
+                    fontWeight: '600'
+                  }}
                 >
                   Next
                 </Button>
@@ -137,6 +155,15 @@ export function PrecheckForm({ questions, onSubmit, isLoading = false }: Prechec
                 <Button 
                   type="submit"
                   disabled={!currentAnswer || isLoading}
+                  className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                  style={{
+                    backgroundColor: '#2563eb',
+                    borderColor: '#3b82f6',
+                    borderRadius: '8px',
+                    color: '#ffffff',
+                    fontSize: '18px',
+                    fontWeight: '600'
+                  }}
                 >
                   {isLoading ? (
                     <>
