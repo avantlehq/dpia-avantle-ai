@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.5" as const
-export const VERSION_NAME = "Dashboard Layout Perfection" as const
+export const VERSION = "3.9.6" as const
+export const VERSION_NAME = "Perfect Spacing & Layout Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.6": {
+    date: "2024-11-30",
+    name: "Perfect Spacing & Layout Fix",
+    features: [
+      "Fixed dashboard cards layout - numbers now properly separated from labels with space",
+      "Increased button spacing - Precheck and Assessment buttons have proper gap",
+      "Further reduced page height to eliminate footer scrolling on desktop",
+      "Fixed topbar spacing between DPIA.ai and Privacy Platform text",
+      "Achieved perfect visual spacing throughout all dashboard elements"
+    ],
+    improvements: [
+      "Dashboard cards now display: Icon | Label [SPACE] Number (proper separation)",
+      "Button layout improved with gap-6 for clear visual separation",
+      "Compact page design (space-y-3) eliminates desktop footer scrolling",
+      "Clean topbar branding with optimal spacing between elements",
+      "Professional layout with consistent spacing standards"
+    ],
+    technical: [
+      "Restructured card layout: moved number outside nested div for proper justify-between",
+      "Increased button gap from gap-4 to gap-6 for better visual separation",
+      "Reduced overall page spacing from space-y-4 to space-y-3 for compact layout",
+      "Adjusted topbar branding gap from gap-3 to gap-2 for optimal spacing",
+      "Fixed flex layout structure to ensure proper element positioning"
+    ]
+  },
   "3.9.5": {
     date: "2024-11-30",
     name: "Dashboard Layout Perfection",

@@ -121,7 +121,7 @@ export default async function DashboardPage() {
   // Handle empty state
   if (assessments.length === 0) {
     return (
-      <div className="space-y-4">
+      <div className="space-y-3">
         <OnboardingBanner />
         
         <Breadcrumbs
@@ -150,7 +150,7 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
         <OnboardingBanner />
         
         <Breadcrumbs
@@ -169,7 +169,7 @@ export default async function DashboardPage() {
               Manage your GDPR compliance assessments with European privacy values
             </p>
           </div>
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row gap-6">
             <Link href="/precheck">
               <Button 
                 className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl border border-green-500 hover:border-green-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
@@ -208,64 +208,56 @@ export default async function DashboardPage() {
         <div className="grid gap-4 md:grid-cols-4">
           <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-blue-500 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-icon-gradient-blue">
                     <FileText className="h-4 w-4" style={{ color: 'var(--color-blue)' }} />
                   </div>
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-sm font-medium text-card-foreground">Total Assessments</span>
-                    <div className="text-2xl font-bold" style={{ color: 'var(--color-blue)' }}>{stats.totalAssessments}</div>
-                  </div>
+                  <span className="text-sm font-medium text-card-foreground">Total Assessments</span>
                 </div>
+                <div className="text-2xl font-bold" style={{ color: 'var(--color-blue)' }}>{stats.totalAssessments}</div>
               </div>
             </CardContent>
           </Card>
           
           <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-orange-500 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-icon-gradient-orange">
                     <Clock className="h-4 w-4" style={{ color: 'var(--color-orange)' }} />
                   </div>
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-sm font-medium text-card-foreground">In Progress</span>
-                    <div className="text-2xl font-bold" style={{ color: 'var(--color-orange)' }}>{stats.inProgress}</div>
-                  </div>
+                  <span className="text-sm font-medium text-card-foreground">In Progress</span>
                 </div>
+                <div className="text-2xl font-bold" style={{ color: 'var(--color-orange)' }}>{stats.inProgress}</div>
               </div>
             </CardContent>
           </Card>
           
           <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-green-500 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-icon-gradient-green">
                     <CheckCircle className="h-4 w-4" style={{ color: 'var(--color-green)' }} />
                   </div>
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-sm font-medium text-card-foreground">Completed</span>
-                    <div className="text-2xl font-bold" style={{ color: 'var(--color-green)' }}>{stats.completed}</div>
-                  </div>
+                  <span className="text-sm font-medium text-card-foreground">Completed</span>
                 </div>
+                <div className="text-2xl font-bold" style={{ color: 'var(--color-green)' }}>{stats.completed}</div>
               </div>
             </CardContent>
           </Card>
           
           <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-gray-500 shadow-sm hover:shadow-md transition-shadow">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between w-full">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-icon-gradient-gray">
                     <Edit3 className="h-4 w-4" style={{ color: 'var(--color-gray)' }} />
                   </div>
-                  <div className="flex items-center justify-between w-full">
-                    <span className="text-sm font-medium text-card-foreground">Drafts</span>
-                    <div className="text-2xl font-bold" style={{ color: 'var(--color-gray)' }}>{stats.drafts}</div>
-                  </div>
+                  <span className="text-sm font-medium text-card-foreground">Drafts</span>
                 </div>
+                <div className="text-2xl font-bold" style={{ color: 'var(--color-gray)' }}>{stats.drafts}</div>
               </div>
             </CardContent>
           </Card>
