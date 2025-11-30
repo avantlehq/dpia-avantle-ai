@@ -169,7 +169,7 @@ export default async function DashboardPage() {
               Manage your GDPR compliance assessments with European privacy values
             </p>
           </div>
-          <div className="flex flex-row gap-6">
+          <div className="flex flex-row gap-8">
             <Link href="/precheck">
               <Button 
                 className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl border border-green-500 hover:border-green-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"

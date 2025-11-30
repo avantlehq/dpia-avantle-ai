@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.7" as const
-export const VERSION_NAME = "Final Spacing & Branding Fix" as const
+export const VERSION = "3.9.8" as const
+export const VERSION_NAME = "Increased Spacing Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,28 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.8": {
+    date: "2024-11-30", 
+    name: "Increased Spacing Fix",
+    features: [
+      "Increased dashboard button spacing - gap-8 between Precheck and Assessment buttons",
+      "Enhanced topbar spacing - gap-6 between DPIA.ai and Privacy Platform text",
+      "Resolved touching elements throughout interface",
+      "Achieved proper visual separation for all interactive elements"
+    ],
+    improvements: [
+      "Clear button separation with 2rem (32px) gap between dashboard CTAs",
+      "Visible topbar branding separation with 1.5rem (24px) gap",
+      "Professional spacing standards applied consistently",
+      "Enhanced readability and visual clarity"
+    ],
+    technical: [
+      "Increased dashboard button gap from gap-6 to gap-8 for better separation",
+      "Enhanced topbar branding gap from gap-4 to gap-6 for visible spacing",
+      "Applied larger Tailwind spacing utilities for guaranteed visual separation",
+      "Maintained responsive design while improving element spacing"
+    ]
+  },
   "3.9.7": {
     date: "2024-11-30",
     name: "Final Spacing & Branding Fix",
