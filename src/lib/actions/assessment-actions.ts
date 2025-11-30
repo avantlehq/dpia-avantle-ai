@@ -206,6 +206,53 @@ export async function deleteAssessmentAction(
   }
 }
 
+export async function deleteAllAssessmentsAction(): Promise<SaveAnswersResult> {
+  try {
+    const db = await DatabaseService.create()
+    
+    // Get all assessments for the workspace
+    const assessments = await db.getAssessments('00000000-0000-0000-0000-000000000002')
+    
+    console.log(`Deleting ${assessments.length} assessments`)
+    
+    // Delete each assessment
+    for (const assessment of assessments) {
+      try {
+        // Log deletion event
+        await db.logEvent({
+          type: 'assessment.deleted',
+          entityType: 'assessment',
+          entityId: assessment.id,
+          payload: { 
+            name: assessment.name,
+            deletedAt: new Date().toISOString(),
+            bulkDelete: true
+          }
+        })
+        
+        await db.deleteAssessment(assessment.id)
+        console.log(`Deleted assessment: ${assessment.id} - ${assessment.name}`)
+      } catch (deleteError) {
+        console.error(`Failed to delete assessment ${assessment.id}:`, deleteError)
+        // Continue with other assessments
+      }
+    }
+    
+    revalidatePath('/dashboard')
+    
+    return { 
+      success: true,
+      message: `Deleted ${assessments.length} assessments`
+    }
+  } catch (error) {
+    console.error('Error deleting all assessments:', error)
+    return { 
+      success: false,
+      error: 'Failed to delete assessments'
+    }
+  }
+}
+
 export async function duplicateAssessmentAction(
   originalId: string,
   newName: string

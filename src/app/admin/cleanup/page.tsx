@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { AlertTriangle, Trash2 } from 'lucide-react'
+import { deleteAllAssessmentsAction } from '@/lib/actions/assessment-actions'
 
 export default function CleanupPage() {
   const [loading, setLoading] = useState(false)
@@ -22,53 +23,19 @@ export default function CleanupPage() {
     setResult('🔄 Deleting assessments...')
 
     try {
-      // Import Supabase client for direct database access
-      const { createClient } = await import('@/lib/supabase/client')
-      const supabase = createClient()
+      // Use the server action that we know works
+      const result = await deleteAllAssessmentsAction()
 
-      if (!supabase) {
-        setResult('❌ Error: Could not connect to database')
-        return
-      }
-
-      // Get assessments first
-      const { data: assessments, error: fetchError } = await supabase
-        .from('assessments')
-        .select('id, name')
-        .eq('workspace_id', '00000000-0000-0000-0000-000000000002')
-
-      if (fetchError) {
-        setResult(`❌ Error fetching assessments: ${fetchError.message}`)
-        return
-      }
-
-      if (!assessments || assessments.length === 0) {
-        setResult('✅ No assessments to delete')
+      if (result.success) {
+        setResult(`✅ Success: ${result.message || 'All assessments deleted!'}`)
+        
+        // Redirect to dashboard after 3 seconds
         setTimeout(() => {
           window.location.href = '/dashboard'
-        }, 2000)
-        return
+        }, 3000)
+      } else {
+        setResult(`❌ Error: ${result.error || 'Failed to delete assessments'}`)
       }
-
-      setResult(`🔄 Found ${assessments.length} assessments, deleting...`)
-
-      // Delete all assessments
-      const { error: deleteError } = await supabase
-        .from('assessments')
-        .delete()
-        .eq('workspace_id', '00000000-0000-0000-0000-000000000002')
-
-      if (deleteError) {
-        setResult(`❌ Error deleting assessments: ${deleteError.message}`)
-        return
-      }
-
-      setResult(`✅ Success: Deleted ${assessments.length} assessments!`)
-      
-      // Redirect to dashboard after 3 seconds
-      setTimeout(() => {
-        window.location.href = '/dashboard'
-      }, 3000)
 
     } catch (error) {
       console.error('Cleanup error:', error)
