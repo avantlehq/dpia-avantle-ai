@@ -42,12 +42,14 @@ export function WizardNavigation({
             <Button 
               variant="outline" 
               onClick={onPrevious}
-              className="px-4 py-2 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors"
+              className="inline-flex items-center justify-center bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-300 hover:border-gray-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
               style={{
+                backgroundColor: '#ffffff',
                 borderColor: '#9ca3af',
-                color: '#6b7280',
-                fontSize: '14px',
-                fontWeight: '500'
+                borderRadius: '8px',
+                color: '#4b5563',
+                fontSize: '16px',
+                fontWeight: '600'
               }}
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
@@ -56,15 +58,18 @@ export function WizardNavigation({
           )}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           {/* Save Draft */}
           <Button 
-            variant="ghost" 
-            size="sm"
+            variant="outline"
+            className="inline-flex items-center justify-center bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-300 hover:border-gray-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
             style={{
-              color: '#6b7280',
-              fontSize: '14px',
-              fontWeight: '500'
+              backgroundColor: '#ffffff',
+              borderColor: '#9ca3af',
+              borderRadius: '8px',
+              color: '#4b5563',
+              fontSize: '16px',
+              fontWeight: '600'
             }}
           >
             <FileText className="mr-2 h-4 w-4" />
@@ -75,13 +80,14 @@ export function WizardNavigation({
           {isLastSection ? (
             <Button 
               asChild
-              className="px-4 py-2 shadow-sm hover:shadow-md transition-shadow"
+              className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl border border-green-500 hover:border-green-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
               style={{
                 backgroundColor: '#16a34a',
-                borderColor: '#16a34a',
+                borderColor: '#22c55e',
+                borderRadius: '8px',
                 color: '#ffffff',
-                fontSize: '14px',
-                fontWeight: '500'
+                fontSize: '16px',
+                fontWeight: '600'
               }}
             >
               <Link href={`/assessments/${assessmentId}/export`}>
@@ -93,13 +99,14 @@ export function WizardNavigation({
             <Button 
               onClick={onNext}
               disabled={!canProceed}
-              className="px-4 py-2 shadow-sm hover:shadow-md transition-shadow"
+              className="inline-flex items-center justify-center bg-orange-600 hover:bg-orange-700 shadow-lg hover:shadow-xl border border-orange-500 hover:border-orange-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
               style={{
                 backgroundColor: canProceed ? '#ea580c' : '#9ca3af',
-                borderColor: canProceed ? '#ea580c' : '#9ca3af',
+                borderColor: canProceed ? '#f97316' : '#9ca3af',
+                borderRadius: '8px',
                 color: '#ffffff',
-                fontSize: '14px',
-                fontWeight: '500'
+                fontSize: '16px',
+                fontWeight: '600'
               }}
             >
               Next Section

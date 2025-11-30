@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.3" as const
-export const VERSION_NAME = "Button Spacing & Delete Fix" as const
+export const VERSION = "3.10.4" as const
+export const VERSION_NAME = "Consistent Button Design & Table Improvements" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.4": {
+    date: "2024-11-30",
+    name: "Consistent Button Design & Table Improvements",
+    features: [
+      "Unified all assessment wizard buttons with 'New Assessment' button styling",
+      "Enhanced Previous, Save Draft, Next Section, Complete Section buttons with consistent design",
+      "Added 1-second delay to assessment creation navigation for better user feedback",
+      "Added Refresh button to assessments table for manual data refresh",
+      "Renamed 'Recent Assessments' to 'All Assessments' for clearer functionality",
+      "Applied professional shadow-lg, hover effects, and transform animations to all buttons"
+    ],
+    improvements: [
+      "Consistent visual hierarchy across all assessment interface buttons",
+      "Professional 16px font size and 600 font weight on all action buttons",
+      "Enhanced user experience with reliable assessment list refresh capability",
+      "Better navigation flow with toast confirmation before assessment redirect",
+      "Clear table naming that accurately reflects content (all assessments, not just recent)",
+      "Uniform px-6 py-3 padding and rounded-lg corners for all primary buttons"
+    ],
+    technical: [
+      "Applied consistent inline styles across wizard-navigation, dynamic-form-generator, and context-scope-form",
+      "Enhanced button classes with shadow-lg hover:shadow-xl and transform hover:scale-102",
+      "Added RefreshCw icon and onClick handler for manual table refresh",
+      "Implemented setTimeout delay in assessment creation for better UX flow",
+      "Updated CardHeader to include flex justify-between layout for title and refresh button",
+      "Maintained color coding: orange for primary actions, gray for secondary, green for completion"
+    ]
+  },
   "3.10.3": {
     date: "2024-11-30",
     name: "Button Spacing & Delete Fix",

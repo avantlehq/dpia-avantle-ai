@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Plus, FileText, Clock, CheckCircle, AlertCircle, Edit3, Sparkles } from 'lucide-react'
+import { Plus, FileText, Clock, CheckCircle, AlertCircle, Edit3, Sparkles, RefreshCw } from 'lucide-react'
 import Link from 'next/link'
 import { Breadcrumbs } from '@/components/navigation/breadcrumbs'
 import { DashboardService } from '@/lib/services/dashboard'
@@ -270,7 +270,26 @@ export default async function DashboardPage() {
 
         <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
           <CardHeader>
-            <CardTitle className="text-card-foreground">Recent Assessments</CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-card-foreground">All Assessments</CardTitle>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => window.location.reload()}
+                className="inline-flex items-center justify-center bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-300 hover:border-gray-400 transform hover:scale-102 transition-all duration-300 px-4 py-2 font-semibold rounded-lg cursor-pointer"
+                style={{
+                  backgroundColor: '#ffffff',
+                  borderColor: '#9ca3af',
+                  borderRadius: '8px',
+                  color: '#4b5563',
+                  fontSize: '14px',
+                  fontWeight: '600'
+                }}
+              >
+                <RefreshCw className="mr-2 h-3 w-3" />
+                Refresh
+              </Button>
+            </div>
           </CardHeader>
           <CardContent>
             {assessments.length === 0 ? (

@@ -327,13 +327,14 @@ export function DynamicFormGenerator({
             <Button
               type="submit"
               disabled={loading}
-              className="min-w-[120px] px-4 py-2 shadow-sm hover:shadow-md transition-shadow"
+              className="inline-flex items-center justify-center bg-orange-600 hover:bg-orange-700 shadow-lg hover:shadow-xl border border-orange-500 hover:border-orange-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer min-w-[180px]"
               style={{
                 backgroundColor: loading ? '#9ca3af' : '#ea580c',
-                borderColor: loading ? '#9ca3af' : '#ea580c',
+                borderColor: loading ? '#9ca3af' : '#f97316',
+                borderRadius: '8px',
                 color: '#ffffff',
-                fontSize: '14px',
-                fontWeight: '500'
+                fontSize: '16px',
+                fontWeight: '600'
               }}
             >
               {loading ? 'Saving...' : submitButtonText}
