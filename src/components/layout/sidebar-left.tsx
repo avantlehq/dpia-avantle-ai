@@ -16,7 +16,7 @@ export function SidebarLeft() {
   const { leftSidebarOpen, mobileSidebarOpen } = useLayoutState()
   const { toggleLeftSidebar, setMobileSidebarOpen } = useLayoutActions()
   const _activeItem = getActiveNavItem(pathname)
-  const versionInfo = getVersionInfo()
+  const _versionInfo = getVersionInfo()
 
   return (
     <>

@@ -2,8 +2,7 @@
 
 import React from 'react'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import { Heart, Shield, Globe } from 'lucide-react'
+import { Heart, Globe } from 'lucide-react'
 import { getVersionInfo } from '@/lib/version'
 
 export function Footer() {
