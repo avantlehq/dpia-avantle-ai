@@ -112,11 +112,11 @@ export default async function DashboardPage() {
   console.log('Dashboard: Real result:', result)
   
   // Combine test data with real data if available
-  let assessments: any[] = testAssessments
+  let assessments: any[] = testAssessments as any[]
   if (!isError(result)) {
     console.log('Dashboard: Found real assessments:', result.data.length)
     // Add real assessments to test data for debugging
-    assessments = [...testAssessments, ...result.data]
+    assessments = [...(testAssessments as any[]), ...(result.data as any[])]
   } else {
     console.log('Dashboard: Error loading real assessments:', result.error, result.message)
   }
