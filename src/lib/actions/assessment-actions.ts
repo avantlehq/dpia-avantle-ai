@@ -207,6 +207,24 @@ export async function deleteAssessmentAction(
   }
 }
 
+export async function getAssessmentsForCleanupAction(): Promise<{ success: boolean; assessments?: any[]; error?: string }> {
+  try {
+    const db = await DatabaseService.create()
+    const assessments = await db.getAssessments('00000000-0000-0000-0000-000000000002')
+    
+    return {
+      success: true,
+      assessments: assessments.map(a => ({ id: a.id, name: a.name }))
+    }
+  } catch (error) {
+    console.error('Error getting assessments:', error)
+    return {
+      success: false,
+      error: 'Failed to get assessments'
+    }
+  }
+}
+
 export async function deleteAllAssessmentsAction(): Promise<SaveAnswersResult> {
   try {
     const db = await DatabaseService.create()
@@ -217,6 +235,7 @@ export async function deleteAllAssessmentsAction(): Promise<SaveAnswersResult> {
     console.log(`Deleting ${assessments.length} assessments`)
     
     // Delete each assessment
+    let deletedCount = 0
     for (const assessment of assessments) {
       try {
         // Log deletion event
@@ -232,6 +251,7 @@ export async function deleteAllAssessmentsAction(): Promise<SaveAnswersResult> {
         })
         
         await db.deleteAssessment(assessment.id)
+        deletedCount++
         console.log(`Deleted assessment: ${assessment.id} - ${assessment.name}`)
       } catch (deleteError) {
         console.error(`Failed to delete assessment ${assessment.id}:`, deleteError)
@@ -243,7 +263,7 @@ export async function deleteAllAssessmentsAction(): Promise<SaveAnswersResult> {
     
     return { 
       success: true,
-      message: `Deleted ${assessments.length} assessments`
+      message: `Deleted ${deletedCount} of ${assessments.length} assessments`
     }
   } catch (error) {
     console.error('Error deleting all assessments:', error)
