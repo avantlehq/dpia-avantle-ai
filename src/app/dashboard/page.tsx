@@ -111,8 +111,16 @@ export default async function DashboardPage() {
   const result = await DashboardService.loadAssessments()
   console.log('Dashboard: Real result:', result)
   
-  // Use test data temporarily
-  const assessments = testAssessments
+  // Combine test data with real data if available
+  let assessments = testAssessments
+  if (!isError(result)) {
+    console.log('Dashboard: Found real assessments:', result.data.length)
+    // Add real assessments to test data for debugging
+    assessments = [...testAssessments, ...result.data]
+  } else {
+    console.log('Dashboard: Error loading real assessments:', result.error, result.message)
+  }
+  
   const stats = DashboardService.calculateStats(assessments)
   
   // Handle error states for real data (but still show test data)
