@@ -24,7 +24,7 @@ export async function GET(request: Request) {
       )
     }
 
-    const body = { assessment_id, format }
+    const body = { assessment_id, format: format as 'pdf' | 'docx' }
 
     try {
       // Try real export service first
