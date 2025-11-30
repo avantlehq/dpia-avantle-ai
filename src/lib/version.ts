@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.4" as const
-export const VERSION_NAME = "Final UI Refinements & Layout" as const
+export const VERSION = "3.9.5" as const
+export const VERSION_NAME = "Dashboard Layout Perfection" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.5": {
+    date: "2024-11-30",
+    name: "Dashboard Layout Perfection",
+    features: [
+      "Fixed dashboard cards spacing - numbers now properly spaced from labels on the right",
+      "Improved button layout - Precheck and Assessment buttons now side by side",
+      "Reduced page height spacing to minimize scrolling to footer",
+      "Enhanced topbar branding - added proper spacing between DPIA.ai and Privacy Platform",
+      "Integrated version display directly in Privacy Platform text instead of separate badge",
+      "Achieved perfect visual balance across all dashboard elements"
+    ],
+    improvements: [
+      "Dashboard cards now display: Icon | Label ---- Number (proper spacing)",
+      "Horizontal button layout eliminates stacked appearance",
+      "Reduced vertical spacing (space-y-4) for better page utilization",
+      "Clean topbar branding: DPIA.ai Privacy Platform v3.9.5",
+      "Eliminated redundant version badge for cleaner header",
+      "Professional spacing and alignment throughout interface"
+    ],
+    technical: [
+      "Changed card layout from gap-2 to justify-between w-full for proper number positioning",
+      "Modified button container from flex-col to flex-row with gap-4",
+      "Reduced page spacing from space-y-6 to space-y-4 for compact layout",
+      "Enhanced topbar branding with gap-3 between DPIA.ai and Privacy Platform",
+      "Integrated version directly in text: 'Privacy Platform v{version}'",
+      "Removed separate Badge component for streamlined header design"
+    ]
+  },
   "3.9.4": {
     date: "2024-11-30",
     name: "Final UI Refinements & Layout",

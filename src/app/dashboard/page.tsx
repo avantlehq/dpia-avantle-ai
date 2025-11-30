@@ -121,7 +121,7 @@ export default async function DashboardPage() {
   // Handle empty state
   if (assessments.length === 0) {
     return (
-      <div className="space-y-6">
+      <div className="space-y-4">
         <OnboardingBanner />
         
         <Breadcrumbs
@@ -150,7 +150,7 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4">
         <OnboardingBanner />
         
         <Breadcrumbs
@@ -169,7 +169,7 @@ export default async function DashboardPage() {
               Manage your GDPR compliance assessments with European privacy values
             </p>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-row gap-4">
             <Link href="/precheck">
               <Button 
                 className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl border border-green-500 hover:border-green-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
@@ -213,7 +213,7 @@ export default async function DashboardPage() {
                   <div className="p-2 rounded-lg bg-icon-gradient-blue">
                     <FileText className="h-4 w-4" style={{ color: 'var(--color-blue)' }} />
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between w-full">
                     <span className="text-sm font-medium text-card-foreground">Total Assessments</span>
                     <div className="text-2xl font-bold" style={{ color: 'var(--color-blue)' }}>{stats.totalAssessments}</div>
                   </div>
@@ -229,7 +229,7 @@ export default async function DashboardPage() {
                   <div className="p-2 rounded-lg bg-icon-gradient-orange">
                     <Clock className="h-4 w-4" style={{ color: 'var(--color-orange)' }} />
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between w-full">
                     <span className="text-sm font-medium text-card-foreground">In Progress</span>
                     <div className="text-2xl font-bold" style={{ color: 'var(--color-orange)' }}>{stats.inProgress}</div>
                   </div>
@@ -245,7 +245,7 @@ export default async function DashboardPage() {
                   <div className="p-2 rounded-lg bg-icon-gradient-green">
                     <CheckCircle className="h-4 w-4" style={{ color: 'var(--color-green)' }} />
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between w-full">
                     <span className="text-sm font-medium text-card-foreground">Completed</span>
                     <div className="text-2xl font-bold" style={{ color: 'var(--color-green)' }}>{stats.completed}</div>
                   </div>
@@ -261,7 +261,7 @@ export default async function DashboardPage() {
                   <div className="p-2 rounded-lg bg-icon-gradient-gray">
                     <Edit3 className="h-4 w-4" style={{ color: 'var(--color-gray)' }} />
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center justify-between w-full">
                     <span className="text-sm font-medium text-card-foreground">Drafts</span>
                     <div className="text-2xl font-bold" style={{ color: 'var(--color-gray)' }}>{stats.drafts}</div>
                   </div>
