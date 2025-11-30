@@ -12,6 +12,7 @@ export interface CreateAssessmentResult {
 export interface SaveAnswersResult {
   success: boolean
   error?: string
+  message?: string
 }
 
 export interface SubmitAssessmentResult {
