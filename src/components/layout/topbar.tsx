@@ -40,8 +40,8 @@ export function Topbar() {
             <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg">
               <ShieldCheck className="h-6 w-6 text-white" />
             </div>
-            <div className="flex items-center gap-6">
-              <span className="font-bold text-lg text-foreground">DPIA.ai</span>
+            <div className="flex items-center">
+              <span className="font-bold text-lg text-foreground mr-6">DPIA.ai</span>
               <span className="text-sm text-muted-foreground font-medium">Privacy Platform v{versionInfo.version}</span>
             </div>
           </div>

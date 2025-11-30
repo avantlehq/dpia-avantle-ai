@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.8" as const
-export const VERSION_NAME = "Increased Spacing Fix" as const
+export const VERSION = "3.9.9" as const
+export const VERSION_NAME = "Explicit Margin Spacing Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,28 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.9": {
+    date: "2024-11-30",
+    name: "Explicit Margin Spacing Fix",
+    features: [
+      "Applied explicit margins to dashboard buttons with mr-8 wrapper divs",
+      "Used direct margin classes (mr-6) for topbar text spacing",
+      "Replaced flex gap with explicit margin-right for guaranteed spacing",
+      "Ensured proper element separation with margin-based approach"
+    ],
+    improvements: [
+      "Dashboard buttons wrapped in divs with mr-8 (32px) explicit margin",
+      "Topbar text uses mr-6 (24px) margin-right for reliable spacing", 
+      "Eliminated flex gap dependencies that may not render consistently",
+      "Applied bulletproof spacing approach with direct margin classes"
+    ],
+    technical: [
+      "Changed from flex gap-8 to explicit div wrappers with mr-8",
+      "Applied mr-6 directly to DPIA.ai span for topbar spacing",
+      "Used Tailwind margin utilities instead of flex gap properties",
+      "Restructured layout to ensure margin spacing takes precedence"
+    ]
+  },
   "3.9.8": {
     date: "2024-11-30", 
     name: "Increased Spacing Fix",
