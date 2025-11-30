@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.4" as const
-export const VERSION_NAME = "Consistent Button Design & Table Improvements" as const
+export const VERSION = "3.10.5" as const
+export const VERSION_NAME = "Critical Dashboard Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,28 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.5": {
+    date: "2024-11-30",
+    name: "Critical Dashboard Fix",
+    features: [
+      "CRITICAL FIX: Resolved 'Something went wrong' dashboard error",
+      "Fixed server/client component hydration issue with refresh button",
+      "Created separate RefreshButton client component for proper functionality",
+      "Restored dashboard accessibility and proper page rendering"
+    ],
+    improvements: [
+      "Proper separation of server and client components",
+      "Eliminated hydration mismatches causing page failures",
+      "Maintained refresh functionality while fixing component architecture",
+      "Clean component structure following Next.js 16 best practices"
+    ],
+    technical: [
+      "Extracted onClick handler to separate 'use client' RefreshButton component",
+      "Removed client-side onClick from server component dashboard page",
+      "Fixed React hydration error preventing dashboard from loading",
+      "Maintained all styling and functionality while fixing architecture"
+    ]
+  },
   "3.10.4": {
     date: "2024-11-30",
     name: "Consistent Button Design & Table Improvements",
