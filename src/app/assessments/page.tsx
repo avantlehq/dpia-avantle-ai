@@ -107,7 +107,15 @@ export default async function AssessmentsPage() {
           description="Create and manage your GDPR Data Protection Impact Assessments"
           action={
             <Link href="/assessments/new">
-              <Button className="avantle-glow">
+              <Button className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                style={{
+                  backgroundColor: '#2563eb',
+                  borderColor: '#3b82f6',
+                  borderRadius: '8px',
+                  color: '#ffffff',
+                  fontSize: '18px',
+                  fontWeight: '600'
+                }}>
                 <Plus className="mr-2 h-4 w-4" />
                 New Assessment
               </Button>
@@ -124,7 +132,7 @@ export default async function AssessmentsPage() {
         <EmptyState 
           title="No assessments yet"
           description="Get started by creating your first DPIA assessment"
-          actionLabel="Create Assessment"
+          actionLabel="New DPIA Assessment"
           onAction={() => document.getElementById('create-assessment-trigger')?.click()}
           icon={<FileText className="h-12 w-12 text-muted-foreground" />}
         />
@@ -141,7 +149,15 @@ export default async function AssessmentsPage() {
           description="Create and manage your GDPR Data Protection Impact Assessments"
           action={
             <Link href="/assessments/new">
-              <Button className="avantle-glow">
+              <Button className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                style={{
+                  backgroundColor: '#2563eb',
+                  borderColor: '#3b82f6',
+                  borderRadius: '8px',
+                  color: '#ffffff',
+                  fontSize: '18px',
+                  fontWeight: '600'
+                }}>
                 <Plus className="mr-2 h-4 w-4" />
                 New Assessment
               </Button>
@@ -156,27 +172,7 @@ export default async function AssessmentsPage() {
         />
 
         {/* Quick Actions */}
-        <div className="grid gap-4 md:grid-cols-3">
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-base font-medium text-card-foreground flex items-center gap-2">
-                <Plus className="h-4 w-4 text-primary" />
-                New Assessment
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-3">
-                Start a fresh DPIA from scratch with guided wizard
-              </p>
-              <Link href="/assessments/new">
-                <Button className="avantle-glow">
-                  <Plus className="mr-2 h-4 w-4" />
-                  Create Your First Assessment
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
-
+        <div className="grid gap-4 md:grid-cols-2">
           <Card className="avantle-border bg-card/50 backdrop-blur-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-base font-medium text-card-foreground flex items-center gap-2">

@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.0" as const
-export const VERSION_NAME = "Comprehensive UI Modernization & Rebranding" as const
+export const VERSION = "3.9.1" as const
+export const VERSION_NAME = "Assessment Button Styling Enhancement" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.1": {
+    date: "2024-11-30",
+    name: "Assessment Button Styling Enhancement",
+    features: [
+      "Enhanced 'New Assessment' button with professional blue styling (#2563eb)",
+      "Increased font size to 18px with 600 font weight for better readability",
+      "Added comprehensive hover effects with shadow-lg and scale-102 animations",
+      "Professional rounded-lg corners (8px) and improved button proportions",
+      "Eliminated weak 'avantle-glow' styling with solid blue background",
+      "Updated empty state action label to 'New DPIA Assessment' for clarity"
+    ],
+    improvements: [
+      "Much more prominent and visible assessment creation buttons",
+      "Consistent professional styling across all assessment page CTAs",
+      "Better user guidance with larger, more readable button text",
+      "Enhanced hover animations for modern interactive feedback",
+      "Professional blue color scheme matching platform design system",
+      "Improved accessibility with larger touch targets and better contrast"
+    ],
+    technical: [
+      "Applied inline styles for guaranteed color and font-size rendering",
+      "Maintained Tailwind utility classes for hover effects and animations",
+      "Updated both header action button and assessment grid layout",
+      "Removed grid layout from 3-column to 2-column for better spacing",
+      "Preserved existing Link navigation functionality",
+      "Professional button styling consistent with v3.9.0 design system"
+    ]
+  },
   "3.9.0": {
     date: "2024-11-29",
     name: "Comprehensive UI Modernization & Rebranding",
