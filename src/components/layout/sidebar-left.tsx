@@ -67,10 +67,7 @@ export function SidebarLeft() {
           <div className="mt-auto border-t border-border bg-card">
             <div className="p-4">
               <div className="text-xs text-muted-foreground font-medium">
-                v{versionInfo.version}
-              </div>
-              <div className="text-xs text-muted-foreground/70 mt-1">
-                {versionInfo.name}
+                © Avantle.com
               </div>
             </div>
           </div>

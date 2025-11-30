@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.3" as const
-export const VERSION_NAME = "Complete UI Polish & Navigation" as const
+export const VERSION = "3.9.4" as const
+export const VERSION_NAME = "Final UI Refinements & Layout" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.4": {
+    date: "2024-11-30",
+    name: "Final UI Refinements & Layout",
+    features: [
+      "Fixed topbar branding layout - Privacy Platform now inline with DPIA.ai instead of below",
+      "Replaced sidebar version with clean © Avantle.com copyright notice",
+      "Added development version display next to Privacy Platform in topbar",
+      "Cleaned main footer - removed © Avantle.ai and GDPR Compliant text",
+      "Completely redesigned dashboard cards - numbers now inline with labels",
+      "Enhanced card layout with proper spacing and visual hierarchy"
+    ],
+    improvements: [
+      "Much cleaner topbar branding with horizontal layout instead of stacked",
+      "Professional copyright placement in sidebar footer",
+      "Development-friendly version visibility in topbar for quick reference",
+      "Streamlined footer with essential branding only",
+      "Dashboard cards now display: Icon | Label Number - all in one line",
+      "Better visual balance with proper padding and spacing throughout"
+    ],
+    technical: [
+      "Modified topbar branding from flex-col to flex items-center layout",
+      "Replaced dynamic version info with static copyright in sidebar footer",
+      "Integrated version badge next to Privacy Platform branding",
+      "Simplified footer structure removing unnecessary elements",
+      "Restructured dashboard cards from CardHeader/CardContent to single CardContent",
+      "Enhanced card layout using flex items-center for inline text/number display"
+    ]
+  },
   "3.9.3": {
     date: "2024-11-30",
     name: "Complete UI Polish & Navigation",
