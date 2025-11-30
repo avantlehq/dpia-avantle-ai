@@ -34,7 +34,7 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
   // Update URL when section changes
   const handleSectionChange = (sectionId: SectionId) => {
     setCurrentSection(sectionId)
-    router.push(`/assessments/${assessmentId}?step=${sectionId}`, { scroll: false })
+    router.push(`/assessment?id=${assessmentId}&step=${sectionId}`, { scroll: false })
   }
 
   // Handle section completion

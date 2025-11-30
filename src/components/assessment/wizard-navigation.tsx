@@ -90,7 +90,7 @@ export function WizardNavigation({
                 fontWeight: '600'
               }}
             >
-              <Link href={`/assessments/${assessmentId}/export`}>
+              <Link href={`/api/export?assessment_id=${assessmentId}&format=pdf`}>
                 <Download className="mr-2 h-4 w-4" />
                 Export DPIA
               </Link>

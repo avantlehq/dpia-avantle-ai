@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.5" as const
-export const VERSION_NAME = "Critical Dashboard Fix" as const
+export const VERSION = "3.10.6" as const
+export const VERSION_NAME = "Assessment Completion & Routing Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.6": {
+    date: "2024-11-30",
+    name: "Assessment Completion & Routing Fix",
+    features: [
+      "CRITICAL FIX: Removed conflicting debug page causing assessment completion issues",
+      "Fixed assessment completion flow - assessments now properly marked as 'completed'",
+      "Enhanced mitigation form with actual completion logic and database update",
+      "Fixed assessment routing conflicts between /assessments/[id] and /assessment?id=",
+      "Added proper completion redirect to dashboard with success notification",
+      "Updated export URL to use working API endpoint (/api/export)"
+    ],
+    improvements: [
+      "Completed assessments now appear in dashboard table with 'completed' status",
+      "Professional completion flow with loading states and user feedback",
+      "Automatic redirect to dashboard after successful assessment completion",
+      "Consistent parameter-based routing throughout assessment wizard",
+      "Proper status updates and cache revalidation for real-time dashboard updates",
+      "Enhanced completion button with modern styling matching platform design"
+    ],
+    technical: [
+      "Backed up and removed src/app/assessments/[assessmentId]/page.tsx debug page",
+      "Updated DPIA wizard routing from /assessments/${id} to /assessment?id=${id}",
+      "Fixed export link to point to /api/export?assessment_id=${id}&format=pdf",
+      "Enhanced MitigationForm to call submitAssessmentAction for database completion",
+      "Updated revalidatePath calls to use correct routes (/assessment instead of /assessments/[id])",
+      "Added toast notifications and router navigation for complete user experience"
+    ]
+  },
   "3.10.5": {
     date: "2024-11-30",
     name: "Critical Dashboard Fix",
