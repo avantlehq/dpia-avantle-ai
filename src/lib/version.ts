@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.12" as const
-export const VERSION_NAME = "Clean Database Production Ready" as const
+export const VERSION = "3.10.13" as const
+export const VERSION_NAME = "Database Cleanup Tool" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
