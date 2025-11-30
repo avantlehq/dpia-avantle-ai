@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.18" as const
-export const VERSION_NAME = "Database Connection Debug" as const
+export const VERSION = "3.10.19" as const
+export const VERSION_NAME = "Simple API Test Endpoint" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
