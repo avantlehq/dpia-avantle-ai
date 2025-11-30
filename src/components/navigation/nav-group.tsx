@@ -31,11 +31,11 @@ export function NavGroup({ group, collapsed = false, activePath, onItemClick }: 
 
   return (
     <div className="space-y-3">
-      {/* Group Title - Modern Colorful Header with CSS Variables */}
-      <div className="px-2">
-        <div className="flex items-center gap-2">
+      {/* Group Title - Enhanced Modern Header with Better Visibility */}
+      <div className="px-2 py-1">
+        <div className="flex items-center gap-3">
           <div 
-            className="w-2 h-2 rounded-full"
+            className="w-3 h-3 rounded-full shadow-sm"
             style={{ 
               backgroundColor: 
                 group.colorClass === 'dpia-green' ? 'var(--color-green)' :
@@ -46,28 +46,31 @@ export function NavGroup({ group, collapsed = false, activePath, onItemClick }: 
             }}
           />
           <h3 
-            className="text-xs font-semibold uppercase tracking-wider"
+            className="text-sm font-bold uppercase tracking-wide"
             style={{ 
               color: 
-                group.colorClass === 'dpia-green' ? 'var(--color-green-light)' :
-                group.colorClass === 'dpia-orange' ? 'var(--color-orange-light)' :
-                group.colorClass === 'dpia-red' ? 'var(--color-red-light)' :
-                group.colorClass === 'dpia-purple' ? 'var(--color-purple-light)' :
-                'var(--color-blue-light)'
+                group.colorClass === 'dpia-green' ? 'var(--color-green)' :
+                group.colorClass === 'dpia-orange' ? 'var(--color-orange)' :
+                group.colorClass === 'dpia-red' ? 'var(--color-red)' :
+                group.colorClass === 'dpia-purple' ? 'var(--color-purple)' :
+                'var(--color-blue)',
+              fontSize: '14px',
+              fontWeight: '700'
             }}
           >
             {group.name}
           </h3>
         </div>
         <div 
-          className="mt-1 h-0.5 rounded-full opacity-30"
+          className="mt-2 h-1 rounded-full"
           style={{ 
             backgroundColor: 
               group.colorClass === 'dpia-green' ? 'var(--color-green)' :
               group.colorClass === 'dpia-orange' ? 'var(--color-orange)' :
               group.colorClass === 'dpia-red' ? 'var(--color-red)' :
               group.colorClass === 'dpia-purple' ? 'var(--color-purple)' :
-              'var(--color-blue)'
+              'var(--color-blue)',
+            opacity: '0.4'
           }}
         />
       </div>

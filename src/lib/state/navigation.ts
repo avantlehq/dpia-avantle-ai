@@ -36,7 +36,7 @@ export const navigationConfig: NavGroup[] = [
     gradient: "from-blue-500 to-blue-600",
     items: [
       { 
-        name: "Dashboard", 
+        name: "Home", 
         href: "/dashboard", 
         icon: LayoutDashboard,
         description: "Dashboard overview of all assessments"

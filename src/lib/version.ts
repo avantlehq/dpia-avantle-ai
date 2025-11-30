@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.1" as const
-export const VERSION_NAME = "Assessment Button Styling Enhancement" as const
+export const VERSION = "3.9.2" as const
+export const VERSION_NAME = "Dashboard UX Enhancement" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.2": {
+    date: "2024-11-30",
+    name: "Dashboard UX Enhancement",
+    features: [
+      "Enhanced sidebar headers with larger text (14px) and bold weight for better visibility",
+      "Renamed Dashboard to Home in navigation for clearer UX",
+      "Added New Precheck button alongside New Assessment in dashboard overview",
+      "Modernized topbar with professional branding and enhanced app logo design",
+      "Fixed breadcrumb placement - now appears before PageHeader instead of after",
+      "Improved navigation hierarchy with 'Home → DPIA Builder' breadcrumb flow"
+    ],
+    improvements: [
+      "Sidebar group headers now use larger colored dots (3px) and enhanced typography",
+      "Professional topbar design with gradient logo and structured app branding",
+      "Two-button CTA layout in dashboard: green Precheck + blue Assessment buttons",
+      "Modern dropdown menus with outline variants and colored icons",
+      "Better visual hierarchy with properly positioned breadcrumbs",
+      "Enhanced user guidance with Home-centric navigation structure"
+    ],
+    technical: [
+      "Updated NavigationConfig to rename Dashboard → Home",
+      "Enhanced NavGroup component with larger headers and better color visibility",
+      "Modernized Topbar component with gradient logo and structured branding",
+      "Added Sparkles icon for precheck functionality",
+      "Fixed breadcrumb positioning in DPIA Builder pages",
+      "Improved responsive design for dual-button dashboard layout"
+    ]
+  },
   "3.9.1": {
     date: "2024-11-30",
     name: "Assessment Button Styling Enhancement",

@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Plus, FileText, Clock, CheckCircle, AlertCircle, Edit3 } from 'lucide-react'
+import { Plus, FileText, Clock, CheckCircle, AlertCircle, Edit3, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { DashboardService } from '@/lib/services/dashboard'
 import { isError } from '@/lib/types/result'
@@ -154,22 +154,40 @@ export default async function DashboardPage() {
               Manage your GDPR compliance assessments with European privacy values
             </p>
           </div>
-          <Link href="/assessments/new">
-            <Button 
-              className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
-              style={{
-                backgroundColor: '#2563eb',
-                borderColor: '#3b82f6',
-                borderRadius: '8px',
-                color: '#ffffff',
-                fontSize: '18px',
-                fontWeight: '600'
-              }}
-            >
-              <Plus className="mr-2 h-4 w-4" />
-              New Assessment
-            </Button>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link href="/precheck">
+              <Button 
+                className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl border border-green-500 hover:border-green-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
+                style={{
+                  backgroundColor: '#16a34a',
+                  borderColor: '#22c55e',
+                  borderRadius: '8px',
+                  color: '#ffffff',
+                  fontSize: '16px',
+                  fontWeight: '600'
+                }}
+              >
+                <Sparkles className="mr-2 h-4 w-4" />
+                New Precheck
+              </Button>
+            </Link>
+            <Link href="/assessments/new">
+              <Button 
+                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
+                style={{
+                  backgroundColor: '#2563eb',
+                  borderColor: '#3b82f6',
+                  borderRadius: '8px',
+                  color: '#ffffff',
+                  fontSize: '16px',
+                  fontWeight: '600'
+                }}
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                New Assessment
+              </Button>
+            </Link>
+          </div>
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">

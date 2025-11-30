@@ -102,6 +102,12 @@ export default async function AssessmentsPage() {
       <div className="space-y-6">
         <OnboardingBanner />
         
+        <Breadcrumbs
+          items={[
+            { label: "DPIA Builder", href: "/assessments", current: true }
+          ]}
+        />
+        
         <PageHeader
           title="DPIA Builder"
           description="Create and manage your GDPR Data Protection Impact Assessments"
@@ -121,12 +127,6 @@ export default async function AssessmentsPage() {
               </Button>
             </Link>
           }
-        />
-
-        <Breadcrumbs
-          items={[
-            { label: "Builder", href: "/assessments", current: true }
-          ]}
         />
         
         <EmptyState 
@@ -144,6 +144,12 @@ export default async function AssessmentsPage() {
     <div className="space-y-6">
         <OnboardingBanner />
         
+        <Breadcrumbs
+          items={[
+            { label: "DPIA Builder", href: "/assessments", current: true }
+          ]}
+        />
+        
         <PageHeader
           title="DPIA Builder"
           description="Create and manage your GDPR Data Protection Impact Assessments"
@@ -163,12 +169,6 @@ export default async function AssessmentsPage() {
               </Button>
             </Link>
           }
-        />
-
-        <Breadcrumbs
-          items={[
-            { label: "Builder", href: "/assessments", current: true }
-          ]}
         />
 
         {/* Quick Actions */}
