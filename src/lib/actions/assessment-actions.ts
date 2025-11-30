@@ -24,10 +24,14 @@ export async function createAssessmentAction(
   description?: string
 ): Promise<CreateAssessmentResult> {
   try {
+    console.log('Assessment Creation: Starting with name:', name)
+    
     const db = await DatabaseService.create()
     
     const workspaceId = await db.getDefaultWorkspace()
     const user = await db.getCurrentUser()
+    
+    console.log('Assessment Creation: Using workspaceId:', workspaceId, 'user:', user?.id)
     
     const assessment = await db.createAssessment({
       workspace_id: workspaceId,
@@ -36,6 +40,8 @@ export async function createAssessmentAction(
       description: description || null,
       status: 'draft'
     })
+
+    console.log('Assessment Creation: Created assessment:', assessment)
 
     // Log creation event
     await db.logEvent({

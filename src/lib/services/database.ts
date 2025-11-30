@@ -36,21 +36,28 @@ export class DatabaseService {
 
   // Assessment CRUD operations
   async getAssessments(workspaceId: string): Promise<Assessment[]> {
+    console.log('Database: getAssessments called with workspaceId:', workspaceId)
+    
     if (!this.supabase) {
+      console.error('Database: Supabase client not configured')
       throw new Error('Database not configured')
     }
 
+    console.log('Database: Executing query to assessments table')
     const { data, error } = await this.supabase
       .from('assessments')
       .select('*')
       .eq('workspace_id', workspaceId)
       .order('created_at', { ascending: false })
 
+    console.log('Database: Query result - data:', data, 'error:', error)
+
     if (error) {
-      console.error('Error fetching assessments:', error)
-      throw new Error('Failed to fetch assessments')
+      console.error('Database: Error fetching assessments:', error)
+      throw new Error(`Failed to fetch assessments: ${error.message}`)
     }
 
+    console.log('Database: Returning', (data || []).length, 'assessments')
     return data || []
   }
 

@@ -19,16 +19,26 @@ export class DashboardService {
    */
   static async loadAssessments(): Promise<Result<Assessment[]>> {
     try {
+      console.log('Dashboard: Starting to load assessments')
+      
       // Check user authentication and workspace access first
       const authResult = await AuthGuard.checkUserAccess()
+      console.log('Dashboard: Auth result:', authResult)
       
       if (isError(authResult)) {
+        console.log('Dashboard: Auth failed:', authResult)
         return authResult
       }
 
       const { workspaceId } = authResult.data
+      console.log('Dashboard: Using workspace ID:', workspaceId)
+      
       const db = await DatabaseService.create()
+      console.log('Dashboard: Database service created')
+      
       const assessments = await db.getAssessments(workspaceId)
+      console.log('Dashboard: Loaded assessments:', assessments.length, 'items')
+      console.log('Dashboard: Assessment details:', assessments)
       
       return createSuccess(assessments || [])
     } catch (error) {

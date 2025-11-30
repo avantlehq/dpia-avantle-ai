@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.6" as const
-export const VERSION_NAME = "Assessment Completion & Routing Fix" as const
+export const VERSION = "3.10.7" as const
+export const VERSION_NAME = "Dashboard Loading Debug" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.7": {
+    date: "2024-11-30",
+    name: "Dashboard Loading Debug",
+    features: [
+      "Added comprehensive debugging to dashboard loading process",
+      "Enhanced error logging in DashboardService.loadAssessments",
+      "Added debugging to database.getAssessments method",
+      "Added debugging to assessment creation process",
+      "Console logs to track assessment loading and creation flow"
+    ],
+    improvements: [
+      "Better visibility into why assessments aren't appearing in dashboard",
+      "Detailed logging of workspace IDs and query results",
+      "Step-by-step tracking of database operations",
+      "Enhanced error reporting with specific failure points",
+      "Debug information for troubleshooting assessment display issues"
+    ],
+    technical: [
+      "Added console.log statements throughout dashboard loading chain",
+      "Enhanced database service logging for assessment queries",
+      "Added workspace ID and user ID logging in assessment creation",
+      "Improved error messages with specific database error details",
+      "Comprehensive debugging for assessment creation and retrieval"
+    ]
+  },
   "3.10.6": {
     date: "2024-11-30",
     name: "Assessment Completion & Routing Fix",
