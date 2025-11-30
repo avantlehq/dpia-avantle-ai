@@ -57,13 +57,14 @@ export default function NewAssessmentPage() {
               <Button 
                 variant="outline" 
                 size="sm" 
-                className="h-9 px-3 bg-white/10 dark:bg-white/5 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200"
+                className="h-9 px-3 border border-blue-300 hover:border-blue-400 hover:bg-blue-50 transition-all duration-200"
                 style={{
-                  borderColor: '#9ca3af',
-                  color: '#4b5563'
+                  borderColor: '#93c5fd',
+                  backgroundColor: '#ffffff',
+                  color: '#1d4ed8'
                 }}
               >
-                <ArrowLeft className="h-4 w-4 mr-2" style={{ color: '#6b7280' }} />
+                <ArrowLeft className="h-4 w-4 mr-2" style={{ color: '#2563eb' }} />
                 <span className="font-medium">Back to Dashboard</span>
               </Button>
             </Link>
@@ -149,16 +150,17 @@ export default function NewAssessmentPage() {
                 </ul>
               </div>
 
-              <div className="flex gap-4 pt-4 justify-center">
+              <div className="flex gap-6 pt-6 justify-center">
                 <Link href="/dashboard">
                   <Button 
                     type="button"
                     variant="outline" 
-                    className="px-4 py-2 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors"
+                    className="px-6 py-3 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors"
                     style={{
                       borderColor: '#9ca3af',
-                      color: '#6b7280',
-                      fontSize: '14px',
+                      backgroundColor: '#ffffff',
+                      color: '#4b5563',
+                      fontSize: '16px',
                       fontWeight: '500'
                     }}
                     disabled={isLoading}
@@ -169,15 +171,16 @@ export default function NewAssessmentPage() {
                 <Button
                   type="submit"
                   disabled={!name.trim() || isLoading}
-                  className="px-6 py-2 shadow-sm hover:shadow-md transition-shadow"
+                  className="px-8 py-3 shadow-sm hover:shadow-md transition-shadow"
                   style={{
                     backgroundColor: '#ea580c',
                     borderColor: '#ea580c',
                     color: '#ffffff',
-                    fontSize: '14px',
+                    fontSize: '16px',
                     fontWeight: '500'
                   }}
                 >
+                  <Plus className="mr-2 h-4 w-4" />
                   {isLoading ? 'Creating...' : 'Start Assessment'}
                 </Button>
               </div>

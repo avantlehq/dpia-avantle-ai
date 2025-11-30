@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.2" as const
-export const VERSION_NAME = "Complete UI & Navigation Fix" as const
+export const VERSION = "3.10.3" as const
+export const VERSION_NAME = "Button Spacing & Delete Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.3": {
+    date: "2024-11-30",
+    name: "Button Spacing & Delete Fix",
+    features: [
+      "Fixed Cancel and Start Assessment buttons - proper sizing (px-6 py-3) and spacing (gap-6)",
+      "Fixed Back to Dashboard button - blue styling instead of grey on grey",
+      "Added Plus icon to Start Assessment button for clear visual indication",
+      "Enhanced Recent Assessments delete functionality with debugging and hard refresh",
+      "Improved button contrast and readability throughout assessment creation"
+    ],
+    improvements: [
+      "Professional button sizing with adequate padding and proper spacing",
+      "Clear visual hierarchy - blue Back button, white Cancel, orange Start Assessment",
+      "Better user feedback with proper error handling for delete operations",
+      "Plus icon clearly indicates 'create new' action on Start Assessment button",
+      "Consistent 16px font size on form buttons for better readability"
+    ],
+    technical: [
+      "Increased button gap from gap-4 to gap-6 for better visual separation",
+      "Enhanced button padding from px-4 py-2 to px-6 py-3 for better touch targets",
+      "Updated Back to Dashboard button with blue theme (#1d4ed8) and white background",
+      "Added console logging and window.location.reload() for reliable delete functionality",
+      "Applied consistent inline styles for guaranteed button appearance across browsers"
+    ]
+  },
   "3.10.2": {
     date: "2024-11-30",
     name: "Complete UI & Navigation Fix",

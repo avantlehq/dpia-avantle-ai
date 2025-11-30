@@ -55,14 +55,22 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
   const handleDelete = async () => {
     setIsDeleting(true)
     try {
+      console.log('Attempting to delete assessment:', assessmentId)
       const result = await deleteAssessmentAction(assessmentId)
+      
+      console.log('Delete result:', result)
       
       if (result.success) {
         setShowDeleteDialog(false)
-        // The page will automatically refresh due to revalidatePath
+        // Force a hard refresh to ensure the table updates
+        window.location.reload()
+      } else {
+        console.error('Delete failed:', result.error)
+        alert(`Failed to delete assessment: ${result.error || 'Unknown error'}`)
       }
     } catch (error) {
       console.error('Error deleting assessment:', error)
+      alert(`Error deleting assessment: ${error instanceof Error ? error.message : 'Unknown error'}`)
     } finally {
       setIsDeleting(false)
     }
