@@ -14,34 +14,65 @@ export default function CleanupPage() {
       return
     }
 
+    if (!confirm('This will permanently delete Employee Data Processing, Customer CRM System, and Marketing Analytics. Continue?')) {
+      return
+    }
+
     setLoading(true)
-    setResult(null)
+    setResult('🔄 Deleting assessments...')
 
     try {
-      const response = await fetch('/api/admin/cleanup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          confirm: 'DELETE_ALL_ASSESSMENTS'
-        }),
-      })
+      // Import Supabase client for direct database access
+      const { createClient } = await import('@/lib/supabase/client')
+      const supabase = createClient()
 
-      const data = await response.json()
+      if (!supabase) {
+        setResult('❌ Error: Could not connect to database')
+        return
+      }
 
-      if (data.success) {
-        setResult(`✅ Success: ${data.message}`)
-        // Redirect to dashboard after 3 seconds
+      // Get assessments first
+      const { data: assessments, error: fetchError } = await supabase
+        .from('assessments')
+        .select('id, name')
+        .eq('workspace_id', '00000000-0000-0000-0000-000000000002')
+
+      if (fetchError) {
+        setResult(`❌ Error fetching assessments: ${fetchError.message}`)
+        return
+      }
+
+      if (!assessments || assessments.length === 0) {
+        setResult('✅ No assessments to delete')
         setTimeout(() => {
           window.location.href = '/dashboard'
-        }, 3000)
-      } else {
-        setResult(`❌ Error: ${data.error}${data.details ? ` - ${data.details}` : ''}`)
+        }, 2000)
+        return
       }
+
+      setResult(`🔄 Found ${assessments.length} assessments, deleting...`)
+
+      // Delete all assessments
+      const { error: deleteError } = await supabase
+        .from('assessments')
+        .delete()
+        .eq('workspace_id', '00000000-0000-0000-0000-000000000002')
+
+      if (deleteError) {
+        setResult(`❌ Error deleting assessments: ${deleteError.message}`)
+        return
+      }
+
+      setResult(`✅ Success: Deleted ${assessments.length} assessments!`)
+      
+      // Redirect to dashboard after 3 seconds
+      setTimeout(() => {
+        window.location.href = '/dashboard'
+      }, 3000)
+
     } catch (error) {
-      console.error('Cleanup frontend error:', error)
-      setResult(`❌ Network Error: ${error instanceof Error ? error.message : String(error)}`)
+      console.error('Cleanup error:', error)
+      setResult(`❌ Error: ${error instanceof Error ? error.message : String(error)}`)
     } finally {
       setLoading(false)
     }
