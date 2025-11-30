@@ -27,7 +27,7 @@ export default function CleanupPage() {
       const result = await deleteAllAssessmentsAction()
 
       if (result.success) {
-        setResult(`✅ Success: ${result.message || 'All assessments deleted!'}`)
+        setResult('✅ Success: All assessments deleted!')
         
         // Redirect to dashboard after 3 seconds
         setTimeout(() => {
