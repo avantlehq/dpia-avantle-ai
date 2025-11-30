@@ -23,6 +23,7 @@ import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
 
 // Force dynamic rendering - dashboard uses cookies/sessions
 export const dynamic = 'force-dynamic'
+export const revalidate = 0 // Disable caching completely
 
 function formatDate(dateString: string): string {
   try {
@@ -74,10 +75,45 @@ function getStatusBadge(status: string) {
 }
 
 export default async function DashboardPage() {
+  // TEMPORARY: Force show test data to debug display issues
+  const testAssessments = [
+    {
+      id: 'test-1',
+      name: 'Test Assessment 1',
+      status: 'completed',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      workspace_id: '00000000-0000-0000-0000-000000000002',
+      created_by: null,
+      description: 'Test assessment for debugging',
+      data: null,
+      schema_version: '1.0'
+    },
+    {
+      id: 'test-2', 
+      name: 'Test Assessment 2',
+      status: 'draft',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+      workspace_id: '00000000-0000-0000-0000-000000000002',
+      created_by: null,
+      description: 'Another test assessment',
+      data: null,
+      schema_version: '1.0'
+    }
+  ]
+
+  // Load real data but also try with test data
   const result = await DashboardService.loadAssessments()
+  console.log('Dashboard: Real result:', result)
   
-  // Handle error states
+  // Use test data temporarily
+  const assessments = testAssessments
+  const stats = DashboardService.calculateStats(assessments)
+  
+  // Handle error states for real data (but still show test data)
   if (isError(result)) {
+    console.log('Dashboard: Using test data due to error:', result)
     if (result.error === 'NOT_FOUND') {
       return (
         <div className="p-6">
@@ -116,11 +152,12 @@ export default async function DashboardPage() {
     )
   }
   
-  const assessments = result.data
-  const stats = DashboardService.calculateStats(assessments)
+  // TEMPORARY: Comment out real data usage
+  // const assessments = result.data
+  // const stats = DashboardService.calculateStats(assessments)
   
-  // Handle empty state
-  if (assessments.length === 0) {
+  // Handle empty state for real data (test data will always have items)
+  if (false && assessments.length === 0) {
     return (
       <div className="space-y-3">
         <OnboardingBanner />

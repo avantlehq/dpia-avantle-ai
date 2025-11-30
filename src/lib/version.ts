@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.7" as const
-export const VERSION_NAME = "Dashboard Loading Debug" as const
+export const VERSION = "3.10.8" as const
+export const VERSION_NAME = "Test Data Dashboard" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.8": {
+    date: "2024-11-30",
+    name: "Test Data Dashboard",
+    features: [
+      "TEMPORARY: Added test assessment data to verify dashboard display works",
+      "Disabled caching completely with revalidate = 0",
+      "Shows 2 test assessments (1 completed, 1 draft) to test UI functionality",
+      "Maintains real data loading in background for debugging",
+      "Console logging of real vs test data comparison"
+    ],
+    improvements: [
+      "Dashboard will show test assessments to verify UI works correctly",
+      "Stats will show: 2 total, 1 completed, 0 in progress, 1 draft",
+      "Table will display test assessments with proper actions",
+      "No caching issues affecting dashboard display",
+      "Clear separation between UI issues vs data loading issues"
+    ],
+    technical: [
+      "Added export const revalidate = 0 to disable Next.js caching",
+      "Created test assessment objects matching database schema",
+      "Temporarily override real data with test data for UI testing",
+      "Console logging real data loading results for debugging",
+      "Test data uses same workspace ID as real assessments"
+    ]
+  },
   "3.10.7": {
     date: "2024-11-30",
     name: "Dashboard Loading Debug",
