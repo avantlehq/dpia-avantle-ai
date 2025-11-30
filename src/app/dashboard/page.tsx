@@ -315,7 +315,7 @@ export default async function DashboardPage() {
                     <TableRow key={assessment.id} className="border-b hover:bg-accent/5">
                       <TableCell className="font-medium py-4 text-base align-top">
                         <Link 
-                          href={`/${assessment.id}`}
+                          href={`/assessment?id=${assessment.id}`}
                           className="hover:underline text-primary hover:text-primary/80 block"
                         >
                           {assessment.name}

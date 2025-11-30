@@ -122,9 +122,15 @@ export function DynamicFormGenerator({
             name={field.id}
             render={({ field: formField }) => (
               <FormItem>
-                <FormLabel>{field.label}</FormLabel>
+                <FormLabel className="text-base font-medium">{field.label}</FormLabel>
                 <FormControl>
-                  <Input placeholder={field.placeholder} {...formField} value={formField.value as string} />
+                  <Input 
+                    placeholder={field.placeholder} 
+                    {...formField} 
+                    value={formField.value as string}
+                    className="text-base h-11"
+                    style={{ fontSize: '16px' }}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -140,11 +146,12 @@ export function DynamicFormGenerator({
             name={field.id}
             render={({ field: formField }) => (
               <FormItem>
-                <FormLabel>{field.label}</FormLabel>
+                <FormLabel className="text-base font-medium">{field.label}</FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder={field.placeholder}
-                    className="min-h-[120px]"
+                    className="min-h-[120px] text-base"
+                    style={{ fontSize: '16px' }}
                     {...formField} 
                     value={formField.value as string}
                   />
@@ -163,16 +170,16 @@ export function DynamicFormGenerator({
             name={field.id}
             render={({ field: formField }) => (
               <FormItem>
-                <FormLabel>{field.label}</FormLabel>
+                <FormLabel className="text-base font-medium">{field.label}</FormLabel>
                 <Select onValueChange={formField.onChange} defaultValue={formField.value as string}>
                   <FormControl>
-                    <SelectTrigger>
+                    <SelectTrigger className="text-base h-11" style={{ fontSize: '16px' }}>
                       <SelectValue placeholder={field.placeholder || `Select ${field.label.toLowerCase()}`} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {field.options?.map((option) => (
-                      <SelectItem key={option} value={option}>
+                      <SelectItem key={option} value={option} className="text-base" style={{ fontSize: '16px' }}>
                         {option}
                       </SelectItem>
                     ))}
@@ -192,7 +199,7 @@ export function DynamicFormGenerator({
             name={field.id}
             render={({ field: formField }) => (
               <FormItem>
-                <FormLabel>{field.label}</FormLabel>
+                <FormLabel className="text-base font-medium">{field.label}</FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={formField.onChange}
@@ -204,7 +211,7 @@ export function DynamicFormGenerator({
                         <FormControl>
                           <RadioGroupItem value={option} />
                         </FormControl>
-                        <FormLabel className="font-normal">
+                        <FormLabel className="font-normal text-base" style={{ fontSize: '16px' }}>
                           {option}
                         </FormLabel>
                       </FormItem>
@@ -320,7 +327,14 @@ export function DynamicFormGenerator({
             <Button
               type="submit"
               disabled={loading}
-              className="min-w-[120px]"
+              className="min-w-[120px] px-4 py-2 shadow-sm hover:shadow-md transition-shadow"
+              style={{
+                backgroundColor: loading ? '#9ca3af' : '#ea580c',
+                borderColor: loading ? '#9ca3af' : '#ea580c',
+                color: '#ffffff',
+                fontSize: '14px',
+                fontWeight: '500'
+              }}
             >
               {loading ? 'Saving...' : submitButtonText}
             </Button>

@@ -43,7 +43,7 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
       )
       
       if (result.success && result.assessmentId) {
-        router.push(`/assessments/${result.assessmentId}`)
+        router.push(`/assessment?id=${result.assessmentId}`)
       }
     } catch (error) {
       console.error('Error duplicating assessment:', error)
@@ -83,7 +83,7 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="avantle-border bg-card shadow-lg">
           <DropdownMenuItem 
-            onClick={() => router.push(`/assessments/${assessmentId}`)}
+            onClick={() => router.push(`/assessment?id=${assessmentId}`)}
             className="text-foreground hover:bg-primary/10"
           >
             <Edit className="mr-2 h-4 w-4" />

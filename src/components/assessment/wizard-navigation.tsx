@@ -42,6 +42,13 @@ export function WizardNavigation({
             <Button 
               variant="outline" 
               onClick={onPrevious}
+              className="px-4 py-2 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors"
+              style={{
+                borderColor: '#9ca3af',
+                color: '#6b7280',
+                fontSize: '14px',
+                fontWeight: '500'
+              }}
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
               Previous
@@ -51,7 +58,15 @@ export function WizardNavigation({
 
         <div className="flex items-center gap-3">
           {/* Save Draft */}
-          <Button variant="ghost" size="sm">
+          <Button 
+            variant="ghost" 
+            size="sm"
+            style={{
+              color: '#6b7280',
+              fontSize: '14px',
+              fontWeight: '500'
+            }}
+          >
             <FileText className="mr-2 h-4 w-4" />
             Save Draft
           </Button>
@@ -60,7 +75,14 @@ export function WizardNavigation({
           {isLastSection ? (
             <Button 
               asChild
-              className="bg-dpia-green hover:bg-dpia-green/90"
+              className="px-4 py-2 shadow-sm hover:shadow-md transition-shadow"
+              style={{
+                backgroundColor: '#16a34a',
+                borderColor: '#16a34a',
+                color: '#ffffff',
+                fontSize: '14px',
+                fontWeight: '500'
+              }}
             >
               <Link href={`/assessments/${assessmentId}/export`}>
                 <Download className="mr-2 h-4 w-4" />
@@ -71,9 +93,14 @@ export function WizardNavigation({
             <Button 
               onClick={onNext}
               disabled={!canProceed}
-              className={cn(
-                canProceed ? 'bg-dpia-orange hover:bg-dpia-orange/90' : ''
-              )}
+              className="px-4 py-2 shadow-sm hover:shadow-md transition-shadow"
+              style={{
+                backgroundColor: canProceed ? '#ea580c' : '#9ca3af',
+                borderColor: canProceed ? '#ea580c' : '#9ca3af',
+                color: '#ffffff',
+                fontSize: '14px',
+                fontWeight: '500'
+              }}
             >
               Next Section
               <ChevronRight className="ml-2 h-4 w-4" />

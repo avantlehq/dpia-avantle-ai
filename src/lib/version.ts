@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.1" as const
-export const VERSION_NAME = "New Assessment Page Polish" as const
+export const VERSION = "3.10.2" as const
+export const VERSION_NAME = "Complete UI & Navigation Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.2": {
+    date: "2024-11-30",
+    name: "Complete UI & Navigation Fix",
+    features: [
+      "Fixed ridiculously oversized Cancel and Start Assessment buttons - now properly sized",
+      "Updated all assessment wizard buttons to modern consistent styling",
+      "Fixed text sizing in forms to match page typography (16px inputs, text-base labels)",
+      "Confirmed back button navigation works between assessment sections",
+      "Fixed Recent Assessments dashboard links to use correct parameter routing",
+      "Fixed delete assessment functionality - now uses proper /assessment?id= routing"
+    ],
+    improvements: [
+      "Professional button sizing throughout assessment creation and wizard",
+      "Consistent 14px button text with 500 font weight for modern appearance",
+      "Form fields now use consistent 16px text matching interface standards",
+      "Dashboard assessment links navigate to correct assessment pages",
+      "Assessment actions (edit, duplicate, delete) work properly with parameter routing",
+      "Dropdown menus and navigation fully functional across dashboard"
+    ],
+    technical: [
+      "Removed excessive px-6 py-3 padding from assessment creation buttons",
+      "Applied inline styles with proper colors for wizard navigation buttons",
+      "Updated DynamicFormGenerator with text-base labels and 16px input styling",
+      "Fixed assessment routing from /assessments/${id} to /assessment?id=${id}",
+      "Updated dashboard links and assessment actions to use parameter-based routing",
+      "Restored full functionality to Recent Assessments table and action dropdowns"
+    ]
+  },
   "3.10.1": {
     date: "2024-11-30",
     name: "New Assessment Page Polish",

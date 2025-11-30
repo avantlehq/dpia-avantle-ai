@@ -149,19 +149,17 @@ export default function NewAssessmentPage() {
                 </ul>
               </div>
 
-              <div className="flex gap-6 pt-4">
-                <Link href="/dashboard" className="flex-1">
+              <div className="flex gap-4 pt-4 justify-center">
+                <Link href="/dashboard">
                   <Button 
                     type="button"
                     variant="outline" 
-                    className="w-full inline-flex items-center justify-center bg-gray-600 hover:bg-gray-700 shadow-lg hover:shadow-xl border border-gray-500 hover:border-gray-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
+                    className="px-4 py-2 border border-gray-300 hover:border-gray-400 hover:bg-gray-50 transition-colors"
                     style={{
-                      backgroundColor: '#6b7280',
                       borderColor: '#9ca3af',
-                      borderRadius: '8px',
-                      color: '#ffffff',
-                      fontSize: '16px',
-                      fontWeight: '600'
+                      color: '#6b7280',
+                      fontSize: '14px',
+                      fontWeight: '500'
                     }}
                     disabled={isLoading}
                   >
@@ -171,17 +169,16 @@ export default function NewAssessmentPage() {
                 <Button
                   type="submit"
                   disabled={!name.trim() || isLoading}
-                  className="flex-1 inline-flex items-center justify-center bg-orange-600 hover:bg-orange-700 shadow-lg hover:shadow-xl border border-orange-500 hover:border-orange-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
+                  className="px-6 py-2 shadow-sm hover:shadow-md transition-shadow"
                   style={{
                     backgroundColor: '#ea580c',
-                    borderColor: '#f97316',
-                    borderRadius: '8px',
+                    borderColor: '#ea580c',
                     color: '#ffffff',
-                    fontSize: '16px',
-                    fontWeight: '600'
+                    fontSize: '14px',
+                    fontWeight: '500'
                   }}
                 >
-                  {isLoading ? 'Creating Assessment...' : 'Start DPIA Assessment'}
+                  {isLoading ? 'Creating...' : 'Start Assessment'}
                 </Button>
               </div>
             </form>
