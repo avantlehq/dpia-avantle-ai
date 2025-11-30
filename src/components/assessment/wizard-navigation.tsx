@@ -4,7 +4,6 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { ChevronLeft, ChevronRight, FileText, Download } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import Link from 'next/link'
 
 interface WizardNavigationProps {

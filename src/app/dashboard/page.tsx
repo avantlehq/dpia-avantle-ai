@@ -79,27 +79,31 @@ export default async function DashboardPage() {
   const testAssessments = [
     {
       id: 'test-1',
-      name: 'Test Assessment 1',
-      status: 'completed',
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
       workspace_id: '00000000-0000-0000-0000-000000000002',
       created_by: null,
+      name: 'Test Assessment 1',
       description: 'Test assessment for debugging',
-      data: null,
-      schema_version: '1.0'
+      status: 'completed',
+      schema_version: '1.0',
+      data: {},
+      completed_sections: ['context', 'data_flow', 'risk_assessment', 'mitigation'],
+      precheck_result: {},
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     },
     {
       id: 'test-2', 
-      name: 'Test Assessment 2',
-      status: 'draft',
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString(),
       workspace_id: '00000000-0000-0000-0000-000000000002',
       created_by: null,
+      name: 'Test Assessment 2',
       description: 'Another test assessment',
-      data: null,
-      schema_version: '1.0'
+      status: 'draft',
+      schema_version: '1.0',
+      data: {},
+      completed_sections: [],
+      precheck_result: {},
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
     }
   ]
 

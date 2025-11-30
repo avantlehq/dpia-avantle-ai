@@ -1,5 +1,5 @@
 import { Badge } from '@/components/ui/badge'
-import { Zap, Shield, Sparkles, Globe } from 'lucide-react'
+import { Shield, Sparkles, Globe } from 'lucide-react'
 import Link from 'next/link'
 import { getVersionInfo } from '@/lib/version'
 
