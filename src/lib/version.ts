@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.9" as const
-export const VERSION_NAME = "Explicit Margin Spacing Fix" as const
+export const VERSION = "3.10.0" as const
+export const VERSION_NAME = "Force Inline Style Spacing" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,29 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.0": {
+    date: "2024-11-30",
+    name: "Force Inline Style Spacing",
+    features: [
+      "Applied inline styles with explicit pixel values for guaranteed spacing",
+      "Dashboard buttons: style={{ marginRight: '32px' }} on first button",
+      "Topbar text: style={{ marginRight: '24px' }} on DPIA.ai span",
+      "Container gap: style={{ gap: '2rem' }} for dashboard, gap: '1.5rem' for topbar",
+      "Bulletproof spacing that overrides all CSS conflicts"
+    ],
+    improvements: [
+      "Forced 32px separation between dashboard buttons with multiple spacing methods",
+      "Enforced 24px gap between DPIA.ai and Privacy Platform with inline styles",
+      "Applied both container gap and element margin for redundant spacing",
+      "Eliminated any possibility of CSS inheritance or cascade conflicts"
+    ],
+    technical: [
+      "Used inline style attribute with explicit pixel values",
+      "Applied marginRight: '32px' directly to button style object", 
+      "Set gap: '2rem' and gap: '1.5rem' on flex containers",
+      "Ensured inline styles take highest CSS precedence"
+    ]
+  },
   "3.9.9": {
     date: "2024-11-30",
     name: "Explicit Margin Spacing Fix",
