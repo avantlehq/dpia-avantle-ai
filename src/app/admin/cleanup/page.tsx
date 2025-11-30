@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { AlertTriangle, Trash2 } from 'lucide-react'
-import { deleteAllAssessmentsAction } from '@/lib/actions/assessment-actions'
 
 export default function CleanupPage() {
   const [loading, setLoading] = useState(false)
@@ -23,21 +22,32 @@ export default function CleanupPage() {
     setResult('🔄 Deleting assessments...')
 
     try {
-      console.log('Starting cleanup with bulk delete action...')
+      console.log('Starting cleanup via API...')
       
-      const result = await deleteAllAssessmentsAction()
-      console.log('Cleanup result:', result)
+      // Use API endpoint instead of server action to avoid import issues
+      const response = await fetch('/api/admin/cleanup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          confirm: 'DELETE_ALL_ASSESSMENTS'
+        }),
+      })
 
-      if (result.success) {
-        setResult('✅ Success: All assessments deleted!')
+      const data = await response.json()
+      console.log('API response:', data)
+
+      if (data.success) {
+        setResult(`✅ Success: ${data.message || 'All assessments deleted!'}`)
         
         // Redirect to dashboard after 3 seconds
         setTimeout(() => {
           window.location.href = '/dashboard'
         }, 3000)
       } else {
-        console.error('Cleanup failed:', result.error)
-        setResult(`❌ Error: ${result.error || 'Failed to delete assessments'}`)
+        console.error('API failed:', data.error)
+        setResult(`❌ Error: ${data.error || 'Failed to delete assessments'}`)
       }
 
     } catch (error) {

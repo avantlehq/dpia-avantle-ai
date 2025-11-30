@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { createServerClient } from '@/lib/supabase/server'
+import { deleteAllAssessmentsAction } from '@/lib/actions/assessment-actions'
 
 export async function POST(request: Request) {
   try {
@@ -17,66 +17,26 @@ export async function POST(request: Request) {
       )
     }
 
-    console.log('Cleanup API: Creating Supabase client')
-    const supabase = await createServerClient()
+    console.log('Cleanup API: Calling server action')
     
-    if (!supabase) {
-      console.error('Cleanup API: Failed to create Supabase client')
-      return NextResponse.json(
-        { error: 'Database connection failed' },
-        { status: 500 }
-      )
-    }
-
-    console.log('Cleanup API: Getting assessments from database')
+    // Use the server action
+    const result = await deleteAllAssessmentsAction()
     
-    // Get all assessments directly from Supabase
-    const { data: assessments, error: fetchError } = await supabase
-      .from('assessments')
-      .select('id, name')
-      .eq('workspace_id', '00000000-0000-0000-0000-000000000002')
+    console.log('Cleanup API: Server action result:', result)
     
-    if (fetchError) {
-      console.error('Cleanup API: Error fetching assessments:', fetchError)
-      return NextResponse.json(
-        { error: 'Failed to fetch assessments', details: fetchError.message },
-        { status: 500 }
-      )
-    }
-
-    console.log(`Cleanup API: Found ${assessments?.length || 0} assessments to delete`)
-    
-    if (!assessments || assessments.length === 0) {
+    if (result.success) {
       return NextResponse.json({
         success: true,
-        deleted: 0,
-        total: 0,
-        message: 'No assessments to delete'
+        message: result.message || 'Successfully deleted all assessments'
       })
-    }
-    
-    // Delete all assessments at once
-    const { error: deleteError } = await supabase
-      .from('assessments')
-      .delete()
-      .eq('workspace_id', '00000000-0000-0000-0000-000000000002')
-    
-    if (deleteError) {
-      console.error('Cleanup API: Error deleting assessments:', deleteError)
+    } else {
       return NextResponse.json(
-        { error: 'Failed to delete assessments', details: deleteError.message },
+        { 
+          error: result.error || 'Failed to delete assessments'
+        },
         { status: 500 }
       )
     }
-    
-    console.log(`Cleanup API: Successfully deleted ${assessments.length} assessments`)
-    
-    return NextResponse.json({
-      success: true,
-      deleted: assessments.length,
-      total: assessments.length,
-      message: `Successfully deleted ${assessments.length} assessments`
-    })
 
   } catch (error) {
     console.error('Cleanup API: Main error:', error)
