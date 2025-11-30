@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.16" as const
-export const VERSION_NAME = "Enhanced Error Debugging" as const
+export const VERSION = "3.10.17" as const
+export const VERSION_NAME = "Manual Cleanup Instructions" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

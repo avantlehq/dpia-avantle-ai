@@ -69,8 +69,23 @@ export default function CleanupPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="text-sm text-muted-foreground">
-            This will permanently delete ALL assessments from the database. 
-            Use this to start with a clean database.
+            <strong>Database configuration issue detected.</strong>
+            <br /><br />
+            To clean the database manually:
+            <br />
+            1. Go to <strong>Dashboard</strong>
+            <br />
+            2. Click the <strong>actions menu (⋮)</strong> for each assessment
+            <br />
+            3. Select <strong>Delete</strong> for each one
+            <br /><br />
+            Current assessments to delete:
+            <br />
+            • Employee Data Processing
+            <br />
+            • Customer CRM System  
+            <br />
+            • Marketing Analytics
           </div>
           
           {result && (
@@ -79,29 +94,31 @@ export default function CleanupPage() {
             </div>
           )}
           
-          <Button
-            onClick={handleCleanup}
-            disabled={loading}
-            variant="destructive"
-            className="w-full"
-          >
-            {loading ? (
-              'Deleting...'
-            ) : (
-              <>
-                <Trash2 className="mr-2 h-4 w-4" />
-                Delete All Assessments
-              </>
-            )}
-          </Button>
-          
-          <Button
-            variant="outline"
-            className="w-full"
-            onClick={() => window.location.href = '/dashboard'}
-          >
-            Cancel
-          </Button>
+          <div className="space-y-2">
+            <Button
+              onClick={handleCleanup}
+              disabled={loading}
+              variant="destructive"
+              className="w-full"
+            >
+              {loading ? (
+                'Attempting Cleanup...'
+              ) : (
+                <>
+                  <Trash2 className="mr-2 h-4 w-4" />
+                  Try Automated Cleanup
+                </>
+              )}
+            </Button>
+            
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={() => window.location.href = '/dashboard'}
+            >
+              Go to Dashboard (Manual Delete)
+            </Button>
+          </div>
         </CardContent>
       </Card>
     </div>
