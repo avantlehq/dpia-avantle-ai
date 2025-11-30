@@ -987,4 +987,4 @@ export const CHANGELOG = {
       "Comprehensive error handling"
     ]
   }
-} as const
+} as const// Force rebuild
