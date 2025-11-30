@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.8.6" as const
-export const VERSION_NAME = "Button Text Size Fix" as const
+export const VERSION = "3.9.0" as const
+export const VERSION_NAME = "Comprehensive UI Modernization & Rebranding" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.0": {
+    date: "2024-11-29",
+    name: "Comprehensive UI Modernization & Rebranding",
+    features: [
+      "Modernized 18 buttons across all pages with unified blue design",
+      "Applied consistent styling: #2563eb background, rounded-lg corners",
+      "Professional shadow effects and hover animations throughout",
+      "Standard 18px font size for optimal readability across platform",
+      "Global rebranding: Changed 11 'DPIA Agent' references to 'DPIA.ai'",
+      "Complete visual cohesion across dashboard, assessment, precheck, builder"
+    ],
+    improvements: [
+      "Unified design system with professional blue color scheme",
+      "Consistent button proportions and spacing across all components",
+      "Modern shadow effects (shadow-lg hover:shadow-xl) for depth",
+      "Smooth hover animations (scale-102) for better interaction feedback",
+      "Complete platform rebranding for professional identity",
+      "Enhanced user experience with visual consistency"
+    ],
+    technical: [
+      "Updated 16 files with modernized button styling",
+      "Applied inline styles for guaranteed font-size and color rendering",
+      "Maintained functionality while upgrading visual appearance",
+      "Consistent border-radius: 8px and color schemes across components",
+      "Updated language files (en/sk/de) for complete rebranding",
+      "Professional hover states with transform and shadow transitions"
+    ]
+  },
   "3.8.6": {
     date: "2024-11-29",
     name: "Button Text Size Fix",
