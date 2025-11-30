@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/table'
 import { Plus, FileText, Clock, CheckCircle, AlertCircle, Edit3, Sparkles } from 'lucide-react'
 import Link from 'next/link'
+import { Breadcrumbs } from '@/components/navigation/breadcrumbs'
 import { DashboardService } from '@/lib/services/dashboard'
 import { isError } from '@/lib/types/result'
 import { ErrorState } from '@/components/ui/error-state'
@@ -122,6 +123,13 @@ export default async function DashboardPage() {
     return (
       <div className="space-y-6">
         <OnboardingBanner />
+        
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/dashboard", current: true }
+          ]}
+        />
+        
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <h1 className="text-2xl sm:text-3xl font-light tracking-tight text-foreground">DPIA Dashboard</h1>
@@ -144,6 +152,13 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-6">
         <OnboardingBanner />
+        
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/dashboard", current: true }
+          ]}
+        />
+        
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <div className="flex items-center gap-3 mb-2">

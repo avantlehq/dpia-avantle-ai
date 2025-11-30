@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle } from 'lucide-react'
+import { Breadcrumbs } from '@/components/navigation/breadcrumbs'
 import { PrecheckForm } from '@/components/precheck/precheck-form'
 import { PrecheckResults } from '@/components/precheck/precheck-results'
 import { PrecheckService } from '@/lib/services/precheck'
@@ -43,6 +44,12 @@ export default function PrecheckPage() {
 
   return (
     <div className="space-y-6">
+        <Breadcrumbs
+          items={[
+            { label: "Pre-check", href: "/precheck", current: true }
+          ]}
+        />
+        
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-6">

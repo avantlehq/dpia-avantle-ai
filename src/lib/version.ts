@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.2" as const
-export const VERSION_NAME = "Dashboard UX Enhancement" as const
+export const VERSION = "3.9.3" as const
+export const VERSION_NAME = "Complete UI Polish & Navigation" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.3": {
+    date: "2024-11-30",
+    name: "Complete UI Polish & Navigation",
+    features: [
+      "Fixed navigation button colors - added proper colors to Home, Precheck, and DPIA Builder",
+      "Enhanced breadcrumb navigation - now visible on all pages including Home and Pre-check",
+      "Modernized topbar menu icons with colored themes and hover effects",
+      "Fixed sidebar version display - now shows current version dynamically",
+      "Improved sidebar footer positioning and visual hierarchy",
+      "Complete navigation consistency across all platform pages"
+    ],
+    improvements: [
+      "Navigation buttons now have proper color coding (#4A90E2, #7ED321, #F5A623)",
+      "Breadcrumb navigation provides consistent wayfinding on all pages",
+      "Topbar buttons styled with themed colors (blue, purple, orange, green)",
+      "Enhanced hover effects with colored backgrounds and borders",
+      "Dynamic version display in sidebar footer with version name",
+      "Better visual hierarchy and spacing in sidebar layout"
+    ],
+    technical: [
+      "Added color properties to all navigation items in navigation.ts",
+      "Enhanced topbar button styling with theme-specific color classes",
+      "Integrated dynamic version display using getVersionInfo()",
+      "Improved sidebar layout with proper flex-1 and overflow handling",
+      "Added breadcrumbs to dashboard and precheck pages for consistency",
+      "Enhanced button styling with proper background and border colors"
+    ]
+  },
   "3.9.2": {
     date: "2024-11-30",
     name: "Dashboard UX Enhancement",

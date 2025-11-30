@@ -56,10 +56,10 @@ export function Topbar() {
         {/* Language Switcher */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="h-9 px-3 bg-background/50 border-border hover:bg-accent hover:text-accent-foreground">
+            <Button variant="outline" size="sm" className="h-9 px-3 bg-white/10 dark:bg-white/5 border-blue-200 dark:border-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200">
               <Globe className="h-4 w-4 mr-2 text-blue-600 dark:text-blue-400" />
-              <span className="hidden sm:inline font-medium">EN</span>
-              <ChevronDown className="h-3 w-3 ml-1" />
+              <span className="hidden sm:inline font-medium text-blue-700 dark:text-blue-300">EN</span>
+              <ChevronDown className="h-3 w-3 ml-1 text-blue-500" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-48">
@@ -88,13 +88,13 @@ export function Topbar() {
         <Button 
           variant="outline" 
           size="sm" 
-          className="h-9 w-9 p-0 bg-background/50 border-border hover:bg-accent"
+          className="h-9 w-9 p-0 bg-white/10 dark:bg-white/5 border-purple-200 dark:border-purple-800 hover:bg-purple-50 dark:hover:bg-purple-900/30 hover:border-purple-300 dark:hover:border-purple-700 transition-all duration-200"
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         >
           {theme === 'light' ? (
             <Moon className="h-4 w-4 text-purple-600 dark:text-purple-400" />
           ) : (
-            <Sun className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+            <Sun className="h-4 w-4 text-yellow-500 dark:text-yellow-400" />
           )}
           <span className="sr-only">Toggle theme</span>
         </Button>
@@ -104,7 +104,7 @@ export function Topbar() {
           variant="outline" 
           size="sm"
           onClick={toggleRightPanel}
-          className="hidden sm:flex h-9 w-9 p-0 bg-background/50 border-border hover:bg-accent"
+          className="hidden sm:flex h-9 w-9 p-0 bg-white/10 dark:bg-white/5 border-orange-200 dark:border-orange-800 hover:bg-orange-50 dark:hover:bg-orange-900/30 hover:border-orange-300 dark:hover:border-orange-700 transition-all duration-200"
         >
           <HelpCircle className="h-4 w-4 text-orange-600 dark:text-orange-400" />
         </Button>
@@ -112,12 +112,12 @@ export function Topbar() {
         {/* User Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="h-9 px-3 bg-background/50 border-border hover:bg-accent hover:text-accent-foreground">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-sm">
+            <Button variant="outline" size="sm" className="h-9 px-3 bg-white/10 dark:bg-white/5 border-green-200 dark:border-green-800 hover:bg-green-50 dark:hover:bg-green-900/30 hover:border-green-300 dark:hover:border-green-700 transition-all duration-200">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-sm">
                 <User className="h-3 w-3 text-white" />
               </div>
-              <span className="hidden sm:inline font-medium ml-2">Demo User</span>
-              <ChevronDown className="h-3 w-3 ml-1" />
+              <span className="hidden sm:inline font-medium ml-2 text-green-700 dark:text-green-300">Demo User</span>
+              <ChevronDown className="h-3 w-3 ml-1 text-green-500" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">

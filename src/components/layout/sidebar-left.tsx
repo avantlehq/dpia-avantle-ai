@@ -9,12 +9,14 @@ import { useLayoutState, useLayoutActions } from '@/lib/state/layout'
 import { navigationConfig, getActiveNavItem } from '@/lib/state/navigation'
 import { NavGroup } from '@/components/navigation/nav-group'
 import { ChevronLeft, Menu } from 'lucide-react'
+import { getVersionInfo } from '@/lib/version'
 
 export function SidebarLeft() {
   const pathname = usePathname()
   const { leftSidebarOpen, mobileSidebarOpen } = useLayoutState()
   const { toggleLeftSidebar, setMobileSidebarOpen } = useLayoutActions()
   const _activeItem = getActiveNavItem(pathname)
+  const versionInfo = getVersionInfo()
 
   return (
     <>
@@ -45,25 +47,30 @@ export function SidebarLeft() {
         </div>
 
         {/* Navigation */}
-        <ScrollArea className="flex-1 px-3 py-4">
-          <div className="space-y-6">
-            {navigationConfig.map((group, _index) => (
-              <NavGroup
-                key={group.name}
-                group={group}
-                collapsed={!leftSidebarOpen}
-                activePath={pathname}
-              />
-            ))}
-          </div>
-        </ScrollArea>
+        <div className="flex-1 overflow-hidden">
+          <ScrollArea className="h-full px-3 py-4">
+            <div className="space-y-6">
+              {navigationConfig.map((group, _index) => (
+                <NavGroup
+                  key={group.name}
+                  group={group}
+                  collapsed={!leftSidebarOpen}
+                  activePath={pathname}
+                />
+              ))}
+            </div>
+          </ScrollArea>
+        </div>
 
         {/* Footer */}
         {leftSidebarOpen && (
-          <div className="mt-auto border-t border-border bg-muted">
+          <div className="mt-auto border-t border-border bg-card">
             <div className="p-4">
-              <div className="text-xs text-muted-foreground">
-                Version 3.2.10
+              <div className="text-xs text-muted-foreground font-medium">
+                v{versionInfo.version}
+              </div>
+              <div className="text-xs text-muted-foreground/70 mt-1">
+                {versionInfo.name}
               </div>
             </div>
           </div>

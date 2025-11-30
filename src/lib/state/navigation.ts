@@ -39,7 +39,8 @@ export const navigationConfig: NavGroup[] = [
         name: "Home", 
         href: "/dashboard", 
         icon: LayoutDashboard,
-        description: "Dashboard overview of all assessments"
+        description: "Dashboard overview of all assessments",
+        color: "#4A90E2"
       },
     ]
   },
@@ -52,7 +53,8 @@ export const navigationConfig: NavGroup[] = [
         name: "Pre-check", 
         href: "/precheck", 
         icon: Sparkles,
-        description: "Quick GDPR Article 35 evaluation"
+        description: "Quick GDPR Article 35 evaluation",
+        color: "#7ED321"
       },
     ]
   },
@@ -65,7 +67,8 @@ export const navigationConfig: NavGroup[] = [
         name: "DPIA Builder", 
         href: "/assessments", 
         icon: Target,
-        description: "Create and manage DPIA assessments"
+        description: "Create and manage DPIA assessments",
+        color: "#F5A623"
       },
     ]
   },
