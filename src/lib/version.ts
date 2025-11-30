@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.9.6" as const
-export const VERSION_NAME = "Perfect Spacing & Layout Fix" as const
+export const VERSION = "3.9.7" as const
+export const VERSION_NAME = "Final Spacing & Branding Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,28 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.9.7": {
+    date: "2024-11-30",
+    name: "Final Spacing & Branding Fix",
+    features: [
+      "Fixed topbar spacing - proper gap between 'DPIA.ai' and 'Privacy Platform'", 
+      "Replaced 'DPIA.ai' with 'MENU' in left sidebar header for cleaner navigation",
+      "Ensured all button text has proper spacing (confirmed 'New Precheck' and 'New Assessment')",
+      "Achieved perfect branding consistency across all interface elements"
+    ],
+    improvements: [
+      "Clear separation in topbar: 'DPIA.ai [SPACE] Privacy Platform v3.9.7'",
+      "Professional sidebar header with 'MENU' instead of branding repetition",
+      "Consistent button text formatting throughout dashboard",
+      "Clean visual hierarchy with proper element spacing"
+    ],
+    technical: [
+      "Increased topbar branding gap from gap-2 to gap-4 for visible spacing",
+      "Updated sidebar header text from 'DPIA.ai' to 'MENU' in both desktop and mobile views",
+      "Verified proper button text spacing in all dashboard contexts",
+      "Maintained consistent branding while improving usability"
+    ]
+  },
   "3.9.6": {
     date: "2024-11-30",
     name: "Perfect Spacing & Layout Fix",
