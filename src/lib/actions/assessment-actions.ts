@@ -227,17 +227,31 @@ export async function getAssessmentsForCleanupAction(): Promise<{ success: boole
 
 export async function deleteAllAssessmentsAction(): Promise<SaveAnswersResult> {
   try {
+    console.log('deleteAllAssessmentsAction: Starting...')
+    
+    console.log('deleteAllAssessmentsAction: Creating database service...')
     const db = await DatabaseService.create()
     
+    console.log('deleteAllAssessmentsAction: Getting assessments for workspace...')
     // Get all assessments for the workspace
     const assessments = await db.getAssessments('00000000-0000-0000-0000-000000000002')
     
-    console.log(`Deleting ${assessments.length} assessments`)
+    console.log(`deleteAllAssessmentsAction: Found ${assessments.length} assessments to delete`)
+    
+    if (assessments.length === 0) {
+      console.log('deleteAllAssessmentsAction: No assessments to delete')
+      return {
+        success: true,
+        message: 'No assessments to delete - database is clean'
+      }
+    }
     
     // Delete each assessment
     let deletedCount = 0
     for (const assessment of assessments) {
       try {
+        console.log(`deleteAllAssessmentsAction: Deleting assessment ${assessment.id} - ${assessment.name}`)
+        
         // Log deletion event
         await db.logEvent({
           type: 'assessment.deleted',
@@ -252,12 +266,14 @@ export async function deleteAllAssessmentsAction(): Promise<SaveAnswersResult> {
         
         await db.deleteAssessment(assessment.id)
         deletedCount++
-        console.log(`Deleted assessment: ${assessment.id} - ${assessment.name}`)
+        console.log(`deleteAllAssessmentsAction: Successfully deleted ${assessment.id}`)
       } catch (deleteError) {
-        console.error(`Failed to delete assessment ${assessment.id}:`, deleteError)
+        console.error(`deleteAllAssessmentsAction: Failed to delete assessment ${assessment.id}:`, deleteError)
         // Continue with other assessments
       }
     }
+    
+    console.log(`deleteAllAssessmentsAction: Completed - deleted ${deletedCount} of ${assessments.length}`)
     
     revalidatePath('/dashboard')
     
@@ -266,10 +282,22 @@ export async function deleteAllAssessmentsAction(): Promise<SaveAnswersResult> {
       message: `Deleted ${deletedCount} of ${assessments.length} assessments`
     }
   } catch (error) {
-    console.error('Error deleting all assessments:', error)
+    console.error('deleteAllAssessmentsAction: Main error:', error)
+    
+    // More detailed error information
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    const errorStack = error instanceof Error ? error.stack : 'No stack trace'
+    
+    console.error('deleteAllAssessmentsAction: Error details:', {
+      message: errorMessage,
+      stack: errorStack,
+      type: typeof error,
+      name: error instanceof Error ? error.name : 'Unknown'
+    })
+    
     return { 
       success: false,
-      error: 'Failed to delete assessments'
+      error: `Database error: ${errorMessage}`
     }
   }
 }
