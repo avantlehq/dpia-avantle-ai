@@ -55,20 +55,16 @@ export default function NewAssessmentPage() {
           <div className="flex items-center gap-4">
             <Link href="/dashboard">
               <Button 
-                variant="ghost" 
+                variant="outline" 
                 size="sm" 
-                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer gap-2"
+                className="h-9 px-3 bg-white/10 dark:bg-white/5 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200"
                 style={{
-                  backgroundColor: '#2563eb',
-                  borderColor: '#3b82f6',
-                  borderRadius: '8px',
-                  color: '#ffffff',
-                  fontSize: '18px',
-                  fontWeight: '600'
+                  borderColor: '#9ca3af',
+                  color: '#4b5563'
                 }}
               >
-                <ArrowLeft className="h-4 w-4" />
-                Back to Dashboard
+                <ArrowLeft className="h-4 w-4 mr-2" style={{ color: '#6b7280' }} />
+                <span className="font-medium">Back to Dashboard</span>
               </Button>
             </Link>
             <div className="flex items-center gap-2">
@@ -104,7 +100,7 @@ export default function NewAssessmentPage() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-medium">
+                <Label htmlFor="name" className="text-base font-medium">
                   Assessment Name *
                 </Label>
                 <Input
@@ -112,17 +108,18 @@ export default function NewAssessmentPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g., Customer CRM System, Employee Management Platform, Marketing Analytics"
-                  className="avantle-border bg-background"
+                  className="avantle-border bg-background text-base h-11"
+                  style={{ fontSize: '16px' }}
                   required
                   disabled={isLoading}
                 />
-                <p className="text-xs text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   Choose a clear, descriptive name for your data processing activity.
                 </p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="description" className="text-sm font-medium">
+                <Label htmlFor="description" className="text-base font-medium">
                   Description (Optional)
                 </Label>
                 <Textarea
@@ -130,10 +127,11 @@ export default function NewAssessmentPage() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Brief description of the data processing activity, systems involved, purpose, and scope..."
-                  className="avantle-border bg-background min-h-[120px]"
+                  className="avantle-border bg-background min-h-[120px] text-base"
+                  style={{ fontSize: '16px' }}
                   disabled={isLoading}
                 />
-                <p className="text-xs text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   Provide additional context about the processing activity, data types, and business purpose.
                 </p>
               </div>
@@ -151,18 +149,18 @@ export default function NewAssessmentPage() {
                 </ul>
               </div>
 
-              <div className="flex gap-3 pt-4">
+              <div className="flex gap-6 pt-4">
                 <Link href="/dashboard" className="flex-1">
                   <Button 
                     type="button"
                     variant="outline" 
-                    className="w-full inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                    className="w-full inline-flex items-center justify-center bg-gray-600 hover:bg-gray-700 shadow-lg hover:shadow-xl border border-gray-500 hover:border-gray-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
                     style={{
-                      backgroundColor: '#2563eb',
-                      borderColor: '#3b82f6',
+                      backgroundColor: '#6b7280',
+                      borderColor: '#9ca3af',
                       borderRadius: '8px',
                       color: '#ffffff',
-                      fontSize: '18px',
+                      fontSize: '16px',
                       fontWeight: '600'
                     }}
                     disabled={isLoading}
@@ -173,13 +171,13 @@ export default function NewAssessmentPage() {
                 <Button
                   type="submit"
                   disabled={!name.trim() || isLoading}
-                  className="flex-1 inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                  className="flex-1 inline-flex items-center justify-center bg-orange-600 hover:bg-orange-700 shadow-lg hover:shadow-xl border border-orange-500 hover:border-orange-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
                   style={{
-                    backgroundColor: '#2563eb',
-                    borderColor: '#3b82f6',
+                    backgroundColor: '#ea580c',
+                    borderColor: '#f97316',
                     borderRadius: '8px',
                     color: '#ffffff',
-                    fontSize: '18px',
+                    fontSize: '16px',
                     fontWeight: '600'
                   }}
                 >

@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.0" as const
-export const VERSION_NAME = "Force Inline Style Spacing" as const
+export const VERSION = "3.10.1" as const
+export const VERSION_NAME = "New Assessment Page Polish" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.1": {
+    date: "2024-11-30",
+    name: "New Assessment Page Polish",
+    features: [
+      "Enhanced new assessment page button styling to match dashboard design",
+      "Fixed 'Back to Dashboard' button with modern gray styling instead of blue",
+      "Improved form text consistency - labels use text-base, inputs have fontSize: '16px'",
+      "Updated form buttons with proper colors: gray for cancel, orange for submit",
+      "Enhanced button spacing with gap-6 for professional layout"
+    ],
+    improvements: [
+      "Consistent button styling across new assessment and dashboard pages",
+      "Professional gray color scheme for navigation elements",
+      "Uniform text sizing throughout forms and interface",
+      "Better visual hierarchy with proper button color coding",
+      "Enhanced user experience with consistent design patterns"
+    ],
+    technical: [
+      "Updated Back to Dashboard button from blue to gray styling",
+      "Applied inline styles for guaranteed color rendering",
+      "Enhanced form field text sizing with explicit fontSize values",
+      "Maintained existing functionality while improving visual consistency",
+      "Dropdown z-index verified as properly configured (z-50)"
+    ]
+  },
   "3.10.0": {
     date: "2024-11-30",
     name: "Force Inline Style Spacing",
