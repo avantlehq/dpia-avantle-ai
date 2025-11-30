@@ -75,57 +75,11 @@ function getStatusBadge(status: string) {
 }
 
 export default async function DashboardPage() {
-  // TEMPORARY: Force show test data to debug display issues
-  const testAssessments = [
-    {
-      id: 'test-1',
-      workspace_id: '00000000-0000-0000-0000-000000000002',
-      created_by: null,
-      name: 'Test Assessment 1',
-      description: 'Test assessment for debugging',
-      status: 'completed',
-      schema_version: '1.0',
-      data: {},
-      completed_sections: ['context', 'data_flow', 'risk_assessment', 'mitigation'],
-      precheck_result: {},
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    },
-    {
-      id: 'test-2', 
-      workspace_id: '00000000-0000-0000-0000-000000000002',
-      created_by: null,
-      name: 'Test Assessment 2',
-      description: 'Another test assessment',
-      status: 'draft',
-      schema_version: '1.0',
-      data: {},
-      completed_sections: [],
-      precheck_result: {},
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    }
-  ]
-
-  // Load real data but also try with test data
+  // Load real data from database
   const result = await DashboardService.loadAssessments()
-  console.log('Dashboard: Real result:', result)
   
-  // Combine test data with real data if available
-  let assessments: any[] = testAssessments as any[]
-  if (!isError(result)) {
-    console.log('Dashboard: Found real assessments:', result.data.length)
-    // Add real assessments to test data for debugging
-    assessments = [...(testAssessments as any[]), ...(result.data as any[])]
-  } else {
-    console.log('Dashboard: Error loading real assessments:', result.error, result.message)
-  }
-  
-  const stats = DashboardService.calculateStats(assessments)
-  
-  // Handle error states for real data (but still show test data)
   if (isError(result)) {
-    console.log('Dashboard: Using test data due to error:', result)
+    // Handle error cases
     if (result.error === 'NOT_FOUND') {
       return (
         <div className="p-6">
@@ -164,12 +118,11 @@ export default async function DashboardPage() {
     )
   }
   
-  // TEMPORARY: Comment out real data usage
-  // const assessments = result.data
-  // const stats = DashboardService.calculateStats(assessments)
+  const assessments = result.data
+  const stats = DashboardService.calculateStats(assessments)
   
-  // Handle empty state for real data (test data will always have items)
-  if (false && assessments.length === 0) {
+  // Handle empty state
+  if (assessments.length === 0) {
     return (
       <div className="space-y-3">
         <OnboardingBanner />
@@ -321,12 +274,7 @@ export default async function DashboardPage() {
         <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <CardTitle className="text-card-foreground">All Assessments</CardTitle>
-                <div className="px-3 py-1 bg-orange-100 text-orange-800 text-xs font-medium rounded-full">
-                  TEST DATA v3.10.11
-                </div>
-              </div>
+              <CardTitle className="text-card-foreground">All Assessments</CardTitle>
               <RefreshButton />
             </div>
           </CardHeader>
