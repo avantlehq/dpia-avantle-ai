@@ -32,15 +32,16 @@ export default function CleanupPage() {
 
       if (data.success) {
         setResult(`✅ Success: ${data.message}`)
-        // Redirect to dashboard after 2 seconds
+        // Redirect to dashboard after 3 seconds
         setTimeout(() => {
           window.location.href = '/dashboard'
-        }, 2000)
+        }, 3000)
       } else {
-        setResult(`❌ Error: ${data.error}`)
+        setResult(`❌ Error: ${data.error}${data.details ? ` - ${data.details}` : ''}`)
       }
     } catch (error) {
-      setResult(`❌ Error: ${error}`)
+      console.error('Cleanup frontend error:', error)
+      setResult(`❌ Network Error: ${error instanceof Error ? error.message : String(error)}`)
     } finally {
       setLoading(false)
     }
