@@ -181,10 +181,15 @@ export async function deleteAssessmentAction(
   assessmentId: string
 ): Promise<SaveAnswersResult> {
   try {
-    const db = await DatabaseService.create()
+    console.log('deleteAssessmentAction: Starting for ID:', assessmentId)
+    
+    // Use admin client for delete operations
+    const adminDb = await DatabaseService.createAdmin()
+    
+    console.log('deleteAssessmentAction: Admin client created')
     
     // Log deletion event before deleting
-    await db.logEvent({
+    await adminDb.logEvent({
       type: 'assessment.deleted',
       entityType: 'assessment',
       entityId: assessmentId,
@@ -193,8 +198,10 @@ export async function deleteAssessmentAction(
       }
     })
     
-    await db.deleteAssessment(assessmentId)
+    console.log('deleteAssessmentAction: Calling deleteAssessment')
+    await adminDb.deleteAssessment(assessmentId)
     
+    console.log('deleteAssessmentAction: Delete successful')
     revalidatePath('/dashboard')
     
     return { success: true }
@@ -202,7 +209,7 @@ export async function deleteAssessmentAction(
     console.error('Error deleting assessment:', error)
     return { 
       success: false,
-      error: 'Failed to delete assessment'
+      error: `Failed to delete assessment: ${error instanceof Error ? error.message : String(error)}`
     }
   }
 }
