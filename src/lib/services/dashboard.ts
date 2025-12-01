@@ -63,51 +63,12 @@ export class DashboardService {
         }
       }
       
-      // For development: return mock data on any error
-      return createSuccess([
-        {
-          id: '1',
-          workspace_id: 'mock-workspace',
-          created_by: null,
-          name: 'Employee Data Processing',
-          description: 'DPIA for employee data processing activities',
-          status: 'completed',
-          schema_version: 'dpia-basic-eu-v1',
-          data: {},
-          completed_sections: ['context', 'legal-basis', 'risk-assessment'],
-          precheck_result: null,
-          created_at: '2024-01-15T00:00:00Z',
-          updated_at: '2024-01-20T00:00:00Z'
-        },
-        {
-          id: '2',
-          workspace_id: 'mock-workspace', 
-          created_by: null,
-          name: 'Customer CRM System',
-          description: 'DPIA for customer relationship management system',
-          status: 'in_progress',
-          schema_version: 'dpia-basic-eu-v1',
-          data: {},
-          completed_sections: ['context'],
-          precheck_result: null,
-          created_at: '2024-01-18T00:00:00Z',
-          updated_at: '2024-01-19T00:00:00Z'
-        },
-        {
-          id: '3',
-          workspace_id: 'mock-workspace',
-          created_by: null,
-          name: 'Marketing Analytics',
-          description: null,
-          status: 'draft',
-          schema_version: 'dpia-basic-eu-v1',
-          data: {},
-          completed_sections: [],
-          precheck_result: null,
-          created_at: '2024-01-20T00:00:00Z',
-          updated_at: '2024-01-20T00:00:00Z'
-        }
-      ] as Assessment[])
+      // Return the actual error instead of mock data
+      return createError(
+        'SERVER_ERROR',
+        'Database connection failed. Please try again.',
+        error.message
+      )
     }
   }
 

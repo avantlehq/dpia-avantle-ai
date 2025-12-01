@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.29" as const
-export const VERSION_NAME = "Fix TypeScript Map Error" as const
+export const VERSION = "3.10.30" as const
+export const VERSION_NAME = "Remove Mock Data Causing UUID Errors" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
