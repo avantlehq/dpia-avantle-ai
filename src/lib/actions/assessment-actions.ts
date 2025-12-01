@@ -1,7 +1,6 @@
 'use server'
 
 import { DatabaseService } from '@/lib/services/database'
-import { revalidatePath } from 'next/cache'
 
 export interface CreateAssessmentResult {
   success: boolean

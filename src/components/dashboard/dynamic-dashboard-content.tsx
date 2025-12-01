@@ -63,6 +63,13 @@ export function DynamicDashboardContent() {
       
       const data = await response.json()
       console.log('Dashboard: API response data:', data)
+      console.log('Dashboard: Full response details:', {
+        assessments: data.assessments,
+        assessmentsLength: data.assessments?.length,
+        debug: data.debug,
+        error: data.error,
+        details: data.details
+      })
       
       if (data.error) {
         console.error('Dashboard: API returned error:', data.error, data.details)

@@ -97,7 +97,7 @@ export default function AssessmentsPage() {
                 <CardTitle className="text-card-foreground">No assessments yet</CardTitle>
                 <CardContent className="text-center pt-0">
                   <p className="text-muted-foreground">
-                    Get started by creating your first DPIA assessment using the "New Assessment" button above.
+                    Get started by creating your first DPIA assessment using the &quot;New Assessment&quot; button above.
                   </p>
                 </CardContent>
               </CardHeader>
