@@ -63,12 +63,9 @@ export class DashboardService {
         }
       }
       
-      // Return the actual error instead of mock data - force fresh deploy
-      return createError(
-        'SERVER_ERROR',
-        'Database connection failed. Please try again.',
-        error instanceof Error ? error.message : String(error)
-      )
+      // Emergency fallback: return empty assessments to prevent site crash
+      console.warn('Dashboard: Returning empty assessments due to database error')
+      return createSuccess([])
     }
   }
 

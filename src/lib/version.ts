@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.33" as const
-export const VERSION_NAME = "Force Fresh Deploy Error Fix" as const
+export const VERSION = "3.10.34" as const
+export const VERSION_NAME = "Emergency Site Restore" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
