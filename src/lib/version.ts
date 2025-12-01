@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.45" as const
-export const VERSION_NAME = "Fix EmptyState Build Prerender Error" as const
+export const VERSION = "3.10.46" as const
+export const VERSION_NAME = "Remove Duplicate New Assessment Button" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.46": {
+    date: "2024-11-30",
+    name: "Remove Duplicate New Assessment Button",
+    features: [
+      "UX FIX: Removed duplicate 'New Assessment' button from assessments page",
+      "Kept single prominent button in PageHeader for clean interface",
+      "Updated empty state text to reference the main button above",
+      "Eliminated confusing dual call-to-action buttons",
+      "Improved user experience with single clear action path"
+    ],
+    improvements: [
+      "Clean single-button interface on assessments page",
+      "Clear user guidance pointing to main action button",
+      "Eliminated redundancy and decision paralysis",
+      "Professional single call-to-action design",
+      "Better visual hierarchy with one prominent New Assessment button"
+    ],
+    technical: [
+      "Removed Button and Link components from empty state CardContent",
+      "Updated empty state text to reference main button",
+      "Maintained FileText icon and card structure",
+      "Simplified component structure without duplicate actions",
+      "Cleaner markup with single action button in header"
+    ]
+  },
   "3.10.45": {
     date: "2024-11-30",
     name: "Fix EmptyState Build Prerender Error",

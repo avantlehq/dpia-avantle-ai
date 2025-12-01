@@ -96,15 +96,9 @@ export default function AssessmentsPage() {
                 </div>
                 <CardTitle className="text-card-foreground">No assessments yet</CardTitle>
                 <CardContent className="text-center pt-0">
-                  <p className="text-muted-foreground mb-4">
-                    Get started by creating your first DPIA assessment
+                  <p className="text-muted-foreground">
+                    Get started by creating your first DPIA assessment using the "New Assessment" button above.
                   </p>
-                  <Link href="/assessments/new">
-                    <Button className="w-full">
-                      <Plus className="mr-2 h-4 w-4" />
-                      New DPIA Assessment
-                    </Button>
-                  </Link>
                 </CardContent>
               </CardHeader>
             </Card>
