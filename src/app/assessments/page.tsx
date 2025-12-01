@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Plus, FileText } from 'lucide-react'
 import Link from 'next/link'
-import { EmptyState } from '@/components/ui/empty-state'
 import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
 import { PageHeader } from '@/components/layout/page-header'
 import { Breadcrumbs } from '@/components/navigation/breadcrumbs'
@@ -87,13 +86,29 @@ export default function AssessmentsPage() {
           <CardTitle className="text-card-foreground">Your Assessments</CardTitle>
         </CardHeader>
         <CardContent>
-          <EmptyState 
-            title="No assessments yet"
-            description="Get started by creating your first DPIA assessment"
-            actionLabel="New DPIA Assessment"
-            onAction={() => window.location.href = '/assessments/new'}
-            icon={<FileText className="h-12 w-12 text-muted-foreground" />}
-          />
+          <div className="flex flex-col items-center justify-center py-16 px-4">
+            <Card className="w-full max-w-md avantle-border bg-card/50 backdrop-blur-sm">
+              <CardHeader className="text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="p-4 rounded-full bg-muted/50">
+                    <FileText className="h-12 w-12 text-muted-foreground" />
+                  </div>
+                </div>
+                <CardTitle className="text-card-foreground">No assessments yet</CardTitle>
+                <CardContent className="text-center pt-0">
+                  <p className="text-muted-foreground mb-4">
+                    Get started by creating your first DPIA assessment
+                  </p>
+                  <Link href="/assessments/new">
+                    <Button className="w-full">
+                      <Plus className="mr-2 h-4 w-4" />
+                      New DPIA Assessment
+                    </Button>
+                  </Link>
+                </CardContent>
+              </CardHeader>
+            </Card>
+          </div>
         </CardContent>
       </Card>
     </div>

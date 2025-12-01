@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.44" as const
-export const VERSION_NAME = "Static Assessments Page Application Error Fix" as const
+export const VERSION = "3.10.45" as const
+export const VERSION_NAME = "Fix EmptyState Build Prerender Error" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.45": {
+    date: "2024-11-30",
+    name: "Fix EmptyState Build Prerender Error",
+    features: [
+      "CRITICAL FIX: Fixed Next.js build prerender error with EmptyState onAction function",
+      "Replaced EmptyState component with inline HTML to avoid function serialization",
+      "Fixed Error 'Event handlers cannot be passed to Client Component props' (Digest: 1440743666)",
+      "Created static empty state with Link component instead of function handler",
+      "Eliminated build failures caused by non-serializable function props"
+    ],
+    improvements: [
+      "Assessments page now builds successfully without prerender errors",
+      "Static generation works properly with Link-based navigation",
+      "Maintained identical visual design with proper button functionality",
+      "Clean build process without client component prop serialization issues",
+      "Professional empty state UI with working 'New DPIA Assessment' button"
+    ],
+    technical: [
+      "Removed EmptyState component with onAction function prop",
+      "Implemented inline Card/CardHeader/CardContent structure",
+      "Used Link component for navigation instead of onClick handler",
+      "Eliminated function serialization during static generation",
+      "Maintained same styling and layout without client component dependencies"
+    ]
+  },
   "3.10.44": {
     date: "2024-11-30",
     name: "Static Assessments Page Application Error Fix",
