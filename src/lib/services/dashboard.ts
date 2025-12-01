@@ -63,7 +63,7 @@ export class DashboardService {
         }
       }
       
-      // Return the actual error instead of mock data
+      // Return the actual error instead of mock data - force fresh deploy
       return createError(
         'SERVER_ERROR',
         'Database connection failed. Please try again.',
