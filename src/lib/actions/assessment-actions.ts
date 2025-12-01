@@ -60,21 +60,17 @@ export async function createAssessmentAction(
       assessmentId: assessment.id
     }
   } catch (error) {
-    console.error('Error creating assessment:', error)
+    console.error('Assessment Creation: CRITICAL ERROR - Database creation failed:', error)
+    console.error('Assessment Creation: Error details:', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : 'No stack trace',
+      type: typeof error,
+      name: error instanceof Error ? error.name : 'Unknown'
+    })
     
-    // Fallback: create mock assessment
-    const mockAssessment = {
-      id: 'assessment-' + Date.now(),
-      name,
-      description: description || null,
-      status: 'draft',
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    }
-
     return {
-      success: true,
-      assessmentId: mockAssessment.id
+      success: false,
+      error: `Database creation failed: ${error instanceof Error ? error.message : String(error)}`
     }
   }
 }

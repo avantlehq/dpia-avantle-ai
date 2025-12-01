@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.53" as const
-export const VERSION_NAME = "Fix Build Errors TypeScript and Global Error" as const
+export const VERSION = "3.10.54" as const
+export const VERSION_NAME = "Remove Mock Fallback Show Real Database Errors" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
