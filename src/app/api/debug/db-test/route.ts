@@ -63,7 +63,7 @@ export async function GET() {
       success: true,
       message: 'Database connection working!',
       assessmentsFound: assessments?.length || 0,
-      assessments: assessments?.map(a => ({ id: a.id, name: a.name, status: a.status })),
+      assessments: assessments?.map((a: any) => ({ id: a.id, name: a.name, status: a.status })),
       envCheck: {
         supabaseUrl: supabaseUrl ? 'SET' : 'MISSING',
         anonKey: supabaseAnonKey ? 'SET' : 'MISSING',
