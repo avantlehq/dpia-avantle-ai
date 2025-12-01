@@ -1,13 +1,27 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+import { createClient } from '@supabase/supabase-js'
 import type { Database } from './database.types'
 
 export const createServerClient = async () => {
   try {
-    const cookieStore = cookies()
-    return createServerComponentClient<Database>({ cookies: () => cookieStore })
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.warn('Missing Supabase environment variables:', {
+        url: supabaseUrl ? 'SET' : 'MISSING',
+        anonKey: supabaseAnonKey ? 'SET' : 'MISSING'
+      })
+      return null
+    }
+    
+    // Direct Supabase client without auth-helpers to avoid cookies issues
+    return createClient<Database>(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false
+      }
+    })
   } catch (error) {
-    // Fallback for invalid Supabase configuration in demo/development
     console.warn('Supabase server client error:', error)
     return null
   }
