@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.37" as const
-export const VERSION_NAME = "Remove Invalid Submitted At Field" as const
+export const VERSION = "3.10.38" as const
+export const VERSION_NAME = "Remove Mock Data Show Clean State" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
