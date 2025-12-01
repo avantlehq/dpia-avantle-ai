@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.54" as const
-export const VERSION_NAME = "Remove Mock Fallback Show Real Database Errors" as const
+export const VERSION = "3.10.55" as const
+export const VERSION_NAME = "Fix DatabaseService RLS By Using Service Role Key" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.55": {
+    date: "2024-12-01",
+    name: "Fix DatabaseService RLS By Using Service Role Key",
+    features: [
+      "CRITICAL ROOT CAUSE FIX: Updated DatabaseService to use service role key instead of anon key",
+      "Replaced NEXT_PUBLIC_SUPABASE_ANON_KEY with SUPABASE_SERVICE_ROLE_KEY in server client",
+      "Bypasses RLS restrictions that were causing all database write operations to fail",
+      "Same configuration as working direct API - using service role for server operations",
+      "Assessment creation, saving, and all database operations should now work properly"
+    ],
+    improvements: [
+      "All DatabaseService methods can now bypass RLS policies using service role permissions",
+      "Assessment creation should finally save to database instead of failing silently",
+      "Dashboard should display newly created assessments immediately",
+      "No more 'Failed to create assessment', 'Failed to save answers' errors in server logs",
+      "Complete alignment between DatabaseService and direct API approaches"
+    ],
+    technical: [
+      "Updated src/lib/supabase/server.ts to use SUPABASE_SERVICE_ROLE_KEY",
+      "Changed client initialization from anon key to service role key for write operations", 
+      "Added debugging log for service client creation verification",
+      "Maintained same auth configuration (persistSession: false, autoRefreshToken: false)",
+      "ROOT CAUSE: anon key has RLS restrictions, service role bypasses RLS for server operations"
+    ]
+  },
   "3.10.50": {
     date: "2024-11-30",
     name: "Direct Assessment API Bypass RLS Recursion",
