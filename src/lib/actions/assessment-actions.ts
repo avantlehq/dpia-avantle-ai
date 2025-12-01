@@ -53,7 +53,8 @@ export async function createAssessmentAction(
       payload: { name: assessment.name }
     })
 
-    revalidatePath('/dashboard')
+    // Skip revalidatePath to prevent dashboard crashes
+    // revalidatePath('/dashboard')
     
     return {
       success: true,
@@ -100,8 +101,10 @@ export async function saveAssessmentAnswersAction(
       }
     })
 
-    revalidatePath(`/assessment`)
-    revalidatePath('/dashboard')
+    // Skip revalidatePath to prevent crashes
+    // revalidatePath(`/assessment`)
+    // Skip revalidatePath to prevent dashboard crashes
+    // revalidatePath('/dashboard')
     
     return { success: true }
   } catch (error) {
@@ -135,8 +138,10 @@ export async function updateAssessmentProgressAction(
       }
     })
 
-    revalidatePath(`/assessment`)
-    revalidatePath('/dashboard')
+    // Skip revalidatePath to prevent crashes
+    // revalidatePath(`/assessment`)
+    // Skip revalidatePath to prevent dashboard crashes
+    // revalidatePath('/dashboard')
     
     return { success: true }
   } catch (error) {
@@ -167,8 +172,10 @@ export async function submitAssessmentAction(
       }
     })
 
-    revalidatePath('/dashboard')
-    revalidatePath(`/assessment`)
+    // Skip revalidatePath to prevent dashboard crashes
+    // revalidatePath('/dashboard')
+    // Skip revalidatePath to prevent crashes
+    // revalidatePath(`/assessment`)
     
     return { success: true }
   } catch (error) {
@@ -201,7 +208,8 @@ export async function deleteAssessmentAction(
     await db.deleteAssessment(assessmentId)
     
     console.log('deleteAssessmentAction: Delete successful')
-    revalidatePath('/dashboard')
+    // Skip revalidatePath to prevent dashboard crashes
+    // revalidatePath('/dashboard')
     
     return { success: true }
   } catch (error) {
@@ -281,7 +289,8 @@ export async function deleteAllAssessmentsAction(): Promise<SaveAnswersResult> {
     
     console.log(`deleteAllAssessmentsAction: Completed - deleted ${deletedCount} of ${assessments.length}`)
     
-    revalidatePath('/dashboard')
+    // Skip revalidatePath to prevent dashboard crashes
+    // revalidatePath('/dashboard')
     
     return { 
       success: true,
@@ -359,7 +368,8 @@ export async function duplicateAssessmentAction(
       }
     })
 
-    revalidatePath('/dashboard')
+    // Skip revalidatePath to prevent dashboard crashes
+    // revalidatePath('/dashboard')
     
     return {
       success: true,
