@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.47" as const
-export const VERSION_NAME = "Dynamic Dashboard with Real Assessment Data" as const
+export const VERSION = "3.10.48" as const
+export const VERSION_NAME = "Remove Mock Assessments API Fallback" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.48": {
+    date: "2024-11-30",
+    name: "Remove Mock Assessments API Fallback",
+    features: [
+      "CRITICAL FIX: Removed mock assessment fallback from /api/assessments endpoint",
+      "API now returns empty assessments array instead of hardcoded mock data",
+      "Added comprehensive debugging logs to track database connection issues",
+      "Enhanced error logging with detailed error information and stack traces",
+      "Removed mock assessment creation fallback that was masking real issues"
+    ],
+    improvements: [
+      "Dashboard will now show empty state when database is disconnected",
+      "No more confusing mock assessments (Employee Data Processing, Customer CRM, Marketing Analytics)",
+      "Clear error reporting when database connection fails",
+      "Proper debugging information in API logs for troubleshooting",
+      "Honest empty state instead of misleading mock data"
+    ],
+    technical: [
+      "Updated GET /api/assessments to return { assessments: [], error, details } on failure",
+      "Updated POST /api/assessments to return proper 500 error instead of mock success",
+      "Added console.log statements throughout API flow for debugging",
+      "Enhanced error handling with error message, stack trace, type, and name",
+      "Removed mockAssessments array and mockAssessment fallback objects"
+    ]
+  },
   "3.10.47": {
     date: "2024-11-30",
     name: "Dynamic Dashboard with Real Assessment Data",

@@ -3,40 +3,35 @@ import { DatabaseService } from '@/lib/services/database'
 
 export async function GET() {
   try {
-    const db = await DatabaseService.create()
-    const workspaceId = await db.getDefaultWorkspace()
-    const assessments = await db.getAssessments(workspaceId)
-
-    return NextResponse.json({ assessments })
-  } catch (error) {
-    console.error('Error fetching assessments:', error)
+    console.log('API: Starting to fetch assessments...')
     
-    // Fallback to mock data if database is not configured
-    const mockAssessments = [
-      {
-        id: '1',
-        name: 'Employee Data Processing',
-        status: 'completed',
-        created_at: '2024-01-15',
-        updated_at: '2024-01-20'
-      },
-      {
-        id: '2', 
-        name: 'Customer CRM System',
-        status: 'in_progress',
-        created_at: '2024-01-18',
-        updated_at: '2024-01-19'
-      },
-      {
-        id: '3',
-        name: 'Marketing Analytics',
-        status: 'draft',
-        created_at: '2024-01-20',
-        updated_at: '2024-01-20'
-      }
-    ]
+    const db = await DatabaseService.create()
+    console.log('API: Database service created')
+    
+    const workspaceId = await db.getDefaultWorkspace()
+    console.log('API: Got workspace ID:', workspaceId)
+    
+    const assessments = await db.getAssessments(workspaceId)
+    console.log('API: Fetched assessments:', assessments?.length || 0, 'items')
+    console.log('API: Assessment details:', assessments)
 
-    return NextResponse.json({ assessments: mockAssessments })
+    return NextResponse.json({ assessments: assessments || [] })
+  } catch (error) {
+    console.error('API: Error fetching assessments:', error)
+    console.error('API: Error details:', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : 'No stack trace',
+      type: typeof error,
+      name: error instanceof Error ? error.name : 'Unknown'
+    })
+    
+    // Return empty assessments instead of mock data
+    console.log('API: Returning empty assessments due to database error')
+    return NextResponse.json({ 
+      assessments: [],
+      error: 'Database connection failed',
+      details: error instanceof Error ? error.message : String(error)
+    })
   }
 }
 
@@ -44,10 +39,14 @@ export async function POST(request: Request) {
   const body = await request.json()
   
   try {
+    console.log('API: Creating assessment:', body.name)
+    
     const db = await DatabaseService.create()
+    console.log('API: Database service created for POST')
     
     const workspaceId = await db.getDefaultWorkspace()
     const user = await db.getCurrentUser()
+    console.log('API: Using workspace:', workspaceId, 'user:', user?.id)
     
     const assessment = await db.createAssessment({
       workspace_id: workspaceId,
@@ -56,6 +55,8 @@ export async function POST(request: Request) {
       description: body.description,
       status: 'draft'
     })
+
+    console.log('API: Assessment created:', assessment)
 
     // Log creation event
     await db.logEvent({
@@ -68,18 +69,15 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ assessment }, { status: 201 })
   } catch (error) {
-    console.error('Error creating assessment:', error)
+    console.error('API: Error creating assessment:', error)
+    console.error('API: Creation error details:', {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : 'No stack trace',
+    })
     
-    // Fallback to mock creation
-    const mockAssessment = {
-      id: 'assessment-' + Date.now(),
-      name: body.name,
-      description: body.description,
-      status: 'draft',
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    }
-
-    return NextResponse.json({ assessment: mockAssessment }, { status: 201 })
+    return NextResponse.json({ 
+      error: 'Failed to create assessment',
+      details: error instanceof Error ? error.message : String(error)
+    }, { status: 500 })
   }
 }
