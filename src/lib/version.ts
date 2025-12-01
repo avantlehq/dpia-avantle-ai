@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.48" as const
-export const VERSION_NAME = "Remove Mock Assessments API Fallback" as const
+export const VERSION = "3.10.49" as const
+export const VERSION_NAME = "Enhanced Dashboard Auto-Refresh & Debugging" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.49": {
+    date: "2024-11-30",
+    name: "Enhanced Dashboard Auto-Refresh & Debugging",
+    features: [
+      "AUTO-REFRESH: Dashboard automatically refreshes when window regains focus",
+      "PERIODIC REFRESH: Auto-refresh every 30 seconds to catch new assessments",
+      "ENHANCED DEBUGGING: Comprehensive console logging throughout dashboard data flow",
+      "CACHE PREVENTION: Added cache: 'no-store' to prevent stale data",
+      "ERROR HANDLING: Better error state management and logging",
+      "FOCUS DETECTION: Refreshes when returning from assessment creation"
+    ],
+    improvements: [
+      "Dashboard updates automatically when you return from creating assessments",
+      "No need to manually refresh - happens automatically on window focus",
+      "Detailed console logs show exactly what's happening with API calls",
+      "Better error reporting when database connection fails", 
+      "Fresh data guaranteed with cache prevention",
+      "Periodic refresh ensures dashboard stays up-to-date"
+    ],
+    technical: [
+      "Added window focus event listener for automatic refresh",
+      "Implemented 30-second interval for periodic assessment fetching",
+      "Enhanced fetch with cache: 'no-store' to prevent stale responses",
+      "Comprehensive console.log statements throughout data flow",
+      "Better error state handling with explicit API error detection",
+      "Proper cleanup of event listeners and intervals on component unmount"
+    ]
+  },
   "3.10.48": {
     date: "2024-11-30",
     name: "Remove Mock Assessments API Fallback",

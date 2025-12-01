@@ -44,22 +44,35 @@ export function DynamicDashboardContent() {
 
   const fetchAssessments = async () => {
     try {
-      console.log('Fetching assessments from API...')
+      console.log('Dashboard: Fetching assessments from API...')
       const response = await fetch('/api/assessments', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
+        // Prevent caching to ensure fresh data
+        cache: 'no-store'
       })
       
+      console.log('Dashboard: API response status:', response.status)
+      
       if (!response.ok) {
+        console.error('Dashboard: API response not ok:', response.status, response.statusText)
         throw new Error(`HTTP ${response.status}: ${response.statusText}`)
       }
       
       const data = await response.json()
-      console.log('Assessments fetched successfully:', data)
+      console.log('Dashboard: API response data:', data)
+      
+      if (data.error) {
+        console.error('Dashboard: API returned error:', data.error, data.details)
+        setAssessments([])
+        setStats({ totalAssessments: 0, completed: 0, inProgress: 0, drafts: 0 })
+        return
+      }
       
       if (data.assessments && Array.isArray(data.assessments)) {
+        console.log('Dashboard: Setting assessments:', data.assessments.length, 'items')
         setAssessments(data.assessments)
         
         // Calculate stats
@@ -70,11 +83,16 @@ export function DynamicDashboardContent() {
           drafts: data.assessments.filter((a: Assessment) => a.status === 'draft').length,
         }
         setStats(newStats)
-        console.log('Stats calculated:', newStats)
+        console.log('Dashboard: Stats calculated:', newStats)
+      } else {
+        console.log('Dashboard: No assessments in response, setting empty array')
+        setAssessments([])
+        setStats({ totalAssessments: 0, completed: 0, inProgress: 0, drafts: 0 })
       }
     } catch (error) {
-      console.error('Error fetching assessments:', error)
-      // Keep empty state on error
+      console.error('Dashboard: Error fetching assessments:', error)
+      setAssessments([])
+      setStats({ totalAssessments: 0, completed: 0, inProgress: 0, drafts: 0 })
     } finally {
       setIsLoading(false)
       setIsRefreshing(false)
@@ -88,6 +106,25 @@ export function DynamicDashboardContent() {
 
   useEffect(() => {
     fetchAssessments()
+
+    // Auto-refresh when window regains focus (e.g., returning from assessment creation)
+    const handleFocus = () => {
+      console.log('Dashboard: Window focused, refreshing assessments...')
+      fetchAssessments()
+    }
+
+    // Auto-refresh every 30 seconds to catch new assessments
+    const interval = setInterval(() => {
+      console.log('Dashboard: Auto-refreshing assessments...')
+      fetchAssessments()
+    }, 30000)
+
+    window.addEventListener('focus', handleFocus)
+    
+    return () => {
+      window.removeEventListener('focus', handleFocus)
+      clearInterval(interval)
+    }
   }, [])
 
   function getStatusIcon(status: string) {
