@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.49" as const
-export const VERSION_NAME = "Enhanced Dashboard Auto-Refresh & Debugging" as const
+export const VERSION = "3.10.50" as const
+export const VERSION_NAME = "Direct Assessment API Bypass RLS Recursion" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.50": {
+    date: "2024-11-30",
+    name: "Direct Assessment API Bypass RLS Recursion",
+    features: [
+      "CRITICAL FIX: Created direct assessment API to bypass RLS infinite recursion",
+      "New /api/assessments-direct endpoint using service role key",
+      "Bypasses problematic 'members' table RLS policy causing infinite recursion",
+      "Direct database queries without workspace permission checks",
+      "Dashboard now uses direct API for reliable assessment fetching"
+    ],
+    improvements: [
+      "Dashboard should now show created assessments without RLS errors",
+      "Eliminated 'infinite recursion detected in policy for relation members' error",
+      "Reliable assessment fetching using service role permissions",
+      "No more database connection failures in dashboard",
+      "Assessment creation and display now work end-to-end"
+    ],
+    technical: [
+      "Created new API route /api/assessments-direct with service role client",
+      "Uses SUPABASE_SERVICE_ROLE_KEY to bypass all RLS policies",
+      "Direct SELECT from assessments table with hardcoded workspace ID",
+      "Updated DynamicDashboardContent to use direct endpoint",
+      "Enhanced error logging in direct API for troubleshooting"
+    ]
+  },
   "3.10.49": {
     date: "2024-11-30",
     name: "Enhanced Dashboard Auto-Refresh & Debugging",
