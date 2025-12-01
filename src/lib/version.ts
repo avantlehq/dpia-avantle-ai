@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.46" as const
-export const VERSION_NAME = "Remove Duplicate New Assessment Button" as const
+export const VERSION = "3.10.47" as const
+export const VERSION_NAME = "Dynamic Dashboard with Real Assessment Data" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.47": {
+    date: "2024-11-30",
+    name: "Dynamic Dashboard with Real Assessment Data",
+    features: [
+      "MAJOR FIX: Created hybrid static/dynamic dashboard showing real assessments",
+      "Added DynamicDashboardContent client component for safe data fetching",
+      "Working refresh button with loading states and spinner animation",
+      "Real-time assessment stats (total, completed, in progress, drafts)",
+      "Complete assessments table with status badges and action buttons",
+      "Client-side API calls to /api/assessments endpoint for real data"
+    ],
+    improvements: [
+      "Dashboard now shows actual assessments created by users",
+      "Refresh functionality works without causing Application Errors",
+      "Real statistics instead of hardcoded zeros",
+      "Loading states with spinner animations during data fetch",
+      "Professional table with proper status icons and action menus",
+      "Safe hybrid approach: static server component + dynamic client data"
+    ],
+    technical: [
+      "Created DynamicDashboardContent client component with useState/useEffect",
+      "Separated static header from dynamic content to prevent SSR issues",
+      "Client-side fetch to /api/assessments with comprehensive error handling",
+      "Proper TypeScript interfaces for Assessment and DashboardStats",
+      "Real-time stats calculation based on assessment status filtering",
+      "Maintained visual design while adding full functionality"
+    ]
+  },
   "3.10.46": {
     date: "2024-11-30",
     name: "Remove Duplicate New Assessment Button",
