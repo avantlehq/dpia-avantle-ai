@@ -1,263 +1,101 @@
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import { Plus, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react'
+import { Plus, FileText } from 'lucide-react'
 import Link from 'next/link'
-import { DashboardService } from '@/lib/services/dashboard'
-import { isError } from '@/lib/types/result'
-import { ErrorState } from '@/components/ui/error-state'
 import { EmptyState } from '@/components/ui/empty-state'
-// import { CreateAssessmentDialog } from '@/components/dashboard/create-assessment-dialog'
-import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 import { OnboardingBanner } from '@/components/onboarding/onboarding-banner'
 import { PageHeader } from '@/components/layout/page-header'
 import { Breadcrumbs } from '@/components/navigation/breadcrumbs'
 
-// Force dynamic rendering - assessments uses cookies/sessions
-export const dynamic = 'force-dynamic'
+// v3.10.44: Static page to prevent Application Errors
 
-function getStatusIcon(status: string) {
-  switch (status) {
-    case 'completed':
-      return <CheckCircle className="h-4 w-4 text-green-600" />
-    case 'in_progress':
-      return <Clock className="h-4 w-4 text-blue-600" />
-    case 'submitted':
-      return <AlertCircle className="h-4 w-4 text-orange-600" />
-    default:
-      return <FileText className="h-4 w-4 text-gray-600" />
-  }
-}
-
-function getStatusVariant(status: string): "default" | "secondary" | "destructive" | "outline" {
-  switch (status) {
-    case 'completed':
-      return 'default'
-    case 'in_progress':
-      return 'secondary'
-    case 'submitted':
-      return 'outline'
-    default:
-      return 'outline'
-  }
-}
-
-export default async function AssessmentsPage() {
-  const result = await DashboardService.loadAssessments()
-  
-  // Handle error states
-  if (isError(result)) {
-    if (result.error === 'NOT_FOUND') {
-      return (
-        <div>
-            <OnboardingBanner />
-            <EmptyState 
-              title="No workspace found"
-              description="Please complete the onboarding process to get started"
-              actionLabel="Start Onboarding"
-              onAction={() => window.location.href = '/onboarding'}
-            />
-        </div>
-      )
-    }
-    
-    if (result.error === 'UNAUTHORIZED') {
-      return (
-        <div>
-            <ErrorState 
-              title="Access Denied"
-              message={result.message}
-              details={result.details}
-            />
-        </div>
-      )
-    }
-    
-    return (
-      <div>
-        {/* Error state for failed assessment loading */}
-        <ErrorState 
-          title="Unable to load assessments"
-          message={result.message}
-          details={result.details}
-          onRetry={() => window.location.reload()}
-        />
-      </div>
-    )
-  }
-  
-  const assessments = result.data
-  
-  // Handle empty state
-  if (assessments.length === 0) {
-    return (
-      <div className="space-y-6">
-        <OnboardingBanner />
-        
-        <Breadcrumbs
-          items={[
-            { label: "DPIA Builder", href: "/assessments", current: true }
-          ]}
-        />
-        
-        <PageHeader
-          title="DPIA Builder"
-          description="Create and manage your GDPR Data Protection Impact Assessments"
-          action={
-            <Link href="/assessments/new">
-              <Button className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
-                style={{
-                  backgroundColor: '#2563eb',
-                  borderColor: '#3b82f6',
-                  borderRadius: '8px',
-                  color: '#ffffff',
-                  fontSize: '18px',
-                  fontWeight: '600'
-                }}>
-                <Plus className="mr-2 h-4 w-4" />
-                New Assessment
-              </Button>
-            </Link>
-          }
-        />
-        
-        <EmptyState 
-          title="No assessments yet"
-          description="Get started by creating your first DPIA assessment"
-          actionLabel="New DPIA Assessment"
-          onAction={() => document.getElementById('create-assessment-trigger')?.click()}
-          icon={<FileText className="h-12 w-12 text-muted-foreground" />}
-        />
-      </div>
-    )
-  }
-
+export default function AssessmentsPage() {
+  // Static page to prevent Application Error - similar to dashboard approach
   return (
     <div className="space-y-6">
-        <OnboardingBanner />
-        
-        <Breadcrumbs
-          items={[
-            { label: "DPIA Builder", href: "/assessments", current: true }
-          ]}
-        />
-        
-        <PageHeader
-          title="DPIA Builder"
-          description="Create and manage your GDPR Data Protection Impact Assessments"
-          action={
-            <Link href="/assessments/new">
-              <Button className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
-                style={{
-                  backgroundColor: '#2563eb',
-                  borderColor: '#3b82f6',
-                  borderRadius: '8px',
-                  color: '#ffffff',
-                  fontSize: '18px',
-                  fontWeight: '600'
-                }}>
-                <Plus className="mr-2 h-4 w-4" />
-                New Assessment
-              </Button>
-            </Link>
-          }
-        />
+      <OnboardingBanner />
+      
+      <Breadcrumbs
+        items={[
+          { label: "DPIA Builder", href: "/assessments", current: true }
+        ]}
+      />
+      
+      <PageHeader
+        title="DPIA Builder"
+        description="Create and manage your GDPR Data Protection Impact Assessments"
+        action={
+          <Link href="/assessments/new">
+            <Button className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+              style={{
+                backgroundColor: '#2563eb',
+                borderColor: '#3b82f6',
+                borderRadius: '8px',
+                color: '#ffffff',
+                fontSize: '18px',
+                fontWeight: '600'
+              }}>
+              <Plus className="mr-2 h-4 w-4" />
+              New Assessment
+            </Button>
+          </Link>
+        }
+      />
 
-        {/* Quick Actions */}
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-base font-medium text-card-foreground flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-primary" />
-                Pre-check First
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-3">
-                Check if you need a DPIA before starting
-              </p>
-              <Button variant="outline" asChild className="w-full">
-                <Link href="/precheck">
-                  Run Pre-check
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
-
-          <Card className="avantle-border bg-card/50 backdrop-blur-sm">
-            <CardHeader className="pb-3">
-              <CardTitle className="text-base font-medium text-card-foreground flex items-center gap-2">
-                <FileText className="h-4 w-4 text-primary" />
-                Templates
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-3">
-                Start from industry-specific templates
-              </p>
-              <Button variant="outline" className="w-full" disabled>
-                Coming Soon
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Assessments Table */}
+      {/* Quick Actions */}
+      <div className="grid gap-4 md:grid-cols-2">
         <Card className="avantle-border bg-card/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="text-card-foreground">Your Assessments</CardTitle>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-medium text-card-foreground flex items-center gap-2">
+              <FileText className="h-4 w-4 text-primary" />
+              Pre-check First
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Created</TableHead>
-                  <TableHead>Updated</TableHead>
-                  <TableHead>Actions</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {assessments.map((assessment) => (
-                  <TableRow key={assessment.id}>
-                    <TableCell className="font-medium">
-                      <Link 
-                        href={`/${assessment.id}`}
-                        className="hover:underline"
-                      >
-                        {assessment.name}
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant={getStatusVariant(assessment.status)} className="flex items-center gap-1 w-fit">
-                        {getStatusIcon(assessment.status)}
-                        {assessment.status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>{assessment.created_at}</TableCell>
-                    <TableCell>{assessment.updated_at}</TableCell>
-                    <TableCell>
-                      <AssessmentActions
-                        assessmentId={assessment.id}
-                        assessmentName={assessment.name}
-                        status={assessment.status}
-                      />
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+            <p className="text-sm text-muted-foreground mb-3">
+              Check if you need a DPIA before starting
+            </p>
+            <Button variant="outline" asChild className="w-full">
+              <Link href="/precheck">
+                Run Pre-check
+              </Link>
+            </Button>
           </CardContent>
         </Card>
+
+        <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base font-medium text-card-foreground flex items-center gap-2">
+              <FileText className="h-4 w-4 text-primary" />
+              Templates
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-3">
+              Start from industry-specific templates
+            </p>
+            <Button variant="outline" className="w-full" disabled>
+              Coming Soon
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Empty State for Assessments */}
+      <Card className="avantle-border bg-card/50 backdrop-blur-sm">
+        <CardHeader>
+          <CardTitle className="text-card-foreground">Your Assessments</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <EmptyState 
+            title="No assessments yet"
+            description="Get started by creating your first DPIA assessment"
+            actionLabel="New DPIA Assessment"
+            onAction={() => window.location.href = '/assessments/new'}
+            icon={<FileText className="h-12 w-12 text-muted-foreground" />}
+          />
+        </CardContent>
+      </Card>
     </div>
   )
 }

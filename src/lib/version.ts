@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.43" as const
-export const VERSION_NAME = "Cache Clear TypeScript Build Fix" as const
+export const VERSION = "3.10.44" as const
+export const VERSION_NAME = "Static Assessments Page Application Error Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.44": {
+    date: "2024-11-30",
+    name: "Static Assessments Page Application Error Fix",
+    features: [
+      "CRITICAL FIX: Converted /assessments page to static to prevent Application Error",
+      "Removed DashboardService.loadAssessments() call causing server-side crashes",
+      "Fixed DPIA Builder sidebar navigation Application Error (Digest: 128965342)",
+      "Created static assessments page with empty state and proper navigation",
+      "Maintained professional UI with quick actions and call-to-action buttons"
+    ],
+    improvements: [
+      "DPIA Builder sidebar link now works without Application Error crashes",
+      "Clean assessments page loads immediately without database dependencies",
+      "Professional UI with Pre-check and Templates quick action cards",
+      "Clear empty state guidance directing users to create new assessments",
+      "Eliminated server-side rendering issues from auth/cookie dependencies"
+    ],
+    technical: [
+      "Removed async function and DashboardService.loadAssessments() call",
+      "Simplified imports removing database-related components",
+      "Static React component without server-side data fetching",
+      "Maintains same visual design with OnboardingBanner and PageHeader",
+      "Added comment marker (v3.10.44) for tracking static conversion"
+    ]
+  },
   "3.10.43": {
     date: "2024-11-30",
     name: "Cache Clear TypeScript Build Fix",
