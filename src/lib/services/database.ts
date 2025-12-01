@@ -66,7 +66,12 @@ export class DatabaseService {
       .eq('workspace_id', workspaceId)
       .order('created_at', { ascending: false })
 
-    console.log('Database: Query result - data:', data, 'error:', error)
+    console.log('Database: Raw query result - data:', data)
+    console.log('Database: Raw query result - error:', error)
+    
+    if (data) {
+      console.log('Database: Assessment IDs found:', data.map(a => ({ id: a.id, name: a.name, idType: typeof a.id })))
+    }
 
     if (error) {
       console.error('Database: Error fetching assessments:', error)

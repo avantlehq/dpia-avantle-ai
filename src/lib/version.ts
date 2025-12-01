@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.27" as const
-export const VERSION_NAME = "Enhanced Database Error Logging" as const
+export const VERSION = "3.10.28" as const
+export const VERSION_NAME = "Debug Assessment ID Format" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
