@@ -77,7 +77,6 @@ export class DashboardService {
           data: {},
           completed_sections: ['context', 'legal-basis', 'risk-assessment'],
           precheck_result: null,
-          submitted_at: null,
           created_at: '2024-01-15T00:00:00Z',
           updated_at: '2024-01-20T00:00:00Z'
         },
@@ -92,7 +91,6 @@ export class DashboardService {
           data: {},
           completed_sections: ['context'],
           precheck_result: null,
-          submitted_at: null,
           created_at: '2024-01-18T00:00:00Z',
           updated_at: '2024-01-19T00:00:00Z'
         }
