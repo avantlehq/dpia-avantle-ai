@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.50" as const
-export const VERSION_NAME = "Direct Assessment API Bypass RLS Recursion" as const
+export const VERSION = "3.10.51" as const
+export const VERSION_NAME = "Enhanced Database Debugging All Assessments" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

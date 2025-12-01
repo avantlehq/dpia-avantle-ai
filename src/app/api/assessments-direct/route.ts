@@ -26,17 +26,46 @@ export async function GET() {
       }
     })
     
-    // Direct query to assessments table with hardcoded workspace ID
-    console.log('API-Direct: Querying assessments directly...')
+    // First, check ALL assessments in database to see what's there
+    console.log('API-Direct: Querying ALL assessments in database...')
+    const { data: allAssessments, error: allError } = await supabase
+      .from('assessments')
+      .select('*')
+      .order('created_at', { ascending: false })
+    
+    console.log('API-Direct: ALL assessments query - error:', allError)
+    console.log('API-Direct: ALL assessments count:', allAssessments?.length || 0)
+    console.log('API-Direct: ALL assessments details:', allAssessments)
+    
+    if (allAssessments && allAssessments.length > 0) {
+      console.log('API-Direct: Assessment workspace IDs found:', 
+        allAssessments.map(a => ({ id: a.id, name: a.name, workspace_id: a.workspace_id })))
+    }
+    
+    // Now query with specific workspace ID
+    console.log('API-Direct: Querying assessments for workspace 00000000-0000-0000-0000-000000000002...')
     const { data: assessments, error } = await supabase
       .from('assessments')
       .select('*')
       .eq('workspace_id', '00000000-0000-0000-0000-000000000002') // Use default workspace
       .order('created_at', { ascending: false })
     
-    console.log('API-Direct: Query result - error:', error)
-    console.log('API-Direct: Query result - data count:', assessments?.length || 0)
-    console.log('API-Direct: Assessment details:', assessments)
+    console.log('API-Direct: Workspace query - error:', error)
+    console.log('API-Direct: Workspace query - data count:', assessments?.length || 0)
+    console.log('API-Direct: Workspace assessment details:', assessments)
+    
+    // If no assessments for default workspace, try without workspace filter
+    if (!assessments || assessments.length === 0) {
+      console.log('API-Direct: No assessments found for default workspace, returning ALL assessments')
+      return NextResponse.json({ 
+        assessments: allAssessments || [],
+        debug: {
+          totalInDatabase: allAssessments?.length || 0,
+          workspaceFiltered: assessments?.length || 0,
+          defaultWorkspaceId: '00000000-0000-0000-0000-000000000002'
+        }
+      })
+    }
     
     if (error) {
       console.error('API-Direct: Database error:', error)
