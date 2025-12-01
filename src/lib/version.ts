@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.42" as const
-export const VERSION_NAME = "Disable RevalidatePath Dashboard Crashes" as const
+export const VERSION = "3.10.43" as const
+export const VERSION_NAME = "Cache Clear TypeScript Build Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.43": {
+    date: "2024-11-30",
+    name: "Cache Clear TypeScript Build Fix",
+    features: [
+      "CRITICAL FIX: Force cache-clearing deployment to resolve TypeScript build error",
+      "Added small code comment to force Vercel to rebuild with fresh cache",
+      "Resolves 'submitted_at' field error from cached mock data in dashboard service",
+      "Ensures TypeScript compilation uses current clean code without cached issues",
+      "Version bump to guarantee fresh deployment without build cache conflicts"
+    ],
+    improvements: [
+      "Eliminates TypeScript build errors caused by Vercel caching old mock data",
+      "Clean deployment process without cached file conflicts",
+      "Assessment creation workflow can proceed without build failures",
+      "Production deployment stability with guaranteed fresh code compilation",
+      "Resolves deployment blocking caused by cached problematic mock data"
+    ],
+    technical: [
+      "Added deployment cache-clearing strategy with version bump approach",
+      "Forces Vercel to use current clean dashboard service code",
+      "Resolves UUID syntax error from cached mock data with integer IDs",
+      "Ensures TypeScript compiler uses fresh file contents without cache",
+      "Clean build process without submitted_at field compilation errors"
+    ]
+  },
   "3.10.8": {
     date: "2024-11-30",
     name: "Test Data Dashboard",

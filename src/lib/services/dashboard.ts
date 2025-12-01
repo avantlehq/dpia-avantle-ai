@@ -3,6 +3,8 @@ import { AuthGuard } from './auth-guard'
 import { Result, createSuccess, createError, isError } from '@/lib/types/result'
 import type { Database } from '@/lib/supabase/database.types'
 
+// v3.10.43: Force cache clear for TypeScript build fix
+
 // Use database types
 export type Assessment = Database['public']['Tables']['assessments']['Row']
 
