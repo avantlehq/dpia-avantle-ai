@@ -207,7 +207,7 @@ export async function deleteAssessmentAction(
   }
 }
 
-export async function getAssessmentsForCleanupAction(): Promise<{ success: boolean; assessments?: any[]; error?: string }> {
+export async function getAssessmentsForCleanupAction(): Promise<{ success: boolean; assessments?: Array<{ id: string; name: string }>; error?: string }> {
   try {
     const db = await DatabaseService.create()
     const assessments = await db.getAssessments('00000000-0000-0000-0000-000000000002')

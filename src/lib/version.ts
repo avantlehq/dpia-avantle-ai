@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.21" as const
-export const VERSION_NAME = "Emergency Site Restore" as const
+export const VERSION = "3.10.22" as const
+export const VERSION_NAME = "TypeScript Build Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
