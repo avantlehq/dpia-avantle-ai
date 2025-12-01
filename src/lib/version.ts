@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.35" as const
-export const VERSION_NAME = "Emergency UUID Mock Data" as const
+export const VERSION = "3.10.36" as const
+export const VERSION_NAME = "Fix Mock Data TypeScript Schema" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
