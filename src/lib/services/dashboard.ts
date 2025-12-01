@@ -67,7 +67,7 @@ export class DashboardService {
       return createError(
         'SERVER_ERROR',
         'Database connection failed. Please try again.',
-        error.message
+        error instanceof Error ? error.message : String(error)
       )
     }
   }

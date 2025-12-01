@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.31" as const
-export const VERSION_NAME = "Fix Any Type in Assessment Map" as const
+export const VERSION = "3.10.32" as const
+export const VERSION_NAME = "Fix Error Type in Dashboard Service" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
