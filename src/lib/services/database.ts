@@ -70,7 +70,7 @@ export class DatabaseService {
     console.log('Database: Raw query result - error:', error)
     
     if (data) {
-      console.log('Database: Assessment IDs found:', data.map(a => ({ id: a.id, name: a.name, idType: typeof a.id })))
+      console.log('Database: Assessment IDs found:', data.map((a: any) => ({ id: a.id, name: a.name, idType: typeof a.id })))
     }
 
     if (error) {
