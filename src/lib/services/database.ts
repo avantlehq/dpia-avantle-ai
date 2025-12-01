@@ -1,4 +1,4 @@
-import { createServerClient, createAdminClient } from '@/lib/supabase/server'
+import { createServerClient } from '@/lib/supabase/server'
 import { createClient } from '@/lib/supabase/client'
 import type { Database } from '@/lib/supabase/database.types'
 
@@ -34,21 +34,6 @@ export class DatabaseService {
     }
   }
 
-  static async createAdmin() {
-    try {
-      const adminClient = await createAdminClient()
-      
-      if (!adminClient) {
-        console.warn('Admin Supabase client not initialized. Please check service role key.')
-        return new DatabaseService(null, true)
-      }
-      
-      return new DatabaseService(adminClient, true)
-    } catch (error) {
-      console.warn('Admin Supabase client initialization failed:', error)
-      return new DatabaseService(null, true)
-    }
-  }
 
   // Assessment CRUD operations
   async getAssessments(workspaceId: string): Promise<Assessment[]> {

@@ -183,13 +183,12 @@ export async function deleteAssessmentAction(
   try {
     console.log('deleteAssessmentAction: Starting for ID:', assessmentId)
     
-    // Use admin client for delete operations
-    const adminDb = await DatabaseService.createAdmin()
+    const db = await DatabaseService.create()
     
-    console.log('deleteAssessmentAction: Admin client created')
+    console.log('deleteAssessmentAction: Database client created')
     
     // Log deletion event before deleting
-    await adminDb.logEvent({
+    await db.logEvent({
       type: 'assessment.deleted',
       entityType: 'assessment',
       entityId: assessmentId,
@@ -199,7 +198,7 @@ export async function deleteAssessmentAction(
     })
     
     console.log('deleteAssessmentAction: Calling deleteAssessment')
-    await adminDb.deleteAssessment(assessmentId)
+    await db.deleteAssessment(assessmentId)
     
     console.log('deleteAssessmentAction: Delete successful')
     revalidatePath('/dashboard')
