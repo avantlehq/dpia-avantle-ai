@@ -137,19 +137,38 @@ export class DatabaseService {
   }
 
   async deleteAssessment(id: string): Promise<void> {
+    console.log('DatabaseService.deleteAssessment: Starting for ID:', id)
+    
     if (!this.supabase) {
+      console.error('DatabaseService.deleteAssessment: Database not configured')
       throw new Error('Database not configured')
     }
 
-    const { error } = await this.supabase
+    console.log('DatabaseService.deleteAssessment: Executing delete query')
+    const { error, data } = await this.supabase
       .from('assessments')
       .delete()
       .eq('id', id)
+      .select()
+
+    console.log('DatabaseService.deleteAssessment: Query result:', { error, data })
 
     if (error) {
-      console.error('Error deleting assessment:', error)
-      throw new Error('Failed to delete assessment')
+      console.error('DatabaseService.deleteAssessment: Supabase error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      })
+      throw new Error(`Failed to delete assessment: ${error.message} (${error.code})`)
     }
+
+    if (!data || data.length === 0) {
+      console.warn('DatabaseService.deleteAssessment: No rows affected, assessment may not exist')
+      throw new Error('Assessment not found or already deleted')
+    }
+
+    console.log('DatabaseService.deleteAssessment: Successfully deleted assessment')
   }
 
   // Assessment answers CRUD operations
