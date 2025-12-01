@@ -72,7 +72,7 @@ export async function GET() {
       return NextResponse.json({ 
         assessments: [],
         error: 'Database query failed',
-        details: error.message
+        details: (error as any)?.message || String(error)
       })
     }
     
