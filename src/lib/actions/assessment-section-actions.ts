@@ -66,33 +66,20 @@ export async function getAssessmentSectionAction(
   sectionId: string
 ): Promise<GetSectionResult> {
   try {
-    console.log('getAssessmentSectionAction: Starting for assessment:', assessmentId, 'section:', sectionId)
-    
     const db = await DatabaseService.create()
-    console.log('getAssessmentSectionAction: DatabaseService created')
     
     // Get section data from assessment_answers table
-    console.log('getAssessmentSectionAction: Getting assessment answers...')
     const answers = await db.getAssessmentAnswers(assessmentId)
-    console.log('getAssessmentSectionAction: Raw answers from database:', answers)
-    
     const sectionData = answers[sectionId] || {}
-    console.log('getAssessmentSectionAction: Section data extracted:', sectionData)
     
     return { 
       success: true, 
       data: sectionData 
     }
   } catch (error) {
-    console.error('getAssessmentSectionAction: CRITICAL ERROR loading section data:', error)
-    console.error('getAssessmentSectionAction: Error details:', {
-      message: error instanceof Error ? error.message : String(error),
-      stack: error instanceof Error ? error.stack : 'No stack trace',
-      assessmentId,
-      sectionId
-    })
+    console.error('Error loading assessment section:', error)
     
-    // Return empty data but log the real error
+    // Return empty data for graceful fallback
     return { 
       success: true, 
       data: {} 

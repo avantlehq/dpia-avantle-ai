@@ -25,37 +25,25 @@ export function ContextScopeForm({ assessmentId, onComplete }: ContextScopeFormP
 
   // Load existing data on mount
   useEffect(() => {
-    console.log('ContextScopeForm useEffect: Triggered with assessmentId:', assessmentId)
     if (assessmentId) {
-      console.log('ContextScopeForm useEffect: Calling loadSectionData...')
       loadSectionData()
-    } else {
-      console.warn('ContextScopeForm useEffect: No assessmentId provided!')
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assessmentId])
 
   const loadSectionData = async () => {
-    console.log('ContextScopeForm loadSectionData: Starting data load for assessment:', assessmentId)
     setLoading(true)
     try {
-      console.log('ContextScopeForm loadSectionData: Calling getAssessmentSectionAction...')
       const result = await getAssessmentSectionAction(assessmentId, 'context_scope')
-      console.log('ContextScopeForm loadSectionData: Server action result:', result)
       
       if (result.success && result.data) {
-        console.log('ContextScopeForm loadSectionData: Setting form data:', result.data)
         setFormData(result.data)
-        console.log('ContextScopeForm loadSectionData: Form data state updated, should trigger re-render')
-      } else {
-        console.log('ContextScopeForm loadSectionData: No data returned or action failed')
       }
     } catch (error) {
-      console.error('ContextScopeForm loadSectionData: Error loading section data:', error)
+      console.error('Error loading section data:', error)
       toast.error('Failed to load existing form data.')
     } finally {
       setLoading(false)
-      console.log('ContextScopeForm loadSectionData: Loading complete')
     }
   }
 

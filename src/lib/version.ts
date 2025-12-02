@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.59" as const
-export const VERSION_NAME = "Fix Dropdown Menu Transparency And Z-Index Issues" as const
+export const VERSION = "3.10.60" as const
+export const VERSION_NAME = "Polish Dropdown Selection Indicator And Clean Debug Logs" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
