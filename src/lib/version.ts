@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.56" as const
-export const VERSION_NAME = "Debug Assessment Section Data Loading" as const
+export const VERSION = "3.10.57" as const
+export const VERSION_NAME = "Debug Component UseEffect Data Loading" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
