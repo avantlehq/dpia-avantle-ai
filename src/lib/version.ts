@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.55" as const
-export const VERSION_NAME = "Fix DatabaseService RLS By Using Service Role Key" as const
+export const VERSION = "3.10.56" as const
+export const VERSION_NAME = "Debug Assessment Section Data Loading" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
