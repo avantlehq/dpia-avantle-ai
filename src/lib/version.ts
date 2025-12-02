@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.60" as const
-export const VERSION_NAME = "Polish Dropdown Selection Indicator And Clean Debug Logs" as const
+export const VERSION = "3.10.61" as const
+export const VERSION_NAME = "Add Green Highlighting For Selected Dropdown Options" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
