@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.61" as const
-export const VERSION_NAME = "Add Green Highlighting For Selected Dropdown Options" as const
+export const VERSION = "3.10.62" as const
+export const VERSION_NAME = "Topbar Icon Styling Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,32 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.62": {
+    date: "2024-12-02",
+    name: "Topbar Icon Styling Fix",
+    features: [
+      "FIXED: Topbar icons background styling issue",
+      "Changed all topbar buttons from grey semi-transparent to transparent background",
+      "Updated Language, Theme, Help, and Account buttons styling",
+      "Buttons now match topbar background perfectly",
+      "Enhanced visual consistency across entire topbar"
+    ],
+    improvements: [
+      "Language Switcher: changed from bg-white/10 to bg-transparent",
+      "Theme Toggle: changed from bg-white/10 dark:bg-white/5 to bg-transparent",
+      "Help Button: changed from bg-white/10 dark:bg-white/5 to bg-transparent",
+      "Account Button: changed from bg-white/10 dark:bg-white/5 to bg-transparent",
+      "All buttons now have consistent border opacity (50%) for subtle visual boundaries",
+      "Enhanced hover states maintained with colored backgrounds on interaction"
+    ],
+    technical: [
+      "Updated src/components/layout/topbar.tsx button styling",
+      "Replaced bg-white/10 dark:bg-white/5 with bg-transparent across all icons",
+      "Updated border opacity from full color to 50% opacity for subtle appearance",
+      "Maintained hover effects with theme-appropriate color backgrounds",
+      "Fixed visual inconsistency reported by user about grey backgrounds not matching topbar"
+    ]
+  },
   "3.10.55": {
     date: "2024-12-01",
     name: "Fix DatabaseService RLS By Using Service Role Key",
