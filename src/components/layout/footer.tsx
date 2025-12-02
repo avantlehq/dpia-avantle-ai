@@ -28,7 +28,7 @@ export function Footer() {
           {/* Right Section */}
           <div className="flex items-center">
             <Badge variant="outline" className="text-xs">
-              {versionInfo.displayName}
+              v{versionInfo.version}
             </Badge>
           </div>
         </div>

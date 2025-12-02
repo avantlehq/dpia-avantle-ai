@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.65" as const
-export const VERSION_NAME = "Clickable Logo Home Navigation" as const
+export const VERSION = "3.10.66" as const
+export const VERSION_NAME = "Navigation & Layout Refinements" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,33 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.66": {
+    date: "2024-12-02",
+    name: "Navigation & Layout Refinements",
+    features: [
+      "REFINED: Made only DPIA.ai logo clickable (not version text) in topbar",
+      "ALIGNED: Sidebar footer padding to match main content footer positioning",
+      "SIMPLIFIED: Main content footer now shows only version number (v3.10.66)",
+      "ENHANCED: Better separation between clickable and non-clickable topbar elements",
+      "IMPROVED: Consistent footer alignment across sidebar and main content areas"
+    ],
+    improvements: [
+      "Topbar: Only logo and DPIA.ai text are clickable home buttons (better UX)",
+      "Topbar: Version text is non-clickable and properly spaced (24px margin)",
+      "Footer: Main content shows clean version badge without description text",
+      "Footer: Sidebar padding matches main content (px-6 lg:px-8 py-4)",
+      "Layout: Consistent visual alignment between sidebar and content footers",
+      "Navigation: Clear distinction between interactive and informational elements"
+    ],
+    technical: [
+      "Separated topbar Link component to wrap only logo and DPIA.ai text",
+      "Updated main footer to show v{versionInfo.version} instead of displayName",
+      "Changed sidebar footer padding from p-4 to px-6 lg:px-8 py-4",
+      "Maintained hover effects only on clickable topbar elements",
+      "Improved layout consistency with matching footer padding patterns",
+      "Enhanced user experience with proper clickable area boundaries"
+    ]
+  },
   "3.10.65": {
     date: "2024-12-02",
     name: "Clickable Logo Home Navigation",

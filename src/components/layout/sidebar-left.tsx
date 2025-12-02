@@ -65,7 +65,7 @@ export function SidebarLeft() {
         {/* Footer */}
         {leftSidebarOpen && (
           <div className="mt-auto border-t border-border bg-card">
-            <div className="p-4">
+            <div className="px-6 lg:px-8 py-4">
               <div className="text-xs text-muted-foreground font-medium">
                 © Avantle.com
               </div>
