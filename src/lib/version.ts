@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.63" as const
-export const VERSION_NAME = "Help Page Implementation" as const
+export const VERSION = "3.10.64" as const
+export const VERSION_NAME = "Help Button Navigation Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.64": {
+    date: "2024-12-02",
+    name: "Help Button Navigation Fix",
+    features: [
+      "FIXED: Help button now properly navigates to /help page instead of opening right panel",
+      "Made Help button visible on all screen sizes (removed hidden sm:flex restriction)",
+      "Added useRouter navigation to Help button click handler",
+      "Enhanced Help button accessibility across mobile and desktop devices",
+      "Direct navigation to comprehensive help page with assessment guidance"
+    ],
+    improvements: [
+      "Help button now works as expected - clicking takes you to help page",
+      "Visible on both mobile and desktop for better accessibility",
+      "Clear orange HelpCircle icon indicates help functionality",
+      "Maintains consistent styling with other topbar buttons",
+      "Users can now easily access assessment guidance from any page"
+    ],
+    technical: [
+      "Updated onClick handler from toggleRightPanel to router.push('/help')",
+      "Added useRouter import from next/navigation for client-side navigation",
+      "Changed className from 'hidden sm:flex' to 'flex' for full visibility",
+      "Maintained existing button styling and hover effects",
+      "Fixed user experience issue where Help button wasn't leading to help content"
+    ]
+  },
   "3.10.63": {
     date: "2024-12-02",
     name: "Help Page Implementation",

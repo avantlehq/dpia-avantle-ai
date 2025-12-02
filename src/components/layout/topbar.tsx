@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { useLayoutActions } from '@/lib/state/layout'
 import { getVersionInfo } from '@/lib/version'
+import { useRouter } from 'next/navigation'
 import { 
   ChevronDown, 
   Globe, 
@@ -30,6 +31,7 @@ export function Topbar() {
   const { toggleRightPanel } = useLayoutActions()
   const { theme, setTheme } = useTheme()
   const versionInfo = getVersionInfo()
+  const router = useRouter()
 
   return (
     <header className="flex items-center justify-between px-4 lg:px-6 h-18 border-b border-border bg-background/95 backdrop-blur-sm">
@@ -100,8 +102,8 @@ export function Topbar() {
         <Button 
           variant="outline" 
           size="sm"
-          onClick={toggleRightPanel}
-          className="hidden sm:flex h-9 w-9 p-0 bg-transparent hover:bg-orange-50 dark:hover:bg-orange-900/30 border-orange-200/50 dark:border-orange-800/50 hover:border-orange-300 dark:hover:border-orange-700 transition-all duration-200"
+          onClick={() => router.push('/help')}
+          className="flex h-9 w-9 p-0 bg-transparent hover:bg-orange-50 dark:hover:bg-orange-900/30 border-orange-200/50 dark:border-orange-800/50 hover:border-orange-300 dark:hover:border-orange-700 transition-all duration-200"
         >
           <HelpCircle className="h-4 w-4 text-orange-600 dark:text-orange-400" />
         </Button>
