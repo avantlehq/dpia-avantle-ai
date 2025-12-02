@@ -46,6 +46,7 @@ export function ContextScopeForm({ assessmentId, onComplete }: ContextScopeFormP
       if (result.success && result.data) {
         console.log('ContextScopeForm loadSectionData: Setting form data:', result.data)
         setFormData(result.data)
+        console.log('ContextScopeForm loadSectionData: Form data state updated, should trigger re-render')
       } else {
         console.log('ContextScopeForm loadSectionData: No data returned or action failed')
       }
@@ -113,6 +114,7 @@ export function ContextScopeForm({ assessmentId, onComplete }: ContextScopeFormP
 
       {/* Dynamic Form Generator */}
       <DynamicFormGenerator
+        key={`form-${assessmentId}-${Object.keys(formData).length}`}
         section={sectionDefinition}
         onSubmit={onSubmit}
         defaultValues={formData}
