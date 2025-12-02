@@ -14,6 +14,7 @@ import {
 import { useLayoutActions } from '@/lib/state/layout'
 import { getVersionInfo } from '@/lib/version'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { 
   ChevronDown, 
   Globe, 
@@ -35,20 +36,20 @@ export function Topbar() {
 
   return (
     <header className="flex items-center justify-between px-4 lg:px-6 h-18 border-b border-border bg-background/95 backdrop-blur-sm">
-      {/* Left Section - Modern App Branding */}
-      <div className="flex items-center gap-4">
+      {/* Left Section - Modern App Branding (Clickable Home Link) */}
+      <Link href="/dashboard" className="flex items-center gap-4 hover:opacity-80 transition-opacity duration-200 cursor-pointer">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg">
+            <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg hover:shadow-xl transition-shadow duration-200">
               <ShieldCheck className="h-6 w-6 text-white" />
             </div>
             <div className="flex items-center" style={{ gap: '1.5rem' }}>
-              <span className="font-bold text-lg text-foreground" style={{ marginRight: '24px' }}>DPIA.ai</span>
+              <span className="font-bold text-lg text-foreground hover:text-blue-600 transition-colors duration-200" style={{ marginRight: '24px' }}>DPIA.ai</span>
               <span className="text-sm text-muted-foreground font-medium">Privacy Platform v{versionInfo.version}</span>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
 
       {/* Right Section - Modern Menu */}
       <div className="flex items-center gap-3">

@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.64" as const
-export const VERSION_NAME = "Help Button Navigation Fix" as const
+export const VERSION = "3.10.65" as const
+export const VERSION_NAME = "Clickable Logo Home Navigation" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,33 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.65": {
+    date: "2024-12-02",
+    name: "Clickable Logo Home Navigation",
+    features: [
+      "ENHANCED: Made DPIA.ai logo/branding clickable home button in topbar",
+      "Added navigation to dashboard when clicking logo or shield icon",
+      "Implemented hover effects for better user interaction feedback",
+      "Added smooth transitions and visual feedback for clickable branding",
+      "Improved UX with standard web pattern - logo as home button"
+    ],
+    improvements: [
+      "Logo now functions as intuitive home button (standard web UX pattern)",
+      "Clicking DPIA.ai text or shield icon navigates to dashboard",
+      "Added hover opacity and color transitions for interactive feedback",
+      "Enhanced logo shadow effect on hover for better visual response",
+      "Provides easy way to return home from help page or other sections",
+      "Maintains visual consistency while adding functional navigation"
+    ],
+    technical: [
+      "Wrapped topbar branding in Next.js Link component with href='/dashboard'",
+      "Added hover:opacity-80 transition for subtle interaction feedback",
+      "Enhanced logo with hover:shadow-xl and hover:text-blue-600 effects",
+      "Added cursor-pointer and transition-all duration-200 for smooth UX",
+      "Maintains existing styling while adding clickable navigation functionality",
+      "Uses dashboard route as logical home destination for app users"
+    ]
+  },
   "3.10.64": {
     date: "2024-12-02",
     name: "Help Button Navigation Fix",
