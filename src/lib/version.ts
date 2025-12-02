@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.58" as const
-export const VERSION_NAME = "Fix Form Data Binding With Key Prop Re-render" as const
+export const VERSION = "3.10.59" as const
+export const VERSION_NAME = "Fix Dropdown Menu Transparency And Z-Index Issues" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({

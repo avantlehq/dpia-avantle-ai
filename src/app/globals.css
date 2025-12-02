@@ -218,3 +218,57 @@
   height: 100vh;
   overflow-y: auto;
 }
+
+/* =====================================================
+   DROPDOWN MENU ENHANCEMENT - FIX TRANSPARENCY ISSUES
+   ===================================================== */
+
+/* Ensure all select dropdowns have maximum z-index and solid backgrounds */
+[data-radix-select-content],
+[data-slot="select-content"],
+.radix-select-content {
+  z-index: 99999 !important;
+  background: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  box-shadow: 
+    0 10px 38px -10px rgba(22, 23, 24, 0.35), 
+    0 10px 20px -15px rgba(22, 23, 24, 0.2),
+    0 0 0 1px var(--border) !important;
+}
+
+/* Force solid background for light mode */
+.light [data-radix-select-content],
+.light [data-slot="select-content"],
+.light .radix-select-content {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 
+    0 10px 38px -10px rgba(22, 23, 24, 0.35), 
+    0 10px 20px -15px rgba(22, 23, 24, 0.2),
+    0 0 0 1px #e2e8f0 !important;
+}
+
+/* Ensure dropdown items have solid hover states */
+[data-radix-select-item]:hover,
+[data-slot="select-item"]:hover {
+  background: var(--accent) !important;
+  color: var(--accent-foreground) !important;
+}
+
+/* Additional z-index enforcement for any portal-rendered content */
+[data-radix-portal] {
+  z-index: 99999 !important;
+}
+
+/* Fix for any transparent overlays */
+.radix-select-content,
+[data-radix-select-content] {
+  opacity: 1 !important;
+}
+
+/* Ensure no transparent backgrounds leak through */
+[data-radix-select-viewport] {
+  background: inherit !important;
+}
