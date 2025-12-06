@@ -1,6 +1,6 @@
 {
   "name": "avantle-ai",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -11,7 +11,7 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "lucide-react": "^0.468.0",
-    "next": "16.0.1",
+    "next": "16.0.7",
     "next-themes": "^0.4.6",
     "react": "^18",
     "react-dom": "^18",
@@ -23,7 +23,7 @@
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
     "eslint": "^9",
-    "eslint-config-next": "16.0.1",
+    "eslint-config-next": "16.0.7",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
