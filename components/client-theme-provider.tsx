@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { ThemeProvider } from './theme-provider'
 
 export function ClientThemeProvider({ 
