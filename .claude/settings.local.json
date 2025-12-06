@@ -27,7 +27,9 @@
       "Bash(taskkill:*)",
       "Bash(mv:*)",
       "Bash(touch:*)",
-      "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\global-error.tsx\")"
+      "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\global-error.tsx\")",
+      "Bash(pnpm add:*)",
+      "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\admin\\cleanup\\page.tsx\")"
     ],
     "deny": [],
     "ask": [],

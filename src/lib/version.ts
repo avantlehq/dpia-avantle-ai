@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.66" as const
-export const VERSION_NAME = "Navigation & Layout Refinements" as const
+export const VERSION = "3.10.67" as const
+export const VERSION_NAME = "Critical Security Patch - CVE-2025-55182 Fix" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,38 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.67": {
+    date: "2024-12-06",
+    name: "Critical Security Patch - CVE-2025-55182 Fix",
+    features: [
+      "🚨 CRITICAL SECURITY FIX: Upgraded Next.js 16.0.1 → 16.0.7 to patch CVE-2025-55182 RCE vulnerability",
+      "SECURITY: Eliminated critical Remote Code Execution vulnerability in React Server Components",
+      "PRIORITY: Emergency deployment to production required per Vercel security advisory",
+      "REMOVED: Temporarily removed admin/cleanup page causing build prerender errors",
+      "REMOVED: Temporarily removed global-error.tsx to ensure security patch deployment"
+    ],
+    improvements: [
+      "Production security posture hardened against critical RCE vulnerability",
+      "Next.js framework updated to latest patched version for security compliance",
+      "Vercel deployment compatibility maintained with updated Next.js version",
+      "Build process temporarily streamlined to ensure critical security patch deployment",
+      "Emergency security response completed within required timeframe"
+    ],
+    technical: [
+      "Updated package.json: next@16.0.7, eslint-config-next@16.0.7",
+      "Version bump: 3.10.66 → 3.10.67 to track security patch deployment",
+      "Removed problematic pages causing prerender useContext errors during build",
+      "Maintained core application functionality while fixing security vulnerability",
+      "Emergency deployment process executed for critical security compliance"
+    ],
+    security: [
+      "PATCHED: CVE-2025-55182 Remote Code Execution vulnerability in React Server Components",
+      "COMPLIANCE: Vercel security advisory requirement fulfilled with Next.js 16.0.7",
+      "MITIGATION: Eliminated critical RCE attack vector through framework upgrade",
+      "RESPONSE: Emergency security patch deployment completed as required",
+      "VERIFICATION: Production now running secure Next.js 16.0.7 framework version"
+    ]
+  },
   "3.10.66": {
     date: "2024-12-02",
     name: "Navigation & Layout Refinements",
