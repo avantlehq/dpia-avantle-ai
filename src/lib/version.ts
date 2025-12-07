@@ -41,6 +41,7 @@ export const CHANGELOG = {
       "Removed justify-between and added flex-grow and text-center to the number's container."
     ]
   },
+  "3.10.67": {
     date: "2024-12-06",
     name: "Critical Security Patch - CVE-2025-55182 Fix",
     features: [
