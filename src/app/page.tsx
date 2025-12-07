@@ -1,10 +1,29 @@
+'use client'
+
 import { Badge } from '@/components/ui/badge'
-import { Shield, Sparkles, Globe } from 'lucide-react'
-import Link from 'next/link'
+import { Shield, Sparkles, Globe, Lock } from 'lucide-react'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { getVersionInfo } from '@/lib/version'
 
 export default function Home() {
+  const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [showError, setShowError] = useState(false)
+  const router = useRouter()
   const versionInfo = getVersionInfo()
+  
+  const handleLogin = async () => {
+    if (password === 'life2026') {
+      setIsLoading(true)
+      // Set cookie and redirect to dashboard
+      document.cookie = `admin_access=authenticated; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`
+      router.push('/dashboard')
+    } else {
+      setShowError(true)
+      setPassword('')
+    }
+  }
   
   return (
     <div className="min-h-screen overflow-hidden">
@@ -70,22 +89,47 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Clean Modern Login Button */}
+            {/* Password Access Form */}
             <div className="flex justify-center mb-16">
-              <Link 
-                href="/dashboard"
-                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer min-w-[280px]"
-                style={{
-                  backgroundColor: '#2563eb',
-                  borderColor: '#3b82f6',
-                  borderRadius: '8px',
-                  color: '#ffffff',
-                  fontSize: '24px',
-                  fontWeight: '600'
-                }}
-              >
-                Enter Platform
-              </Link>
+              <div className="max-w-md w-full space-y-4">
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <input
+                    type="password"
+                    placeholder="Enter access code"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                      setShowError(false)
+                    }}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        handleLogin()
+                      }
+                    }}
+                    className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm"
+                    disabled={isLoading}
+                  />
+                </div>
+                
+                <button
+                  onClick={handleLogin}
+                  disabled={!password || isLoading}
+                  className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-3 font-semibold rounded-lg text-white"
+                  style={{
+                    fontSize: '18px',
+                    fontWeight: '600'
+                  }}
+                >
+                  {isLoading ? 'Prihlasovanie...' : 'Enter Platform'}
+                </button>
+                
+                {showError && (
+                  <div className="text-red-400 text-sm text-center">
+                    Neplatný prístupový kód
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 
