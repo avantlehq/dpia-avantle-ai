@@ -29,10 +29,21 @@
       "Bash(touch:*)",
       "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\global-error.tsx\")",
       "Bash(pnpm add:*)",
-      "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\admin\\cleanup\\page.tsx\")"
+      "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\admin\\cleanup\\page.tsx\")",
+      "Bash(pnpm install:*)",
+      "Bash(gh repo view:*)",
+      "Bash(nslookup:*)",
+      "WebFetch(domain:avantle-ai.vercel.app)",
+      "WebFetch(domain:avantlehq-avantle-ai.vercel.app)"
     ],
     "deny": [],
     "ask": [],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+      "C:\\Users\\rasti\\Projects\\avantlehq\\tsi-avantle-ai",
+      "C:\\Users\\rasti\\Projects\\avantlehq\\dpia-ai",
+      "C:\\Users\\rasti\\Projects\\avantlehq\\tsi-directory",
+      "C:\\Users\\rasti\\Projects\\avantlehq\\avantle-ai"
+    ]
   }
 }
