@@ -14,7 +14,7 @@ export default function Home() {
   const versionInfo = getVersionInfo()
   
   const handleLogin = async () => {
-    if (password === 'life2026') {
+    if (password === '789') {
       setIsLoading(true)
       // Set cookie and redirect to dashboard
       document.cookie = `admin_access=authenticated; max-age=${30 * 24 * 60 * 60}; path=/; SameSite=Lax${process.env.NODE_ENV === 'production' ? '; Secure' : ''}`

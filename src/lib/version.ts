@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.69" as const
-export const VERSION_NAME = "Landing Page Password Access - Clean Solution" as const
+export const VERSION = "3.10.70" as const
+export const VERSION_NAME = "Simple Password Access - 789" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
