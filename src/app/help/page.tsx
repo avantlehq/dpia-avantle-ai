@@ -1,6 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
 import { 
   HelpCircle, 
   FileText, 
@@ -187,7 +186,7 @@ export default function HelpPage() {
             <CardContent className="space-y-3">
               <div className="flex items-start gap-3">
                 <AlertTriangle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
-                <p className="text-sm">Don't rush through risk assessment - take time to identify all potential privacy impacts</p>
+                <p className="text-sm">Don&apos;t rush through risk assessment - take time to identify all potential privacy impacts</p>
               </div>
               <div className="flex items-start gap-3">
                 <AlertTriangle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
@@ -195,7 +194,7 @@ export default function HelpPage() {
               </div>
               <div className="flex items-start gap-3">
                 <AlertTriangle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
-                <p className="text-sm">Don't forget to consider data subject rights and how they will be implemented</p>
+                <p className="text-sm">Don&apos;t forget to consider data subject rights and how they will be implemented</p>
               </div>
               <div className="flex items-start gap-3">
                 <AlertTriangle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
