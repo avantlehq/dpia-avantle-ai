@@ -1,7 +1,6 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.71" as const
-export const VERSION_NAME = "Dashboard UI Improvements" as const
-export const BUILD_DATE = "2025-12-07"
+export const VERSION = "3.10.72" as const
+export const VERSION_NAME = "Fix Dashboard Stats Alignment" as const
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -13,6 +12,20 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.72": {
+    date: "2025-12-07",
+    name: "Fix Dashboard Stats Alignment",
+    features: [
+      "FIX: Applied centering fix to all dashboard stat cards (Completed, In Progress, Drafts)."
+    ],
+    improvements: [
+      "Ensured consistent visual alignment for all dashboard statistics.",
+      "Fixed issue where only 'Total Assessments' number was centered."
+    ],
+    technical: [
+      "Modified src/components/dashboard/dynamic-dashboard-content.tsx to apply centering fix to all stat cards."
+    ]
+  },
   "3.10.71": {
     date: "2025-12-07",
     name: "Dashboard UI Improvements",
@@ -28,7 +41,6 @@ export const CHANGELOG = {
       "Removed justify-between and added flex-grow and text-center to the number's container."
     ]
   },
-  "3.10.67": {
     date: "2024-12-06",
     name: "Critical Security Patch - CVE-2025-55182 Fix",
     features: [

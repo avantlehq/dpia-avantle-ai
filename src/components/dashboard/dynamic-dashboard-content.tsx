@@ -188,11 +188,13 @@ export function DynamicDashboardContent() {
               <CheckCircle style={{ color: 'var(--color-green)' }} className="h-5 w-5" />
             </div>
             <div className="flex-1">
-              <div className="flex items-center justify-between w-full">
+              <div className="flex items-center w-full">
                 <p className="text-sm font-medium text-muted-foreground">Completed</p>
-                <p className="text-2xl font-bold text-foreground">
-                  {isLoading ? '...' : stats.completed}
-                </p>
+                <div className="flex-grow text-center">
+                  <p className="text-2xl font-bold text-foreground">
+                    {isLoading ? '...' : stats.completed}
+                  </p>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -204,11 +206,13 @@ export function DynamicDashboardContent() {
               <Clock style={{ color: 'var(--color-orange)' }} className="h-5 w-5" />
             </div>
             <div className="flex-1">
-              <div className="flex items-center justify-between w-full">
+              <div className="flex items-center w-full">
                 <p className="text-sm font-medium text-muted-foreground">In Progress</p>
-                <p className="text-2xl font-bold text-foreground">
-                  {isLoading ? '...' : stats.inProgress}
-                </p>
+                <div className="flex-grow text-center">
+                  <p className="text-2xl font-bold text-foreground">
+                    {isLoading ? '...' : stats.inProgress}
+                  </p>
+                </div>
               </div>
             </div>
           </CardContent>
@@ -220,11 +224,13 @@ export function DynamicDashboardContent() {
               <AlertCircle style={{ color: 'var(--color-gray)' }} className="h-5 w-5" />
             </div>
             <div className="flex-1">
-              <div className="flex items-center justify-between w-full">
+              <div className="flex items-center w-full">
                 <p className="text-sm font-medium text-muted-foreground">Drafts</p>
-                <p className="text-2xl font-bold text-foreground">
-                  {isLoading ? '...' : stats.drafts}
-                </p>
+                <div className="flex-grow text-center">
+                  <p className="text-2xl font-bold text-foreground">
+                    {isLoading ? '...' : stats.drafts}
+                  </p>
+                </div>
               </div>
             </div>
           </CardContent>
