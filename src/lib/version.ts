@@ -1,4 +1,4 @@
-// DPIA.ai Privacy Platform Version Information
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster
 export const VERSION = "3.10.72" as const
 export const VERSION_NAME = "Fix Dashboard Stats Alignment" as const
 export const BUILD_DATE = "2025-12-07"
