@@ -102,16 +102,6 @@ export default function HomePage() {
               <h1 className="text-4xl sm:text-5xl lg:text-7xl xl:text-8xl font-extralight tracking-tighter mb-4 bg-gradient-to-r from-white via-blue-100 to-emerald-100 bg-clip-text text-transparent leading-[0.9]">
                 Avantle.ai
               </h1>
-              <h2 className="text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-light tracking-tight text-white/90 mb-6">
-                Data Sovereignty Platform
-              </h2>
-            </div>
-
-            {/* Simple Description */}
-            <div className="max-w-3xl mx-auto mb-12">
-              <p className="text-lg sm:text-xl lg:text-2xl text-slate-300 mb-6 font-light leading-relaxed">
-                European platform for privacy-first AI agents and data sovereignty solutions
-              </p>
             </div>
 
             {/* Password Access Form */}

@@ -1,5 +1,5 @@
 // Avantle.ai Version Information
-export const VERSION = "0.3.1" as const
+export const VERSION = "0.3.2" as const
 export const VERSION_NAME = "Password Protection - 789" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
