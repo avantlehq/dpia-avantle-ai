@@ -170,12 +170,14 @@ export function DynamicDashboardContent() {
               <FileText style={{ color: 'var(--color-blue)' }} className="h-5 w-5" />
             </div>
             <div className="flex-1">
-              <div className="flex items-center justify-between w-full">
-                <p className="text-sm font-medium text-muted-foreground">Total Assessments</p>
+              <div className="flex items-center w-full">
+              <p className="text-sm font-medium text-muted-foreground">Total Assessments</p>
+              <div className="flex-grow text-center">
                 <p className="text-2xl font-bold text-foreground">
                   {isLoading ? '...' : stats.totalAssessments}
                 </p>
               </div>
+            </div>
             </div>
           </CardContent>
         </Card>

@@ -1,7 +1,7 @@
 // DPIA.ai Privacy Platform Version Information
-export const VERSION = "3.10.70" as const
-export const VERSION_NAME = "Simple Password Access - 789" as const
-export const BUILD_DATE = new Date().toISOString().split('T')[0]
+export const VERSION = "3.10.71" as const
+export const VERSION_NAME = "Dashboard UI Improvements" as const
+export const BUILD_DATE = "2025-12-07"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -13,6 +13,21 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.10.71": {
+    date: "2025-12-07",
+    name: "Dashboard UI Improvements",
+    features: [
+      "IMPROVED: Centered 'Total Assessments' number in dashboard table for better desktop display."
+    ],
+    improvements: [
+      "Enhanced visual balance and readability of dashboard assessment statistics.",
+      "Adjusted flex layout to prevent numbers from being pushed to the end of the line."
+    ],
+    technical: [
+      "Modified src/components/dashboard/dynamic-dashboard-content.tsx to adjust flex classes.",
+      "Removed justify-between and added flex-grow and text-center to the number's container."
+    ]
+  },
   "3.10.67": {
     date: "2024-12-06",
     name: "Critical Security Patch - CVE-2025-55182 Fix",

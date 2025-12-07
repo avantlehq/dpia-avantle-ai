@@ -34,7 +34,17 @@
       "Bash(gh repo view:*)",
       "Bash(nslookup:*)",
       "WebFetch(domain:avantle-ai.vercel.app)",
-      "WebFetch(domain:avantlehq-avantle-ai.vercel.app)"
+      "WebFetch(domain:avantlehq-avantle-ai.vercel.app)",
+      "Bash(npm --version)",
+      "Bash(pnpm:*)",
+      "Bash(yarn --version)",
+      "Bash(claude --version)",
+      "Bash(pip --version)",
+      "Bash(python -m pip:*)",
+      "Bash(vercel:*)",
+      "WebFetch(domain:notes.avantle.ai)",
+      "Bash(cp:*)",
+      "WebFetch(domain:www.avantle.ai)"
     ],
     "deny": [],
     "ask": [],
@@ -43,7 +53,8 @@
       "C:\\Users\\rasti\\Projects\\avantlehq\\tsi-avantle-ai",
       "C:\\Users\\rasti\\Projects\\avantlehq\\dpia-ai",
       "C:\\Users\\rasti\\Projects\\avantlehq\\tsi-directory",
-      "C:\\Users\\rasti\\Projects\\avantlehq\\avantle-ai"
+      "C:\\Users\\rasti\\Projects\\avantlehq\\avantle-ai",
+      "C:\\Users\\rasti\\Projects\\avantlehq\\notes-avantle-ai"
     ]
   }
 }

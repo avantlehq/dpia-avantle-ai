@@ -6,9 +6,9 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 **DPIA Suite** je európska platforma pre automatizované GDPR Data Protection Impact Assessments s kompletným workflow od pre-check až po export dokumentov.
 
-### Aktuálny stav projektu (December 6, 2024)
+### Aktuálny stav projektu (December 7, 2025)
 
-**🎯 VERSION 3.10.67: ✅ CRITICAL SECURITY PATCH + DATABASE INTEGRATION COMPLETE**
+**🎯 VERSION 3.10.71: ✅ Dashboard UI Improvements**
 
 **🚨 CRITICAL SECURITY PATCH (December 6, 2024):**
 - ✅ **CVE-2025-55182 PATCHED:** Next.js 16.0.1 → 16.0.7 (Critical RCE vulnerability)
@@ -57,9 +57,9 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 - Framework: Next.js 15, Tailwind, shadcn/ui
 - Účel: Lead generation, SEO, conversion
 
-**B) dpia.avantle.ai — Application Runtime** 📍 **✅ VERSION 3.10.67 FULLY FUNCTIONAL & SECURED**
+**B) dpia.avantle.ai — Application Runtime** 📍 **✅ VERSION 3.10.71 FULLY FUNCTIONAL & SECURED**
 - **URL**: https://dpia.avantle.ai ✅ **LIVE & DATABASE PERSISTENCE WORKING**
-- **Version**: 3.10.67 "Critical Security Patch - CVE-2025-55182 Fix"
+- **Version**: 3.10.71 "Dashboard UI Improvements"
 - **Framework**: Next.js 16.0.7 + App Router + TypeScript + React 19
 - **Styling**: Tailwind CSS v4 + Complete enterprise styling system
 - **Backend**: Supabase (real database with working write operations)
@@ -314,12 +314,12 @@ extend: {
 - ✅ CTA pre "Start Full DPIA" workflow
 - ✅ Professional UI s result recommendations
 
-## 🎯 Production Status (December 6, 2024)
+## 🎯 Production Status (December 7, 2025)
 
-### ✅ CRITICAL BREAKTHROUGH - Version 3.10.67: Security Patch + Database Integration Complete
+### ✅ CRITICAL BREAKTHROUGH - Version 3.10.71: Dashboard UI Improvements
 
 **Production URL**: https://dpia.avantle.ai ✅ **LIVE & SECURED & DATABASE PERSISTENCE WORKING**  
-**Current Version**: 3.10.67 "Critical Security Patch - CVE-2025-55182 Fix"  
+**Current Version**: 3.10.71 "Dashboard UI Improvements"  
 **Status**: ✅ **FULLY FUNCTIONAL & SECURED** - Assessment creation and database persistence working + Security vulnerabilities patched
 
 **🚀 MAJOR SESSION ACHIEVEMENTS:**
@@ -330,6 +330,11 @@ extend: {
 - ✅ **VERCEL COMPLIANCE:** All repositories updated per security advisory requirements
 - ✅ **RCE VULNERABILITY ELIMINATED:** Remote Code Execution attack vector patched
 - ✅ **PRODUCTION SECURITY HARDENED:** Enterprise-grade security posture restored
+
+**December 7, 2025 - Dashboard UI Improvement:**
+- ✅ **UI FIX APPLIED:** Centered 'Total Assessments' number in dashboard for better desktop display
+- ✅ **ENHANCED READABILITY:** Improved visual balance and readability of assessment statistics
+- ✅ **FLEX LAYOUT ADJUSTMENT:** Modified src/components/dashboard/dynamic-dashboard-content.tsx
 
 **December 1, 2024 - Database Integration Breakthrough:**
 - ✅ **ROOT CAUSE IDENTIFIED:** DatabaseService anon key vs Direct API service role key difference
@@ -553,7 +558,12 @@ git add . && git commit -m "message" && git push origin main
 
 ## 🎯 Success Metrics
 
-**Current Status: VERSION 3.10.67 COMPLETE - Critical Security Patch + Database Integration**
+**Current Status: VERSION 3.10.71 COMPLETE - Dashboard UI Improvements**
+
+### 🏆 **Major Session Achievement (December 7, 2025):**
+**DASHBOARD UI IMPROVEMENTS:** Centered 'Total Assessments' number in dashboard table
+- **UI Issue**: Numbers for individual assessments were at the end of the line on desktop.
+- **Solution Delivered**: Adjusted flex layout in `src/components/dashboard/dynamic-dashboard-content.tsx` to center the number.
 
 ### 🏆 **Major Session Achievement (December 6, 2024):**
 **CRITICAL SECURITY RESPONSE:** Complete resolution of CVE-2025-55182 vulnerability across entire infrastructure
