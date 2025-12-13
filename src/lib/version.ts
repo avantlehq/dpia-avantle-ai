@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.14.0" as const
-export const VERSION_NAME = "True Pill UI Design" as const
+export const VERSION = "3.14.1" as const
+export const VERSION_NAME = "Build Fix" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,21 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.14.1": {
+    date: "2025-12-13",
+    name: "Build Fix", 
+    features: [
+      "FIXED: Unused function ESLint error in dynamic-form-generator.tsx",
+      "MAINTAINED: All True Pill UI Design features from v3.14.0"
+    ],
+    improvements: [
+      "Clean build process without ESLint warnings"
+    ],
+    technical: [
+      "Removed unused getSectionBackgroundColor function",
+      "Proper ESLint compliance for CI/CD pipeline"
+    ]
+  },
   "3.14.0": {
     date: "2025-12-13",
     name: "True Pill UI Design",

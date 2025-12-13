@@ -54,21 +54,6 @@ const getSectionColor = (sectionId: string): string => {
   }
 }
 
-// Background color mapping for selected cards
-const getSectionBackgroundColor = (sectionId: string): string => {
-  switch (sectionId) {
-    case 'context_scope':
-      return 'rgba(74, 144, 226, 0.1)' // blue
-    case 'data_flow_processing':
-      return 'rgba(249, 115, 22, 0.1)' // orange  
-    case 'risk_assessment':
-      return 'rgba(239, 68, 68, 0.1)' // red
-    case 'mitigation':
-      return 'rgba(147, 51, 234, 0.1)' // purple
-    default:
-      return 'rgba(74, 144, 226, 0.1)' // blue
-  }
-}
 
 // Helper to create Zod schema from JSON field definitions
 function createZodSchema(fields: FieldDefinition[]) {
