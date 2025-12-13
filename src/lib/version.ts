@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.16.0" as const
-export const VERSION_NAME = "Modern CTA & Auto-Save UX" as const
+export const VERSION = "3.16.1" as const
+export const VERSION_NAME = "Fix useEffect Import" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,22 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.16.1": {
+    date: "2025-12-13",
+    name: "Fix useEffect Import",
+    features: [
+      "FIXED: TypeScript error 'Cannot find name useEffect'",
+      "MAINTAINED: All Modern CTA & Auto-Save UX features from v3.16.0"
+    ],
+    improvements: [
+      "Clean build process without TypeScript errors"
+    ],
+    technical: [
+      "Added missing useEffect import in dynamic-form-generator.tsx",
+      "Proper React hooks imports for onChange functionality",
+      "Build pipeline now compiles successfully"
+    ]
+  },
   "3.16.0": {
     date: "2025-12-13",
     name: "Modern CTA & Auto-Save UX",
