@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.16.4" as const
-export const VERSION_NAME = "Fix Assessment Page Error" as const
+export const VERSION = "3.16.5" as const
+export const VERSION_NAME = "Remove Auto-Save (Causing Errors)" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,26 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.16.5": {
+    date: "2025-12-13",
+    name: "Remove Auto-Save (Causing Errors)",
+    features: [
+      "REMOVED: Auto-save functionality that was causing client-side errors",
+      "RESTORED: Basic form functionality without auto-save complexity",
+      "MAINTAINED: Modern sticky CTA and visual design improvements"
+    ],
+    improvements: [
+      "Assessment pages now load without client-side exceptions",
+      "Simplified component state management",
+      "Forms work reliably without auto-save complexity"
+    ],
+    technical: [
+      "Removed onChange prop and useEffect from DynamicFormGenerator",
+      "Simplified form components by removing auto-save state",
+      "Eliminated debounced auto-save logic causing runtime errors",
+      "Kept sticky CTA and visual improvements from v3.16.x"
+    ]
+  },
   "3.16.4": {
     date: "2025-12-13",
     name: "Fix Assessment Page Error",

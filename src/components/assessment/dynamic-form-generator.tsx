@@ -1,7 +1,6 @@
 'use client'
 
-import React, { useRef, useCallback, useEffect } from 'react'
-// Force cache bust for useEffect import fix
+import React, { useRef, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -132,13 +131,6 @@ export function DynamicFormGenerator({
     defaultValues: formDefaults,
   })
 
-  // Watch form changes and trigger onChange
-  const watchedValues = form.watch()
-  useEffect(() => {
-    if (onChange) {
-      onChange(watchedValues)
-    }
-  }, [watchedValues, onChange])
 
   const sectionColor = getSectionColor(section.sectionId)
 
