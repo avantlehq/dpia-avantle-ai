@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.11.2" as const
-export const VERSION_NAME = "Next.js Config Fix" as const
+export const VERSION = "3.12.0" as const
+export const VERSION_NAME = "Enhanced DPIA Form UX" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.12.0": {
+    date: "2025-12-13",
+    name: "Enhanced DPIA Form UX",
+    features: [
+      "VISUAL HIERARCHY: Questions now display in section-specific colors (blue, orange, red, purple)",
+      "ENHANCED TYPOGRAPHY: Question labels use larger, bold font for better visual dominance",
+      "SMART VALIDATION: Auto-focus and scroll to first validation error on form submission",
+      "ERROR HIGHLIGHTING: Visual error indicators with red border and background for invalid fields",
+      "REQUIRED FIELD MARKERS: Clear asterisk (*) indicators for mandatory fields",
+      "IMPROVED SPACING: Better visual separation between questions and answers with proper indentation"
+    ],
+    improvements: [
+      "Professional form hierarchy with section-color coded questions",
+      "Instant feedback for validation errors with precise error positioning",
+      "Enhanced accessibility with proper focus management",
+      "Cleaner visual design with consistent spacing and typography"
+    ],
+    technical: [
+      "Updated DynamicFormGenerator with section color mapping system",
+      "Implemented client-side validation with form.trigger() and error focus",
+      "Added proper ref management for React Hook Form compatibility",
+      "Enhanced FormItem styling with conditional error states",
+      "Integrated auto-scroll and focus behavior for validation errors"
+    ]
+  },
   "3.11.2": {
     date: "2025-12-13",
     name: "Next.js Config Fix",

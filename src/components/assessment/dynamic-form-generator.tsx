@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useRef, useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -36,6 +36,22 @@ interface DynamicFormGeneratorProps {
   defaultValues?: Record<string, unknown>
   loading?: boolean
   submitButtonText?: string
+}
+
+// Section color mapping based on DPIA workflow
+const getSectionColor = (sectionId: string): string => {
+  switch (sectionId) {
+    case 'context_scope':
+      return 'var(--color-blue)'
+    case 'data_flow_processing':
+      return 'var(--color-orange)'
+    case 'risk_assessment':
+      return 'var(--color-red)'
+    case 'mitigation':
+      return 'var(--color-purple)'
+    default:
+      return 'var(--color-blue)'
+  }
 }
 
 // Helper to create Zod schema from JSON field definitions
@@ -106,13 +122,46 @@ export function DynamicFormGenerator({
 }: DynamicFormGeneratorProps) {
   const schema = createZodSchema(section.fields)
   const formDefaults = { ...getDefaultValues(section.fields), ...defaultValues }
+  const fieldRefs = useRef<Record<string, HTMLElement | null>>({})
 
   const form = useForm({
     resolver: zodResolver(schema),
     defaultValues: formDefaults,
   })
 
+  const sectionColor = getSectionColor(section.sectionId)
+
+  // Enhanced submit handler with validation and focus management
+  const handleSubmit = useCallback((data: Record<string, unknown>) => {
+    // First trigger form validation
+    const isValid = form.trigger()
+    if (!isValid) {
+      // Find first error field and focus it
+      setTimeout(() => {
+        const firstErrorField = Object.keys(form.formState.errors)[0]
+        if (firstErrorField && fieldRefs.current[firstErrorField]) {
+          fieldRefs.current[firstErrorField]?.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          })
+          fieldRefs.current[firstErrorField]?.focus()
+        }
+      }, 100)
+      return
+    }
+    
+    // If validation passes, call onSubmit
+    onSubmit(data)
+  }, [onSubmit, form])
+
+  // Set field ref for focus management
+  const setFieldRef = useCallback((fieldId: string, element: HTMLElement | null) => {
+    fieldRefs.current[fieldId] = element
+  }, [])
+
   const renderField = (field: FieldDefinition) => {
+    const hasError = !!form.formState.errors[field.id]
+    
     switch (field.type) {
       case 'text':
         return (
@@ -121,18 +170,30 @@ export function DynamicFormGenerator({
             control={form.control}
             name={field.id}
             render={({ field: formField }) => (
-              <FormItem>
-                <FormLabel className="text-base font-medium">{field.label}</FormLabel>
+              <FormItem 
+                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
+              >
+                <FormLabel 
+                  className="text-lg font-bold leading-relaxed mb-3 block"
+                  style={{ color: sectionColor }}
+                >
+                  {field.label}
+                  {field.required && <span className="text-red-500 ml-1">*</span>}
+                </FormLabel>
                 <FormControl>
                   <Input 
                     placeholder={field.placeholder} 
-                    {...formField} 
+                    {...formField}
+                    ref={(el) => {
+                      formField.ref(el)
+                      setFieldRef(field.id, el)
+                    }}
                     value={formField.value as string}
-                    className="text-base h-11"
+                    className={`text-base h-11 ml-6 ${hasError ? 'border-red-500 ring-red-200' : ''}`}
                     style={{ fontSize: '16px' }}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="ml-6" />
               </FormItem>
             )}
           />
@@ -145,18 +206,30 @@ export function DynamicFormGenerator({
             control={form.control}
             name={field.id}
             render={({ field: formField }) => (
-              <FormItem>
-                <FormLabel className="text-base font-medium">{field.label}</FormLabel>
+              <FormItem 
+                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
+              >
+                <FormLabel 
+                  className="text-lg font-bold leading-relaxed mb-3 block"
+                  style={{ color: sectionColor }}
+                >
+                  {field.label}
+                  {field.required && <span className="text-red-500 ml-1">*</span>}
+                </FormLabel>
                 <FormControl>
                   <Textarea 
                     placeholder={field.placeholder}
-                    className="min-h-[120px] text-base"
-                    style={{ fontSize: '16px' }}
-                    {...formField} 
+                    {...formField}
+                    ref={(el) => {
+                      formField.ref(el)
+                      setFieldRef(field.id, el)
+                    }}
                     value={formField.value as string}
+                    className={`min-h-[120px] text-base ml-6 ${hasError ? 'border-red-500 ring-red-200' : ''}`}
+                    style={{ fontSize: '16px' }}
                   />
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="ml-6" />
               </FormItem>
             )}
           />
@@ -169,11 +242,23 @@ export function DynamicFormGenerator({
             control={form.control}
             name={field.id}
             render={({ field: formField }) => (
-              <FormItem>
-                <FormLabel className="text-base font-medium">{field.label}</FormLabel>
+              <FormItem 
+                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
+              >
+                <FormLabel 
+                  className="text-lg font-bold leading-relaxed mb-3 block"
+                  style={{ color: sectionColor }}
+                >
+                  {field.label}
+                  {field.required && <span className="text-red-500 ml-1">*</span>}
+                </FormLabel>
                 <Select onValueChange={formField.onChange} defaultValue={formField.value as string}>
                   <FormControl>
-                    <SelectTrigger className="text-base h-11" style={{ fontSize: '16px' }}>
+                    <SelectTrigger 
+                      className={`text-base h-11 ml-6 ${hasError ? 'border-red-500 ring-red-200' : ''}`} 
+                      style={{ fontSize: '16px' }}
+                      ref={(el) => setFieldRef(field.id, el)}
+                    >
                       <SelectValue placeholder={field.placeholder || `Select ${field.label.toLowerCase()}`} />
                     </SelectTrigger>
                   </FormControl>
@@ -185,7 +270,7 @@ export function DynamicFormGenerator({
                     ))}
                   </SelectContent>
                 </Select>
-                <FormMessage />
+                <FormMessage className="ml-6" />
               </FormItem>
             )}
           />
@@ -198,27 +283,36 @@ export function DynamicFormGenerator({
             control={form.control}
             name={field.id}
             render={({ field: formField }) => (
-              <FormItem>
-                <FormLabel className="text-base font-medium">{field.label}</FormLabel>
+              <FormItem 
+                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
+              >
+                <FormLabel 
+                  className="text-lg font-bold leading-relaxed mb-3 block"
+                  style={{ color: sectionColor }}
+                >
+                  {field.label}
+                  {field.required && <span className="text-red-500 ml-1">*</span>}
+                </FormLabel>
                 <FormControl>
                   <RadioGroup
                     onValueChange={formField.onChange}
                     defaultValue={formField.value as string}
-                    className="flex flex-col space-y-1"
+                    className="flex flex-col space-y-2 ml-6"
+                    ref={(el) => setFieldRef(field.id, el)}
                   >
-                    {field.options?.map((option) => (
+                    {field.options?.map((option, index) => (
                       <FormItem key={option} className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem value={option} />
                         </FormControl>
-                        <FormLabel className="font-normal text-base" style={{ fontSize: '16px' }}>
+                        <FormLabel className="font-normal text-base leading-relaxed" style={{ fontSize: '16px' }}>
                           {option}
                         </FormLabel>
                       </FormItem>
                     ))}
                   </RadioGroup>
                 </FormControl>
-                <FormMessage />
+                <FormMessage className="ml-6" />
               </FormItem>
             )}
           />
@@ -231,12 +325,20 @@ export function DynamicFormGenerator({
             control={form.control}
             name={field.id}
             render={() => (
-              <FormItem>
+              <FormItem 
+                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
+              >
                 <div className="mb-4">
-                  <FormLabel className="text-base">{field.label}</FormLabel>
+                  <FormLabel 
+                    className="text-lg font-bold leading-relaxed block"
+                    style={{ color: sectionColor }}
+                  >
+                    {field.label}
+                    {field.required && <span className="text-red-500 ml-1">*</span>}
+                  </FormLabel>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  {field.options?.map((option) => (
+                <div className="grid grid-cols-2 gap-3 ml-6">
+                  {field.options?.map((option, index) => (
                     <FormField
                       key={option}
                       control={form.control}
@@ -250,6 +352,7 @@ export function DynamicFormGenerator({
                             <Checkbox
                               checked={(formField.value as string[])?.includes(option)}
                               onCheckedChange={(checked) => {
+                                if (index === 0) setFieldRef(field.id, document.activeElement as HTMLElement)
                                 const updatedValue = checked
                                   ? [...((formField.value as string[]) || []), option]
                                   : ((formField.value as string[]) || []).filter((value: string) => value !== option)
@@ -265,7 +368,7 @@ export function DynamicFormGenerator({
                     />
                   ))}
                 </div>
-                <FormMessage />
+                <FormMessage className="ml-6" />
               </FormItem>
             )}
           />
@@ -278,15 +381,26 @@ export function DynamicFormGenerator({
             control={form.control}
             name={field.id}
             render={({ field: formField }) => (
-              <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+              <FormItem 
+                className={`flex flex-row items-start space-x-3 space-y-0 ml-6 ${hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}`}
+              >
                 <FormControl>
                   <Checkbox
                     checked={formField.value as boolean}
-                    onCheckedChange={formField.onChange}
+                    onCheckedChange={(checked) => {
+                      setFieldRef(field.id, document.activeElement as HTMLElement)
+                      formField.onChange(checked)
+                    }}
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel>{field.label}</FormLabel>
+                  <FormLabel 
+                    className="text-lg font-bold leading-relaxed"
+                    style={{ color: sectionColor }}
+                  >
+                    {field.label}
+                    {field.required && <span className="text-red-500 ml-1">*</span>}
+                  </FormLabel>
                 </div>
                 <FormMessage />
               </FormItem>
@@ -310,7 +424,7 @@ export function DynamicFormGenerator({
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-8">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">{section.title}</CardTitle>
@@ -318,7 +432,7 @@ export function DynamicFormGenerator({
                 {section.description}
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-8 pt-6">
               {section.fields.map(renderField)}
             </CardContent>
           </Card>
