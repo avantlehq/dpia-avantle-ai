@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.12.1" as const
-export const VERSION_NAME = "ESLint Fix" as const
+export const VERSION = "3.13.0" as const
+export const VERSION_NAME = "Modern Multiselect Cards" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,32 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.13.0": {
+    date: "2025-12-13",
+    name: "Modern Multiselect Cards",
+    features: [
+      "MODERN CARD UI: Replaced legacy checkboxes with clickable card/pill design for multiselect questions",
+      "FULLY CLICKABLE: Entire card surface is clickable, not just checkbox area",
+      "VISUAL SELECTION STATES: Selected cards show section-color borders and background tints",
+      "CORNER CHECKMARKS: Subtle checkmark indicators in top-right corner of selected cards",
+      "RESPONSIVE GRID: 1-3 column responsive grid layout (mobile/tablet/desktop)",
+      "SMOOTH ANIMATIONS: Hover, focus, and selection animations with scale and shadow effects"
+    ],
+    improvements: [
+      "SaaS-grade modern UI comparable to Notion, Linear, Stripe Dashboard",
+      "Better scannability with card-based option display",
+      "Enhanced accessibility with proper ARIA roles and keyboard navigation",
+      "Eliminated legacy form appearance for professional look"
+    ],
+    technical: [
+      "Replaced Checkbox components with custom clickable div cards",
+      "Section-color background mapping system for selected states", 
+      "Keyboard navigation support (Enter/Space key handling)",
+      "Focus management and visual focus indicators",
+      "Responsive Tailwind grid classes (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3)",
+      "Transform and transition animations for smooth interactions"
+    ]
+  },
   "3.12.1": {
     date: "2025-12-13",
     name: "ESLint Fix",

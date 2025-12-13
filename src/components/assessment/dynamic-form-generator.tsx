@@ -54,6 +54,22 @@ const getSectionColor = (sectionId: string): string => {
   }
 }
 
+// Background color mapping for selected cards
+const getSectionBackgroundColor = (sectionId: string): string => {
+  switch (sectionId) {
+    case 'context_scope':
+      return 'rgba(74, 144, 226, 0.1)' // blue
+    case 'data_flow_processing':
+      return 'rgba(249, 115, 22, 0.1)' // orange  
+    case 'risk_assessment':
+      return 'rgba(239, 68, 68, 0.1)' // red
+    case 'mitigation':
+      return 'rgba(147, 51, 234, 0.1)' // purple
+    default:
+      return 'rgba(74, 144, 226, 0.1)' // blue
+  }
+}
+
 // Helper to create Zod schema from JSON field definitions
 function createZodSchema(fields: FieldDefinition[]) {
   const schemaShape: Record<string, z.ZodTypeAny> = {}
@@ -328,7 +344,7 @@ export function DynamicFormGenerator({
               <FormItem 
                 className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
               >
-                <div className="mb-4">
+                <div className="mb-6">
                   <FormLabel 
                     className="text-lg font-bold leading-relaxed block"
                     style={{ color: sectionColor }}
@@ -337,34 +353,70 @@ export function DynamicFormGenerator({
                     {field.required && <span className="text-red-500 ml-1">*</span>}
                   </FormLabel>
                 </div>
-                <div className="grid grid-cols-2 gap-3 ml-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 ml-6">
                   {field.options?.map((option, _index) => (
                     <FormField
                       key={option}
                       control={form.control}
                       name={field.id}
-                      render={({ field: formField }) => (
-                        <FormItem
-                          key={option}
-                          className="flex flex-row items-start space-x-3 space-y-0"
-                        >
-                          <FormControl>
-                            <Checkbox
-                              checked={(formField.value as string[])?.includes(option)}
-                              onCheckedChange={(checked) => {
-                                if (_index === 0) setFieldRef(field.id, document.activeElement as HTMLElement)
-                                const updatedValue = checked
-                                  ? [...((formField.value as string[]) || []), option]
-                                  : ((formField.value as string[]) || []).filter((value: string) => value !== option)
-                                formField.onChange(updatedValue)
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className="text-sm font-normal leading-tight">
-                            {option}
-                          </FormLabel>
-                        </FormItem>
-                      )}
+                      render={({ field: formField }) => {
+                        const isSelected = (formField.value as string[])?.includes(option)
+                        return (
+                          <FormItem key={option} className="space-y-0">
+                            <FormControl>
+                              <div
+                                className={`
+                                  relative cursor-pointer rounded-lg border-2 p-4 transition-all duration-200 ease-in-out
+                                  ${isSelected 
+                                    ? 'border-current shadow-lg transform scale-[1.02]' 
+                                    : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
+                                  }
+                                  hover:scale-[1.01] focus-within:scale-[1.02] focus-within:ring-2 focus-within:ring-current focus-within:ring-opacity-20
+                                `}
+                                style={{
+                                  borderColor: isSelected ? sectionColor : undefined,
+                                  backgroundColor: isSelected ? getSectionBackgroundColor(section.sectionId) : undefined
+                                }}
+                                onClick={() => {
+                                  if (_index === 0) setFieldRef(field.id, document.activeElement as HTMLElement)
+                                  const updatedValue = isSelected
+                                    ? ((formField.value as string[]) || []).filter((value: string) => value !== option)
+                                    : [...((formField.value as string[]) || []), option]
+                                  formField.onChange(updatedValue)
+                                }}
+                                onKeyDown={(e) => {
+                                  if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault()
+                                    const updatedValue = isSelected
+                                      ? ((formField.value as string[]) || []).filter((value: string) => value !== option)
+                                      : [...((formField.value as string[]) || []), option]
+                                    formField.onChange(updatedValue)
+                                  }
+                                }}
+                                tabIndex={0}
+                                role="checkbox"
+                                aria-checked={isSelected}
+                                aria-label={option}
+                              >
+                                {/* Selection indicator - subtle checkmark in corner */}
+                                {isSelected && (
+                                  <div 
+                                    className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold"
+                                    style={{ backgroundColor: sectionColor }}
+                                  >
+                                    ✓
+                                  </div>
+                                )}
+                                
+                                {/* Option text */}
+                                <div className={`text-sm font-medium leading-tight pr-6 ${isSelected ? 'text-gray-900' : 'text-gray-700'}`}>
+                                  {option}
+                                </div>
+                              </div>
+                            </FormControl>
+                          </FormItem>
+                        )
+                      }}
                     />
                   ))}
                 </div>
