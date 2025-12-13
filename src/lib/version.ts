@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.17.0" as const
-export const VERSION_NAME = "DPIA Builder Section 3 - Risk Assessment Complete" as const
+export const VERSION = "3.18.0" as const
+export const VERSION_NAME = "DPIA Builder Section 4 - Complete 4-Section DPIA Workflow" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.18.0": {
+    date: "2025-12-13",
+    name: "DPIA Builder Section 4 - Complete 4-Section DPIA Workflow",
+    features: [
+      "COMPLETE DPIA WORKFLOW: Full 4-section DPIA Builder implementation",
+      "SECTION 4 MITIGATION MEASURES: Complete mitigation measures wizard step",
+      "RESIDUAL RISK ENGINE: Automatic residual risk calculation and persistence",
+      "ENHANCED EXPORTS: PDF/DOCX include Section 4 content and residual risk assessment",
+      "FULL JSON TEMPLATE: Merged 4-section dpia-basic-eu-v1.json template",
+      "GDPR ARTICLE 35 COMPLIANT: Complete DPIA workflow per EU regulations"
+    ],
+    improvements: [
+      "Comprehensive mitigation measures fields: Technical, Organisational, Privacy by Design",
+      "Residual risk computation: likelihood × impact with automated risk level determination",
+      "Professional export reports with Section 4 content and residual risk summaries",
+      "Data subject rights support documentation and review/monitoring procedures",
+      "Incident response measures and consultation decision workflows",
+      "Enhanced wizard navigation with complete 4-step progression"
+    ],
+    technical: [
+      "Extended dpia-basic-eu-v1.json with comprehensive Section 4 mitigation fields",
+      "Created mitigation-measures-form.tsx using DynamicFormGenerator with residual risk display",
+      "Added processMitigationMeasures function with server-side residual risk computation",
+      "Enhanced export service with Section 4 integration and generateMitigationSummary",
+      "Residual risk evaluation stored in assessment.data.risk_evaluation.residual_*",
+      "Updated wizard navigation to support mitigation_measures section with proper flow"
+    ]
+  },
   "3.17.0": {
     date: "2025-12-13",
     name: "DPIA Builder Section 3 - Risk Assessment Complete",

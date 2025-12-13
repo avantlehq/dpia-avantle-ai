@@ -458,6 +458,220 @@
           "required": true
         }
       ]
+    },
+    "mitigation_measures": {
+      "sectionId": "mitigation_measures",
+      "title": "Mitigation Measures",
+      "description": "Document technical and organisational safeguards, privacy by design measures, and the expected residual risk after mitigation.",
+      "fields": [
+        {
+          "id": "mitigation_overview",
+          "type": "textarea",
+          "label": "Mitigation Overview",
+          "placeholder": "Summarize the mitigation strategy and key safeguards...",
+          "required": true
+        },
+        {
+          "id": "technical_measures",
+          "type": "multiselect",
+          "label": "Technical Measures",
+          "options": [
+            "Encryption at rest",
+            "Encryption in transit",
+            "Pseudonymisation",
+            "Anonymisation",
+            "Role-based access control (RBAC)",
+            "Multi-factor authentication (MFA)",
+            "Network segmentation",
+            "Secure backups and restore testing",
+            "Endpoint protection / EDR",
+            "Vulnerability scanning and patch management",
+            "Audit logging and monitoring",
+            "Data loss prevention (DLP)",
+            "Secure key management (KMS/HSM)",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "technical_measures_details",
+          "type": "textarea",
+          "label": "Technical Measures – Details",
+          "placeholder": "Provide implementation details for selected technical measures (scope, systems, frequency, owners)...",
+          "required": false
+        },
+        {
+          "id": "organisational_measures",
+          "type": "multiselect",
+          "label": "Organisational Measures",
+          "options": [
+            "Policies and procedures (security, privacy)",
+            "Access provisioning and periodic reviews",
+            "Staff training and awareness",
+            "Incident response plan",
+            "Vendor due diligence and DPAs",
+            "Change management",
+            "Segregation of duties",
+            "Regular audits and assessments",
+            "Data minimisation governance",
+            "Retention and deletion procedures",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "organisational_measures_details",
+          "type": "textarea",
+          "label": "Organisational Measures – Details",
+          "placeholder": "Describe how organisational measures are enforced (owners, cadence, evidence)...",
+          "required": false
+        },
+        {
+          "id": "privacy_by_design_measures",
+          "type": "multiselect",
+          "label": "Privacy by Design / Default Measures",
+          "options": [
+            "Data minimisation",
+            "Purpose limitation controls",
+            "Default privacy-friendly settings",
+            "User access controls by default",
+            "Separation of environments (dev/test/prod)",
+            "Data masking in non-production",
+            "Secure development lifecycle (SDLC)",
+            "Regular DPIA review triggers",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "privacy_by_design_details",
+          "type": "textarea",
+          "label": "Privacy by Design – Details",
+          "placeholder": "Describe how PbD/PbDefault is implemented and verified...",
+          "required": false
+        },
+        {
+          "id": "data_subject_rights_support",
+          "type": "multiselect",
+          "label": "Support for Data Subject Rights",
+          "options": [
+            "DSAR process defined",
+            "Identity verification process",
+            "Response SLA tracking",
+            "Data portability export available",
+            "Rectification workflow",
+            "Erasure workflow",
+            "Restriction/objection handling",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "incident_response_measures",
+          "type": "multiselect",
+          "label": "Incident Response & Monitoring",
+          "options": [
+            "Incident response plan documented",
+            "Breach detection and alerting",
+            "Breach notification procedures",
+            "Tabletop exercises",
+            "24/7 monitoring / on-call",
+            "Forensic logging enabled",
+            "Other"
+          ],
+          "required": false
+        },
+        {
+          "id": "review_frequency",
+          "type": "select",
+          "label": "Review / Reassessment Frequency",
+          "options": [
+            "Quarterly",
+            "Every 6 months",
+            "Annually",
+            "After major changes",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "review_triggers",
+          "type": "multiselect",
+          "label": "Review Triggers",
+          "options": [
+            "Change of processing purpose",
+            "Change of data categories",
+            "New technology introduced",
+            "New processor/vendor",
+            "High-risk incident or near-miss",
+            "Regulatory guidance change",
+            "Other"
+          ],
+          "required": false
+        },
+        {
+          "id": "residual_likelihood",
+          "type": "select",
+          "label": "Residual Likelihood (1–5)",
+          "options": [
+            "1 - Very Low",
+            "2 - Low",
+            "3 - Medium",
+            "4 - High",
+            "5 - Very High"
+          ],
+          "required": true
+        },
+        {
+          "id": "residual_impact",
+          "type": "select",
+          "label": "Residual Impact / Severity (1–5)",
+          "options": [
+            "1 - Minimal",
+            "2 - Minor",
+            "3 - Moderate",
+            "4 - Major",
+            "5 - Severe"
+          ],
+          "required": true
+        },
+        {
+          "id": "residual_risk_statement",
+          "type": "textarea",
+          "label": "Residual Risk Statement",
+          "placeholder": "Summarize the expected residual risk after mitigation and whether it is acceptable...",
+          "required": true
+        },
+        {
+          "id": "high_residual_risk_remains",
+          "type": "radio",
+          "label": "Does high residual risk remain after mitigation?",
+          "options": [
+            "No",
+            "Yes",
+            "Unsure"
+          ],
+          "required": true
+        },
+        {
+          "id": "consultation_decision",
+          "type": "radio",
+          "label": "Decision on prior consultation (Article 36)",
+          "options": [
+            "Not needed",
+            "Needed",
+            "To be determined"
+          ],
+          "required": false
+        },
+        {
+          "id": "mitigation_notes",
+          "type": "textarea",
+          "label": "Additional Notes / Evidence References",
+          "placeholder": "Links to policies, screenshots, audit reports, DPIA evidence, internal tickets...",
+          "required": false
+        }
+      ]
     }
   }
 }

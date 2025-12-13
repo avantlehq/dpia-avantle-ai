@@ -157,6 +157,30 @@ export class RealExportService {
     addText(riskSummary, 11)
     yPosition += 10
 
+    // Mitigation measures section
+    const mitigationAnswers = exportData.answers.mitigation_measures || {}
+    if (Object.keys(mitigationAnswers).length > 0) {
+      addText('MITIGATION MEASURES', 14, true)
+      yPosition += 5
+      
+      const mitigationSummary = this.generateMitigationSummary(exportData)
+      addText(mitigationSummary, 11)
+      yPosition += 10
+      
+      // Residual risk evaluation
+      const residualRisk = this.getResidualRiskEvaluation(exportData)
+      if (residualRisk) {
+        addText('RESIDUAL RISK ASSESSMENT', 12, true)
+        yPosition += 3
+        addText(`After implementing mitigation measures:`, 10)
+        addText(`• Residual Likelihood: ${residualRisk.residual_likelihood}/5`, 10)
+        addText(`• Residual Impact: ${residualRisk.residual_impact}/5`, 10)
+        addText(`• Residual Risk Score: ${residualRisk.residual_score}/25`, 10)
+        addText(`• Residual Risk Level: ${residualRisk.residual_level}`, 10, true)
+        yPosition += 10
+      }
+    }
+
     // Recommendations
     addText('RECOMMENDATIONS', 14, true)
     yPosition += 5
@@ -312,6 +336,60 @@ export class RealExportService {
       }),
       new Paragraph({ text: '' })
     )
+    
+    // Mitigation measures section
+    const mitigationAnswers = exportData.answers.mitigation_measures || {}
+    if (Object.keys(mitigationAnswers).length > 0) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: 'MITIGATION MEASURES',
+              bold: true,
+              size: 24
+            })
+          ],
+          heading: HeadingLevel.HEADING_1
+        }),
+        new Paragraph({
+          children: [
+            new TextRun(this.generateMitigationSummary(exportData))
+          ]
+        })
+      )
+      
+      // Residual risk evaluation
+      const residualRisk = this.getResidualRiskEvaluation(exportData)
+      if (residualRisk) {
+        children.push(
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: 'RESIDUAL RISK ASSESSMENT',
+                bold: true,
+                size: 20
+              })
+            ],
+            heading: HeadingLevel.HEADING_2
+          }),
+          new Paragraph({
+            children: [
+              new TextRun(`After implementing mitigation measures:\n`),
+              new TextRun(`• Residual Likelihood: ${residualRisk.residual_likelihood}/5\n`),
+              new TextRun(`• Residual Impact: ${residualRisk.residual_impact}/5\n`),
+              new TextRun(`• Residual Risk Score: ${residualRisk.residual_score}/25\n`),
+              new TextRun({
+                text: `• Residual Risk Level: ${residualRisk.residual_level}\n`,
+                bold: true
+              }),
+              new TextRun(`• Assessment Date: ${new Date(residualRisk.residual_calculated_at).toLocaleString()}`)
+            ]
+          })
+        )
+      }
+      
+      children.push(new Paragraph({ text: '' }))
+    }
 
     // Recommendations
     children.push(
@@ -476,6 +554,106 @@ export class RealExportService {
     )
 
     return recommendations.join('\n')
+  }
+
+  private getResidualRiskEvaluation(data: ExportData): {
+    residual_likelihood: number
+    residual_impact: number
+    residual_score: number
+    residual_level: string
+    residual_calculated_at: string
+  } | null {
+    if (data.assessment.data && typeof data.assessment.data === 'object') {
+      const assessmentData = data.assessment.data as Record<string, unknown>
+      const riskEval = assessmentData.risk_evaluation as any
+      
+      if (riskEval && riskEval.residual_likelihood && riskEval.residual_impact) {
+        return {
+          residual_likelihood: riskEval.residual_likelihood,
+          residual_impact: riskEval.residual_impact,
+          residual_score: riskEval.residual_score,
+          residual_level: riskEval.residual_level,
+          residual_calculated_at: riskEval.residual_calculated_at
+        }
+      }
+    }
+    return null
+  }
+  
+  private generateMitigationSummary(data: ExportData): string {
+    const mitigationAnswers = data.answers.mitigation_measures || {}
+    
+    if (Object.keys(mitigationAnswers).length === 0) {
+      return 'No mitigation measures have been documented for this DPIA.'
+    }
+    
+    let summary = 'Mitigation Measures Summary:\n\n'
+    
+    // Technical measures
+    if (mitigationAnswers.technical_measures && Array.isArray(mitigationAnswers.technical_measures)) {
+      const measures = mitigationAnswers.technical_measures as string[]
+      summary += `Technical Measures (${measures.length}):\n`
+      summary += measures.map(measure => `• ${measure}`).join('\n') + '\n\n'
+      
+      if (mitigationAnswers.technical_measures_details) {
+        summary += `Technical Implementation Details:\n${mitigationAnswers.technical_measures_details}\n\n`
+      }
+    }
+    
+    // Organisational measures
+    if (mitigationAnswers.organisational_measures && Array.isArray(mitigationAnswers.organisational_measures)) {
+      const measures = mitigationAnswers.organisational_measures as string[]
+      summary += `Organisational Measures (${measures.length}):\n`
+      summary += measures.map(measure => `• ${measure}`).join('\n') + '\n\n'
+      
+      if (mitigationAnswers.organisational_measures_details) {
+        summary += `Organisational Implementation Details:\n${mitigationAnswers.organisational_measures_details}\n\n`
+      }
+    }
+    
+    // Privacy by Design measures
+    if (mitigationAnswers.privacy_by_design_measures && Array.isArray(mitigationAnswers.privacy_by_design_measures)) {
+      const measures = mitigationAnswers.privacy_by_design_measures as string[]
+      summary += `Privacy by Design / Default Measures (${measures.length}):\n`
+      summary += measures.map(measure => `• ${measure}`).join('\n') + '\n\n'
+      
+      if (mitigationAnswers.privacy_by_design_details) {
+        summary += `Privacy by Design Implementation:\n${mitigationAnswers.privacy_by_design_details}\n\n`
+      }
+    }
+    
+    // Data subject rights support
+    if (mitigationAnswers.data_subject_rights_support && Array.isArray(mitigationAnswers.data_subject_rights_support)) {
+      const measures = mitigationAnswers.data_subject_rights_support as string[]
+      summary += `Data Subject Rights Support:\n`
+      summary += measures.map(measure => `• ${measure}`).join('\n') + '\n\n'
+    }
+    
+    // Review and monitoring
+    if (mitigationAnswers.review_frequency) {
+      summary += `Review Frequency: ${mitigationAnswers.review_frequency}\n`
+    }
+    
+    if (mitigationAnswers.review_triggers && Array.isArray(mitigationAnswers.review_triggers)) {
+      const triggers = mitigationAnswers.review_triggers as string[]
+      summary += `Review Triggers: ${triggers.join(', ')}\n\n`
+    }
+    
+    // Residual risk statement
+    if (mitigationAnswers.residual_risk_statement) {
+      summary += `Residual Risk Statement:\n${mitigationAnswers.residual_risk_statement}\n\n`
+    }
+    
+    // High risk determination and consultation
+    if (mitigationAnswers.high_residual_risk_remains) {
+      summary += `High residual risk remains: ${mitigationAnswers.high_residual_risk_remains}\n`
+    }
+    
+    if (mitigationAnswers.consultation_decision) {
+      summary += `Supervisory authority consultation: ${mitigationAnswers.consultation_decision}\n`
+    }
+    
+    return summary
   }
 
   async logExport(assessmentId: string, exportType: 'pdf' | 'docx', filePath?: string): Promise<void> {
