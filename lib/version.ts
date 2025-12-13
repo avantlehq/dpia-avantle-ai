@@ -1,6 +1,6 @@
 // Avantle.ai Version Information
-export const VERSION = "0.3.3" as const
-export const VERSION_NAME = "Fix Broken Links" as const
+export const VERSION = "0.4.0" as const
+export const VERSION_NAME = "Remove Password Protection" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "0.4.0": {
+    date: "2024-12-13",
+    name: "Remove Password Protection",
+    features: [
+      "Removed password protection completely from avantle.ai",
+      "Direct access to main landing page without authentication",
+      "Eliminated blinking/flashing of password screen",
+      "Simplified user experience with immediate content access"
+    ],
+    improvements: [
+      "Instant page load without password barriers",
+      "Better user experience with direct navigation",
+      "Eliminated confusing authentication flow",
+      "Clean public access to Avantle platform showcase"
+    ],
+    technical: [
+      "Removed useState and useEffect for authentication",
+      "Simplified page.tsx to direct component rendering",
+      "Eliminated cookie-based session management",
+      "Streamlined component imports and dependencies"
+    ],
+    fixes: [
+      "Fixed blinking password screen on page load",
+      "Eliminated authentication state flicker",
+      "Resolved user confusion about platform access",
+      "Improved overall site performance and loading speed"
+    ]
+  },
   "0.3.3": {
     date: "2024-12-13",
     name: "Fix Broken Links",
