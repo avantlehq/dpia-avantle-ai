@@ -13,11 +13,11 @@ export function CTA() {
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link 
-            href="https://notes.avantle.ai"
-            aria-label="Launch Notes.Avantle.ai - Start using encrypted AI notes"
+            href="https://dpia.avantle.ai"
+            aria-label="Launch DPIA Agent - Start automated GDPR compliance"
           >
             <Button size="lg" className="text-lg px-8 py-6 w-full">
-              Launch Notes.Avantle.ai
+              Launch DPIA Agent
             </Button>
           </Link>
           <Link 

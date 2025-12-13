@@ -16,8 +16,8 @@ export function Hero() {
           </p>
           
           <div className="flex justify-center">
-            <Link href="https://notes.avantle.ai">
-              <Button size="lg" className="text-lg px-8 py-6">Launch Notes.Avantle.ai</Button>
+            <Link href="https://dpia.avantle.ai">
+              <Button size="lg" className="text-lg px-8 py-6">Launch DPIA Agent</Button>
             </Link>
           </div>
         </div>

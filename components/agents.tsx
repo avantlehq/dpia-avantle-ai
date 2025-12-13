@@ -7,15 +7,15 @@ import Link from "next/link"
 
 const agents = [
   {
-    icon: Brain,
-    title: "notes.avantle.ai",
-    description: "Encrypted Zettelkasten with AI memory → Search your mind without Google",
-    href: "https://notes.avantle.ai"
-  },
-  {
     icon: Shield,
     title: "dpia.avantle.ai",
     description: "Automated DPIA, RoPA, DSAR → GDPR compliance, zero exposure",
+    href: "https://dpia.avantle.ai"
+  },
+  {
+    icon: BarChart3,
+    title: "Coming Soon",
+    description: "Next-generation privacy agents → Encrypted. Local. Yours.",
     href: "#"
   }
 ]

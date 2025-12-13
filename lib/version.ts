@@ -1,6 +1,6 @@
 // Avantle.ai Version Information
-export const VERSION = "0.3.2" as const
-export const VERSION_NAME = "Password Protection - 789" as const
+export const VERSION = "0.3.3" as const
+export const VERSION_NAME = "Fix Broken Links" as const
 export const BUILD_DATE = new Date().toISOString().split('T')[0]
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "0.3.3": {
+    date: "2024-12-13",
+    name: "Fix Broken Links",
+    features: [
+      "Replaced broken notes.avantle.ai links with working DPIA Agent links",
+      "Updated hero section CTA to launch DPIA Agent",
+      "Fixed CTA component to point to functional application",
+      "Modernized agents showcase with working links"
+    ],
+    improvements: [
+      "Eliminated 404 errors from broken external links",
+      "Improved user experience with functional navigation",
+      "Better focus on available DPIA Agent functionality",
+      "Clean agents section with 'Coming Soon' placeholder"
+    ],
+    technical: [
+      "Updated hero.tsx to use dpia.avantle.ai",
+      "Fixed cta.tsx external link destinations",
+      "Modernized agents.tsx component structure",
+      "Consistent link handling across all components"
+    ],
+    fixes: [
+      "Fixed millisecond flash of notes.avantle.ai content",
+      "Resolved 404 NOT_FOUND errors on click navigation",
+      "Eliminated broken external link references",
+      "Improved overall site stability and user flow"
+    ]
+  },
   "0.3.0": {
     date: "2024-12-07",
     name: "Password Protection - 789",
