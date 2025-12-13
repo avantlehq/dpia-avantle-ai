@@ -342,9 +342,10 @@ export function DynamicFormGenerator({
             name={field.id}
             render={() => (
               <FormItem 
-                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
+                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30 mb-8" : "mb-8"}
               >
-                <div className="mb-6">
+                {/* Question - visually separated */}
+                <div className="mb-4">
                   <FormLabel 
                     className="text-lg font-bold leading-relaxed block"
                     style={{ color: sectionColor }}
@@ -353,29 +354,31 @@ export function DynamicFormGenerator({
                     {field.required && <span className="text-red-500 ml-1">*</span>}
                   </FormLabel>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 ml-6">
-                  {field.options?.map((option, _index) => (
-                    <FormField
-                      key={option}
-                      control={form.control}
-                      name={field.id}
-                      render={({ field: formField }) => {
-                        const isSelected = (formField.value as string[])?.includes(option)
-                        return (
-                          <FormItem key={option} className="space-y-0">
-                            <FormControl>
-                              <div
+                
+                {/* Answer cluster - flex wrap pills */}
+                <div className="ml-6">
+                  <div className="flex flex-wrap gap-2">
+                    {field.options?.map((option, _index) => (
+                      <FormField
+                        key={option}
+                        control={form.control}
+                        name={field.id}
+                        render={({ field: formField }) => {
+                          const isSelected = (formField.value as string[])?.includes(option)
+                          return (
+                            <FormControl key={option}>
+                              <button
+                                type="button"
                                 className={`
-                                  relative cursor-pointer rounded-lg border-2 p-4 transition-all duration-200 ease-in-out
+                                  inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150
+                                  focus:outline-none focus:ring-2 focus:ring-offset-1
                                   ${isSelected 
-                                    ? 'border-current shadow-lg transform scale-[1.02]' 
-                                    : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
+                                    ? 'text-white shadow-sm' 
+                                    : 'text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200'
                                   }
-                                  hover:scale-[1.01] focus-within:scale-[1.02] focus-within:ring-2 focus-within:ring-current focus-within:ring-opacity-20
                                 `}
                                 style={{
-                                  borderColor: isSelected ? sectionColor : undefined,
-                                  backgroundColor: isSelected ? getSectionBackgroundColor(section.sectionId) : undefined
+                                  backgroundColor: isSelected ? sectionColor : undefined
                                 }}
                                 onClick={() => {
                                   if (_index === 0) setFieldRef(field.id, document.activeElement as HTMLElement)
@@ -393,34 +396,19 @@ export function DynamicFormGenerator({
                                     formField.onChange(updatedValue)
                                   }
                                 }}
-                                tabIndex={0}
-                                role="checkbox"
-                                aria-checked={isSelected}
+                                aria-pressed={isSelected}
                                 aria-label={option}
                               >
-                                {/* Selection indicator - subtle checkmark in corner */}
-                                {isSelected && (
-                                  <div 
-                                    className="absolute top-2 right-2 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                                    style={{ backgroundColor: sectionColor }}
-                                  >
-                                    ✓
-                                  </div>
-                                )}
-                                
-                                {/* Option text */}
-                                <div className={`text-sm font-medium leading-tight pr-6 ${isSelected ? 'text-gray-900' : 'text-gray-700'}`}>
-                                  {option}
-                                </div>
-                              </div>
+                                {option}
+                              </button>
                             </FormControl>
-                          </FormItem>
-                        )
-                      }}
-                    />
-                  ))}
+                          )
+                        }}
+                      />
+                    ))}
+                  </div>
                 </div>
-                <FormMessage className="ml-6" />
+                <FormMessage className="ml-6 mt-2" />
               </FormItem>
             )}
           />

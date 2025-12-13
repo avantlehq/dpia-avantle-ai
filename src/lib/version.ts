@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.13.0" as const
-export const VERSION_NAME = "Modern Multiselect Cards" as const
+export const VERSION = "3.14.0" as const
+export const VERSION_NAME = "True Pill UI Design" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,32 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.14.0": {
+    date: "2025-12-13",
+    name: "True Pill UI Design",
+    features: [
+      "COMPLETE REDESIGN: Eliminated all list-based layout patterns",
+      "TRUE PILL/CHIP MODEL: Compact buttons with flex-wrap, no grids or rows", 
+      "CLEAN SELECTION: Fill/unfill states without borders or highlights",
+      "PROPER HIERARCHY: Questions visually separated from answer clusters",
+      "MODERN INTERACTION: Button-based pills, no checkbox hybrids",
+      "FLEX-WRAP LAYOUT: Natural text-width pills that wrap organically"
+    ],
+    improvements: [
+      "Eliminated legacy 'enterprise form' appearance completely",
+      "Fast scannable UI comparable to Notion tags/Linear labels", 
+      "No full-width rows, no list patterns, no table layouts",
+      "Clean modern SaaS aesthetic without legacy form elements",
+      "Better space utilization with flexible wrapping"
+    ],
+    technical: [
+      "Replaced grid layout with flex flex-wrap for natural flow",
+      "Button elements instead of div containers for semantic correctness",
+      "Removed all list-style patterns and full-width interactions",
+      "Compact pill sizing with proper text padding",
+      "Clean fill states using section colors without borders"
+    ]
+  },
   "3.13.0": {
     date: "2025-12-13",
     name: "Modern Multiselect Cards",
