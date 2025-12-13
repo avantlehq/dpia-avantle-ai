@@ -397,6 +397,172 @@ return <SearchableSelect />
 - **Error highlighting** - Red left border + background tint
 - **Required indicators** - Red asterisk `*` for mandatory fields
 
+## 🚀 **Modern UX Patterns (v3.16.0)**
+
+### **Single Primary CTA Rule**
+
+Každá obrazovka/formulár môže mať iba **jedno primary CTA tlačidlo**:
+
+```tsx
+// ✅ SPRÁVNE - Jediné dominantné CTA
+<div className="sticky bottom-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 p-6">
+  <div className="flex justify-end max-w-4xl mx-auto">
+    <Button
+      type="submit"
+      className="px-8 py-4 text-lg font-bold rounded-xl min-w-[200px] shadow-xl hover:shadow-2xl transform hover:scale-105"
+      style={{ backgroundColor: sectionColor, fontSize: '18px', fontWeight: '700' }}
+    >
+      Complete Section
+    </Button>
+  </div>
+</div>
+
+// ❌ WRONG - Konkurenčné CTA tlačidlá
+<div className="flex gap-4">
+  <Button variant="outline">Save Progress</Button>
+  <Button variant="outline">Save Draft</Button>
+  <Button>Complete Section</Button>  {/* Ktoré je primary? */}
+</div>
+```
+
+### **Auto-Save System Standards**
+
+Implementuj automatické ukladanie namiesto manuálnych Save tlačidiel:
+
+```tsx
+// ✅ SPRÁVNE - Auto-save s status indikátorom
+const [autoSaving, setAutoSaving] = useState(false)
+const [lastSaved, setLastSaved] = useState<Date | null>(null)
+const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
+
+// Debounced auto-save (2 seconds)
+useEffect(() => {
+  if (hasUnsavedChanges) {
+    const timer = setTimeout(() => autoSave(formData), 2000)
+    return () => clearTimeout(timer)
+  }
+}, [formData, hasUnsavedChanges])
+
+// Status display
+const getSaveStatus = () => {
+  if (autoSaving) return { icon: Clock, text: 'Saving...', className: 'text-orange-600' }
+  if (lastSaved) {
+    const diffMinutes = Math.floor((Date.now() - lastSaved.getTime()) / 60000)
+    return { 
+      icon: Check, 
+      text: diffMinutes === 0 ? 'Saved · just now' : `Saved · ${diffMinutes} minutes ago`,
+      className: 'text-green-600' 
+    }
+  }
+  return null
+}
+
+// ❌ WRONG - Manuálne Save tlačidlá
+<Button onClick={handleSave}>Save Progress</Button>
+<Button onClick={handleSaveDraft}>Save Draft</Button>
+```
+
+### **Segmented Control Proportions**
+
+Binary choice segmented controls musia mať správne proporcie:
+
+```tsx
+// ✅ SPRÁVNE - Správna šírka a gap
+<div className="flex gap-2 max-w-sm mx-0">
+  {options.map(option => (
+    <button 
+      className="flex-1 px-4 py-3 rounded-lg text-center"
+      style={{ minHeight: '48px' }}
+    >
+      {option}
+    </button>
+  ))}
+</div>
+
+// ❌ WRONG - Full-width (príliš veľké tlačidlá)
+<div className="flex gap-1 w-full">
+  {/* Tlačidlá budú obrovské na wide screen */}
+</div>
+
+// ❌ WRONG - Príliš úzke
+<div className="flex gap-1 max-w-xs">
+  {/* Tlačidlá budú príliš malé */}
+</div>
+```
+
+### **Visual Hierarchy Rules**
+
+**Primary CTA Requirements:**
+- **Size**: `px-8 py-4` (nie `px-6 py-3`)
+- **Typography**: `text-lg font-bold` (nie `text-base font-semibold`)  
+- **Border radius**: `rounded-xl` (12px, nie 8px)
+- **Shadow**: `shadow-xl hover:shadow-2xl` 
+- **Transform**: `hover:scale-105` (nie `hover:scale-102`)
+- **Min width**: `min-w-[200px]` pre consistency
+- **Section color**: Dynamic background based on current section
+
+**Sticky Positioning Pattern:**
+```tsx
+<div className="sticky bottom-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 p-6 -mx-6 -mb-6 mt-8">
+  <div className="flex justify-end max-w-4xl mx-auto">
+    {/* Primary CTA here */}
+  </div>
+</div>
+```
+
+### **Cognitive Load Elimination**
+
+**Jeden Screen = Jedna Akcia:**
+- ✅ Maximálne **1 primary CTA** per screen
+- ✅ **Auto-save** eliminates manual save anxiety  
+- ✅ **Clear progression** - Complete Section → Next Section
+- ✅ **Status feedback** - real-time save indicators
+- ❌ Never multiple competing primary actions
+- ❌ Never manual save/draft buttons alongside auto-save
+
+### **Modern SaaS Flow Pattern**
+
+```tsx
+// ✅ COMPLETE PATTERN - Modern SaaS UX
+function ModernFormSection() {
+  return (
+    <div className="space-y-6">
+      {/* Header with auto-save status */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Icon className="h-5 w-5" style={{ color: sectionColor }} />
+          <h2 className="text-2xl font-semibold">Section Title</h2>
+        </div>
+        
+        {/* Auto-save indicator */}
+        <div className="flex items-center gap-1 text-sm text-green-600">
+          <Check className="h-4 w-4" />
+          <span>Saved · just now</span>
+        </div>
+      </div>
+
+      {/* Form content */}
+      <Form onSubmit={handleSubmit} onChange={triggerAutoSave}>
+        {/* Form fields */}
+      </Form>
+
+      {/* Sticky primary CTA */}
+      <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm border-t p-6">
+        <div className="flex justify-end">
+          <Button 
+            type="submit"
+            className="px-8 py-4 text-lg font-bold rounded-xl min-w-[200px]"
+            style={{ backgroundColor: sectionColor }}
+          >
+            Complete Section
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
 ### **Result: Clean Architecture - No Weak Spots**
 
 ✅ **Single light mode mechanism** - app-level control only, no conflicts  
@@ -408,6 +574,10 @@ return <SearchableSelect />
 ✅ **Category-based color coding** for perfect visual hierarchy  
 ✅ **Smart form control system** - intelligent UI based on option count
 ✅ **Modern binary choices** - segmented control instead of radio buttons
+✅ **Single primary CTA rule** - one dominant action per screen
+✅ **Auto-save system** - eliminates manual save anxiety
+✅ **Sticky CTA positioning** - always visible primary action
+✅ **Zero cognitive load** - clear progression and status feedback
 ✅ **Clean codebase** - no inline style calculations, maintainable architecture  
 ✅ **Enterprise-grade polish** ready for whitelabel SaaS scaling
 
