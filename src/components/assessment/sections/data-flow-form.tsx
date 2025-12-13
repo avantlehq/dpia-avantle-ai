@@ -1,10 +1,16 @@
 'use client'
 
-import React from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Database, AlertTriangle } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { Save, Network } from 'lucide-react'
+import { saveAssessmentSectionAction, getAssessmentSectionAction } from '@/lib/actions/assessment-section-actions'
+import { toast } from 'sonner'
+import { DynamicFormGenerator } from '../dynamic-form-generator'
+import templateData from '@/lib/templates/dpia-basic-eu-v1.json'
+
+// Extract section definition from JSON template
+const sectionDefinition = templateData.sections.data_flow_processing
 
 interface DataFlowFormProps {
   assessmentId: string
@@ -12,54 +18,120 @@ interface DataFlowFormProps {
   onNext: () => void
 }
 
-export function DataFlowForm({ onComplete, onNext }: DataFlowFormProps) {
+export function DataFlowForm({ assessmentId, onComplete }: DataFlowFormProps) {
+  const [loading, setLoading] = useState(false)
+  const [autoSaving] = useState(false)
+  const [formData, setFormData] = useState<Record<string, unknown>>({})
+
+  // Load existing data on mount
+  useEffect(() => {
+    if (assessmentId) {
+      loadSectionData()
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [assessmentId])
+
+  const loadSectionData = async () => {
+    setLoading(true)
+    try {
+      const result = await getAssessmentSectionAction(assessmentId, 'data_flow_processing')
+      
+      if (result.success && result.data) {
+        setFormData(result.data)
+      }
+    } catch (error) {
+      console.error('Error loading section data:', error)
+      toast.error('Failed to load existing form data.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleSave = async (data: Record<string, unknown>) => {
+    setLoading(true)
+    try {
+      const result = await saveAssessmentSectionAction(assessmentId, 'data_flow_processing', data)
+      
+      if (result.success) {
+        toast.success('Data Flow & Processing section has been saved successfully.')
+        setFormData(data)
+      } else {
+        throw new Error(result.error || 'Failed to save')
+      }
+    } catch {
+      toast.error('Failed to save section. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const onSubmit = async (data: Record<string, unknown>) => {
+    setLoading(true)
+    try {
+      const result = await saveAssessmentSectionAction(assessmentId, 'data_flow_processing', data)
+      
+      if (result.success) {
+        onComplete()
+        toast.success('Data Flow & Processing section completed successfully.')
+      } else {
+        throw new Error(result.error || 'Failed to save')
+      }
+    } catch {
+      toast.error('Failed to complete section. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Header with status */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <Database className="h-5 w-5 text-dpia-blue" />
-          <h2 className="text-2xl font-semibold">Data Flow & Processing</h2>
-          <Badge variant="secondary">Coming Soon</Badge>
+          <Network className="h-5 w-5 text-dpia-orange" />
+          <h2 className="text-2xl font-semibold">{sectionDefinition.title}</h2>
+          {autoSaving && (
+            <Badge variant="secondary" className="text-xs">
+              Auto-saving...
+            </Badge>
+          )}
         </div>
         <p className="text-muted-foreground">
-          Map data collection, storage, transfers, and sharing arrangements.
+          {sectionDefinition.description}
         </p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-orange-500" />
-            Section Under Development
-          </CardTitle>
-          <CardDescription>
-            This section will include forms for:
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2 text-sm text-muted-foreground">
-            <li>• Collection methods and sources</li>
-            <li>• Data storage locations and security</li>
-            <li>• Third-party transfers and sharing</li>
-            <li>• Data processors and joint controllers</li>
-            <li>• Security measures and safeguards</li>
-            <li>• International transfers and adequacy</li>
-          </ul>
-          
-          <div className="mt-6">
-            <Button 
-              onClick={() => {
-                onComplete()
-                onNext()
-              }}
-              variant="outline"
-            >
-              Skip for Now (Development)
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Dynamic Form Generator */}
+      <DynamicFormGenerator
+        key={`form-${assessmentId}-${Object.keys(formData).length}`}
+        section={sectionDefinition}
+        onSubmit={onSubmit}
+        defaultValues={formData}
+        loading={loading}
+        submitButtonText="Complete Section"
+      />
+
+      {/* Optional Save Progress Button */}
+      <div className="flex justify-start">
+        <Button
+          type="button"
+          variant="outline"
+          onClick={() => handleSave(formData)}
+          disabled={loading}
+          className="inline-flex items-center justify-center bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-300 hover:border-gray-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
+          style={{
+            backgroundColor: '#ffffff',
+            borderColor: '#9ca3af',
+            borderRadius: '8px',
+            color: '#4b5563',
+            fontSize: '16px',
+            fontWeight: '600'
+          }}
+        >
+          <Save className="mr-2 h-4 w-4" />
+          Save Progress
+        </Button>
+      </div>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.10.72" as const
-export const VERSION_NAME = "Fix Dashboard Stats Alignment" as const
-export const BUILD_DATE = "2025-12-07"
+export const VERSION = "3.11.0" as const
+export const VERSION_NAME = "DPIA Builder Section 2 - Data Flow & Processing" as const
+export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.11.0": {
+    date: "2025-12-13",
+    name: "DPIA Builder Section 2 - Data Flow & Processing",
+    features: [
+      "IMPLEMENTED: Complete Section 2 JSON definition in DPIA template",
+      "ADDED: 16 new comprehensive fields covering data flows, storage, transfers, and processing",
+      "INTEGRATED: Section 2 fully wired into wizard navigation and step progression",
+      "ENHANCED: DynamicFormGenerator handles all field types (text, textarea, select, multiselect, radio)",
+      "COMPLETED: Data persistence and validation for all Section 2 fields",
+      "INTEGRATED: Export functionality automatically includes Section 2 in PDF/DOCX outputs"
+    ],
+    improvements: [
+      "Professional data flow assessment with automated decision-making evaluation",
+      "Comprehensive storage security and location tracking capabilities",
+      "International transfer safeguards and third-country compliance assessment",
+      "External processor and joint controller relationship documentation",
+      "Internal/external data recipient categorization and access management",
+      "Logging and monitoring capabilities assessment with security event tracking"
+    ],
+    technical: [
+      "Updated dpia-basic-eu-v1.json with complete data_flow_processing section",
+      "DataFlowForm component implements DynamicFormGenerator pattern",
+      "Fixed TypeScript error in dpia-wizard.tsx (context vs context_scope)",
+      "Export service automatically processes all template sections including Section 2",
+      "Maintained existing assessment_answers and form_sections persistence architecture",
+      "Full compatibility with Next.js 16.0.7 and existing JSON-driven form system"
+    ]
+  },
   "3.10.72": {
     date: "2025-12-07",
     name: "Fix Dashboard Stats Alignment",

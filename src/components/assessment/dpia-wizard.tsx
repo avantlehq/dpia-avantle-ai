@@ -14,19 +14,19 @@ interface DPIAWizardProps {
   assessmentId: string
 }
 
-type SectionId = 'context' | 'data-flow' | 'risk-assessment' | 'mitigation'
+type SectionId = 'context_scope' | 'data_flow_processing' | 'risk_assessment' | 'mitigation'
 
 export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const [currentSection, setCurrentSection] = useState<SectionId>('context')
+  const [currentSection, setCurrentSection] = useState<SectionId>('context_scope')
   const [loading] = useState(false)
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set())
 
   // Initialize current section from URL or default to first
   useEffect(() => {
     const step = searchParams.get('step')
-    if (step && ['context', 'data-flow', 'risk-assessment', 'mitigation'].includes(step)) {
+    if (step && ['context_scope', 'data_flow_processing', 'risk_assessment', 'mitigation'].includes(step)) {
       setCurrentSection(step as SectionId)
     }
   }, [searchParams])
@@ -51,11 +51,11 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
     }
 
     switch (currentSection) {
-      case 'context':
+      case 'context_scope':
         return <ContextScopeForm {...commonProps} />
-      case 'data-flow':
+      case 'data_flow_processing':
         return <DataFlowForm {...commonProps} />
-      case 'risk-assessment':
+      case 'risk_assessment':
         return <RiskAssessmentForm {...commonProps} />
       case 'mitigation':
         return <MitigationForm {...commonProps} />
@@ -67,7 +67,7 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
   // Navigation handlers
   const handleNext = () => {
     const currentIndex = getSectionIndex(currentSection)
-    const sections: SectionId[] = ['context', 'data-flow', 'risk-assessment', 'mitigation']
+    const sections: SectionId[] = ['context_scope', 'data_flow_processing', 'risk_assessment', 'mitigation']
     
     if (currentIndex < sections.length - 1) {
       handleSectionChange(sections[currentIndex + 1])
@@ -76,7 +76,7 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
 
   const handlePrevious = () => {
     const currentIndex = getSectionIndex(currentSection)
-    const sections: SectionId[] = ['context', 'data-flow', 'risk-assessment', 'mitigation']
+    const sections: SectionId[] = ['context_scope', 'data_flow_processing', 'risk_assessment', 'mitigation']
     
     if (currentIndex > 0) {
       handleSectionChange(sections[currentIndex - 1])
@@ -84,11 +84,11 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
   }
 
   const getSectionIndex = (sectionId: SectionId): number => {
-    const sections: SectionId[] = ['context', 'data-flow', 'risk-assessment', 'mitigation']
+    const sections: SectionId[] = ['context_scope', 'data_flow_processing', 'risk_assessment', 'mitigation']
     return sections.indexOf(sectionId)
   }
 
-  const isFirstSection = currentSection === 'context'
+  const isFirstSection = currentSection === 'context_scope'
   const isLastSection = currentSection === 'mitigation'
   const canProceed = completedSections.has(currentSection)
 

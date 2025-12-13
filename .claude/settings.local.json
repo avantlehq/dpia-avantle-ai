@@ -47,7 +47,12 @@
       "WebFetch(domain:www.avantle.ai)",
       "Bash(npm view:*)",
       "Bash(npm audit:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(ping:*)",
+      "WebFetch(domain:dpia.ai)",
+      "Bash(del global-error.tsx)",
+      "Bash(SUPABASE_SERVICE_ROLE=dummy-service-role npm run build)",
+      "Bash(SUPABASE_SERVICE_ROLE=dummy-service-role npm run build -- --webpack)"
     ],
     "deny": [],
     "ask": [],
@@ -58,7 +63,8 @@
       "C:\\Users\\rasti\\Projects\\avantlehq\\tsi-directory",
       "C:\\Users\\rasti\\Projects\\avantlehq\\avantle-ai",
       "C:\\Users\\rasti\\Projects\\avantlehq\\notes-avantle-ai",
-      "C:\\c\\Users\\rasti\\Projects\\avantlehq"
+      "C:\\c\\Users\\rasti\\Projects\\avantlehq",
+      "C:\\Users\\rasti\\Projects\\textnotepad"
     ]
   }
 }

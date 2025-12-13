@@ -145,6 +145,189 @@
           "required": false
         }
       ]
+    },
+    "data_flow_processing": {
+      "sectionId": "data_flow_processing",
+      "title": "Data Flow & Processing",
+      "description": "Describe how personal data moves through systems, where it is stored, who processes it, and how it is protected.",
+      "fields": [
+        {
+          "id": "processing_activities_summary",
+          "type": "textarea",
+          "label": "High-Level Data Flow Description",
+          "placeholder": "Describe how personal data is collected, processed, stored, and deleted across systems...",
+          "required": true
+        },
+        {
+          "id": "data_collection_methods",
+          "type": "multiselect",
+          "label": "Data Collection Methods",
+          "options": [
+            "Online forms / web portals",
+            "Mobile applications",
+            "In-person / paper forms",
+            "Email communication",
+            "Sensors / IoT devices",
+            "System logs / telemetry",
+            "Third-party data imports",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "automated_decision_making",
+          "type": "radio",
+          "label": "Does the processing include automated decision-making (incl. profiling)?",
+          "options": [
+            "No automated decision-making",
+            "Yes, with human review",
+            "Yes, fully automated"
+          ],
+          "required": true
+        },
+        {
+          "id": "automated_decision_details",
+          "type": "textarea",
+          "label": "If automated decision-making is used, describe the logic and impact on data subjects",
+          "placeholder": "Explain the logic, significance, and potential consequences of automated decisions...",
+          "required": false
+        },
+        {
+          "id": "storage_locations",
+          "type": "multiselect",
+          "label": "Primary Storage Locations",
+          "options": [
+            "On-premise servers (EU/EEA)",
+            "On-premise servers (outside EU/EEA)",
+            "Cloud infrastructure (EU/EEA)",
+            "Cloud infrastructure (outside EU/EEA)",
+            "End-user devices (laptops, mobiles)",
+            "Backup systems",
+            "Removable media",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "storage_security_level",
+          "type": "multiselect",
+          "label": "Storage Protection Measures",
+          "options": [
+            "Encryption at rest",
+            "Encryption in transit",
+            "Pseudonymisation",
+            "Anonymisation",
+            "Access control and role-based permissions",
+            "Network segmentation",
+            "Regular backups",
+            "No specific protection measures",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "data_transfers_outside_eu",
+          "type": "radio",
+          "label": "Are personal data transferred outside the EU/EEA?",
+          "options": [
+            "No, data remain within the EU/EEA",
+            "Yes, to countries with adequacy decisions",
+            "Yes, to other third countries"
+          ],
+          "required": true
+        },
+        {
+          "id": "data_transfer_countries",
+          "type": "textarea",
+          "label": "If applicable, list destination countries and recipients",
+          "placeholder": "List the countries (e.g. US, UK, etc.) and the categories of recipients...",
+          "required": false
+        },
+        {
+          "id": "data_transfer_safeguards",
+          "type": "multiselect",
+          "label": "Safeguards for International Transfers",
+          "options": [
+            "Adequacy decision",
+            "Standard Contractual Clauses (SCCs)",
+            "Binding Corporate Rules (BCRs)",
+            "Derogations under Article 49",
+            "Technical measures (encryption, pseudonymisation)",
+            "Organisational measures (policies, access control)",
+            "No specific safeguards",
+            "Other"
+          ],
+          "required": false
+        },
+        {
+          "id": "processors_involved",
+          "type": "radio",
+          "label": "Are external processors involved in the processing?",
+          "options": [
+            "No external processors",
+            "Yes, one or more processors"
+          ],
+          "required": true
+        },
+        {
+          "id": "processors_description",
+          "type": "textarea",
+          "label": "If processors are involved, describe their roles and services",
+          "placeholder": "List main processors, their services, and categories of data they handle...",
+          "required": false
+        },
+        {
+          "id": "joint_controllers",
+          "type": "radio",
+          "label": "Is there joint controllership (Article 26)?",
+          "options": [
+            "No joint controllers",
+            "Yes, joint controllership arrangement exists"
+          ],
+          "required": true
+        },
+        {
+          "id": "joint_controllers_details",
+          "type": "textarea",
+          "label": "If joint controllers exist, describe the allocation of responsibilities",
+          "placeholder": "Describe how responsibilities and obligations are allocated between joint controllers...",
+          "required": false
+        },
+        {
+          "id": "internal_data_recipients",
+          "type": "textarea",
+          "label": "Internal Data Recipients",
+          "placeholder": "List internal departments or roles that have access to the personal data (e.g. HR, Finance, IT Support)...",
+          "required": true
+        },
+        {
+          "id": "external_data_recipients",
+          "type": "textarea",
+          "label": "External Data Recipients",
+          "placeholder": "List external entities that receive personal data (e.g. payroll provider, insurance companies, authorities)...",
+          "required": false
+        },
+        {
+          "id": "logging_and_monitoring",
+          "type": "multiselect",
+          "label": "Logging and Monitoring",
+          "options": [
+            "Access logs for sensitive systems",
+            "Security event monitoring (SIEM)",
+            "Regular log review",
+            "No systematic logging",
+            "Other"
+          ],
+          "required": false
+        },
+        {
+          "id": "data_flow_diagram_reference",
+          "type": "text",
+          "label": "Reference to Data Flow Diagram or Documentation",
+          "placeholder": "Link, filename, or internal reference ID...",
+          "required": false
+        }
+      ]
     }
   }
 }

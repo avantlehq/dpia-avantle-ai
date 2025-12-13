@@ -131,7 +131,7 @@ The application is configured for deployment on `dpia.avantle.ai`.
 ## 🔗 Related Projects
 
 - **DPIA Marketing Site** (`dpia-ai`) - Marketing website and lead generation
-- **DPO Studio** (`dpo-studio-ai`) - Full GDPR compliance platform (future)
+
 
 ## 🚧 Development Status
 
