@@ -120,7 +120,7 @@ export function DynamicFormGenerator({
   defaultValues,
   loading = false,
   submitButtonText = 'Complete Section',
-  onChange
+  onChange: _onChange
 }: DynamicFormGeneratorProps) {
   const schema = createZodSchema(section.fields)
   const formDefaults = { ...getDefaultValues(section.fields), ...defaultValues }

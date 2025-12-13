@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.16.5" as const
-export const VERSION_NAME = "Remove Auto-Save (Causing Errors)" as const
+export const VERSION = "3.16.6" as const
+export const VERSION_NAME = "ESLint Fix - Unused onChange" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,21 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.16.6": {
+    date: "2025-12-13",
+    name: "ESLint Fix - Unused onChange",
+    features: [
+      "FIXED: ESLint error 'onChange is defined but never used'",
+      "MAINTAINED: All form functionality without auto-save"
+    ],
+    improvements: [
+      "Clean build process without ESLint warnings"
+    ],
+    technical: [
+      "Renamed unused onChange parameter to _onChange",
+      "Proper ESLint compliance for CI/CD pipeline"
+    ]
+  },
   "3.16.5": {
     date: "2025-12-13",
     name: "Remove Auto-Save (Causing Errors)",
