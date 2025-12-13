@@ -266,6 +266,137 @@ extend: {
 // NO inline styles, NO JS hover logic, pure Tailwind utilities!
 ```
 
+## 🎯 **Smart Form Control System (v3.15.0)**
+
+### **Intelligent Decision Logic for Form Questions**
+
+Moderný UI systém automaticky rozhoduje o type komponentu na základe počtu možností:
+
+```typescript
+// Rozhodovacia logika implementovaná v DynamicFormGenerator
+const optionCount = field.options?.length || 0
+
+// 1 možnosť → nezobrazuj (nezmyselná voľba)
+if (optionCount <= 1) return null
+
+// 2 možnosti (Yes/No) → segmented control
+if (optionCount === 2) return <SegmentedControl />
+
+// 3-8 možností → pill group (flex-wrap)  
+if (optionCount >= 3 && optionCount <= 8) return <PillGroup />
+
+// 9+ možností → searchable multiselect (future)
+return <SearchableSelect />
+```
+
+### **Binary Choice Components (2 možnosti)**
+
+**Segmented Control Pattern:**
+```tsx
+// ✅ SPRÁVNE - Segmented control pre Yes/No
+<div className="flex gap-1 max-w-xs">
+  {options.map(option => (
+    <button
+      className={`
+        flex-1 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-150
+        text-center focus:outline-none focus:ring-2 focus:ring-offset-1
+        ${isSelected 
+          ? 'text-white shadow-sm' 
+          : 'text-gray-600 bg-transparent hover:bg-gray-50 border border-gray-200'
+        }
+      `}
+      style={{
+        backgroundColor: isSelected ? sectionColor : undefined,
+        minHeight: '48px'
+      }}
+    >
+      {option}
+    </button>
+  ))}
+</div>
+
+// ❌ WRONG - Radio buttons pre binárnu voľbu
+<RadioGroup>
+  <RadioGroupItem value="yes" />
+  <RadioGroupItem value="no" />
+</RadioGroup>
+```
+
+**Pravidlá pre Binary Choices:**
+- **Rovnaká výška a šírka** - `flex-1` pre equal width pills
+- **Horizontálne vedľa seba** - `flex gap-1`, nie pod sebou
+- **Selected stav** - fill farbou sekcie + kontrastný text
+- **Unselected stav** - transparentný background + jemný border  
+- **Bez ikoniek** - čistý text, bez bodiek, bez iOS switch
+- **48px minimálna výška** - `minHeight: '48px'` pre good touch targets
+
+### **Multi-Choice Components (3-8 možností)**
+
+**Pill Group Pattern:**
+```tsx
+// ✅ SPRÁVNE - Flex-wrap pills pre multiple choice
+<div className="flex flex-wrap gap-2">
+  {options.map(option => (
+    <button
+      className={`
+        inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium 
+        transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-1
+        ${isSelected 
+          ? 'text-white shadow-sm' 
+          : 'text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200'
+        }
+      `}
+      style={{ backgroundColor: isSelected ? sectionColor : undefined }}
+    >
+      {option}
+    </button>
+  ))}
+</div>
+
+// ❌ WRONG - List alebo grid layout
+<div className="grid grid-cols-2 gap-3">
+  <FormItem className="flex flex-row items-start">
+    <Checkbox />
+    <FormLabel>{option}</FormLabel>
+  </FormItem>
+</div>
+```
+
+### **Component Selection Matrix**
+
+| Počet možností | Typ komponentu | Layout | Use Case |
+|---|---|---|---|
+| **1 alebo menej** | `null` (hidden) | - | Nezmyselná voľba |
+| **2 možnosti** | Segmented Control | `flex gap-1` horizontal | Yes/No, True/False |
+| **3-8 možností** | Pill Group | `flex-wrap gap-2` | Multiple choice |
+| **9+ možností** | Searchable Select | Dropdown + search | Large option sets |
+
+### **Form Control Standards**
+
+**Consistent Styling Variables:**
+```css
+:root {
+  --segment-height: 48px;        /* Binary choice minimum height */
+  --pill-padding: 0.375rem 0.75rem; /* 6px 12px pill padding */
+  --pill-radius: 9999px;        /* Full rounded pills */
+  --segment-radius: 0.5rem;      /* 8px segmented corners */
+  --focus-ring: 2px;             /* Focus ring width */
+}
+```
+
+**Accessibility Requirements:**
+- **Focus management** - `focus:ring-2 focus:ring-offset-1`
+- **Keyboard navigation** - Enter/Space support
+- **ARIA attributes** - `aria-pressed`, `aria-label`
+- **Color contrast** - Section colors meet WCAG standards
+- **Touch targets** - Minimum 48px for mobile
+
+**Visual Hierarchy Rules:**
+- **Question separation** - `mb-4` gap between question and answers
+- **Answer indentation** - `ml-6` left margin for answer cluster
+- **Error highlighting** - Red left border + background tint
+- **Required indicators** - Red asterisk `*` for mandatory fields
+
 ### **Result: Clean Architecture - No Weak Spots**
 
 ✅ **Single light mode mechanism** - app-level control only, no conflicts  
@@ -275,6 +406,8 @@ extend: {
 ✅ **Standardized opacity variables** (30%, 15%, 25%, 40%) in CSS  
 ✅ **Professional elevation** with shadow-sm hover:shadow-md transitions  
 ✅ **Category-based color coding** for perfect visual hierarchy  
+✅ **Smart form control system** - intelligent UI based on option count
+✅ **Modern binary choices** - segmented control instead of radio buttons
 ✅ **Clean codebase** - no inline style calculations, maintainable architecture  
 ✅ **Enterprise-grade polish** ready for whitelabel SaaS scaling
 
