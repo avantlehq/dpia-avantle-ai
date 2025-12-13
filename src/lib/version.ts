@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.11.1" as const
-export const VERSION_NAME = "ESLint Fix & Build Stabilization" as const
+export const VERSION = "3.11.2" as const
+export const VERSION_NAME = "Next.js Config Fix" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,24 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.11.2": {
+    date: "2025-12-13",
+    name: "Next.js Config Fix",
+    features: [
+      "FIXED: Next.js 16 TypeScript config error - removed invalid eslint property",
+      "CLEANED: next.config.ts to only include valid Next.js 16 properties",
+      "STABILIZED: Build process for successful deployment"
+    ],
+    improvements: [
+      "Streamlined Next.js configuration for better compatibility",
+      "Faster build process with clean config"
+    ],
+    technical: [
+      "Removed invalid eslint and typescript properties from next.config.ts",
+      "Maintained experimental serverActions and turbopack configuration",
+      "Ensured Next.js 16.0.10 compatibility"
+    ]
+  },
   "3.11.1": {
     date: "2025-12-13",
     name: "ESLint Fix & Build Stabilization",
