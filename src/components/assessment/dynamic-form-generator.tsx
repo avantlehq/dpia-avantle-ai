@@ -300,7 +300,7 @@ export function DynamicFormGenerator({
                     className="flex flex-col space-y-2 ml-6"
                     ref={(el) => setFieldRef(field.id, el)}
                   >
-                    {field.options?.map((option, index) => (
+                    {field.options?.map((option) => (
                       <FormItem key={option} className="flex items-center space-x-3 space-y-0">
                         <FormControl>
                           <RadioGroupItem value={option} />
@@ -338,7 +338,7 @@ export function DynamicFormGenerator({
                   </FormLabel>
                 </div>
                 <div className="grid grid-cols-2 gap-3 ml-6">
-                  {field.options?.map((option, index) => (
+                  {field.options?.map((option, _index) => (
                     <FormField
                       key={option}
                       control={form.control}
@@ -352,7 +352,7 @@ export function DynamicFormGenerator({
                             <Checkbox
                               checked={(formField.value as string[])?.includes(option)}
                               onCheckedChange={(checked) => {
-                                if (index === 0) setFieldRef(field.id, document.activeElement as HTMLElement)
+                                if (_index === 0) setFieldRef(field.id, document.activeElement as HTMLElement)
                                 const updatedValue = checked
                                   ? [...((formField.value as string[]) || []), option]
                                   : ((formField.value as string[]) || []).filter((value: string) => value !== option)

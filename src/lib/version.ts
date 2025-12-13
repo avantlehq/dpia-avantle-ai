@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.12.0" as const
-export const VERSION_NAME = "Enhanced DPIA Form UX" as const
+export const VERSION = "3.12.1" as const
+export const VERSION_NAME = "ESLint Fix" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,21 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.12.1": {
+    date: "2025-12-13",
+    name: "ESLint Fix",
+    features: [
+      "FIXED: ESLint unused variable error in dynamic-form-generator.tsx",
+      "MAINTAINED: All DPIA Form UX enhancements from v3.12.0"
+    ],
+    improvements: [
+      "Clean build process without ESLint warnings"
+    ],
+    technical: [
+      "Fixed unused 'index' variable in radio options mapping",
+      "Proper ESLint compliance for CI/CD pipeline"
+    ]
+  },
   "3.12.0": {
     date: "2025-12-13",
     name: "Enhanced DPIA Form UX",
