@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.16.3" as const
-export const VERSION_NAME = "Force Cache Bust" as const
+export const VERSION = "3.16.4" as const
+export const VERSION_NAME = "Fix Assessment Page Error" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,23 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.16.4": {
+    date: "2025-12-13",
+    name: "Fix Assessment Page Error",
+    features: [
+      "FIXED: Application error on completed assessment page",
+      "RESTORED: Missing Badge import in risk-assessment-form.tsx"
+    ],
+    improvements: [
+      "Assessment pages now load without runtime errors",
+      "All DPIA wizard sections work correctly"
+    ],
+    technical: [
+      "Added back Badge import for 'Coming Soon' indicators",
+      "Fixed component import dependencies",
+      "Assessment URL parameter handling working correctly"
+    ]
+  },
   "3.16.3": {
     date: "2025-12-13",
     name: "Force Cache Bust",
