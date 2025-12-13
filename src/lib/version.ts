@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.16.1" as const
-export const VERSION_NAME = "Fix useEffect Import" as const
+export const VERSION = "3.16.2" as const
+export const VERSION_NAME = "Clean Unused Imports" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,23 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.16.2": {
+    date: "2025-12-13",
+    name: "Clean Unused Imports",
+    features: [
+      "FIXED: ESLint errors 'Badge is defined but never used'",
+      "MAINTAINED: All Modern CTA & Auto-Save UX features"
+    ],
+    improvements: [
+      "Clean build process without ESLint warnings",
+      "Removed unused Badge imports after auto-save redesign"
+    ],
+    technical: [
+      "Removed unused Badge imports from context-scope-form.tsx and data-flow-form.tsx",
+      "Clean codebase after removing manual save indicators",
+      "Proper ESLint compliance for CI/CD pipeline"
+    ]
+  },
   "3.16.1": {
     date: "2025-12-13",
     name: "Fix useEffect Import",

@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState, useEffect, useCallback } from 'react'
-import { Badge } from '@/components/ui/badge'
 import { FileText, Check, Clock } from 'lucide-react'
 import { saveAssessmentSectionAction, getAssessmentSectionAction } from '@/lib/actions/assessment-section-actions'
 import { toast } from 'sonner'
