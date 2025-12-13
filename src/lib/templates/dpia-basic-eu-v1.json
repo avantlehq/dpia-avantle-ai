@@ -1,8 +1,9 @@
 {
-  "schemaVersion": "1.0",
   "templateId": "dpia-basic-eu-v1",
-  "title": "GDPR DPIA Template (EU Basic)",
-  "description": "Standard GDPR Article 35 Data Protection Impact Assessment template for EU organizations",
+  "title": "DPIA Basic EU Template v1",
+  "version": "1.0.0",
+  "jurisdiction": "EU",
+  "standard": "GDPR Article 35",
   "sections": {
     "context_scope": {
       "sectionId": "context_scope",
@@ -104,13 +105,7 @@
           "id": "processing_frequency",
           "type": "select",
           "label": "Frequency of Processing",
-          "options": [
-            "Continuous",
-            "Daily",
-            "Weekly",
-            "Monthly",
-            "Occasional"
-          ],
+          "options": ["Continuous", "Daily", "Weekly", "Monthly", "Occasional"],
           "required": true
         },
         {
@@ -129,12 +124,7 @@
           "id": "data_processing_location",
           "type": "multiselect",
           "label": "Data Processing Location",
-          "options": [
-            "EU/EEA",
-            "United Kingdom", 
-            "United States",
-            "Other Third Countries"
-          ],
+          "options": ["EU/EEA", "United Kingdom", "United States", "Other Third Countries"],
           "required": true
         },
         {
@@ -326,6 +316,146 @@
           "label": "Reference to Data Flow Diagram or Documentation",
           "placeholder": "Link, filename, or internal reference ID...",
           "required": false
+        }
+      ]
+    },
+    "risk_assessment": {
+      "sectionId": "risk_assessment",
+      "title": "Risk Assessment",
+      "description": "Assess risks to the rights and freedoms of data subjects based on likelihood and impact, and document key risk scenarios.",
+      "fields": [
+        {
+          "id": "risk_scenarios",
+          "type": "multiselect",
+          "label": "Risk Scenarios",
+          "options": [
+            "Unauthorized access (internal)",
+            "Unauthorized access (external)",
+            "Data breach / leak",
+            "Accidental disclosure",
+            "Loss of device / media",
+            "Excessive data collection",
+            "Function creep / secondary use",
+            "Incorrect data leading to harm",
+            "Discrimination / unfair treatment",
+            "Identity theft / fraud",
+            "Loss of confidentiality (special categories)",
+            "Unlawful international transfer",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "vulnerable_data_subjects",
+          "type": "radio",
+          "label": "Are vulnerable data subjects involved?",
+          "options": [
+            "No",
+            "Yes - children",
+            "Yes - employees/dependents",
+            "Yes - patients / health-related context",
+            "Yes - other vulnerable groups"
+          ],
+          "required": true
+        },
+        {
+          "id": "rights_impacted",
+          "type": "multiselect",
+          "label": "Potentially Impacted Rights and Freedoms",
+          "options": [
+            "Privacy / confidentiality",
+            "Freedom of movement",
+            "Freedom of expression",
+            "Non-discrimination",
+            "Protection from identity theft or fraud",
+            "Economic interests",
+            "Reputation damage",
+            "Loss of control over personal data",
+            "Physical harm",
+            "Other"
+          ],
+          "required": true
+        },
+        {
+          "id": "risk_likelihood",
+          "type": "select",
+          "label": "Likelihood (1–5)",
+          "options": [
+            "1 - Very Low",
+            "2 - Low",
+            "3 - Medium",
+            "4 - High",
+            "5 - Very High"
+          ],
+          "required": true
+        },
+        {
+          "id": "risk_impact",
+          "type": "select",
+          "label": "Impact / Severity (1–5)",
+          "options": [
+            "1 - Minimal",
+            "2 - Minor",
+            "3 - Moderate",
+            "4 - Major",
+            "5 - Severe"
+          ],
+          "required": true
+        },
+        {
+          "id": "risk_rationale",
+          "type": "textarea",
+          "label": "Risk Rationale",
+          "placeholder": "Explain why the selected likelihood and impact levels apply in this processing context...",
+          "required": true
+        },
+        {
+          "id": "existing_controls_summary",
+          "type": "textarea",
+          "label": "Existing Controls (Before Mitigation)",
+          "placeholder": "Summarize current technical and organizational measures already in place...",
+          "required": true
+        },
+        {
+          "id": "residual_risk_expectation",
+          "type": "radio",
+          "label": "Expected residual risk after mitigation",
+          "options": [
+            "Low",
+            "Medium",
+            "High",
+            "Unknown (to be evaluated)"
+          ],
+          "required": false
+        },
+        {
+          "id": "high_risk_remains",
+          "type": "radio",
+          "label": "Do you expect that high risk will remain after mitigation?",
+          "options": [
+            "No",
+            "Yes",
+            "Unsure"
+          ],
+          "required": true
+        },
+        {
+          "id": "consultation_needed",
+          "type": "radio",
+          "label": "Is prior consultation with the supervisory authority likely needed (Article 36)?",
+          "options": [
+            "No",
+            "Yes",
+            "Unsure"
+          ],
+          "required": false
+        },
+        {
+          "id": "risk_summary",
+          "type": "textarea",
+          "label": "Risk Summary",
+          "placeholder": "Write a short risk summary suitable for the DPIA report...",
+          "required": true
         }
       ]
     }

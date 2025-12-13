@@ -355,7 +355,7 @@ export class RealExportService {
       template: dpiaTemplate,
       metadata: {
         exportedAt: new Date().toISOString(),
-        version: '1.3'
+        version: '3.11.0'
       }
     }
   }

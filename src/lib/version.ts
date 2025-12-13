@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.16.7" as const
-export const VERSION_NAME = "Note: Next.js 16 SSR Build Warning" as const
+export const VERSION = "3.17.0" as const
+export const VERSION_NAME = "DPIA Builder Section 3 - Risk Assessment Complete" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.17.0": {
+    date: "2025-12-13",
+    name: "DPIA Builder Section 3 - Risk Assessment Complete",
+    features: [
+      "IMPLEMENTED: Complete Section 3 Risk Assessment for DPIA Builder wizard",
+      "JSON-DRIVEN FORMS: Risk assessment using existing DynamicFormGenerator pattern",
+      "RISK SCORING ENGINE: Automatic likelihood × impact calculation (1-25 scale)",
+      "REAL-TIME DISPLAY: Computed risk score with color-coded risk levels",
+      "COMPREHENSIVE FIELDS: 13 risk scenarios, vulnerable subjects, rights impact assessment",
+      "EXPORT INTEGRATION: PDF/DOCX exports include Section 3 content and risk summary"
+    ],
+    improvements: [
+      "Professional risk assessment with GDPR Article 35 compliance",
+      "Automated risk level determination: Low (1-5), Medium (6-12), High (13-20), Very High (21-25)",
+      "Server-side risk computation with automatic persistence to assessment data",
+      "Enhanced export reports with scenario-specific recommendations",
+      "Risk assessment guide with calculation methodology display",
+      "Complete 3-section DPIA workflow: Context, Data Flow, Risk Assessment"
+    ],
+    technical: [
+      "Extended dpia-basic-eu-v1.json template with comprehensive risk assessment fields",
+      "Updated risk-assessment-form.tsx to use DynamicFormGenerator with risk evaluation display",
+      "Added processRiskAssessment function in assessment-section-actions.ts",
+      "Enhanced export service with Section 3 integration and computed risk summaries",
+      "Risk evaluation stored in assessment.data.risk_evaluation with full metadata",
+      "TypeScript fixes for proper type safety and build compatibility"
+    ]
+  },
   "3.16.7": {
     date: "2025-12-13",
     name: "Note: Next.js 16 SSR Build Warning",

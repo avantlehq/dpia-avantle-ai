@@ -136,26 +136,12 @@ export function DynamicFormGenerator({
 
   // Enhanced submit handler with validation and focus management
   const handleSubmit = useCallback((data: Record<string, unknown>) => {
-    // First trigger form validation
-    const isValid = form.trigger()
-    if (!isValid) {
-      // Find first error field and focus it
-      setTimeout(() => {
-        const firstErrorField = Object.keys(form.formState.errors)[0]
-        if (firstErrorField && fieldRefs.current[firstErrorField]) {
-          fieldRefs.current[firstErrorField]?.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'center' 
-          })
-          fieldRefs.current[firstErrorField]?.focus()
-        }
-      }, 100)
-      return
-    }
+    // Validation is already handled by react-hook-form
+    // Just call the onSubmit function
     
     // If validation passes, call onSubmit
     onSubmit(data)
-  }, [onSubmit, form])
+  }, [onSubmit])
 
   // Set field ref for focus management
   const setFieldRef = useCallback((fieldId: string, element: HTMLElement | null) => {
