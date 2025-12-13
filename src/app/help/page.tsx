@@ -202,7 +202,7 @@ export default function HelpPage() {
               </div>
               <div className="flex items-start gap-3">
                 <AlertTriangle className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
-                <p className="text-sm">Don't ignore international data transfers and cross-border compliance requirements</p>
+                <p className="text-sm">Don&apos;t ignore international data transfers and cross-border compliance requirements</p>
               </div>
             </CardContent>
           </Card>
