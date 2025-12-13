@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.14.1" as const
-export const VERSION_NAME = "Build Fix" as const
+export const VERSION = "3.15.0" as const
+export const VERSION_NAME = "Binary Choice Segmented Control" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.15.0": {
+    date: "2025-12-13",
+    name: "Binary Choice Segmented Control",
+    features: [
+      "INTELLIGENT DECISION LOGIC: Smart rendering based on option count (1=hidden, 2=segmented, 3-8=pills, 9+=searchable)",
+      "SEGMENTED CONTROL: Two equal-width pills for Yes/No binary choices instead of radio buttons",
+      "MODERN BINARY UI: Horizontal segmented control with fill/unfill states using section colors",
+      "SMART PILL GROUPS: 3-8 options render as flexible pill group with flex-wrap layout",
+      "ELIMINATED RADIO/CHECKBOX: No more traditional form controls for binary choices",
+      "CONSISTENT INTERACTION: Same click behavior across all question types"
+    ],
+    improvements: [
+      "Professional binary choice interface matching modern SaaS platforms",
+      "Equal-width pills provide balanced visual hierarchy",
+      "Clear horizontal layout for Yes/No decisions",
+      "Eliminated legacy radio button appearance completely",
+      "Intelligent UI adaptation based on number of options",
+      "Consistent section-color theming across all interaction patterns"
+    ],
+    technical: [
+      "Updated radio field rendering with smart option count logic",
+      "Segmented control uses flex-1 for equal-width pills",
+      "Added decision logic: 1 option (hidden), 2 options (segmented), 3-8 (pills), 9+ (searchable placeholder)",
+      "Maintained existing form validation and state management",
+      "Proper accessibility with aria-pressed and keyboard navigation",
+      "Clean component architecture supporting different UI patterns per option count"
+    ]
+  },
   "3.14.1": {
     date: "2025-12-13",
     name: "Build Fix", 

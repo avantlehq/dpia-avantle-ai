@@ -278,6 +278,155 @@ export function DynamicFormGenerator({
         )
 
       case 'radio':
+        // Smart rendering logic based on option count
+        const optionCount = field.options?.length || 0
+        
+        // 1 option → don't display (invalid choice)
+        if (optionCount <= 1) {
+          return null
+        }
+        
+        // 2 options (Yes/No) → segmented control pills
+        if (optionCount === 2) {
+          return (
+            <FormField
+              key={field.id}
+              control={form.control}
+              name={field.id}
+              render={({ field: formField }) => (
+                <FormItem 
+                  className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30 mb-8" : "mb-8"}
+                >
+                  {/* Question - visually separated */}
+                  <div className="mb-4">
+                    <FormLabel 
+                      className="text-lg font-bold leading-relaxed block"
+                      style={{ color: sectionColor }}
+                    >
+                      {field.label}
+                      {field.required && <span className="text-red-500 ml-1">*</span>}
+                    </FormLabel>
+                  </div>
+                  
+                  {/* Segmented control - equal width pills */}
+                  <div className="ml-6">
+                    <div className="flex gap-1 max-w-xs">
+                      {field.options?.map((option) => {
+                        const isSelected = formField.value === option
+                        return (
+                          <FormControl key={option}>
+                            <button
+                              type="button"
+                              className={`
+                                flex-1 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-150
+                                focus:outline-none focus:ring-2 focus:ring-offset-1 text-center
+                                ${isSelected 
+                                  ? 'text-white shadow-sm' 
+                                  : 'text-gray-600 bg-transparent hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
+                                }
+                              `}
+                              style={{
+                                backgroundColor: isSelected ? sectionColor : undefined,
+                                minHeight: '48px'
+                              }}
+                              onClick={() => {
+                                setFieldRef(field.id, document.activeElement as HTMLElement)
+                                formField.onChange(option)
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault()
+                                  formField.onChange(option)
+                                }
+                              }}
+                              aria-pressed={isSelected}
+                              aria-label={option}
+                            >
+                              {option}
+                            </button>
+                          </FormControl>
+                        )
+                      })}
+                    </div>
+                  </div>
+                  <FormMessage className="ml-6 mt-2" />
+                </FormItem>
+              )}
+            />
+          )
+        }
+        
+        // 3-8 options → pill group (flex-wrap)
+        if (optionCount >= 3 && optionCount <= 8) {
+          return (
+            <FormField
+              key={field.id}
+              control={form.control}
+              name={field.id}
+              render={({ field: formField }) => (
+                <FormItem 
+                  className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30 mb-8" : "mb-8"}
+                >
+                  {/* Question - visually separated */}
+                  <div className="mb-4">
+                    <FormLabel 
+                      className="text-lg font-bold leading-relaxed block"
+                      style={{ color: sectionColor }}
+                    >
+                      {field.label}
+                      {field.required && <span className="text-red-500 ml-1">*</span>}
+                    </FormLabel>
+                  </div>
+                  
+                  {/* Pill group - flex wrap */}
+                  <div className="ml-6">
+                    <div className="flex flex-wrap gap-2">
+                      {field.options?.map((option) => {
+                        const isSelected = formField.value === option
+                        return (
+                          <FormControl key={option}>
+                            <button
+                              type="button"
+                              className={`
+                                inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150
+                                focus:outline-none focus:ring-2 focus:ring-offset-1
+                                ${isSelected 
+                                  ? 'text-white shadow-sm' 
+                                  : 'text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200'
+                                }
+                              `}
+                              style={{
+                                backgroundColor: isSelected ? sectionColor : undefined
+                              }}
+                              onClick={() => {
+                                setFieldRef(field.id, document.activeElement as HTMLElement)
+                                formField.onChange(option)
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault()
+                                  formField.onChange(option)
+                                }
+                              }}
+                              aria-pressed={isSelected}
+                              aria-label={option}
+                            >
+                              {option}
+                            </button>
+                          </FormControl>
+                        )
+                      })}
+                    </div>
+                  </div>
+                  <FormMessage className="ml-6 mt-2" />
+                </FormItem>
+              )}
+            />
+          )
+        }
+        
+        // 9+ options → TODO: searchable multiselect (future implementation)
+        // For now, fallback to pill group
         return (
           <FormField
             key={field.id}
@@ -285,35 +434,58 @@ export function DynamicFormGenerator({
             name={field.id}
             render={({ field: formField }) => (
               <FormItem 
-                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
+                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30 mb-8" : "mb-8"}
               >
-                <FormLabel 
-                  className="text-lg font-bold leading-relaxed mb-3 block"
-                  style={{ color: sectionColor }}
-                >
-                  {field.label}
-                  {field.required && <span className="text-red-500 ml-1">*</span>}
-                </FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={formField.onChange}
-                    defaultValue={formField.value as string}
-                    className="flex flex-col space-y-2 ml-6"
-                    ref={(el) => setFieldRef(field.id, el)}
+                <div className="mb-4">
+                  <FormLabel 
+                    className="text-lg font-bold leading-relaxed block"
+                    style={{ color: sectionColor }}
                   >
-                    {field.options?.map((option) => (
-                      <FormItem key={option} className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value={option} />
+                    {field.label}
+                    {field.required && <span className="text-red-500 ml-1">*</span>}
+                  </FormLabel>
+                </div>
+                
+                <div className="ml-6">
+                  <div className="flex flex-wrap gap-2">
+                    {field.options?.map((option) => {
+                      const isSelected = formField.value === option
+                      return (
+                        <FormControl key={option}>
+                          <button
+                            type="button"
+                            className={`
+                              inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150
+                              focus:outline-none focus:ring-2 focus:ring-offset-1
+                              ${isSelected 
+                                ? 'text-white shadow-sm' 
+                                : 'text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200'
+                              }
+                            `}
+                            style={{
+                              backgroundColor: isSelected ? sectionColor : undefined
+                            }}
+                            onClick={() => {
+                              setFieldRef(field.id, document.activeElement as HTMLElement)
+                              formField.onChange(option)
+                            }}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault()
+                                formField.onChange(option)
+                              }
+                            }}
+                            aria-pressed={isSelected}
+                            aria-label={option}
+                          >
+                            {option}
+                          </button>
                         </FormControl>
-                        <FormLabel className="font-normal text-base leading-relaxed" style={{ fontSize: '16px' }}>
-                          {option}
-                        </FormLabel>
-                      </FormItem>
-                    ))}
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage className="ml-6" />
+                      )
+                    })}
+                  </div>
+                </div>
+                <FormMessage className="ml-6 mt-2" />
               </FormItem>
             )}
           />
