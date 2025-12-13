@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.15.2" as const
-export const VERSION_NAME = "Build Config Fix Attempt" as const
+export const VERSION = "3.16.0" as const
+export const VERSION_NAME = "Modern CTA & Auto-Save UX" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,34 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.16.0": {
+    date: "2025-12-13",
+    name: "Modern CTA & Auto-Save UX",
+    features: [
+      "SEGMENTED CONTROL FIX: Proper max-width (max-w-sm) instead of full-screen pills",
+      "AUTO-SAVE SYSTEM: Automatic form saving with 2-second debounce and status indicator",
+      "SINGLE PRIMARY CTA: Eliminated duplicate Save/Draft buttons, one dominant Complete Section action",
+      "STICKY FOOTER CTA: Primary button positioned in sticky footer with enhanced visual prominence",
+      "SAVE STATUS DISPLAY: Real-time 'Saving...', 'Saved · just now', 'Saved · X minutes ago' indicators",
+      "MODERN BUTTON DESIGN: Larger, bolder primary CTA with section color theming and enhanced shadows"
+    ],
+    improvements: [
+      "Zero cognitive load - single clear action per screen",
+      "Modern SaaS auto-save flow eliminates manual save anxiety",
+      "Visually dominant primary CTA with no competing actions",
+      "Better segmented control proportions (not full-width)",
+      "Enhanced user confidence with real-time save status feedback",
+      "Sticky positioning ensures CTA always visible during form completion"
+    ],
+    technical: [
+      "Updated segmented control: max-w-sm with gap-2 for better proportions",
+      "Implemented debounced auto-save with useCallback and setTimeout",
+      "Added form change detection with onChange prop in DynamicFormGenerator",
+      "Enhanced primary CTA: px-8 py-4, text-lg, font-bold, section-color theming",
+      "Sticky footer with bg-white/95 backdrop-blur-sm for modern glass effect",
+      "Real-time save status calculation with icon and time difference display"
+    ]
+  },
   "3.15.2": {
     date: "2025-12-13",
     name: "Build Config Fix Attempt",

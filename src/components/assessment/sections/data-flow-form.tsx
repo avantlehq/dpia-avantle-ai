@@ -1,9 +1,8 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Badge } from '@/components/ui/badge'
-import { Save, Network } from 'lucide-react'
+import { Network, Check, Clock } from 'lucide-react'
 import { saveAssessmentSectionAction, getAssessmentSectionAction } from '@/lib/actions/assessment-section-actions'
 import { toast } from 'sonner'
 import { DynamicFormGenerator } from '../dynamic-form-generator'
@@ -20,8 +19,10 @@ interface DataFlowFormProps {
 
 export function DataFlowForm({ assessmentId, onComplete }: DataFlowFormProps) {
   const [loading, setLoading] = useState(false)
-  const [autoSaving] = useState(false)
+  const [autoSaving, setAutoSaving] = useState(false)
+  const [lastSaved, setLastSaved] = useState<Date | null>(null)
   const [formData, setFormData] = useState<Record<string, unknown>>({})
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false)
 
   // Load existing data on mount
   useEffect(() => {
@@ -47,23 +48,34 @@ export function DataFlowForm({ assessmentId, onComplete }: DataFlowFormProps) {
     }
   }
 
-  const handleSave = async (data: Record<string, unknown>) => {
-    setLoading(true)
+  // Auto-save functionality
+  const autoSave = useCallback(async (data: Record<string, unknown>) => {
+    setAutoSaving(true)
     try {
       const result = await saveAssessmentSectionAction(assessmentId, 'data_flow_processing', data)
       
       if (result.success) {
-        toast.success('Data Flow & Processing section has been saved successfully.')
+        setLastSaved(new Date())
+        setHasUnsavedChanges(false)
         setFormData(data)
-      } else {
-        throw new Error(result.error || 'Failed to save')
       }
-    } catch {
-      toast.error('Failed to save section. Please try again.')
+    } catch (error) {
+      console.error('Auto-save failed:', error)
     } finally {
-      setLoading(false)
+      setAutoSaving(false)
     }
-  }
+  }, [assessmentId])
+
+  // Trigger auto-save on form data changes (debounced)
+  useEffect(() => {
+    if (hasUnsavedChanges && Object.keys(formData).length > 0) {
+      const timer = setTimeout(() => {
+        autoSave(formData)
+      }, 2000) // Auto-save after 2 seconds of inactivity
+
+      return () => clearTimeout(timer)
+    }
+  }, [formData, hasUnsavedChanges, autoSave])
 
   const onSubmit = async (data: Record<string, unknown>) => {
     setLoading(true)
@@ -72,7 +84,7 @@ export function DataFlowForm({ assessmentId, onComplete }: DataFlowFormProps) {
       
       if (result.success) {
         onComplete()
-        toast.success('Data Flow & Processing section completed successfully.')
+        toast.success('Section completed! Moving to next step.')
       } else {
         throw new Error(result.error || 'Failed to save')
       }
@@ -83,17 +95,42 @@ export function DataFlowForm({ assessmentId, onComplete }: DataFlowFormProps) {
     }
   }
 
+  // Helper function to get save status display
+  const getSaveStatus = () => {
+    if (autoSaving) {
+      return { icon: Clock, text: 'Saving...', className: 'text-orange-600' }
+    }
+    if (lastSaved) {
+      const now = new Date()
+      const diffMinutes = Math.floor((now.getTime() - lastSaved.getTime()) / 60000)
+      
+      if (diffMinutes === 0) {
+        return { icon: Check, text: 'Saved · just now', className: 'text-green-600' }
+      } else if (diffMinutes === 1) {
+        return { icon: Check, text: 'Saved · 1 minute ago', className: 'text-green-600' }
+      } else {
+        return { icon: Check, text: `Saved · ${diffMinutes} minutes ago`, className: 'text-green-600' }
+      }
+    }
+    return null
+  }
+
   return (
     <div className="space-y-6">
-      {/* Header with status */}
+      {/* Header with auto-save status */}
       <div>
-        <div className="flex items-center gap-2 mb-2">
-          <Network className="h-5 w-5 text-dpia-orange" />
-          <h2 className="text-2xl font-semibold">{sectionDefinition.title}</h2>
-          {autoSaving && (
-            <Badge variant="secondary" className="text-xs">
-              Auto-saving...
-            </Badge>
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <Network className="h-5 w-5 text-dpia-orange" />
+            <h2 className="text-2xl font-semibold">{sectionDefinition.title}</h2>
+          </div>
+          
+          {/* Auto-save status indicator */}
+          {getSaveStatus() && (
+            <div className={`flex items-center gap-1 text-sm ${getSaveStatus()?.className}`}>
+              {React.createElement(getSaveStatus()?.icon || Check, { className: "h-4 w-4" })}
+              <span>{getSaveStatus()?.text}</span>
+            </div>
           )}
         </div>
         <p className="text-muted-foreground">
@@ -101,7 +138,7 @@ export function DataFlowForm({ assessmentId, onComplete }: DataFlowFormProps) {
         </p>
       </div>
 
-      {/* Dynamic Form Generator */}
+      {/* Dynamic Form Generator with auto-save */}
       <DynamicFormGenerator
         key={`form-${assessmentId}-${Object.keys(formData).length}`}
         section={sectionDefinition}
@@ -109,29 +146,11 @@ export function DataFlowForm({ assessmentId, onComplete }: DataFlowFormProps) {
         defaultValues={formData}
         loading={loading}
         submitButtonText="Complete Section"
+        onChange={(data) => {
+          setFormData(data)
+          setHasUnsavedChanges(true)
+        }}
       />
-
-      {/* Optional Save Progress Button */}
-      <div className="flex justify-start">
-        <Button
-          type="button"
-          variant="outline"
-          onClick={() => handleSave(formData)}
-          disabled={loading}
-          className="inline-flex items-center justify-center bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-300 hover:border-gray-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
-          style={{
-            backgroundColor: '#ffffff',
-            borderColor: '#9ca3af',
-            borderRadius: '8px',
-            color: '#4b5563',
-            fontSize: '16px',
-            fontWeight: '600'
-          }}
-        >
-          <Save className="mr-2 h-4 w-4" />
-          Save Progress
-        </Button>
-      </div>
     </div>
   )
 }

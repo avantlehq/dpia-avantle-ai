@@ -35,6 +35,7 @@ interface DynamicFormGeneratorProps {
   defaultValues?: Record<string, unknown>
   loading?: boolean
   submitButtonText?: string
+  onChange?: (data: Record<string, unknown>) => void
 }
 
 // Section color mapping based on DPIA workflow
@@ -118,7 +119,8 @@ export function DynamicFormGenerator({
   onSubmit,
   defaultValues,
   loading = false,
-  submitButtonText = 'Complete Section'
+  submitButtonText = 'Complete Section',
+  onChange
 }: DynamicFormGeneratorProps) {
   const schema = createZodSchema(section.fields)
   const formDefaults = { ...getDefaultValues(section.fields), ...defaultValues }
@@ -128,6 +130,14 @@ export function DynamicFormGenerator({
     resolver: zodResolver(schema),
     defaultValues: formDefaults,
   })
+
+  // Watch form changes and trigger onChange
+  const watchedValues = form.watch()
+  useEffect(() => {
+    if (onChange) {
+      onChange(watchedValues)
+    }
+  }, [watchedValues, onChange])
 
   const sectionColor = getSectionColor(section.sectionId)
 
@@ -309,7 +319,7 @@ export function DynamicFormGenerator({
                   
                   {/* Segmented control - equal width pills */}
                   <div className="ml-6">
-                    <div className="flex gap-1 max-w-xs">
+                    <div className="flex gap-2 max-w-sm mx-0">
                       {field.options?.map((option) => {
                         const isSelected = formField.value === option
                         return (
@@ -633,22 +643,26 @@ export function DynamicFormGenerator({
             </CardContent>
           </Card>
 
-          <div className="flex justify-end">
-            <Button
-              type="submit"
-              disabled={loading}
-              className="inline-flex items-center justify-center bg-orange-600 hover:bg-orange-700 shadow-lg hover:shadow-xl border border-orange-500 hover:border-orange-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer min-w-[180px]"
-              style={{
-                backgroundColor: loading ? '#9ca3af' : '#ea580c',
-                borderColor: loading ? '#9ca3af' : '#f97316',
-                borderRadius: '8px',
-                color: '#ffffff',
-                fontSize: '16px',
-                fontWeight: '600'
-              }}
-            >
-              {loading ? 'Saving...' : submitButtonText}
-            </Button>
+          {/* Sticky Primary CTA Footer */}
+          <div className="sticky bottom-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 p-6 -mx-6 -mb-6 mt-8">
+            <div className="flex justify-end max-w-4xl mx-auto">
+              <Button
+                type="submit"
+                disabled={loading}
+                className="inline-flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 px-8 py-4 font-bold rounded-xl cursor-pointer min-w-[200px] text-lg"
+                style={{
+                  backgroundColor: loading ? '#9ca3af' : sectionColor,
+                  borderColor: loading ? '#9ca3af' : sectionColor,
+                  borderRadius: '12px',
+                  color: '#ffffff',
+                  fontSize: '18px',
+                  fontWeight: '700',
+                  border: 'none'
+                }}
+              >
+                {loading ? 'Processing...' : submitButtonText}
+              </Button>
+            </div>
           </div>
         </form>
       </Form>
