@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.15.0" as const
-export const VERSION_NAME = "Binary Choice Segmented Control" as const
+export const VERSION = "3.15.1" as const
+export const VERSION_NAME = "ESLint Fix - Unused Imports" as const
 export const BUILD_DATE = "2025-12-13"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,23 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.15.1": {
+    date: "2025-12-13",
+    name: "ESLint Fix - Unused Imports",
+    features: [
+      "FIXED: ESLint error 'RadioGroup' and 'RadioGroupItem' defined but never used",
+      "MAINTAINED: All Binary Choice Segmented Control features from v3.15.0"
+    ],
+    improvements: [
+      "Clean build process without ESLint warnings",
+      "Removed legacy radio imports after segmented control implementation"
+    ],
+    technical: [
+      "Removed unused RadioGroup and RadioGroupItem imports",
+      "Clean codebase after radio button elimination",
+      "Proper ESLint compliance for CI/CD pipeline"
+    ]
+  },
   "3.15.0": {
     date: "2025-12-13",
     name: "Binary Choice Segmented Control",
