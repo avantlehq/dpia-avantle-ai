@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
   },
   turbopack: {
     root: path.resolve(__dirname)
+  },
+  // Skip global-error prerendering to avoid useContext SSR issues
+  skipTrailingSlashRedirect: true,
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  eslint: {
+    ignoreDuringBuilds: false,
   }
 };
 
