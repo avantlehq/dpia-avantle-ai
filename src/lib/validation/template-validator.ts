@@ -146,7 +146,7 @@ export class TemplateValidator {
    */
   private validateField(
     sectionId: string, 
-    field: any, 
+    field: { id: string; label: string; type: string; required?: boolean; options?: string[] }, 
     value: unknown
   ): { isValid: boolean; errors: ValidationError[]; warnings: ValidationWarning[] } {
     const errors: ValidationError[] = []

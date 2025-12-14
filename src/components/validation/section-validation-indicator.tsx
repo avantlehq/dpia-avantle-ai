@@ -8,14 +8,12 @@ import { cn } from '@/lib/utils'
 
 interface SectionValidationIndicatorProps {
   sectionValidation: SectionValidationResult | null
-  sectionId?: string
   className?: string
   showDetails?: boolean
 }
 
 export function SectionValidationIndicator({ 
   sectionValidation, 
-  sectionId,
   className,
   showDetails = false 
 }: SectionValidationIndicatorProps) {

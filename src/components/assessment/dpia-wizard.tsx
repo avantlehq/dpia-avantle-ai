@@ -33,7 +33,6 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
     sectionValidations,
     isValidating,
     refreshValidation,
-    hasErrors,
     completionPercentage
   } = useTemplateValidation({ assessmentId, autoValidate: true })
 
@@ -153,7 +152,6 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
                   </span>
                   <SectionValidationIndicator 
                     sectionValidation={sectionValidations[sectionId] || null}
-                    sectionId={sectionId}
                     className="scale-75"
                   />
                 </button>
