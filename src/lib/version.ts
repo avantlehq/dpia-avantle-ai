@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.5" as const
-export const VERSION_NAME = "Modern Button Sizing - Inline Yes/No Controls" as const
+export const VERSION = "3.19.6" as const
+export const VERSION_NAME = "Export Button Fix - Working DPIA PDF Export" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.6": {
+    date: "2025-12-14",
+    name: "Export Button Fix - Working DPIA PDF Export",
+    features: [
+      "CRITICAL FIX: Export DPIA button now works correctly in assessment wizard",
+      "PROPER BUTTON IMPLEMENTATION: Replaced invalid Link-inside-Button with onClick handler",
+      "WINDOW.OPEN PATTERN: Uses window.open() for PDF export like dashboard implementation",
+      "CLEAN HTML STRUCTURE: Eliminated invalid nested interactive elements",
+      "FUNCTIONAL EXPORT: Users can now successfully export completed DPIA assessments"
+    ],
+    improvements: [
+      "Export button now properly opens PDF in new tab when clicked",
+      "Consistent export behavior between dashboard and wizard navigation",
+      "Improved accessibility with proper button semantics",
+      "Better user experience with working export functionality",
+      "Reliable PDF generation and download from /api/export endpoint"
+    ],
+    technical: [
+      "Fixed wizard-navigation.tsx: replaced Link+Button combo with onClick window.open()",
+      "Removed unused Link import from wizard-navigation component",
+      "Uses same export pattern as dashboard: window.open('/api/export?assessment_id=${id}&format=pdf', '_blank')",
+      "Maintains all button styling and accessibility features",
+      "Clean HTML structure following web standards for interactive elements"
+    ]
+  },
   "3.19.5": {
     date: "2025-12-14",
     name: "Modern Button Sizing - Inline Yes/No Controls",

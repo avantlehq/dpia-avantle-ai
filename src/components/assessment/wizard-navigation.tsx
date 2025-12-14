@@ -4,7 +4,6 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { ChevronLeft, ChevronRight, FileText, Download } from 'lucide-react'
-import Link from 'next/link'
 
 interface WizardNavigationProps {
   onPrevious?: () => void
@@ -78,7 +77,7 @@ export function WizardNavigation({
           {/* Next/Complete Button */}
           {isLastSection ? (
             <Button 
-              asChild
+              onClick={() => window.open(`/api/export?assessment_id=${assessmentId}&format=pdf`, '_blank')}
               className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl border border-green-500 hover:border-green-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
               style={{
                 backgroundColor: '#16a34a',
@@ -89,10 +88,8 @@ export function WizardNavigation({
                 fontWeight: '600'
               }}
             >
-              <Link href={`/api/export?assessment_id=${assessmentId}&format=pdf`}>
-                <Download className="mr-2 h-4 w-4" />
-                Export DPIA
-              </Link>
+              <Download className="mr-2 h-4 w-4" />
+              Export DPIA
             </Button>
           ) : (
             <Button 
