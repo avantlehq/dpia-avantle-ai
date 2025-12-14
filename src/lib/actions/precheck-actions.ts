@@ -22,7 +22,12 @@ export async function submitPrecheckAction(
 ): Promise<PrecheckSubmissionResult> {
   try {
     // Use precheck engine to evaluate answers properly
-    const engineResult = precheckEngine.evaluate({ answers: answers as Record<string, string> })
+    // Convert answers to the format expected by precheck engine
+    const processedAnswers: Record<string, string> = {}
+    Object.entries(answers).forEach(([key, value]) => {
+      processedAnswers[key] = Array.isArray(value) ? value[0] : value
+    })
+    const engineResult = precheckEngine.evaluate({ answers: processedAnswers as Record<string, 'yes' | 'no' | 'unsure'> })
     
     // Convert engine result to action result format
     const result = {
@@ -101,7 +106,12 @@ export async function submitPrecheckAction(
     console.error('Error submitting precheck:', error)
     
     // Fallback: use precheck engine without database
-    const engineResult = precheckEngine.evaluate({ answers: answers as Record<string, string> })
+    // Convert answers to the format expected by precheck engine
+    const processedAnswers: Record<string, string> = {}
+    Object.entries(answers).forEach(([key, value]) => {
+      processedAnswers[key] = Array.isArray(value) ? value[0] : value
+    })
+    const engineResult = precheckEngine.evaluate({ answers: processedAnswers as Record<string, 'yes' | 'no' | 'unsure'> })
     const result = {
       requiresDPIA: engineResult.result !== 'not_required',
       riskLevel: engineResult.result === 'required' ? 'high' as const : 

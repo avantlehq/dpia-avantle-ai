@@ -51,7 +51,8 @@ export async function GET(request: Request) {
       }
       
       // Return file directly with proper headers
-      return new NextResponse(fileBuffer.buffer, {
+      const blob = new Blob([fileBuffer as BlobPart], { type: contentType })
+      return new NextResponse(blob, {
         status: 200,
         headers: {
           'Content-Type': contentType,
@@ -128,7 +129,8 @@ export async function POST(request: Request) {
       }
       
       // Return file directly with proper headers
-      return new NextResponse(fileBuffer.buffer, {
+      const blob = new Blob([fileBuffer as BlobPart], { type: contentType })
+      return new NextResponse(blob, {
         status: 200,
         headers: {
           'Content-Type': contentType,

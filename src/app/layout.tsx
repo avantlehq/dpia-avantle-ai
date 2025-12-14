@@ -17,17 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={true}
-          disableTransitionOnChange={false}
-        >
-          <AppLayoutWrapper>
-            {children}
-          </AppLayoutWrapper>
-          <Toaster />
-        </ThemeProvider>
+        <div className="min-h-screen bg-background text-foreground">
+          {children}
+        </div>
       </body>
     </html>
   );
