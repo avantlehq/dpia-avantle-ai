@@ -1,12 +1,18 @@
 'use client'
 
-import React, { type ReactNode } from 'react'
+import React, { useState, type ReactNode } from 'react'
 
 interface SimpleLayoutProps {
   children: ReactNode
 }
 
-function SafeTopbar() {
+interface SafeTopbarProps {
+  toggleSidebar: () => void
+  toggleTheme: () => void
+  isDarkMode: boolean
+}
+
+function SafeTopbar({ toggleSidebar, toggleTheme, isDarkMode }: SafeTopbarProps) {
   return (
     <header style={{
       height: '64px',
@@ -19,29 +25,59 @@ function SafeTopbar() {
     }}>
       {/* Left Section */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{
+        {/* Sidebar Toggle */}
+        <button 
+          onClick={toggleSidebar}
+          style={{
+            backgroundColor: 'transparent',
+            border: '1px solid #4A90E2',
+            borderRadius: '6px',
             padding: '8px',
-            borderRadius: '12px',
-            background: 'linear-gradient(135deg, #4A90E2 0%, #357ABD 100%)',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
-          }}>
-            <div style={{ 
-              width: '24px', 
-              height: '24px', 
-              color: '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}>🛡️</div>
-          </div>
-          <span style={{ 
-            color: '#ffffff', 
-            fontSize: '18px', 
-            fontWeight: '700'
-          }}>
-            DPIA.ai
-          </span>
+            color: '#4A90E2',
+            cursor: 'pointer',
+            fontSize: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          ☰
+        </button>
+        
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <a 
+            href="/dashboard"
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '12px', 
+              textDecoration: 'none',
+              color: 'inherit'
+            }}
+          >
+            <div style={{
+              padding: '8px',
+              borderRadius: '12px',
+              background: 'linear-gradient(135deg, #4A90E2 0%, #357ABD 100%)',
+              boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+            }}>
+              <div style={{ 
+                width: '24px', 
+                height: '24px', 
+                color: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>🛡️</div>
+            </div>
+            <span style={{ 
+              color: '#ffffff', 
+              fontSize: '18px', 
+              fontWeight: '700'
+            }}>
+              DPIA.ai
+            </span>
+          </a>
         </div>
         <span style={{ 
           color: '#9ca3af', 
@@ -49,7 +85,7 @@ function SafeTopbar() {
           fontWeight: '500',
           marginLeft: '24px'
         }}>
-          Privacy Platform v3.19.20
+          Privacy Platform v3.19.22
         </span>
       </div>
 
@@ -72,38 +108,44 @@ function SafeTopbar() {
         </button>
 
         {/* Theme Toggle */}
-        <button style={{
-          backgroundColor: 'transparent',
-          border: '1px solid #9B59B6',
-          borderRadius: '6px',
-          padding: '8px',
-          color: '#9B59B6',
-          fontSize: '14px',
-          cursor: 'pointer',
-          width: '36px',
-          height: '36px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
-          🌙
+        <button 
+          onClick={toggleTheme}
+          style={{
+            backgroundColor: 'transparent',
+            border: '1px solid #9B59B6',
+            borderRadius: '6px',
+            padding: '8px',
+            color: '#9B59B6',
+            fontSize: '14px',
+            cursor: 'pointer',
+            width: '36px',
+            height: '36px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          {isDarkMode ? '🌙' : '☀️'}
         </button>
 
         {/* Help Button */}
-        <button style={{
-          backgroundColor: 'transparent',
-          border: '1px solid #F5A623',
-          borderRadius: '6px',
-          padding: '8px',
-          color: '#F5A623',
-          fontSize: '14px',
-          cursor: 'pointer',
-          width: '36px',
-          height: '36px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
+        <button 
+          onClick={() => window.location.href = '/help'}
+          style={{
+            backgroundColor: 'transparent',
+            border: '1px solid #F5A623',
+            borderRadius: '6px',
+            padding: '8px',
+            color: '#F5A623',
+            fontSize: '14px',
+            cursor: 'pointer',
+            width: '36px',
+            height: '36px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
           ❓
         </button>
 
@@ -191,6 +233,12 @@ function SafeFooter() {
 }
 
 export function SimpleLayout({ children }: SimpleLayoutProps) {
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [isDarkMode, setIsDarkMode] = useState(true)
+
+  const toggleSidebar = () => setSidebarOpen(!sidebarOpen)
+  const toggleTheme = () => setIsDarkMode(!isDarkMode)
+
   return (
     <div style={{ 
       minHeight: '100vh', 
@@ -199,12 +247,16 @@ export function SimpleLayout({ children }: SimpleLayoutProps) {
       fontFamily: 'system-ui, sans-serif'
     }}>
       {/* Safe Topbar */}
-      <SafeTopbar />
+      <SafeTopbar 
+        toggleSidebar={toggleSidebar}
+        toggleTheme={toggleTheme}
+        isDarkMode={isDarkMode}
+      />
       
       {/* Main Layout */}
       <div style={{ display: 'flex' }}>
         {/* Safe Left Sidebar */}
-        <SafeSidebar />
+        {sidebarOpen && <SafeSidebar />}
         
         {/* Main Content */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
