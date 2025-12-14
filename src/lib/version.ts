@@ -1,4 +1,4 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.25
 export const VERSION = "3.19.25" as const
 export const VERSION_NAME = "Primary CTA Hierarchy - Clean Button Design" as const
 export const BUILD_DATE = "2025-12-14"
@@ -13,6 +13,27 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.25": {
+    date: "2025-12-14", 
+    name: "Primary CTA Hierarchy - Clean Button Design",
+    features: [
+      "CTA HIERARCHY: New Assessment = primary action, Start Pre-check = secondary",
+      "BUTTON DESIGN: Primary with full fill + Plus icon, Secondary with ghost variant + Sparkles icon",
+      "VISUAL CLARITY: Clear hierarchy with proper contrast, sizing, and spacing",
+      "CONSISTENT UI: Updated dashboard header and empty state buttons",
+      "TOOLTIPS: Added contextual guidance for user actions",
+      "MODERN SAAS: Professional button design following contemporary UI patterns"
+    ]
+  },
+  "3.19.24": {
+    date: "2025-12-14", 
+    name: "Enhanced Button Visibility + Modern SaaS Styling",
+    features: [
+      "BUTTON VISIBILITY: Enhanced contrast and styling for better user experience",
+      "MODERN STYLING: Applied contemporary SaaS design patterns",
+      "UI IMPROVEMENTS: Better visual hierarchy and professional appearance"
+    ]
+  },
   "3.19.18": {
     date: "2025-12-14", 
     name: "Restored Layout Components - Fixed Missing UI",
