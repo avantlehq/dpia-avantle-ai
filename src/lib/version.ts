@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.8" as const
-export const VERSION_NAME = "Database Fixed - Validation System Fully Operational" as const
+export const VERSION = "3.19.9" as const
+export const VERSION_NAME = "Environment Variables Corrected" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,15 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.9": {
+    date: "2025-12-14", 
+    name: "Environment Variables Corrected",
+    features: [
+      "ENVIRONMENT FIX: Corrected SUPABASE_SERVICE_ROLE_KEY to actual service role key value",
+      "DATABASE ACCESS: Fixed client-side database connection errors by using proper credentials",
+      "LOCAL DEVELOPMENT: Updated .env.local with correct service role key for local testing"
+    ]
+  },
   "3.19.8": {
     date: "2025-12-14",
     name: "Database Fixed - Validation System Fully Operational",
