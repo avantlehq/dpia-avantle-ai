@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.10" as const
-export const VERSION_NAME = "Dashboard UI Improvements - Icon Actions & Modern Buttons" as const
+export const VERSION = "3.19.11" as const
+export const VERSION_NAME = "Modernized Action Icons - Clean Minimal Design" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.11": {
+    date: "2025-12-14", 
+    name: "Modernized Action Icons - Clean Minimal Design",
+    features: [
+      "MODERN UI: Removed button look from action icons - no backgrounds, borders, or squares",
+      "UNIFIED COLOR: All icons use same neutral gray in default state - no color coding",
+      "CLEAN LAYOUT: Horizontal alignment with consistent spacing, right-justified",
+      "HOVER INTERACTIONS: Subtle color transitions on hover - delete becomes red only on hover",
+      "REDUCED REDUNDANCY: Removed Edit icon since assessment name is clickable link",
+      "GITHUB-STYLE: Clean minimal design matching modern platforms like Linear/Vercel"
+    ]
+  },
   "3.19.10": {
     date: "2025-12-14", 
     name: "Dashboard UI Improvements - Icon Actions & Modern Buttons",

@@ -299,7 +299,7 @@ export function DynamicDashboardContent() {
                     <TableCell className="font-medium">
                       <Link 
                         href={`/assessment?id=${assessment.id}`}
-                        className="hover:underline"
+                        className="text-foreground hover:text-primary hover:underline transition-colors duration-200"
                       >
                         {assessment.name}
                       </Link>

@@ -12,7 +12,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import { Copy, Trash2, Download, Edit } from 'lucide-react'
+import { Copy, Trash2, Download } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { deleteAssessmentAction, duplicateAssessmentAction } from '@/lib/actions/assessment-actions'
 
@@ -77,53 +77,36 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
 
   return (
     <>
-      <div className="flex items-center gap-1">
-        {/* Edit Button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => router.push(`/assessment?id=${assessmentId}`)}
-          className="h-8 w-8 p-0 hover:bg-icon-blue transition-colors duration-200"
-          title="Edit assessment"
-        >
-          <Edit className="h-4 w-4" style={{ color: 'var(--color-blue)' }} />
-        </Button>
-
-        {/* Duplicate Button */}
-        <Button
-          variant="ghost"
-          size="sm"
+      <div className="flex items-center justify-end gap-4">
+        {/* Duplicate Action */}
+        <button
           onClick={handleDuplicate}
           disabled={isDuplicating}
-          className="h-8 w-8 p-0 hover:bg-icon-green transition-colors duration-200"
-          title={isDuplicating ? 'Duplicating...' : 'Duplicate assessment'}
+          className="text-muted-foreground hover:text-foreground transition-colors duration-200 disabled:opacity-50"
+          title={isDuplicating ? 'Duplicating...' : 'Duplicate'}
         >
-          <Copy className="h-4 w-4" style={{ color: 'var(--color-green)' }} />
-        </Button>
+          <Copy className="h-4 w-4" />
+        </button>
 
-        {/* Export Button - Only show for completed assessments */}
+        {/* Export Action - Only show for completed assessments */}
         {status === 'completed' && (
-          <Button
-            variant="ghost"
-            size="sm"
+          <button
             onClick={handleExport}
-            className="h-8 w-8 p-0 hover:bg-icon-purple transition-colors duration-200"
-            title="Export as PDF"
+            className="text-muted-foreground hover:text-foreground transition-colors duration-200"
+            title="Export"
           >
-            <Download className="h-4 w-4" style={{ color: 'var(--color-purple)' }} />
-          </Button>
+            <Download className="h-4 w-4" />
+          </button>
         )}
 
-        {/* Delete Button */}
-        <Button
-          variant="ghost"
-          size="sm"
+        {/* Delete Action */}
+        <button
           onClick={() => setShowDeleteDialog(true)}
-          className="h-8 w-8 p-0 hover:bg-red-100 transition-colors duration-200"
-          title="Delete assessment"
+          className="text-muted-foreground hover:text-red-600 transition-colors duration-200"
+          title="Delete"
         >
-          <Trash2 className="h-4 w-4 text-red-600" />
-        </Button>
+          <Trash2 className="h-4 w-4" />
+        </button>
       </div>
 
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
