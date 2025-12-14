@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.20" as const
-export const VERSION_NAME = "Deploy SimpleLayout Fix - Application Error Resolution" as const
+export const VERSION = "3.19.21" as const
+export const VERSION_NAME = "Fixed Header Icons and Version Display" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
