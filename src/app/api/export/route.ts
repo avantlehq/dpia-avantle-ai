@@ -27,44 +27,52 @@ export async function GET(request: Request) {
     const body = { assessment_id, format: format as 'pdf' | 'docx' }
 
     try {
-      // Try real export service first
+      // Generate PDF/DOCX file directly
       const exportService = await RealExportService.create()
-      const result = await exportService.generate(body)
-
-      // Get assessment details for response
+      
+      // Get assessment details for filename
       const db = await DatabaseService.create()
       const assessment = await db.getAssessment(body.assessment_id)
-
-      return NextResponse.json({
-        success: true,
-        export: result,
-        assessment: assessment ? {
-          id: assessment.id,
-          name: assessment.name
-        } : {
-          id: body.assessment_id,
-          name: 'Unknown Assessment'
+      const assessmentName = assessment?.name || 'Unknown Assessment'
+      
+      // Generate file buffer
+      let fileBuffer: Uint8Array
+      let contentType: string
+      let filename: string
+      
+      if (body.format === 'pdf') {
+        fileBuffer = await exportService.generatePDF(body.assessment_id)
+        contentType = 'application/pdf'
+        filename = `${assessmentName.replace(/[^a-zA-Z0-9]/g, '-')}.pdf`
+      } else {
+        fileBuffer = await exportService.generateDOCX(body.assessment_id)
+        contentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        filename = `${assessmentName.replace(/[^a-zA-Z0-9]/g, '-')}.docx`
+      }
+      
+      // Return file directly with proper headers
+      return new NextResponse(fileBuffer, {
+        status: 200,
+        headers: {
+          'Content-Type': contentType,
+          'Content-Disposition': `attachment; filename="${filename}"`,
+          'Content-Length': fileBuffer.length.toString(),
+          'Cache-Control': 'no-cache'
         }
       })
 
     } catch (exportError) {
-      console.error('Real export failed, falling back to mock:', exportError)
+      console.error('Export generation failed:', exportError)
       
-      // Fallback to mock response
-      const mockResult = {
-        id: `assessment-${body.assessment_id}-${Date.now()}`,
-        url: `/api/export/download/mock-${body.assessment_id}.${body.format}`,
-        expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
-      }
-
-      return NextResponse.json({
-        success: true,
-        export: mockResult,
-        assessment: {
-          id: body.assessment_id,
-          name: 'Mock Assessment'
-        }
-      })
+      // Return error response
+      return NextResponse.json(
+        { 
+          success: false,
+          error: 'Failed to generate export file',
+          details: exportError instanceof Error ? exportError.message : 'Unknown error'
+        },
+        { status: 500 }
+      )
     }
 
   } catch (error) {
@@ -96,44 +104,52 @@ export async function POST(request: Request) {
     }
 
     try {
-      // Try real export service first
+      // Generate PDF/DOCX file directly
       const exportService = await RealExportService.create()
-      const result = await exportService.generate(body)
-
-      // Get assessment details for response
+      
+      // Get assessment details for filename
       const db = await DatabaseService.create()
       const assessment = await db.getAssessment(body.assessment_id)
-
-      return NextResponse.json({
-        success: true,
-        export: result,
-        assessment: assessment ? {
-          id: assessment.id,
-          name: assessment.name
-        } : {
-          id: body.assessment_id,
-          name: 'Unknown Assessment'
-        }
-      })
-
-    } catch (exportError) {
-      console.error('Real export failed, falling back to mock:', exportError)
+      const assessmentName = assessment?.name || 'Unknown Assessment'
       
-      // Fallback to mock response
-      const mockResult = {
-        id: `assessment-${body.assessment_id}-${Date.now()}`,
-        url: `/api/export/download/mock-${body.assessment_id}.${body.format}`,
-        expires_at: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+      // Generate file buffer
+      let fileBuffer: Uint8Array
+      let contentType: string
+      let filename: string
+      
+      if (body.format === 'pdf') {
+        fileBuffer = await exportService.generatePDF(body.assessment_id)
+        contentType = 'application/pdf'
+        filename = `${assessmentName.replace(/[^a-zA-Z0-9]/g, '-')}.pdf`
+      } else {
+        fileBuffer = await exportService.generateDOCX(body.assessment_id)
+        contentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        filename = `${assessmentName.replace(/[^a-zA-Z0-9]/g, '-')}.docx`
       }
-
-      return NextResponse.json({
-        success: true,
-        export: mockResult,
-        assessment: {
-          id: body.assessment_id,
-          name: 'Mock Assessment'
+      
+      // Return file directly with proper headers
+      return new NextResponse(fileBuffer, {
+        status: 200,
+        headers: {
+          'Content-Type': contentType,
+          'Content-Disposition': `attachment; filename="${filename}"`,
+          'Content-Length': fileBuffer.length.toString(),
+          'Cache-Control': 'no-cache'
         }
       })
+      
+    } catch (exportError) {
+      console.error('Export generation failed:', exportError)
+      
+      // Return error response
+      return NextResponse.json(
+        { 
+          success: false,
+          error: 'Failed to generate export file',
+          details: exportError instanceof Error ? exportError.message : 'Unknown error'
+        },
+        { status: 500 }
+      )
     }
 
   } catch (error) {

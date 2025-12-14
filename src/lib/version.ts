@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.13" as const
-export const VERSION_NAME = "Fixed DPIA Precheck Scoring Logic" as const
+export const VERSION = "3.19.14" as const
+export const VERSION_NAME = "Fixed PDF Export Download Functionality" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.14": {
+    date: "2025-12-14", 
+    name: "Fixed PDF Export Download Functionality",
+    features: [
+      "BUG FIX: Export API returned JSON response instead of downloading PDF file",
+      "DIRECT DOWNLOAD: Now returns file buffer with proper Content-Disposition headers",
+      "FILENAME GENERATION: Uses assessment name as PDF filename with proper sanitization",
+      "PROPER HEADERS: Content-Type application/pdf and attachment headers for browser download",
+      "ERROR HANDLING: Clean error responses when export generation fails",
+      "BOTH FORMATS: Works for both PDF and DOCX export formats"
+    ]
+  },
   "3.19.13": {
     date: "2025-12-14", 
     name: "Fixed DPIA Precheck Scoring Logic",
