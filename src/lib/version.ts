@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.9" as const
-export const VERSION_NAME = "Environment Variables Corrected" as const
+export const VERSION = "3.19.10" as const
+export const VERSION_NAME = "Dashboard UI Improvements - Icon Actions & Modern Buttons" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.10": {
+    date: "2025-12-14", 
+    name: "Dashboard UI Improvements - Icon Actions & Modern Buttons",
+    features: [
+      "UX IMPROVEMENT: Replaced assessment action dropdowns with intuitive icon buttons",
+      "VISUAL CLARITY: Edit (blue), Duplicate (green), Export (purple), Delete (red) color-coded icons",
+      "MODERN STYLING: Updated 'New Pre-check' and 'New Assessment' buttons to match design system",
+      "RESPONSIVE DESIGN: Icon actions provide better mobile experience than dropdown menus"
+    ]
+  },
   "3.19.9": {
     date: "2025-12-14", 
     name: "Environment Variables Corrected",

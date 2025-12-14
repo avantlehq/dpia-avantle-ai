@@ -269,22 +269,15 @@ export function DynamicDashboardContent() {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Link href="/precheck">
-                  <Button variant="outline" className="gap-2 w-full sm:w-auto">
-                    <Sparkles className="h-4 w-4" />
-                    Quick Pre-check
+                  <Button className="avantle-border bg-icon-green hover:bg-icon-green-hover border-dpia-green gap-2 w-full sm:w-auto transition-colors duration-200">
+                    <Sparkles className="h-4 w-4" style={{ color: 'var(--color-green)' }} />
+                    <span style={{ color: 'var(--color-green)' }}>New Pre-check</span>
                   </Button>
                 </Link>
                 <Link href="/assessments/new">
-                  <Button 
-                    className="gap-2 w-full sm:w-auto"
-                    style={{
-                      backgroundColor: '#2563eb',
-                      fontSize: '18px',
-                      fontWeight: '600'
-                    }}
-                  >
-                    <Plus className="h-4 w-4" />
-                    New DPIA Assessment
+                  <Button className="bg-icon-blue hover:bg-icon-blue-hover border-dpia-blue gap-2 w-full sm:w-auto transition-colors duration-200">
+                    <Plus className="h-4 w-4" style={{ color: 'var(--color-blue)' }} />
+                    <span style={{ color: 'var(--color-blue)' }}>New Assessment</span>
                   </Button>
                 </Link>
               </div>

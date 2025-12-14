@@ -3,12 +3,6 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
-import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -18,7 +12,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import { MoreHorizontal, Copy, Trash2, Download, Edit } from 'lucide-react'
+import { Copy, Trash2, Download, Edit } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { deleteAssessmentAction, duplicateAssessmentAction } from '@/lib/actions/assessment-actions'
 
@@ -83,46 +77,54 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
 
   return (
     <>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="h-8 w-8 p-0">
-            <MoreHorizontal className="h-4 w-4" />
+      <div className="flex items-center gap-1">
+        {/* Edit Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => router.push(`/assessment?id=${assessmentId}`)}
+          className="h-8 w-8 p-0 hover:bg-icon-blue transition-colors duration-200"
+          title="Edit assessment"
+        >
+          <Edit className="h-4 w-4" style={{ color: 'var(--color-blue)' }} />
+        </Button>
+
+        {/* Duplicate Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleDuplicate}
+          disabled={isDuplicating}
+          className="h-8 w-8 p-0 hover:bg-icon-green transition-colors duration-200"
+          title={isDuplicating ? 'Duplicating...' : 'Duplicate assessment'}
+        >
+          <Copy className="h-4 w-4" style={{ color: 'var(--color-green)' }} />
+        </Button>
+
+        {/* Export Button - Only show for completed assessments */}
+        {status === 'completed' && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleExport}
+            className="h-8 w-8 p-0 hover:bg-icon-purple transition-colors duration-200"
+            title="Export as PDF"
+          >
+            <Download className="h-4 w-4" style={{ color: 'var(--color-purple)' }} />
           </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="avantle-border bg-card shadow-lg">
-          <DropdownMenuItem 
-            onClick={() => router.push(`/assessment?id=${assessmentId}`)}
-            className="text-foreground hover:bg-primary/10"
-          >
-            <Edit className="mr-2 h-4 w-4" />
-            Edit
-          </DropdownMenuItem>
-          <DropdownMenuItem 
-            onClick={handleDuplicate}
-            disabled={isDuplicating}
-            className="text-foreground hover:bg-primary/10"
-          >
-            <Copy className="mr-2 h-4 w-4" />
-            {isDuplicating ? 'Duplicating...' : 'Duplicate'}
-          </DropdownMenuItem>
-          {status === 'completed' && (
-            <DropdownMenuItem 
-              onClick={handleExport}
-              className="text-foreground hover:bg-primary/10"
-            >
-              <Download className="mr-2 h-4 w-4" />
-              Export PDF
-            </DropdownMenuItem>
-          )}
-          <DropdownMenuItem
-            onClick={() => setShowDeleteDialog(true)}
-            className="text-destructive hover:bg-destructive/10"
-          >
-            <Trash2 className="mr-2 h-4 w-4" />
-            Delete
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+        )}
+
+        {/* Delete Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setShowDeleteDialog(true)}
+          className="h-8 w-8 p-0 hover:bg-red-100 transition-colors duration-200"
+          title="Delete assessment"
+        >
+          <Trash2 className="h-4 w-4 text-red-600" />
+        </Button>
+      </div>
 
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
         <AlertDialogContent className="avantle-border bg-card border-l-4 border-l-red-500 shadow-lg max-w-md w-full mx-4">

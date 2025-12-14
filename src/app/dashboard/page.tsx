@@ -18,15 +18,15 @@ export default function DashboardPage() {
         </div>
         <div className="flex gap-3">
           <Link href="/precheck">
-            <Button variant="outline" className="gap-2">
-              <Sparkles className="h-4 w-4" />
-              New Precheck
+            <Button className="avantle-border bg-icon-green hover:bg-icon-green-hover border-dpia-green gap-2 transition-colors duration-200">
+              <Sparkles className="h-4 w-4" style={{ color: 'var(--color-green)' }} />
+              <span style={{ color: 'var(--color-green)' }}>New Pre-check</span>
             </Button>
           </Link>
           <Link href="/assessments/new">
-            <Button className="gap-2">
-              <Plus className="h-4 w-4" />
-              New Assessment
+            <Button className="bg-icon-blue hover:bg-icon-blue-hover border-dpia-blue gap-2 transition-colors duration-200">
+              <Plus className="h-4 w-4" style={{ color: 'var(--color-blue)' }} />
+              <span style={{ color: 'var(--color-blue)' }}>New Assessment</span>
             </Button>
           </Link>
         </div>
