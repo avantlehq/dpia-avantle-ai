@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.4" as const
-export const VERSION_NAME = "Green Theme Alignment - Unified DPIA Builder Colors" as const
+export const VERSION = "3.19.5" as const
+export const VERSION_NAME = "Modern Button Sizing - Inline Yes/No Controls" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.5": {
+    date: "2025-12-14",
+    name: "Modern Button Sizing - Inline Yes/No Controls",
+    features: [
+      "MODERN BUTTON SIZING: Yes/No buttons now use proper inline sizing instead of full-width",
+      "UI BEST PRACTICES: Changed from flex-1 (full-width) to min-w-[100px] (proper sizing)",
+      "CONSISTENT STYLING: Yes/No buttons match navigation button sizing (px-6 py-3, 16px font)",
+      "INLINE LAYOUT: Buttons now appear side-by-side inline instead of stretching across page",
+      "PROFESSIONAL APPEARANCE: Follows modern UI/UX standards for binary choice controls"
+    ],
+    improvements: [
+      "Better visual hierarchy with appropriately sized action buttons", 
+      "Consistent button proportions throughout DPIA builder interface",
+      "Improved form scanning and completion with properly sized controls",
+      "Enhanced mobile experience with touch-friendly button sizes",
+      "Modern SaaS-style interface matching contemporary design patterns"
+    ],
+    technical: [
+      "Updated dynamic-form-generator.tsx: replaced flex-1 with min-w-[100px] for Yes/No buttons",
+      "Changed gap from gap-2 to gap-3 for better spacing between inline buttons",
+      "Added consistent padding (px-6 py-3) and font size (16px) matching navigation buttons",
+      "Enhanced button styling with proper shadow-sm and border states",
+      "Maintained accessibility with focus states and keyboard navigation"
+    ]
+  },
   "3.19.4": {
     date: "2025-12-14",
     name: "Green Theme Alignment - Unified DPIA Builder Colors",

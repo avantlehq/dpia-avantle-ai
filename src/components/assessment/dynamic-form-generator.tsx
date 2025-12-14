@@ -286,9 +286,9 @@ export function DynamicFormGenerator({
                     </FormLabel>
                   </div>
                   
-                  {/* Segmented control - equal width pills */}
+                  {/* Modern inline button controls */}
                   <div className="ml-6">
-                    <div className="flex gap-2 max-w-sm mx-0">
+                    <div className="flex gap-3 items-center">
                       {field.options?.map((option) => {
                         const isSelected = formField.value === option
                         return (
@@ -296,16 +296,17 @@ export function DynamicFormGenerator({
                             <button
                               type="button"
                               className={`
-                                flex-1 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-150
+                                px-6 py-3 rounded-lg text-base font-medium transition-all duration-150
                                 focus:outline-none focus:ring-2 focus:ring-offset-1 text-center
+                                min-w-[100px] shadow-sm
                                 ${isSelected 
-                                  ? 'text-white shadow-sm' 
-                                  : 'text-gray-600 bg-transparent hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
+                                  ? 'text-white' 
+                                  : 'text-gray-600 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
                                 }
                               `}
                               style={{
                                 backgroundColor: isSelected ? sectionColor : undefined,
-                                minHeight: '48px'
+                                fontSize: '16px'
                               }}
                               onClick={() => {
                                 setFieldRef(field.id, document.activeElement as HTMLElement)
