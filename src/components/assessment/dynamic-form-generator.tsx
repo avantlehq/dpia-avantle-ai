@@ -39,7 +39,7 @@ interface DynamicFormGeneratorProps {
 }
 
 // Section color mapping - unified green theme for all DPIA sections
-const getSectionColor = (sectionId: string): string => {
+const getSectionColor = (_sectionId: string): string => {
   // All DPIA builder sections now use consistent green theme
   return 'var(--color-green)' // #7ED321 - green theme for all sections
 }

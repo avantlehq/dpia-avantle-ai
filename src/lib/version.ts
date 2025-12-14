@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.14" as const
-export const VERSION_NAME = "Fixed PDF Export Download Functionality" as const
+export const VERSION = "3.19.15" as const
+export const VERSION_NAME = "Fixed TypeScript Build Error" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.15": {
+    date: "2025-12-14", 
+    name: "Fixed TypeScript Build Error",
+    features: [
+      "BUILD FIX: Resolved unused parameter 'sectionId' in dynamic-form-generator.tsx",
+      "ESLINT COMPLIANCE: Renamed sectionId to _sectionId to follow unused args pattern",
+      "CLEAN CI/CD: Build process now passes without TypeScript warnings",
+      "CODE QUALITY: Maintains code readability while satisfying linting rules"
+    ]
+  },
   "3.19.14": {
     date: "2025-12-14", 
     name: "Fixed PDF Export Download Functionality",
