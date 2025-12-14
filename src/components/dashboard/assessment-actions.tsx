@@ -3,6 +3,13 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -12,7 +19,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import { Copy, Trash2, Download } from 'lucide-react'
+import { MoreVertical, Edit3, Copy, Download, Trash2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { deleteAssessmentAction, duplicateAssessmentAction } from '@/lib/actions/assessment-actions'
 
@@ -77,57 +84,73 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
 
   return (
     <>
-      <div className="flex items-center justify-end gap-4">
-        {/* Duplicate Action */}
-        <button
-          onClick={handleDuplicate}
-          disabled={isDuplicating}
-          className="text-muted-foreground hover:text-foreground transition-colors duration-200 disabled:opacity-50"
-          title={isDuplicating ? 'Duplicating...' : 'Duplicate'}
-        >
-          <Copy className="h-4 w-4" />
-        </button>
-
-        {/* Export Action - Only show for completed assessments */}
-        {status === 'completed' && (
-          <button
-            onClick={handleExport}
-            className="text-muted-foreground hover:text-foreground transition-colors duration-200"
-            title="Export"
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button 
+            variant="ghost" 
+            className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
           >
-            <Download className="h-4 w-4" />
-          </button>
-        )}
-
-        {/* Delete Action */}
-        <button
-          onClick={() => setShowDeleteDialog(true)}
-          className="text-muted-foreground hover:text-red-600 transition-colors duration-200"
-          title="Delete"
-        >
-          <Trash2 className="h-4 w-4" />
-        </button>
-      </div>
+            <MoreVertical className="h-4 w-4" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-48">
+          <DropdownMenuItem 
+            onClick={() => router.push(`/assessment?id=${assessmentId}`)}
+            className="text-sm"
+          >
+            <Edit3 className="mr-2 h-4 w-4 text-muted-foreground" />
+            Edit
+          </DropdownMenuItem>
+          
+          <DropdownMenuItem 
+            onClick={handleDuplicate}
+            disabled={isDuplicating}
+            className="text-sm"
+          >
+            <Copy className="mr-2 h-4 w-4 text-muted-foreground" />
+            {isDuplicating ? 'Duplicating...' : 'Duplicate'}
+          </DropdownMenuItem>
+          
+          {status === 'completed' && (
+            <DropdownMenuItem 
+              onClick={handleExport}
+              className="text-sm"
+            >
+              <Download className="mr-2 h-4 w-4 text-muted-foreground" />
+              Export PDF
+            </DropdownMenuItem>
+          )}
+          
+          <DropdownMenuSeparator />
+          
+          <DropdownMenuItem
+            onClick={() => setShowDeleteDialog(true)}
+            className="text-sm text-red-600 focus:text-red-600 focus:bg-red-50"
+          >
+            <Trash2 className="mr-2 h-4 w-4 text-red-600" />
+            Delete
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
 
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-        <AlertDialogContent className="avantle-border bg-card border-l-4 border-l-red-500 shadow-lg max-w-md w-full mx-4">
+        <AlertDialogContent className="max-w-md">
           <AlertDialogHeader>
-            <AlertDialogTitle className="text-foreground">Delete Assessment</AlertDialogTitle>
-            <AlertDialogDescription className="text-muted-foreground">
+            <AlertDialogTitle>Delete Assessment</AlertDialogTitle>
+            <AlertDialogDescription>
               Are you sure you want to delete &quot;{assessmentName}&quot;? This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel 
               disabled={isDeleting}
-              className="avantle-border"
             >
               Cancel
             </AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
               disabled={isDeleting}
-              className="bg-destructive hover:bg-destructive/90"
+              className="bg-red-600 hover:bg-red-700 focus:ring-red-600"
             >
               {isDeleting ? 'Deleting...' : 'Delete'}
             </AlertDialogAction>

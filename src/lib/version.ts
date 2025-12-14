@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.11" as const
-export const VERSION_NAME = "Modernized Action Icons - Clean Minimal Design" as const
+export const VERSION = "3.19.12" as const
+export const VERSION_NAME = "SaaS Overflow Menu Pattern - Professional Table Actions" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.12": {
+    date: "2025-12-14", 
+    name: "SaaS Overflow Menu Pattern - Professional Table Actions",
+    features: [
+      "CLEAN TABLE DESIGN: Removed inline action toolbar - single ⋯ ellipsis menu per row",
+      "SAAS PATTERN: Overflow menu matching GitHub/Linear/Notion table behavior", 
+      "VISUAL HIERARCHY: Text-based menu actions with muted icons as secondary elements",
+      "SMART SEPARATION: Delete action separated and highlighted red only when accessed",
+      "REDUCED NOISE: Minimalist table focused on content, not controls",
+      "CONSISTENT UX: Standard dropdown pattern users expect from modern platforms"
+    ]
+  },
   "3.19.11": {
     date: "2025-12-14", 
     name: "Modernized Action Icons - Clean Minimal Design",
