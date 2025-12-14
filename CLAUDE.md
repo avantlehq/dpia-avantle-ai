@@ -8,7 +8,16 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 ### Aktuálny stav projektu (December 14, 2025)
 
-**🎯 VERSION 3.19.6: ✅ Export Button Fix - Working DPIA PDF Export**
+**🎯 VERSION 3.19.25: ✅ Primary CTA Hierarchy - Clean Button Design**
+
+**🎨 LATEST SESSION ACHIEVEMENTS (December 14, 2025):**
+- ✅ **PRIMARY CTA HIERARCHY:** New Assessment = primary action, Start Pre-check = secondary
+- ✅ **PROFESSIONAL BUTTON DESIGN:** Primary with Plus icon + full fill, Secondary with Sparkles icon + ghost variant  
+- ✅ **VISUAL CLARITY:** Clear hierarchy with proper contrast, sizing, and spacing between CTAs
+- ✅ **VERSION DISPLAY FIX:** Resolved hardcoded v3.19.24 in SimpleLayout → v3.19.25 now showing correctly
+- ✅ **CONSISTENT UI:** Updated dashboard header and empty state buttons across all entry points
+- ✅ **MODERN SAAS PATTERNS:** Professional button design following contemporary UI best practices
+- ✅ **TOOLTIPS & GUIDANCE:** Added contextual guidance for user actions and workflow clarity
 
 **🚨 CRITICAL SECURITY PATCH (December 6, 2024):**
 - ✅ **CVE-2025-55182 PATCHED:** Next.js 16.0.1 → 16.0.7 (Critical RCE vulnerability)
