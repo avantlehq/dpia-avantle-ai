@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.24" as const
-export const VERSION_NAME = "Enhanced Button Visibility + Modern SaaS Styling" as const
+export const VERSION = "3.19.25" as const
+export const VERSION_NAME = "Primary CTA Hierarchy - Clean Button Design" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({

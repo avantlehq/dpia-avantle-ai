@@ -267,19 +267,25 @@ export function DynamicDashboardContent() {
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 Get started by creating your first DPIA assessment or running a quick pre-check to see if you need one.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                {/* Secondary CTA - Start Pre-check (ghost/outline variant) */}
                 <Link href="/precheck">
                   <Button 
-                    variant="outline" 
-                    className="border-border/50 hover:border-border hover:bg-muted/50 text-foreground hover:text-foreground font-medium px-6 py-2.5 rounded-xl transition-all duration-200"
+                    variant="ghost"
+                    className="border border-border/30 hover:border-border/50 hover:bg-muted/30 text-muted-foreground hover:text-foreground font-medium px-4 py-3 rounded-lg transition-all duration-200"
+                    title="Quick pre-assessment to check if full DPIA is required"
                   >
+                    <Sparkles className="mr-2 h-4 w-4" />
                     Start Pre-check
                   </Button>
                 </Link>
+                
+                {/* Primary CTA - New Assessment (full fill) */}
                 <Link href="/assessments/new">
                   <Button 
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-6 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all duration-200"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
                   >
+                    <Plus className="mr-2 h-4 w-4" />
                     New Assessment
                   </Button>
                 </Link>
