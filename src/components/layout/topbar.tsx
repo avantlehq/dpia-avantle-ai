@@ -45,7 +45,7 @@ export function Topbar() {
           </div>
           <span className="font-bold text-lg text-foreground hover:text-blue-600 transition-colors duration-200">DPIA.ai</span>
         </Link>
-        {/* Non-clickable Version Info */}
+        {/* Non-clickable Version Info - Cache Buster v3.19.25 */}
         <span className="text-sm text-muted-foreground font-medium" style={{ marginLeft: '24px' }}>Privacy Platform v{versionInfo.version}</span>
       </div>
 
