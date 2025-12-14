@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.15" as const
-export const VERSION_NAME = "Fixed TypeScript Build Error" as const
+export const VERSION = "3.19.16" as const
+export const VERSION_NAME = "Fixed NextResponse Type Error" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.16": {
+    date: "2025-12-14", 
+    name: "Fixed NextResponse Type Error",
+    features: [
+      "BUILD FIX: Resolved NextResponse Uint8Array type incompatibility in export route",
+      "TYPE CONVERSION: fileBuffer → fileBuffer.buffer for proper ArrayBuffer type",
+      "TYPESCRIPT COMPLIANCE: NextResponse expects BodyInit, not Uint8Array directly", 
+      "CLEAN COMPILATION: PDF export now builds without TypeScript errors"
+    ]
+  },
   "3.19.15": {
     date: "2025-12-14", 
     name: "Fixed TypeScript Build Error",

@@ -51,7 +51,7 @@ export async function GET(request: Request) {
       }
       
       // Return file directly with proper headers
-      return new NextResponse(fileBuffer, {
+      return new NextResponse(fileBuffer.buffer, {
         status: 200,
         headers: {
           'Content-Type': contentType,
@@ -128,7 +128,7 @@ export async function POST(request: Request) {
       }
       
       // Return file directly with proper headers
-      return new NextResponse(fileBuffer, {
+      return new NextResponse(fileBuffer.buffer, {
         status: 200,
         headers: {
           'Content-Type': contentType,
