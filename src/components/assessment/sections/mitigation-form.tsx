@@ -47,7 +47,7 @@ export function MitigationForm({ assessmentId, onComplete }: MitigationFormProps
       {/* Header */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <Shield className="h-5 w-5 text-dpia-purple" />
+          <Shield className="h-5 w-5 text-dpia-green" />
           <h2 className="text-2xl font-semibold">Mitigation Measures</h2>
           <Badge variant="secondary">Coming Soon</Badge>
         </div>
@@ -59,7 +59,7 @@ export function MitigationForm({ assessmentId, onComplete }: MitigationFormProps
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <AlertTriangle className="h-5 w-5 text-orange-500" />
+            <AlertTriangle className="h-5 w-5 text-green-500" />
             Section Under Development
           </CardTitle>
           <CardDescription>

@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.3" as const
-export const VERSION_NAME = "Build Success - TypeScript Validation System Complete" as const
+export const VERSION = "3.19.4" as const
+export const VERSION_NAME = "Green Theme Alignment - Unified DPIA Builder Colors" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,31 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.4": {
+    date: "2025-12-14",
+    name: "Green Theme Alignment - Unified DPIA Builder Colors",
+    features: [
+      "UNIFIED GREEN THEME: All DPIA builder sections now use consistent green color scheme",
+      "PROGRESS BAR HIGHLIGHT: Active section in DPIA wizard progress bar highlighted in green",
+      "SECTION ICON ALIGNMENT: All section headers (Context, Data Flow, Risk, Mitigation) use green icons",
+      "FORM ELEMENT CONSISTENCY: Questions, answers, and interactive elements aligned to green theme",
+      "VISUAL HARMONY: Eliminated color confusion with unified green assessment workflow"
+    ],
+    improvements: [
+      "Consistent user experience across all 4 DPIA builder sections",
+      "Clear visual identity with green representing 'Assessment' throughout platform",
+      "Improved navigation clarity with green highlighting active section",
+      "Professional appearance with unified color psychology (green = assessment/completion)",
+      "Enhanced accessibility with consistent color expectations"
+    ],
+    technical: [
+      "Updated dynamic-form-generator.tsx: unified getSectionColor() to return green for all sections",
+      "Modified dpia-wizard.tsx: changed active section highlight from blue to green (bg-green-100 text-green-700)",
+      "Updated section form headers: context-scope, data-flow, risk-assessment, mitigation-measures all use text-dpia-green",
+      "Aligned section titles and computed result displays to green theme (var(--color-green))",
+      "Preserved semantic risk level colors (red for high risk) while aligning interface elements to green"
+    ]
+  },
   "3.19.3": {
     date: "2025-12-14",
     name: "Build Success - TypeScript Validation System Complete",

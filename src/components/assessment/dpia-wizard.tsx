@@ -144,7 +144,7 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
                 <button
                   onClick={() => handleSectionChange(sectionId as SectionId)}
                   className={`flex items-center gap-1 px-2 py-1 rounded ${
-                    currentSection === sectionId ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'
+                    currentSection === sectionId ? 'bg-green-100 text-green-700' : 'hover:bg-gray-100'
                   }`}
                 >
                   <span className={`text-xs ${currentSection === sectionId ? 'font-medium' : ''}`}>

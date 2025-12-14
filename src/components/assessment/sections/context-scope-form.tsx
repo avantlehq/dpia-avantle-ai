@@ -68,7 +68,7 @@ export function ContextScopeForm({ assessmentId, onComplete }: ContextScopeFormP
       {/* Header */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <FileText className="h-5 w-5 text-dpia-orange" />
+          <FileText className="h-5 w-5 text-dpia-green" />
           <h2 className="text-2xl font-semibold">{sectionDefinition.title}</h2>
         </div>
         <p className="text-muted-foreground">

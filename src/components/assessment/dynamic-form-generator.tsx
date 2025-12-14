@@ -38,20 +38,10 @@ interface DynamicFormGeneratorProps {
   onChange?: (data: Record<string, unknown>) => void
 }
 
-// Section color mapping based on DPIA workflow
+// Section color mapping - unified green theme for all DPIA sections
 const getSectionColor = (sectionId: string): string => {
-  switch (sectionId) {
-    case 'context_scope':
-      return 'var(--color-blue)'
-    case 'data_flow_processing':
-      return 'var(--color-orange)'
-    case 'risk_assessment':
-      return 'var(--color-red)'
-    case 'mitigation':
-      return 'var(--color-purple)'
-    default:
-      return 'var(--color-blue)'
-  }
+  // All DPIA builder sections now use consistent green theme
+  return 'var(--color-green)' // #7ED321 - green theme for all sections
 }
 
 

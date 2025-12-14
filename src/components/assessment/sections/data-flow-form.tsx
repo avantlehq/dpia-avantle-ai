@@ -68,7 +68,7 @@ export function DataFlowForm({ assessmentId, onComplete }: DataFlowFormProps) {
       {/* Header */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <Network className="h-5 w-5 text-dpia-orange" />
+          <Network className="h-5 w-5 text-dpia-green" />
           <h2 className="text-2xl font-semibold">{sectionDefinition.title}</h2>
         </div>
         <p className="text-muted-foreground">

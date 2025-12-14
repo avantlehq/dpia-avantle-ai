@@ -106,7 +106,7 @@ export function RiskAssessmentForm({ assessmentId, onComplete }: RiskAssessmentF
       {/* Header */}
       <div>
         <div className="flex items-center gap-2 mb-2">
-          <Target className="h-5 w-5 text-dpia-red" />
+          <Target className="h-5 w-5 text-dpia-green" />
           <h2 className="text-2xl font-semibold">{sectionDefinition.title}</h2>
         </div>
         <p className="text-muted-foreground">
@@ -122,7 +122,7 @@ export function RiskAssessmentForm({ assessmentId, onComplete }: RiskAssessmentF
               {riskEvaluation.level === 'Low' && <CheckCircle className="h-5 w-5 text-green-500" />}
               {riskEvaluation.level === 'Medium' && <AlertTriangle className="h-5 w-5 text-yellow-500" />}
               {(riskEvaluation.level === 'High' || riskEvaluation.level === 'Very High') && <XCircle className="h-5 w-5 text-red-500" />}
-              <span style={{ color: 'var(--color-red)' }}>Computed Risk Assessment</span>
+              <span style={{ color: 'var(--color-green)' }}>Computed Risk Assessment</span>
             </CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -167,7 +167,7 @@ export function RiskAssessmentForm({ assessmentId, onComplete }: RiskAssessmentF
       {/* Risk Assessment Guide */}
       <Card className="avantle-border bg-muted/30">
         <CardHeader>
-          <CardTitle className="text-base" style={{ color: 'var(--color-red)' }}>Risk Calculation Guide</CardTitle>
+          <CardTitle className="text-base" style={{ color: 'var(--color-green)' }}>Risk Calculation Guide</CardTitle>
         </CardHeader>
         <CardContent className="space-y-3 text-sm">
           <div>
