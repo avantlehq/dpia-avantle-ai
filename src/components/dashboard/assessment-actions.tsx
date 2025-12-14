@@ -19,7 +19,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
-import { MoreVertical, Edit3, Copy, Download, Trash2 } from 'lucide-react'
+import { MoreVertical } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { deleteAssessmentAction, duplicateAssessmentAction } from '@/lib/actions/assessment-actions'
 
@@ -88,46 +88,49 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
         <DropdownMenuTrigger asChild>
           <Button 
             variant="ghost" 
-            className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground"
+            className="h-8 w-8 p-0 text-muted-foreground/60 hover:text-muted-foreground transition-colors opacity-0 group-hover:opacity-100"
           >
             <MoreVertical className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuContent 
+          align="end" 
+          className="w-44 rounded-xl border-border/50 shadow-lg shadow-black/5 p-2"
+          sideOffset={8}
+        >
+          {/* Primary Actions */}
           <DropdownMenuItem 
             onClick={() => router.push(`/assessment?id=${assessmentId}`)}
-            className="text-sm"
+            className="px-3 py-2.5 text-sm font-medium rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
           >
-            <Edit3 className="mr-2 h-4 w-4 text-muted-foreground" />
             Edit
           </DropdownMenuItem>
           
           <DropdownMenuItem 
             onClick={handleDuplicate}
             disabled={isDuplicating}
-            className="text-sm"
+            className="px-3 py-2.5 text-sm font-medium rounded-lg cursor-pointer hover:bg-muted/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            <Copy className="mr-2 h-4 w-4 text-muted-foreground" />
             {isDuplicating ? 'Duplicating...' : 'Duplicate'}
           </DropdownMenuItem>
           
           {status === 'completed' && (
             <DropdownMenuItem 
               onClick={handleExport}
-              className="text-sm"
+              className="px-3 py-2.5 text-sm font-medium rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
             >
-              <Download className="mr-2 h-4 w-4 text-muted-foreground" />
               Export PDF
             </DropdownMenuItem>
           )}
           
-          <DropdownMenuSeparator />
+          {/* Subtle Divider */}
+          <div className="h-px bg-border/40 my-2 mx-1" />
           
+          {/* Destructive Action */}
           <DropdownMenuItem
             onClick={() => setShowDeleteDialog(true)}
-            className="text-sm text-red-600 focus:text-red-600 focus:bg-red-50"
+            className="px-3 py-2.5 text-sm font-medium rounded-lg cursor-pointer text-foreground hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/50 transition-colors"
           >
-            <Trash2 className="mr-2 h-4 w-4 text-red-600" />
             Delete
           </DropdownMenuItem>
         </DropdownMenuContent>

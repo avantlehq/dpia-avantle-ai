@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.22" as const
-export const VERSION_NAME = "Functional Header + Sidebar Toggle + Fixed Text Visibility" as const
+export const VERSION = "3.19.23" as const
+export const VERSION_NAME = "Clean SaaS Row Actions - Modern Dropdown Menu" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({

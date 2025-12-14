@@ -295,7 +295,7 @@ export function DynamicDashboardContent() {
               </TableHeader>
               <TableBody>
                 {assessments.map((assessment) => (
-                  <TableRow key={assessment.id}>
+                  <TableRow key={assessment.id} className="group hover:bg-muted/30 transition-colors">
                     <TableCell className="font-medium">
                       <Link 
                         href={`/assessment?id=${assessment.id}`}

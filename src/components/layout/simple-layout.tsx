@@ -85,7 +85,7 @@ function SafeTopbar({ toggleSidebar, toggleTheme, isDarkMode }: SafeTopbarProps)
           fontWeight: '500',
           marginLeft: '24px'
         }}>
-          Privacy Platform v3.19.22
+          Privacy Platform v3.19.23
         </span>
       </div>
 
