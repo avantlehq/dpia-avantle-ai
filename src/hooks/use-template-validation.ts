@@ -119,8 +119,8 @@ export function useTemplateValidation({
   }, [assessmentId, autoValidate, validateAssessment])
 
   // Computed properties
-  const hasErrors = validationResult?.errors.length > 0 || false
-  const hasWarnings = validationResult?.warnings.length > 0 || false
+  const hasErrors = (validationResult?.errors?.length ?? 0) > 0
+  const hasWarnings = (validationResult?.warnings?.length ?? 0) > 0
   const completionPercentage = validationResult?.completionPercentage || 0
 
   return {

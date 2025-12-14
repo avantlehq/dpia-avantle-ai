@@ -314,7 +314,7 @@ export class TemplateValidator {
     }
 
     // Check for invalid options
-    const invalidOptions = value.filter(v => !field.options.includes(v))
+    const invalidOptions = value.filter(v => !field.options?.includes(v))
     if (invalidOptions.length > 0) {
       errors.push({
         sectionId,

@@ -53,7 +53,8 @@
       "Bash(del global-error.tsx)",
       "Bash(SUPABASE_SERVICE_ROLE=dummy-service-role npm run build)",
       "Bash(SUPABASE_SERVICE_ROLE=dummy-service-role npm run build -- --webpack)",
-      "Bash(SUPABASE_SERVICE_ROLE=dummy-service-role pnpm build)"
+      "Bash(SUPABASE_SERVICE_ROLE=dummy-service-role pnpm build)",
+      "Bash(NODE_ENV=production pnpm build)"
     ],
     "deny": [],
     "ask": [],

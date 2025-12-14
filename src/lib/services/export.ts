@@ -569,11 +569,11 @@ export class RealExportService {
       
       if (riskEval && riskEval.residual_likelihood && riskEval.residual_impact) {
         return {
-          residual_likelihood: riskEval.residual_likelihood,
-          residual_impact: riskEval.residual_impact,
-          residual_score: riskEval.residual_score,
-          residual_level: riskEval.residual_level,
-          residual_calculated_at: riskEval.residual_calculated_at
+          residual_likelihood: riskEval.residual_likelihood as number,
+          residual_impact: riskEval.residual_impact as number,
+          residual_score: riskEval.residual_score as number,
+          residual_level: riskEval.residual_level as string,
+          residual_calculated_at: riskEval.residual_calculated_at as string
         }
       }
     }
