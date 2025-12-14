@@ -7,8 +7,11 @@ import { DataFlowForm } from './sections/data-flow-form'
 import { RiskAssessmentForm } from './sections/risk-assessment-form'
 import { MitigationForm } from './sections/mitigation-measures-form'
 import { WizardNavigation } from './wizard-navigation'
+import { ValidationPanel } from '@/components/validation/validation-panel'
+import { SectionValidationIndicator } from '@/components/validation/section-validation-indicator'
+import { useTemplateValidation } from '@/hooks/use-template-validation'
 // import { dpiaWizardSteps } from '@/lib/state/navigation'
-import { Loader2 } from 'lucide-react'
+import { Loader2, ChevronRight } from 'lucide-react'
 
 interface DPIAWizardProps {
   assessmentId: string
@@ -22,6 +25,17 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
   const [currentSection, setCurrentSection] = useState<SectionId>('context_scope')
   const [loading] = useState(false)
   const [completedSections, setCompletedSections] = useState<Set<string>>(new Set())
+  const [showValidation, setShowValidation] = useState(false)
+  
+  // Template validation hook
+  const {
+    validationResult,
+    sectionValidations,
+    isValidating,
+    refreshValidation,
+    hasErrors,
+    completionPercentage
+  } = useTemplateValidation({ assessmentId, autoValidate: true })
 
   // Initialize current section from URL or default to first
   useEffect(() => {
@@ -40,6 +54,8 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
   // Handle section completion
   const handleSectionComplete = (sectionId: string) => {
     setCompletedSections(prev => new Set([...prev, sectionId]))
+    // Refresh validation after section completion
+    setTimeout(() => refreshValidation(), 500)
   }
 
   // Get current section component
@@ -104,22 +120,86 @@ export function DPIAWizard({ assessmentId }: DPIAWizardProps) {
   }
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Section Content */}
-      <div className="flex-1 p-6">
-        {renderCurrentSection()}
+    <div className="flex gap-6 h-full">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col">
+        {/* Section Progress */}
+        <div className="bg-muted/30 border-b p-4">
+          <div className="flex items-center justify-between mb-2">
+            <h2 className="font-semibold">DPIA Progress</h2>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">
+                {completionPercentage}% Complete
+              </span>
+              <button
+                onClick={() => setShowValidation(!showValidation)}
+                className="text-sm text-blue-600 hover:text-blue-800 underline"
+              >
+                {showValidation ? 'Hide' : 'Show'} Validation
+              </button>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 text-sm">
+            {['context_scope', 'data_flow_processing', 'risk_assessment', 'mitigation_measures'].map((sectionId, index) => (
+              <React.Fragment key={sectionId}>
+                <button
+                  onClick={() => handleSectionChange(sectionId as SectionId)}
+                  className={`flex items-center gap-1 px-2 py-1 rounded ${
+                    currentSection === sectionId ? 'bg-blue-100 text-blue-700' : 'hover:bg-gray-100'
+                  }`}
+                >
+                  <span className={`text-xs ${currentSection === sectionId ? 'font-medium' : ''}`}>
+                    {getSectionDisplayName(sectionId)}
+                  </span>
+                  <SectionValidationIndicator 
+                    sectionValidation={sectionValidations[sectionId] || null}
+                    sectionId={sectionId}
+                    className="scale-75"
+                  />
+                </button>
+                {index < 3 && <ChevronRight className="h-3 w-3 text-muted-foreground" />}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+
+        {/* Section Content */}
+        <div className="flex-1 p-6">
+          {renderCurrentSection()}
+        </div>
+
+        {/* Navigation */}
+        <div className="border-t border-border p-6">
+          <WizardNavigation
+            onPrevious={isFirstSection ? undefined : handlePrevious}
+            onNext={isLastSection ? undefined : handleNext}
+            canProceed={canProceed}
+            isLastSection={isLastSection}
+            assessmentId={assessmentId}
+          />
+        </div>
       </div>
 
-      {/* Navigation */}
-      <div className="border-t border-border p-6">
-        <WizardNavigation
-          onPrevious={isFirstSection ? undefined : handlePrevious}
-          onNext={isLastSection ? undefined : handleNext}
-          canProceed={canProceed}
-          isLastSection={isLastSection}
-          assessmentId={assessmentId}
-        />
-      </div>
+      {/* Validation Panel (Collapsible) */}
+      {showValidation && (
+        <div className="w-80 border-l">
+          <ValidationPanel 
+            validationResult={validationResult}
+            isValidating={isValidating}
+            className="h-full border-0 rounded-none"
+          />
+        </div>
+      )}
     </div>
   )
+}
+
+function getSectionDisplayName(sectionId: string): string {
+  const sectionNames: Record<string, string> = {
+    'context_scope': 'Context',
+    'data_flow_processing': 'Data Flow',
+    'risk_assessment': 'Risk',
+    'mitigation_measures': 'Mitigation'
+  }
+  return sectionNames[sectionId] || sectionId
 }
