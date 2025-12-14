@@ -34,6 +34,11 @@ export class DatabaseService {
     }
   }
 
+  // Check if database service is properly configured
+  isConfigured(): boolean {
+    return this.supabase !== null
+  }
+
 
   // Assessment CRUD operations
   async getAssessments(workspaceId: string): Promise<Assessment[]> {

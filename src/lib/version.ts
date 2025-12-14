@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.6" as const
-export const VERSION_NAME = "Export Button Fix - Working DPIA PDF Export" as const
+export const VERSION = "3.19.7" as const
+export const VERSION_NAME = "Database Error Handling - Graceful Validation Fallbacks" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,32 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.7": {
+    date: "2025-12-14",
+    name: "Database Error Handling - Graceful Validation Fallbacks",
+    features: [
+      "GRACEFUL ERROR HANDLING: Validation system now works even when database is unavailable",
+      "ENVIRONMENT SAFETY: Added checks for missing SUPABASE_SERVICE_ROLE_KEY environment variable",
+      "FALLBACK VALIDATION: Template validation continues with empty data when database fails",
+      "IMPROVED LOGGING: Clear warnings about database configuration issues in console",
+      "USER-FRIENDLY MESSAGES: Better error messages explaining validation limitations"
+    ],
+    improvements: [
+      "Validation system no longer crashes when Supabase environment variables are missing",
+      "Users can still see validation structure and requirements even without database connection",
+      "Enhanced error messages guide users and administrators to configuration issues",
+      "Graceful degradation ensures DPIA builder remains functional during database outages",
+      "Better developer experience with clear logging about configuration problems"
+    ],
+    technical: [
+      "Added DatabaseService.isConfigured() method to check environment variable presence",
+      "Enhanced useTemplateValidation hook with try-catch blocks around database calls",
+      "Fallback validation uses empty data structure when database is unavailable",
+      "Added templateData import to validation hook for section structure access",
+      "Improved error messages distinguish between database errors and configuration issues",
+      "Maintained template validation functionality independent of database connectivity"
+    ]
+  },
   "3.19.6": {
     date: "2025-12-14",
     name: "Export Button Fix - Working DPIA PDF Export",

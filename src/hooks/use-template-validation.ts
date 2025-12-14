@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { templateValidator, type ValidationResult, type SectionValidationResult } from '@/lib/validation/template-validator'
 import { DatabaseService } from '@/lib/services/database'
+import templateData from '@/lib/templates/dpia-basic-eu-v1.json'
 
 export interface UseTemplateValidationProps {
   assessmentId: string
@@ -30,17 +31,32 @@ export function useTemplateValidation({
   const validateAssessment = useCallback(async (): Promise<ValidationResult> => {
     setIsValidating(true)
     try {
-      // Load assessment data
+      // Try to load assessment data from database
       const db = await DatabaseService.create()
-      const assessmentData = await db.getAssessmentAnswers(assessmentId)
+      let assessmentData: Record<string, Record<string, unknown>> = {}
+      
+      try {
+        if (!db.isConfigured()) {
+          console.warn('Database not configured - missing environment variables. Using empty data for validation.')
+          throw new Error('Database not configured')
+        }
+        assessmentData = await db.getAssessmentAnswers(assessmentId)
+      } catch (dbError) {
+        console.warn('Database not available for validation, using empty data fallback:', dbError)
+        // Provide empty data structure for validation when database is not available
+        assessmentData = {}
+        Object.keys(templateData.sections).forEach(sectionId => {
+          assessmentData[sectionId] = {}
+        })
+      }
       
       // Validate using template validator
       const result = templateValidator.validateAssessment(assessmentData)
       setValidationResult(result)
       
-      // Update section validations
+      // Update section validations (validate all sections defined in template)
       const sectionResults: Record<string, SectionValidationResult> = {}
-      for (const sectionId of Object.keys(assessmentData)) {
+      for (const sectionId of Object.keys(templateData.sections)) {
         const sectionData = assessmentData[sectionId] || {}
         sectionResults[sectionId] = templateValidator.validateSection(sectionId, sectionData)
       }
@@ -53,12 +69,16 @@ export function useTemplateValidation({
         isValid: false,
         errors: [{
           sectionId: 'general',
-          message: 'Failed to validate assessment',
+          message: 'Validation system temporarily unavailable',
           severity: 'error'
         }],
-        warnings: [],
+        warnings: [{
+          sectionId: 'general',
+          message: 'Database connection issue - validation may be limited',
+          suggestion: 'Check your environment configuration or try again later'
+        }],
         completionPercentage: 0,
-        missingSections: [],
+        missingSections: Object.keys(templateData.sections),
         missingRequiredFields: []
       }
       setValidationResult(fallbackResult)
@@ -70,12 +90,23 @@ export function useTemplateValidation({
 
   const validateSection = useCallback(async (sectionId: string): Promise<SectionValidationResult> => {
     try {
-      // Load section data
+      // Try to load section data
       const db = await DatabaseService.create()
-      const assessmentData = await db.getAssessmentAnswers(assessmentId)
-      const sectionData = assessmentData[sectionId] || {}
+      let sectionData: Record<string, unknown> = {}
       
-      // Validate section
+      try {
+        if (!db.isConfigured()) {
+          console.warn(`Database not configured for section ${sectionId} validation - missing environment variables.`)
+          throw new Error('Database not configured')
+        }
+        const assessmentData = await db.getAssessmentAnswers(assessmentId)
+        sectionData = assessmentData[sectionId] || {}
+      } catch (dbError) {
+        console.warn(`Database not available for section ${sectionId} validation, using empty data:`, dbError)
+        sectionData = {}
+      }
+      
+      // Validate section (works even with empty data)
       const result = templateValidator.validateSection(sectionId, sectionData)
       
       // Update section validations
