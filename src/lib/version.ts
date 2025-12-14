@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.12" as const
-export const VERSION_NAME = "SaaS Overflow Menu Pattern - Professional Table Actions" as const
+export const VERSION = "3.19.13" as const
+export const VERSION_NAME = "Fixed DPIA Precheck Scoring Logic" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.13": {
+    date: "2025-12-14", 
+    name: "Fixed DPIA Precheck Scoring Logic",
+    features: [
+      "BUG FIX: Precheck always returned 'Not Required' with score 0 regardless of answers",
+      "PROPER SCORING: Now uses precheckEngine with correct template-based field mapping",
+      "ACCURATE RESULTS: Connects form answers (q1, q2, etc.) to scoring logic correctly", 
+      "FUNCTIONAL EVALUATION: 8-question precheck now properly calculates required/recommended/not_required",
+      "SCORE DISPLAY: Shows actual calculated score out of 24 points maximum",
+      "TEMPLATE CONSISTENCY: Unified scoring system using dpia-precheck-v1.json template"
+    ]
+  },
   "3.19.12": {
     date: "2025-12-14", 
     name: "SaaS Overflow Menu Pattern - Professional Table Actions",
