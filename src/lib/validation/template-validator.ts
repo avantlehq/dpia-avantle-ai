@@ -198,7 +198,7 @@ export class TemplateValidator {
    */
   private validateTextField(
     sectionId: string, 
-    field: any, 
+    field: { id: string; label: string; type: string; required?: boolean }, 
     value: string, 
     errors: ValidationError[], 
     warnings: ValidationWarning[]
@@ -238,7 +238,7 @@ export class TemplateValidator {
    */
   private validateTextareaField(
     sectionId: string, 
-    field: any, 
+    field: { id: string; label: string; type: string; required?: boolean }, 
     value: string, 
     errors: ValidationError[], 
     warnings: ValidationWarning[]
@@ -278,10 +278,10 @@ export class TemplateValidator {
    */
   private validateSelectField(
     sectionId: string, 
-    field: any, 
+    field: { id: string; label: string; type: string; required?: boolean; options?: string[] }, 
     value: string, 
     errors: ValidationError[], 
-    warnings: ValidationWarning[]
+    _warnings: ValidationWarning[]
   ) {
     if (!field.options || !field.options.includes(value)) {
       errors.push({
@@ -298,7 +298,7 @@ export class TemplateValidator {
    */
   private validateMultiselectField(
     sectionId: string, 
-    field: any, 
+    field: { id: string; label: string; type: string; required?: boolean; options?: string[] }, 
     value: string[], 
     errors: ValidationError[], 
     warnings: ValidationWarning[]
@@ -340,10 +340,10 @@ export class TemplateValidator {
    */
   private validateRadioField(
     sectionId: string, 
-    field: any, 
+    field: { id: string; label: string; type: string; required?: boolean; options?: string[] }, 
     value: string, 
     errors: ValidationError[], 
-    warnings: ValidationWarning[]
+    _warnings: ValidationWarning[]
   ) {
     if (!field.options || !field.options.includes(value)) {
       errors.push({
@@ -360,10 +360,10 @@ export class TemplateValidator {
    */
   private validateCheckboxField(
     sectionId: string, 
-    field: any, 
+    field: { id: string; label: string; type: string; required?: boolean }, 
     value: boolean, 
     errors: ValidationError[], 
-    warnings: ValidationWarning[]
+    _warnings: ValidationWarning[]
   ) {
     if (typeof value !== 'boolean') {
       errors.push({

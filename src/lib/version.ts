@@ -1,5 +1,5 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.1" as const
+export const VERSION = "3.19.2" as const
 export const VERSION_NAME = "TypeScript Fix - Clean Build Compilation" as const
 export const BUILD_DATE = "2025-12-14"
 

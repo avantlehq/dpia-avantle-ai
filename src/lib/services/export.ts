@@ -565,7 +565,7 @@ export class RealExportService {
   } | null {
     if (data.assessment.data && typeof data.assessment.data === 'object') {
       const assessmentData = data.assessment.data as Record<string, unknown>
-      const riskEval = assessmentData.risk_evaluation as any
+      const riskEval = assessmentData.risk_evaluation as Record<string, unknown>
       
       if (riskEval && riskEval.residual_likelihood && riskEval.residual_impact) {
         return {
