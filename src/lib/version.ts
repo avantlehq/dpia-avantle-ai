@@ -1,6 +1,6 @@
 // DPIA.ai Privacy Platform Version Information - Build Cache Buster
-export const VERSION = "3.19.17" as const
-export const VERSION_NAME = "Multiple TypeScript & Build Fixes" as const
+export const VERSION = "3.19.18" as const
+export const VERSION_NAME = "Restored Layout Components - Fixed Missing UI" as const
 export const BUILD_DATE = "2025-12-14"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.18": {
+    date: "2025-12-14", 
+    name: "Restored Layout Components - Fixed Missing UI",
+    features: [
+      "UI RESTORATION: Brought back missing sidebar, header and footer components",
+      "LAYOUT FIX: Created SimpleLayout component to replace complex AppLayoutWrapper",
+      "SSR SAFETY: Simplified layout structure to avoid context-related build issues",
+      "FIXED STRUCTURE: Topbar + SidebarLeft + Main content + Footer restored",
+      "USER EXPERIENCE: Dashboard navigation and branding elements now visible again",
+      "CLEAN ARCHITECTURE: Static layout without dynamic state management"
+    ]
+  },
   "3.19.17": {
     date: "2025-12-14", 
     name: "Multiple TypeScript & Build Fixes",

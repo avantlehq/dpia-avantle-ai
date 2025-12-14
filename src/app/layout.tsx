@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { ThemeProvider } from '@/components/theme-provider'
-import { Toaster } from '@/components/ui/sonner'
-import { AppLayoutWrapper } from '@/components/layout/app-layout-wrapper'
+import { SimpleLayout } from '@/components/layout/simple-layout'
 import "./globals.css"
 
 export const metadata: Metadata = {
@@ -17,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        <div className="min-h-screen bg-background text-foreground">
+        <SimpleLayout>
           {children}
-        </div>
+        </SimpleLayout>
       </body>
     </html>
   );
