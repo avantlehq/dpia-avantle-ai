@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { Plus, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { DynamicDashboardContent } from '@/components/dashboard/dynamic-dashboard-content'
 
@@ -18,15 +17,18 @@ export default function DashboardPage() {
         </div>
         <div className="flex gap-3">
           <Link href="/precheck">
-            <Button className="avantle-border bg-icon-green hover:bg-icon-green-hover border-dpia-green gap-2 transition-colors duration-200">
-              <Sparkles className="h-4 w-4" style={{ color: 'var(--color-green)' }} />
-              <span style={{ color: 'var(--color-green)' }}>New Pre-check</span>
+            <Button 
+              variant="outline" 
+              className="border-border/50 hover:border-border hover:bg-muted/50 text-foreground hover:text-foreground font-medium px-4 py-2 rounded-lg transition-all duration-200"
+            >
+              Start Pre-check
             </Button>
           </Link>
           <Link href="/assessments/new">
-            <Button className="bg-icon-blue hover:bg-icon-blue-hover border-dpia-blue gap-2 transition-colors duration-200">
-              <Plus className="h-4 w-4" style={{ color: 'var(--color-blue)' }} />
-              <span style={{ color: 'var(--color-blue)' }}>New Assessment</span>
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-4 py-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
+            >
+              New Assessment
             </Button>
           </Link>
         </div>

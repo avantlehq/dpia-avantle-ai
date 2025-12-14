@@ -88,7 +88,7 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
         <DropdownMenuTrigger asChild>
           <Button 
             variant="ghost" 
-            className="h-8 w-8 p-0 text-muted-foreground/60 hover:text-muted-foreground transition-colors opacity-0 group-hover:opacity-100"
+            className="h-8 w-8 p-0 text-muted-foreground/50 hover:text-muted-foreground transition-colors"
           >
             <MoreVertical className="h-4 w-4" />
           </Button>
