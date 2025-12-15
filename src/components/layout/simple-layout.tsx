@@ -86,7 +86,7 @@ function SafeTopbar({ toggleSidebar, toggleTheme, isDarkMode }: SafeTopbarProps)
           fontWeight: '500',
           marginLeft: '24px'
         }}>
-          Privacy Platform v3.19.27
+          Privacy Platform v3.19.28
         </span>
       </div>
 
@@ -228,7 +228,7 @@ function SafeFooter() {
       fontSize: '12px',
       textAlign: 'center'
     }}>
-      DPIA.ai Privacy Platform v3.19.27 - GDPR Compliance Tool
+      DPIA.ai Privacy Platform v3.19.28 - GDPR Compliance Tool
     </footer>
   )
 }

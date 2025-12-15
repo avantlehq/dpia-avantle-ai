@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.27
-export const VERSION = "3.19.27" as const
-export const VERSION_NAME = "Modern SaaS Sidebar Navigation - Professional Module Design" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.28
+export const VERSION = "3.19.28" as const
+export const VERSION_NAME = "Mandatory Version Increment Rule - Build Fix Deployment" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.28": {
+    date: "2025-12-15", 
+    name: "Mandatory Version Increment Rule - Build Fix Deployment",
+    features: [
+      "VERSIONING RULE ESTABLISHED: Every deployment now requires version increment",
+      "BUILD FIX: Resolved Vercel deployment failure from VERSION import issues",
+      "HARDCODED VERSIONS: Temporary fix to ensure reliable deployment process",
+      "SIDEBAR DEPLOYMENT: Modern SaaS navigation now properly deployed to production"
+    ]
+  },
   "3.19.27": {
     date: "2025-12-15", 
     name: "Modern SaaS Sidebar Navigation - Professional Module Design",

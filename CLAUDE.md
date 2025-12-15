@@ -8,9 +8,15 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 ### Aktuálny stav projektu (December 15, 2025)
 
-**🎯 VERSION 3.19.27: ✅ Modern SaaS Sidebar Navigation - Professional Module Design**
+**🎯 VERSION 3.19.28: ✅ Mandatory Version Increment Rule - Build Fix Deployment**
 
 **🎨 LATEST SESSION ACHIEVEMENTS (December 15, 2025):**
+- ✅ **VERSIONING RULE ESTABLISHED:** Every deployment now requires version increment
+- ✅ **BUILD FIX:** Resolved Vercel deployment failure from VERSION import issues
+- ✅ **HARDCODED VERSIONS:** Temporary fix to ensure reliable deployment process
+- ✅ **SIDEBAR DEPLOYMENT:** Modern SaaS navigation now properly deployed to production
+
+**🎨 PREVIOUS SESSION ACHIEVEMENTS (December 15, 2025):**
 - ✅ **MODERN SAAS SIDEBAR:** Transformed admin-panel aesthetic to professional SaaS design
 - ✅ **ACTION-ORIENTED MODULES:** Dashboard → Overview, Pre-check → DPIA Pre-Check, Builder → DPIA Assessments
 - ✅ **FLAT DESIGN:** Removed color-coded groups, dividers, and visual noise for calm aesthetic
