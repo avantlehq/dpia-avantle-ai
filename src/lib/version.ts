@@ -1,5 +1,5 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.27
-export const VERSION = "3.19.27" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.51
+export const VERSION = "3.19.51" as const
 export const VERSION_NAME = "Enhanced Status Pills Text Visibility" as const
 export const BUILD_DATE = "2025-12-15"
 
@@ -13,24 +13,25 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
-  "3.19.27": {
+  "3.19.51": {
     date: "2025-12-15", 
     name: "Enhanced Status Pills Text Visibility",
     features: [
       "TEXT VISIBILITY FIX: Improved contrast for status pill text and numbers",
       "LIGHTER COLORS: Changed text from #6b7280 to #9ca3af for better visibility",
       "DARKER NUMBERS: Updated numbers from #374151 to #1f2937 for stronger contrast",
-      "IMPROVED READABILITY: Status pills now clearly readable on all backgrounds"
+      "IMPROVED READABILITY: Status pills now clearly readable on all backgrounds",
+      "VERSION FIX: Corrected version numbering from incorrect 3.19.27 to proper 3.19.51"
     ]
   },
-  "3.19.26": {
+  "3.19.50": {
     date: "2025-12-15", 
-    name: "Fixed Hardcoded Version in SimpleLayout",
+    name: "Refined Status Pills - Calm Professional Summary",
     features: [
-      "VERSION DISPLAY FIX: Resolved hardcoded v3.19.50 in SimpleLayout component",
-      "DYNAMIC VERSION: Both header and footer now use {VERSION} import",
-      "VERSION ACCURACY: UI now correctly displays v3.19.26 instead of outdated hardcoded value",
-      "CACHE BUSTER: Component will show current version after deployment"
+      "VISUAL WEIGHT REDUCTION: Removed white/colored backgrounds, now transparent",
+      "SUBTLE ACCENT BORDERS: Added 3px solid left borders in status colors",
+      "INCREASED SPACING: Added mt-12 gap before assessment table",
+      "PROFESSIONAL SUMMARY: Pills feel like summary, not table controls"
     ]
   },
   "3.19.30": {
