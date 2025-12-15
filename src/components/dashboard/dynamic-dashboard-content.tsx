@@ -299,13 +299,13 @@ export function DynamicDashboardContent() {
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 Get started by creating your first DPIA assessment or running a quick pre-check to see if you need one.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                {/* Secondary CTA - Start Pre-check (same style as primary but lighter) */}
+              <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
+                {/* Secondary CTA - Start Pre-check (lighter secondary style) */}
                 <Link href="/precheck">
                   <button
                     className="secondary-cta-button"
                     style={{
-                      backgroundColor: '#6BA3E8',
+                      backgroundColor: '#8AB4E8',
                       color: '#ffffff',
                       border: 'none',
                       borderRadius: '8px',
@@ -314,7 +314,7 @@ export function DynamicDashboardContent() {
                       fontWeight: '500',
                       cursor: 'pointer',
                       transition: 'background-color 0.2s ease',
-                      boxShadow: '0 2px 4px rgba(107, 163, 232, 0.15)'
+                      boxShadow: '0 2px 4px rgba(138, 180, 232, 0.15)'
                     }}
                     title="Quick pre-assessment to check if full DPIA is required"
                   >
@@ -322,12 +322,12 @@ export function DynamicDashboardContent() {
                   </button>
                 </Link>
                 
-                {/* Primary CTA - New Assessment (visually dominant) */}
+                {/* Primary CTA - New Assessment (darker, more prominent) */}
                 <Link href="/assessments/new">
                   <button
                     className="primary-cta-button"
                     style={{
-                      backgroundColor: '#4A90E2',
+                      backgroundColor: '#357ABD',
                       color: '#ffffff',
                       border: 'none',
                       borderRadius: '8px',
@@ -336,7 +336,7 @@ export function DynamicDashboardContent() {
                       fontWeight: '600',
                       cursor: 'pointer',
                       transition: 'background-color 0.2s ease',
-                      boxShadow: '0 2px 4px rgba(74, 144, 226, 0.2)'
+                      boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
                     }}
                   >
                     New Assessment

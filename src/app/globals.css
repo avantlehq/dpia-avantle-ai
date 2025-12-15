@@ -326,10 +326,10 @@ table td a, table th, table td {
 
 /* Primary CTA Button Hover Effect */
 .primary-cta-button:hover {
-  background-color: #357ABD !important;
+  background-color: #2A5A9A !important;
 }
 
 /* Secondary CTA Button Hover Effect */
 .secondary-cta-button:hover {
-  background-color: #5890D9 !important;
+  background-color: #6BA3E8 !important;
 }
