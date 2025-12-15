@@ -192,7 +192,7 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#1f2937',
+                color: '#ffffff',
                 fontWeight: '600'
               }}
             >
@@ -224,7 +224,7 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#1f2937',
+                color: '#ffffff',
                 fontWeight: '600'
               }}
             >
@@ -256,7 +256,7 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#1f2937',
+                color: '#ffffff',
                 fontWeight: '600'
               }}
             >

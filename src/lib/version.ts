@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.51
-export const VERSION = "3.19.51" as const
-export const VERSION_NAME = "Enhanced Status Pills Text Visibility" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.52
+export const VERSION = "3.19.52" as const
+export const VERSION_NAME = "Fixed Numbers Visibility - White Text" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.52": {
+    date: "2025-12-15", 
+    name: "Fixed Numbers Visibility - White Text",
+    features: [
+      "NUMBERS VISIBILITY FIX: Changed numbers color from #1f2937 to #ffffff (white)",
+      "DARK BACKGROUND CONTRAST: Numbers now clearly visible on dark theme background",
+      "USER FEEDBACK RESOLVED: Fixed issue where numbers blended with background",
+      "PROFESSIONAL READABILITY: Maintained clean design while ensuring visibility"
+    ]
+  },
   "3.19.51": {
     date: "2025-12-15", 
     name: "Enhanced Status Pills Text Visibility",
