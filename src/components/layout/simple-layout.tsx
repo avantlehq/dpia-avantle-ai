@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, type ReactNode } from 'react'
+import { VERSION } from '@/lib/version'
 
 interface SimpleLayoutProps {
   children: ReactNode
