@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.57
-export const VERSION = "3.19.57" as const
-export const VERSION_NAME = "CSS Hover Effects - Removed JS Event Handlers" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.58
+export const VERSION = "3.19.58" as const
+export const VERSION_NAME = "Dual Blue Buttons - Fixed Visibility and Spacing" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.58": {
+    date: "2025-12-15", 
+    name: "Dual Blue Buttons - Fixed Visibility and Spacing",
+    features: [
+      "DUAL BLUE BUTTONS: Both buttons now use blue theme with different shades",
+      "FIXED VISIBILITY: Start Pre-check uses #6BA3E8 (lighter blue) with white text",
+      "IMPROVED SPACING: Increased gap from 4 to 6 (24px) between buttons",
+      "CONSISTENT STYLING: Both buttons share same rounded, shadowed appearance",
+      "HOVER EFFECTS: Added secondary button hover (#6BA3E8 → #5890D9)",
+      "PERFECT CONTRAST: Both buttons clearly visible on dark background"
+    ]
+  },
   "3.19.57": {
     date: "2025-12-15", 
     name: "CSS Hover Effects - Removed JS Event Handlers",

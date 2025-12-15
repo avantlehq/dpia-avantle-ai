@@ -299,19 +299,24 @@ export function DynamicDashboardContent() {
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 Get started by creating your first DPIA assessment or running a quick pre-check to see if you need one.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                {/* Secondary CTA - Start Pre-check (subtle ghost style) */}
+              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                {/* Secondary CTA - Start Pre-check (same style as primary but lighter) */}
                 <Link href="/precheck">
-                  <button 
-                    className="text-muted-foreground hover:text-foreground font-medium transition-colors duration-200"
-                    title="Quick pre-assessment to check if full DPIA is required"
+                  <button
+                    className="secondary-cta-button"
                     style={{
-                      background: 'none',
+                      backgroundColor: '#6BA3E8',
+                      color: '#ffffff',
                       border: 'none',
-                      padding: '8px 0',
+                      borderRadius: '8px',
+                      padding: '12px 20px',
                       fontSize: '14px',
-                      cursor: 'pointer'
+                      fontWeight: '500',
+                      cursor: 'pointer',
+                      transition: 'background-color 0.2s ease',
+                      boxShadow: '0 2px 4px rgba(107, 163, 232, 0.15)'
                     }}
+                    title="Quick pre-assessment to check if full DPIA is required"
                   >
                     Start Pre-check
                   </button>

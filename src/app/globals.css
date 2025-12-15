@@ -328,3 +328,8 @@ table td a, table th, table td {
 .primary-cta-button:hover {
   background-color: #357ABD !important;
 }
+
+/* Secondary CTA Button Hover Effect */
+.secondary-cta-button:hover {
+  background-color: #5890D9 !important;
+}
