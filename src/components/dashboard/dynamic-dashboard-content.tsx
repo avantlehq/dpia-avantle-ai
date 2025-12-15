@@ -167,9 +167,9 @@ export function DynamicDashboardContent() {
         <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
         
         {/* Status Chips */}
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-6">
           {/* Completed Chip */}
-          <div className="inline-flex items-center gap-2 px-3 py-2 bg-teal-50 border border-teal-200/60 rounded-lg">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-teal-50 border border-teal-200/60 rounded-lg">
             <div className="w-2 h-2 rounded-full bg-teal-500/70"></div>
             <div className="flex items-baseline gap-1">
               <span className="text-sm text-muted-foreground">Completed</span>
@@ -180,7 +180,7 @@ export function DynamicDashboardContent() {
           </div>
 
           {/* In Progress Chip */}
-          <div className="inline-flex items-center gap-2 px-3 py-2 bg-amber-50 border border-amber-200/60 rounded-lg">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 border border-amber-200/60 rounded-lg">
             <div className="w-2 h-2 rounded-full bg-amber-500/70"></div>
             <div className="flex items-baseline gap-1">
               <span className="text-sm text-muted-foreground">In Progress</span>
@@ -191,7 +191,7 @@ export function DynamicDashboardContent() {
           </div>
 
           {/* Drafts Chip */}
-          <div className="inline-flex items-center gap-2 px-3 py-2 bg-gray-50 border border-gray-200/60 rounded-lg">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200/60 rounded-lg">
             <div className="w-2 h-2 rounded-full bg-gray-400/70"></div>
             <div className="flex items-baseline gap-1">
               <span className="text-sm text-muted-foreground">Drafts</span>
