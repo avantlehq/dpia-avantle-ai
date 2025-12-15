@@ -166,75 +166,38 @@ export function DynamicDashboardContent() {
       <div className="space-y-4">
         <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
         
-        {/* Status Distribution Bar */}
-        <div className="space-y-4">
-          {/* Distribution Bar - Visually Prominent */}
-          <div className="w-full h-3 bg-slate-700/80 rounded-lg overflow-hidden shadow-sm">
-            {stats.totalAssessments > 0 && !isLoading ? (
-              <div className="flex h-full">
-                {/* Completed Segment - Muted Teal */}
-                {stats.completed > 0 && (
-                  <div 
-                    className="bg-teal-500/60 transition-all duration-300"
-                    style={{ 
-                      width: `${(stats.completed / stats.totalAssessments) * 100}%` 
-                    }}
-                  />
-                )}
-                {/* In Progress Segment - Muted Amber */}
-                {stats.inProgress > 0 && (
-                  <div 
-                    className="bg-amber-400/60 transition-all duration-300"
-                    style={{ 
-                      width: `${(stats.inProgress / stats.totalAssessments) * 100}%` 
-                    }}
-                  />
-                )}
-                {/* Drafts Segment - Neutral Gray */}
-                {stats.drafts > 0 && (
-                  <div 
-                    className="bg-gray-400/50 transition-all duration-300"
-                    style={{ 
-                      width: `${(stats.drafts / stats.totalAssessments) * 100}%` 
-                    }}
-                  />
-                )}
-              </div>
-            ) : (
-              <div className="w-full h-full bg-slate-600/40" />
-            )}
-          </div>
-          
-          {/* Status Counts - Numbers Next to Labels */}
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
-            {/* Completed */}
-            <div className="flex items-baseline gap-2">
-              <div className="text-2xl font-bold text-foreground">
+        {/* Status Chips */}
+        <div className="flex flex-wrap gap-3">
+          {/* Completed Chip */}
+          <div className="inline-flex items-center gap-2 px-3 py-2 bg-teal-50 border border-teal-200/60 rounded-lg">
+            <div className="w-2 h-2 rounded-full bg-teal-500/70"></div>
+            <div className="flex items-baseline gap-1">
+              <span className="text-sm text-muted-foreground">Completed</span>
+              <span className="text-base font-semibold text-foreground">
                 {isLoading ? '...' : stats.completed}
-              </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                Completed
-              </div>
+              </span>
             </div>
-            
-            {/* Drafts */}
-            <div className="flex items-baseline gap-2">
-              <div className="text-2xl font-bold text-foreground">
-                {isLoading ? '...' : stats.drafts}
-              </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                Drafts
-              </div>
-            </div>
-            
-            {/* In Progress */}
-            <div className="flex items-baseline gap-2">
-              <div className="text-2xl font-bold text-foreground">
+          </div>
+
+          {/* In Progress Chip */}
+          <div className="inline-flex items-center gap-2 px-3 py-2 bg-amber-50 border border-amber-200/60 rounded-lg">
+            <div className="w-2 h-2 rounded-full bg-amber-500/70"></div>
+            <div className="flex items-baseline gap-1">
+              <span className="text-sm text-muted-foreground">In Progress</span>
+              <span className="text-base font-semibold text-foreground">
                 {isLoading ? '...' : stats.inProgress}
-              </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                In Progress
-              </div>
+              </span>
+            </div>
+          </div>
+
+          {/* Drafts Chip */}
+          <div className="inline-flex items-center gap-2 px-3 py-2 bg-gray-50 border border-gray-200/60 rounded-lg">
+            <div className="w-2 h-2 rounded-full bg-gray-400/70"></div>
+            <div className="flex items-baseline gap-1">
+              <span className="text-sm text-muted-foreground">Drafts</span>
+              <span className="text-base font-semibold text-foreground">
+                {isLoading ? '...' : stats.drafts}
+              </span>
             </div>
           </div>
         </div>
