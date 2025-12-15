@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.59
-export const VERSION = "3.19.59" as const
-export const VERSION_NAME = "Proper Button Spacing and Hierarchy" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.60
+export const VERSION = "3.19.60" as const
+export const VERSION_NAME = "Matching Button Colors - Same Blue Background" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.60": {
+    date: "2025-12-15", 
+    name: "Matching Button Colors - Same Blue Background",
+    features: [
+      "MATCHING BACKGROUNDS: Both buttons now use same blue color (#357ABD)",
+      "CONSISTENT VISUAL DESIGN: Unified blue background creates cohesive appearance",
+      "MAINTAINED HIERARCHY: New Assessment keeps bold font (600) vs Start Pre-check medium (500)",
+      "SAME HOVER EFFECT: Both buttons darken to #2A5A9A on hover",
+      "PERFECT SPACING: 32px gap preserved between buttons",
+      "CLEAN DESIGN: Two matching blue buttons with subtle text weight difference"
+    ]
+  },
   "3.19.59": {
     date: "2025-12-15", 
     name: "Proper Button Spacing and Hierarchy",

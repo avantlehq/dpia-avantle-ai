@@ -17,12 +17,12 @@ export default function DashboardPage() {
           </p>
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
-          {/* Secondary CTA - Start Pre-check (lighter secondary style) */}
+          {/* Secondary CTA - Start Pre-check (same blue background) */}
           <Link href="/precheck">
             <button
               className="secondary-cta-button"
               style={{
-                backgroundColor: '#8AB4E8',
+                backgroundColor: '#357ABD',
                 color: '#ffffff',
                 border: 'none',
                 borderRadius: '8px',
@@ -31,7 +31,7 @@ export default function DashboardPage() {
                 fontWeight: '500',
                 cursor: 'pointer',
                 transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(138, 180, 232, 0.15)'
+                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
               }}
               title="Quick pre-assessment to check if full DPIA is required"
             >
