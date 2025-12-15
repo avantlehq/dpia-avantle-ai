@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.32
-export const VERSION = "3.19.32" as const
-export const VERSION_NAME = "Complete Sidebar Modernization - Icons + Workspace Header" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.33
+export const VERSION = "3.19.33" as const
+export const VERSION_NAME = "Modern SaaS Dashboard KPIs - Clean Card Layout" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({

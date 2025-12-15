@@ -162,79 +162,71 @@ export function DynamicDashboardContent() {
 
   return (
     <>
-      {/* Stats Grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-dpia-blue shadow-sm hover:shadow-md transition-shadow">
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="p-2 rounded-lg bg-icon-blue hover:bg-icon-blue-hover transition-colors duration-200">
-              <FileText style={{ color: 'var(--color-blue)' }} className="h-5 w-5" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center w-full">
-              <p className="text-sm font-medium text-muted-foreground">Total Assessments</p>
-              <div className="flex-grow text-center">
-                <p className="text-2xl font-bold text-foreground">
-                  {isLoading ? '...' : stats.totalAssessments}
-                </p>
+      {/* Assessment Overview */}
+      <div className="space-y-4">
+        <div className="flex items-center gap-2">
+          <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
+        </div>
+        
+        {/* Modern KPI Cards Grid */}
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {/* Total Assessments */}
+          <Card className="bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
+            <CardContent className="p-6 text-center space-y-2">
+              <div className="text-3xl font-bold text-foreground">
+                {isLoading ? '...' : stats.totalAssessments}
               </div>
-            </div>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="text-sm text-muted-foreground font-medium">
+                Total Assessments
+              </div>
+            </CardContent>
+          </Card>
 
-        <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-dpia-green shadow-sm hover:shadow-md transition-shadow">
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="p-2 rounded-lg bg-icon-green hover:bg-icon-green-hover transition-colors duration-200">
-              <CheckCircle style={{ color: 'var(--color-green)' }} className="h-5 w-5" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center w-full">
-                <p className="text-sm font-medium text-muted-foreground">Completed</p>
-                <div className="flex-grow text-center">
-                  <p className="text-2xl font-bold text-foreground">
-                    {isLoading ? '...' : stats.completed}
-                  </p>
+          {/* Completed */}
+          <Card className="bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
+            <CardContent className="p-6 text-center space-y-2">
+              <div className="flex items-center justify-center gap-2">
+                <div className="text-3xl font-bold text-foreground">
+                  {isLoading ? '...' : stats.completed}
                 </div>
+                <div className="w-2 h-2 rounded-full bg-green-500/60"></div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="text-sm text-muted-foreground font-medium">
+                Completed
+              </div>
+            </CardContent>
+          </Card>
 
-        <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-dpia-orange shadow-sm hover:shadow-md transition-shadow">
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="p-2 rounded-lg bg-icon-orange hover:bg-icon-orange-hover transition-colors duration-200">
-              <Clock style={{ color: 'var(--color-orange)' }} className="h-5 w-5" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center w-full">
-                <p className="text-sm font-medium text-muted-foreground">In Progress</p>
-                <div className="flex-grow text-center">
-                  <p className="text-2xl font-bold text-foreground">
-                    {isLoading ? '...' : stats.inProgress}
-                  </p>
+          {/* In Progress */}
+          <Card className="bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
+            <CardContent className="p-6 text-center space-y-2">
+              <div className="flex items-center justify-center gap-2">
+                <div className="text-3xl font-bold text-foreground">
+                  {isLoading ? '...' : stats.inProgress}
                 </div>
+                <div className="w-2 h-2 rounded-full bg-amber-500/60"></div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="text-sm text-muted-foreground font-medium">
+                In Progress
+              </div>
+            </CardContent>
+          </Card>
 
-        <Card className="avantle-border bg-card backdrop-blur-sm border-l-4 border-l-dpia-gray shadow-sm hover:shadow-md transition-shadow">
-          <CardContent className="flex items-center gap-4 p-6">
-            <div className="p-2 rounded-lg bg-icon-gray hover:bg-icon-gray-hover transition-colors duration-200">
-              <AlertCircle style={{ color: 'var(--color-gray)' }} className="h-5 w-5" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center w-full">
-                <p className="text-sm font-medium text-muted-foreground">Drafts</p>
-                <div className="flex-grow text-center">
-                  <p className="text-2xl font-bold text-foreground">
-                    {isLoading ? '...' : stats.drafts}
-                  </p>
+          {/* Drafts */}
+          <Card className="bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
+            <CardContent className="p-6 text-center space-y-2">
+              <div className="flex items-center justify-center gap-2">
+                <div className="text-3xl font-bold text-foreground">
+                  {isLoading ? '...' : stats.drafts}
                 </div>
+                <div className="w-2 h-2 rounded-full bg-gray-400/60"></div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+              <div className="text-sm text-muted-foreground font-medium">
+                Drafts
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
 
       {/* Assessments Table */}
