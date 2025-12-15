@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.60
-export const VERSION = "3.19.60" as const
-export const VERSION_NAME = "Matching Button Colors - Same Blue Background" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.61
+export const VERSION = "3.19.61" as const
+export const VERSION_NAME = "Complete Visual Guide - CTA Design Documentation" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.61": {
+    date: "2025-12-15", 
+    name: "Complete Visual Guide - CTA Design Documentation",
+    features: [
+      "COMPLETE CTA GUIDE: Added Primary Actions design section to CLAUDE.md",
+      "DESIGN EVOLUTION: Documented complete journey from failed attempts to final solution",
+      "BUILD SYSTEM LEARNINGS: Server vs client component compatibility patterns",
+      "TYPOGRAPHY HIERARCHY: Visual hierarchy through font weight instead of color differences",
+      "7 DESIGN PRINCIPLES: Established rules for consistent CTA design across platform",
+      "COMPREHENSIVE REFERENCE: Future CTA work can reference complete design patterns"
+    ]
+  },
   "3.19.60": {
     date: "2025-12-15", 
     name: "Matching Button Colors - Same Blue Background",

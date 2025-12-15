@@ -1207,6 +1207,133 @@ borderLeft: '3px solid #22c55e'
 
 **Result:** Clean, professional status pills that work across all devices and themes with perfect visibility and SaaS-grade design quality.
 
+### 🎯 **Primary Actions CTA Design (SOLVED)**
+**Context:** Refining dashboard primary actions (New Assessment + Start Pre-check) for clear hierarchy and professional appearance
+
+**User Requirements:**
+- Clear CTA hierarchy with single dominant primary action
+- Remove visual noise and legacy toolbar appearance  
+- Buttons must match dark UI aesthetic
+- Proper spacing between actions
+- Consistent visual design language
+
+**Critical Design Evolution:**
+```css
+/* ❌ FAILED ATTEMPT 1 - Competing visual weights */
+.primary { background: #4A90E2; font-weight: 600; }
+.secondary { background: none; border: 1px solid; } 
+/* Result: Too much contrast, secondary button invisible on dark background */
+
+/* ❌ FAILED ATTEMPT 2 - JavaScript event handlers in server component */
+onMouseEnter={(e) => e.target.style.backgroundColor = '#357ABD'}
+/* Result: Build error - "Event handlers cannot be passed to Client Component props" */
+
+/* ❌ FAILED ATTEMPT 3 - Different blue shades creating hierarchy */
+.primary { background: #357ABD; }    /* Darker blue */
+.secondary { background: #8AB4E8; }  /* Lighter blue */
+/* Result: Hierarchy unclear, user wanted matching backgrounds */
+
+/* ❌ FAILED ATTEMPT 4 - Insufficient spacing */
+.flex { gap: '16px'; }  /* Tailwind gap-4 */
+/* Result: "buttons are touching each other" - backgrounds visually merged */
+
+/* ✅ FINAL SOLUTION - Perfect matching buttons with subtle hierarchy */
+.primary-cta-button, .secondary-cta-button {
+  background-color: #357ABD;        /* Same blue for visual consistency */
+  color: #ffffff;                   /* White text for perfect contrast */
+  border: none;                     /* Clean, no visual noise */
+  border-radius: 8px;               /* Subtle rounding */
+  padding: 12px 20px;               /* Touch-friendly proportions */
+  font-size: 14px;                  /* Readable size */
+  transition: background-color 0.2s ease;
+  box-shadow: 0 2px 4px rgba(53, 122, 189, 0.15);
+}
+
+.primary-cta-button {
+  font-weight: 600;                 /* Bold for primary emphasis */
+  padding: 12px 24px;               /* Slightly more padding */
+}
+
+.secondary-cta-button {
+  font-weight: 500;                 /* Medium for secondary */
+  padding: 12px 20px;               /* Slightly less padding */
+}
+
+/* CSS-only hover effects (no JavaScript) */
+.primary-cta-button:hover, 
+.secondary-cta-button:hover {
+  background-color: #2A5A9A !important;
+}
+
+/* Critical spacing solution */
+.button-container {
+  display: flex;
+  align-items: center;
+  gap: 32px;                        /* Explicit 32px prevents touching */
+}
+```
+
+### 🔧 **Build System Compatibility (SOLVED)**
+
+**Server vs Client Component Issues:**
+```typescript
+// ❌ PROBLEMATIC - Event handlers in server component
+export default function DashboardPage() {
+  return (
+    <button onMouseEnter={() => {}} onMouseLeave={() => {}}>
+      {/* Causes prerender error */}
+    </button>
+  )
+}
+
+// ✅ SOLUTION 1 - Convert to client component
+'use client'
+export default function DashboardPage() {
+  // Now supports event handlers
+}
+
+// ✅ SOLUTION 2 - Pure CSS hover effects (preferred)
+/* globals.css */
+.button-class:hover { background-color: #darker !important; }
+/* No JavaScript needed, works in server components */
+```
+
+### 📐 **Visual Hierarchy Through Typography (SOLVED)**
+
+**Subtle Hierarchy Without Color Conflicts:**
+```css
+/* ✅ PERFECT APPROACH - Same background, different typography weight */
+.primary-action {
+  background: #357ABD;              /* Same blue */
+  font-weight: 600;                 /* Bold = primary */
+  padding: 12px 24px;               /* Slightly larger */
+}
+
+.secondary-action {
+  background: #357ABD;              /* Same blue */
+  font-weight: 500;                 /* Medium = secondary */
+  padding: 12px 20px;               /* Slightly smaller */
+}
+
+/* Visual hierarchy achieved through:
+   1. Font weight (600 vs 500)
+   2. Padding size (24px vs 20px)
+   3. NOT color differences
+*/
+```
+
+### 💡 **Final Design Principles - Primary Actions**
+
+1. **Consistent Backgrounds:** Use same color for visual harmony, differentiate through typography
+2. **Explicit Spacing:** Use inline `style={{ gap: '32px' }}` when Tailwind classes fail
+3. **CSS-Only Interactions:** Avoid JavaScript event handlers for server component compatibility
+4. **Subtle Hierarchy:** Font weight + padding differences create clear hierarchy without color conflicts
+5. **Touch-Friendly Sizing:** Minimum 44px height, adequate padding for mobile interaction
+6. **Build System Safe:** Pure CSS hover effects prevent prerender errors
+7. **Visual Consistency:** Both buttons should feel like part of same design system
+
+**Result:** Perfect dual blue buttons with matching backgrounds, proper spacing, subtle hierarchy through typography, and CSS-only interactions that work across all devices and build configurations.
+
 ## Lokálna cesta
 
 **Projekt sa nachádza v:** `C:\Users\rasti\Projects\avantlehq\dpia-avantle-ai\`
