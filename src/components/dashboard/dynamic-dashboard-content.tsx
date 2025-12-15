@@ -205,10 +205,10 @@ export function DynamicDashboardContent() {
             )}
           </div>
           
-          {/* Status Counts - Numbers Larger Than Labels */}
+          {/* Status Counts - Numbers Next to Labels */}
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
             {/* Completed */}
-            <div className="flex flex-col">
+            <div className="flex items-baseline gap-2">
               <div className="text-2xl font-bold text-foreground">
                 {isLoading ? '...' : stats.completed}
               </div>
@@ -218,7 +218,7 @@ export function DynamicDashboardContent() {
             </div>
             
             {/* Drafts */}
-            <div className="flex flex-col">
+            <div className="flex items-baseline gap-2">
               <div className="text-2xl font-bold text-foreground">
                 {isLoading ? '...' : stats.drafts}
               </div>
@@ -228,7 +228,7 @@ export function DynamicDashboardContent() {
             </div>
             
             {/* In Progress */}
-            <div className="flex flex-col">
+            <div className="flex items-baseline gap-2">
               <div className="text-2xl font-bold text-foreground">
                 {isLoading ? '...' : stats.inProgress}
               </div>
