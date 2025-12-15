@@ -86,7 +86,7 @@ function SafeTopbar({ toggleSidebar, toggleTheme, isDarkMode }: SafeTopbarProps)
           fontWeight: '500',
           marginLeft: '24px'
         }}>
-          Privacy Platform v3.19.30
+          Privacy Platform v3.19.31
         </span>
       </div>
 
@@ -199,17 +199,17 @@ function SafeSidebar() {
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
           <li style={{ marginBottom: '8px' }}>
             <a href="/dashboard" style={{ color: '#9ca3af', textDecoration: 'none' }}>
-              Dashboard
+              Overview
             </a>
           </li>
           <li style={{ marginBottom: '8px' }}>
             <a href="/precheck" style={{ color: '#9ca3af', textDecoration: 'none' }}>
-              Pre-check
+              DPIA Pre-Check
             </a>
           </li>
           <li style={{ marginBottom: '8px' }}>
             <a href="/assessments" style={{ color: '#9ca3af', textDecoration: 'none' }}>
-              Assessments
+              DPIA Assessments
             </a>
           </li>
         </ul>
@@ -228,7 +228,7 @@ function SafeFooter() {
       fontSize: '12px',
       textAlign: 'center'
     }}>
-      DPIA.ai Privacy Platform v3.19.30 - GDPR Compliance Tool
+      DPIA.ai Privacy Platform v3.19.31 - GDPR Compliance Tool
     </footer>
   )
 }

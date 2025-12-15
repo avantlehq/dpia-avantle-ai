@@ -11,7 +11,7 @@ export default function DashboardPage() {
       {/* Header - Static server component */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
+          <h1 className="text-2xl font-semibold text-foreground">Overview</h1>
           <p className="text-muted-foreground">
             Manage your DPIA assessments and compliance activities
           </p>
