@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.54
-export const VERSION = "3.19.54" as const
-export const VERSION_NAME = "Refined Primary Actions - Clear CTA Hierarchy" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.55
+export const VERSION = "3.19.55" as const
+export const VERSION_NAME = "Fixed Build Errors - Removed Unused Imports" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.55": {
+    date: "2025-12-15", 
+    name: "Fixed Build Errors - Removed Unused Imports",
+    features: [
+      "BUILD ERROR FIX: Removed unused imports that caused ESLint failures",
+      "CLEAN IMPORTS: Removed Button, Plus, and Sparkles from dashboard files",
+      "TYPESCRIPT COMPLIANCE: Fixed 'defined but never used' warnings",
+      "PRODUCTION READY: Build now passes linting checks for deployment"
+    ]
+  },
   "3.19.54": {
     date: "2025-12-15", 
     name: "Refined Primary Actions - Clear CTA Hierarchy",

@@ -12,7 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { RefreshCw, FileText, Clock, CheckCircle, AlertCircle, Plus, Sparkles } from 'lucide-react'
+import { RefreshCw, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 
