@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.47
-export const VERSION = "3.19.47" as const
-export const VERSION_NAME = "Button-Sized Status Pills - Match CTA Button Proportions" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.48
+export const VERSION = "3.19.48" as const
+export const VERSION_NAME = "Exact Button Height - Pills Match CTA Button Dimensions" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({

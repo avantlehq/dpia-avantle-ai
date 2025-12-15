@@ -172,7 +172,9 @@ export function DynamicDashboardContent() {
           <div 
             className="inline-flex items-center rounded-lg border"
             style={{ 
-              padding: '12px 16px',
+              height: '44px',
+              paddingLeft: '16px',
+              paddingRight: '16px',
               backgroundColor: '#f0fdf4', 
               borderColor: '#bbf7d0',
               gap: '8px'
@@ -202,7 +204,9 @@ export function DynamicDashboardContent() {
           <div 
             className="inline-flex items-center rounded-lg border"
             style={{ 
-              padding: '12px 16px',
+              height: '44px',
+              paddingLeft: '16px',
+              paddingRight: '16px',
               backgroundColor: '#eff6ff', 
               borderColor: '#bfdbfe',
               gap: '8px'
@@ -232,7 +236,9 @@ export function DynamicDashboardContent() {
           <div 
             className="inline-flex items-center rounded-lg border"
             style={{ 
-              padding: '12px 16px',
+              height: '44px',
+              paddingLeft: '16px',
+              paddingRight: '16px',
               backgroundColor: '#f8fafc', 
               borderColor: '#e2e8f0',
               gap: '8px'
