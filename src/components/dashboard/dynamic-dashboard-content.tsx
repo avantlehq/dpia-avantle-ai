@@ -167,16 +167,16 @@ export function DynamicDashboardContent() {
         <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
         
         {/* Status Pills Group */}
-        <div className="flex flex-wrap" style={{ gap: '32px' }}>
+        <div className="flex flex-wrap" style={{ gap: '24px' }}>
           {/* Completed Pill */}
           <div 
             className="inline-flex items-center rounded-lg border"
             style={{ 
-              minHeight: '52px',
-              padding: '16px 24px',
+              minHeight: '36px',
+              padding: '12px 16px',
               backgroundColor: '#f0fdf4', 
               borderColor: '#bbf7d0',
-              gap: '16px'
+              gap: '12px'
             }}
           >
             <span 
@@ -190,7 +190,7 @@ export function DynamicDashboardContent() {
             </span>
             <span 
               style={{ 
-                fontSize: '24px',
+                fontSize: '19px',
                 color: '#111827',
                 fontWeight: '700'
               }}
@@ -203,11 +203,11 @@ export function DynamicDashboardContent() {
           <div 
             className="inline-flex items-center rounded-lg border"
             style={{ 
-              minHeight: '52px',
-              padding: '16px 24px',
+              minHeight: '36px',
+              padding: '12px 16px',
               backgroundColor: '#eff6ff', 
               borderColor: '#bfdbfe',
-              gap: '16px'
+              gap: '12px'
             }}
           >
             <span 
@@ -221,7 +221,7 @@ export function DynamicDashboardContent() {
             </span>
             <span 
               style={{ 
-                fontSize: '24px',
+                fontSize: '19px',
                 color: '#111827',
                 fontWeight: '700'
               }}
@@ -234,11 +234,11 @@ export function DynamicDashboardContent() {
           <div 
             className="inline-flex items-center rounded-lg border"
             style={{ 
-              minHeight: '52px',
-              padding: '16px 24px',
+              minHeight: '36px',
+              padding: '12px 16px',
               backgroundColor: '#f8fafc', 
               borderColor: '#e2e8f0',
-              gap: '16px'
+              gap: '12px'
             }}
           >
             <span 
@@ -252,7 +252,7 @@ export function DynamicDashboardContent() {
             </span>
             <span 
               style={{ 
-                fontSize: '24px',
+                fontSize: '19px',
                 color: '#111827',
                 fontWeight: '700'
               }}

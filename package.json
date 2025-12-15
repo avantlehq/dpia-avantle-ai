@@ -1,6 +1,6 @@
 {
   "name": "dpia-avantle-ai",
-  "version": "3.19.45",
+  "version": "3.19.46",
   "private": true,
   "scripts": {
     "dev": "next dev",
