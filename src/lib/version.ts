@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.50
-export const VERSION = "3.19.50" as const
-export const VERSION_NAME = "Refined Status Pills - Calm Professional Summary" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.26
+export const VERSION = "3.19.26" as const
+export const VERSION_NAME = "Fixed Hardcoded Version in SimpleLayout" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.26": {
+    date: "2025-12-15", 
+    name: "Fixed Hardcoded Version in SimpleLayout",
+    features: [
+      "VERSION DISPLAY FIX: Resolved hardcoded v3.19.50 in SimpleLayout component",
+      "DYNAMIC VERSION: Both header and footer now use {VERSION} import",
+      "VERSION ACCURACY: UI now correctly displays v3.19.26 instead of outdated hardcoded value",
+      "CACHE BUSTER: Component will show current version after deployment"
+    ]
+  },
   "3.19.30": {
     date: "2025-12-15", 
     name: "Complete Sidebar Fix - All Components Updated",
