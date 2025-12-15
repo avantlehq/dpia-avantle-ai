@@ -8,9 +8,19 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 ### Aktuálny stav projektu (December 15, 2025)
 
-**🎯 VERSION 3.19.26: ✅ Neutral Form Color Redesign - Professional Compliance UI**
+**🎯 VERSION 3.19.27: ✅ Modern SaaS Sidebar Navigation - Professional Module Design**
 
 **🎨 LATEST SESSION ACHIEVEMENTS (December 15, 2025):**
+- ✅ **MODERN SAAS SIDEBAR:** Transformed admin-panel aesthetic to professional SaaS design
+- ✅ **ACTION-ORIENTED MODULES:** Dashboard → Overview, Pre-check → DPIA Pre-Check, Builder → DPIA Assessments
+- ✅ **FLAT DESIGN:** Removed color-coded groups, dividers, and visual noise for calm aesthetic
+- ✅ **NEUTRAL ICONS:** Consistent outline icons with muted colors, no semantic color coding
+- ✅ **SUBTLE ACTIVE STATES:** Clean background highlight with thin indigo accent bar
+- ✅ **GENEROUS SPACING:** Modern typography with space-y-8 for contemporary feel
+- ✅ **WORKSPACE HEADER:** Professional 'Workspace' label replacing generic 'MENU'
+- ✅ **CLEAN ARCHITECTURE:** Similar to Linear/Vercel/GitHub Projects, clearly communicates DPIA functionality
+
+**🎨 PREVIOUS SESSION ACHIEVEMENTS (December 15, 2025):**
 - ✅ **NEUTRAL FORM DESIGN:** Eliminated green color noise from DPIA Builder forms
 - ✅ **PROFESSIONAL QUESTION STYLING:** Questions use muted neutral color with semibold weight
 - ✅ **CALM ANSWER CONTROLS:** Unselected answers completely neutral (gray backgrounds)
@@ -716,6 +726,155 @@ style={{ backgroundColor: isSelected ? sectionColor : undefined }}
 - **Success**: `var(--color-green)` (#7ED321) - completion/success only
 
 **Result: Enterprise-grade compliance form UI with calm, professional aesthetic suitable for regulatory software.**
+
+## 🧭 **Modern SaaS Navigation Design Rules (v3.19.27)**
+
+### **Professional Sidebar Navigation Standards**
+
+**MANDATORY NAVIGATION DESIGN RULES for DPIA.ai Sidebar:**
+
+```typescript
+// ✅ CORRECT - Modern SaaS navigation patterns
+const NAVIGATION_DESIGN_RULES = {
+  // Header - Professional workspace branding
+  headerLabel: 'Workspace', // NOT "Navigation" or "MENU"
+  headerStyling: 'text-xs font-semibold text-muted-foreground uppercase tracking-wider',
+  
+  // Module names - Action-oriented, domain-specific
+  moduleNames: {
+    dashboard: 'Overview', // NOT "Dashboard" or "Home"
+    precheck: 'DPIA Pre-Check', // NOT "Pre-check" 
+    assessments: 'DPIA Assessments', // NOT "DPIA Builder" or "Assessments"
+    risks: 'Risk Management', // Future module
+    settings: 'Settings' // Future module
+  },
+  
+  // Visual design - Flat, minimal, professional
+  groupHeaders: false, // NO color-coded group headers
+  dividerLines: false, // NO separator lines
+  colorCoding: false, // NO semantic module colors
+  
+  // Icons - Consistent outline style
+  iconStyle: 'outline', // NOT filled icons
+  iconColor: 'text-muted-foreground', // Muted, consistent
+  iconSize: 'h-4 w-4', // Standard size
+  
+  // Active states - Subtle, modern
+  activeBackground: 'bg-muted/50', // Light background
+  activeBorder: 'border-l-2 border-l-indigo-500', // Thin accent bar
+  activeText: 'text-foreground', // Slightly brighter
+  
+  // Typography - Generous, readable
+  textWeight: 'font-medium', // NOT bold
+  textColor: 'text-muted-foreground', // Neutral
+  spacing: 'space-y-8', // Generous vertical spacing
+  itemHeight: 'h-10' // Good touch targets
+}
+
+// ❌ FORBIDDEN - These patterns are BANNED
+const BANNED_NAVIGATION_PATTERNS = {
+  adminPanelAesthetic: 'color-coded sections with dividers',
+  genericLabels: '"Navigation", "Main", "Menu"',
+  heavyVisuals: 'bold text, colored icons, thick borders',
+  denseLayout: 'cramped spacing, small touch targets',
+  semanticColors: 'red=danger, green=good module coding'
+}
+```
+
+**Implementation Requirements:**
+
+**1. Navigation Structure (navigation.ts)**
+```typescript
+// ✅ CORRECT - Modern flat structure
+export const navigationConfig: NavGroup[] = [
+  {
+    name: "", // No group headers for flat design
+    colorClass: "neutral",
+    items: [
+      { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
+      { name: "DPIA Pre-Check", href: "/precheck", icon: Sparkles },
+      { name: "DPIA Assessments", href: "/assessments", icon: Target },
+    ]
+  }
+]
+
+// ❌ FORBIDDEN - Color-coded admin groups
+{
+  name: "Assessment", 
+  colorClass: "dpia-green",
+  items: [...] // Admin-style grouping
+}
+```
+
+**2. Navigation Items (nav-item.tsx)**
+```tsx
+// ✅ CORRECT - Subtle modern active state
+<Button
+  variant="ghost"
+  className={cn(
+    "w-full justify-start h-10 transition-all duration-200",
+    active && "bg-muted/50 border-l-2 border-l-indigo-500"
+  )}
+>
+  <Icon className={cn(
+    "h-4 w-4 flex-shrink-0 text-muted-foreground",
+    "mr-3",
+    active && "text-foreground"
+  )} />
+  <span className={cn(
+    "font-medium text-sm",
+    active ? "text-foreground" : "text-muted-foreground"
+  )}>
+    {item.name}
+  </span>
+</Button>
+
+// ❌ FORBIDDEN - Heavy admin styling
+<Button style={{ 
+  backgroundColor: `${item.color}20`, 
+  borderLeft: `3px solid ${item.color}` 
+}}>
+```
+
+**3. Sidebar Layout (sidebar-left.tsx)**
+```tsx
+// ✅ CORRECT - Professional workspace header
+<div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+  Workspace
+</div>
+
+// ✅ CORRECT - Generous spacing
+<div className="space-y-8">
+  {navigationConfig.map((group, index) => (
+    <NavGroup key={group.name || `group-${index}`} />
+  ))}
+</div>
+
+// ❌ FORBIDDEN - Generic admin header
+<div className="font-semibold text-foreground">MENU</div>
+```
+
+### **Design Philosophy**
+
+**Modern SaaS Standards:**
+- **Calm**: No visual noise, minimal decoration
+- **Professional**: Business-appropriate, not playful
+- **Product-oriented**: Names describe user actions, not technical sections
+- **Accessible**: Good contrast, touch targets, keyboard navigation
+- **Scalable**: Clean foundation for future module additions
+
+**Target Aesthetic:**
+- Similar to: Linear, Vercel, GitHub Projects
+- NOT like: Jira admin, WordPress backend, generic CMS
+
+**Module Naming Rules:**
+- ✅ **Action-oriented**: What user accomplishes
+- ✅ **Domain-specific**: DPIA/privacy terminology
+- ✅ **User-focused**: "Pre-Check" not "Evaluation"
+- ❌ **Technical terms**: "Builder", "Manager", "System"
+- ❌ **Generic nouns**: "Dashboard", "Main", "Tools"
+
+**Result: Professional SaaS navigation that clearly communicates DPIA functionality while maintaining calm, enterprise-appropriate aesthetic.**
 
 ## Databázová architektúra (Supabase)
 

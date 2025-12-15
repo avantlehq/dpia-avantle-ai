@@ -25,7 +25,7 @@ export function Footer() {
             <span>for privacy professionals</span>
           </div>
 
-          {/* Right Section - Cache Buster v3.19.25 */}
+          {/* Right Section - Cache Buster v3.19.27 */}
           <div className="flex items-center">
             <Badge variant="outline" className="text-xs">
               v{versionInfo.version}
