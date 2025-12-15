@@ -323,3 +323,8 @@
 table td a, table th, table td {
   color: #ffffff !important;
 }
+
+/* Primary CTA Button Hover Effect */
+.primary-cta-button:hover {
+  background-color: #357ABD !important;
+}

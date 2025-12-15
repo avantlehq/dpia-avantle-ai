@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.56
-export const VERSION = "3.19.56" as const
-export const VERSION_NAME = "Fixed Client Component - Dashboard Build Error" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.57
+export const VERSION = "3.19.57" as const
+export const VERSION_NAME = "CSS Hover Effects - Removed JS Event Handlers" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,17 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.57": {
+    date: "2025-12-15", 
+    name: "CSS Hover Effects - Removed JS Event Handlers",
+    features: [
+      "CSS HOVER EFFECTS: Replaced onMouseEnter/onMouseLeave with pure CSS hover styles",
+      "BUILD SUCCESS: Removed JavaScript event handlers that prevented prerendering",
+      "GLOBAL CSS: Added .primary-cta-button:hover class for button interactions",
+      "DEPLOYMENT READY: Dashboard now builds without prerender errors",
+      "SAME VISUAL EFFECT: Hover darkening (#4A90E2 → #357ABD) preserved"
+    ]
+  },
   "3.19.56": {
     date: "2025-12-15", 
     name: "Fixed Client Component - Dashboard Build Error",

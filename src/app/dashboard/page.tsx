@@ -37,6 +37,7 @@ export default function DashboardPage() {
           {/* Primary CTA - New Assessment (visually dominant) */}
           <Link href="/assessments/new">
             <button
+              className="primary-cta-button"
               style={{
                 backgroundColor: '#4A90E2',
                 color: '#ffffff',
@@ -48,12 +49,6 @@ export default function DashboardPage() {
                 cursor: 'pointer',
                 transition: 'background-color 0.2s ease',
                 boxShadow: '0 2px 4px rgba(74, 144, 226, 0.2)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#357ABD'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#4A90E2'
               }}
             >
               New Assessment
