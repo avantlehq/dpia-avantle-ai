@@ -86,7 +86,7 @@ function SafeTopbar({ toggleSidebar, toggleTheme, isDarkMode }: SafeTopbarProps)
           fontWeight: '500',
           marginLeft: '24px'
         }}>
-          Privacy Platform v3.19.31
+          Privacy Platform v3.19.32
         </span>
       </div>
 
@@ -193,22 +193,46 @@ function SafeSidebar() {
       minHeight: 'calc(100vh - 64px)'
     }}>
       <nav style={{ color: '#ffffff' }}>
-        <div style={{ marginBottom: '16px', fontSize: '14px', fontWeight: '600' }}>
-          Navigation
+        <div style={{ marginBottom: '16px', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Workspace
         </div>
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
           <li style={{ marginBottom: '8px' }}>
-            <a href="/dashboard" style={{ color: '#9ca3af', textDecoration: 'none' }}>
+            <a href="/dashboard" style={{ 
+              color: '#9ca3af', 
+              textDecoration: 'none', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px',
+              padding: '8px 0'
+            }}>
+              <span style={{ fontSize: '16px' }}>📊</span>
               Overview
             </a>
           </li>
           <li style={{ marginBottom: '8px' }}>
-            <a href="/precheck" style={{ color: '#9ca3af', textDecoration: 'none' }}>
+            <a href="/precheck" style={{ 
+              color: '#9ca3af', 
+              textDecoration: 'none', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px',
+              padding: '8px 0'
+            }}>
+              <span style={{ fontSize: '16px' }}>✨</span>
               DPIA Pre-Check
             </a>
           </li>
           <li style={{ marginBottom: '8px' }}>
-            <a href="/assessments" style={{ color: '#9ca3af', textDecoration: 'none' }}>
+            <a href="/assessments" style={{ 
+              color: '#9ca3af', 
+              textDecoration: 'none', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px',
+              padding: '8px 0'
+            }}>
+              <span style={{ fontSize: '16px' }}>🎯</span>
               DPIA Assessments
             </a>
           </li>
@@ -228,7 +252,7 @@ function SafeFooter() {
       fontSize: '12px',
       textAlign: 'center'
     }}>
-      DPIA.ai Privacy Platform v3.19.31 - GDPR Compliance Tool
+      DPIA.ai Privacy Platform v3.19.32 - GDPR Compliance Tool
     </footer>
   )
 }
