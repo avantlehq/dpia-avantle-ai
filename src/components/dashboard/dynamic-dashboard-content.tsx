@@ -163,39 +163,39 @@ export function DynamicDashboardContent() {
   return (
     <>
       {/* Assessment Overview */}
-      <div className="space-y-5">
+      <div className="space-y-6">
         <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
         
         {/* Status Pills Group */}
-        <div className="flex flex-wrap gap-3">
-          {/* Completed Pill */}
-          <div className="inline-flex items-center min-h-[40px] px-3 py-2 bg-emerald-50/80 border border-emerald-200/50 rounded-full shadow-sm">
+        <div className="flex flex-wrap gap-4">
+          {/* Completed Pill Component */}
+          <div className="inline-flex items-center h-11 px-4 py-3 bg-emerald-50/80 border border-emerald-200/50 rounded-full shadow-sm">
             <span className="text-sm text-muted-foreground">Completed</span>
-            <span className="ml-2 text-lg font-bold text-foreground">
+            <span className="ml-3 text-lg font-semibold text-foreground">
               {isLoading ? '...' : stats.completed}
             </span>
           </div>
 
-          {/* In Progress Pill */}
-          <div className="inline-flex items-center min-h-[40px] px-3 py-2 bg-orange-50/80 border border-orange-200/50 rounded-full shadow-sm">
+          {/* In Progress Pill Component */}
+          <div className="inline-flex items-center h-11 px-4 py-3 bg-orange-50/80 border border-orange-200/50 rounded-full shadow-sm">
             <span className="text-sm text-muted-foreground">In progress</span>
-            <span className="ml-2 text-lg font-bold text-foreground">
+            <span className="ml-3 text-lg font-semibold text-foreground">
               {isLoading ? '...' : stats.inProgress}
             </span>
           </div>
 
-          {/* Drafts Pill */}
-          <div className="inline-flex items-center min-h-[40px] px-3 py-2 bg-slate-50/80 border border-slate-200/50 rounded-full shadow-sm">
+          {/* Drafts Pill Component */}
+          <div className="inline-flex items-center h-11 px-4 py-3 bg-slate-50/80 border border-slate-200/50 rounded-full shadow-sm">
             <span className="text-sm text-muted-foreground">Drafts</span>
-            <span className="ml-2 text-lg font-bold text-foreground">
+            <span className="ml-3 text-lg font-semibold text-foreground">
               {isLoading ? '...' : stats.drafts}
             </span>
           </div>
         </div>
       </div>
 
-      {/* Spacing Before Table */}
-      <div className="mt-8"></div>
+      {/* Clear Vertical Separation */}
+      <div className="py-4"></div>
 
       {/* Assessments Table */}
       <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">

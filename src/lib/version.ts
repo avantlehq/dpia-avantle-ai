@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.40
-export const VERSION = "3.19.40" as const
-export const VERSION_NAME = "Refined Status Pills - Compact Intentional UI" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.41
+export const VERSION = "3.19.41" as const
+export const VERSION_NAME = "Finalized Status Pills - Touch-Friendly Scannable UI" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
