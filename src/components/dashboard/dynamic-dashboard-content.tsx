@@ -170,13 +170,13 @@ export function DynamicDashboardContent() {
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
           {/* Completed Pill */}
           <div 
-            className="inline-flex items-center rounded-lg border"
+            className="inline-flex items-center rounded-lg"
             style={{ 
               height: '38px',
-              paddingLeft: '16px',
+              paddingLeft: '12px',
               paddingRight: '16px',
-              backgroundColor: '#f0fdf4', 
-              borderColor: '#bbf7d0',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #22c55e',
               gap: '8px'
             }}
           >
@@ -192,8 +192,8 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#111827',
-                fontWeight: '700'
+                color: '#374151',
+                fontWeight: '600'
               }}
             >
               {isLoading ? '...' : stats.completed}
@@ -202,13 +202,13 @@ export function DynamicDashboardContent() {
 
           {/* In Progress Pill */}
           <div 
-            className="inline-flex items-center rounded-lg border"
+            className="inline-flex items-center rounded-lg"
             style={{ 
               height: '38px',
-              paddingLeft: '16px',
+              paddingLeft: '12px',
               paddingRight: '16px',
-              backgroundColor: '#eff6ff', 
-              borderColor: '#bfdbfe',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #3b82f6',
               gap: '8px'
             }}
           >
@@ -224,8 +224,8 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#111827',
-                fontWeight: '700'
+                color: '#374151',
+                fontWeight: '600'
               }}
             >
               {isLoading ? '...' : stats.inProgress}
@@ -234,13 +234,13 @@ export function DynamicDashboardContent() {
 
           {/* Drafts Pill */}
           <div 
-            className="inline-flex items-center rounded-lg border"
+            className="inline-flex items-center rounded-lg"
             style={{ 
               height: '38px',
-              paddingLeft: '16px',
+              paddingLeft: '12px',
               paddingRight: '16px',
-              backgroundColor: '#f8fafc', 
-              borderColor: '#e2e8f0',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #9ca3af',
               gap: '8px'
             }}
           >
@@ -256,8 +256,8 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#111827',
-                fontWeight: '700'
+                color: '#374151',
+                fontWeight: '600'
               }}
             >
               {isLoading ? '...' : stats.drafts}
@@ -266,8 +266,8 @@ export function DynamicDashboardContent() {
         </div>
       </div>
 
-      {/* Spacing Before Table */}
-      <div className="mt-8"></div>
+      {/* Increased Spacing Before Table */}
+      <div className="mt-12"></div>
 
       {/* Assessments Table */}
       <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
