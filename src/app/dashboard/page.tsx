@@ -16,27 +16,48 @@ export default function DashboardPage() {
             Manage your DPIA assessments and compliance activities
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          {/* Secondary CTA - Start Pre-check (ghost/outline variant) */}
+        <div className="flex items-center gap-4">
+          {/* Secondary CTA - Start Pre-check (subtle ghost style) */}
           <Link href="/precheck">
-            <Button 
-              variant="ghost"
-              className="border border-border/30 hover:border-border/50 hover:bg-muted/30 text-muted-foreground hover:text-foreground font-medium px-4 py-3 rounded-lg transition-all duration-200"
+            <button 
+              className="text-muted-foreground hover:text-foreground font-medium transition-colors duration-200"
               title="Quick pre-assessment to check if full DPIA is required"
+              style={{
+                background: 'none',
+                border: 'none',
+                padding: '8px 0',
+                fontSize: '14px',
+                cursor: 'pointer'
+              }}
             >
-              <Sparkles className="mr-2 h-4 w-4" />
               Start Pre-check
-            </Button>
+            </button>
           </Link>
           
-          {/* Primary CTA - New Assessment (full fill) */}
+          {/* Primary CTA - New Assessment (visually dominant) */}
           <Link href="/assessments/new">
-            <Button 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200"
+            <button
+              style={{
+                backgroundColor: '#4A90E2',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '12px 24px',
+                fontSize: '14px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease',
+                boxShadow: '0 2px 4px rgba(74, 144, 226, 0.2)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#357ABD'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#4A90E2'
+              }}
             >
-              <Plus className="mr-2 h-4 w-4" />
               New Assessment
-            </Button>
+            </button>
           </Link>
         </div>
       </div>

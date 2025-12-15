@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.53
-export const VERSION = "3.19.53" as const
-export const VERSION_NAME = "Visual Styling Lessons Learned Documentation" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.54
+export const VERSION = "3.19.54" as const
+export const VERSION_NAME = "Refined Primary Actions - Clear CTA Hierarchy" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,19 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.54": {
+    date: "2025-12-15", 
+    name: "Refined Primary Actions - Clear CTA Hierarchy",
+    features: [
+      "CLEAR CTA HIERARCHY: New Assessment is now the only primary button with solid fill",
+      "VISUAL DOMINANCE: Primary button uses blue theme color (#4A90E2) with no border",
+      "SUBTLE SECONDARY: Start Pre-check is now text-only ghost style with muted colors",
+      "REMOVED VISUAL NOISE: Eliminated heavy borders, white backgrounds, and icon clutter",
+      "DARK UI CONSISTENCY: Buttons now match the dark theme aesthetic perfectly",
+      "IMMEDIATE ACTION COMMUNICATION: Main action is clear without legacy toolbar appearance",
+      "CONSISTENT ACROSS VIEWS: Updated both header and empty state buttons with same hierarchy"
+    ]
+  },
   "3.19.53": {
     date: "2025-12-15", 
     name: "Visual Styling Lessons Learned Documentation",
