@@ -163,37 +163,37 @@ export function DynamicDashboardContent() {
   return (
     <>
       {/* Assessment Overview */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
         
         {/* Status Distribution Bar */}
-        <div className="space-y-3">
-          {/* Distribution Bar */}
-          <div className="w-full h-3 bg-muted/50 rounded-full overflow-hidden">
+        <div className="space-y-4">
+          {/* Distribution Bar - Visually Prominent */}
+          <div className="w-full h-3 bg-slate-700/80 rounded-lg overflow-hidden shadow-sm">
             {stats.totalAssessments > 0 && !isLoading ? (
               <div className="flex h-full">
-                {/* Completed Segment */}
+                {/* Completed Segment - Muted Teal */}
                 {stats.completed > 0 && (
                   <div 
-                    className="bg-green-500/50 transition-all duration-300"
+                    className="bg-teal-500/60 transition-all duration-300"
                     style={{ 
                       width: `${(stats.completed / stats.totalAssessments) * 100}%` 
                     }}
                   />
                 )}
-                {/* In Progress Segment */}
+                {/* In Progress Segment - Muted Amber */}
                 {stats.inProgress > 0 && (
                   <div 
-                    className="bg-amber-500/50 transition-all duration-300"
+                    className="bg-amber-400/60 transition-all duration-300"
                     style={{ 
                       width: `${(stats.inProgress / stats.totalAssessments) * 100}%` 
                     }}
                   />
                 )}
-                {/* Drafts Segment */}
+                {/* Drafts Segment - Neutral Gray */}
                 {stats.drafts > 0 && (
                   <div 
-                    className="bg-gray-400/40 transition-all duration-300"
+                    className="bg-gray-400/50 transition-all duration-300"
                     style={{ 
                       width: `${(stats.drafts / stats.totalAssessments) * 100}%` 
                     }}
@@ -201,17 +201,41 @@ export function DynamicDashboardContent() {
                 )}
               </div>
             ) : (
-              <div className="w-full h-full bg-muted/30" />
+              <div className="w-full h-full bg-slate-600/40" />
             )}
           </div>
           
-          {/* Status Counts */}
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-            <span>Completed {isLoading ? '...' : stats.completed}</span>
-            <span className="text-muted-foreground/50">·</span>
-            <span>Drafts {isLoading ? '...' : stats.drafts}</span>
-            <span className="text-muted-foreground/50">·</span>
-            <span>In Progress {isLoading ? '...' : stats.inProgress}</span>
+          {/* Status Counts - Numbers Larger Than Labels */}
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-8">
+            {/* Completed */}
+            <div className="flex flex-col">
+              <div className="text-2xl font-bold text-foreground">
+                {isLoading ? '...' : stats.completed}
+              </div>
+              <div className="text-sm text-muted-foreground font-medium">
+                Completed
+              </div>
+            </div>
+            
+            {/* Drafts */}
+            <div className="flex flex-col">
+              <div className="text-2xl font-bold text-foreground">
+                {isLoading ? '...' : stats.drafts}
+              </div>
+              <div className="text-sm text-muted-foreground font-medium">
+                Drafts
+              </div>
+            </div>
+            
+            {/* In Progress */}
+            <div className="flex flex-col">
+              <div className="text-2xl font-bold text-foreground">
+                {isLoading ? '...' : stats.inProgress}
+              </div>
+              <div className="text-sm text-muted-foreground font-medium">
+                In Progress
+              </div>
+            </div>
           </div>
         </div>
       </div>
