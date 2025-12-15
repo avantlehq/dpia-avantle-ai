@@ -163,39 +163,39 @@ export function DynamicDashboardContent() {
   return (
     <>
       {/* Assessment Overview */}
-      <div className="space-y-4">
+      <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
         
-        {/* Status Pills */}
-        <div className="flex flex-wrap gap-4">
-          {/* Completed Pills Component */}
-          <div className="inline-flex items-center min-h-[44px] px-4 py-3 bg-teal-50 border border-teal-200/60 rounded-full">
-            <span className="text-sm font-medium text-slate-600">Completed</span>
-            <span className="mx-2 text-slate-400">·</span>
-            <span className="text-base font-semibold text-slate-800">
+        {/* Status Pills Group */}
+        <div className="flex flex-wrap gap-3">
+          {/* Completed Pill */}
+          <div className="inline-flex items-center min-h-[40px] px-3 py-2 bg-emerald-50/80 border border-emerald-200/50 rounded-full shadow-sm">
+            <span className="text-sm text-muted-foreground">Completed</span>
+            <span className="ml-2 text-lg font-bold text-foreground">
               {isLoading ? '...' : stats.completed}
             </span>
           </div>
 
-          {/* In Progress Pills Component */}
-          <div className="inline-flex items-center min-h-[44px] px-4 py-3 bg-amber-50 border border-amber-200/60 rounded-full">
-            <span className="text-sm font-medium text-slate-600">In progress</span>
-            <span className="mx-2 text-slate-400">·</span>
-            <span className="text-base font-semibold text-slate-800">
+          {/* In Progress Pill */}
+          <div className="inline-flex items-center min-h-[40px] px-3 py-2 bg-orange-50/80 border border-orange-200/50 rounded-full shadow-sm">
+            <span className="text-sm text-muted-foreground">In progress</span>
+            <span className="ml-2 text-lg font-bold text-foreground">
               {isLoading ? '...' : stats.inProgress}
             </span>
           </div>
 
-          {/* Drafts Pills Component */}
-          <div className="inline-flex items-center min-h-[44px] px-4 py-3 bg-gray-50 border border-gray-200/60 rounded-full">
-            <span className="text-sm font-medium text-slate-600">Drafts</span>
-            <span className="mx-2 text-slate-400">·</span>
-            <span className="text-base font-semibold text-slate-800">
+          {/* Drafts Pill */}
+          <div className="inline-flex items-center min-h-[40px] px-3 py-2 bg-slate-50/80 border border-slate-200/50 rounded-full shadow-sm">
+            <span className="text-sm text-muted-foreground">Drafts</span>
+            <span className="ml-2 text-lg font-bold text-foreground">
               {isLoading ? '...' : stats.drafts}
             </span>
           </div>
         </div>
       </div>
+
+      {/* Spacing Before Table */}
+      <div className="mt-8"></div>
 
       {/* Assessments Table */}
       <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
