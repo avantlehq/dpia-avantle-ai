@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.55
-export const VERSION = "3.19.55" as const
-export const VERSION_NAME = "Fixed Build Errors - Removed Unused Imports" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.56
+export const VERSION = "3.19.56" as const
+export const VERSION_NAME = "Fixed Client Component - Dashboard Build Error" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.56": {
+    date: "2025-12-15", 
+    name: "Fixed Client Component - Dashboard Build Error",
+    features: [
+      "CLIENT COMPONENT FIX: Added 'use client' to dashboard page to support event handlers",
+      "BUILD ERROR RESOLVED: Fixed onMouseEnter/onMouseLeave in server component error",
+      "DEPLOYMENT READY: Dashboard page now builds successfully with hover interactions",
+      "BUTTON INTERACTIONS: Primary action hover effects now work correctly"
+    ]
+  },
   "3.19.55": {
     date: "2025-12-15", 
     name: "Fixed Build Errors - Removed Unused Imports",
