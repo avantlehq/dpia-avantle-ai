@@ -6,11 +6,20 @@ Tento súbor poskytuje kontext pre Claude Code pri práci s DPIA Agent repozitá
 
 **DPIA Suite** je európska platforma pre automatizované GDPR Data Protection Impact Assessments s kompletným workflow od pre-check až po export dokumentov.
 
-### Aktuálny stav projektu (December 14, 2025)
+### Aktuálny stav projektu (December 15, 2025)
 
-**🎯 VERSION 3.19.25: ✅ Primary CTA Hierarchy - Clean Button Design**
+**🎯 VERSION 3.19.26: ✅ Neutral Form Color Redesign - Professional Compliance UI**
 
-**🎨 LATEST SESSION ACHIEVEMENTS (December 14, 2025):**
+**🎨 LATEST SESSION ACHIEVEMENTS (December 15, 2025):**
+- ✅ **NEUTRAL FORM DESIGN:** Eliminated green color noise from DPIA Builder forms
+- ✅ **PROFESSIONAL QUESTION STYLING:** Questions use muted neutral color with semibold weight
+- ✅ **CALM ANSWER CONTROLS:** Unselected answers completely neutral (gray backgrounds)
+- ✅ **MUTED ACCENT COLOR:** Selected answers use indigo-500 (#6366f1) with low-saturation styling
+- ✅ **NO SEMANTIC COLOR MISUSE:** Binary Yes/No choices avoid green/red semantics
+- ✅ **SUCCESS STATE RESERVATION:** Green exclusively reserved for completion/success states
+- ✅ **MODERN COMPLIANCE UI:** Achieved calm, professional SaaS form design suitable for enterprise
+
+**🎨 PREVIOUS SESSION ACHIEVEMENTS (December 14, 2025):**
 - ✅ **PRIMARY CTA HIERARCHY:** New Assessment = primary action, Start Pre-check = secondary
 - ✅ **PROFESSIONAL BUTTON DESIGN:** Primary with Plus icon + full fill, Secondary with Sparkles icon + ghost variant  
 - ✅ **VISUAL CLARITY:** Clear hierarchy with proper contrast, sizing, and spacing between CTAs
@@ -612,6 +621,101 @@ function ModernFormSection() {
 ✅ **Zero cognitive load** - clear progression and status feedback
 ✅ **Clean codebase** - no inline style calculations, maintainable architecture  
 ✅ **Enterprise-grade polish** ready for whitelabel SaaS scaling
+
+## 🎨 **Neutral Form Color Design Rules (v3.19.26)**
+
+### **Professional Compliance Form Standards**
+
+**MANDATORY COLOR USAGE RULES for DPIA Builder Forms:**
+
+```typescript
+// ✅ CORRECT - Neutral form styling patterns
+const FORM_DESIGN_RULES = {
+  // Questions/Labels - ALWAYS neutral, never colored
+  questionStyling: 'text-muted-foreground font-semibold', // NO accent color
+  
+  // Unselected answers - ALWAYS neutral gray
+  unselectedAnswers: {
+    background: 'bg-gray-50 hover:bg-gray-100',
+    border: 'border-gray-200',
+    text: 'text-gray-600'
+  },
+  
+  // Selected answers - ONLY muted indigo accent
+  selectedAnswers: {
+    background: '#6366f1', // indigo-500 - muted blue accent
+    border: 'border-indigo-500/20', // low-saturation border
+    text: 'text-white'
+  },
+  
+  // Success/Completion states - GREEN RESERVED EXCLUSIVELY
+  successStates: {
+    completionButton: 'var(--color-green)', // #7ED321
+    sectionComplete: 'var(--color-green)',
+    validationSuccess: 'var(--color-green)'
+  }
+}
+
+// ❌ FORBIDDEN - These patterns are BANNED
+const BANNED_PATTERNS = {
+  questionsWithColor: 'style={{ color: sectionColor }}', // NEVER color questions
+  greenRedSemantics: 'Yes=green, No=red', // NEVER semantic colors for binary
+  coloredUnselected: 'bg-green-50', // NEVER colored neutral states
+  greenInForms: 'except completion buttons' // GREEN only for success
+}
+```
+
+**Implementation Requirements:**
+
+**1. Question Labels (FormLabel)**
+```tsx
+// ✅ CORRECT - Neutral question styling
+<FormLabel className="text-lg font-semibold text-muted-foreground leading-relaxed">
+  {field.label}
+</FormLabel>
+
+// ❌ FORBIDDEN - Colored question labels
+<FormLabel style={{ color: sectionColor }}>
+```
+
+**2. Answer Controls (Binary/Multi-choice)**
+```tsx
+// ✅ CORRECT - Neutral unselected, muted indigo selected
+className={`${isSelected 
+  ? 'text-white border border-indigo-500/20' 
+  : 'text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200'
+}`}
+style={{ backgroundColor: isSelected ? '#6366f1' : undefined }}
+
+// ❌ FORBIDDEN - Green/red semantics or section colors
+style={{ backgroundColor: isSelected ? sectionColor : undefined }}
+```
+
+**3. Success States Only**
+```tsx
+// ✅ CORRECT - Green reserved for completion
+<Button style={{ backgroundColor: successColor }}>Complete Section</Button>
+
+// ❌ FORBIDDEN - Green in form controls
+<button style={{ backgroundColor: 'var(--color-green)' }}>Yes</button>
+```
+
+### **Visual Hierarchy Rules**
+
+**Professional Compliance Software Standards:**
+- **Questions**: Neutral muted color, no visual accent, semibold weight
+- **Answers**: Completely neutral when unselected, single muted accent when selected
+- **No Color Psychology**: Avoid red/green emotional associations in choices
+- **Calm Aesthetic**: Reduce visual noise, maintain professional composure
+- **Success Indication**: Green exclusively reserved for positive completion states
+
+**Color Palette:**
+- **Questions**: `text-muted-foreground` (#64748B in light mode)
+- **Unselected**: `text-gray-600`, `bg-gray-50`, `border-gray-200`
+- **Selected**: `#6366f1` (indigo-500) with `border-indigo-500/20`
+- **Success**: `var(--color-green)` (#7ED321) - completion/success only
+
+**Result: Enterprise-grade compliance form UI with calm, professional aesthetic suitable for regulatory software.**
 
 ## Databázová architektúra (Supabase)
 

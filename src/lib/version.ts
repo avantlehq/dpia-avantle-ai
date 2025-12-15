@@ -1,7 +1,7 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.25
-export const VERSION = "3.19.25" as const
-export const VERSION_NAME = "Primary CTA Hierarchy - Clean Button Design" as const
-export const BUILD_DATE = "2025-12-14"
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.26
+export const VERSION = "3.19.26" as const
+export const VERSION_NAME = "Neutral Form Color Redesign - Professional Compliance UI" as const
+export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -13,6 +13,19 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.26": {
+    date: "2025-12-15", 
+    name: "Neutral Form Color Redesign - Professional Compliance UI",
+    features: [
+      "NEUTRAL FORM DESIGN: Eliminated green color noise from DPIA Builder forms",
+      "PROFESSIONAL QUESTION STYLING: Questions use muted neutral color with semibold weight",
+      "CALM ANSWER CONTROLS: Unselected answers completely neutral (gray backgrounds)",
+      "MUTED ACCENT COLOR: Selected answers use indigo-500 (#6366f1) with low-saturation styling",
+      "NO SEMANTIC COLOR MISUSE: Binary Yes/No choices avoid green/red semantics",
+      "SUCCESS STATE RESERVATION: Green exclusively reserved for completion/success states",
+      "MODERN COMPLIANCE UI: Achieved calm, professional SaaS form design suitable for enterprise"
+    ]
+  },
   "3.19.25": {
     date: "2025-12-14", 
     name: "Primary CTA Hierarchy - Clean Button Design",

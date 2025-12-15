@@ -38,10 +38,15 @@ interface DynamicFormGeneratorProps {
   onChange?: (data: Record<string, unknown>) => void
 }
 
-// Section color mapping - unified green theme for all DPIA sections
-const getSectionColor = (_sectionId: string): string => {
-  // All DPIA builder sections now use consistent green theme
-  return 'var(--color-green)' // #7ED321 - green theme for all sections
+// Neutral accent color for professional compliance forms
+const getFormAccentColor = (): string => {
+  // Muted indigo accent for selected states - calm and professional
+  return '#6366f1' // indigo-500 - muted blue accent for selection states
+}
+
+// Green reserved exclusively for completion/success states
+const getSuccessColor = (): string => {
+  return 'var(--color-green)' // #7ED321 - reserved for success/completion only
 }
 
 
@@ -122,7 +127,8 @@ export function DynamicFormGenerator({
   })
 
 
-  const sectionColor = getSectionColor(section.sectionId)
+  const accentColor = getFormAccentColor()
+  const successColor = getSuccessColor()
 
   // Enhanced submit handler with validation and focus management
   const handleSubmit = useCallback((data: Record<string, unknown>) => {
@@ -153,8 +159,7 @@ export function DynamicFormGenerator({
                 className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
               >
                 <FormLabel 
-                  className="text-lg font-bold leading-relaxed mb-3 block"
-                  style={{ color: sectionColor }}
+                  className="text-lg font-semibold text-muted-foreground leading-relaxed mb-3 block"
                 >
                   {field.label}
                   {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -189,8 +194,7 @@ export function DynamicFormGenerator({
                 className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
               >
                 <FormLabel 
-                  className="text-lg font-bold leading-relaxed mb-3 block"
-                  style={{ color: sectionColor }}
+                  className="text-lg font-semibold text-muted-foreground leading-relaxed mb-3 block"
                 >
                   {field.label}
                   {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -225,8 +229,7 @@ export function DynamicFormGenerator({
                 className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
               >
                 <FormLabel 
-                  className="text-lg font-bold leading-relaxed mb-3 block"
-                  style={{ color: sectionColor }}
+                  className="text-lg font-semibold text-muted-foreground leading-relaxed mb-3 block"
                 >
                   {field.label}
                   {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -278,8 +281,7 @@ export function DynamicFormGenerator({
                   {/* Question - visually separated */}
                   <div className="mb-4">
                     <FormLabel 
-                      className="text-lg font-bold leading-relaxed block"
-                      style={{ color: sectionColor }}
+                      className="text-lg font-semibold text-muted-foreground leading-relaxed block"
                     >
                       {field.label}
                       {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -300,12 +302,12 @@ export function DynamicFormGenerator({
                                 focus:outline-none focus:ring-2 focus:ring-offset-1 text-center
                                 min-w-[100px] shadow-sm
                                 ${isSelected 
-                                  ? 'text-white' 
+                                  ? 'text-white border border-indigo-500/20' 
                                   : 'text-gray-600 bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300'
                                 }
                               `}
                               style={{
-                                backgroundColor: isSelected ? sectionColor : undefined,
+                                backgroundColor: isSelected ? `${accentColor}` : undefined,
                                 fontSize: '16px'
                               }}
                               onClick={() => {
@@ -349,8 +351,7 @@ export function DynamicFormGenerator({
                   {/* Question - visually separated */}
                   <div className="mb-4">
                     <FormLabel 
-                      className="text-lg font-bold leading-relaxed block"
-                      style={{ color: sectionColor }}
+                      className="text-lg font-semibold text-muted-foreground leading-relaxed block"
                     >
                       {field.label}
                       {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -370,12 +371,12 @@ export function DynamicFormGenerator({
                                 inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150
                                 focus:outline-none focus:ring-2 focus:ring-offset-1
                                 ${isSelected 
-                                  ? 'text-white shadow-sm' 
+                                  ? 'text-white shadow-sm border border-indigo-500/20' 
                                   : 'text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200'
                                 }
                               `}
                               style={{
-                                backgroundColor: isSelected ? sectionColor : undefined
+                                backgroundColor: isSelected ? `${accentColor}` : undefined
                               }}
                               onClick={() => {
                                 setFieldRef(field.id, document.activeElement as HTMLElement)
@@ -417,8 +418,7 @@ export function DynamicFormGenerator({
               >
                 <div className="mb-4">
                   <FormLabel 
-                    className="text-lg font-bold leading-relaxed block"
-                    style={{ color: sectionColor }}
+                    className="text-lg font-semibold text-muted-foreground leading-relaxed block"
                   >
                     {field.label}
                     {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -437,12 +437,12 @@ export function DynamicFormGenerator({
                               inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150
                               focus:outline-none focus:ring-2 focus:ring-offset-1
                               ${isSelected 
-                                ? 'text-white shadow-sm' 
+                                ? 'text-white shadow-sm border border-indigo-500/20' 
                                 : 'text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200'
                               }
                             `}
                             style={{
-                              backgroundColor: isSelected ? sectionColor : undefined
+                              backgroundColor: isSelected ? `${accentColor}` : undefined
                             }}
                             onClick={() => {
                               setFieldRef(field.id, document.activeElement as HTMLElement)
@@ -483,8 +483,7 @@ export function DynamicFormGenerator({
                 {/* Question - visually separated */}
                 <div className="mb-4">
                   <FormLabel 
-                    className="text-lg font-bold leading-relaxed block"
-                    style={{ color: sectionColor }}
+                    className="text-lg font-semibold text-muted-foreground leading-relaxed block"
                   >
                     {field.label}
                     {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -509,12 +508,12 @@ export function DynamicFormGenerator({
                                   inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-150
                                   focus:outline-none focus:ring-2 focus:ring-offset-1
                                   ${isSelected 
-                                    ? 'text-white shadow-sm' 
+                                    ? 'text-white shadow-sm border border-indigo-500/20' 
                                     : 'text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200'
                                   }
                                 `}
                                 style={{
-                                  backgroundColor: isSelected ? sectionColor : undefined
+                                  backgroundColor: isSelected ? `${accentColor}` : undefined
                                 }}
                                 onClick={() => {
                                   if (_index === 0) setFieldRef(field.id, document.activeElement as HTMLElement)
@@ -571,8 +570,7 @@ export function DynamicFormGenerator({
                 </FormControl>
                 <div className="space-y-1 leading-none">
                   <FormLabel 
-                    className="text-lg font-bold leading-relaxed"
-                    style={{ color: sectionColor }}
+                    className="text-lg font-semibold text-muted-foreground leading-relaxed"
                   >
                     {field.label}
                     {field.required && <span className="text-red-500 ml-1">*</span>}
@@ -621,8 +619,8 @@ export function DynamicFormGenerator({
                 disabled={loading}
                 className="inline-flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 px-8 py-4 font-bold rounded-xl cursor-pointer min-w-[200px] text-lg"
                 style={{
-                  backgroundColor: loading ? '#9ca3af' : sectionColor,
-                  borderColor: loading ? '#9ca3af' : sectionColor,
+                  backgroundColor: loading ? '#9ca3af' : successColor,
+                  borderColor: loading ? '#9ca3af' : successColor,
                   borderRadius: '12px',
                   color: '#ffffff',
                   fontSize: '18px',
