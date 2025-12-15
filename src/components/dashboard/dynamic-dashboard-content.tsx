@@ -183,7 +183,7 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '14px',
-                color: '#6b7280',
+                color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
@@ -192,7 +192,7 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#374151',
+                color: '#1f2937',
                 fontWeight: '600'
               }}
             >
@@ -215,7 +215,7 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '14px',
-                color: '#6b7280',
+                color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
@@ -224,7 +224,7 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#374151',
+                color: '#1f2937',
                 fontWeight: '600'
               }}
             >
@@ -247,7 +247,7 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '14px',
-                color: '#6b7280',
+                color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
@@ -256,7 +256,7 @@ export function DynamicDashboardContent() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#374151',
+                color: '#1f2937',
                 fontWeight: '600'
               }}
             >

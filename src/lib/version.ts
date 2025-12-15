@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.26
-export const VERSION = "3.19.26" as const
-export const VERSION_NAME = "Fixed Hardcoded Version in SimpleLayout" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.27
+export const VERSION = "3.19.27" as const
+export const VERSION_NAME = "Enhanced Status Pills Text Visibility" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.27": {
+    date: "2025-12-15", 
+    name: "Enhanced Status Pills Text Visibility",
+    features: [
+      "TEXT VISIBILITY FIX: Improved contrast for status pill text and numbers",
+      "LIGHTER COLORS: Changed text from #6b7280 to #9ca3af for better visibility",
+      "DARKER NUMBERS: Updated numbers from #374151 to #1f2937 for stronger contrast",
+      "IMPROVED READABILITY: Status pills now clearly readable on all backgrounds"
+    ]
+  },
   "3.19.26": {
     date: "2025-12-15", 
     name: "Fixed Hardcoded Version in SimpleLayout",
