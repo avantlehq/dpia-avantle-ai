@@ -169,7 +169,13 @@ export function DynamicDashboardContent() {
         {/* Status Pills Group */}
         <div className="flex flex-wrap gap-6">
           {/* Completed Pill */}
-          <div className="inline-flex items-center min-h-[40px] px-4 py-2 bg-green-100 border border-green-300 rounded-full shadow-sm">
+          <div 
+            className="inline-flex items-center min-h-[40px] px-4 py-2 rounded-full shadow-sm border"
+            style={{ 
+              backgroundColor: '#dcfce7', 
+              borderColor: '#86efac' 
+            }}
+          >
             <span className="text-base text-muted-foreground">Completed</span>
             <span className="ml-4 text-xl font-bold text-foreground">
               {isLoading ? '...' : stats.completed}
@@ -177,7 +183,13 @@ export function DynamicDashboardContent() {
           </div>
 
           {/* In Progress Pill */}
-          <div className="inline-flex items-center min-h-[40px] px-4 py-2 bg-blue-100 border border-blue-300 rounded-full shadow-sm">
+          <div 
+            className="inline-flex items-center min-h-[40px] px-4 py-2 rounded-full shadow-sm border"
+            style={{ 
+              backgroundColor: '#dbeafe', 
+              borderColor: '#93c5fd' 
+            }}
+          >
             <span className="text-base text-muted-foreground">In progress</span>
             <span className="ml-4 text-xl font-bold text-foreground">
               {isLoading ? '...' : stats.inProgress}
@@ -185,7 +197,13 @@ export function DynamicDashboardContent() {
           </div>
 
           {/* Drafts Pill */}
-          <div className="inline-flex items-center min-h-[40px] px-4 py-2 bg-gray-100 border border-gray-300 rounded-full shadow-sm">
+          <div 
+            className="inline-flex items-center min-h-[40px] px-4 py-2 rounded-full shadow-sm border"
+            style={{ 
+              backgroundColor: '#f1f5f9', 
+              borderColor: '#cbd5e1' 
+            }}
+          >
             <span className="text-base text-muted-foreground">Drafts</span>
             <span className="ml-4 text-xl font-bold text-foreground">
               {isLoading ? '...' : stats.drafts}

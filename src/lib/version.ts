@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.43
-export const VERSION = "3.19.43" as const
-export const VERSION_NAME = "Fix Status Colors - Visible Pill Backgrounds" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.44
+export const VERSION = "3.19.44" as const
+export const VERSION_NAME = "Explicit Color Values - Force Visible Backgrounds" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
