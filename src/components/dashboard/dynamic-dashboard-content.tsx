@@ -163,69 +163,56 @@ export function DynamicDashboardContent() {
   return (
     <>
       {/* Assessment Overview */}
-      <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
-        </div>
+      <div className="space-y-3">
+        <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
         
-        {/* Modern KPI Cards Grid */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {/* Total Assessments */}
-          <Card className="bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
-            <CardContent className="p-6 text-center space-y-2">
-              <div className="text-3xl font-bold text-foreground">
-                {isLoading ? '...' : stats.totalAssessments}
+        {/* Status Distribution Bar */}
+        <div className="space-y-3">
+          {/* Distribution Bar */}
+          <div className="w-full h-3 bg-muted/50 rounded-full overflow-hidden">
+            {stats.totalAssessments > 0 && !isLoading ? (
+              <div className="flex h-full">
+                {/* Completed Segment */}
+                {stats.completed > 0 && (
+                  <div 
+                    className="bg-green-500/50 transition-all duration-300"
+                    style={{ 
+                      width: `${(stats.completed / stats.totalAssessments) * 100}%` 
+                    }}
+                  />
+                )}
+                {/* In Progress Segment */}
+                {stats.inProgress > 0 && (
+                  <div 
+                    className="bg-amber-500/50 transition-all duration-300"
+                    style={{ 
+                      width: `${(stats.inProgress / stats.totalAssessments) * 100}%` 
+                    }}
+                  />
+                )}
+                {/* Drafts Segment */}
+                {stats.drafts > 0 && (
+                  <div 
+                    className="bg-gray-400/40 transition-all duration-300"
+                    style={{ 
+                      width: `${(stats.drafts / stats.totalAssessments) * 100}%` 
+                    }}
+                  />
+                )}
               </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                Total Assessments
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Completed */}
-          <Card className="bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
-            <CardContent className="p-6 text-center space-y-2">
-              <div className="flex items-center justify-center gap-2">
-                <div className="text-3xl font-bold text-foreground">
-                  {isLoading ? '...' : stats.completed}
-                </div>
-                <div className="w-2 h-2 rounded-full bg-green-500/60"></div>
-              </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                Completed
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* In Progress */}
-          <Card className="bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
-            <CardContent className="p-6 text-center space-y-2">
-              <div className="flex items-center justify-center gap-2">
-                <div className="text-3xl font-bold text-foreground">
-                  {isLoading ? '...' : stats.inProgress}
-                </div>
-                <div className="w-2 h-2 rounded-full bg-amber-500/60"></div>
-              </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                In Progress
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Drafts */}
-          <Card className="bg-card border border-border/50 shadow-sm hover:shadow-md transition-all duration-200">
-            <CardContent className="p-6 text-center space-y-2">
-              <div className="flex items-center justify-center gap-2">
-                <div className="text-3xl font-bold text-foreground">
-                  {isLoading ? '...' : stats.drafts}
-                </div>
-                <div className="w-2 h-2 rounded-full bg-gray-400/60"></div>
-              </div>
-              <div className="text-sm text-muted-foreground font-medium">
-                Drafts
-              </div>
-            </CardContent>
-          </Card>
+            ) : (
+              <div className="w-full h-full bg-muted/30" />
+            )}
+          </div>
+          
+          {/* Status Counts */}
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+            <span>Completed {isLoading ? '...' : stats.completed}</span>
+            <span className="text-muted-foreground/50">·</span>
+            <span>Drafts {isLoading ? '...' : stats.drafts}</span>
+            <span className="text-muted-foreground/50">·</span>
+            <span>In Progress {isLoading ? '...' : stats.inProgress}</span>
+          </div>
         </div>
       </div>
 
