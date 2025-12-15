@@ -21,7 +21,7 @@ export function Sidebar() {
         <Link href="/dashboard">
           <Button variant="ghost" className="w-full justify-start">
             <BarChart3 className="mr-2 h-4 w-4" />
-            Dashboard
+            Overview
           </Button>
         </Link>
         

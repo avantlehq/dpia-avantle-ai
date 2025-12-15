@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.28
-export const VERSION = "3.19.28" as const
-export const VERSION_NAME = "Mandatory Version Increment Rule - Build Fix Deployment" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.29
+export const VERSION = "3.19.29" as const
+export const VERSION_NAME = "Sidebar Navigation Fix - Correct Component Updated" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
