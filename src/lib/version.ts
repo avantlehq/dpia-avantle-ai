@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.26
-export const VERSION = "3.19.26" as const
-export const VERSION_NAME = "Neutral Form Color Redesign - Professional Compliance UI" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.27
+export const VERSION = "3.19.27" as const
+export const VERSION_NAME = "Modern SaaS Sidebar Navigation - Professional Module Design" as const
 export const BUILD_DATE = "2025-12-15"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,20 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.27": {
+    date: "2025-12-15", 
+    name: "Modern SaaS Sidebar Navigation - Professional Module Design",
+    features: [
+      "MODERN SAAS SIDEBAR: Transformed admin-panel aesthetic to professional SaaS design",
+      "ACTION-ORIENTED MODULES: Dashboard → Overview, Pre-check → DPIA Pre-Check, Builder → DPIA Assessments",
+      "FLAT DESIGN: Removed color-coded groups, dividers, and visual noise for calm aesthetic",
+      "NEUTRAL ICONS: Consistent outline icons with muted colors, no semantic color coding",
+      "SUBTLE ACTIVE STATES: Clean background highlight with thin indigo accent bar",
+      "GENEROUS SPACING: Modern typography with space-y-8 for contemporary feel",
+      "WORKSPACE HEADER: Professional 'Workspace' label replacing generic 'MENU'",
+      "CLEAN ARCHITECTURE: Similar to Linear/Vercel/GitHub Projects, clearly communicates DPIA functionality"
+    ]
+  },
   "3.19.26": {
     date: "2025-12-15", 
     name: "Neutral Form Color Redesign - Professional Compliance UI",

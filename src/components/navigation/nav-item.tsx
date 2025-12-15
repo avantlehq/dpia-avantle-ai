@@ -25,34 +25,33 @@ export function NavItem({ item, collapsed = false, active = false, onClick }: Na
 
   const buttonContent = (
     <Button
-      variant={active ? "secondary" : "ghost"}
+      variant="ghost"
       size="sm"
       className={cn(
-        "w-full justify-start relative transition-all duration-200",
+        "w-full justify-start relative transition-all duration-200 h-10",
         collapsed ? "px-2" : "px-3",
-        active && "shadow-md",
+        active && "bg-muted/50 border-l-2 border-l-indigo-500",
         item.disabled && "opacity-50 cursor-not-allowed"
       )}
-      style={active ? {
-        backgroundColor: `${item.color || '#4A90E2'}20`,
-        borderLeft: `3px solid ${item.color || '#4A90E2'}`
-      } : {}}
       disabled={item.disabled}
       onClick={onClick}
     >
       <Icon 
         className={cn(
-          "h-4 w-4 flex-shrink-0",
-          !collapsed && "mr-3"
+          "h-4 w-4 flex-shrink-0 text-muted-foreground",
+          !collapsed && "mr-3",
+          active && "text-foreground"
         )} 
-        style={{ 
-          color: active ? item.color || '#4A90E2' : undefined 
-        }}
       />
       
       {!collapsed && (
         <>
-          <span className="flex-1 text-left">{item.name}</span>
+          <span className={cn(
+            "flex-1 text-left font-medium text-sm transition-colors",
+            active ? "text-foreground" : "text-muted-foreground"
+          )}>
+            {item.name}
+          </span>
           {item.badge && (
             <Badge variant="secondary" className="ml-2 text-xs">
               {item.badge}

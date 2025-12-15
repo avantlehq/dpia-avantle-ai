@@ -4,9 +4,6 @@ import {
   AlertTriangle,
   Sparkles,
   Target,
-  ShieldCheck,
-  Activity,
-  UserCog,
   type LucideIcon
 } from 'lucide-react'
 
@@ -28,96 +25,50 @@ export interface NavGroup {
   gradient?: string
 }
 
-// Complete module structure for DPIA.ai
+// Modern SaaS navigation structure for DPIA.ai
 export const navigationConfig: NavGroup[] = [
   {
-    name: "Main",
-    colorClass: "dpia-blue",
-    gradient: "from-blue-500 to-blue-600",
+    name: "", // No group headers for modern flat design
+    colorClass: "neutral",
     items: [
       { 
-        name: "Home", 
+        name: "Overview", 
         href: "/dashboard", 
         icon: LayoutDashboard,
-        description: "Dashboard overview of all assessments",
-        color: "#4A90E2"
+        description: "Assessment overview and dashboard"
       },
-    ]
-  },
-  {
-    name: "Assessment", 
-    colorClass: "dpia-green",
-    gradient: "from-green-500 to-emerald-600",
-    items: [
       { 
-        name: "Pre-check", 
+        name: "DPIA Pre-Check", 
         href: "/precheck", 
         icon: Sparkles,
-        description: "Quick GDPR Article 35 evaluation",
-        color: "#7ED321"
+        description: "Quick GDPR Article 35 evaluation"
       },
-    ]
-  },
-  {
-    name: "Builder",
-    colorClass: "dpia-orange",
-    gradient: "from-orange-500 to-amber-600",
-    items: [
       { 
-        name: "DPIA Builder", 
+        name: "DPIA Assessments", 
         href: "/assessments", 
         icon: Target,
-        description: "Create and manage DPIA assessments",
-        color: "#F5A623"
+        description: "Create and manage privacy impact assessments"
       },
     ]
   },
+  // Future modules - disabled for now
   {
-    name: "Risk Management",
-    colorClass: "dpia-red",
-    gradient: "from-red-500 to-pink-600",
+    name: "", // No group headers
+    colorClass: "neutral",
     items: [
       { 
-        name: "Risk Registry", 
+        name: "Risk Management", 
         href: "/risks", 
         icon: AlertTriangle,
-        description: "Manage identified risks and threats",
-        disabled: true // Future feature
+        description: "Manage identified privacy risks",
+        disabled: true
       },
       { 
-        name: "Controls", 
-        href: "/controls", 
-        icon: ShieldCheck,
-        description: "Security controls and measures",
-        disabled: true // Future feature
-      },
-      { 
-        name: "Mitigation", 
-        href: "/mitigation", 
-        icon: Activity,
-        description: "Risk mitigation strategies",
-        disabled: true // Future feature
-      },
-    ]
-  },
-  {
-    name: "Settings",
-    colorClass: "dpia-purple",
-    gradient: "from-purple-500 to-indigo-600",
-    items: [
-      { 
-        name: "Workspace", 
+        name: "Settings", 
         href: "/settings", 
         icon: Settings,
-        description: "Workspace configuration and preferences",
-        disabled: true // Future feature
-      },
-      { 
-        name: "Team", 
-        href: "/team", 
-        icon: UserCog,
-        description: "Team members and permissions",
-        disabled: true // Future feature
+        description: "Workspace configuration",
+        disabled: true
       },
     ]
   }

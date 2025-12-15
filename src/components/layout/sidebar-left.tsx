@@ -30,7 +30,7 @@ export function SidebarLeft() {
         <div className="flex items-center justify-between p-4 border-b border-border">
           {leftSidebarOpen && (
             <div className="flex items-center gap-2">
-              <div className="font-semibold text-foreground">MENU</div>
+              <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Workspace</div>
             </div>
           )}
           <Button
@@ -48,11 +48,11 @@ export function SidebarLeft() {
 
         {/* Navigation */}
         <div className="flex-1 overflow-hidden">
-          <ScrollArea className="h-full px-3 py-4">
-            <div className="space-y-6">
-              {navigationConfig.map((group, _index) => (
+          <ScrollArea className="h-full px-3 py-6">
+            <div className="space-y-8">
+              {navigationConfig.map((group, index) => (
                 <NavGroup
-                  key={group.name}
+                  key={group.name || `group-${index}`}
                   group={group}
                   collapsed={!leftSidebarOpen}
                   activePath={pathname}
@@ -88,7 +88,7 @@ export function SidebarLeft() {
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-border">
               <div className="flex items-center gap-2">
-                <div className="font-semibold text-foreground">MENU</div>
+                <div className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Workspace</div>
               </div>
               <Button
                 variant="ghost"
@@ -100,11 +100,11 @@ export function SidebarLeft() {
             </div>
 
             {/* Mobile Navigation */}
-            <ScrollArea className="flex-1 px-3 py-4">
-              <div className="space-y-6">
-                {navigationConfig.map((group) => (
+            <ScrollArea className="flex-1 px-3 py-6">
+              <div className="space-y-8">
+                {navigationConfig.map((group, index) => (
                   <NavGroup
-                    key={group.name}
+                    key={group.name || `mobile-group-${index}`}
                     group={group}
                     collapsed={false}
                     activePath={pathname}
