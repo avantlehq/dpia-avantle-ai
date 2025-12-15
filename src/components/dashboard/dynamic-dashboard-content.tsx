@@ -167,45 +167,96 @@ export function DynamicDashboardContent() {
         <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
         
         {/* Status Pills Group */}
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-wrap" style={{ gap: '32px' }}>
           {/* Completed Pill */}
           <div 
-            className="inline-flex items-center min-h-[40px] px-4 py-2 rounded-full shadow-sm border"
+            className="inline-flex items-center rounded-lg border"
             style={{ 
-              backgroundColor: '#dcfce7', 
-              borderColor: '#86efac' 
+              minHeight: '52px',
+              padding: '16px 24px',
+              backgroundColor: '#f0fdf4', 
+              borderColor: '#bbf7d0',
+              gap: '16px'
             }}
           >
-            <span className="text-base text-muted-foreground">Completed</span>
-            <span className="ml-4 text-xl font-bold text-foreground">
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#6b7280',
+                fontWeight: '500'
+              }}
+            >
+              Completed
+            </span>
+            <span 
+              style={{ 
+                fontSize: '24px',
+                color: '#111827',
+                fontWeight: '700'
+              }}
+            >
               {isLoading ? '...' : stats.completed}
             </span>
           </div>
 
           {/* In Progress Pill */}
           <div 
-            className="inline-flex items-center min-h-[40px] px-4 py-2 rounded-full shadow-sm border"
+            className="inline-flex items-center rounded-lg border"
             style={{ 
-              backgroundColor: '#dbeafe', 
-              borderColor: '#93c5fd' 
+              minHeight: '52px',
+              padding: '16px 24px',
+              backgroundColor: '#eff6ff', 
+              borderColor: '#bfdbfe',
+              gap: '16px'
             }}
           >
-            <span className="text-base text-muted-foreground">In progress</span>
-            <span className="ml-4 text-xl font-bold text-foreground">
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#6b7280',
+                fontWeight: '500'
+              }}
+            >
+              In Progress
+            </span>
+            <span 
+              style={{ 
+                fontSize: '24px',
+                color: '#111827',
+                fontWeight: '700'
+              }}
+            >
               {isLoading ? '...' : stats.inProgress}
             </span>
           </div>
 
           {/* Drafts Pill */}
           <div 
-            className="inline-flex items-center min-h-[40px] px-4 py-2 rounded-full shadow-sm border"
+            className="inline-flex items-center rounded-lg border"
             style={{ 
-              backgroundColor: '#f1f5f9', 
-              borderColor: '#cbd5e1' 
+              minHeight: '52px',
+              padding: '16px 24px',
+              backgroundColor: '#f8fafc', 
+              borderColor: '#e2e8f0',
+              gap: '16px'
             }}
           >
-            <span className="text-base text-muted-foreground">Drafts</span>
-            <span className="ml-4 text-xl font-bold text-foreground">
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#6b7280',
+                fontWeight: '500'
+              }}
+            >
+              Drafts
+            </span>
+            <span 
+              style={{ 
+                fontSize: '24px',
+                color: '#111827',
+                fontWeight: '700'
+              }}
+            >
               {isLoading ? '...' : stats.drafts}
             </span>
           </div>
