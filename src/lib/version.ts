@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.64
-export const VERSION = "3.19.64" as const
-export const VERSION_NAME = "Dropdown Focus Fix - Consistent Highlight Behavior" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.65
+export const VERSION = "3.19.65" as const
+export const VERSION_NAME = "Dropdown Highlight Fix - Working Hover & Focus" as const
 export const BUILD_DATE = "2025-12-20"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.65": {
+    date: "2025-12-20", 
+    name: "Dropdown Highlight Fix - Working Hover & Focus",
+    features: [
+      "HIGHLIGHTS RESTORED: Fixed broken hover and focus states that were showing no highlighting",
+      "CORRECT RADIX ATTRIBUTES: Switched to proper data-[highlighted] attribute used by Radix UI",
+      "SIMPLE HOVER STATES: Implemented direct hover:bg-muted/80 for consistent mouse feedback",
+      "KEYBOARD NAVIGATION: Focus uses data-[highlighted] with indigo background and border",
+      "DESTRUCTIVE ACTIONS: Delete shows red text on hover/focus with conditional styling",
+      "WORKING VISIBILITY: Users can now actually see which menu item they're interacting with"
+    ]
+  },
   "3.19.64": {
     date: "2025-12-20", 
     name: "Dropdown Focus Fix - Consistent Highlight Behavior",

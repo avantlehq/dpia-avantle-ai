@@ -75,7 +75,7 @@ function DropdownMenuItem({
       data-variant={variant}
       className={cn(
         // Base styling
-        "relative flex cursor-default items-center gap-2 rounded-lg px-3 py-2.5 text-sm outline-none select-none text-foreground transition-all duration-100",
+        "relative flex cursor-default items-center gap-2 rounded-lg px-3 py-2.5 text-sm outline-none select-none text-foreground transition-all duration-100 border border-transparent",
         // Disabled state
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         // Inset support
@@ -83,19 +83,17 @@ function DropdownMenuItem({
         // Icon styling
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
         
-        // Default variant hover and focus states - consistent background approach
-        "data-[variant=default]:hover:bg-muted/80 data-[variant=default]:hover:text-foreground",
-        "data-[variant=default]:focus:bg-indigo-500/15 data-[variant=default]:focus:text-foreground data-[variant=default]:focus:border-indigo-500/40",
-        "data-[variant=default]:data-[highlighted]:bg-muted/80 data-[variant=default]:data-[highlighted]:text-foreground",
-        // Add subtle border for all states
-        "border border-transparent",
+        // Hover state for all items
+        "hover:bg-muted/80 hover:text-foreground",
+        // Focus state for all items - using data-[highlighted] which Radix uses for keyboard navigation
+        "data-[highlighted]:bg-indigo-500/15 data-[highlighted]:text-foreground data-[highlighted]:border-indigo-500/40",
         
-        // Destructive variant styling - neutral until hovered/focused
-        "data-[variant=destructive]:text-foreground",
-        "data-[variant=destructive]:hover:text-red-400 data-[variant=destructive]:hover:bg-muted/80",
-        "data-[variant=destructive]:focus:text-red-400 data-[variant=destructive]:focus:bg-red-500/15 data-[variant=destructive]:focus:border-red-500/40",
-        "data-[variant=destructive]:data-[highlighted]:text-red-400 data-[variant=destructive]:data-[highlighted]:bg-muted/80",
-        "data-[variant=destructive]:*:[svg]:hover:text-red-400 data-[variant=destructive]:*:[svg]:focus:text-red-400",
+        // Conditional styling based on variant prop
+        variant === "destructive" && [
+          "hover:text-red-400",
+          "data-[highlighted]:text-red-400 data-[highlighted]:bg-red-500/15 data-[highlighted]:border-red-500/40",
+          "[&_svg]:hover:text-red-400 [&_svg]:data-[highlighted]:text-red-400"
+        ],
         
         className
       )}
