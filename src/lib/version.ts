@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.63
-export const VERSION = "3.19.63" as const
-export const VERSION_NAME = "Enhanced Dropdown Menu - Hover & Focus States" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.64
+export const VERSION = "3.19.64" as const
+export const VERSION_NAME = "Dropdown Focus Fix - Consistent Highlight Behavior" as const
 export const BUILD_DATE = "2025-12-20"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.64": {
+    date: "2025-12-20", 
+    name: "Dropdown Focus Fix - Consistent Highlight Behavior",
+    features: [
+      "FOCUS CLIPPING FIXED: Resolved inconsistent highlight behavior where different menu positions showed partial highlights",
+      "CONSISTENT BORDERS: Replaced clipped focus rings with subtle border-based focus indicators",
+      "VISUAL UNIFORMITY: All menu items now show consistent background and border highlights",
+      "NO MORE PARTIAL LINES: Eliminated strange underlines and partial frame highlights",
+      "CONTAINER SAFE: Focus states now work properly within dropdown menu boundaries",
+      "ACCESSIBILITY MAINTAINED: Clear visual feedback for keyboard navigation without clipping issues"
+    ]
+  },
   "3.19.63": {
     date: "2025-12-20", 
     name: "Enhanced Dropdown Menu - Hover & Focus States",

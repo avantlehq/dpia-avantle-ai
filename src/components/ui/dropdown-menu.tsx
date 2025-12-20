@@ -83,16 +83,18 @@ function DropdownMenuItem({
         // Icon styling
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
         
-        // Default variant hover and focus states
+        // Default variant hover and focus states - consistent background approach
         "data-[variant=default]:hover:bg-muted/80 data-[variant=default]:hover:text-foreground",
-        "data-[variant=default]:focus:bg-muted/80 data-[variant=default]:focus:text-foreground",
-        "data-[variant=default]:focus:ring-2 data-[variant=default]:focus:ring-indigo-500/30 data-[variant=default]:focus:ring-offset-1",
+        "data-[variant=default]:focus:bg-indigo-500/15 data-[variant=default]:focus:text-foreground data-[variant=default]:focus:border-indigo-500/40",
+        "data-[variant=default]:data-[highlighted]:bg-muted/80 data-[variant=default]:data-[highlighted]:text-foreground",
+        // Add subtle border for all states
+        "border border-transparent",
         
         // Destructive variant styling - neutral until hovered/focused
         "data-[variant=destructive]:text-foreground",
         "data-[variant=destructive]:hover:text-red-400 data-[variant=destructive]:hover:bg-muted/80",
-        "data-[variant=destructive]:focus:text-red-400 data-[variant=destructive]:focus:bg-muted/80",
-        "data-[variant=destructive]:focus:ring-2 data-[variant=destructive]:focus:ring-red-500/30 data-[variant=destructive]:focus:ring-offset-1",
+        "data-[variant=destructive]:focus:text-red-400 data-[variant=destructive]:focus:bg-red-500/15 data-[variant=destructive]:focus:border-red-500/40",
+        "data-[variant=destructive]:data-[highlighted]:text-red-400 data-[variant=destructive]:data-[highlighted]:bg-muted/80",
         "data-[variant=destructive]:*:[svg]:hover:text-red-400 data-[variant=destructive]:*:[svg]:focus:text-red-400",
         
         className
