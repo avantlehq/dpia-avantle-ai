@@ -1,7 +1,7 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.61
-export const VERSION = "3.19.61" as const
-export const VERSION_NAME = "Complete Visual Guide - CTA Design Documentation" as const
-export const BUILD_DATE = "2025-12-15"
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.62
+export const VERSION = "3.19.62" as const
+export const VERSION_NAME = "Password Protection Removal - Direct Dashboard Access" as const
+export const BUILD_DATE = "2025-12-20"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -13,6 +13,16 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.62": {
+    date: "2025-12-20", 
+    name: "Password Protection Removal - Direct Dashboard Access",
+    features: [
+      "SECURITY SIMPLIFICATION: Completely removed password protection from homepage",
+      "DIRECT ACCESS: Site now redirects immediately to dashboard without any authentication barrier",
+      "UX IMPROVEMENT: Eliminated friction for users accessing the DPIA platform",
+      "CLEAN IMPLEMENTATION: Replaced complex login form with simple server-side redirect"
+    ]
+  },
   "3.19.61": {
     date: "2025-12-15", 
     name: "Complete Visual Guide - CTA Design Documentation",
