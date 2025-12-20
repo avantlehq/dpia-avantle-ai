@@ -100,7 +100,7 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
           {/* Primary Actions */}
           <DropdownMenuItem 
             onClick={() => router.push(`/assessment?id=${assessmentId}`)}
-            className="px-3 py-2.5 text-sm font-medium rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
+            className="font-medium cursor-pointer"
           >
             Edit
           </DropdownMenuItem>
@@ -108,7 +108,7 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
           <DropdownMenuItem 
             onClick={handleDuplicate}
             disabled={isDuplicating}
-            className="px-3 py-2.5 text-sm font-medium rounded-lg cursor-pointer hover:bg-muted/50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="font-medium cursor-pointer"
           >
             {isDuplicating ? 'Duplicating...' : 'Duplicate'}
           </DropdownMenuItem>
@@ -116,7 +116,7 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
           {status === 'completed' && (
             <DropdownMenuItem 
               onClick={handleExport}
-              className="px-3 py-2.5 text-sm font-medium rounded-lg cursor-pointer hover:bg-muted/50 transition-colors"
+              className="font-medium cursor-pointer"
             >
               Export PDF
             </DropdownMenuItem>
@@ -128,7 +128,8 @@ export function AssessmentActions({ assessmentId, assessmentName, status }: Asse
           {/* Destructive Action */}
           <DropdownMenuItem
             onClick={() => setShowDeleteDialog(true)}
-            className="px-3 py-2.5 text-sm font-medium rounded-lg cursor-pointer text-foreground hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/50 transition-colors"
+            variant="destructive"
+            className="font-medium cursor-pointer"
           >
             Delete
           </DropdownMenuItem>

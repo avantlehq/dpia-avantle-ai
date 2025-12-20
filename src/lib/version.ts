@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.62
-export const VERSION = "3.19.62" as const
-export const VERSION_NAME = "Password Protection Removal - Direct Dashboard Access" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.63
+export const VERSION = "3.19.63" as const
+export const VERSION_NAME = "Enhanced Dropdown Menu - Hover & Focus States" as const
 export const BUILD_DATE = "2025-12-20"
 
 export const getVersionInfo = () => ({
@@ -13,6 +13,18 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.19.63": {
+    date: "2025-12-20", 
+    name: "Enhanced Dropdown Menu - Hover & Focus States",
+    features: [
+      "ACCESSIBILITY ENHANCED: Added clear hover and focus states to assessment action menu items",
+      "VISUAL FEEDBACK: Subtle background highlights with increased text contrast on hover",
+      "KEYBOARD NAVIGATION: Proper focus indicators with visible rings and backgrounds",
+      "DESTRUCTIVE ACTION CUES: Delete action shows muted red text only on hover/focus intent",
+      "DARK THEME OPTIMIZED: All states work seamlessly with ultra-soft RGB(25,39,52) theme",
+      "USABILITY IMPROVED: Users can instantly see which action will be executed"
+    ]
+  },
   "3.19.62": {
     date: "2025-12-20", 
     name: "Password Protection Removal - Direct Dashboard Access",

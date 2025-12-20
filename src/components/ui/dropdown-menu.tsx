@@ -74,7 +74,27 @@ function DropdownMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "focus:bg-accent focus:text-accent-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/20 data-[variant=destructive]:focus:text-destructive data-[variant=destructive]:*:[svg]:!text-destructive [&_svg:not([class*='text-'])]:text-muted-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[inset]:pl-8 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        // Base styling
+        "relative flex cursor-default items-center gap-2 rounded-lg px-3 py-2.5 text-sm outline-none select-none text-foreground transition-all duration-100",
+        // Disabled state
+        "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        // Inset support
+        "data-[inset]:pl-8",
+        // Icon styling
+        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 [&_svg:not([class*='text-'])]:text-muted-foreground",
+        
+        // Default variant hover and focus states
+        "data-[variant=default]:hover:bg-muted/80 data-[variant=default]:hover:text-foreground",
+        "data-[variant=default]:focus:bg-muted/80 data-[variant=default]:focus:text-foreground",
+        "data-[variant=default]:focus:ring-2 data-[variant=default]:focus:ring-indigo-500/30 data-[variant=default]:focus:ring-offset-1",
+        
+        // Destructive variant styling - neutral until hovered/focused
+        "data-[variant=destructive]:text-foreground",
+        "data-[variant=destructive]:hover:text-red-400 data-[variant=destructive]:hover:bg-muted/80",
+        "data-[variant=destructive]:focus:text-red-400 data-[variant=destructive]:focus:bg-muted/80",
+        "data-[variant=destructive]:focus:ring-2 data-[variant=destructive]:focus:ring-red-500/30 data-[variant=destructive]:focus:ring-offset-1",
+        "data-[variant=destructive]:*:[svg]:hover:text-red-400 data-[variant=destructive]:*:[svg]:focus:text-red-400",
+        
         className
       )}
       {...props}
