@@ -1,6 +1,6 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.65
-export const VERSION = "3.19.65" as const
-export const VERSION_NAME = "Dropdown Highlight Fix - Working Hover & Focus" as const
+// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.66
+export const VERSION = "3.19.66" as const
+export const VERSION_NAME = "CSS Force Dropdown Hover States" as const
 export const BUILD_DATE = "2025-12-20"
 
 export const getVersionInfo = () => ({

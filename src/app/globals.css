@@ -238,6 +238,52 @@
     0 0 0 1px var(--border) !important;
 }
 
+/* =====================================================
+   DROPDOWN MENU ITEM HOVER & FOCUS STATES - FORCE CSS
+   ===================================================== */
+
+/* Target all dropdown menu items */
+[data-slot="dropdown-menu-item"] {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  border-radius: 0.5rem !important;
+  padding: 0.625rem 0.75rem !important;
+  font-size: 0.875rem !important;
+  outline: none !important;
+  user-select: none !important;
+  color: var(--foreground) !important;
+  transition: all 100ms ease !important;
+  border: 1px solid transparent !important;
+  cursor: default !important;
+}
+
+/* Hover states - FORCE with !important */
+[data-slot="dropdown-menu-item"]:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: var(--foreground) !important;
+}
+
+/* Focus/highlighted states - using Radix's data-highlighted */
+[data-slot="dropdown-menu-item"][data-highlighted] {
+  background-color: rgba(99, 102, 241, 0.15) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  color: var(--foreground) !important;
+}
+
+/* Destructive variant styling */
+[data-slot="dropdown-menu-item"][data-variant="destructive"]:hover {
+  color: #f87171 !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-slot="dropdown-menu-item"][data-variant="destructive"][data-highlighted] {
+  color: #f87171 !important;
+  background-color: rgba(239, 68, 68, 0.15) !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
 /* Force solid background for light mode */
 .light [data-radix-select-content],
 .light [data-slot="select-content"],
