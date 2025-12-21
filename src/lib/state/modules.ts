@@ -321,18 +321,7 @@ export function getActiveNavItem(pathname: string): NavItem | undefined {
   return undefined
 }
 
-// License checking helper
-export function getVisibleModules(userLicenses: string[] = []): ModuleConfig[] {
-  return privacyModulesConfig.filter(moduleConfig => {
-    if (!moduleConfig.licenseRequired) return true
-    return userLicenses.includes(moduleConfig.licenseRequired)
-  })
+// Always return all modules - no license filtering for now
+export function getVisibleModules(): ModuleConfig[] {
+  return privacyModulesConfig
 }
-
-// Default license for development (all modules visible)
-export const DEFAULT_DEV_LICENSES = [
-  'risk-management',
-  'controls-management', 
-  'training-management',
-  'trust-center'
-]

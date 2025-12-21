@@ -9,7 +9,6 @@ import {
   privacyModulesConfig, 
   getActiveModule, 
   getVisibleModules,
-  DEFAULT_DEV_LICENSES,
   type ModuleConfig 
 } from '@/lib/state/modules'
 
@@ -78,34 +77,39 @@ function ModuleTab({ module, active, disabled }: ModuleTabProps) {
 }
 
 interface ModuleTopbarProps {
-  userLicenses?: string[]
   className?: string
 }
 
 export function ModuleTopbar({ 
-  userLicenses = DEFAULT_DEV_LICENSES,
   className 
 }: ModuleTopbarProps) {
   const pathname = usePathname()
   const activeModuleId = getActiveModule(pathname)
   
-  // For now, force show all modules to test visibility
-  const visibleModules = privacyModulesConfig
+  // Get all modules - no license filtering
+  const visibleModules = getVisibleModules()
   
-  // Debug logging
-  console.log('ModuleTopbar Debug:', {
+  // Enhanced debug logging
+  console.log('ModuleTopbar Enhanced Debug:', {
     pathname,
     activeModuleId,
     visibleModulesCount: visibleModules.length,
-    visibleModules: visibleModules.map(m => ({ id: m.id, name: m.name, itemCount: m.items.length }))
+    visibleModules: visibleModules.map(m => ({ 
+      id: m.id, 
+      name: m.name, 
+      itemCount: m.items.length,
+      enabledItems: m.items.filter(item => !item.disabled).length,
+      allItemsDisabled: m.items.every(item => item.disabled)
+    })),
+    allModulesConfig: privacyModulesConfig.map(m => ({ id: m.id, name: m.name }))
   })
   
   return (
     <nav className={cn("flex items-center space-x-1", className)}>
       {visibleModules.map((module) => {
         const isActive = activeModuleId === module.id
-        // Show module even if some items are disabled - let user see what's available
-        const isDisabled = module.items.length === 0 || module.items.every(item => item.disabled)
+        // Show all modules regardless of disabled items - no filtering
+        const isDisabled = false // Force all modules to be enabled
 
         return (
           <ModuleTab
