@@ -31,10 +31,17 @@ dpia table ako root            // nie je škálovateľné
 
 **DPIA Suite** - European platform for automated GDPR Data Protection Impact Assessments with complete workflow.
 
-**Current Status: VERSION 3.19.30 - Complete Sidebar Fix**
+**Current Status: VERSION 3.21.13 - Clean Enterprise Navigation Complete**
 
-### Recent Achievements
-- ✅ **Modern SaaS Navigation**: Professional flat design, action-oriented modules (Overview/DPIA Pre-Check/DPIA Assessments)
+### Latest Achievements (December 21, 2025)
+- ✅ **Clean Enterprise Topbar**: Text-only modules with proper 32px spacing (Context · Privacy · Risk · Controls · Training · Trust Center)
+- ✅ **Context-Aware Navigation**: Home button routes to appropriate module overview (Privacy → /privacy, others → module overview)
+- ✅ **Privacy Module Routing Fix**: DPIA Assessments → Dashboard, DPIA Builder → accessible from Dashboard
+- ✅ **Breadcrumbs Enhancement**: Start with module name instead of generic "Home"
+- ✅ **Version Display**: "Privacy Platform 3.21.13" visible in topbar with explicit CSS styling
+
+### Recent Foundation Achievements  
+- ✅ **Modern SaaS Navigation**: Professional flat design, action-oriented modules
 - ✅ **Neutral Form Design**: Calm UI with neutral questions, indigo-500 selections, green reserved for success
 - ✅ **Critical Security**: CVE-2025-55182 patched (Next.js 16.0.7), 5 repositories secured
 - ✅ **Database Persistence**: Fixed RLS configuration, full end-to-end workflow working
@@ -51,10 +58,35 @@ dpia table ako root            // nie je škálovateľné
 - ✅ **Real-time Validation**: Professional UI panels with GDPR business logic
 
 **Technical Stack:**
-- Framework: Next.js 16.0.7 + React 19 + TypeScript
+- Framework: Next.js 16.0.10 + React 19 + TypeScript
 - Backend: Supabase (service role key bypassing RLS)
-- Styling: Tailwind CSS + ultra-soft RGB(25,39,52) theme
+- Styling: Tailwind CSS + explicit CSS for reliability
+- Theme: Ultra-soft RGB(25,39,52) with single blue accent
 - Security: CVE-2025-55182 patched, enterprise-grade
+
+## Enterprise Navigation Architecture
+
+### Topbar Design Principles
+- **Clean Enterprise Design**: Text-only modules, no visual chaos or floating icons
+- **Proper Spacing**: 32px gaps between modules using explicit CSS (`style={{ gap: '32px' }}`)
+- **Recognition Over Recall**: Active module marked with 2px blue underline, white text
+- **Context-Aware Home**: Brand logo routes to appropriate module overview
+- **Version Display**: "Privacy Platform X.X.X" visible for user reference
+
+### Navigation Structure
+```
+Privacy Platform 3.21.13    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
+```
+
+**Left**: Brand + Version (context-aware routing)  
+**Center**: Text-only modules with 32px spacing  
+**Right**: 3 utilities max (Language, Help, User)
+
+### Routing Logic
+- **Privacy Overview** (`/privacy`) → General privacy stats, compliance overview, quick actions
+- **DPIA Assessments** (`/dashboard`) → Dashboard with existing assessments, "New Assessment" CTA
+- **DPIA Builder** (`/assessments/new`) → Launched from Dashboard for assessment creation
+- **Breadcrumbs**: Start with module name (Privacy > DPIA Assessments), not generic "Home"
 
 ## Design System
 
@@ -62,9 +94,10 @@ dpia table ako root            // nie je škálovateľné
 - **Background**: RGB(25,39,52) ultra-soft dark blue
 - **Categories**: Blue (Dashboard), Green (Assessment), Orange (Builder), Red (Risk), Purple (Settings)
 - **Opacity Standards**: 15% (icons), 25% (hover), 30% (borders), 40% (underlines)
+- **Accent Color**: Single blue-500 (#3b82f6) throughout application
 
 ### Component Patterns
-- **Navigation**: Professional flat design, "Workspace" header, subtle active states
+- **Navigation**: Enterprise text-first design, explicit CSS for reliability
 - **Forms**: Neutral questions, indigo selections (#6366f1), green reserved for success only
 - **Cards**: Consistent elevation (shadow-sm hover:shadow-md), category-based left borders
 - **Buttons**: Single primary CTA rule, matching backgrounds with typography hierarchy
