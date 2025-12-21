@@ -43,10 +43,10 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
     <Link 
       href={module.href}
       className={cn(
-        "modern-nav-link relative px-4 py-3 text-sm font-medium transition-opacity duration-200",
+        "modern-nav-link relative px-3 py-3 text-sm font-medium transition-opacity duration-200",
         "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
-        // Text-only, minimal state changes
-        !isActive && "text-gray-300 hover:opacity-80",
+        // Clear contrast between active and inactive
+        !isActive && "text-gray-400 hover:opacity-80",
         isActive && "text-white"
       )}
       aria-current={isActive ? "page" : undefined}
@@ -54,7 +54,7 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
       {/* Text-only modules for enterprise clarity */}
       {module.name}
       
-      {/* Only active underline, no other visual noise */}
+      {/* 2px underline with same accent color as app */}
       {isActive && (
         <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
       )}
@@ -90,9 +90,9 @@ export function ModernTopbar() {
         </Link>
       </div>
 
-      {/* Center: Text-only modules for enterprise clarity */}
+      {/* Center: Properly spaced modules with visual separation */}
       <nav className="flex items-center justify-center flex-1" role="navigation" aria-label="Module navigation">
-        <div className="flex items-center">
+        <div className="flex items-center gap-5">
           {privacyModulesConfig.map((module) => {
             const isActive = activeModuleId === module.id
             return (
