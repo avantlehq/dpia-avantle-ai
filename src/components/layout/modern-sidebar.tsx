@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, LayoutDashboard } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, type NavItem } from '@/lib/state/modules'
 
@@ -100,23 +100,21 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
       collapsed ? "w-16" : "w-64",
       className
     )}>
-      {/* Module Header - Clear visual separation */}
+      {/* Fixed HOME Header - Does not change with module switching */}
       <div className="px-4 py-4 border-b border-gray-700/50 bg-gray-800/30">
         <div className="flex items-center justify-between">
-          {!collapsed && moduleConfig && (
+          {!collapsed && (
             <div className="flex items-center gap-3">
-              {/* Section header styling - distinct from nav items */}
+              {/* Fixed HOME header - constant across all modules */}
               <h2 className="font-semibold text-white text-base tracking-wide">
-                {moduleConfig.name}
+                HOME
               </h2>
-              {/* Module icon is secondary to section title */}
-              <moduleConfig.icon className="w-4 h-4 text-blue-400 flex-shrink-0" />
             </div>
           )}
           
-          {collapsed && moduleConfig && (
+          {collapsed && (
             <div className="flex justify-center w-full">
-              <moduleConfig.icon className="w-5 h-5 text-blue-400" />
+              <LayoutDashboard className="w-5 h-5 text-blue-400" />
             </div>
           )}
 
