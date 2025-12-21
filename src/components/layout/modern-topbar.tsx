@@ -50,10 +50,11 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
         isActive && "text-white"
       )}
       style={{
-        backgroundColor: isActive ? '#60a5fa' : 'transparent',
-        padding: '12px 8px',
+        backgroundColor: isActive ? 'rgba(96, 165, 250, 0.15)' : 'transparent',
+        padding: '8px 12px',
         color: isActive ? '#ffffff' : '#9ca3af',
-        boxShadow: isActive ? 'inset 0 -3px 0 #ffffff' : 'none' // White underline using box-shadow
+        boxShadow: isActive ? 'inset 0 -2px 0 #60a5fa' : 'none',
+        borderRadius: '4px'
       }}
       aria-current={isActive ? "page" : undefined}
     >
