@@ -50,8 +50,10 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
         isActive && "text-white"
       )}
       style={{
-        borderBottom: isActive ? '3px solid #60a5fa' : 'none',
-        backgroundColor: isActive ? 'rgba(96, 165, 250, 0.1)' : 'transparent'
+        borderBottom: '3px solid #ff0000', // DEBUG: always red border to test if styling works
+        backgroundColor: '#ffff00', // DEBUG: always yellow background
+        padding: '12px 8px', // DEBUG: explicit padding
+        color: isActive ? '#ffffff' : '#9ca3af'
       }}
       aria-current={isActive ? "page" : undefined}
     >
