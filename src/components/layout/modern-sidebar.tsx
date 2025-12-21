@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { ChevronLeft, ChevronRight, LayoutDashboard } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, type NavItem } from '@/lib/state/modules'
 
@@ -20,20 +20,19 @@ interface SidebarLinkProps {
 }
 
 function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
-  const Icon = item.icon
   const isDisabled = item.disabled
   
   const navRowContent = (
     <div 
       className="group relative flex items-center w-full px-3 py-2.5 text-sm rounded-lg transition-all duration-200 focus-within:outline-none"
       style={{
-        backgroundColor: 'transparent', // NO background fill - professional pattern
-        borderLeft: isActive ? '2px solid #60a5fa' : 'none', // Thin blue accent only
+        backgroundColor: 'transparent', // Clean professional background
+        borderLeft: isActive ? '2px solid #60a5fa' : 'none', // Blue accent when active
         color: isActive ? '#ffffff' : '#9ca3af', // White text if active, gray if inactive
         paddingLeft: isActive ? '11px' : '12px' // Compensate for border width
       }}
     >
-      {/* Text-first: label is primary element */}
+      {/* Clean text-only navigation - NO ICONS anywhere */}
       {!collapsed && (
         <span 
           className="truncate select-none"
@@ -44,19 +43,19 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
         >{item.name}</span>
       )}
       
-      {/* Icon is secondary - smaller and muted */}
-      <Icon 
-        className={cn(
-          "w-4 h-4 flex-shrink-0 transition-colors",
-          !collapsed && "ml-auto", // Push icon to right when text is shown
-          collapsed && "mx-auto" // Center icon when collapsed
-        )}
-        style={{
-          color: isActive ? '#60a5fa' : (isDisabled ? '#6b7280' : '#6b7280')
-        }}
-      />
+      {/* When collapsed, show first letter - NO ICONS */}
+      {collapsed && (
+        <span 
+          className="text-xs font-medium text-center w-full"
+          style={{
+            color: isActive ? '#60a5fa' : '#6b7280'
+          }}
+        >
+          {item.name.charAt(0).toUpperCase()}
+        </span>
+      )}
       
-      {/* Collapsed tooltip */}
+      {/* Collapsed tooltip - shows full name when hovering over letter */}
       {collapsed && (
         <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap">
           {item.name}
@@ -97,6 +96,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   )?.id
 
 
+
   return (
     <aside className={cn(
       "flex flex-col bg-gray-900 border-r border-gray-700 transition-all duration-300",
@@ -117,7 +117,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
           
           {collapsed && (
             <div className="flex justify-center w-full">
-              <LayoutDashboard className="w-5 h-5 text-blue-400" />
+              <span className="text-sm font-semibold text-blue-400">H</span>
             </div>
           )}
 
