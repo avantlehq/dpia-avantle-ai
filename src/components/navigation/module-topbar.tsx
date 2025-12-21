@@ -89,19 +89,13 @@ export function ModuleTopbar({
   const pathname = usePathname()
   const activeModuleId = getActiveModule(pathname)
   
-  // Get modules based on user licenses
-  const allModules = getVisibleModules(userLicenses)
-  
-  // For development, always show Context and Privacy modules
-  const visibleModules = allModules.length > 0 ? allModules : 
-    privacyModulesConfig.filter(m => m.id === 'context' || m.id === 'privacy')
+  // For now, force show all modules to test visibility
+  const visibleModules = privacyModulesConfig
   
   // Debug logging
   console.log('ModuleTopbar Debug:', {
     pathname,
     activeModuleId,
-    userLicenses,
-    allModulesCount: allModules.length,
     visibleModulesCount: visibleModules.length,
     visibleModules: visibleModules.map(m => ({ id: m.id, name: m.name, itemCount: m.items.length }))
   })

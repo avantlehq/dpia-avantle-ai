@@ -283,6 +283,11 @@ export function getModuleConfig(moduleId: string): ModuleConfig | undefined {
 }
 
 export function getActiveModule(pathname: string): string | undefined {
+  // Special handling for dashboard - default to privacy module
+  if (pathname === '/dashboard' || pathname === '/') {
+    return 'privacy'
+  }
+  
   // Special handling for existing routes that should map to Privacy module
   const privacyRoutes = ['/precheck', '/assessments', '/assessment']
   if (privacyRoutes.some(route => pathname === route || pathname.startsWith(route + '/'))) {
