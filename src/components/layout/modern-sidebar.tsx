@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Home } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, type NavItem } from '@/lib/state/modules'
 
@@ -91,7 +91,8 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         <div className="flex items-center justify-between">
           {!collapsed && (
             <div className="flex items-center gap-3">
-              {/* Fixed HOME header - same size as topbar modules */}
+              {/* HOME icon - consistent with other modules */}
+              <Home className="h-4 w-4 text-white" />
               <h2 className="font-medium text-white text-sm">
                 HOME
               </h2>
@@ -100,7 +101,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
           
           {collapsed && (
             <div className="flex justify-center w-full">
-              <span className="text-sm font-semibold text-blue-400">H</span>
+              <Home className="h-4 w-4 text-blue-400" />
             </div>
           )}
 
@@ -110,16 +111,16 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
             size="sm"
             onClick={() => setCollapsed(!collapsed)}
             className={cn(
-              "h-8 w-8 p-0 text-white hover:text-white hover:bg-white/10",
-              "border-none bg-transparent flex-shrink-0",
+              "h-8 w-8 p-0 border-none bg-transparent flex-shrink-0",
               collapsed && "w-full justify-center"
             )}
+            style={{ color: '#ffffff' }}
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed ? (
-              <ChevronRight className="h-4 w-4 text-white" />
+              <ChevronRight className="h-4 w-4" style={{ color: '#ffffff' }} />
             ) : (
-              <ChevronLeft className="h-4 w-4 text-white" />
+              <ChevronLeft className="h-4 w-4" style={{ color: '#ffffff' }} />
             )}
           </Button>
         </div>
