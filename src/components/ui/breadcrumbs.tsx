@@ -3,7 +3,7 @@
 import React from 'react'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { ChevronRight, Home } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
 import { getActiveModule, getActiveNavItem, getModuleConfig } from '@/lib/state/modules'
 
@@ -30,20 +30,18 @@ export function Breadcrumbs({ className, showHome = true }: BreadcrumbsProps) {
     active?: boolean
   }> = []
 
-  // Always start with HOME
-  if (showHome) {
-    breadcrumbItems.push({
-      label: 'HOME',
-      href: '/dashboard'
-    })
-  }
-
-  // Add module if we're in a module context
+  // Start with module name instead of generic HOME
   if (moduleConfig) {
     breadcrumbItems.push({
       label: moduleConfig.name,
       href: moduleConfig.href,
       color: moduleConfig.color
+    })
+  } else if (showHome) {
+    // Fallback to HOME only if no module context
+    breadcrumbItems.push({
+      label: 'HOME',
+      href: '/dashboard'
     })
   }
 
@@ -95,14 +93,7 @@ export function Breadcrumbs({ className, showHome = true }: BreadcrumbsProps) {
               )}
               style={item.color ? { color: item.color } : undefined}
             >
-              {index === 0 && showHome ? (
-                <div className="flex items-center gap-1">
-                  <Home className="h-3 w-3" />
-                  <span>{item.label}</span>
-                </div>
-              ) : (
-                item.label
-              )}
+              {item.label}
             </Link>
           ) : (
             <span 
@@ -113,14 +104,7 @@ export function Breadcrumbs({ className, showHome = true }: BreadcrumbsProps) {
               )}
               style={item.color && !item.active ? { color: item.color } : undefined}
             >
-              {index === 0 && showHome ? (
-                <div className="flex items-center gap-1">
-                  <Home className="h-3 w-3" />
-                  <span>{item.label}</span>
-                </div>
-              ) : (
-                item.label
-              )}
+              {item.label}
             </span>
           )}
         </React.Fragment>

@@ -129,7 +129,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'dpia-assessments',
         name: 'DPIA Assessments', 
-        href: '/assessments', // Keep existing working route for now
+        href: '/dashboard', // Points to dashboard with existing assessments
         icon: Target,
         description: 'Data Protection Impact Assessments'
       },
