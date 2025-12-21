@@ -27,27 +27,23 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   console.log(`DEBUG Item "${item.name}":`, { isActive, itemId: item.id })
 
   const navRowContent = (
-    <div className={cn(
-      "group relative flex items-center w-full px-3 py-2.5 text-sm rounded-lg transition-all duration-200",
-      "focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-900",
-      // Inactive state - muted text with subtle hover
-      !isActive && !isDisabled && [
-        "text-gray-400 hover:bg-white/5 hover:text-white"
-      ],
-      // Active state - professional: only left accent + text/icon emphasis, NO background  
-      isActive && [
-        "text-white border-l-4 border-red-500 bg-yellow-200" // DEBUG: always visible if active
-      ],
-      // Disabled state - reduced opacity
-      isDisabled && "text-gray-500 opacity-50 cursor-not-allowed"
-    )}
+    <div 
+      className="group relative flex items-center w-full px-3 py-2.5 text-sm rounded-lg transition-all duration-200 focus-within:outline-none"
+      style={{
+        backgroundColor: isActive ? '#ffff00' : 'transparent', // DEBUG: yellow background if active
+        borderLeft: isActive ? '4px solid #ff0000' : 'none', // DEBUG: red border if active
+        color: isActive ? '#ff0000' : '#9ca3af' // DEBUG: red text if active
+      }}
     >
       {/* Text-first: label is primary element */}
       {!collapsed && (
-        <span className={cn(
-          "truncate select-none",
-          isActive ? "font-bold text-red-600" : "font-medium" // DEBUG: bold red if active
-        )}>{item.name}</span>
+        <span 
+          className="truncate select-none"
+          style={{
+            fontWeight: isActive ? 'bold' : 'normal', // DEBUG: bold if active
+            color: 'inherit' // inherit from parent div
+          }}
+        >{item.name}</span>
       )}
       
       {/* Icon is secondary - smaller and muted */}
