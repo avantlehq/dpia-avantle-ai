@@ -11,7 +11,7 @@ interface SimpleLayoutProps {
 
 
 export function SimpleLayout({ children }: SimpleLayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [sidebarOpen] = useState(true)
 
   return (
     <div className="min-h-screen bg-[--background] text-white font-sans">

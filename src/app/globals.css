@@ -81,7 +81,8 @@ nav a:active {
   text-decoration: none !important;
 }
   
-  /* Ultra-soft dark blue background RGB(25,39,52) = #192734 */
+/* Ultra-soft dark blue background RGB(25,39,52) = #192734 */
+:root {
   --background: #192734;
   --foreground: oklch(0.95 0 0);
   --card: #1F2D3A;

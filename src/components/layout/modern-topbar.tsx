@@ -20,7 +20,6 @@ import {
   HelpCircle, 
   LogOut,
   ShieldCheck,
-  ChevronDown,
   Users,
   AlertTriangle,
   FileText
