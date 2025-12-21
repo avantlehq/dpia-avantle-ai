@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.43" as const
-export const VERSION_NAME = "Sidebar Polish - Proper Text Spacing & White Collapse Arrow" as const
+export const VERSION = "3.21.44" as const
+export const VERSION_NAME = "Clean Collapsed Sidebar - No First Letters Display" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({

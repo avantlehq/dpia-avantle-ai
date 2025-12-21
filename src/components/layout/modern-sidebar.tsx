@@ -44,25 +44,7 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
         >{item.name}</span>
       )}
       
-      {/* When collapsed, show first letter - NO ICONS */}
-      {collapsed && (
-        <span 
-          className="text-xs font-medium text-center w-full"
-          style={{
-            color: isActive ? '#60a5fa' : '#6b7280'
-          }}
-        >
-          {item.name.charAt(0).toUpperCase()}
-        </span>
-      )}
-      
-      {/* Collapsed tooltip - shows full name when hovering over letter */}
-      {collapsed && (
-        <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap">
-          {item.name}
-          {isDisabled && " - Coming soon"}
-        </div>
-      )}
+      {/* When collapsed, show nothing - clean minimal design */}
     </div>
   )
 
