@@ -100,7 +100,7 @@ export function ModernTopbar() {
             className="font-bold transition-colors duration-200" 
             style={{ color: '#ffffff' }}
           >
-            Avantle Privacy
+            Privacy Platform
           </span>
           
           {/* Version */}

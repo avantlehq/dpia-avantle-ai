@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.49" as const
-export const VERSION_NAME = "Center Dashboard Buttons - Fix Right Alignment Issue" as const
+export const VERSION = "3.21.50" as const
+export const VERSION_NAME = "Fix Missing Footer & Rebrand to Privacy Platform" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({

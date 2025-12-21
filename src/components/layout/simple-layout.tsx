@@ -31,7 +31,7 @@ export function SimpleLayout({ children }: SimpleLayoutProps) {
           
           {/* Simple Footer */}
           <footer className="px-6 py-4 border-t border-[--nav-border] bg-[--nav-bg] text-[--text-muted] text-xs text-center">
-            DPIA.ai Privacy Platform {VERSION} - GDPR Compliance Tool
+            Privacy Platform {VERSION} - GDPR Compliance Tool
           </footer>
         </div>
       </div>

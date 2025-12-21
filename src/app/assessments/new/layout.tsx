@@ -5,10 +5,6 @@ export default function NewAssessmentLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Simple layout without AppLayoutWrapper to avoid SSR useContext issues
-  return (
-    <div className="avantle-gradient">
-      {children}
-    </div>
-  )
+  // Remove custom layout - inherit main layout with proper header/footer
+  return <>{children}</>
 }
