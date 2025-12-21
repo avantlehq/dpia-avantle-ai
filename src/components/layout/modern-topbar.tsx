@@ -39,38 +39,24 @@ interface ModuleLinkProps {
 }
 
 function ModuleLink({ module, isActive }: ModuleLinkProps) {
-  const Icon = module.icon
-
   return (
     <Link 
       href={module.href}
       className={cn(
-        "modern-nav-link relative flex items-center gap-2 px-4 py-3 text-sm font-medium transition-all duration-200 rounded-lg",
+        "modern-nav-link relative px-4 py-3 text-sm font-medium transition-opacity duration-200",
         "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
-        // Inactive state - muted text with subtle hover
-        !isActive && [
-          "text-gray-400 hover:text-white hover:bg-white/5"
-        ],
-        // Active state - bright text with accent background and bottom border
-        isActive && [
-          "text-white bg-white/10"
-        ]
+        // Text-only, minimal state changes
+        !isActive && "text-gray-300 hover:opacity-80",
+        isActive && "text-white"
       )}
       aria-current={isActive ? "page" : undefined}
     >
-      {/* Label-first navigation: text is primary */}
-      <span className="font-medium">{module.name}</span>
+      {/* Text-only modules for enterprise clarity */}
+      {module.name}
       
-      {/* Icon is secondary - small and muted */}
-      <Icon className={cn(
-        "w-4 h-4 flex-shrink-0 transition-colors",
-        !isActive && "text-gray-500",
-        isActive && "text-gray-300"
-      )} />
-      
-      {/* Active bottom accent bar - 2px for clarity */}
+      {/* Only active underline, no other visual noise */}
       {isActive && (
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-blue-500 rounded-full" />
+        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
       )}
     </Link>
   )
@@ -94,25 +80,19 @@ export function ModernTopbar() {
 
   return (
     <header className="flex items-center justify-between h-16 px-6 bg-[--background] border-b border-[--nav-border]">
-      {/* Left: Brand + Version - Fixed visibility */}
-      <div className="flex items-center gap-4">
+      {/* Left: Brand only - clean, no noise */}
+      <div className="flex items-center">
         <Link 
           href={getHomeLink()} 
-          className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-[--accent] focus:ring-offset-2 focus:ring-offset-gray-900"
+          className="text-lg font-semibold text-gray-300 hover:opacity-80 transition-opacity focus:outline-none"
         >
-          <div className="p-2 rounded-xl bg-[--accent] shadow-lg">
-            <ShieldCheck className="h-5 w-5 text-white" />
-          </div>
-          <div className="flex flex-col">
-            <span className="font-bold text-lg text-white">Avantle Privacy</span>
-            <span className="text-xs text-gray-400 font-medium">v{versionInfo.version}</span>
-          </div>
+          Avantle Privacy
         </Link>
       </div>
 
-      {/* Center: Module Navigation - Grouped visual container */}
+      {/* Center: Text-only modules for enterprise clarity */}
       <nav className="flex items-center justify-center flex-1" role="navigation" aria-label="Module navigation">
-        <div className="flex items-center gap-2 px-6 py-2 bg-white/5 rounded-xl border border-white/10">
+        <div className="flex items-center">
           {privacyModulesConfig.map((module) => {
             const isActive = activeModuleId === module.id
             return (
@@ -126,15 +106,15 @@ export function ModernTopbar() {
         </div>
       </nav>
 
-      {/* Right: Ghost Icon-Only Utilities */}
-      <div className="flex items-center gap-1">
-        {/* Language Switcher - Ghost Icon Button */}
+      {/* Right: Clean utilities - max 3 items */}
+      <div className="flex items-center gap-2">
+        {/* Language */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 text-gray-400 hover:text-white hover:bg-white/10 border-none bg-transparent rounded-md"
+              className="h-9 w-9 p-0 text-gray-400 hover:text-white border-none bg-transparent"
               title="Language"
             >
               <Globe className="h-4 w-4" />
@@ -147,31 +127,29 @@ export function ModernTopbar() {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        {/* Help - Ghost Icon Button */}
+        {/* Help */}
         <Button
           variant="ghost"
           size="sm"
-          className="h-9 w-9 p-0 text-gray-400 hover:text-white hover:bg-white/10 border-none bg-transparent rounded-md"
+          className="h-9 w-9 p-0 text-gray-400 hover:text-white border-none bg-transparent"
           title="Help & Support"
         >
           <HelpCircle className="h-4 w-4" />
         </Button>
 
-        {/* User Menu - Ghost Icon Button */}
+        {/* User Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 text-gray-400 hover:text-white hover:bg-white/10 border-none bg-transparent rounded-md"
+              className="h-9 w-9 p-0 text-gray-400 hover:text-white border-none bg-transparent"
               title="User Menu"
             >
-              <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center">
-                <User className="h-3 w-3 text-white" />
-              </div>
+              <User className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-64">
+          <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>
               <div className="space-y-1">
                 <div className="font-medium">Demo User</div>
@@ -179,39 +157,10 @@ export function ModernTopbar() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            
-            <DropdownMenuItem disabled>
-              <User className="h-4 w-4 mr-2" />
-              Profile & Account
-            </DropdownMenuItem>
             <DropdownMenuItem disabled>
               <Settings className="h-4 w-4 mr-2" />
-              Organization Settings
-            </DropdownMenuItem>
-            
-            <DropdownMenuSeparator />
-            
-            <DropdownMenuLabel className="text-xs text-muted-foreground uppercase tracking-wider">
               Settings
-            </DropdownMenuLabel>
-            <DropdownMenuItem disabled>
-              <Settings className="h-4 w-4 mr-2" />
-              Platform Settings
             </DropdownMenuItem>
-            <DropdownMenuItem disabled>
-              <Users className="h-4 w-4 mr-2" />
-              Identity & Access
-            </DropdownMenuItem>
-            <DropdownMenuItem disabled>
-              <AlertTriangle className="h-4 w-4 mr-2" />
-              Risk Model & Scoring
-            </DropdownMenuItem>
-            <DropdownMenuItem disabled>
-              <FileText className="h-4 w-4 mr-2" />
-              Evidence Rules
-            </DropdownMenuItem>
-            
-            <DropdownMenuSeparator />
             <DropdownMenuItem disabled>
               <LogOut className="h-4 w-4 mr-2" />
               Sign out
