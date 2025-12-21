@@ -31,9 +31,9 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
       !isActive && !isDisabled && [
         "text-gray-400 hover:bg-white/5 hover:text-white"
       ],
-      // Active state - professional: only left accent + text/icon emphasis, NO background
+      // Active state - professional: only left accent + text/icon emphasis, NO background  
       isActive && [
-        "text-white border-l-2 border-blue-400"
+        "text-white border-l-4 border-red-500 bg-yellow-200" // DEBUG: always visible if active
       ],
       // Disabled state - reduced opacity
       isDisabled && "text-gray-500 opacity-50 cursor-not-allowed"
@@ -43,7 +43,7 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
       {!collapsed && (
         <span className={cn(
           "truncate select-none",
-          isActive ? "font-semibold" : "font-medium"
+          isActive ? "font-bold text-red-600" : "font-medium" // DEBUG: bold red if active
         )}>{item.name}</span>
       )}
       
