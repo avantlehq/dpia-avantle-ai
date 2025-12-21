@@ -20,16 +20,27 @@ interface ModuleTabProps {
 }
 
 function ModuleTab({ module, active, disabled }: ModuleTabProps) {
-  const TabComponent = disabled ? 'div' : Link
+  if (disabled) {
+    return (
+      <div className="group relative cursor-not-allowed">
+        <Button
+          variant="ghost"
+          className={cn(
+            "h-10 px-4 py-2 text-sm font-medium transition-all duration-200",
+            "border-b-2 border-transparent rounded-none",
+            "opacity-50 cursor-not-allowed hover:bg-transparent text-muted-foreground"
+          )}
+          disabled={true}
+        >
+          <module.icon className="h-4 w-4 mr-2 text-muted-foreground" />
+          {module.name}
+        </Button>
+      </div>
+    )
+  }
 
   return (
-    <TabComponent
-      href={disabled ? undefined : module.href}
-      className={cn(
-        "group relative",
-        disabled && "cursor-not-allowed"
-      )}
-    >
+    <Link href={module.href} className="group relative">
       <Button
         variant="ghost"
         className={cn(
@@ -42,13 +53,8 @@ function ModuleTab({ module, active, disabled }: ModuleTabProps) {
           // Inactive state  
           !active && [
             "text-muted-foreground hover:text-foreground hover:bg-muted/20"
-          ],
-          // Disabled state
-          disabled && [
-            "opacity-50 cursor-not-allowed hover:bg-transparent"
           ]
         )}
-        disabled={disabled}
       >
         <module.icon 
           className={cn(
@@ -67,7 +73,7 @@ function ModuleTab({ module, active, disabled }: ModuleTabProps) {
           style={{ backgroundColor: module.color }}
         />
       )}
-    </TabComponent>
+    </Link>
   )
 }
 
