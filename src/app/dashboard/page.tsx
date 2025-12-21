@@ -16,7 +16,7 @@ export default function DashboardPage() {
             Manage your DPIA assessments and compliance activities
           </p>
         </div>
-        <div className="flex flex-col items-end gap-3">
+        <div className="flex flex-col items-center gap-3">
           {/* Primary CTA - New Assessment (single prominent action) */}
           <Link href="/assessments/new">
             <button
