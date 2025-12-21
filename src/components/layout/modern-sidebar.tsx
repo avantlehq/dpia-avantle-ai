@@ -23,16 +23,14 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   const Icon = item.icon
   const isDisabled = item.disabled
   
-  // DEBUG: Log each item's active state
-  console.log(`DEBUG Item "${item.name}":`, { isActive, itemId: item.id })
-
   const navRowContent = (
     <div 
       className="group relative flex items-center w-full px-3 py-2.5 text-sm rounded-lg transition-all duration-200 focus-within:outline-none"
       style={{
-        backgroundColor: isActive ? '#ffff00' : 'transparent', // DEBUG: yellow background if active
-        borderLeft: isActive ? '4px solid #ff0000' : 'none', // DEBUG: red border if active
-        color: isActive ? '#ff0000' : '#9ca3af' // DEBUG: red text if active
+        backgroundColor: 'transparent', // NO background fill - professional pattern
+        borderLeft: isActive ? '2px solid #60a5fa' : 'none', // Thin blue accent only
+        color: isActive ? '#ffffff' : '#9ca3af', // White text if active, gray if inactive
+        paddingLeft: isActive ? '11px' : '12px' // Compensate for border width
       }}
     >
       {/* Text-first: label is primary element */}
@@ -40,21 +38,23 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
         <span 
           className="truncate select-none"
           style={{
-            fontWeight: isActive ? 'bold' : 'normal', // DEBUG: bold if active
-            color: 'inherit' // inherit from parent div
+            fontWeight: isActive ? '600' : '400', // Semibold if active
+            color: 'inherit' // Inherit from parent div
           }}
         >{item.name}</span>
       )}
       
       {/* Icon is secondary - smaller and muted */}
-      <Icon className={cn(
-        "w-4 h-4 flex-shrink-0 transition-colors",
-        !collapsed && "ml-auto", // Push icon to right when text is shown
-        collapsed && "mx-auto", // Center icon when collapsed
-        !isActive && !isDisabled && "text-gray-500 group-hover:text-gray-300",
-        isActive && "text-blue-400",
-        isDisabled && "text-gray-600"
-      )} />
+      <Icon 
+        className={cn(
+          "w-4 h-4 flex-shrink-0 transition-colors",
+          !collapsed && "ml-auto", // Push icon to right when text is shown
+          collapsed && "mx-auto" // Center icon when collapsed
+        )}
+        style={{
+          color: isActive ? '#60a5fa' : (isDisabled ? '#6b7280' : '#6b7280')
+        }}
+      />
       
       {/* Collapsed tooltip */}
       {collapsed && (
@@ -96,13 +96,6 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     pathname === item.href || pathname.startsWith(item.href + '/')
   )?.id
 
-  // DEBUG: Log route matching
-  console.log('DEBUG Sidebar:', { 
-    pathname, 
-    activeModuleId, 
-    activeItemId, 
-    moduleItems: moduleConfig?.items.map(i => ({ id: i.id, href: i.href }))
-  })
 
   return (
     <aside className={cn(
