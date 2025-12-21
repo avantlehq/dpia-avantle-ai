@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation'
 
 export default function Home() {
-  // Redirect directly to dashboard - no password protection
-  redirect('/dashboard')
+  // Redirect to Privacy Overview as main landing page
+  redirect('/privacy')
 }
