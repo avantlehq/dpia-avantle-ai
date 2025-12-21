@@ -11,7 +11,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { useLayoutActions } from '@/lib/state/layout'
 import { getVersionInfo } from '@/lib/version'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
