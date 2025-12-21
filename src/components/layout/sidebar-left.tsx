@@ -6,17 +6,15 @@ import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/lib/utils'
 import { useLayoutState, useLayoutActions } from '@/lib/state/layout'
-import { navigationConfig, getActiveNavItem } from '@/lib/state/navigation'
-import { NavGroup } from '@/components/navigation/nav-group'
+import { getActiveModule } from '@/lib/state/modules'
+import { ModuleSidebar } from '@/components/navigation/module-sidebar'
 import { ChevronLeft, Menu } from 'lucide-react'
-import { getVersionInfo } from '@/lib/version'
 
 export function SidebarLeft() {
   const pathname = usePathname()
   const { leftSidebarOpen, mobileSidebarOpen } = useLayoutState()
   const { toggleLeftSidebar, setMobileSidebarOpen } = useLayoutActions()
-  const _activeItem = getActiveNavItem(pathname)
-  const _versionInfo = getVersionInfo()
+  const activeModule = getActiveModule(pathname) || 'privacy' // default to privacy module
 
   return (
     <>
@@ -48,17 +46,11 @@ export function SidebarLeft() {
 
         {/* Navigation */}
         <div className="flex-1 overflow-hidden">
-          <ScrollArea className="h-full px-3 py-6">
-            <div className="space-y-8">
-              {navigationConfig.map((group, index) => (
-                <NavGroup
-                  key={group.name || `group-${index}`}
-                  group={group}
-                  collapsed={!leftSidebarOpen}
-                  activePath={pathname}
-                />
-              ))}
-            </div>
+          <ScrollArea className="h-full py-6">
+            <ModuleSidebar
+              activeModule={activeModule}
+              collapsed={!leftSidebarOpen}
+            />
           </ScrollArea>
         </div>
 
@@ -100,18 +92,12 @@ export function SidebarLeft() {
             </div>
 
             {/* Mobile Navigation */}
-            <ScrollArea className="flex-1 px-3 py-6">
-              <div className="space-y-8">
-                {navigationConfig.map((group, index) => (
-                  <NavGroup
-                    key={group.name || `mobile-group-${index}`}
-                    group={group}
-                    collapsed={false}
-                    activePath={pathname}
-                    onItemClick={() => setMobileSidebarOpen(false)}
-                  />
-                ))}
-              </div>
+            <ScrollArea className="flex-1 py-6">
+              <ModuleSidebar
+                activeModule={activeModule}
+                collapsed={false}
+                onItemClick={() => setMobileSidebarOpen(false)}
+              />
             </ScrollArea>
           </aside>
         </>

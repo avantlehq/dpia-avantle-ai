@@ -2,7 +2,32 @@
 
 Context for Claude Code working with DPIA Agent repository.
 
-## Project Context: DPIA Suite
+## 🚀 **FUTURE-PROOF ARCHITECTURE: Avantle Privacy Platform**
+
+**❗ KRITICKÁ ARCHITEKTÚRNA PODMIENKA:**
+Tento projekt je **prvá fáza** väčšieho produktu **Avantle Privacy** (finálne na privacy.avantle.ai).
+
+### **🎯 Future-Proof Requirements (POVINNÉ)**
+```typescript
+// ✅ SPRÁVNE - Rozšíriteľná architektúra
+/privacy/dpia/...              // nie /dpia/...
+/privacy/lia/...               // nie /lia/...
+PrivacyAssessmentForm          // nie DPIAForm
+assessment.type = "dpia"       // nie dpia = root object
+
+// ❌ ZAKÁZANÉ - Lock-in do DPIA-only
+/dpia/...                      // zamyká na DPIA
+DPIASpecificComponent          // nie je rozšíriteľné
+dpia table ako root            // nie je škálovateľné
+```
+
+### **🔄 Migration Benefits**
+- **Hostname**: dpia.avantle.ai môže ostať navždy
+- **Rebrand**: Triviálny (len názvy, nie kód)
+- **Product expansion**: Bez refaktoru (LIA, TIA, ...)
+- **URL consistency**: /privacy/... naprieč všetkými assessment typmi
+
+## Project Context: DPIA Suite (Phase 1)
 
 **DPIA Suite** - European platform for automated GDPR Data Protection Impact Assessments with complete workflow.
 

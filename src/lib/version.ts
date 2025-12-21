@@ -1,7 +1,7 @@
-// DPIA.ai Privacy Platform Version Information - Build Cache Buster v3.19.66
-export const VERSION = "3.19.66" as const
-export const VERSION_NAME = "CSS Force Dropdown Hover States" as const
-export const BUILD_DATE = "2025-12-20"
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.20.0
+export const VERSION = "3.20.0" as const
+export const VERSION_NAME = "Future-Proof Module Architecture" as const
+export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({
   version: VERSION,
