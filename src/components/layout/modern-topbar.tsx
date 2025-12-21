@@ -54,13 +54,15 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
       {/* Text-only modules for enterprise clarity */}
       {module.name}
       
-      {/* 2px underline for active state */}
+      {/* 2px underline for active state - positioned above bottom padding */}
       {isActive && (
         <div 
-          className="absolute bottom-0 left-0 right-0" 
+          className="absolute left-0 right-0" 
           style={{ 
+            bottom: '12px',
             height: '2px', 
-            backgroundColor: '#3b82f6' 
+            backgroundColor: '#3b82f6',
+            zIndex: 10
           }}
         />
       )}

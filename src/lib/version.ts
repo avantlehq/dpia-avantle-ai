@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.24" as const
-export const VERSION_NAME = "Navigation Fix - Visible Blue Underline for Active Module" as const
+export const VERSION = "3.21.25" as const
+export const VERSION_NAME = "Underline Position Fix - Moved Above Bottom Padding" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({
