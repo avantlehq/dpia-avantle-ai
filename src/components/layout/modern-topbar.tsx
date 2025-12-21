@@ -43,29 +43,19 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
     <Link 
       href={module.href}
       className={cn(
-        "modern-nav-link relative px-1 py-3 text-sm font-medium transition-opacity duration-200",
+        "modern-nav-link px-1 py-3 text-sm font-medium transition-all duration-200",
         "focus:outline-none",
         // Clear contrast between active and inactive
         !isActive && "text-gray-400 hover:opacity-80",
         isActive && "text-white"
       )}
+      style={{
+        borderBottom: isActive ? '2px solid #3b82f6' : '2px solid transparent'
+      }}
       aria-current={isActive ? "page" : undefined}
     >
       {/* Text-only modules for enterprise clarity */}
       {module.name}
-      
-      {/* 2px underline for active state - positioned above bottom padding */}
-      {isActive && (
-        <div 
-          className="absolute left-0 right-0" 
-          style={{ 
-            bottom: '12px',
-            height: '2px', 
-            backgroundColor: '#3b82f6',
-            zIndex: 10
-          }}
-        />
-      )}
     </Link>
   )
 }
