@@ -89,21 +89,9 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
       {/* Fixed HOME Header - Does not change with module switching */}
       <div className="px-4 py-4 border-b border-gray-700/50 bg-gray-800/30">
         <div className="flex items-center justify-between">
-          {!collapsed && (
-            <div className="flex items-center gap-3">
-              {/* HOME icon - consistent with other modules */}
-              <Home className="h-4 w-4 text-white" />
-              <h2 className="font-medium text-white text-sm">
-                HOME
-              </h2>
-            </div>
-          )}
-          
-          {collapsed && (
-            <div className="flex justify-center w-full">
-              <Home className="h-4 w-4 text-blue-400" />
-            </div>
-          )}
+          <div className="flex justify-center w-full">
+            <Home className="h-5 w-5 text-white" />
+          </div>
 
           {/* Collapse Button */}
           <Button
