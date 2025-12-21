@@ -97,21 +97,16 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
       collapsed ? "w-16" : "w-64",
       className
     )}>
-      {/* Module Header - Single accent color only */}
+      {/* Module Header - Consistent width, no description */}
       <div className="p-4 border-b border-[--nav-border]">
         {!collapsed && moduleConfig && (
           <div className="flex items-center gap-3">
             <div className="p-1.5 rounded-lg bg-[--nav-active-bg]">
               <moduleConfig.icon className="w-5 h-5 text-[--accent]" />
             </div>
-            <div>
-              <h2 className="font-semibold text-[--text-bright] text-sm">
-                {moduleConfig.name}
-              </h2>
-              <p className="text-xs text-[--text-muted] mt-0.5">
-                {moduleConfig.description}
-              </p>
-            </div>
+            <h2 className="font-semibold text-[--text-bright] text-sm">
+              {moduleConfig.name}
+            </h2>
           </div>
         )}
         

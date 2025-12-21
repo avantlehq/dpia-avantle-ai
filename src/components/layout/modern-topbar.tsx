@@ -85,18 +85,18 @@ export function ModernTopbar() {
 
   return (
     <header className="flex items-center justify-between h-16 px-6 bg-[--background] border-b border-[--nav-border]">
-      {/* Left: Brand + Version */}
-      <div className="flex items-center gap-6">
+      {/* Left: Brand + Version - Fixed visibility */}
+      <div className="flex items-center gap-4">
         <Link 
           href="/dashboard" 
-          className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900"
+          className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-[--accent] focus:ring-offset-2 focus:ring-offset-gray-900"
         >
-          <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg">
+          <div className="p-2 rounded-xl bg-[--accent] shadow-lg">
             <ShieldCheck className="h-5 w-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-lg text-white">Avantle Privacy</span>
-            <span className="text-xs text-gray-400 font-medium">v{versionInfo.version}</span>
+            <span className="font-bold text-lg text-[--text-bright]">Avantle Privacy</span>
+            <span className="text-xs text-[--text-muted] font-medium">v{versionInfo.version}</span>
           </div>
         </Link>
       </div>
