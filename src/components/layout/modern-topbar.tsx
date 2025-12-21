@@ -95,7 +95,7 @@ export function ModernTopbar() {
 
       {/* Center: Properly spaced modules with visual separation */}
       <nav className="flex items-center justify-center flex-1" role="navigation" aria-label="Module navigation">
-        <div className="flex items-center gap-8">
+        <div className="flex items-center" style={{ gap: '32px' }}>
           {privacyModulesConfig.map((module) => {
             const isActive = activeModuleId === module.id
             return (
@@ -117,10 +117,11 @@ export function ModernTopbar() {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 text-gray-400 hover:text-white border-none bg-transparent"
+              className="h-9 w-9 p-0 border-none bg-transparent"
+              style={{ color: '#9ca3af' }}
               title="Language"
             >
-              <Globe className="h-4 w-4" />
+              <Globe className="h-4 w-4" style={{ color: '#9ca3af' }} />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-36">
@@ -134,10 +135,11 @@ export function ModernTopbar() {
         <Button
           variant="ghost"
           size="sm"
-          className="h-9 w-9 p-0 text-gray-400 hover:text-white border-none bg-transparent"
+          className="h-9 w-9 p-0 border-none bg-transparent"
+          style={{ color: '#9ca3af' }}
           title="Help & Support"
         >
-          <HelpCircle className="h-4 w-4" />
+          <HelpCircle className="h-4 w-4" style={{ color: '#9ca3af' }} />
         </Button>
 
         {/* User Menu */}
@@ -146,10 +148,11 @@ export function ModernTopbar() {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 text-gray-400 hover:text-white border-none bg-transparent"
+              className="h-9 w-9 p-0 border-none bg-transparent"
+              style={{ color: '#9ca3af' }}
               title="User Menu"
             >
-              <User className="h-4 w-4" />
+              <User className="h-4 w-4" style={{ color: '#9ca3af' }} />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
