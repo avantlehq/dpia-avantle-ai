@@ -52,6 +52,10 @@ export function Topbar() {
 
       {/* Center Section - Module Navigation */}
       <div className="flex-1 flex justify-center">
+        {/* DEBUG: Test if this section renders */}
+        <div className="bg-yellow-500 text-black px-4 py-2 text-sm font-bold">
+          TOPBAR CENTER TEST
+        </div>
         <ModuleTopbar />
       </div>
 
