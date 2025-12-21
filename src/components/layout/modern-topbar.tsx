@@ -45,35 +45,33 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
     <Link 
       href={module.href}
       className={cn(
-        "modern-nav-link relative flex items-center gap-2 px-3 py-2 text-sm font-medium transition-all duration-150 rounded-md",
-        "focus:outline-none focus:ring-2 focus:ring-[--accent] focus:ring-offset-1 focus:ring-offset-gray-900",
-        // Inactive state - muted neutral
+        "modern-nav-link relative flex items-center gap-2 px-4 py-3 text-sm font-medium transition-all duration-200 rounded-lg",
+        "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
+        // Inactive state - muted text with subtle hover
         !isActive && [
-          "text-[--text-muted] hover:bg-[--nav-hover] hover:text-[--text-default]"
+          "text-gray-400 hover:text-white hover:bg-white/5"
         ],
-        // Active state - bright text + underline
+        // Active state - bright text with accent background and bottom border
         isActive && [
-          "text-[--text-bright] bg-[--nav-active-bg]"
+          "text-white bg-white/10"
         ]
       )}
       aria-current={isActive ? "page" : undefined}
     >
+      {/* Label-first navigation: text is primary */}
+      <span className="font-medium">{module.name}</span>
+      
+      {/* Icon is secondary - small and muted */}
       <Icon className={cn(
-        "w-[--nav-icon-size] h-[--nav-icon-size] flex-shrink-0 transition-colors",
-        !isActive && "text-[--icon-muted] group-hover:text-[--icon-default]",
-        isActive && "text-[--icon-bright]"
+        "w-4 h-4 flex-shrink-0 transition-colors",
+        !isActive && "text-gray-500",
+        isActive && "text-gray-300"
       )} />
-      <span className="hidden sm:block">{module.name}</span>
       
-      {/* Active bottom border indicator */}
+      {/* Active bottom accent bar - 2px for clarity */}
       {isActive && (
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-[--accent] rounded-full" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-0.5 bg-blue-500 rounded-full" />
       )}
-      
-      {/* Mobile tooltip for icon-only responsive state */}
-      <div className="sm:hidden absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap">
-        {module.name}
-      </div>
     </Link>
   )
 }
@@ -112,18 +110,20 @@ export function ModernTopbar() {
         </Link>
       </div>
 
-      {/* Center: Module Navigation - Single centered row */}
-      <nav className="flex items-center gap-1" role="navigation" aria-label="Module navigation">
-        {privacyModulesConfig.map((module) => {
-          const isActive = activeModuleId === module.id
-          return (
-            <ModuleLink
-              key={module.id}
-              module={module}
-              isActive={isActive}
-            />
-          )
-        })}
+      {/* Center: Module Navigation - Grouped visual container */}
+      <nav className="flex items-center justify-center flex-1" role="navigation" aria-label="Module navigation">
+        <div className="flex items-center gap-2 px-6 py-2 bg-white/5 rounded-xl border border-white/10">
+          {privacyModulesConfig.map((module) => {
+            const isActive = activeModuleId === module.id
+            return (
+              <ModuleLink
+                key={module.id}
+                module={module}
+                isActive={isActive}
+              />
+            )
+          })}
+        </div>
       </nav>
 
       {/* Right: Ghost Icon-Only Utilities */}
