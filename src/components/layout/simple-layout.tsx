@@ -1,8 +1,11 @@
 'use client'
 
 import React, { useState, type ReactNode } from 'react'
+import { usePathname } from 'next/navigation'
 import { VERSION } from '@/lib/version'
 import { Topbar } from '@/components/layout/topbar'
+import { ModuleSidebar } from '@/components/navigation/module-sidebar'
+import { getActiveModule } from '@/lib/state/modules'
 
 interface SimpleLayoutProps {
   children: ReactNode
@@ -184,61 +187,60 @@ function SafeTopbar({ toggleSidebar, toggleTheme, isDarkMode }: SafeTopbarProps)
   )
 }
 
-function SafeSidebar() {
+function DynamicSidebar() {
+  const pathname = usePathname()
+  const activeModuleId = getActiveModule(pathname)
+  const [collapsed, setCollapsed] = useState(false)
+
   return (
     <aside style={{
-      width: '256px',
+      width: collapsed ? '80px' : '256px',
       backgroundColor: '#1F2D3A',
-      borderRight: '1px solid #2F404E',
+      borderRight: '1px solid #2F404E', 
       padding: '24px 16px',
-      minHeight: 'calc(100vh - 64px)'
+      minHeight: 'calc(100vh - 64px)',
+      transition: 'width 0.3s ease'
     }}>
-      <nav style={{ color: '#ffffff' }}>
-        <div style={{ marginBottom: '16px', fontSize: '14px', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          Workspace
+      <div style={{ color: '#ffffff' }}>
+        <div style={{ 
+          marginBottom: '16px', 
+          fontSize: '14px', 
+          fontWeight: '600', 
+          textTransform: 'uppercase', 
+          letterSpacing: '0.05em',
+          color: '#9ca3af'
+        }}>
+          {!collapsed && 'Workspace'}
         </div>
-        <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-          <li style={{ marginBottom: '8px' }}>
-            <a href="/dashboard" style={{ 
-              color: '#9ca3af', 
-              textDecoration: 'none', 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '8px',
-              padding: '8px 0'
-            }}>
-              <span style={{ fontSize: '16px' }}>📊</span>
-              Overview
-            </a>
-          </li>
-          <li style={{ marginBottom: '8px' }}>
-            <a href="/precheck" style={{ 
-              color: '#9ca3af', 
-              textDecoration: 'none', 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '8px',
-              padding: '8px 0'
-            }}>
-              <span style={{ fontSize: '16px' }}>✨</span>
-              DPIA Pre-Check
-            </a>
-          </li>
-          <li style={{ marginBottom: '8px' }}>
-            <a href="/assessments" style={{ 
-              color: '#9ca3af', 
-              textDecoration: 'none', 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '8px',
-              padding: '8px 0'
-            }}>
-              <span style={{ fontSize: '16px' }}>🎯</span>
-              DPIA Assessments
-            </a>
-          </li>
-        </ul>
-      </nav>
+        
+        <ModuleSidebar 
+          activeModule={activeModuleId || 'privacy'} 
+          collapsed={collapsed}
+        />
+        
+        {/* Collapse Toggle */}
+        <div style={{ marginTop: '24px', borderTop: '1px solid #2F404E', paddingTop: '16px' }}>
+          <button
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              backgroundColor: 'transparent',
+              border: '1px solid #4A90E2',
+              borderRadius: '6px',
+              padding: '8px',
+              color: '#4A90E2',
+              cursor: 'pointer',
+              width: '100%',
+              fontSize: '14px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px'
+            }}
+          >
+            {collapsed ? '→' : '←'} {!collapsed && 'Collapse'}
+          </button>
+        </div>
+      </div>
     </aside>
   )
 }
@@ -277,8 +279,8 @@ export function SimpleLayout({ children }: SimpleLayoutProps) {
       
       {/* Main Layout */}
       <div style={{ display: 'flex' }}>
-        {/* Safe Left Sidebar */}
-        {sidebarOpen && <SafeSidebar />}
+        {/* Dynamic Module-Aware Sidebar */}
+        {sidebarOpen && <DynamicSidebar />}
         
         {/* Main Content */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>

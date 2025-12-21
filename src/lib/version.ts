@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.20.12
-export const VERSION = "3.20.12" as const
-export const VERSION_NAME = "Layout Fix - Removed Nested Privacy Layout" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.20.13
+export const VERSION = "3.20.13" as const
+export const VERSION_NAME = "Dynamic Sidebar Fix - Module-Aware Navigation" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({
