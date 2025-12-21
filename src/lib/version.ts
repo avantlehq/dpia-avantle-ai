@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.15
-export const VERSION = "3.21.15" as const
-export const VERSION_NAME = "Context Overview Page - Complete Dashboard Implementation" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.16
+export const VERSION = "3.21.16" as const
+export const VERSION_NAME = "Unified Dashboard UI - Context and Privacy Overview Alignment" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({
