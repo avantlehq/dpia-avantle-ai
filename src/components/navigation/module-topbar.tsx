@@ -106,10 +106,6 @@ export function ModuleTopbar({
   
   return (
     <nav className={cn("flex items-center space-x-1", className)}>
-      {/* DEBUG: Temporary test element */}
-      <div className="bg-red-500 text-white px-2 py-1 text-xs">
-        TEST: {visibleModules.length} modules
-      </div>
       {visibleModules.map((module) => {
         const isActive = activeModuleId === module.id
         // Show all modules regardless of disabled items - no filtering

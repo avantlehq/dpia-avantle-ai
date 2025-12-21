@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.20.10
-export const VERSION = "3.20.10" as const
-export const VERSION_NAME = "Debug Topbar Center - Yellow Test Box" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.20.11
+export const VERSION = "3.20.11" as const
+export const VERSION_NAME = "Module Navigation FIXED - Topbar Integrated" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({

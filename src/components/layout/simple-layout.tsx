@@ -2,6 +2,7 @@
 
 import React, { useState, type ReactNode } from 'react'
 import { VERSION } from '@/lib/version'
+import { Topbar } from '@/components/layout/topbar'
 
 interface SimpleLayoutProps {
   children: ReactNode
@@ -271,12 +272,8 @@ export function SimpleLayout({ children }: SimpleLayoutProps) {
       color: '#ffffff',
       fontFamily: 'system-ui, sans-serif'
     }}>
-      {/* Safe Topbar */}
-      <SafeTopbar 
-        toggleSidebar={toggleSidebar}
-        toggleTheme={toggleTheme}
-        isDarkMode={isDarkMode}
-      />
+      {/* New Module-Enabled Topbar */}
+      <Topbar />
       
       {/* Main Layout */}
       <div style={{ display: 'flex' }}>
