@@ -32,9 +32,7 @@ function ModuleNavItem({
     return (
       <div
         onClick={onClick}
-        className={cn(
-          "block w-full cursor-not-allowed"
-        )}
+        className="block w-full cursor-not-allowed"
       >
         <Button
           variant="ghost"
