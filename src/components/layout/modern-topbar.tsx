@@ -28,7 +28,7 @@ import {
 import { privacyModulesConfig, getActiveModule } from '@/lib/state/modules'
 import { cn } from '@/lib/utils'
 
-// Modern module navigation link
+// Fixed module navigation link - no floating icons, proper text+icon rows
 interface ModuleLinkProps {
   module: {
     id: string
@@ -46,28 +46,33 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
     <Link 
       href={module.href}
       className={cn(
-        "group relative flex items-center px-4 py-2 text-sm font-medium transition-all duration-200",
-        "hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
-        isActive ? "text-white" : "text-gray-400 hover:text-gray-200"
+        "modern-nav-link relative flex items-center gap-2 px-3 py-2 text-sm font-medium transition-all duration-150 rounded-md",
+        "focus:outline-none focus:ring-2 focus:ring-[--accent] focus:ring-offset-1 focus:ring-offset-gray-900",
+        // Inactive state - muted neutral
+        !isActive && [
+          "text-[--text-muted] hover:bg-[--nav-hover] hover:text-[--text-default]"
+        ],
+        // Active state - bright text + underline
+        isActive && [
+          "text-[--text-bright] bg-[--nav-active-bg]"
+        ]
       )}
       aria-current={isActive ? "page" : undefined}
     >
       <Icon className={cn(
-        "w-[--nav-icon-size] h-[--nav-icon-size] mr-2 transition-colors",
-        isActive ? "text-[--nav-active]" : "text-gray-400 group-hover:text-gray-300"
+        "w-[--nav-icon-size] h-[--nav-icon-size] flex-shrink-0 transition-colors",
+        !isActive && "text-[--icon-muted] group-hover:text-[--icon-default]",
+        isActive && "text-[--icon-bright]"
       )} />
-      <span className="hidden sm:inline">{module.name}</span>
+      <span className="hidden sm:block">{module.name}</span>
       
-      {/* Active underline indicator */}
+      {/* Active bottom border indicator */}
       {isActive && (
-        <div 
-          className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full bg-[--nav-active]"
-          style={{ backgroundColor: 'var(--nav-active)' }}
-        />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-[--accent] rounded-full" />
       )}
       
-      {/* Mobile tooltip (for icon-only responsive state) */}
-      <div className="sm:hidden absolute left-1/2 -translate-x-1/2 -bottom-12 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
+      {/* Mobile tooltip for icon-only responsive state */}
+      <div className="sm:hidden absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap">
         {module.name}
       </div>
     </Link>
@@ -97,8 +102,8 @@ export function ModernTopbar() {
         </Link>
       </div>
 
-      {/* Center: Module Navigation */}
-      <nav className="flex items-center space-x-1" role="navigation" aria-label="Module navigation">
+      {/* Center: Module Navigation - Single centered row */}
+      <nav className="flex items-center gap-1" role="navigation" aria-label="Module navigation">
         {privacyModulesConfig.map((module) => {
           const isActive = activeModuleId === module.id
           return (
@@ -111,18 +116,18 @@ export function ModernTopbar() {
         })}
       </nav>
 
-      {/* Right: Utilities */}
-      <div className="flex items-center gap-2">
-        {/* Language Switcher */}
+      {/* Right: Ghost Icon-Only Utilities */}
+      <div className="flex items-center gap-1">
+        {/* Language Switcher - Ghost Icon Button */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 px-3 text-gray-400 hover:text-white hover:bg-white/5 border-none bg-transparent"
+              className="h-9 w-9 p-0 text-[--icon-muted] hover:text-[--icon-default] hover:bg-[--nav-hover] border-none bg-transparent rounded-md"
+              title="Language"
             >
-              <Globe className="h-4 w-4 mr-2" />
-              <span className="hidden sm:inline">EN</span>
+              <Globe className="h-[--nav-icon-size] w-[--nav-icon-size]" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-36">
@@ -132,29 +137,28 @@ export function ModernTopbar() {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        {/* Help */}
+        {/* Help - Ghost Icon Button */}
         <Button
           variant="ghost"
           size="sm"
-          className="h-9 w-9 p-0 text-gray-400 hover:text-white hover:bg-white/5 border-none bg-transparent"
+          className="h-9 w-9 p-0 text-[--icon-muted] hover:text-[--icon-default] hover:bg-[--nav-hover] border-none bg-transparent rounded-md"
           title="Help & Support"
         >
-          <HelpCircle className="h-4 w-4" />
+          <HelpCircle className="h-[--nav-icon-size] w-[--nav-icon-size]" />
         </Button>
 
-        {/* User Menu */}
+        {/* User Menu - Ghost Icon Button */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 px-3 text-gray-400 hover:text-white hover:bg-white/5 border-none bg-transparent"
+              className="h-9 w-9 p-0 text-[--icon-muted] hover:text-[--icon-default] hover:bg-[--nav-hover] border-none bg-transparent rounded-md"
+              title="User Menu"
             >
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center">
+              <div className="w-5 h-5 rounded-full bg-[--accent] flex items-center justify-center">
                 <User className="h-3 w-3 text-white" />
               </div>
-              <span className="hidden sm:inline ml-2">Demo User</span>
-              <ChevronDown className="h-3 w-3 ml-1" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-64">

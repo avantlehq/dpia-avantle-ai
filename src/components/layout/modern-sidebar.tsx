@@ -12,7 +12,7 @@ interface ModernSidebarProps {
   className?: string
 }
 
-// Modern sidebar navigation link
+// Fixed sidebar nav row - no link styling, proper nav appearance
 interface SidebarLinkProps {
   item: NavItem
   isActive: boolean
@@ -23,33 +23,39 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   const Icon = item.icon
   const isDisabled = item.disabled
 
-  const linkContent = (
+  const navRowContent = (
     <div className={cn(
-      "flex items-center w-full h-[--nav-item-height] px-3 text-sm font-medium rounded-lg transition-all duration-200",
-      "hover:bg-[--nav-hover-bg] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
-      isActive && [
-        "bg-[--nav-active-bg] text-[--text-active]",
-        "shadow-sm border-l-2 border-[--nav-active]"
+      "group relative flex items-center w-full h-[--nav-item-height] px-3 text-sm font-medium rounded-[--nav-radius] transition-all duration-150",
+      "focus-within:outline-none focus-within:ring-2 focus-within:ring-[--accent] focus-within:ring-offset-1 focus-within:ring-offset-gray-900",
+      // Inactive state - muted neutral
+      !isActive && !isDisabled && [
+        "text-[--text-muted] hover:bg-[--nav-hover] hover:text-[--text-default]"
       ],
-      !isActive && !isDisabled && "text-[--text-muted] hover:text-[--text-default]",
-      isDisabled && "text-gray-600 cursor-not-allowed opacity-60"
+      // Active state - subtle background + left accent bar
+      isActive && [
+        "bg-[--nav-active-bg] text-[--text-bright] border-l-2 border-[--accent]"
+      ],
+      // Disabled state - reduced opacity
+      isDisabled && "text-[--text-muted] opacity-60 cursor-not-allowed"
     )}
     >
       <Icon className={cn(
         "w-[--nav-icon-size] h-[--nav-icon-size] flex-shrink-0 transition-colors",
-        isActive && "text-[--nav-active]",
-        !isActive && !isDisabled && "text-gray-400",
-        isDisabled && "text-gray-600",
+        !isActive && !isDisabled && "text-[--icon-muted] group-hover:text-[--icon-default]",
+        isActive && "text-[--icon-bright]",
+        isDisabled && "text-[--icon-muted]",
         !collapsed && "mr-3"
       )} />
       
       {!collapsed && (
-        <span className="truncate">{item.name}</span>
+        <span className="truncate select-none">{item.name}</span>
       )}
       
+      {/* Collapsed tooltip */}
       {collapsed && (
         <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap">
           {item.name}
+          {isDisabled && " - Coming soon"}
         </div>
       )}
     </div>
@@ -58,7 +64,7 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   if (isDisabled) {
     return (
       <div className="group relative" title={`${item.name} - Coming soon`}>
-        {linkContent}
+        {navRowContent}
       </div>
     )
   }
@@ -66,10 +72,10 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   return (
     <Link 
       href={item.href}
-      className="group relative block"
+      className="group relative block modern-nav-link"
       aria-current={isActive ? "page" : undefined}
     >
-      {linkContent}
+      {navRowContent}
     </Link>
   )
 }
@@ -91,15 +97,15 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
       collapsed ? "w-16" : "w-64",
       className
     )}>
-      {/* Module Header */}
+      {/* Module Header - Single accent color only */}
       <div className="p-4 border-b border-[--nav-border]">
         {!collapsed && moduleConfig && (
           <div className="flex items-center gap-3">
             <div className="p-1.5 rounded-lg bg-[--nav-active-bg]">
-              <moduleConfig.icon className="w-5 h-5 text-[--nav-active]" />
+              <moduleConfig.icon className="w-5 h-5 text-[--accent]" />
             </div>
             <div>
-              <h2 className="font-semibold text-[--text-active] text-sm">
+              <h2 className="font-semibold text-[--text-bright] text-sm">
                 {moduleConfig.name}
               </h2>
               <p className="text-xs text-[--text-muted] mt-0.5">
@@ -112,7 +118,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         {collapsed && moduleConfig && (
           <div className="flex justify-center">
             <div className="p-1.5 rounded-lg bg-[--nav-active-bg]">
-              <moduleConfig.icon className="w-5 h-5 text-[--nav-active]" />
+              <moduleConfig.icon className="w-5 h-5 text-[--accent]" />
             </div>
           </div>
         )}
@@ -133,15 +139,15 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         })}
       </nav>
 
-      {/* Collapse Toggle */}
+      {/* Collapse Toggle - Ghost icon button */}
       <div className="p-3 border-t border-[--nav-border]">
         <Button
           variant="ghost"
           size="sm"
           onClick={() => setCollapsed(!collapsed)}
           className={cn(
-            "w-full h-8 text-[--text-muted] hover:text-[--text-default] hover:bg-[--nav-hover-bg]",
-            "border-none bg-transparent text-xs font-medium"
+            "w-full h-8 text-[--text-muted] hover:text-[--text-default] hover:bg-[--nav-hover]",
+            "border-none bg-transparent text-xs font-medium justify-center"
           )}
           title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
         >

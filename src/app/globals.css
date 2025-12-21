@@ -38,22 +38,48 @@
   --underline-thickness: 2px;
   --underline-opacity: 0.4;
   
-  /* Modern SaaS Navigation Design Tokens */
+  /* STRICT SaaS Navigation Tokens - Single Accent Only */
+  --accent: #4A90E2;                    /* SINGLE accent color - used everywhere */
   --nav-bg: #1F2D3A;                    /* Sidebar background */
   --nav-border: #2F404E;                /* Subtle borders */
-  --nav-hover-bg: rgba(255, 255, 255, 0.05);   /* Subtle hover */
-  --nav-active: #4A90E2;                /* Single accent color */
-  --nav-active-bg: rgba(74, 144, 226, 0.1);    /* Active background */
-  --text-muted: #9CA3AF;                /* Muted text */
-  --text-default: #E5E7EB;              /* Default text */
-  --text-active: #FFFFFF;               /* Active text */
+  --nav-hover: rgba(255, 255, 255, 0.04); /* Very subtle hover background */
+  --nav-active-bg: rgba(255, 255, 255, 0.08); /* Subtle active background */
+  --text-default: #E5E7EB;              /* Default nav text */
+  --text-muted: #9CA3AF;                /* Muted/inactive text */
+  --text-bright: #FFFFFF;               /* Active/bright text */
+  --icon-muted: #6B7280;                /* Muted icon color */
+  --icon-default: #9CA3AF;              /* Default icon color */
+  --icon-bright: #D1D5DB;               /* Active/bright icon color */
   
-  /* Navigation Sizing */
+  /* Navigation Sizing - Consistent */
   --nav-icon-size: 18px;
-  --nav-item-height: 40px;
-  --nav-border-radius: 10px;
-  --nav-gap: 8px;
+  --nav-item-height: 36px;
+  --nav-gap: 4px;
   --nav-padding: 12px;
+  --nav-radius: 8px;
+}
+
+/* Force remove all link styling in navigation components */
+.modern-nav-link,
+.modern-nav-link:link,
+.modern-nav-link:visited,
+.modern-nav-link:hover,
+.modern-nav-link:active {
+  color: inherit !important;
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Prevent any purple/visited link colors */
+nav a,
+nav a:link,
+nav a:visited,
+nav a:hover,
+nav a:active {
+  color: inherit !important;
+  text-decoration: none !important;
+}
   
   /* Ultra-soft dark blue background RGB(25,39,52) = #192734 */
   --background: #192734;
