@@ -94,12 +94,18 @@ export function ModernTopbar() {
           />
           
           {/* Product Name */}
-          <span className="font-semibold text-white group-hover:text-white/90 transition-colors duration-200">
+          <span 
+            className="font-bold transition-colors duration-200" 
+            style={{ color: '#ffffff' }}
+          >
             Avantle Privacy
           </span>
           
           {/* Version */}
-          <span className="text-xs text-gray-400 font-normal" style={{ marginLeft: '12px' }}>
+          <span 
+            className="text-xs font-normal" 
+            style={{ marginLeft: '12px', color: '#9ca3af' }}
+          >
             v{versionInfo.version}
           </span>
         </Link>
