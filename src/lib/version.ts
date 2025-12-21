@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.34" as const
-export const VERSION_NAME = "UX Polish - Better Icon Spacing + JS Hover + HOME Size Match" as const
+export const VERSION = "3.21.35" as const
+export const VERSION_NAME = "Proper Sidebar Pattern - Left Accent Only, No Background Fill" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({

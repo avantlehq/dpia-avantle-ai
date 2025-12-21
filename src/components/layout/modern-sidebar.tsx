@@ -31,9 +31,9 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
       !isActive && !isDisabled && [
         "text-gray-400 hover:bg-white/5 hover:text-white"
       ],
-      // Active state - simplified: left accent + text emphasis, minimal background
+      // Active state - professional: only left accent + text/icon emphasis, NO background
       isActive && [
-        "text-white bg-white/5 border-l-2 border-blue-500"
+        "text-white border-l-2 border-blue-400"
       ],
       // Disabled state - reduced opacity
       isDisabled && "text-gray-500 opacity-50 cursor-not-allowed"
@@ -41,7 +41,10 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
     >
       {/* Text-first: label is primary element */}
       {!collapsed && (
-        <span className="font-medium truncate select-none">{item.name}</span>
+        <span className={cn(
+          "truncate select-none",
+          isActive ? "font-semibold" : "font-medium"
+        )}>{item.name}</span>
       )}
       
       {/* Icon is secondary - smaller and muted */}
