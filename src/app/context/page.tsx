@@ -1,18 +1,7 @@
 import React from 'react'
 import { 
   Database,
-  Server, 
-  FileText, 
-  Folder, 
-  ArrowRight, 
-  Users, 
-  Globe,
-  Plus,
-  TrendingUp,
-  Activity,
-  Clock,
-  AlertCircle,
-  CheckCircle
+  Plus
 } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
