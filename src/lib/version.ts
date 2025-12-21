@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.4
-export const VERSION = "3.21.4" as const
-export const VERSION_NAME = "UI Fix - Consistent Sidebar + Brand Visibility" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.5
+export const VERSION = "3.21.5" as const
+export const VERSION_NAME = "Final Navigation UI Fixes - All Issues Resolved" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({
