@@ -140,11 +140,11 @@ export function ModernTopbar() {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 border-none bg-transparent"
+              className="h-9 w-9 p-0 border-none bg-transparent hover:bg-blue-500/10 transition-colors"
               style={{ color: '#9ca3af' }}
               title="Language"
             >
-              <Globe className="h-4 w-4" style={{ color: '#9ca3af' }} />
+              <Globe className="h-4 w-4 hover:text-blue-400 transition-colors" style={{ color: '#9ca3af' }} />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-36">
@@ -158,11 +158,11 @@ export function ModernTopbar() {
         <Button
           variant="ghost"
           size="sm"
-          className="h-9 w-9 p-0 border-none bg-transparent"
+          className="h-9 w-9 p-0 border-none bg-transparent hover:bg-blue-500/10 transition-colors"
           style={{ color: '#9ca3af' }}
           title="Help & Support"
         >
-          <HelpCircle className="h-4 w-4" style={{ color: '#9ca3af' }} />
+          <HelpCircle className="h-4 w-4 hover:text-blue-400 transition-colors" style={{ color: '#9ca3af' }} />
         </Button>
 
         {/* User Menu */}
@@ -171,11 +171,11 @@ export function ModernTopbar() {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 border-none bg-transparent"
+              className="h-9 w-9 p-0 border-none bg-transparent hover:bg-blue-500/10 transition-colors"
               style={{ color: '#9ca3af' }}
               title="User Menu"
             >
-              <User className="h-4 w-4" style={{ color: '#9ca3af' }} />
+              <User className="h-4 w-4 hover:text-blue-400 transition-colors" style={{ color: '#9ca3af' }} />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
