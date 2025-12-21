@@ -44,7 +44,7 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
       href={module.href}
       className={cn(
         "modern-nav-link relative px-1 py-3 text-sm font-medium transition-opacity duration-200",
-        "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
+        "focus:outline-none",
         // Clear contrast between active and inactive
         !isActive && "text-gray-400 hover:opacity-80",
         isActive && "text-white"
