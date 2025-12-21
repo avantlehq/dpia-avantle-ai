@@ -43,7 +43,7 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
     <Link 
       href={module.href}
       className={cn(
-        "modern-nav-link relative px-3 py-3 text-sm font-medium transition-opacity duration-200",
+        "modern-nav-link relative px-1 py-3 text-sm font-medium transition-opacity duration-200",
         "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900",
         // Clear contrast between active and inactive
         !isActive && "text-gray-400 hover:opacity-80",
@@ -80,19 +80,22 @@ export function ModernTopbar() {
 
   return (
     <header className="flex items-center justify-between h-16 px-6 bg-[--background] border-b border-[--nav-border]">
-      {/* Left: Brand only - clean, no noise */}
-      <div className="flex items-center">
+      {/* Left: Brand + Version */}
+      <div className="flex items-center gap-2">
         <Link 
           href={getHomeLink()} 
           className="text-lg font-semibold text-gray-300 hover:opacity-80 transition-opacity focus:outline-none"
         >
-          Avantle Privacy
+          Privacy Platform
         </Link>
+        <span className="text-sm text-gray-500 font-medium">
+          {versionInfo.version}
+        </span>
       </div>
 
       {/* Center: Properly spaced modules with visual separation */}
       <nav className="flex items-center justify-center flex-1" role="navigation" aria-label="Module navigation">
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-8">
           {privacyModulesConfig.map((module) => {
             const isActive = activeModuleId === module.id
             return (
