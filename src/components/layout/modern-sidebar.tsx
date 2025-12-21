@@ -97,6 +97,14 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     pathname === item.href || pathname.startsWith(item.href + '/')
   )?.id
 
+  // DEBUG: Log route matching
+  console.log('DEBUG Sidebar:', { 
+    pathname, 
+    activeModuleId, 
+    activeItemId, 
+    moduleItems: moduleConfig?.items.map(i => ({ id: i.id, href: i.href }))
+  })
+
   return (
     <aside className={cn(
       "flex flex-col bg-gray-900 border-r border-gray-700 transition-all duration-300",
