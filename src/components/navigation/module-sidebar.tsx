@@ -28,16 +28,55 @@ function ModuleNavItem({
   moduleColor,
   onClick 
 }: ModuleNavItemProps) {
-  const ItemComponent = item.disabled ? 'div' : Link
+  if (item.disabled) {
+    return (
+      <div
+        onClick={onClick}
+        className={cn(
+          "block w-full cursor-not-allowed"
+        )}
+      >
+        <Button
+          variant="ghost"
+          className={cn(
+            "w-full justify-start h-10 transition-all duration-200",
+            "text-sm font-medium",
+            "opacity-50 cursor-not-allowed",
+            collapsed && "px-2"
+          )}
+          disabled={true}
+        >
+          <item.icon 
+            className={cn(
+              "h-4 w-4 flex-shrink-0",
+              collapsed ? "mx-auto" : "mr-3",
+              "text-muted-foreground"
+            )}
+          />
+          
+          {!collapsed && (
+            <>
+              <span className="flex-1 text-left truncate text-muted-foreground">
+                {item.name}
+              </span>
+              
+              {item.badge && (
+                <span className="ml-auto bg-muted text-muted-foreground text-xs px-1.5 py-0.5 rounded">
+                  {item.badge}
+                </span>
+              )}
+            </>
+          )}
+        </Button>
+      </div>
+    )
+  }
 
   return (
-    <ItemComponent
-      href={item.disabled ? undefined : item.href}
+    <Link
+      href={item.href}
       onClick={onClick}
-      className={cn(
-        "block w-full",
-        item.disabled && "cursor-not-allowed"
-      )}
+      className="block w-full"
     >
       <Button
         variant="ghost"
@@ -46,14 +85,11 @@ function ModuleNavItem({
           "text-sm font-medium",
           // Active state
           active && "bg-muted/50 border-l-2 border-l-indigo-500",
-          // Disabled state
-          item.disabled && "opacity-50 cursor-not-allowed",
-          // Hover state (only when not disabled)
-          !item.disabled && !active && "hover:bg-muted/30 hover:text-foreground",
+          // Hover state
+          !active && "hover:bg-muted/30 hover:text-foreground",
           // Collapsed state
           collapsed && "px-2"
         )}
-        disabled={item.disabled}
       >
         <item.icon 
           className={cn(
@@ -83,7 +119,7 @@ function ModuleNavItem({
           </>
         )}
       </Button>
-    </ItemComponent>
+    </Link>
   )
 }
 
