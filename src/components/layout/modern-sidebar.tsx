@@ -29,7 +29,8 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
         backgroundColor: 'transparent', // Clean professional background
         borderLeft: isActive ? '2px solid #60a5fa' : 'none', // Blue accent when active
         color: isActive ? '#ffffff' : '#9ca3af', // White text if active, gray if inactive
-        paddingLeft: isActive ? '11px' : '12px' // Compensate for border width
+        paddingLeft: isActive ? '11px' : '12px', // Compensate for border width
+        paddingRight: '20px' // Add right padding to prevent text touching border
       }}
     >
       {/* Clean text-only navigation - NO ICONS anywhere */}
@@ -127,16 +128,16 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
             size="sm"
             onClick={() => setCollapsed(!collapsed)}
             className={cn(
-              "h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-white/10",
+              "h-8 w-8 p-0 text-white hover:text-white hover:bg-white/10",
               "border-none bg-transparent flex-shrink-0",
               collapsed && "w-full justify-center"
             )}
             title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed ? (
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-4 w-4 text-white" />
             ) : (
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-4 w-4 text-white" />
             )}
           </Button>
         </div>
