@@ -95,8 +95,8 @@ export function ModernTopbar() {
             <ShieldCheck className="h-5 w-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold text-lg text-[--text-bright]">Avantle Privacy</span>
-            <span className="text-xs text-[--text-muted] font-medium">v{versionInfo.version}</span>
+            <span className="font-bold text-lg text-white">Avantle Privacy</span>
+            <span className="text-xs text-gray-400 font-medium">v{versionInfo.version}</span>
           </div>
         </Link>
       </div>
@@ -123,10 +123,10 @@ export function ModernTopbar() {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 text-[--icon-muted] hover:text-[--icon-default] hover:bg-[--nav-hover] border-none bg-transparent rounded-md"
+              className="h-9 w-9 p-0 text-gray-400 hover:text-white hover:bg-white/10 border-none bg-transparent rounded-md"
               title="Language"
             >
-              <Globe className="h-[--nav-icon-size] w-[--nav-icon-size]" />
+              <Globe className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-36">
@@ -140,10 +140,10 @@ export function ModernTopbar() {
         <Button
           variant="ghost"
           size="sm"
-          className="h-9 w-9 p-0 text-[--icon-muted] hover:text-[--icon-default] hover:bg-[--nav-hover] border-none bg-transparent rounded-md"
+          className="h-9 w-9 p-0 text-gray-400 hover:text-white hover:bg-white/10 border-none bg-transparent rounded-md"
           title="Help & Support"
         >
-          <HelpCircle className="h-[--nav-icon-size] w-[--nav-icon-size]" />
+          <HelpCircle className="h-4 w-4" />
         </Button>
 
         {/* User Menu - Ghost Icon Button */}
@@ -152,10 +152,10 @@ export function ModernTopbar() {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 text-[--icon-muted] hover:text-[--icon-default] hover:bg-[--nav-hover] border-none bg-transparent rounded-md"
+              className="h-9 w-9 p-0 text-gray-400 hover:text-white hover:bg-white/10 border-none bg-transparent rounded-md"
               title="User Menu"
             >
-              <div className="w-5 h-5 rounded-full bg-[--accent] flex items-center justify-center">
+              <div className="w-5 h-5 rounded-full bg-blue-600 flex items-center justify-center">
                 <User className="h-3 w-3 text-white" />
               </div>
             </Button>

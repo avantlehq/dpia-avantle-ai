@@ -97,8 +97,8 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
       collapsed ? "w-16" : "w-64",
       className
     )}>
-      {/* Module Header - Consistent width, no description */}
-      <div className="p-4 border-b border-[--nav-border]">
+      {/* Collapse Toggle - At top of sidebar */}
+      <div className="p-3 border-b border-[--nav-border] flex justify-between items-center">
         {!collapsed && moduleConfig && (
           <div className="flex items-center gap-3">
             <div className="p-1.5 rounded-lg bg-[--nav-active-bg]">
@@ -111,12 +111,31 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         )}
         
         {collapsed && moduleConfig && (
-          <div className="flex justify-center">
+          <div className="flex justify-center w-full">
             <div className="p-1.5 rounded-lg bg-[--nav-active-bg]">
               <moduleConfig.icon className="w-5 h-5 text-[--accent]" />
             </div>
           </div>
         )}
+
+        {/* Collapse Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => setCollapsed(!collapsed)}
+          className={cn(
+            "h-8 w-8 p-0 text-[--text-muted] hover:text-[--text-default] hover:bg-[--nav-hover]",
+            "border-none bg-transparent flex-shrink-0",
+            collapsed && "w-full justify-center"
+          )}
+          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {collapsed ? (
+            <ChevronRight className="h-4 w-4" />
+          ) : (
+            <ChevronLeft className="h-4 w-4" />
+          )}
+        </Button>
       </div>
 
       {/* Navigation Items */}
@@ -134,28 +153,6 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         })}
       </nav>
 
-      {/* Collapse Toggle - Ghost icon button */}
-      <div className="p-3 border-t border-[--nav-border]">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setCollapsed(!collapsed)}
-          className={cn(
-            "w-full h-8 text-[--text-muted] hover:text-[--text-default] hover:bg-[--nav-hover]",
-            "border-none bg-transparent text-xs font-medium justify-center"
-          )}
-          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-        >
-          {collapsed ? (
-            <ChevronRight className="h-4 w-4" />
-          ) : (
-            <>
-              <ChevronLeft className="h-4 w-4 mr-2" />
-              Collapse
-            </>
-          )}
-        </Button>
-      </div>
     </aside>
   )
 }
