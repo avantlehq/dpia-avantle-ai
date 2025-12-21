@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.19
-export const VERSION = "3.21.19" as const
-export const VERSION_NAME = "Brand Strengthening - Visible Avantle Privacy Identity" as const
+export const VERSION = "3.21.20" as const
+export const VERSION_NAME = "Brand Fix - Visible Blue Icon and Proper Spacing" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({

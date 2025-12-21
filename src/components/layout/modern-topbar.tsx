@@ -88,7 +88,10 @@ export function ModernTopbar() {
           className="flex items-center gap-3 pl-2 pr-8 py-2 hover:brightness-110 transition-all duration-200 cursor-pointer group"
         >
           {/* Product Mark */}
-          <ShieldCheck className="h-4 w-4 text-blue-400 group-hover:text-blue-300 transition-colors duration-200" />
+          <ShieldCheck 
+            className="h-4 w-4 transition-colors duration-200" 
+            style={{ color: '#60a5fa' }} 
+          />
           
           {/* Product Name */}
           <span className="font-semibold text-white group-hover:text-white/90 transition-colors duration-200">
@@ -96,7 +99,7 @@ export function ModernTopbar() {
           </span>
           
           {/* Version */}
-          <span className="text-xs text-gray-400 font-normal ml-2">
+          <span className="text-xs text-gray-400 font-normal" style={{ marginLeft: '12px' }}>
             v{versionInfo.version}
           </span>
         </Link>
