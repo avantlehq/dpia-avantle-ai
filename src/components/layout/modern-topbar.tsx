@@ -54,9 +54,15 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
       {/* Text-only modules for enterprise clarity */}
       {module.name}
       
-      {/* 2px underline with same accent color as app */}
+      {/* 2px underline for active state */}
       {isActive && (
-        <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500" />
+        <div 
+          className="absolute bottom-0 left-0 right-0" 
+          style={{ 
+            height: '2px', 
+            backgroundColor: '#3b82f6' 
+          }}
+        />
       )}
     </Link>
   )
