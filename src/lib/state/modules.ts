@@ -59,6 +59,13 @@ export const privacyModulesConfig: ModuleConfig[] = [
     description: 'Foundation data and processing context',
     items: [
       { 
+        id: 'overview',
+        name: 'Overview', 
+        href: '/context', 
+        icon: LayoutDashboard,
+        description: 'Context dashboard and foundation data overview'
+      },
+      { 
         id: 'systems',
         name: 'Systems', 
         href: '/context/systems', 
