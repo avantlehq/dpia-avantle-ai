@@ -90,13 +90,28 @@ export function ModuleTopbar({
   const activeModuleId = getActiveModule(pathname)
   
   // Get modules based on user licenses
-  const visibleModules = getVisibleModules(userLicenses)
+  const allModules = getVisibleModules(userLicenses)
+  
+  // For development, always show Context and Privacy modules
+  const visibleModules = allModules.length > 0 ? allModules : 
+    privacyModulesConfig.filter(m => m.id === 'context' || m.id === 'privacy')
+  
+  // Debug logging
+  console.log('ModuleTopbar Debug:', {
+    pathname,
+    activeModuleId,
+    userLicenses,
+    allModulesCount: allModules.length,
+    visibleModulesCount: visibleModules.length,
+    visibleModules: visibleModules.map(m => ({ id: m.id, name: m.name, itemCount: m.items.length }))
+  })
   
   return (
     <nav className={cn("flex items-center space-x-1", className)}>
       {visibleModules.map((module) => {
         const isActive = activeModuleId === module.id
-        const isDisabled = module.items.every(item => item.disabled)
+        // Show module even if some items are disabled - let user see what's available
+        const isDisabled = module.items.length === 0 || module.items.every(item => item.disabled)
 
         return (
           <ModuleTab

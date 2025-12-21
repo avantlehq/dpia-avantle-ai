@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.20.5
-export const VERSION = "3.20.5" as const
-export const VERSION_NAME = "TypeScript Fix - Module Topbar" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.20.6
+export const VERSION = "3.20.6" as const
+export const VERSION_NAME = "Module Visibility Debug Fix" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({
