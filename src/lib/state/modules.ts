@@ -290,15 +290,15 @@ export function getActiveModule(pathname: string): string | undefined {
   }
 
   // Determine active module from pathname
-  for (const module of privacyModulesConfig) {
-    if (pathname === module.href || pathname.startsWith(module.href + '/')) {
-      return module.id
+  for (const moduleConfig of privacyModulesConfig) {
+    if (pathname === moduleConfig.href || pathname.startsWith(moduleConfig.href + '/')) {
+      return moduleConfig.id
     }
     
     // Check module items
-    for (const item of module.items) {
+    for (const item of moduleConfig.items) {
       if (pathname === item.href || pathname.startsWith(item.href + '/')) {
-        return module.id
+        return moduleConfig.id
       }
     }
   }
@@ -306,8 +306,8 @@ export function getActiveModule(pathname: string): string | undefined {
 }
 
 export function getActiveNavItem(pathname: string): NavItem | undefined {
-  for (const module of privacyModulesConfig) {
-    for (const item of module.items) {
+  for (const moduleConfig of privacyModulesConfig) {
+    for (const item of moduleConfig.items) {
       if (pathname === item.href || pathname.startsWith(item.href + '/')) {
         return item
       }
@@ -318,9 +318,9 @@ export function getActiveNavItem(pathname: string): NavItem | undefined {
 
 // License checking helper
 export function getVisibleModules(userLicenses: string[] = []): ModuleConfig[] {
-  return privacyModulesConfig.filter(module => {
-    if (!module.licenseRequired) return true
-    return userLicenses.includes(module.licenseRequired)
+  return privacyModulesConfig.filter(moduleConfig => {
+    if (!moduleConfig.licenseRequired) return true
+    return userLicenses.includes(moduleConfig.licenseRequired)
   })
 }
 

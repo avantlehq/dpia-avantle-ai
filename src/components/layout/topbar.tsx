@@ -21,8 +21,6 @@ import {
   User, 
   Settings, 
   HelpCircle, 
-  Sun, 
-  Moon,
   LogOut,
   ShieldCheck,
   Search,
@@ -31,12 +29,9 @@ import {
   AlertTriangle,
   FileText
 } from 'lucide-react'
-import { useTheme } from 'next-themes'
 import { ModuleTopbar } from '@/components/navigation/module-topbar'
 
 export function Topbar() {
-  const { toggleRightPanel } = useLayoutActions()
-  const { theme, setTheme } = useTheme()
   const versionInfo = getVersionInfo()
   const router = useRouter()
 
