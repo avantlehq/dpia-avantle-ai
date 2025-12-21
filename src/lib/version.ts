@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.29" as const
-export const VERSION_NAME = "DEBUG Module Links - Yellow Background Red Border Always Visible" as const
+export const VERSION = "3.21.30" as const
+export const VERSION_NAME = "Border-Top Test - Red Top Border + Blue Background for Active" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({
