@@ -132,19 +132,33 @@ export function ModernTopbar() {
         </div>
       </nav>
 
-      {/* Right: Clean utilities - max 3 items */}
-      <div className="flex items-center gap-2">
+      {/* Right: Clean utilities with proper spacing */}
+      <div className="flex items-center" style={{ gap: '16px' }}>
         {/* Language */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 border-none bg-transparent hover:bg-blue-500/10 transition-colors"
-              style={{ color: '#9ca3af' }}
+              className="h-9 w-9 p-0 border-none"
+              style={{ 
+                backgroundColor: 'transparent',
+                color: '#9ca3af',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)'
+                const icon = e.currentTarget.querySelector('svg')
+                if (icon) icon.style.color = '#60a5fa'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent'
+                const icon = e.currentTarget.querySelector('svg')
+                if (icon) icon.style.color = '#9ca3af'
+              }}
               title="Language"
             >
-              <Globe className="h-4 w-4 hover:text-blue-400 transition-colors" style={{ color: '#9ca3af' }} />
+              <Globe className="h-4 w-4" style={{ color: '#9ca3af', transition: 'color 0.2s ease' }} />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-36">
@@ -158,11 +172,25 @@ export function ModernTopbar() {
         <Button
           variant="ghost"
           size="sm"
-          className="h-9 w-9 p-0 border-none bg-transparent hover:bg-blue-500/10 transition-colors"
-          style={{ color: '#9ca3af' }}
+          className="h-9 w-9 p-0 border-none"
+          style={{ 
+            backgroundColor: 'transparent',
+            color: '#9ca3af',
+            transition: 'all 0.2s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)'
+            const icon = e.currentTarget.querySelector('svg')
+            if (icon) icon.style.color = '#60a5fa'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = 'transparent'
+            const icon = e.currentTarget.querySelector('svg')
+            if (icon) icon.style.color = '#9ca3af'
+          }}
           title="Help & Support"
         >
-          <HelpCircle className="h-4 w-4 hover:text-blue-400 transition-colors" style={{ color: '#9ca3af' }} />
+          <HelpCircle className="h-4 w-4" style={{ color: '#9ca3af', transition: 'color 0.2s ease' }} />
         </Button>
 
         {/* User Menu */}
@@ -171,11 +199,25 @@ export function ModernTopbar() {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 border-none bg-transparent hover:bg-blue-500/10 transition-colors"
-              style={{ color: '#9ca3af' }}
+              className="h-9 w-9 p-0 border-none"
+              style={{ 
+                backgroundColor: 'transparent',
+                color: '#9ca3af',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)'
+                const icon = e.currentTarget.querySelector('svg')
+                if (icon) icon.style.color = '#60a5fa'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent'
+                const icon = e.currentTarget.querySelector('svg')
+                if (icon) icon.style.color = '#9ca3af'
+              }}
               title="User Menu"
             >
-              <User className="h-4 w-4 hover:text-blue-400 transition-colors" style={{ color: '#9ca3af' }} />
+              <User className="h-4 w-4" style={{ color: '#9ca3af', transition: 'color 0.2s ease' }} />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">

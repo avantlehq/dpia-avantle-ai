@@ -105,8 +105,8 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         <div className="flex items-center justify-between">
           {!collapsed && (
             <div className="flex items-center gap-3">
-              {/* Fixed HOME header - constant across all modules */}
-              <h2 className="font-semibold text-white text-base tracking-wide">
+              {/* Fixed HOME header - same size as topbar modules */}
+              <h2 className="font-medium text-white text-sm">
                 HOME
               </h2>
             </div>
