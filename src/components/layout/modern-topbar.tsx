@@ -82,13 +82,24 @@ export function ModernTopbar() {
   const pathname = usePathname()
   const activeModuleId = getActiveModule(pathname)
   const versionInfo = getVersionInfo()
+  
+  // Context-aware home link based on active module
+  const getHomeLink = () => {
+    if (activeModuleId === 'privacy') return '/privacy' // Privacy Overview
+    if (activeModuleId === 'context') return '/context' // Context Overview  
+    if (activeModuleId === 'risk') return '/risk' // Risk Overview
+    if (activeModuleId === 'controls') return '/controls' // Controls Overview
+    if (activeModuleId === 'training') return '/training' // Training Overview
+    if (activeModuleId === 'trust-center') return '/trust-center' // Trust Center Overview
+    return '/dashboard' // Default fallback
+  }
 
   return (
     <header className="flex items-center justify-between h-16 px-6 bg-[--background] border-b border-[--nav-border]">
       {/* Left: Brand + Version - Fixed visibility */}
       <div className="flex items-center gap-4">
         <Link 
-          href="/dashboard" 
+          href={getHomeLink()} 
           className="flex items-center gap-3 hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-[--accent] focus:ring-offset-2 focus:ring-offset-gray-900"
         >
           <div className="p-2 rounded-xl bg-[--accent] shadow-lg">
