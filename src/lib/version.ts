@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.11
-export const VERSION = "3.21.11" as const
-export const VERSION_NAME = "Topbar Modules Spacing Fix - Proper Visual Separation" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.12
+export const VERSION = "3.21.12" as const
+export const VERSION_NAME = "Topbar Visual Spacing + Version Back" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({
