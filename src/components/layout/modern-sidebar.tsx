@@ -25,31 +25,34 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
 
   const navRowContent = (
     <div className={cn(
-      "group relative flex items-center w-full h-[--nav-item-height] px-3 text-sm font-medium rounded-[--nav-radius] transition-all duration-150",
-      "focus-within:outline-none focus-within:ring-2 focus-within:ring-[--accent] focus-within:ring-offset-1 focus-within:ring-offset-gray-900",
-      // Inactive state - muted neutral
+      "group relative flex items-center w-full px-3 py-2.5 text-sm rounded-lg transition-all duration-200",
+      "focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-900",
+      // Inactive state - muted text with subtle hover
       !isActive && !isDisabled && [
-        "text-[--text-muted] hover:bg-[--nav-hover] hover:text-[--text-default]"
+        "text-gray-400 hover:bg-white/5 hover:text-white"
       ],
-      // Active state - subtle background + left accent bar
+      // Active state - simplified: left accent + text emphasis, minimal background
       isActive && [
-        "bg-[--nav-active-bg] text-[--text-bright] border-l-2 border-[--accent]"
+        "text-white bg-white/5 border-l-2 border-blue-500"
       ],
       // Disabled state - reduced opacity
-      isDisabled && "text-[--text-muted] opacity-60 cursor-not-allowed"
+      isDisabled && "text-gray-500 opacity-50 cursor-not-allowed"
     )}
     >
-      <Icon className={cn(
-        "w-[--nav-icon-size] h-[--nav-icon-size] flex-shrink-0 transition-colors",
-        !isActive && !isDisabled && "text-[--icon-muted] group-hover:text-[--icon-default]",
-        isActive && "text-[--icon-bright]",
-        isDisabled && "text-[--icon-muted]",
-        !collapsed && "mr-3"
-      )} />
-      
+      {/* Text-first: label is primary element */}
       {!collapsed && (
-        <span className="truncate select-none">{item.name}</span>
+        <span className="font-medium truncate select-none">{item.name}</span>
       )}
+      
+      {/* Icon is secondary - smaller and muted */}
+      <Icon className={cn(
+        "w-4 h-4 flex-shrink-0 transition-colors",
+        !collapsed && "ml-auto", // Push icon to right when text is shown
+        collapsed && "mx-auto", // Center icon when collapsed
+        !isActive && !isDisabled && "text-gray-500 group-hover:text-gray-300",
+        isActive && "text-blue-400",
+        isDisabled && "text-gray-600"
+      )} />
       
       {/* Collapsed tooltip */}
       {collapsed && (
@@ -93,53 +96,53 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
 
   return (
     <aside className={cn(
-      "flex flex-col bg-[--nav-bg] border-r border-[--nav-border] transition-all duration-300",
+      "flex flex-col bg-gray-900 border-r border-gray-700 transition-all duration-300",
       collapsed ? "w-16" : "w-64",
       className
     )}>
-      {/* Collapse Toggle - At top of sidebar */}
-      <div className="p-3 border-b border-[--nav-border] flex justify-between items-center">
-        {!collapsed && moduleConfig && (
-          <div className="flex items-center gap-3">
-            <div className="p-1.5 rounded-lg bg-[--nav-active-bg]">
-              <moduleConfig.icon className="w-5 h-5 text-[--accent]" />
+      {/* Module Header - Clear visual separation */}
+      <div className="px-4 py-4 border-b border-gray-700/50 bg-gray-800/30">
+        <div className="flex items-center justify-between">
+          {!collapsed && moduleConfig && (
+            <div className="flex items-center gap-3">
+              {/* Section header styling - distinct from nav items */}
+              <h2 className="font-semibold text-white text-base tracking-wide">
+                {moduleConfig.name}
+              </h2>
+              {/* Module icon is secondary to section title */}
+              <moduleConfig.icon className="w-4 h-4 text-blue-400 flex-shrink-0" />
             </div>
-            <h2 className="font-semibold text-[--text-bright] text-sm">
-              {moduleConfig.name}
-            </h2>
-          </div>
-        )}
-        
-        {collapsed && moduleConfig && (
-          <div className="flex justify-center w-full">
-            <div className="p-1.5 rounded-lg bg-[--nav-active-bg]">
-              <moduleConfig.icon className="w-5 h-5 text-[--accent]" />
+          )}
+          
+          {collapsed && moduleConfig && (
+            <div className="flex justify-center w-full">
+              <moduleConfig.icon className="w-5 h-5 text-blue-400" />
             </div>
-          </div>
-        )}
+          )}
 
-        {/* Collapse Button */}
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setCollapsed(!collapsed)}
-          className={cn(
-            "h-8 w-8 p-0 text-[--text-muted] hover:text-[--text-default] hover:bg-[--nav-hover]",
-            "border-none bg-transparent flex-shrink-0",
-            collapsed && "w-full justify-center"
-          )}
-          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-        >
-          {collapsed ? (
-            <ChevronRight className="h-4 w-4" />
-          ) : (
-            <ChevronLeft className="h-4 w-4" />
-          )}
-        </Button>
+          {/* Collapse Button */}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setCollapsed(!collapsed)}
+            className={cn(
+              "h-8 w-8 p-0 text-gray-400 hover:text-white hover:bg-white/10",
+              "border-none bg-transparent flex-shrink-0",
+              collapsed && "w-full justify-center"
+            )}
+            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+          >
+            {collapsed ? (
+              <ChevronRight className="h-4 w-4" />
+            ) : (
+              <ChevronLeft className="h-4 w-4" />
+            )}
+          </Button>
+        </div>
       </div>
 
-      {/* Navigation Items */}
-      <nav className="flex-1 p-3 space-y-1" role="navigation" aria-label="Module navigation">
+      {/* Navigation Items - Increased vertical spacing */}
+      <nav className="flex-1 px-4 py-6 space-y-2" role="navigation" aria-label="Module navigation">
         {moduleConfig?.items.map((item) => {
           const isActive = activeItemId === item.id
           return (
