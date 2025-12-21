@@ -36,18 +36,29 @@ export function Topbar() {
 
   return (
     <header className="flex items-center justify-between px-4 lg:px-6 h-18 border-b border-border bg-background/95 backdrop-blur-sm">
-      {/* Left Section - Logo */}
-      <div className="flex items-center gap-6">
-        {/* Clickable Home Link */}
-        <Link href="/dashboard" className="flex items-center gap-3 hover:opacity-80 transition-opacity duration-200 cursor-pointer">
-          <div className="p-2 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg hover:shadow-xl transition-shadow duration-200">
-            <ShieldCheck className="h-6 w-6 text-white" />
-          </div>
-          <span className="font-bold text-lg text-foreground hover:text-blue-600 transition-colors duration-200">Avantle Privacy</span>
+      {/* Left Section - Brand Block */}
+      <div className="flex items-center">
+        {/* Clickable Brand Lockup */}
+        <Link 
+          href="/dashboard" 
+          className="flex items-center gap-3 pl-2 pr-8 py-2 hover:brightness-110 transition-all duration-200 cursor-pointer group"
+        >
+          {/* Product Mark */}
+          <ShieldCheck className="h-4 w-4 text-blue-600 dark:text-blue-400 group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-200" />
+          
+          {/* Product Name */}
+          <span className="font-semibold text-foreground group-hover:text-foreground/90 transition-colors duration-200">
+            Avantle Privacy
+          </span>
+          
+          {/* Version */}
+          <span className="text-xs text-muted-foreground/80 font-normal ml-2">
+            v{versionInfo.version}
+          </span>
         </Link>
         
-        {/* Version Info */}
-        <span className="text-xs text-muted-foreground font-medium">v{versionInfo.version}</span>
+        {/* Subtle Separator */}
+        <div className="h-5 w-px bg-border/40 ml-2"></div>
       </div>
 
       {/* Center Section - Module Navigation */}

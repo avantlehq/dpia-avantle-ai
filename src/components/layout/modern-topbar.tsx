@@ -80,17 +80,29 @@ export function ModernTopbar() {
 
   return (
     <header className="flex items-center justify-between h-16 px-6 bg-[--background] border-b border-[--nav-border]">
-      {/* Left: Brand + Version */}
-      <div className="flex items-center gap-2">
+      {/* Left: Brand Block */}
+      <div className="flex items-center">
+        {/* Clickable Brand Lockup */}
         <Link 
           href={getHomeLink()} 
-          className="text-lg font-semibold text-gray-300 hover:opacity-80 transition-opacity focus:outline-none"
+          className="flex items-center gap-3 pl-2 pr-8 py-2 hover:brightness-110 transition-all duration-200 cursor-pointer group"
         >
-          Privacy Platform
+          {/* Product Mark */}
+          <ShieldCheck className="h-4 w-4 text-blue-400 group-hover:text-blue-300 transition-colors duration-200" />
+          
+          {/* Product Name */}
+          <span className="font-semibold text-white group-hover:text-white/90 transition-colors duration-200">
+            Avantle Privacy
+          </span>
+          
+          {/* Version */}
+          <span className="text-xs text-gray-400 font-normal ml-2">
+            v{versionInfo.version}
+          </span>
         </Link>
-        <span className="text-sm text-gray-500 font-medium">
-          {versionInfo.version}
-        </span>
+        
+        {/* Subtle Separator */}
+        <div className="h-5 w-px bg-gray-700 ml-2"></div>
       </div>
 
       {/* Center: Properly spaced modules with visual separation */}
