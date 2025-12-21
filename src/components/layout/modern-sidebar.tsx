@@ -22,6 +22,9 @@ interface SidebarLinkProps {
 function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   const Icon = item.icon
   const isDisabled = item.disabled
+  
+  // DEBUG: Log each item's active state
+  console.log(`DEBUG Item "${item.name}":`, { isActive, itemId: item.id })
 
   const navRowContent = (
     <div className={cn(
