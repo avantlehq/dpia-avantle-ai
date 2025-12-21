@@ -1,185 +1,276 @@
 import React from 'react'
-import { AlertTriangle, FileText, BarChart3, TrendingUp } from 'lucide-react'
+import { AlertTriangle, Plus, Shield } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
-// Risk Module Test Page
-export default function RiskPage() {
+export default function RiskOverviewPage() {
   return (
     <div className="space-y-6">
-      {/* Page Header */}
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3">
+      {/* Header with CTAs - matching dashboard style */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold text-foreground">Risk Overview</h1>
+          <p className="text-muted-foreground">
+            Privacy risk identification, assessment, and management
+          </p>
+        </div>
+        <div className="flex items-center" style={{ gap: '32px' }}>
+          {/* Secondary CTA - Risk Register */}
+          <Link href="/risk/register">
+            <button
+              className="secondary-cta-button"
+              style={{
+                backgroundColor: '#357ABD',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '12px 20px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease',
+                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
+              }}
+              title="View risk register and documentation"
+            >
+              Risk Register
+            </button>
+          </Link>
+          
+          {/* Primary CTA - Assess Risk */}
+          <Link href="/risk/privacy-risks">
+            <button
+              className="primary-cta-button"
+              style={{
+                backgroundColor: '#357ABD',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '12px 24px',
+                fontSize: '14px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease',
+                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
+              }}
+            >
+              Assess Risk
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Risk Overview - matching dashboard pills */}
+      <div className="space-y-5">
+        <h2 className="text-lg font-medium text-foreground">Risk Overview</h2>
+        
+        {/* Status Pills Group - matching dashboard style */}
+        <div className="flex flex-wrap" style={{ gap: '12px' }}>
+          {/* High Risk Pill */}
           <div 
-            className="p-2 rounded-lg" 
-            style={{ backgroundColor: 'rgba(255, 107, 107, 0.15)' }}
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #ef4444',
+              gap: '8px'
+            }}
           >
-            <AlertTriangle 
-              className="h-6 w-6" 
-              style={{ color: 'var(--color-red)' }} 
-            />
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              High Risk
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600'
+              }}
+            >
+              3
+            </span>
           </div>
-          Risk Management Overview
-        </h1>
-        <p className="text-muted-foreground text-lg">
-          Privacy risk identification, assessment, and management
-        </p>
-      </div>
 
-      {/* Risk Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="p-4 rounded-lg border border-red-200 bg-red-50 dark:bg-red-900/20 dark:border-red-800">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-red-600 dark:text-red-400">High Risk</p>
-              <p className="text-2xl font-bold text-red-700 dark:text-red-300">3</p>
-            </div>
-            <div className="p-2 rounded-lg bg-red-100 dark:bg-red-800/50">
-              <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
-            </div>
+          {/* Medium Risk Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #f59e0b',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Medium Risk
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600'
+              }}
+            >
+              8
+            </span>
           </div>
-        </div>
 
-        <div className="p-4 rounded-lg border border-yellow-200 bg-yellow-50 dark:bg-yellow-900/20 dark:border-yellow-800">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-yellow-600 dark:text-yellow-400">Medium Risk</p>
-              <p className="text-2xl font-bold text-yellow-700 dark:text-yellow-300">8</p>
-            </div>
-            <div className="p-2 rounded-lg bg-yellow-100 dark:bg-yellow-800/50">
-              <BarChart3 className="h-5 w-5 text-yellow-600 dark:text-yellow-400" />
-            </div>
+          {/* Low Risk Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #22c55e',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Low Risk
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600'
+              }}
+            >
+              15
+            </span>
           </div>
-        </div>
 
-        <div className="p-4 rounded-lg border border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-green-600 dark:text-green-400">Low Risk</p>
-              <p className="text-2xl font-bold text-green-700 dark:text-green-300">15</p>
-            </div>
-            <div className="p-2 rounded-lg bg-green-100 dark:bg-green-800/50">
-              <TrendingUp className="h-5 w-5 text-green-600 dark:text-green-400" />
-            </div>
-          </div>
-        </div>
-
-        <div className="p-4 rounded-lg border border-gray-200 bg-gray-50 dark:bg-gray-900/20 dark:border-gray-800">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Mitigated</p>
-              <p className="text-2xl font-bold text-gray-700 dark:text-gray-300">22</p>
-            </div>
-            <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800/50">
-              <FileText className="h-5 w-5 text-gray-600 dark:text-gray-400" />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Risk Categories */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Data Breach Risks */}
-        <div className="p-6 rounded-lg border border-border bg-card backdrop-blur-sm shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-red-100 dark:bg-red-900/30">
-              <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
-            </div>
-            <h3 className="text-lg font-semibold">Data Breach Risks</h3>
-          </div>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Unauthorized access</span>
-              <span className="px-2 py-1 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 text-xs rounded-full">High</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Data exfiltration</span>
-              <span className="px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300 text-xs rounded-full">Medium</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Insider threats</span>
-              <span className="px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300 text-xs rounded-full">Medium</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Compliance Risks */}
-        <div className="p-6 rounded-lg border border-border bg-card backdrop-blur-sm shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900/30">
-              <FileText className="h-5 w-5 text-orange-600 dark:text-orange-400" />
-            </div>
-            <h3 className="text-lg font-semibold">Compliance Risks</h3>
-          </div>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">GDPR violations</span>
-              <span className="px-2 py-1 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 text-xs rounded-full">High</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Inadequate documentation</span>
-              <span className="px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300 text-xs rounded-full">Medium</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Missing consent</span>
-              <span className="px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300 text-xs rounded-full">Medium</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Technical Risks */}
-        <div className="p-6 rounded-lg border border-border bg-card backdrop-blur-sm shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30">
-              <BarChart3 className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-            </div>
-            <h3 className="text-lg font-semibold">Technical Risks</h3>
-          </div>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">System vulnerabilities</span>
-              <span className="px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300 text-xs rounded-full">Medium</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Data corruption</span>
-              <span className="px-2 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 text-xs rounded-full">Low</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Service disruption</span>
-              <span className="px-2 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 text-xs rounded-full">Low</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Operational Risks */}
-        <div className="p-6 rounded-lg border border-border bg-card backdrop-blur-sm shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/30">
-              <TrendingUp className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-            </div>
-            <h3 className="text-lg font-semibold">Operational Risks</h3>
-          </div>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Process failures</span>
-              <span className="px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300 text-xs rounded-full">Medium</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Human error</span>
-              <span className="px-2 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300 text-xs rounded-full">Medium</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">Training gaps</span>
-              <span className="px-2 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 text-xs rounded-full">Low</span>
-            </div>
+          {/* Mitigated Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #9ca3af',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Mitigated
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600'
+              }}
+            >
+              22
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Coming Soon Notice */}
-      <div className="text-center py-8">
-        <p className="text-muted-foreground text-sm">
-          Risk management module is coming soon. This is a test page to ensure navigation works properly.
-        </p>
-      </div>
+      {/* Increased Spacing Before Risk Management */}
+      <div className="mt-12"></div>
+
+      {/* Risk Management Table - matching dashboard style */}
+      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
+        <CardHeader>
+          <CardTitle className="flex items-center justify-between">
+            Risk Management
+            <Link href="/risk/privacy-risks">
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2"
+              >
+                <Plus className="h-4 w-4" />
+                Add Risk
+              </Button>
+            </Link>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="text-center py-12">
+            <AlertTriangle className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
+            <h3 className="text-lg font-medium text-foreground mb-2">Risk assessment ready</h3>
+            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+              Identify, assess, and manage privacy risks across your data processing activities.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
+              {/* Secondary CTA - Risk Register */}
+              <Link href="/risk/register">
+                <button
+                  className="secondary-cta-button"
+                  style={{
+                    backgroundColor: '#357ABD',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '12px 20px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease',
+                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
+                  }}
+                  title="View risk register and documentation"
+                >
+                  Risk Register
+                </button>
+              </Link>
+              
+              {/* Primary CTA - Assess Risk */}
+              <Link href="/risk/privacy-risks">
+                <button
+                  className="primary-cta-button"
+                  style={{
+                    backgroundColor: '#357ABD',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '12px 24px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease',
+                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
+                  }}
+                >
+                  Assess Risk
+                </button>
+              </Link>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

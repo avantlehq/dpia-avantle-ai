@@ -1,110 +1,276 @@
 import React from 'react'
-import { Lock, Shield, Key, Database } from 'lucide-react'
+import { Lock, Plus, Shield } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
-// Controls Module Test Page
-export default function ControlsPage() {
+export default function ControlsOverviewPage() {
   return (
     <div className="space-y-6">
-      {/* Page Header */}
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight flex items-center gap-3">
+      {/* Header with CTAs - matching dashboard style */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-semibold text-foreground">Controls Overview</h1>
+          <p className="text-muted-foreground">
+            Technical and organizational measures for data protection
+          </p>
+        </div>
+        <div className="flex items-center" style={{ gap: '32px' }}>
+          {/* Secondary CTA - View TOMs */}
+          <Link href="/controls/toms">
+            <button
+              className="secondary-cta-button"
+              style={{
+                backgroundColor: '#357ABD',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '12px 20px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease',
+                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
+              }}
+              title="View technical and organizational measures"
+            >
+              View TOMs
+            </button>
+          </Link>
+          
+          {/* Primary CTA - Add Control */}
+          <Link href="/controls/toms">
+            <button
+              className="primary-cta-button"
+              style={{
+                backgroundColor: '#357ABD',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '12px 24px',
+                fontSize: '14px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease',
+                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
+              }}
+            >
+              Add Control
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Controls Overview - matching dashboard pills */}
+      <div className="space-y-5">
+        <h2 className="text-lg font-medium text-foreground">Controls Overview</h2>
+        
+        {/* Status Pills Group - matching dashboard style */}
+        <div className="flex flex-wrap" style={{ gap: '12px' }}>
+          {/* Implemented Pill */}
           <div 
-            className="p-2 rounded-lg" 
-            style={{ backgroundColor: 'rgba(245, 166, 35, 0.15)' }}
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #22c55e',
+              gap: '8px'
+            }}
           >
-            <Lock 
-              className="h-6 w-6" 
-              style={{ color: 'var(--color-orange)' }} 
-            />
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Implemented
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600'
+              }}
+            >
+              24
+            </span>
           </div>
-          Controls Overview
-        </h1>
-        <p className="text-muted-foreground text-lg">
-          Technical and organizational measures for data protection
-        </p>
+
+          {/* In Progress Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #f59e0b',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              In Progress
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600'
+              }}
+            >
+              8
+            </span>
+          </div>
+
+          {/* Planned Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #9ca3af',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Planned
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600'
+              }}
+            >
+              12
+            </span>
+          </div>
+
+          {/* Technical Measures Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #3b82f6',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Technical
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600'
+              }}
+            >
+              18
+            </span>
+          </div>
+        </div>
       </div>
 
-      {/* Controls Categories */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Technical Measures */}
-        <div className="p-6 rounded-lg border border-border bg-card backdrop-blur-sm shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-blue-100 dark:bg-blue-900/30">
-              <Shield className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-            </div>
-            <h3 className="text-lg font-semibold">Technical Measures</h3>
-          </div>
-          <div className="space-y-2 text-sm text-muted-foreground">
-            <div>• Encryption at rest and in transit</div>
-            <div>• Access controls and authentication</div>
-            <div>• Network security measures</div>
-            <div>• Data backup and recovery</div>
-          </div>
-        </div>
+      {/* Increased Spacing Before Controls */}
+      <div className="mt-12"></div>
 
-        {/* Organizational Measures */}
-        <div className="p-6 rounded-lg border border-border bg-card backdrop-blur-sm shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-green-100 dark:bg-green-900/30">
-              <Key className="h-5 w-5 text-green-600 dark:text-green-400" />
+      {/* Controls Management Table - matching dashboard style */}
+      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
+        <CardHeader>
+          <CardTitle className="flex items-center justify-between">
+            Technical & Organizational Measures
+            <Link href="/controls/toms">
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2"
+              >
+                <Plus className="h-4 w-4" />
+                Add TOM
+              </Button>
+            </Link>
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="text-center py-12">
+            <Shield className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
+            <h3 className="text-lg font-medium text-foreground mb-2">Security controls ready</h3>
+            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+              Implement and manage technical and organizational measures to protect personal data.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
+              {/* Secondary CTA - View TOMs */}
+              <Link href="/controls/toms">
+                <button
+                  className="secondary-cta-button"
+                  style={{
+                    backgroundColor: '#357ABD',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '12px 20px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease',
+                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
+                  }}
+                  title="View technical and organizational measures"
+                >
+                  View TOMs
+                </button>
+              </Link>
+              
+              {/* Primary CTA - Add Control */}
+              <Link href="/controls/toms">
+                <button
+                  className="primary-cta-button"
+                  style={{
+                    backgroundColor: '#357ABD',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '12px 24px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease',
+                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
+                  }}
+                >
+                  Add Control
+                </button>
+              </Link>
             </div>
-            <h3 className="text-lg font-semibold">Organizational Measures</h3>
           </div>
-          <div className="space-y-2 text-sm text-muted-foreground">
-            <div>• Staff training and awareness</div>
-            <div>• Privacy policies and procedures</div>
-            <div>• Incident response plans</div>
-            <div>• Data retention policies</div>
-          </div>
-        </div>
-
-        {/* Data Security */}
-        <div className="p-6 rounded-lg border border-border bg-card backdrop-blur-sm shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/30">
-              <Database className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-            </div>
-            <h3 className="text-lg font-semibold">Data Security</h3>
-          </div>
-          <div className="space-y-2 text-sm text-muted-foreground">
-            <div>• Data minimization practices</div>
-            <div>• Purpose limitation controls</div>
-            <div>• Data quality assurance</div>
-            <div>• Regular security assessments</div>
-          </div>
-        </div>
-
-        {/* Compliance Status */}
-        <div className="p-6 rounded-lg border border-border bg-card backdrop-blur-sm shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-orange-100 dark:bg-orange-900/30">
-              <Lock className="h-5 w-5 text-orange-600 dark:text-orange-400" />
-            </div>
-            <h3 className="text-lg font-semibold">Compliance Status</h3>
-          </div>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Implemented</span>
-              <span className="font-medium text-green-600">24 controls</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">In Progress</span>
-              <span className="font-medium text-yellow-600">8 controls</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-muted-foreground">Planned</span>
-              <span className="font-medium text-gray-400">12 controls</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Coming Soon Notice */}
-      <div className="text-center py-8">
-        <p className="text-muted-foreground text-sm">
-          Controls management module is coming soon. This is a test page to ensure navigation works properly.
-        </p>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }
