@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.46" as const
-export const VERSION_NAME = "Home Icon Only - Clean Minimal Header" as const
+export const VERSION = "3.21.47" as const
+export const VERSION_NAME = "Restore HOME Text - Back to Original Design" as const
 export const BUILD_DATE = "2025-12-21"
 
 export const getVersionInfo = () => ({
