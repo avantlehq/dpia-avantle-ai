@@ -93,18 +93,10 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   const activeModuleId = getActiveModule(pathname)
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
   
-  // Debug current state - detect re-renders
-  console.log('Sidebar render:', { mode, isDesktop, isCollapsed, mounted, showAsDrawer })
-
   // Find active item within current module
   const activeItemId = moduleConfig?.items.find(item => 
     pathname === item.href || pathname.startsWith(item.href + '/')
   )?.id
-
-  // Track mode changes
-  useEffect(() => {
-    console.log('Sidebar mode changed:', { mode, isCollapsed, isDesktop })
-  }, [mode, isCollapsed, isDesktop])
 
   // Lock body scroll when mobile drawer is open - ALWAYS call hooks in same order
   useEffect(() => {
@@ -123,7 +115,6 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   if (!mounted) {
     // During SSR, render with the same logic as client-side for consistency
     const ssrWidth = isDesktop && isCollapsed ? '64px' : '256px'
-    console.log('SSR sidebar width:', { isDesktop, isCollapsed, ssrWidth })
     return (
       <aside 
         className={cn(
@@ -236,16 +227,6 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
 
   // Desktop Mode (Expanded or Rail) - Use explicit width for reliability
   const currentWidth = isDesktop && isCollapsed ? '64px' : '256px'
-  console.log('Sidebar width calculation:', { isDesktop, isCollapsed, currentWidth, mode })
-  console.log('DOM element about to render with classes:', "flex flex-col transition-all duration-300 hidden lg:flex flex-shrink-0")
-  console.log('DOM element about to render with styles:', { 
-    width: currentWidth,
-    minWidth: currentWidth,
-    maxWidth: currentWidth,
-    backgroundColor: 'var(--surface-1)', 
-    borderRight: `1px solid var(--border-subtle)`,
-    border: '3px solid red' // DEBUG: Red border to make it visible
-  })
   
   return (
     <aside 
@@ -260,9 +241,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         minWidth: currentWidth,
         maxWidth: currentWidth,
         backgroundColor: 'var(--surface-1)', 
-        borderRight: `1px solid var(--border-subtle)`,
-        border: '3px solid red', // DEBUG: Red border to make it visible
-        zIndex: 9999 // DEBUG: Ensure it's on top
+        borderRight: `1px solid var(--border-subtle)`
       }}
     >
       {sidebarContent}
