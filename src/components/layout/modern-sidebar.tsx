@@ -236,6 +236,15 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   // Desktop Mode (Expanded or Rail) - Use explicit width for reliability
   const currentWidth = isDesktop && isCollapsed ? '64px' : '256px'
   console.log('Sidebar width calculation:', { isDesktop, isCollapsed, currentWidth, mode })
+  console.log('DOM element about to render with classes:', "flex flex-col transition-all duration-300 hidden lg:flex flex-shrink-0")
+  console.log('DOM element about to render with styles:', { 
+    width: currentWidth,
+    minWidth: currentWidth,
+    maxWidth: currentWidth,
+    backgroundColor: 'var(--surface-1)', 
+    borderRight: `1px solid var(--border-subtle)`,
+    border: '3px solid red' // DEBUG: Red border to make it visible
+  })
   
   return (
     <aside 
@@ -249,7 +258,9 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         minWidth: currentWidth,
         maxWidth: currentWidth,
         backgroundColor: 'var(--surface-1)', 
-        borderRight: `1px solid var(--border-subtle)`
+        borderRight: `1px solid var(--border-subtle)`,
+        border: '3px solid red', // DEBUG: Red border to make it visible
+        zIndex: 9999 // DEBUG: Ensure it's on top
       }}
     >
       {sidebarContent}
