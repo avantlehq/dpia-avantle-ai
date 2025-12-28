@@ -81,6 +81,7 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
 export function ModernSidebar({ className }: ModernSidebarProps) {
   const pathname = usePathname()
   const { 
+    mode,
     isCollapsed, 
     isMobileOpen, 
     showAsDrawer, 
@@ -91,6 +92,9 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   
   const activeModuleId = getActiveModule(pathname)
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
+  
+  // Debug current state
+  console.log('Sidebar render:', { mode, isDesktop, isCollapsed, mounted, showAsDrawer })
 
   // Find active item within current module
   const activeItemId = moduleConfig?.items.find(item => 
