@@ -3,8 +3,6 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, type NavItem } from '@/lib/state/modules'
 import { useSidebarToggle } from '@/hooks/useSidebarToggle'
@@ -86,10 +84,30 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     isCollapsed, 
     isMobileOpen, 
     showAsDrawer, 
-    showAsRail, 
     closeMobileDrawer,
     mounted
   } = useSidebarToggle()
+  
+  const activeModuleId = getActiveModule(pathname)
+  const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
+
+  // Find active item within current module
+  const activeItemId = moduleConfig?.items.find(item => 
+    pathname === item.href || pathname.startsWith(item.href + '/')
+  )?.id
+
+  // Lock body scroll when mobile drawer is open - ALWAYS call hooks in same order
+  useEffect(() => {
+    if (showAsDrawer && isMobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [showAsDrawer, isMobileOpen])
 
   // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {
@@ -116,27 +134,6 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
       </aside>
     )
   }
-  
-  const activeModuleId = getActiveModule(pathname)
-  const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
-
-  // Find active item within current module
-  const activeItemId = moduleConfig?.items.find(item => 
-    pathname === item.href || pathname.startsWith(item.href + '/')
-  )?.id
-
-  // Lock body scroll when mobile drawer is open
-  useEffect(() => {
-    if (showAsDrawer && isMobileOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [showAsDrawer, isMobileOpen])
 
   // Sidebar content (shared between desktop and mobile)
   const sidebarContent = (

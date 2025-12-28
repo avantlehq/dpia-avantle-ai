@@ -20,7 +20,6 @@ import {
   HelpCircle, 
   LogOut,
   ShieldCheck,
-  FileText,
   Menu,
   X
 } from 'lucide-react'

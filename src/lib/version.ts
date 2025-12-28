@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.67" as const
-export const VERSION_NAME = "Fix Sidebar Toggle Bug - SSR Safe LocalStorage" as const
+export const VERSION = "3.21.68" as const
+export const VERSION_NAME = "Hotfix: React Hook Rules Violation & Cleanup" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.68": {
+    date: "2025-12-28",
+    name: "Hotfix: React Hook Rules Violation & Cleanup",
+    features: [
+      "CRITICAL HOOK FIX: Fixed React Hook conditional call violation in ModernSidebar",
+      "HOOK ORDER: Moved useEffect before early return to maintain consistent hook order", 
+      "IMPORT CLEANUP: Removed unused imports (Button, ChevronLeft, ChevronRight, FileText)",
+      "BUILD COMPLIANCE: Fixed all lint errors and warnings for production deployment",
+      "CI/CD STABILITY: Ensured clean build process without React violations"
+    ]
+  },
   "3.21.67": {
     date: "2025-12-28",
     name: "Fix Sidebar Toggle Bug - SSR Safe LocalStorage",
