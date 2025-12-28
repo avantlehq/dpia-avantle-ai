@@ -19,33 +19,31 @@ export default function DashboardPage() {
         </div>
         <div className="flex flex-col items-center gap-3">
           {/* Primary CTA - New Assessment (single prominent action) */}
-          <Button 
-            variant="primary" 
-            size="lg"
-            className="min-w-[200px]"
-            asChild
-          >
-            <Link href="/assessments/new">
+          <Link href="/assessments/new">
+            <Button 
+              variant="primary" 
+              size="lg"
+              className="min-w-[200px]"
+            >
               <span style={{ fontSize: '18px', fontWeight: '400' }}>+</span>
               New Assessment
-            </Link>
-          </Button>
+            </Button>
+          </Link>
           
           {/* Secondary helper - micro-hierarchy */}
           <div className="flex items-center text-sm text-gray-400">
             <span>or</span>
-            <Button 
-              variant="outline" 
-              size="sm"
-              className="ml-2 border-dashed text-gray-400 hover:text-gray-300"
-              asChild
-              title="Quick pre-assessment to check if full DPIA is required"
-            >
-              <Link href="/precheck">
+            <Link href="/precheck">
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="ml-2 border-dashed text-gray-400 hover:text-gray-300"
+                title="Quick pre-assessment to check if full DPIA is required"
+              >
                 <span style={{ fontSize: '12px' }}>✓</span>
                 start with pre-check →
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

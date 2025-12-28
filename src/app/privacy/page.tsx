@@ -24,23 +24,25 @@ export default function PrivacyOverview() {
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - Start Pre-check */}
-          <Button 
-            variant="secondary" 
-            size="md"
-            asChild
-            title="Quick pre-assessment to check if full DPIA is required"
-          >
-            <Link href="/precheck">Start Pre-check</Link>
-          </Button>
+          <Link href="/precheck">
+            <Button 
+              variant="secondary" 
+              size="md"
+              title="Quick pre-assessment to check if full DPIA is required"
+            >
+              Start Pre-check
+            </Button>
+          </Link>
           
           {/* Primary CTA - New Assessment */}
-          <Button 
-            variant="primary" 
-            size="md"
-            asChild
-          >
-            <Link href="/assessments/new">New Assessment</Link>
-          </Button>
+          <Link href="/assessments/new">
+            <Button 
+              variant="primary" 
+              size="md"
+            >
+              New Assessment
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -209,23 +211,25 @@ export default function PrivacyOverview() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - Start Pre-check */}
-              <Button 
-                variant="secondary" 
-                size="md"
-                asChild
-                title="Quick pre-assessment to check if full DPIA is required"
-              >
-                <Link href="/precheck">Start Pre-check</Link>
-              </Button>
+              <Link href="/precheck">
+                <Button 
+                  variant="secondary" 
+                  size="md"
+                  title="Quick pre-assessment to check if full DPIA is required"
+                >
+                  Start Pre-check
+                </Button>
+              </Link>
               
               {/* Primary CTA - New Assessment */}
-              <Button 
-                variant="primary" 
-                size="lg"
-                asChild
-              >
-                <Link href="/assessments/new">New Assessment</Link>
-              </Button>
+              <Link href="/assessments/new">
+                <Button 
+                  variant="primary" 
+                  size="lg"
+                >
+                  New Assessment
+                </Button>
+              </Link>
             </div>
           </div>
         </CardContent>

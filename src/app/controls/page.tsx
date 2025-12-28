@@ -17,23 +17,25 @@ export default function ControlsOverviewPage() {
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - View TOMs */}
-          <Button 
-            variant="secondary" 
-            size="md"
-            asChild
-            title="View technical and organizational measures"
-          >
-            <Link href="/controls/toms">View TOMs</Link>
-          </Button>
+          <Link href="/controls/toms">
+            <Button 
+              variant="secondary" 
+              size="md"
+              title="View technical and organizational measures"
+            >
+              View TOMs
+            </Button>
+          </Link>
           
           {/* Primary CTA - Add Control */}
-          <Button 
-            variant="primary" 
-            size="md"
-            asChild
-          >
-            <Link href="/controls/toms">Add Control</Link>
-          </Button>
+          <Link href="/controls/toms">
+            <Button 
+              variant="primary" 
+              size="md"
+            >
+              Add Control
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -202,23 +204,25 @@ export default function ControlsOverviewPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - View TOMs */}
-              <Button 
-                variant="secondary" 
-                size="md"
-                asChild
-                title="View technical and organizational measures"
-              >
-                <Link href="/controls/toms">View TOMs</Link>
-              </Button>
+              <Link href="/controls/toms">
+                <Button 
+                  variant="secondary" 
+                  size="md"
+                  title="View technical and organizational measures"
+                >
+                  View TOMs
+                </Button>
+              </Link>
               
               {/* Primary CTA - Add Control */}
-              <Button 
-                variant="primary" 
-                size="lg"
-                asChild
-              >
-                <Link href="/controls/toms">Add Control</Link>
-              </Button>
+              <Link href="/controls/toms">
+                <Button 
+                  variant="primary" 
+                  size="lg"
+                >
+                  Add Control
+                </Button>
+              </Link>
             </div>
           </div>
         </CardContent>

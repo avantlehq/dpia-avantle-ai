@@ -17,23 +17,25 @@ export default function RiskOverviewPage() {
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - Risk Register */}
-          <Button 
-            variant="secondary" 
-            size="md"
-            asChild
-            title="View risk register and documentation"
-          >
-            <Link href="/risk/register">Risk Register</Link>
-          </Button>
+          <Link href="/risk/register">
+            <Button 
+              variant="secondary" 
+              size="md"
+              title="View risk register and documentation"
+            >
+              Risk Register
+            </Button>
+          </Link>
           
           {/* Primary CTA - Assess Risk */}
-          <Button 
-            variant="primary" 
-            size="md"
-            asChild
-          >
-            <Link href="/risk/privacy-risks">Assess Risk</Link>
-          </Button>
+          <Link href="/risk/privacy-risks">
+            <Button 
+              variant="primary" 
+              size="md"
+            >
+              Assess Risk
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -202,23 +204,25 @@ export default function RiskOverviewPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - Risk Register */}
-              <Button 
-                variant="secondary" 
-                size="md"
-                asChild
-                title="View risk register and documentation"
-              >
-                <Link href="/risk/register">Risk Register</Link>
-              </Button>
+              <Link href="/risk/register">
+                <Button 
+                  variant="secondary" 
+                  size="md"
+                  title="View risk register and documentation"
+                >
+                  Risk Register
+                </Button>
+              </Link>
               
               {/* Primary CTA - Assess Risk */}
-              <Button 
-                variant="primary" 
-                size="lg"
-                asChild
-              >
-                <Link href="/risk/privacy-risks">Assess Risk</Link>
-              </Button>
+              <Link href="/risk/privacy-risks">
+                <Button 
+                  variant="primary" 
+                  size="lg"
+                >
+                  Assess Risk
+                </Button>
+              </Link>
             </div>
           </div>
         </CardContent>

@@ -17,23 +17,25 @@ export default function TrainingOverviewPage() {
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - View Programs */}
-          <Button 
-            variant="secondary" 
-            size="md"
-            asChild
-            title="View training programs and materials"
-          >
-            <Link href="/training">View Programs</Link>
-          </Button>
+          <Link href="/training">
+            <Button 
+              variant="secondary" 
+              size="md"
+              title="View training programs and materials"
+            >
+              View Programs
+            </Button>
+          </Link>
           
           {/* Primary CTA - Create Course */}
-          <Button 
-            variant="primary" 
-            size="md"
-            asChild
-          >
-            <Link href="/training">Create Course</Link>
-          </Button>
+          <Link href="/training">
+            <Button 
+              variant="primary" 
+              size="md"
+            >
+              Create Course
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -202,23 +204,25 @@ export default function TrainingOverviewPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - View Programs */}
-              <Button 
-                variant="secondary" 
-                size="md"
-                asChild
-                title="View training programs and materials"
-              >
-                <Link href="/training">View Programs</Link>
-              </Button>
+              <Link href="/training">
+                <Button 
+                  variant="secondary" 
+                  size="md"
+                  title="View training programs and materials"
+                >
+                  View Programs
+                </Button>
+              </Link>
               
               {/* Primary CTA - Create Course */}
-              <Button 
-                variant="primary" 
-                size="lg"
-                asChild
-              >
-                <Link href="/training">Create Course</Link>
-              </Button>
+              <Link href="/training">
+                <Button 
+                  variant="primary" 
+                  size="lg"
+                >
+                  Create Course
+                </Button>
+              </Link>
             </div>
           </div>
         </CardContent>

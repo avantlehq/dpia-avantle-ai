@@ -20,23 +20,25 @@ export default function ContextOverviewPage() {
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - Register System */}
-          <Button 
-            variant="secondary" 
-            size="md"
-            asChild
-            title="Register new IT system or service"
-          >
-            <Link href="/context/systems">Register System</Link>
-          </Button>
+          <Link href="/context/systems">
+            <Button 
+              variant="secondary" 
+              size="md"
+              title="Register new IT system or service"
+            >
+              Register System
+            </Button>
+          </Link>
           
           {/* Primary CTA - Add Processing */}
-          <Button 
-            variant="primary" 
-            size="md"
-            asChild
-          >
-            <Link href="/context/processing">Add Processing</Link>
-          </Button>
+          <Link href="/context/processing">
+            <Button 
+              variant="primary" 
+              size="md"
+            >
+              Add Processing
+            </Button>
+          </Link>
         </div>
       </div>
 
@@ -205,23 +207,25 @@ export default function ContextOverviewPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - Manage Systems */}
-              <Button 
-                variant="secondary" 
-                size="md"
-                asChild
-                title="Manage IT systems and infrastructure"
-              >
-                <Link href="/context/systems">Manage Systems</Link>
-              </Button>
+              <Link href="/context/systems">
+                <Button 
+                  variant="secondary" 
+                  size="md"
+                  title="Manage IT systems and infrastructure"
+                >
+                  Manage Systems
+                </Button>
+              </Link>
               
               {/* Primary CTA - View Processing */}
-              <Button 
-                variant="primary" 
-                size="lg"
-                asChild
-              >
-                <Link href="/context/processing">View Processing</Link>
-              </Button>
+              <Link href="/context/processing">
+                <Button 
+                  variant="primary" 
+                  size="lg"
+                >
+                  View Processing
+                </Button>
+              </Link>
             </div>
           </div>
         </CardContent>
