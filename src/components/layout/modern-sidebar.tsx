@@ -93,8 +93,8 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   const activeModuleId = getActiveModule(pathname)
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
   
-  // Debug current state - add timestamp to detect re-renders
-  console.log('Sidebar render:', { mode, isDesktop, isCollapsed, mounted, showAsDrawer, timestamp: Date.now() })
+  // Debug current state - detect re-renders
+  console.log('Sidebar render:', { mode, isDesktop, isCollapsed, mounted, showAsDrawer })
 
   // Find active item within current module
   const activeItemId = moduleConfig?.items.find(item => 
