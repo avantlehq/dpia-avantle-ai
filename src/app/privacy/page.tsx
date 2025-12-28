@@ -25,47 +25,23 @@ export default function PrivacyOverview() {
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - Start Pre-check */}
-          <Link href="/precheck">
-            <button
-              className="secondary-cta-button"
-              style={{
-                backgroundColor: '#357ABD',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '12px 20px',
-                fontSize: '14px',
-                fontWeight: '500',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
-              }}
-              title="Quick pre-assessment to check if full DPIA is required"
-            >
-              Start Pre-check
-            </button>
-          </Link>
+          <Button 
+            variant="secondary" 
+            size="md"
+            asChild
+            title="Quick pre-assessment to check if full DPIA is required"
+          >
+            <Link href="/precheck">Start Pre-check</Link>
+          </Button>
           
           {/* Primary CTA - New Assessment */}
-          <Link href="/assessments/new">
-            <button
-              className="primary-cta-button"
-              style={{
-                backgroundColor: '#357ABD',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '12px 24px',
-                fontSize: '14px',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
-              }}
-            >
-              New Assessment
-            </button>
-          </Link>
+          <Button 
+            variant="primary" 
+            size="md"
+            asChild
+          >
+            <Link href="/assessments/new">New Assessment</Link>
+          </Button>
         </div>
       </div>
 
@@ -234,47 +210,23 @@ export default function PrivacyOverview() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - Start Pre-check */}
-              <Link href="/precheck">
-                <button
-                  className="secondary-cta-button"
-                  style={{
-                    backgroundColor: '#357ABD',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '12px 20px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s ease',
-                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
-                  }}
-                  title="Quick pre-assessment to check if full DPIA is required"
-                >
-                  Start Pre-check
-                </button>
-              </Link>
+              <Button 
+                variant="secondary" 
+                size="md"
+                asChild
+                title="Quick pre-assessment to check if full DPIA is required"
+              >
+                <Link href="/precheck">Start Pre-check</Link>
+              </Button>
               
               {/* Primary CTA - New Assessment */}
-              <Link href="/assessments/new">
-                <button
-                  className="primary-cta-button"
-                  style={{
-                    backgroundColor: '#357ABD',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '12px 24px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s ease',
-                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
-                  }}
-                >
-                  New Assessment
-                </button>
-              </Link>
+              <Button 
+                variant="primary" 
+                size="lg"
+                asChild
+              >
+                <Link href="/assessments/new">New Assessment</Link>
+              </Button>
             </div>
           </div>
         </CardContent>

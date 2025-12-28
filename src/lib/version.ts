@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.50" as const
-export const VERSION_NAME = "Fix Missing Footer & Rebrand to Privacy Platform" as const
-export const BUILD_DATE = "2025-12-21"
+export const VERSION = "3.21.51" as const
+export const VERSION_NAME = "Consistent Button System - Enterprise UX Components" as const
+export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -13,6 +13,19 @@ export const getVersionInfo = () => ({
 
 // Version changelog
 export const CHANGELOG = {
+  "3.21.51": {
+    date: "2025-12-28",
+    name: "Consistent Button System - Enterprise UX Components", 
+    features: [
+      "UNIFIED BUTTON COMPONENT: Created reusable Button with 5 variants (primary, secondary, ghost, outline, destructive)",
+      "LOADING STATES: Built-in spinner support with isLoading prop and aria-busy accessibility",
+      "ICON SUPPORT: leftIcon/rightIcon props with proper spacing and shrink handling", 
+      "DESIGN CONSISTENCY: 10px radius, proper heights (sm:30px, md:38px, lg:46px), brand blue primary",
+      "SINGLE CTA RULE: Enforced one primary button per screen across Privacy, Context, Dashboard",
+      "ACCESSIBILITY: Focus rings, disabled states, keyboard navigation support",
+      "REFACTORED COMPONENTS: Privacy Overview, Context module, Dashboard refresh buttons migrated"
+    ]
+  },
   "3.19.65": {
     date: "2025-12-20", 
     name: "Dropdown Highlight Fix - Working Hover & Focus",

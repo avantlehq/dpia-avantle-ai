@@ -21,47 +21,23 @@ export default function ContextOverviewPage() {
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - Register System */}
-          <Link href="/context/systems">
-            <button
-              className="secondary-cta-button"
-              style={{
-                backgroundColor: '#357ABD',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '12px 20px',
-                fontSize: '14px',
-                fontWeight: '500',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
-              }}
-              title="Register new IT system or service"
-            >
-              Register System
-            </button>
-          </Link>
+          <Button 
+            variant="secondary" 
+            size="md"
+            asChild
+            title="Register new IT system or service"
+          >
+            <Link href="/context/systems">Register System</Link>
+          </Button>
           
           {/* Primary CTA - Add Processing */}
-          <Link href="/context/processing">
-            <button
-              className="primary-cta-button"
-              style={{
-                backgroundColor: '#357ABD',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '12px 24px',
-                fontSize: '14px',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
-              }}
-            >
-              Add Processing
-            </button>
-          </Link>
+          <Button 
+            variant="primary" 
+            size="md"
+            asChild
+          >
+            <Link href="/context/processing">Add Processing</Link>
+          </Button>
         </div>
       </div>
 
@@ -230,47 +206,23 @@ export default function ContextOverviewPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - Manage Systems */}
-              <Link href="/context/systems">
-                <button
-                  className="secondary-cta-button"
-                  style={{
-                    backgroundColor: '#357ABD',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '12px 20px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s ease',
-                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
-                  }}
-                  title="Manage IT systems and infrastructure"
-                >
-                  Manage Systems
-                </button>
-              </Link>
+              <Button 
+                variant="secondary" 
+                size="md"
+                asChild
+                title="Manage IT systems and infrastructure"
+              >
+                <Link href="/context/systems">Manage Systems</Link>
+              </Button>
               
               {/* Primary CTA - View Processing */}
-              <Link href="/context/processing">
-                <button
-                  className="primary-cta-button"
-                  style={{
-                    backgroundColor: '#357ABD',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '12px 24px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s ease',
-                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
-                  }}
-                >
-                  View Processing
-                </button>
-              </Link>
+              <Button 
+                variant="primary" 
+                size="lg"
+                asChild
+              >
+                <Link href="/context/processing">View Processing</Link>
+              </Button>
             </div>
           </div>
         </CardContent>

@@ -55,39 +55,18 @@ export default function DashboardPage() {
           {/* Secondary helper - micro-hierarchy */}
           <div className="flex items-center text-sm text-gray-400">
             <span>or</span>
-            <Link href="/precheck" className="ml-2">
-              <button
-                className="ghost-button group"
-                style={{
-                  background: 'transparent',
-                  color: '#9ca3af',
-                  border: '1px dashed #4b5563',
-                  borderRadius: '8px',
-                  padding: '8px 16px',
-                  fontSize: '13px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#d1d5db'
-                  e.currentTarget.style.borderColor = '#6b7280'
-                  e.currentTarget.style.background = 'rgba(75, 85, 99, 0.1)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#9ca3af'
-                  e.currentTarget.style.borderColor = '#4b5563'
-                  e.currentTarget.style.background = 'transparent'
-                }}
-                title="Quick pre-assessment to check if full DPIA is required"
-              >
+            <Button 
+              variant="outline" 
+              size="sm"
+              className="ml-2 border-dashed text-gray-400 hover:text-gray-300"
+              asChild
+              title="Quick pre-assessment to check if full DPIA is required"
+            >
+              <Link href="/precheck">
                 <span style={{ fontSize: '12px' }}>✓</span>
                 start with pre-check →
-              </button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
