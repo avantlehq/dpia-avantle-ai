@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import { DynamicDashboardContent } from '@/components/dashboard/dynamic-dashboard-content'
 
 // v3.10.47: Hybrid static/dynamic dashboard to show real assessments safely

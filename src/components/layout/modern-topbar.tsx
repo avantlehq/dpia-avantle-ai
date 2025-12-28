@@ -20,8 +20,6 @@ import {
   HelpCircle, 
   LogOut,
   ShieldCheck,
-  Users,
-  AlertTriangle,
   FileText
 } from 'lucide-react'
 import { privacyModulesConfig, getActiveModule } from '@/lib/state/modules'

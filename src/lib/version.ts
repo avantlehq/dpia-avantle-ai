@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.52" as const
-export const VERSION_NAME = "Optimize Version File - Reduce Token Size" as const
+export const VERSION = "3.21.53" as const
+export const VERSION_NAME = "Fix Build Errors - Clean Unused Imports" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.53": {
+    date: "2025-12-28",
+    name: "Fix Build Errors - Clean Unused Imports",
+    features: [
+      "BUILD FIXES: Resolved TypeScript errors and lint warnings from CI/CD",
+      "IMPORT CLEANUP: Removed 10 unused imports across components (AlertTriangle, Users, Home, etc.)",
+      "BUTTON IMPORT: Fixed missing Button import in dashboard page causing build failure", 
+      "LINT COMPLIANCE: All components now pass ESLint unused variable checks",
+      "PRODUCTION BUILD: Verified successful build with NODE_ENV=production"
+    ]
+  },
   "3.21.52": {
     date: "2025-12-28",
     name: "Optimize Version File - Reduce Token Size",
