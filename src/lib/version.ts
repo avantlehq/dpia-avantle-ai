@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.54" as const
-export const VERSION_NAME = "Fix Button Visibility - Better Contrast" as const
+export const VERSION = "3.21.55" as const
+export const VERSION_NAME = "Emergency Button Fix - High Contrast" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({

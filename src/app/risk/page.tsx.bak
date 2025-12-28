@@ -1,49 +1,73 @@
 import React from 'react'
-import { Plus, Shield } from 'lucide-react'
+import { AlertTriangle, Plus } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
-export default function ControlsOverviewPage() {
+export default function RiskOverviewPage() {
   return (
     <div className="space-y-6">
       {/* Header with CTAs - matching dashboard style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">Controls Overview</h1>
+          <h1 className="text-2xl font-semibold text-foreground">Risk Overview</h1>
           <p className="text-muted-foreground">
-            Technical and organizational measures for data protection
+            Privacy risk identification, assessment, and management
           </p>
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
-          {/* Secondary CTA - View TOMs */}
-          <Button 
-            variant="secondary" 
-            size="md"
-            asChild
-            title="View technical and organizational measures"
-          >
-            <Link href="/controls/toms">View TOMs</Link>
-          </Button>
+          {/* Secondary CTA - Risk Register */}
+          <Link href="/risk/register">
+            <button
+              className="secondary-cta-button"
+              style={{
+                backgroundColor: '#357ABD',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '12px 20px',
+                fontSize: '14px',
+                fontWeight: '500',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease',
+                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
+              }}
+              title="View risk register and documentation"
+            >
+              Risk Register
+            </button>
+          </Link>
           
-          {/* Primary CTA - Add Control */}
-          <Button 
-            variant="primary" 
-            size="md"
-            asChild
-          >
-            <Link href="/controls/toms">Add Control</Link>
-          </Button>
+          {/* Primary CTA - Assess Risk */}
+          <Link href="/risk/privacy-risks">
+            <button
+              className="primary-cta-button"
+              style={{
+                backgroundColor: '#357ABD',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '8px',
+                padding: '12px 24px',
+                fontSize: '14px',
+                fontWeight: '600',
+                cursor: 'pointer',
+                transition: 'background-color 0.2s ease',
+                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
+              }}
+            >
+              Assess Risk
+            </button>
+          </Link>
         </div>
       </div>
 
-      {/* Controls Overview - matching dashboard pills */}
+      {/* Risk Overview - matching dashboard pills */}
       <div className="space-y-5">
-        <h2 className="text-lg font-medium text-foreground">Controls Overview</h2>
+        <h2 className="text-lg font-medium text-foreground">Risk Overview</h2>
         
         {/* Status Pills Group - matching dashboard style */}
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
-          {/* Implemented Pill */}
+          {/* High Risk Pill */}
           <div 
             className="inline-flex items-center rounded-lg"
             style={{ 
@@ -51,7 +75,7 @@ export default function ControlsOverviewPage() {
               paddingLeft: '12px',
               paddingRight: '16px',
               backgroundColor: 'transparent',
-              borderLeft: '3px solid #22c55e',
+              borderLeft: '3px solid #ef4444',
               gap: '8px'
             }}
           >
@@ -62,7 +86,7 @@ export default function ControlsOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              Implemented
+              High Risk
             </span>
             <span 
               style={{ 
@@ -71,11 +95,11 @@ export default function ControlsOverviewPage() {
                 fontWeight: '600'
               }}
             >
-              24
+              3
             </span>
           </div>
 
-          {/* In Progress Pill */}
+          {/* Medium Risk Pill */}
           <div 
             className="inline-flex items-center rounded-lg"
             style={{ 
@@ -94,7 +118,7 @@ export default function ControlsOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              In Progress
+              Medium Risk
             </span>
             <span 
               style={{ 
@@ -107,7 +131,39 @@ export default function ControlsOverviewPage() {
             </span>
           </div>
 
-          {/* Planned Pill */}
+          {/* Low Risk Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #22c55e',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Low Risk
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: '#ffffff',
+                fontWeight: '600'
+              }}
+            >
+              15
+            </span>
+          </div>
+
+          {/* Mitigated Pill */}
           <div 
             className="inline-flex items-center rounded-lg"
             style={{ 
@@ -126,7 +182,7 @@ export default function ControlsOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              Planned
+              Mitigated
             </span>
             <span 
               style={{ 
@@ -135,90 +191,82 @@ export default function ControlsOverviewPage() {
                 fontWeight: '600'
               }}
             >
-              12
-            </span>
-          </div>
-
-          {/* Technical Measures Pill */}
-          <div 
-            className="inline-flex items-center rounded-lg"
-            style={{ 
-              height: '38px',
-              paddingLeft: '12px',
-              paddingRight: '16px',
-              backgroundColor: 'transparent',
-              borderLeft: '3px solid #3b82f6',
-              gap: '8px'
-            }}
-          >
-            <span 
-              style={{ 
-                fontSize: '14px',
-                color: '#9ca3af',
-                fontWeight: '500'
-              }}
-            >
-              Technical
-            </span>
-            <span 
-              style={{ 
-                fontSize: '16px',
-                color: '#ffffff',
-                fontWeight: '600'
-              }}
-            >
-              18
+              22
             </span>
           </div>
         </div>
       </div>
 
-      {/* Increased Spacing Before Controls */}
+      {/* Increased Spacing Before Risk Management */}
       <div className="mt-12"></div>
 
-      {/* Controls Management Table - matching dashboard style */}
+      {/* Risk Management Table - matching dashboard style */}
       <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            Technical & Organizational Measures
-            <Link href="/controls/toms">
+            Risk Management
+            <Link href="/risk/privacy-risks">
               <Button
                 variant="outline"
                 size="sm"
                 className="gap-2"
               >
                 <Plus className="h-4 w-4" />
-                Add TOM
+                Add Risk
               </Button>
             </Link>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="text-center py-12">
-            <Shield className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">Security controls ready</h3>
+            <AlertTriangle className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
+            <h3 className="text-lg font-medium text-foreground mb-2">Risk assessment ready</h3>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Implement and manage technical and organizational measures to protect personal data.
+              Identify, assess, and manage privacy risks across your data processing activities.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
-              {/* Secondary CTA - View TOMs */}
-              <Button 
-                variant="secondary" 
-                size="md"
-                asChild
-                title="View technical and organizational measures"
-              >
-                <Link href="/controls/toms">View TOMs</Link>
-              </Button>
+              {/* Secondary CTA - Risk Register */}
+              <Link href="/risk/register">
+                <button
+                  className="secondary-cta-button"
+                  style={{
+                    backgroundColor: '#357ABD',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '12px 20px',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease',
+                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
+                  }}
+                  title="View risk register and documentation"
+                >
+                  Risk Register
+                </button>
+              </Link>
               
-              {/* Primary CTA - Add Control */}
-              <Button 
-                variant="primary" 
-                size="lg"
-                asChild
-              >
-                <Link href="/controls/toms">Add Control</Link>
-              </Button>
+              {/* Primary CTA - Assess Risk */}
+              <Link href="/risk/privacy-risks">
+                <button
+                  className="primary-cta-button"
+                  style={{
+                    backgroundColor: '#357ABD',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '12px 24px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease',
+                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
+                  }}
+                >
+                  Assess Risk
+                </button>
+              </Link>
             </div>
           </div>
         </CardContent>

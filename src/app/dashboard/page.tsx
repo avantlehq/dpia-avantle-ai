@@ -19,39 +19,17 @@ export default function DashboardPage() {
         </div>
         <div className="flex flex-col items-center gap-3">
           {/* Primary CTA - New Assessment (single prominent action) */}
-          <Link href="/assessments/new">
-            <button
-              className="primary-cta-button group"
-              style={{
-                background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '12px',
-                padding: '14px 28px',
-                fontSize: '16px',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                minWidth: '200px',
-                justifyContent: 'center'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-1px)'
-                e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)'
-              }}
-            >
+          <Button 
+            variant="primary" 
+            size="lg"
+            className="min-w-[200px]"
+            asChild
+          >
+            <Link href="/assessments/new">
               <span style={{ fontSize: '18px', fontWeight: '400' }}>+</span>
               New Assessment
-            </button>
-          </Link>
+            </Link>
+          </Button>
           
           {/* Secondary helper - micro-hierarchy */}
           <div className="flex items-center text-sm text-gray-400">
