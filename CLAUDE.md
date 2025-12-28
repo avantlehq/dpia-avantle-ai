@@ -31,15 +31,15 @@ dpia table ako root            // nie je škálovateľné
 
 **DPIA Suite** - European platform for automated GDPR Data Protection Impact Assessments with complete workflow.
 
-**Current Status: VERSION 3.21.63 - Design Token System & Production Foundation**
+**Current Status: VERSION 3.21.82 - Perfect Sidebar Toggle & Modern Layout**
 
 ### Latest Achievements (December 28, 2025)
-- ✅ **Design Token System**: Complete CSS variable foundation for scalable color management
-- ✅ **Production Button System**: Refactored Button component using design tokens with zero visual regression
-- ✅ **IconButton Component**: New reusable component with 40x40px hit area and proper accessibility
-- ✅ **Consistent UI Foundation**: All interactive elements now use centralized design token system
-- ✅ **Button Text Visibility**: Fixed inheritance issues ensuring white text across all button variants
-- ✅ **UI Consistency**: Standardized precheck button layout and removed legacy styling inconsistencies
+- ✅ **SIDEBAR TOGGLE COMPLETE**: Fully functional 256px ↔ 64px rail mode with mobile drawer support
+- ✅ **MODERN LAYOUT**: Removed redundant HOME header, navigation starts clean from top
+- ✅ **PERFECT ALIGNMENT**: Fixed highlight overflow issues, proper width constraints in both modes
+- ✅ **SHARED CONTEXT**: React Context pattern ensures state synchronization between components
+- ✅ **CSS VISIBILITY FIX**: Removed `hidden lg:flex` that was hiding sidebar completely
+- ✅ **PROFESSIONAL UX**: Hover effects, tooltips, and contained active states with proper boundaries
 
 ### Foundation Achievements  
 - ✅ **Modern SaaS Navigation**: Professional text-only design, 32px spacing, context-aware routing
@@ -235,6 +235,30 @@ git add . && git commit -m "message" && git push origin main
 - **Token-First**: All new components must use design token CSS variables
 - **Focus rings**: 2px brand blue, offset matches dark background
 
+## Sidebar Toggle System
+
+### Architecture (`src/contexts/SidebarContext.tsx`)
+- **Shared Context**: React Context ensures state synchronization across all components
+- **Hook Integration**: `useSidebarToggle()` hook manages localStorage persistence and responsive logic
+- **State Management**: Single source of truth for `mode`, `isDesktop`, `isMobileOpen`
+
+### Component Structure
+- **ModernTopbar**: Hamburger toggle button controls all sidebar modes
+- **ModernSidebar**: Responsive container with rail/drawer logic
+- **SimpleLayout**: Root provider wrapper ensuring context availability
+
+### Responsive Behavior
+- **Desktop (≥1024px)**: Rail mode - toggles between 256px (expanded) ↔ 64px (collapsed)
+- **Mobile (<1024px)**: Drawer mode - overlay with backdrop, ESC close
+- **State Persistence**: Desktop rail state saved in localStorage
+- **Accessibility**: Proper ARIA labels, focus management, keyboard shortcuts (Cmd/Ctrl+B)
+
+### Visual Design
+- **Clean Layout**: No HOME header, navigation starts from top edge
+- **Contained Highlights**: Active states with proper width constraints (40px/220px max)
+- **Hover Effects**: Subtle rgba(255,255,255,0.05) backgrounds
+- **Tooltips**: First-letter indicators with item names in collapsed mode
+
 ### Implementation Coverage
 - ✅ **Privacy Overview**: Primary "New Assessment" + Secondary "Start Pre-check"
 - ✅ **Context Module**: Primary "Add Processing" + Secondary "Register System" 
@@ -242,8 +266,10 @@ git add . && git commit -m "message" && git push origin main
 - ✅ **Micro-hierarchy**: Outline dashed secondary helpers
 
 ## Key Achievements
-- ✅ **Consistent Button System**: Unified component with variants, loading states, proper focus management
+- ✅ **Perfect Sidebar Toggle System**: Fully functional desktop rail (64px/256px) + mobile drawer modes
+- ✅ **Modern Layout Architecture**: Removed redundant headers, clean navigation hierarchy
+- ✅ **State Management**: React Context pattern for synchronized sidebar state across components
 - ✅ **Enterprise Platform Complete**: Full DPIA workflow with validation, export, dashboard
 - ✅ **Security Hardened**: CVE-2025-55182 patched, RLS configuration fixed
-- ✅ **Modern UI/UX**: Professional SaaS design, neutral forms, single primary CTAs
-- ✅ **Production Ready**: Live at https://dpia.avantle.ai with full database persistence
+- ✅ **Modern UI/UX**: Professional SaaS design, contained highlights, proper spacing
+- ✅ **Production Ready**: Live at https://dpia.avantle.ai with fully functional navigation
