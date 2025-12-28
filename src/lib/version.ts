@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.58" as const
-export const VERSION_NAME = "Dark Theme Button Colors - Proper Design System" as const
+export const VERSION = "3.21.59" as const
+export const VERSION_NAME = "Fix Button Text Visibility - Force White Text" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,28 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.59": {
+    date: "2025-12-28",
+    name: "Fix Button Text Visibility - Force White Text",
+    features: [
+      "BUTTON TEXT FIX: Added !important declarations to force white text color in all button variants",
+      "INHERITANCE OVERRIDE: Fixed CSS inheritance from Link components that was causing black text", 
+      "COLOR CONSISTENCY: All button variants now display proper white text regardless of wrapper components",
+      "DESIGN SYSTEM COMPLIANCE: Buttons now match specification with white text on dark backgrounds",
+      "ACCESSIBILITY IMPROVEMENT: Enhanced text contrast ensures proper readability"
+    ]
+  },
+  "3.21.58": {
+    date: "2025-12-28",
+    name: "Dark Theme Button Colors - Proper Design System",
+    features: [
+      "BUTTON COLOR FIX: Updated all button variants to use proper dark theme colors",
+      "PRIMARY VARIANT: Brand blue background (#4A90E2) with white text",
+      "SECONDARY VARIANT: Dark surface (#374151) with proper border and white text", 
+      "GHOST/OUTLINE VARIANTS: Transparent backgrounds with white text and proper hover states",
+      "DESTRUCTIVE VARIANT: Red background with white text for error actions"
+    ]
+  },
   "3.21.54": {
     date: "2025-12-28",
     name: "Fix Button Visibility - Better Contrast",

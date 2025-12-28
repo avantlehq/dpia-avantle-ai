@@ -5,15 +5,15 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-150 ease-out disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-[#4A90E2] focus-visible:ring-offset-2 focus-visible:ring-offset-[#19273A] active:transform active:translate-y-px aria-busy:cursor-not-allowed",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-150 ease-out disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-[#4A90E2] focus-visible:ring-offset-2 focus-visible:ring-offset-[#19273A] active:transform active:translate-y-px aria-busy:cursor-not-allowed [&]:!text-white",
   {
     variants: {
       variant: {
-        primary: "bg-[#4A90E2] text-white font-semibold hover:bg-[#3B82E7] active:bg-[#2563eb]",
-        secondary: "bg-[#374151] border border-[#4B5563] text-white hover:bg-[#4B5563]",
-        ghost: "bg-transparent hover:bg-white/5 text-white",
-        outline: "bg-transparent border border-[#4B5563] text-white hover:bg-white/5",
-        destructive: "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500 focus-visible:ring-offset-red-500/20",
+        primary: "bg-[#4A90E2] !text-white font-semibold hover:bg-[#3B82E7] active:bg-[#2563eb]",
+        secondary: "bg-[#374151] border border-[#4B5563] !text-white hover:bg-[#4B5563]",
+        ghost: "bg-transparent hover:bg-white/5 !text-white",
+        outline: "bg-transparent border border-[#4B5563] !text-white hover:bg-white/5",
+        destructive: "bg-red-600 !text-white hover:bg-red-700 focus-visible:ring-red-500 focus-visible:ring-offset-red-500/20",
       },
       size: {
         sm: "h-[30px] px-3 text-sm",
