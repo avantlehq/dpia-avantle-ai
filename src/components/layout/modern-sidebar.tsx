@@ -117,15 +117,16 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {
     // During SSR, render with the same logic as client-side for consistency
-    const ssrWidth = isDesktop && isCollapsed ? "w-16" : "w-64"
+    const ssrWidth = isDesktop && isCollapsed ? '64px' : '256px'
+    console.log('SSR sidebar width:', { isDesktop, isCollapsed, ssrWidth })
     return (
       <aside 
         className={cn(
           "flex flex-col transition-all duration-300 hidden lg:flex",
-          ssrWidth,
           className
         )}
         style={{ 
+          width: ssrWidth,
           backgroundColor: 'var(--surface-1)', 
           borderRight: `1px solid var(--border-subtle)`
         }}
@@ -227,15 +228,18 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     )
   }
 
-  // Desktop Mode (Expanded or Rail)
+  // Desktop Mode (Expanded or Rail) - Use explicit width for reliability
+  const currentWidth = isDesktop && isCollapsed ? '64px' : '256px'
+  console.log('Sidebar width calculation:', { isDesktop, isCollapsed, currentWidth })
+  
   return (
     <aside 
       className={cn(
         "flex flex-col transition-all duration-300 hidden lg:flex",
-        isDesktop && isCollapsed ? "w-16" : "w-64",
         className
       )}
       style={{ 
+        width: currentWidth,
         backgroundColor: 'var(--surface-1)', 
         borderRight: `1px solid var(--border-subtle)`
       }}
