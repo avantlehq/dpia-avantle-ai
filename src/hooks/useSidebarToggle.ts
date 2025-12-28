@@ -52,18 +52,15 @@ export function useSidebarToggle() {
 
   // Toggle sidebar based on current context (desktop vs mobile)
   const toggle = useCallback(() => {
-    console.log('Toggle called!', { isDesktop, mode, currentState: { mode, isDesktop, isMobileOpen } })
     if (isDesktop) {
       // Desktop: toggle expanded/collapsed mode
       const newMode = mode === 'expanded' ? 'collapsed' : 'expanded'
-      console.log('Desktop toggle:', mode, '->', newMode)
       setMode(newMode)
       if (typeof window !== 'undefined') {
         localStorage.setItem(STORAGE_KEY, newMode)
       }
     } else {
       // Mobile: toggle drawer open/close
-      console.log('Mobile toggle:', isMobileOpen, '->', !isMobileOpen)
       setIsMobileOpen(prev => !prev)
     }
   }, [isDesktop, mode, isMobileOpen])

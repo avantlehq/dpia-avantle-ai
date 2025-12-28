@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.78" as const
-export const VERSION_NAME = "FINAL: Sidebar Toggle Working - Clean Production Version" as const
+export const VERSION = "3.21.79" as const
+export const VERSION_NAME = "PRODUCTION: Remove All Debug Logs - Silent Toggle" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
