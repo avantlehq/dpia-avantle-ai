@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.64" as const
-export const VERSION_NAME = "CLAUDE.md Update - Design Token Documentation" as const
+export const VERSION = "3.21.65" as const
+export const VERSION_NAME = "MVP Simplification - Remove Privacy Module Breadcrumbs" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.65": {
+    date: "2025-12-28",
+    name: "MVP Simplification - Remove Privacy Module Breadcrumbs",
+    features: [
+      "BREADCRUMB REMOVAL: Removed breadcrumbs from Privacy module for MVP simplification",
+      "NAVIGATION STREAMLINE: Three-layer navigation reduced to topbar + sidebar for cleaner UX", 
+      "FEATURE FLAG APPROACH: Breadcrumbs hidden behind breadcrumbsEnabled flag for future reintroduction",
+      "VISUAL BALANCE MAINTAINED: Automatic spacing preservation with space-y-6 container",
+      "NON-DESTRUCTIVE CHANGE: Breadcrumb component preserved but removed from render tree"
+    ]
+  },
   "3.21.64": {
     date: "2025-12-28",
     name: "CLAUDE.md Update - Design Token Documentation",

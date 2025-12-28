@@ -7,12 +7,17 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 
+// Feature flags for MVP simplification
+const FEATURES = {
+  breadcrumbsEnabled: false, // MVP: Simplified navigation - topbar + sidebar only
+}
+
 // Privacy Overview Dashboard - Central hub for all privacy activities
 export default function PrivacyOverview() {
   return (
     <div className="space-y-6">
-      {/* Breadcrumbs */}
-      <Breadcrumbs />
+      {/* Breadcrumbs - Hidden for MVP simplification */}
+      {FEATURES.breadcrumbsEnabled && <Breadcrumbs />}
       
       {/* Header with CTAs - matching dashboard style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
