@@ -87,8 +87,35 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     isMobileOpen, 
     showAsDrawer, 
     showAsRail, 
-    closeMobileDrawer 
+    closeMobileDrawer,
+    mounted
   } = useSidebarToggle()
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <aside 
+        className={cn(
+          "flex flex-col w-64 hidden lg:flex",
+          className
+        )}
+        style={{ 
+          backgroundColor: 'var(--surface-1)', 
+          borderRight: `1px solid var(--border-subtle)`
+        }}
+      >
+        <div className="px-4 py-4 border-b" style={{ 
+          borderColor: 'var(--border-subtle)', 
+          backgroundColor: 'var(--surface-2)'
+        }}>
+          <h2 className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>
+            HOME
+          </h2>
+        </div>
+        <div className="flex-1" />
+      </aside>
+    )
+  }
   
   const activeModuleId = getActiveModule(pathname)
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')

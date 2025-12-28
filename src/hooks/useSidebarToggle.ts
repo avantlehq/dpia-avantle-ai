@@ -19,6 +19,12 @@ export function useSidebarToggle() {
     isMobileOpen: false,
     isDesktop: true,
   })
+  const [mounted, setMounted] = useState(false)
+
+  // Track hydration to prevent SSR mismatch
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Initialize state from localStorage and detect screen size
   useEffect(() => {
@@ -31,10 +37,12 @@ export function useSidebarToggle() {
       }))
     }
 
-    // Load persisted sidebar mode
-    const savedMode = localStorage.getItem(STORAGE_KEY) as SidebarMode
-    if (savedMode && (savedMode === 'expanded' || savedMode === 'collapsed')) {
-      setState(prev => ({ ...prev, mode: savedMode }))
+    // Load persisted sidebar mode (only in browser)
+    if (typeof window !== 'undefined') {
+      const savedMode = localStorage.getItem(STORAGE_KEY) as SidebarMode
+      if (savedMode && (savedMode === 'expanded' || savedMode === 'collapsed')) {
+        setState(prev => ({ ...prev, mode: savedMode }))
+      }
     }
 
     // Set initial screen size
@@ -51,7 +59,9 @@ export function useSidebarToggle() {
       if (prev.isDesktop) {
         // Desktop: toggle expanded/collapsed mode
         const newMode = prev.mode === 'expanded' ? 'collapsed' : 'expanded'
-        localStorage.setItem(STORAGE_KEY, newMode)
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(STORAGE_KEY, newMode)
+        }
         return { ...prev, mode: newMode }
       } else {
         // Mobile: toggle drawer open/close
@@ -69,7 +79,9 @@ export function useSidebarToggle() {
   const setMode = useCallback((mode: SidebarMode) => {
     setState(prev => {
       if (prev.isDesktop) {
-        localStorage.setItem(STORAGE_KEY, mode)
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(STORAGE_KEY, mode)
+        }
         return { ...prev, mode }
       }
       return prev // Don't change mode on mobile
@@ -107,6 +119,7 @@ export function useSidebarToggle() {
     toggle,
     closeMobileDrawer,
     setMode,
+    mounted,
     // Computed states for easier component usage
     isExpanded: state.mode === 'expanded',
     isCollapsed: state.mode === 'collapsed',

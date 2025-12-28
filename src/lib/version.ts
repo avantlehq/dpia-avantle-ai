@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.66" as const
-export const VERSION_NAME = "Modern Sidebar Toggle System - Desktop Rail & Mobile Drawer" as const
+export const VERSION = "3.21.67" as const
+export const VERSION_NAME = "Fix Sidebar Toggle Bug - SSR Safe LocalStorage" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.67": {
+    date: "2025-12-28",
+    name: "Fix Sidebar Toggle Bug - SSR Safe LocalStorage",
+    features: [
+      "CRITICAL BUG FIX: Fixed sidebar toggle not working - was stuck in collapsed state",
+      "SSR SAFETY: Added proper typeof window checks to prevent localStorage SSR errors", 
+      "HYDRATION MISMATCH: Added mounted state to prevent SSR/client content mismatch",
+      "PRODUCTION BUILD: Fixed build errors by ensuring proper SSR compatibility",
+      "TOGGLE FUNCTIONALITY: Sidebar now properly expands/collapses on button click"
+    ]
+  },
   "3.21.66": {
     date: "2025-12-28",
     name: "Modern Sidebar Toggle System - Desktop Rail & Mobile Drawer",
