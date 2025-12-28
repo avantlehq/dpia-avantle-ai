@@ -17,47 +17,23 @@ export default function RiskOverviewPage() {
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - Risk Register */}
-          <Link href="/risk/register">
-            <button
-              className="secondary-cta-button"
-              style={{
-                backgroundColor: '#357ABD',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '12px 20px',
-                fontSize: '14px',
-                fontWeight: '500',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
-              }}
-              title="View risk register and documentation"
-            >
-              Risk Register
-            </button>
-          </Link>
+          <Button 
+            variant="secondary" 
+            size="md"
+            asChild
+            title="View risk register and documentation"
+          >
+            <Link href="/risk/register">Risk Register</Link>
+          </Button>
           
           {/* Primary CTA - Assess Risk */}
-          <Link href="/risk/privacy-risks">
-            <button
-              className="primary-cta-button"
-              style={{
-                backgroundColor: '#357ABD',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '12px 24px',
-                fontSize: '14px',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
-              }}
-            >
-              Assess Risk
-            </button>
-          </Link>
+          <Button 
+            variant="primary" 
+            size="md"
+            asChild
+          >
+            <Link href="/risk/privacy-risks">Assess Risk</Link>
+          </Button>
         </div>
       </div>
 
@@ -226,47 +202,23 @@ export default function RiskOverviewPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - Risk Register */}
-              <Link href="/risk/register">
-                <button
-                  className="secondary-cta-button"
-                  style={{
-                    backgroundColor: '#357ABD',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '12px 20px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s ease',
-                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
-                  }}
-                  title="View risk register and documentation"
-                >
-                  Risk Register
-                </button>
-              </Link>
+              <Button 
+                variant="secondary" 
+                size="md"
+                asChild
+                title="View risk register and documentation"
+              >
+                <Link href="/risk/register">Risk Register</Link>
+              </Button>
               
               {/* Primary CTA - Assess Risk */}
-              <Link href="/risk/privacy-risks">
-                <button
-                  className="primary-cta-button"
-                  style={{
-                    backgroundColor: '#357ABD',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '12px 24px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s ease',
-                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
-                  }}
-                >
-                  Assess Risk
-                </button>
-              </Link>
+              <Button 
+                variant="primary" 
+                size="lg"
+                asChild
+              >
+                <Link href="/risk/privacy-risks">Assess Risk</Link>
+              </Button>
             </div>
           </div>
         </CardContent>

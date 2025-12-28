@@ -17,47 +17,23 @@ export default function TrainingOverviewPage() {
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - View Programs */}
-          <Link href="/training">
-            <button
-              className="secondary-cta-button"
-              style={{
-                backgroundColor: '#357ABD',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '12px 20px',
-                fontSize: '14px',
-                fontWeight: '500',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
-              }}
-              title="View training programs and materials"
-            >
-              View Programs
-            </button>
-          </Link>
+          <Button 
+            variant="secondary" 
+            size="md"
+            asChild
+            title="View training programs and materials"
+          >
+            <Link href="/training">View Programs</Link>
+          </Button>
           
           {/* Primary CTA - Create Course */}
-          <Link href="/training">
-            <button
-              className="primary-cta-button"
-              style={{
-                backgroundColor: '#357ABD',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '8px',
-                padding: '12px 24px',
-                fontSize: '14px',
-                fontWeight: '600',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
-              }}
-            >
-              Create Course
-            </button>
-          </Link>
+          <Button 
+            variant="primary" 
+            size="md"
+            asChild
+          >
+            <Link href="/training">Create Course</Link>
+          </Button>
         </div>
       </div>
 
@@ -226,47 +202,23 @@ export default function TrainingOverviewPage() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - View Programs */}
-              <Link href="/training">
-                <button
-                  className="secondary-cta-button"
-                  style={{
-                    backgroundColor: '#357ABD',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '12px 20px',
-                    fontSize: '14px',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s ease',
-                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.15)'
-                  }}
-                  title="View training programs and materials"
-                >
-                  View Programs
-                </button>
-              </Link>
+              <Button 
+                variant="secondary" 
+                size="md"
+                asChild
+                title="View training programs and materials"
+              >
+                <Link href="/training">View Programs</Link>
+              </Button>
               
               {/* Primary CTA - Create Course */}
-              <Link href="/training">
-                <button
-                  className="primary-cta-button"
-                  style={{
-                    backgroundColor: '#357ABD',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '8px',
-                    padding: '12px 24px',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'background-color 0.2s ease',
-                    boxShadow: '0 2px 4px rgba(53, 122, 189, 0.25)'
-                  }}
-                >
-                  Create Course
-                </button>
-              </Link>
+              <Button 
+                variant="primary" 
+                size="lg"
+                asChild
+              >
+                <Link href="/training">Create Course</Link>
+              </Button>
             </div>
           </div>
         </CardContent>
