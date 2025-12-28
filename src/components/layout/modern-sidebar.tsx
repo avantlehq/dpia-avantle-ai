@@ -112,10 +112,13 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
 
   // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) {
+    // During SSR, render with the same logic as client-side for consistency
+    const ssrWidth = isDesktop && isCollapsed ? "w-16" : "w-64"
     return (
       <aside 
         className={cn(
-          "flex flex-col w-64 hidden lg:flex",
+          "flex flex-col transition-all duration-300 hidden lg:flex",
+          ssrWidth,
           className
         )}
         style={{ 
@@ -127,9 +130,15 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
           borderColor: 'var(--border-subtle)', 
           backgroundColor: 'var(--surface-2)'
         }}>
-          <h2 className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>
-            HOME
-          </h2>
+          {!(isDesktop && isCollapsed) ? (
+            <h2 className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>
+              HOME
+            </h2>
+          ) : (
+            <div className="flex justify-center w-full">
+              <span className="text-sm font-semibold" style={{ color: 'var(--brand-primary)' }}>H</span>
+            </div>
+          )}
         </div>
         <div className="flex-1" />
       </aside>

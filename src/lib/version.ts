@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.70" as const
-export const VERSION_NAME = "Emergency Fix: Toggle & Button Styling" as const
+export const VERSION = "3.21.71" as const
+export const VERSION_NAME = "FINAL FIX: Sidebar Toggle SSR Consistency" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.71": {
+    date: "2025-12-28",
+    name: "FINAL FIX: Sidebar Toggle SSR Consistency",
+    features: [
+      "ROOT CAUSE FIXED: SSR rendering inconsistency between mounted and unmounted states",
+      "HYDRATION CONSISTENCY: SSR sidebar now renders with same logic as client-side for perfect consistency", 
+      "DEBUG DISCOVERY: Found that mounted=false was causing fixed w-64 width regardless of isCollapsed state",
+      "VISUAL TOGGLE: Sidebar now properly changes width and content when toggle button is clicked",
+      "PRODUCTION READY: Toggle functionality finally working correctly in all scenarios"
+    ]
+  },
   "3.21.70": {
     date: "2025-12-28",
     name: "Emergency Fix: Toggle & Button Styling",
