@@ -93,13 +93,18 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   const activeModuleId = getActiveModule(pathname)
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
   
-  // Debug current state
-  console.log('Sidebar render:', { mode, isDesktop, isCollapsed, mounted, showAsDrawer })
+  // Debug current state - add timestamp to detect re-renders
+  console.log('Sidebar render:', { mode, isDesktop, isCollapsed, mounted, showAsDrawer, timestamp: Date.now() })
 
   // Find active item within current module
   const activeItemId = moduleConfig?.items.find(item => 
     pathname === item.href || pathname.startsWith(item.href + '/')
   )?.id
+
+  // Track mode changes
+  useEffect(() => {
+    console.log('Sidebar mode changed:', { mode, isCollapsed, isDesktop })
+  }, [mode, isCollapsed, isDesktop])
 
   // Lock body scroll when mobile drawer is open - ALWAYS call hooks in same order
   useEffect(() => {
@@ -230,10 +235,11 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
 
   // Desktop Mode (Expanded or Rail) - Use explicit width for reliability
   const currentWidth = isDesktop && isCollapsed ? '64px' : '256px'
-  console.log('Sidebar width calculation:', { isDesktop, isCollapsed, currentWidth })
+  console.log('Sidebar width calculation:', { isDesktop, isCollapsed, currentWidth, mode })
   
   return (
     <aside 
+      key={`sidebar-${mode}-${mounted}`}
       className={cn(
         "flex flex-col transition-all duration-300 hidden lg:flex",
         className
