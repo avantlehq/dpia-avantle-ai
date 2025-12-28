@@ -4,12 +4,6 @@ import { useState, useEffect, useCallback } from 'react'
 
 type SidebarMode = 'expanded' | 'collapsed'
 
-interface SidebarState {
-  mode: SidebarMode
-  isMobileOpen: boolean
-  isDesktop: boolean
-}
-
 const STORAGE_KEY = 'ui.sidebarMode'
 const DESKTOP_BREAKPOINT = 1024
 
