@@ -23,15 +23,17 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   
   const navRowContent = (
     <div 
-      className="group relative flex items-center w-full text-sm rounded-lg transition-all duration-200 focus-within:outline-none"
+      className="group relative flex items-center w-full text-sm transition-all duration-200 focus-within:outline-none"
       style={{
         backgroundColor: isActive ? 'rgba(96,165,250,0.15)' : 'transparent', // Light blue background when active
-        borderLeft: isActive ? '2px solid var(--brand-primary)' : 'none', // Brand primary accent when active
+        borderLeft: isActive ? '3px solid var(--brand-primary)' : 'none', // Brand primary accent when active
         color: isActive ? 'var(--text-primary)' : 'var(--text-muted)', // Design token colors
-        paddingLeft: isActive ? '11px' : '12px', // Compensate for border width
-        paddingRight: '12px', // Consistent right padding
+        paddingLeft: isActive ? '9px' : '12px', // Compensate for border width
+        paddingRight: '8px', // Reduced right padding to prevent overflow
         paddingTop: '10px',
-        paddingBottom: '10px'
+        paddingBottom: '10px',
+        marginRight: '8px', // Add margin to create gap from sidebar edge
+        borderRadius: '6px' // Rounded corners to contain the highlight
       }}
     >
       {/* Clean text-only navigation - NO ICONS anywhere */}
