@@ -20,10 +20,14 @@ import {
   HelpCircle, 
   LogOut,
   ShieldCheck,
-  FileText
+  FileText,
+  Menu,
+  X
 } from 'lucide-react'
 import { privacyModulesConfig, getActiveModule } from '@/lib/state/modules'
 import { cn } from '@/lib/utils'
+import { IconButton } from '@/components/ui/icon-button'
+import { useSidebarToggle } from '@/hooks/useSidebarToggle'
 
 // Fixed module navigation link - no floating icons, proper text+icon rows
 interface ModuleLinkProps {
@@ -66,6 +70,7 @@ export function ModernTopbar() {
   const pathname = usePathname()
   const activeModuleId = getActiveModule(pathname)
   const versionInfo = getVersionInfo()
+  const { toggle, isCollapsed, isMobileOpen } = useSidebarToggle()
   
   // Context-aware home link based on active module
   const getHomeLink = () => {
@@ -80,8 +85,20 @@ export function ModernTopbar() {
 
   return (
     <header className="flex items-center justify-between h-16 px-6 bg-[--background] border-b border-[--nav-border]">
-      {/* Left: Brand Block */}
+      {/* Left: Sidebar Toggle + Brand Block */}
       <div className="flex items-center">
+        {/* Sidebar Toggle Button */}
+        <IconButton
+          variant="ghost"
+          size="md"
+          icon={isMobileOpen ? <X /> : <Menu />}
+          onClick={toggle}
+          aria-label="Toggle sidebar"
+          aria-expanded={!isCollapsed && !isMobileOpen}
+          aria-controls="main-sidebar"
+          className="mr-3"
+        />
+        
         {/* Clickable Brand Lockup */}
         <Link 
           href={getHomeLink()} 

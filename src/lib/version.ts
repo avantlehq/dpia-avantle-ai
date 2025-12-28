@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.65" as const
-export const VERSION_NAME = "MVP Simplification - Remove Privacy Module Breadcrumbs" as const
+export const VERSION = "3.21.66" as const
+export const VERSION_NAME = "Modern Sidebar Toggle System - Desktop Rail & Mobile Drawer" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.66": {
+    date: "2025-12-28",
+    name: "Modern Sidebar Toggle System - Desktop Rail & Mobile Drawer",
+    features: [
+      "SIDEBAR TOGGLE SYSTEM: Complete implementation with hamburger button in topbar",
+      "DESKTOP RAIL MODE: 64px collapsed sidebar with first-letter navigation icons", 
+      "MOBILE DRAWER: Full overlay drawer with backdrop, ESC close, and focus trap",
+      "KEYBOARD SHORTCUT: Cmd/Ctrl+B toggles sidebar (respects input field focus)",
+      "LOCALSTORAGE PERSISTENCE: Desktop mode persists across sessions",
+      "DESIGN TOKEN INTEGRATION: Uses --brand-primary, --surface-1, --text-primary tokens",
+      "ACCESSIBILITY: aria-expanded, aria-controls, proper focus management"
+    ]
+  },
   "3.21.65": {
     date: "2025-12-28",
     name: "MVP Simplification - Remove Privacy Module Breadcrumbs",

@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, type NavItem } from '@/lib/state/modules'
+import { useSidebarToggle } from '@/hooks/useSidebarToggle'
 
 interface ModernSidebarProps {
   className?: string
@@ -27,8 +28,8 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
       className="group relative flex items-center w-full px-3 py-2.5 text-sm rounded-lg transition-all duration-200 focus-within:outline-none"
       style={{
         backgroundColor: 'transparent', // Clean professional background
-        borderLeft: isActive ? '2px solid #60a5fa' : 'none', // Blue accent when active
-        color: isActive ? '#ffffff' : '#9ca3af', // White text if active, gray if inactive
+        borderLeft: isActive ? '2px solid var(--brand-primary)' : 'none', // Brand primary accent when active
+        color: isActive ? 'var(--text-primary)' : 'var(--text-muted)', // Design token colors
         paddingLeft: isActive ? '11px' : '12px', // Compensate for border width
         paddingRight: '20px' // Add right padding to prevent text touching border
       }}
@@ -44,7 +45,18 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
         >{item.name}</span>
       )}
       
-      {/* When collapsed, show nothing - clean minimal design */}
+      {/* When collapsed/rail mode, show first letter as icon replacement */}
+      {collapsed && (
+        <span 
+          className="text-xs font-semibold text-center w-full"
+          style={{
+            color: isActive ? 'var(--brand-primary)' : 'var(--text-muted)'
+          }}
+          title={item.name} // Tooltip for accessibility
+        >
+          {item.name.charAt(0).toUpperCase()}
+        </span>
+      )}
     </div>
   )
 
@@ -61,6 +73,7 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
       href={item.href}
       className="group relative block modern-nav-link"
       aria-current={isActive ? "page" : undefined}
+      title={collapsed ? item.name : undefined} // Show tooltip in rail mode
     >
       {navRowContent}
     </Link>
@@ -69,7 +82,14 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
 
 export function ModernSidebar({ className }: ModernSidebarProps) {
   const pathname = usePathname()
-  const [collapsed, setCollapsed] = useState(false)
+  const { 
+    isCollapsed, 
+    isMobileOpen, 
+    showAsDrawer, 
+    showAsRail, 
+    closeMobileDrawer 
+  } = useSidebarToggle()
+  
   const activeModuleId = getActiveModule(pathname)
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
 
@@ -78,54 +98,51 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     pathname === item.href || pathname.startsWith(item.href + '/')
   )?.id
 
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (showAsDrawer && isMobileOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
 
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [showAsDrawer, isMobileOpen])
 
-  return (
-    <aside className={cn(
-      "flex flex-col bg-gray-900 border-r border-gray-700 transition-all duration-300",
-      collapsed ? "w-16" : "w-64",
-      className
-    )}>
+  // Sidebar content (shared between desktop and mobile)
+  const sidebarContent = (
+    <>
       {/* Fixed HOME Header - Does not change with module switching */}
-      <div className="px-4 py-4 border-b border-gray-700/50 bg-gray-800/30">
+      <div className="px-4 py-4 border-b" style={{ 
+        borderColor: 'var(--border-subtle)', 
+        backgroundColor: 'var(--surface-2)'
+      }}>
         <div className="flex items-center justify-between">
-          {!collapsed && (
+          {!isCollapsed && (
             <div className="flex items-center gap-3">
-              <h2 className="font-medium text-white text-sm">
+              <h2 className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>
                 HOME
               </h2>
             </div>
           )}
           
-          {collapsed && (
+          {isCollapsed && !showAsDrawer && (
             <div className="flex justify-center w-full">
-              <span className="text-sm font-semibold text-blue-400">H</span>
+              <span className="text-sm font-semibold" style={{ color: 'var(--brand-primary)' }}>H</span>
             </div>
           )}
-
-          {/* Collapse Button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setCollapsed(!collapsed)}
-            className={cn(
-              "h-8 w-8 p-0 border-none bg-transparent flex-shrink-0",
-              collapsed && "w-full justify-center"
-            )}
-            style={{ color: '#ffffff' }}
-            title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          >
-            {collapsed ? (
-              <ChevronRight className="h-4 w-4" style={{ color: '#ffffff' }} />
-            ) : (
-              <ChevronLeft className="h-4 w-4" style={{ color: '#ffffff' }} />
-            )}
-          </Button>
         </div>
       </div>
 
       {/* Navigation Items - Increased vertical spacing */}
-      <nav className="flex-1 px-4 py-6 space-y-2" role="navigation" aria-label="Module navigation">
+      <nav 
+        className="flex-1 px-4 py-6 space-y-2" 
+        role="navigation" 
+        aria-label="Module navigation"
+        id="main-sidebar"
+      >
         {moduleConfig?.items.map((item) => {
           const isActive = activeItemId === item.id
           return (
@@ -133,12 +150,59 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
               key={item.id}
               item={item}
               isActive={isActive}
-              collapsed={collapsed}
+              collapsed={isCollapsed && !showAsDrawer}
             />
           )
         })}
       </nav>
+    </>
+  )
 
+  // Mobile Drawer Mode
+  if (showAsDrawer) {
+    return (
+      <>
+        {/* Backdrop */}
+        {isMobileOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            onClick={closeMobileDrawer}
+            aria-hidden="true"
+          />
+        )}
+        
+        {/* Mobile Drawer */}
+        <aside 
+          className={cn(
+            "fixed top-0 left-0 h-full w-64 flex flex-col transition-transform duration-300 z-50 lg:hidden",
+            isMobileOpen ? "translate-x-0" : "-translate-x-full",
+            className
+          )}
+          style={{ 
+            backgroundColor: 'var(--surface-1)', 
+            borderRight: `1px solid var(--border-subtle)`
+          }}
+        >
+          {sidebarContent}
+        </aside>
+      </>
+    )
+  }
+
+  // Desktop Mode (Expanded or Rail)
+  return (
+    <aside 
+      className={cn(
+        "flex flex-col transition-all duration-300 hidden lg:flex",
+        isCollapsed ? "w-16" : "w-64",
+        className
+      )}
+      style={{ 
+        backgroundColor: 'var(--surface-1)', 
+        borderRight: `1px solid var(--border-subtle)`
+      }}
+    >
+      {sidebarContent}
     </aside>
   )
 }
