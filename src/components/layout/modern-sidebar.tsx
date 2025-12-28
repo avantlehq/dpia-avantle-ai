@@ -23,17 +23,20 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   
   const navRowContent = (
     <div 
-      className="group relative flex items-center w-full text-sm transition-all duration-200 focus-within:outline-none"
+      className="group relative flex items-center text-sm transition-all duration-200 focus-within:outline-none"
       style={{
         backgroundColor: isActive ? 'rgba(96,165,250,0.15)' : 'transparent', // Light blue background when active
         borderLeft: isActive ? '3px solid var(--brand-primary)' : 'none', // Brand primary accent when active
         color: isActive ? 'var(--text-primary)' : 'var(--text-muted)', // Design token colors
         paddingLeft: isActive ? '9px' : '12px', // Compensate for border width
-        paddingRight: '8px', // Reduced right padding to prevent overflow
+        paddingRight: '8px', // Controlled right padding
         paddingTop: '10px',
         paddingBottom: '10px',
-        marginRight: '8px', // Add margin to create gap from sidebar edge
-        borderRadius: '6px' // Rounded corners to contain the highlight
+        marginLeft: '0px', // No left margin - let border be the left edge
+        marginRight: '12px', // Right margin to stay within sidebar bounds
+        borderRadius: '6px', // Rounded corners to contain the highlight
+        maxWidth: collapsed ? '40px' : '220px', // Explicit max width constraints
+        width: collapsed ? '40px' : 'auto' // Fixed width in collapsed mode
       }}
     >
       {/* Clean text-only navigation - NO ICONS anywhere */}
@@ -161,10 +164,15 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     <>
       {/* Navigation Items - Clean start from top, no header */}
       <nav 
-        className="flex-1 px-4 pt-6 pb-6 space-y-2" 
+        className="flex-1 pt-6 pb-6 space-y-2" 
         role="navigation" 
         aria-label="Module navigation"
         id="main-sidebar"
+        style={{
+          paddingLeft: '12px',
+          paddingRight: '4px', // Reduced to ensure highlights don't exceed bounds
+          overflow: 'hidden' // Prevent any overflow
+        }}
       >
         {moduleConfig?.items.map((item) => {
           const isActive = activeItemId === item.id
