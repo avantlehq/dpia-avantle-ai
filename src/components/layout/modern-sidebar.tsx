@@ -241,11 +241,13 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     <aside 
       key={`sidebar-${mode}-${mounted}`}
       className={cn(
-        "flex flex-col transition-all duration-300 hidden lg:flex",
+        "flex flex-col transition-all duration-300 hidden lg:flex flex-shrink-0",
         className
       )}
       style={{ 
         width: currentWidth,
+        minWidth: currentWidth,
+        maxWidth: currentWidth,
         backgroundColor: 'var(--surface-1)', 
         borderRight: `1px solid var(--border-subtle)`
       }}
