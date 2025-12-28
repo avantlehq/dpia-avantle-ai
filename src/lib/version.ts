@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.76" as const
-export const VERSION_NAME = "DEBUG: Red Border - Make Sidebar Visible" as const
+export const VERSION = "3.21.77" as const
+export const VERSION_NAME = "CRITICAL FIX: Remove hidden lg:flex - Always Show Desktop Sidebar" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({

@@ -127,7 +127,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     return (
       <aside 
         className={cn(
-          "flex flex-col transition-all duration-300 hidden lg:flex",
+          "flex flex-col transition-all duration-300",
           className
         )}
         style={{ 
@@ -218,8 +218,9 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         {/* Mobile Drawer */}
         <aside 
           className={cn(
-            "fixed top-0 left-0 h-full w-64 flex flex-col transition-transform duration-300 z-50 lg:hidden",
+            "fixed top-0 left-0 h-full w-64 flex flex-col transition-transform duration-300 z-50",
             isMobileOpen ? "translate-x-0" : "-translate-x-full",
+            showAsDrawer ? "block" : "hidden", // Show only when mobile drawer mode
             className
           )}
           style={{ 
@@ -250,7 +251,8 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     <aside 
       key={`sidebar-${mode}-${mounted}`}
       className={cn(
-        "flex flex-col transition-all duration-300 hidden lg:flex flex-shrink-0",
+        "flex flex-col transition-all duration-300 flex-shrink-0",
+        // Remove hidden lg:flex - always show on desktop, use showAsDrawer for mobile logic
         className
       )}
       style={{ 
