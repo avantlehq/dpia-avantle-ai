@@ -470,21 +470,7 @@ nav a button *,
   color: var(--text-primary) !important;
 }
 
-/* Design token CSS variable support for Tailwind arbitrary values */
-button[class*="bg-[--"], 
-[data-button="true"][class*="bg-[--"] {
-  background-color: var(--brand-primary);
-}
-
-button[class*="text-[--"], 
-[data-button="true"][class*="text-[--"] {
-  color: var(--text-primary);
-}
-
-button[class*="border-[--"], 
-[data-button="true"][class*="border-[--"] {
-  border-color: var(--border-default);
-}
+/* Design token CSS variables are handled by Tailwind classes - removed problematic overrides */
 
 /* Legacy button hover effects - to be removed */
 .primary-cta-button:hover {

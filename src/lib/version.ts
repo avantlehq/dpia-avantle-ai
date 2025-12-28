@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.68" as const
-export const VERSION_NAME = "Hotfix: React Hook Rules Violation & Cleanup" as const
+export const VERSION = "3.21.69" as const
+export const VERSION_NAME = "Fix Sidebar Toggle Logic & Button Styling" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.69": {
+    date: "2025-12-28",
+    name: "Fix Sidebar Toggle Logic & Button Styling",
+    features: [
+      "SIDEBAR TOGGLE FIX: Fixed logic inconsistencies in collapsed state detection",
+      "DESKTOP/MOBILE LOGIC: Clarified isDesktop && isCollapsed conditions throughout sidebar", 
+      "BUTTON STYLING FIX: Removed CSS overrides that made secondary buttons look like primary",
+      "VISUAL REGRESSION: Fixed button color specificity issues in globals.css",
+      "FUNCTIONALITY RESTORED: Both toggle and button styling now work correctly"
+    ]
+  },
   "3.21.68": {
     date: "2025-12-28",
     name: "Hotfix: React Hook Rules Violation & Cleanup",

@@ -85,7 +85,8 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     isMobileOpen, 
     showAsDrawer, 
     closeMobileDrawer,
-    mounted
+    mounted,
+    isDesktop
   } = useSidebarToggle()
   
   const activeModuleId = getActiveModule(pathname)
@@ -144,7 +145,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         backgroundColor: 'var(--surface-2)'
       }}>
         <div className="flex items-center justify-between">
-          {!isCollapsed && (
+          {!(isDesktop && isCollapsed) && (
             <div className="flex items-center gap-3">
               <h2 className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>
                 HOME
@@ -152,7 +153,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
             </div>
           )}
           
-          {isCollapsed && !showAsDrawer && (
+          {isDesktop && isCollapsed && (
             <div className="flex justify-center w-full">
               <span className="text-sm font-semibold" style={{ color: 'var(--brand-primary)' }}>H</span>
             </div>
@@ -174,7 +175,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
               key={item.id}
               item={item}
               isActive={isActive}
-              collapsed={isCollapsed && !showAsDrawer}
+              collapsed={isDesktop && isCollapsed}
             />
           )
         })}
@@ -218,7 +219,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     <aside 
       className={cn(
         "flex flex-col transition-all duration-300 hidden lg:flex",
-        isCollapsed ? "w-16" : "w-64",
+        isDesktop && isCollapsed ? "w-16" : "w-64",
         className
       )}
       style={{ 
