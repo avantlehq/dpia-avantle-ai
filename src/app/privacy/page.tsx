@@ -26,7 +26,7 @@ export default function PrivacyOverview() {
           {/* Secondary CTA - Start Pre-check */}
           <Link href="/precheck">
             <Button 
-              variant="secondary" 
+              variant="outline" 
               size="md"
               title="Quick pre-assessment to check if full DPIA is required"
             >

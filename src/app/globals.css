@@ -414,29 +414,11 @@ table td a, table th, table td {
   color: #ffffff !important;
 }
 
-/* EMERGENCY BUTTON VISIBILITY FIXES */
-.primary-cta-button, .secondary-cta-button, 
-button[class*="cta-button"], 
-[data-slot="button"] {
-  background-color: #2563eb !important;
-  color: white !important;
-  border: 2px solid #1d4ed8 !important;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4) !important;
-  border-radius: 10px !important;
-  font-weight: 600 !important;
-  transition: all 0.15s ease-out !important;
+/* Legacy button hover effects - to be removed */
+.primary-cta-button:hover {
+  background-color: #2A5A9A !important;
 }
 
-.primary-cta-button:hover, .secondary-cta-button:hover,
-button[class*="cta-button"]:hover,
-[data-slot="button"]:hover {
-  background-color: #1d4ed8 !important;
-  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.5) !important;
-  transform: translateY(-1px) !important;
-}
-
-.secondary-cta-button {
-  background-color: #374151 !important;
-  border-color: #4b5563 !important;
-  box-shadow: 0 4px 12px rgba(55, 65, 81, 0.4) !important;
+.secondary-cta-button:hover {
+  background-color: #2A5A9A !important;
 }
