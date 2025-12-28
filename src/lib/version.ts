@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.59" as const
-export const VERSION_NAME = "Fix Button Text Visibility - Force White Text" as const
+export const VERSION = "3.21.60" as const
+export const VERSION_NAME = "Button Text Fix - CSS Specificity Override" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.60": {
+    date: "2025-12-28",
+    name: "Button Text Fix - CSS Specificity Override",
+    features: [
+      "CRITICAL FIX: Added high-specificity CSS rules to override nav link inheritance",
+      "BUTTON DATA ATTRIBUTE: Added data-button='true' for precise CSS targeting", 
+      "CSS HIERARCHY OVERRIDE: Fixed nav a rule that was forcing color:inherit on button text",
+      "MULTIPLE SELECTORS: Covers a button, nav a button, and component class patterns",
+      "GUARANTEED WHITE TEXT: All button text now displays white regardless of wrapper context"
+    ]
+  },
   "3.21.59": {
     date: "2025-12-28",
     name: "Fix Button Text Visibility - Force White Text",

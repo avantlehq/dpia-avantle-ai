@@ -414,6 +414,20 @@ table td a, table th, table td {
   color: #ffffff !important;
 }
 
+/* Button component text color override - HIGHEST SPECIFICITY */
+a button,
+a button *,
+link button,
+link button *,
+nav a button,
+nav a button *,
+[data-button="true"],
+[data-button="true"] *,
+.inline-flex.items-center.justify-center,
+.inline-flex.items-center.justify-center * {
+  color: #ffffff !important;
+}
+
 /* Legacy button hover effects - to be removed */
 .primary-cta-button:hover {
   background-color: #2A5A9A !important;

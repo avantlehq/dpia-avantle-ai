@@ -64,6 +64,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         disabled={disabled || isLoading}
         aria-busy={isLoading}
+        data-button="true"
         {...props}
       >
         {isLoading ? (
