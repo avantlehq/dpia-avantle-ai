@@ -27,11 +27,12 @@ function ModuleTab({ module, active, disabled }: ModuleTabProps) {
           className={cn(
             "h-10 px-4 py-2 text-sm font-medium transition-all duration-200",
             "border-b-2 border-transparent rounded-none",
-            "opacity-50 cursor-not-allowed hover:bg-transparent text-muted-foreground"
+            "opacity-50 cursor-not-allowed hover:bg-transparent",
+            "text-[--text-muted]"
           )}
           disabled={true}
         >
-          <module.icon className="h-4 w-4 mr-2 text-muted-foreground" />
+          <module.icon className="h-4 w-4 mr-2 text-[--text-muted]" />
           {module.name}
         </Button>
       </div>
@@ -47,18 +48,18 @@ function ModuleTab({ module, active, disabled }: ModuleTabProps) {
           "border-b-2 border-transparent rounded-none",
           // Active state
           active && [
-            "text-foreground border-b-indigo-500 bg-muted/30"
+            "text-[--text-primary] bg-[--interactive-press]"
           ],
           // Inactive state  
           !active && [
-            "text-muted-foreground hover:text-foreground hover:bg-muted/20"
+            "text-[--text-muted] hover:text-[--text-primary] hover:bg-[--interactive-hover]"
           ]
         )}
       >
         <module.icon 
           className={cn(
             "h-4 w-4 mr-2",
-            active && "text-indigo-500"
+            active && "text-[--brand-primary]"
           )}
           style={active ? { color: module.color } : undefined}
         />

@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.62" as const
-export const VERSION_NAME = "UI Cleanup - Footer, Button Layout & Consistency" as const
+export const VERSION = "3.21.63" as const
+export const VERSION_NAME = "Design Token System - Production Ready Foundation" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.63": {
+    date: "2025-12-28",
+    name: "Design Token System - Production Ready Foundation",
+    features: [
+      "DESIGN TOKENS: Complete CSS variable system for brand, surface, border, text and interactive colors",
+      "BUTTON REFACTOR: Updated Button component to use design tokens while maintaining identical appearance", 
+      "ICONBUTTON COMPONENT: New reusable IconButton with 40x40px hit area and proper accessibility",
+      "NAVIGATION TOKENS: Updated topbar navigation to use consistent design token classes",
+      "SCALABLE FOUNDATION: Zero visual regression - same appearance with improved maintainability"
+    ]
+  },
   "3.21.62": {
     date: "2025-12-28",
     name: "UI Cleanup - Footer, Button Layout & Consistency",

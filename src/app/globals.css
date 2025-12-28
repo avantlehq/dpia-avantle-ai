@@ -38,18 +38,56 @@
   --underline-thickness: 2px;
   --underline-opacity: 0.4;
   
-  /* STRICT SaaS Navigation Tokens - Single Accent Only */
-  --accent: #4A90E2;                    /* SINGLE accent color - used everywhere */
-  --nav-bg: #1F2D3A;                    /* Sidebar background */
-  --nav-border: #2F404E;                /* Subtle borders */
-  --nav-hover: rgba(255, 255, 255, 0.04); /* Very subtle hover background */
-  --nav-active-bg: rgba(255, 255, 255, 0.08); /* Subtle active background */
-  --text-default: #E5E7EB;              /* Default nav text */
-  --text-muted: #9CA3AF;                /* Muted/inactive text */
-  --text-bright: #FFFFFF;               /* Active/bright text */
-  --icon-muted: #6B7280;                /* Muted icon color */
-  --icon-default: #9CA3AF;              /* Default icon color */
-  --icon-bright: #D1D5DB;               /* Active/bright icon color */
+  /* =====================================================
+     DESIGN TOKEN SYSTEM - PRODUCTION READY
+     ===================================================== */
+  
+  /* Brand Colors */
+  --brand-primary: #4A90E2;             /* Primary brand color - buttons, links, highlights */
+  --brand-primary-hover: #3B82E7;       /* Primary hover state */
+  --brand-primary-active: #2563eb;      /* Primary active/pressed state */
+  --brand-destructive: #dc2626;         /* Error/delete actions */
+  --brand-destructive-hover: #b91c1c;   /* Destructive hover */
+  
+  /* Surface Colors (backgrounds) */
+  --surface-0: #192734;                 /* App background (existing) */
+  --surface-1: #1F2D3A;                 /* Cards, panels, sidebar */
+  --surface-2: #374151;                 /* Secondary surfaces, table rows */
+  --surface-3: #4B5563;                 /* Tertiary surfaces, hover states */
+  
+  /* Border Colors */
+  --border-default: #4B5563;            /* Default borders, dividers */
+  --border-subtle: #2F404E;             /* Subtle borders, card outlines */
+  --border-focus: #4A90E2;              /* Focus ring color */
+  
+  /* Text Colors */
+  --text-primary: #FFFFFF;              /* Primary text, headings */
+  --text-secondary: #E5E7EB;            /* Secondary text, labels */
+  --text-muted: #9CA3AF;                /* Muted text, placeholders */
+  --text-inverse: #000000;              /* Text on light backgrounds */
+  
+  /* Interactive States */
+  --interactive-hover: rgba(255, 255, 255, 0.05);  /* Hover overlay */
+  --interactive-press: rgba(255, 255, 255, 0.08);  /* Press/active overlay */
+  --focus-ring: #4A90E2;                /* Focus outline color */
+  
+  /* Status Colors */
+  --status-success: #22c55e;            /* Success indicators */
+  --status-warning: #f59e0b;            /* Warning indicators */
+  --status-error: #ef4444;              /* Error indicators */
+  --status-info: #3b82f6;               /* Information indicators */
+
+  /* LEGACY NAVIGATION TOKENS (to be migrated) */
+  --accent: var(--brand-primary);       /* DEPRECATED: Use --brand-primary */
+  --nav-bg: var(--surface-1);           /* DEPRECATED: Use --surface-1 */
+  --nav-border: var(--border-subtle);   /* DEPRECATED: Use --border-subtle */
+  --nav-hover: var(--interactive-hover); /* DEPRECATED: Use --interactive-hover */
+  --nav-active-bg: var(--interactive-press); /* DEPRECATED: Use --interactive-press */
+  --text-default: var(--text-secondary); /* DEPRECATED: Use --text-secondary */
+  --text-bright: var(--text-primary);   /* DEPRECATED: Use --text-primary */
+  --icon-muted: #6B7280;                /* DEPRECATED: Use --text-muted */
+  --icon-default: var(--text-muted);    /* DEPRECATED: Use --text-muted */
+  --icon-bright: #D1D5DB;               /* DEPRECATED: Use --text-secondary */
   
   /* Navigation Sizing - Consistent */
   --nav-icon-size: 18px;
@@ -414,7 +452,11 @@ table td a, table th, table td {
   color: #ffffff !important;
 }
 
-/* Button component text color override - HIGHEST SPECIFICITY */
+/* =====================================================
+   DESIGN TOKEN BUTTON OVERRIDES - HIGHEST SPECIFICITY
+   ===================================================== */
+
+/* Button component using design tokens - override legacy styles */
 a button,
 a button *,
 link button,
@@ -425,7 +467,23 @@ nav a button *,
 [data-button="true"] *,
 .inline-flex.items-center.justify-center,
 .inline-flex.items-center.justify-center * {
-  color: #ffffff !important;
+  color: var(--text-primary) !important;
+}
+
+/* Design token CSS variable support for Tailwind arbitrary values */
+button[class*="bg-[--"], 
+[data-button="true"][class*="bg-[--"] {
+  background-color: var(--brand-primary);
+}
+
+button[class*="text-[--"], 
+[data-button="true"][class*="text-[--"] {
+  color: var(--text-primary);
+}
+
+button[class*="border-[--"], 
+[data-button="true"][class*="border-[--"] {
+  border-color: var(--border-default);
 }
 
 /* Legacy button hover effects - to be removed */
