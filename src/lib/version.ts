@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.60" as const
-export const VERSION_NAME = "Button Text Fix - CSS Specificity Override" as const
+export const VERSION = "3.21.61" as const
+export const VERSION_NAME = "Consistent Secondary Buttons - Dashboard Fix" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.61": {
+    date: "2025-12-28",
+    name: "Consistent Secondary Buttons - Dashboard Fix",
+    features: [
+      "BUTTON CONSISTENCY: Fixed precheck button on dashboard to use standard secondary styling",
+      "DESIGN SYSTEM COMPLIANCE: Changed from outline + custom gray text to proper secondary variant", 
+      "VISUAL HARMONY: Precheck button now matches other secondary buttons across the platform",
+      "UX IMPROVEMENT: Consistent button hierarchy while maintaining micro-hierarchy pattern",
+      "REMOVED CUSTOM OVERRIDES: Eliminated text-gray-400 and border-dashed custom classes"
+    ]
+  },
   "3.21.60": {
     date: "2025-12-28",
     name: "Button Text Fix - CSS Specificity Override",

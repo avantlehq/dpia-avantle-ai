@@ -35,9 +35,9 @@ export default function DashboardPage() {
             <span>or</span>
             <Link href="/precheck">
               <Button 
-                variant="outline" 
+                variant="secondary" 
                 size="sm"
-                className="ml-2 border-dashed text-gray-400 hover:text-gray-300"
+                className="ml-2"
                 title="Quick pre-assessment to check if full DPIA is required"
               >
                 <span style={{ fontSize: '12px' }}>✓</span>
