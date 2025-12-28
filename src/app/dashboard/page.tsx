@@ -17,7 +17,19 @@ export default function DashboardPage() {
             Manage your DPIA assessments and compliance activities
           </p>
         </div>
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex items-center" style={{ gap: '32px' }}>
+          {/* Secondary CTA - Start Pre-check */}
+          <Link href="/precheck">
+            <Button 
+              variant="secondary" 
+              size="md"
+              title="Quick pre-assessment to check if full DPIA is required"
+            >
+              <span style={{ fontSize: '12px' }}>✓</span>
+              Start Pre-check
+            </Button>
+          </Link>
+          
           {/* Primary CTA - New Assessment (single prominent action) */}
           <Link href="/assessments/new">
             <Button 
@@ -25,26 +37,9 @@ export default function DashboardPage() {
               size="lg"
               className="min-w-[200px]"
             >
-              <span style={{ fontSize: '18px', fontWeight: '400' }}>+</span>
               New Assessment
             </Button>
           </Link>
-          
-          {/* Secondary helper - micro-hierarchy */}
-          <div className="flex items-center text-sm text-gray-400">
-            <span>or</span>
-            <Link href="/precheck">
-              <Button 
-                variant="secondary" 
-                size="sm"
-                className="ml-2"
-                title="Quick pre-assessment to check if full DPIA is required"
-              >
-                <span style={{ fontSize: '12px' }}>✓</span>
-                start with pre-check →
-              </Button>
-            </Link>
-          </div>
         </div>
       </div>
 

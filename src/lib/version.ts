@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.61" as const
-export const VERSION_NAME = "Consistent Secondary Buttons - Dashboard Fix" as const
+export const VERSION = "3.21.62" as const
+export const VERSION_NAME = "UI Cleanup - Footer, Button Layout & Consistency" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.62": {
+    date: "2025-12-28",
+    name: "UI Cleanup - Footer, Button Layout & Consistency",
+    features: [
+      "FOOTER CLEANUP: Removed 'GDPR Compliance Tool' text from footer - now shows just 'Privacy Platform X.X.X'",
+      "BUTTON SIMPLIFICATION: Removed plus sign (+) from New Assessment button for cleaner design", 
+      "LAYOUT IMPROVEMENT: Moved precheck button to proper horizontal layout with 32px gap",
+      "SIZE CONSISTENCY: Changed precheck button from size sm to md to match other secondary buttons",
+      "LABEL CLARITY: Updated precheck button text from 'start with pre-check →' to 'Start Pre-check'"
+    ]
+  },
   "3.21.61": {
     date: "2025-12-28",
     name: "Consistent Secondary Buttons - Dashboard Fix",
