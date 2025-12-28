@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.53" as const
-export const VERSION_NAME = "Fix Build Errors - Clean Unused Imports" as const
+export const VERSION = "3.21.54" as const
+export const VERSION_NAME = "Fix Button Visibility - Better Contrast" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.54": {
+    date: "2025-12-28",
+    name: "Fix Button Visibility - Better Contrast",
+    features: [
+      "BUTTON VISIBILITY FIX: Improved contrast for secondary buttons against dark background",
+      "COLOR ADJUSTMENTS: Secondary buttons now use #374151 instead of #2A3B4A for better visibility", 
+      "BORDER ENHANCEMENT: Improved border colors (#4B5563 → #6B7280) for outline buttons",
+      "HOVER IMPROVEMENTS: Enhanced hover states with white/10 opacity for ghost and outline variants",
+      "SHADOW ADDITION: Added shadow-sm to secondary buttons for better visual separation"
+    ]
+  },
   "3.21.53": {
     date: "2025-12-28",
     name: "Fix Build Errors - Clean Unused Imports",
