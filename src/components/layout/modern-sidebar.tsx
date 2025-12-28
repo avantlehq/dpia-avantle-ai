@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, type NavItem } from '@/lib/state/modules'
-import { useSidebarToggle } from '@/hooks/useSidebarToggle'
+import { useSidebarContext } from '@/contexts/SidebarContext'
 
 interface ModernSidebarProps {
   className?: string
@@ -88,7 +88,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     closeMobileDrawer,
     mounted,
     isDesktop
-  } = useSidebarToggle()
+  } = useSidebarContext()
   
   const activeModuleId = getActiveModule(pathname)
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')

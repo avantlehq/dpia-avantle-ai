@@ -26,7 +26,7 @@ import {
 import { privacyModulesConfig, getActiveModule } from '@/lib/state/modules'
 import { cn } from '@/lib/utils'
 import { IconButton } from '@/components/ui/icon-button'
-import { useSidebarToggle } from '@/hooks/useSidebarToggle'
+import { useSidebarContext } from '@/contexts/SidebarContext'
 
 // Fixed module navigation link - no floating icons, proper text+icon rows
 interface ModuleLinkProps {
@@ -69,7 +69,7 @@ export function ModernTopbar() {
   const pathname = usePathname()
   const activeModuleId = getActiveModule(pathname)
   const versionInfo = getVersionInfo()
-  const { toggle, isCollapsed, isMobileOpen } = useSidebarToggle()
+  const { toggle, isCollapsed, isMobileOpen } = useSidebarContext()
   
   // Context-aware home link based on active module
   const getHomeLink = () => {
