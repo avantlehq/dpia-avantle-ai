@@ -31,15 +31,15 @@ dpia table ako root            // nie je škálovateľné
 
 **DPIA Suite** - European platform for automated GDPR Data Protection Impact Assessments with complete workflow.
 
-**Current Status: VERSION 3.21.50 - Complete Modern SaaS Navigation & UX**
+**Current Status: VERSION 3.21.63 - Design Token System & Production Foundation**
 
-### Latest Achievements (December 21, 2025)
-- ✅ **Modern SaaS Dashboard Buttons**: Enterprise UX hierarchy with gradient primary CTA, ghost secondary helper
-- ✅ **Complete Module Pages**: All 13 sidebar positions now functional with placeholder pages across 6 modules
-- ✅ **Clean Text-Only Sidebar**: No icons, proper spacing, white collapse arrow, professional design
-- ✅ **Consistent Footer**: Fixed missing footer on DPIA pages, proper layout inheritance
-- ✅ **Privacy Platform Branding**: Unified naming in topbar and footer (removed Avantle/DPIA.ai references)
-- ✅ **Professional Spacing**: Fixed text touching borders, proper ml-4 content margins
+### Latest Achievements (December 28, 2025)
+- ✅ **Design Token System**: Complete CSS variable foundation for scalable color management
+- ✅ **Production Button System**: Refactored Button component using design tokens with zero visual regression
+- ✅ **IconButton Component**: New reusable component with 40x40px hit area and proper accessibility
+- ✅ **Consistent UI Foundation**: All interactive elements now use centralized design token system
+- ✅ **Button Text Visibility**: Fixed inheritance issues ensuring white text across all button variants
+- ✅ **UI Consistency**: Standardized precheck button layout and removed legacy styling inconsistencies
 
 ### Foundation Achievements  
 - ✅ **Modern SaaS Navigation**: Professional text-only design, 32px spacing, context-aware routing
@@ -61,8 +61,9 @@ dpia table ako root            // nie je škálovateľné
 **Technical Stack:**
 - Framework: Next.js 16.0.10 + React 19 + TypeScript
 - Backend: Supabase (service role key bypassing RLS)
-- Styling: Tailwind CSS + explicit CSS for reliability
-- Theme: Ultra-soft RGB(25,39,52) with single blue accent
+- Styling: Tailwind CSS + Design Token System (CSS variables)
+- Theme: Production-ready token system with scalable color management
+- Components: Button & IconButton with centralized styling
 - Security: CVE-2025-55182 patched, enterprise-grade
 
 ## Enterprise Navigation Architecture
@@ -95,19 +96,43 @@ Privacy Platform 3.21.50    Context · Privacy · Risk · Controls · Training �
 - **DPIA Builder** (`/assessments/new`) → Launched from Dashboard for assessment creation
 - **Breadcrumbs**: Start with module name (Privacy > DPIA Assessments), not generic "Home"
 
-## Design System
+## Design Token System
 
-### Color Palette
-- **Background**: RGB(25,39,52) ultra-soft dark blue
-- **Categories**: Blue (Dashboard), Green (Assessment), Orange (Builder), Red (Risk), Purple (Settings)
-- **Opacity Standards**: 15% (icons), 25% (hover), 30% (borders), 40% (underlines)
-- **Accent Color**: Single blue-500 (#3b82f6) throughout application
+### Core Design Tokens (CSS Variables)
+```css
+/* Brand Colors */
+--brand-primary: #4A90E2;             /* Primary brand color - buttons, links */
+--brand-primary-hover: #3B82E7;       /* Primary hover state */
+--brand-primary-active: #2563eb;      /* Primary active/pressed state */
+--brand-destructive: #dc2626;         /* Error/delete actions */
 
-### Component Patterns
-- **Navigation**: Enterprise text-first design, explicit CSS for reliability
-- **Forms**: Neutral questions, indigo selections (#6366f1), green reserved for success only
-- **Cards**: Consistent elevation (shadow-sm hover:shadow-md), category-based left borders
-- **Buttons**: Single primary CTA rule, matching backgrounds with typography hierarchy
+/* Surface Colors */
+--surface-0: #192734;                 /* App background (ultra-soft dark blue) */
+--surface-1: #1F2D3A;                 /* Cards, panels, sidebar */
+--surface-2: #374151;                 /* Secondary surfaces, table rows */
+--surface-3: #4B5563;                 /* Tertiary surfaces, hover states */
+
+/* Text & Borders */
+--text-primary: #FFFFFF;              /* Primary text, headings */
+--text-secondary: #E5E7EB;            /* Secondary text, labels */
+--text-muted: #9CA3AF;                /* Muted text, placeholders */
+--border-default: #4B5563;            /* Default borders, dividers */
+--interactive-hover: rgba(255,255,255,0.05);  /* Hover overlay */
+--focus-ring: #4A90E2;                /* Focus outline color */
+```
+
+### Component Architecture
+- **Button System**: Design token-based variants (primary, secondary, ghost, outline, destructive)
+- **IconButton**: Standardized 40x40px hit area with accessibility-first design
+- **Navigation**: Consistent hover/active states using design tokens
+- **Focus Management**: Unified focus ring using --focus-ring token
+- **Zero Visual Regression**: All components maintain identical appearance
+
+### Design Principles
+- **Token-First Approach**: All colors must use CSS variables from design token system
+- **Scalable Foundation**: Easy to add themes, adjust colors globally, or rebrand
+- **Accessibility Maintained**: All contrast ratios and focus states preserved
+- **Component Consistency**: Button and IconButton provide standardized interaction patterns
 
 ## Form Control System
 
@@ -126,18 +151,20 @@ Privacy Platform 3.21.50    Context · Privacy · Risk · Controls · Training �
 ## UX Patterns
 
 ### Primary Actions
-- **Single CTA Rule**: One primary button per screen only
-- **SaaS Button Hierarchy**: Primary with gradient + icon, secondary as dashed ghost
-- **Micro-Hierarchy**: "or start with pre-check →" pattern for guided UX
-- **Professional Styling**: Gradient backgrounds, hover lift animations, proper spacing
+- **Single CTA Rule**: One primary button per screen only  
+- **Design Token Buttons**: All buttons use CSS variables for consistent theming
+- **Button Variants**: Primary (brand), secondary (surface), ghost/outline (transparent), destructive (error)
+- **IconButton Standard**: 40x40px hit area with accessibility-first design
+- **Micro-Hierarchy**: Consistent spacing (32px gaps) between action groups
 - **Auto-save**: Debounced 2-second saves with status indicators ("Saving..." → "Saved · just now")
 
 ### Navigation Standards
 - **Header**: "Workspace" (not "Menu")
 - **Modules**: Action-oriented names (Overview, DPIA Pre-Check, DPIA Assessments)
-- **Design**: Flat, minimal, no color-coding or dividers
-- **Active states**: bg-muted/50, border-l-2 border-l-indigo-500
-- **Target aesthetic**: Similar to Linear/Vercel/GitHub Projects
+- **Design**: Flat, minimal, using design tokens for consistency
+- **Active states**: --text-primary, --interactive-press background
+- **Hover states**: --text-muted → --text-primary, --interactive-hover background
+- **Target aesthetic**: Similar to Linear/Vercel/GitHub Projects with design token foundation
 
 ## Database Architecture (Supabase)
 - **Core Tables**: users, tenants, workspaces, assessments, assessment_answers, form_sections
@@ -174,10 +201,10 @@ git add . && git commit -m "message" && git push origin main
 
 **Local Path**: `C:\Users\rasti\Projects\avantlehq\dpia-avantle-ai\`
 
-## Button System Architecture
+## Component System Architecture
 
-### Consistent Button Component
-Created unified `<Button />` component in `src/components/ui/button.tsx`:
+### Design Token-Based Button System
+**Button Component** (`src/components/ui/button.tsx`) - Refactored with design tokens:
 
 **API:**
 - `variant`: "primary" | "secondary" | "ghost" | "outline" | "destructive"
@@ -187,19 +214,25 @@ Created unified `<Button />` component in `src/components/ui/button.tsx`:
 - `fullWidth`: Boolean for full-width buttons
 - `asChild`: Radix Slot pattern for Link composition
 
-**Design Standards:**
-- **Radius**: 10px (no pill shapes)
-- **Heights**: sm(30px), md(38px), lg(46px) 
-- **Primary**: Brand blue (#4A90E2), gradient hover, white text
-- **Secondary**: Dark surface (#2A3B4A), subtle border, white text
-- **Ghost**: Transparent, subtle white/5 hover
-- **Outline**: Transparent, muted border, white/5 hover
-- **Transitions**: 150ms ease-out, active translate-y-1px
+**Design Token Integration:**
+- **Primary**: `--brand-primary` background, `--brand-primary-hover` on hover
+- **Secondary**: `--surface-2` background, `--border-default` border
+- **Ghost/Outline**: Transparent with `--interactive-hover` on hover
+- **Text**: All variants use `--text-primary` (white)
+- **Focus**: Unified `--focus-ring` for accessibility
+
+**IconButton Component** (`src/components/ui/icon-button.tsx`) - New addition:
+
+**Standards:**
+- **Hit Area**: Fixed 40x40px (md), 32px (sm), 48px (lg)
+- **Icon Size**: Auto-calculated based on button size (16px/18px/20px)
+- **Accessibility**: Required `aria-label` for all instances
+- **Variants**: default, ghost, primary, destructive using design tokens
 
 **Usage Rules:**
 - **Single Primary CTA**: Only ONE primary button per screen
-- **Hierarchy**: Primary (lg) + Secondary (md) in empty states
-- **Refresh buttons**: Ghost/Outline (sm) with icons
+- **Consistent Spacing**: 32px gaps between button groups
+- **Token-First**: All new components must use design token CSS variables
 - **Focus rings**: 2px brand blue, offset matches dark background
 
 ### Implementation Coverage

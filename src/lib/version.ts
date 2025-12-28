@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.63" as const
-export const VERSION_NAME = "Design Token System - Production Ready Foundation" as const
+export const VERSION = "3.21.64" as const
+export const VERSION_NAME = "CLAUDE.md Update - Design Token Documentation" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.64": {
+    date: "2025-12-28",
+    name: "CLAUDE.md Update - Design Token Documentation",
+    features: [
+      "CLAUDE.MD UPDATE: Comprehensive documentation of design token system architecture",
+      "COMPONENT DOCUMENTATION: Detailed Button and IconButton specifications with design tokens", 
+      "CURRENT STATUS: Updated to reflect VERSION 3.21.63 achievements and design token foundation",
+      "TECHNICAL STACK: Updated to include design token system and component architecture",
+      "DEVELOPER GUIDANCE: Clear token-first approach and component usage standards"
+    ]
+  },
   "3.21.63": {
     date: "2025-12-28",
     name: "Design Token System - Production Ready Foundation",
