@@ -470,7 +470,18 @@ nav a button *,
   color: var(--text-primary) !important;
 }
 
-/* Design token CSS variables are handled by Tailwind classes - removed problematic overrides */
+/* Support for Tailwind arbitrary values with CSS custom properties */
+.bg-\[--brand-primary\] { background-color: var(--brand-primary) !important; }
+.bg-\[--brand-primary-hover\]:hover { background-color: var(--brand-primary-hover) !important; }
+.bg-\[--brand-primary-active\]:active { background-color: var(--brand-primary-active) !important; }
+.bg-\[--surface-2\] { background-color: var(--surface-2) !important; }
+.bg-\[--surface-3\]:hover { background-color: var(--surface-3) !important; }
+.bg-\[--interactive-hover\]:hover { background-color: var(--interactive-hover) !important; }
+.bg-\[--brand-destructive\] { background-color: var(--brand-destructive) !important; }
+.bg-\[--brand-destructive-hover\]:hover { background-color: var(--brand-destructive-hover) !important; }
+.text-\[--text-primary\] { color: var(--text-primary) !important; }
+.border-\[--border-default\] { border-color: var(--border-default) !important; }
+.border-\[--border-focus\] { border-color: var(--border-focus) !important; }
 
 /* Legacy button hover effects - to be removed */
 .primary-cta-button:hover {

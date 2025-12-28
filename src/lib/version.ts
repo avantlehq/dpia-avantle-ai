@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.69" as const
-export const VERSION_NAME = "Fix Sidebar Toggle Logic & Button Styling" as const
+export const VERSION = "3.21.70" as const
+export const VERSION_NAME = "Emergency Fix: Toggle & Button Styling" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.70": {
+    date: "2025-12-28",
+    name: "Emergency Fix: Toggle & Button Styling",
+    features: [
+      "CRITICAL TOGGLE FIX: Simplified hook state initialization to prevent race conditions",
+      "STATE SYNCHRONIZATION: Fixed localStorage loading to happen before screen size detection", 
+      "BUTTON BACKGROUNDS FIX: Restored CSS support for Tailwind arbitrary values with design tokens",
+      "REGRESSION REPAIR: Fixed white button backgrounds caused by over-aggressive CSS removal",
+      "EMERGENCY DEPLOYMENT: Immediate fix for broken toggle and button styling issues"
+    ]
+  },
   "3.21.69": {
     date: "2025-12-28",
     name: "Fix Sidebar Toggle Logic & Button Styling",

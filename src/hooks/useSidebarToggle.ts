@@ -28,6 +28,8 @@ export function useSidebarToggle() {
 
   // Initialize state from localStorage and detect screen size
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const updateScreenSize = () => {
       const isDesktop = window.innerWidth >= DESKTOP_BREAKPOINT
       setState(prev => ({
@@ -37,16 +39,17 @@ export function useSidebarToggle() {
       }))
     }
 
-    // Load persisted sidebar mode (only in browser)
-    if (typeof window !== 'undefined') {
-      const savedMode = localStorage.getItem(STORAGE_KEY) as SidebarMode
-      if (savedMode && (savedMode === 'expanded' || savedMode === 'collapsed')) {
-        setState(prev => ({ ...prev, mode: savedMode }))
-      }
-    }
-
-    // Set initial screen size
-    updateScreenSize()
+    // First: Load persisted sidebar mode
+    const savedMode = localStorage.getItem(STORAGE_KEY) as SidebarMode
+    
+    // Then: Set initial screen size and mode together
+    const isDesktop = window.innerWidth >= DESKTOP_BREAKPOINT
+    setState(prev => ({
+      ...prev,
+      mode: (savedMode === 'expanded' || savedMode === 'collapsed') ? savedMode : 'expanded',
+      isDesktop,
+      isMobileOpen: false, // Always start with mobile drawer closed
+    }))
 
     // Listen for resize events
     window.addEventListener('resize', updateScreenSize)
