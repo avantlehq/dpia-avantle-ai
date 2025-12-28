@@ -23,13 +23,15 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   
   const navRowContent = (
     <div 
-      className="group relative flex items-center w-full px-3 py-2.5 text-sm rounded-lg transition-all duration-200 focus-within:outline-none"
+      className="group relative flex items-center w-full text-sm rounded-lg transition-all duration-200 focus-within:outline-none"
       style={{
-        backgroundColor: 'transparent', // Clean professional background
+        backgroundColor: isActive ? 'rgba(96,165,250,0.15)' : 'transparent', // Light blue background when active
         borderLeft: isActive ? '2px solid var(--brand-primary)' : 'none', // Brand primary accent when active
         color: isActive ? 'var(--text-primary)' : 'var(--text-muted)', // Design token colors
         paddingLeft: isActive ? '11px' : '12px', // Compensate for border width
-        paddingRight: '20px' // Add right padding to prevent text touching border
+        paddingRight: '12px', // Consistent right padding
+        paddingTop: '10px',
+        paddingBottom: '10px'
       }}
     >
       {/* Clean text-only navigation - NO ICONS anywhere */}
@@ -45,15 +47,18 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
       
       {/* When collapsed/rail mode, show first letter as icon replacement */}
       {collapsed && (
-        <span 
-          className="text-xs font-semibold text-center w-full"
+        <div 
+          className="flex items-center justify-center w-full h-8 rounded transition-colors"
           style={{
-            color: isActive ? 'var(--brand-primary)' : 'var(--text-muted)'
+            color: isActive ? 'var(--brand-primary)' : 'var(--text-muted)',
+            backgroundColor: isActive ? 'rgba(96,165,250,0.2)' : 'transparent'
           }}
           title={item.name} // Tooltip for accessibility
         >
-          {item.name.charAt(0).toUpperCase()}
-        </span>
+          <span className="text-sm font-semibold">
+            {item.name.charAt(0).toUpperCase()}
+          </span>
+        </div>
       )}
     </div>
   )
@@ -72,6 +77,22 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
       className="group relative block modern-nav-link"
       aria-current={isActive ? "page" : undefined}
       title={collapsed ? item.name : undefined} // Show tooltip in rail mode
+      onMouseEnter={(e) => {
+        if (!isActive) {
+          const target = e.currentTarget.querySelector('div')
+          if (target) {
+            target.style.backgroundColor = 'rgba(255,255,255,0.05)'
+          }
+        }
+      }}
+      onMouseLeave={(e) => {
+        if (!isActive) {
+          const target = e.currentTarget.querySelector('div')
+          if (target) {
+            target.style.backgroundColor = 'transparent'
+          }
+        }
+      }}
     >
       {navRowContent}
     </Link>
@@ -127,20 +148,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
           borderRight: `1px solid var(--border-subtle)`
         }}
       >
-        <div className="px-4 py-4 border-b" style={{ 
-          borderColor: 'var(--border-subtle)', 
-          backgroundColor: 'var(--surface-2)'
-        }}>
-          {!(isDesktop && isCollapsed) ? (
-            <h2 className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>
-              HOME
-            </h2>
-          ) : (
-            <div className="flex justify-center w-full">
-              <span className="text-sm font-semibold" style={{ color: 'var(--brand-primary)' }}>H</span>
-            </div>
-          )}
-        </div>
+        {/* Empty sidebar for SSR - will be hydrated with navigation items */}
         <div className="flex-1" />
       </aside>
     )
@@ -149,31 +157,9 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   // Sidebar content (shared between desktop and mobile)
   const sidebarContent = (
     <>
-      {/* Fixed HOME Header - Does not change with module switching */}
-      <div className="px-4 py-4 border-b" style={{ 
-        borderColor: 'var(--border-subtle)', 
-        backgroundColor: 'var(--surface-2)'
-      }}>
-        <div className="flex items-center justify-between">
-          {!(isDesktop && isCollapsed) && (
-            <div className="flex items-center gap-3">
-              <h2 className="font-medium text-sm" style={{ color: 'var(--text-primary)' }}>
-                HOME
-              </h2>
-            </div>
-          )}
-          
-          {isDesktop && isCollapsed && (
-            <div className="flex justify-center w-full">
-              <span className="text-sm font-semibold" style={{ color: 'var(--brand-primary)' }}>H</span>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Navigation Items - Increased vertical spacing */}
+      {/* Navigation Items - Clean start from top, no header */}
       <nav 
-        className="flex-1 px-4 py-6 space-y-2" 
+        className="flex-1 px-4 pt-6 pb-6 space-y-2" 
         role="navigation" 
         aria-label="Module navigation"
         id="main-sidebar"

@@ -92,7 +92,7 @@ export function ModernTopbar() {
           size="md"
           icon={isMobileOpen ? <X /> : <Menu />}
           onClick={toggle}
-          aria-label="Toggle sidebar"
+          aria-label={isMobileOpen ? "Close sidebar" : "Toggle sidebar"}
           aria-expanded={!isCollapsed && !isMobileOpen}
           aria-controls="main-sidebar"
           className="mr-3"
