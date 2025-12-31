@@ -4,7 +4,7 @@
 import { Locale, defaultLocale, isValidLocale } from './config'
 
 // Type for translation dictionaries
-export type TranslationDictionary = Record<string, any>
+export type TranslationDictionary = Record<string, unknown>
 
 // Cache for loaded dictionaries
 const dictionaryCache = new Map<Locale, TranslationDictionary>()
@@ -24,7 +24,7 @@ export async function loadDictionary(locale: Locale): Promise<TranslationDiction
     // Cache the dictionary
     dictionaryCache.set(locale, data)
     return data
-  } catch (error) {
+  } catch {
     console.warn(`Failed to load dictionary for locale ${locale}, falling back to default`)
     
     // Fallback to default locale
@@ -38,7 +38,7 @@ export async function loadDictionary(locale: Locale): Promise<TranslationDiction
 }
 
 // Get nested value from object using dot notation
-export function getNestedValue(obj: any, path: string): string | undefined {
+export function getNestedValue(obj: unknown, path: string): string | undefined {
   return path.split('.').reduce((current, key) => {
     return current && typeof current === 'object' ? current[key] : undefined
   }, obj)

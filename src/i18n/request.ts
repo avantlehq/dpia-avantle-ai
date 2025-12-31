@@ -3,7 +3,7 @@ import { locales, defaultLocale } from './config';
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
-  if (!locale || !locales.includes(locale as any)) {
+  if (!locale || !locales.includes(locale as typeof locales[number])) {
     locale = defaultLocale;
   }
 

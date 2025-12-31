@@ -8,7 +8,7 @@ export function useTranslations(namespace?: string) {
   
   const t = (key: string, variables?: Record<string, string | number>): string => {
     // Import our existing translation dictionaries
-    const translations: Record<string, any> = {
+    const translations: Record<string, Record<string, unknown>> = {
       en: {
         nav: {
           home: 'Home',

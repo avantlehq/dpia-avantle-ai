@@ -10,7 +10,7 @@ const intlMiddleware = createIntlMiddleware({
 })
 
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl
+  const { pathname: _pathname } = request.nextUrl
 
   // Apply internationalization middleware first
   const intlResponse = intlMiddleware(request)

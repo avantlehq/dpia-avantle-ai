@@ -63,7 +63,7 @@ export function useSidebarToggle() {
       // Mobile: toggle drawer open/close
       setIsMobileOpen(prev => !prev)
     }
-  }, [isDesktop, mode, isMobileOpen])
+  }, [isDesktop, mode])
 
   // Close mobile drawer (for backdrop click, ESC key)
   const closeMobileDrawer = useCallback(() => {

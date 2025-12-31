@@ -16,7 +16,7 @@ interface LanguageSwitcherProps {
   className?: string
 }
 
-export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
+export function LanguageSwitcher({ className: _className }: LanguageSwitcherProps) {
   const { locale: currentLocale, changeLocale, isLoading } = useClientLocale()
 
   const switchLanguage = (newLocale: Locale) => {

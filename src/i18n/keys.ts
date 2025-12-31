@@ -155,7 +155,7 @@ export function getTranslationKey(path: string): string {
 }
 
 // Utility to extract all translation keys for dictionary creation
-export function extractAllKeys(obj: any, prefix = ''): string[] {
+export function extractAllKeys(obj: Record<string, unknown>, prefix = ''): string[] {
   const keys: string[] = []
   
   for (const [key, value] of Object.entries(obj)) {
