@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { SimpleLayout } from '@/components/layout/simple-layout'
 import "./globals.css"
+
+// This layout is only used for locale detection and redirects
+// The actual layout is in [locale]/layout.tsx
 
 export const metadata: Metadata = {
   title: "DPIA.ai Privacy Platform - European GDPR Compliance",
@@ -12,13 +14,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="font-sans antialiased" suppressHydrationWarning>
-        <SimpleLayout>
-          {children}
-        </SimpleLayout>
-      </body>
-    </html>
-  );
+  return children;
 }

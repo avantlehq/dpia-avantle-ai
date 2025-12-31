@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.85" as const
-export const VERSION_NAME = "STAGE 3: Navigation Breadcrumbs - Complete UX Enhancement" as const
+export const VERSION = "3.21.86" as const
+export const VERSION_NAME = "STAGE 4: Slovak/English Bilingual Support - Complete i18n" as const
 export const BUILD_DATE = "2025-12-31"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.86": {
+    date: "2025-12-31",
+    name: "STAGE 4: Slovak/English Bilingual Support - Complete i18n",
+    features: [
+      "BILINGUAL PLATFORM: Complete Slovak/English translation system with client-side locale switching",
+      "FUNCTIONAL LANGUAGE SWITCHER: Working dropdown in topbar with persistent locale storage and page reload", 
+      "UI TRANSLATION: Privacy overview, breadcrumbs, and navigation fully localized with useTranslations hook",
+      "MOBILE LANGUAGE UX: Touch-optimized language selector with 48px targets and visual feedback",
+      "LEGAL PRECISION: GDPR terminology correctly translated to Slovak for compliance with legal requirements"
+    ]
+  },
   "3.21.85": {
     date: "2025-12-31",
     name: "STAGE 3: Navigation Breadcrumbs - Complete UX Enhancement",

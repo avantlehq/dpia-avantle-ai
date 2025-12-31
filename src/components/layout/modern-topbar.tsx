@@ -12,9 +12,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { LanguageSwitcher } from '@/components/ui/language-switcher'
 import { getVersionInfo } from '@/lib/version'
 import { 
-  Globe, 
   User, 
   Settings, 
   HelpCircle, 
@@ -148,39 +148,8 @@ export const ModernTopbar = memo(function ModernTopbar() {
 
       {/* Right: Clean utilities with proper spacing */}
       <div className="flex items-center" style={{ gap: '16px' }}>
-        {/* Language */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className="h-12 w-12 p-0 border-none"
-              style={{ 
-                backgroundColor: 'transparent',
-                color: '#9ca3af',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)'
-                const icon = e.currentTarget.querySelector('svg')
-                if (icon) icon.style.color = '#60a5fa'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent'
-                const icon = e.currentTarget.querySelector('svg')
-                if (icon) icon.style.color = '#9ca3af'
-              }}
-              title="Language"
-            >
-              <Globe className="h-4 w-4" style={{ color: '#9ca3af', transition: 'color 0.2s ease' }} />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-36">
-            <DropdownMenuItem>English</DropdownMenuItem>
-            <DropdownMenuItem disabled>Slovenčina</DropdownMenuItem>
-            <DropdownMenuItem disabled>Deutsch</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        {/* Language Switcher */}
+        <LanguageSwitcher />
 
         {/* Help */}
         <Button

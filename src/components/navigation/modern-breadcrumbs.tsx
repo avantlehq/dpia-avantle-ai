@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, privacyModulesConfig } from '@/lib/state/modules'
+import { useTranslations } from '@/hooks/useTranslations'
 
 interface BreadcrumbItem {
   id: string
@@ -27,31 +28,7 @@ const ModernBreadcrumbs = memo(function ModernBreadcrumbs({
   mobileMaxItems = 2 
 }: ModernBreadcrumbsProps) {
   const pathname = usePathname()
-  
-  // Simple fallback function for translations (i18n foundation ready)
-  const t = useCallback((key: string) => {
-    // Fallback translation mappings for now
-    const fallbackTranslations: Record<string, string> = {
-      'home': 'Home',
-      'modules.privacy': 'Privacy',
-      'modules.context': 'Context', 
-      'modules.risk': 'Risk',
-      'modules.controls': 'Controls',
-      'modules.training': 'Training',
-      'modules.trust': 'Trust Center',
-      'pages.overview': 'Overview',
-      'pages.dashboard': 'DPIA Assessments',
-      'pages.pre-check': 'DPIA Pre-Check',
-      'pages.builder': 'DPIA Builder',
-      'pages.assessments': 'Assessments',
-      'pages.templates': 'Templates',
-      'pages.exports': 'Exports',
-      'pages.settings': 'Settings',
-      'more': '...'
-    }
-    
-    return fallbackTranslations[key] || key
-  }, [])
+  const { t } = useTranslations('nav')
   
   // Generate breadcrumb trail based on current route - synced with sidebar navigation
   const breadcrumbs = useMemo(() => {
