@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "Domov",
+    "workspace": "Pracovný priestor",
+    "more": "...",
+    "modules": {
+      "privacy": "Ochrana údajov",
+      "context": "Kontext",
+      "risk": "Riziko",
+      "controls": "Kontroly",
+      "training": "Školenia",
+      "trust": "Centrum dôvery"
+    },
+    "pages": {
+      "overview": "Prehľad",
+      "dashboard": "DPIA Hodnotenia",
+      "pre-check": "DPIA Kontrola",
+      "builder": "DPIA Tvorca",
+      "assessments": "Hodnotenia",
+      "templates": "Šablóny",
+      "exports": "Exporty",
+      "settings": "Nastavenia",
+      "data-mapping": "Mapovanie údajov",
+      "asset-inventory": "Inventár aktív",
+      "process-mapping": "Mapovanie procesov",
+      "risk-assessment": "Hodnotenie rizík",
+      "threat-modeling": "Modelovanie hrozieb",
+      "vulnerability-scan": "Skenovanie zraniteľností",
+      "control-catalog": "Katalóg kontrol",
+      "compliance-mapping": "Mapovanie compliance",
+      "audit-trails": "Audit záznamy",
+      "privacy-training": "Školenie ochrany údajov",
+      "certification": "Certifikácia",
+      "awareness": "Povedomie",
+      "trust-center": "Centrum dôvery",
+      "certifications": "Certifikáty",
+      "reports": "Správy"
+    }
+  },
+  "common": {
+    "loading": "Načítava sa...",
+    "saving": "Ukladá sa...",
+    "saved": "Uložené",
+    "error": "Chyba",
+    "success": "Úspech",
+    "warning": "Upozornenie",
+    "info": "Informácia",
+    "cancel": "Zrušiť",
+    "save": "Uložiť",
+    "delete": "Odstrániť",
+    "edit": "Upraviť",
+    "view": "Zobraziť",
+    "export": "Exportovať",
+    "import": "Importovať",
+    "search": "Hľadať",
+    "filter": "Filtrovať",
+    "sort": "Zoradiť",
+    "back": "Späť",
+    "next": "Ďalej",
+    "previous": "Predchádzajúci",
+    "finish": "Dokončiť"
+  },
+  "dpia": {
+    "precheck": {
+      "title": "DPIA Kontrola",
+      "description": "Rýchle hodnotenie na určenie, či je pre vašu spracovateľskú činnosť potrebná úplná DPIA.",
+      "questions": {
+        "q1": "Bude vaše spracovanie zahŕňať systematické a rozsiahle hodnotenie osobných aspektov týkajúcich sa fyzických osôb?",
+        "q2": "Bude vaše spracovanie zahŕňať rozsiahle spracovanie osobitných kategórií údajov alebo údajov týkajúcich sa trestných odsúdení?",
+        "q3": "Bude vaše spracovanie zahŕňať systematické monitorovanie verejne prístupných oblastí vo veľkom rozsahu?",
+        "q4": "Bude vaše spracovanie zahŕňať nové technológie alebo inovatívne aplikácie?",
+        "q5": "Bude vaše spracovanie brániť dotknutým osobám vo výkone ich práv alebo prístupe k službám?",
+        "q6": "Bude vaše spracovanie zahŕňať profilovanie alebo automatizované rozhodovanie s právnymi alebo významnými účinkami?",
+        "q7": "Bude vaše spracovanie zahŕňať zraniteľné dotknuté osoby (deti, zamestnanci, pacienti)?",
+        "q8": "Bude vaše spracovanie zahŕňať cezhraničné prenosy mimo EÚ/EHP?"
+      },
+      "results": {
+        "required": "DPIA je povinná - Vaše spracovateľské činnosti naznačujú vysoké riziko pre práva a slobody jednotlivcov.",
+        "recommended": "DPIA sa odporúča - Aj keď nie je striktne povinná, DPIA by bola prospešná pre vaše spracovateľské činnosti.",
+        "notRequired": "DPIA nie je potrebná - Vaše spracovateľské činnosti sa zdajú byť nízkorizikové, ale zvážte vykonanie DPIA, ak sa okolnosti zmenia."
+      }
+    },
+    "builder": {
+      "title": "DPIA Tvorca",
+      "sections": {
+        "overview": "Prehľad projektu",
+        "dataProcessing": "Opis spracovania údajov",
+        "riskAssessment": "Hodnotenie rizík",
+        "mitigation": "Opatrenia na zmiernenie"
+      }
+    },
+    "dashboard": {
+      "title": "DPIA Hodnotenia",
+      "newAssessment": "Nové hodnotenie",
+      "recentAssessments": "Nedávne hodnotenia",
+      "stats": {
+        "total": "Celkové hodnotenia",
+        "pending": "Čakajú na kontrolu",
+        "completed": "Dokončené",
+        "highRisk": "Vysoké riziko"
+      }
+    }
+  },
+  "language": {
+    "current": "Slovenčina",
+    "select": "Vybrať jazyk",
+    "english": "English",
+    "slovak": "Slovenčina"
+  },
+  "footer": {
+    "platform": "Platforma ochrany údajov",
+    "version": "Verzia",
+    "rights": "Všetky práva vyhradené"
+  }
+}

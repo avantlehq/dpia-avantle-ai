@@ -3,6 +3,7 @@
 import React, { type ReactNode } from 'react'
 import { ModernTopbar } from '@/components/layout/modern-topbar'
 import { ModernSidebar } from '@/components/layout/modern-sidebar'
+import ModernBreadcrumbs from '@/components/navigation/modern-breadcrumbs'
 import { VERSION } from '@/lib/version'
 import { SidebarProvider } from '@/contexts/SidebarContext'
 import { useSwipeGesture } from '@/hooks/useSwipeGesture'
@@ -39,6 +40,9 @@ function LayoutContent({ children }: SimpleLayoutProps) {
         
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col overflow-hidden">
+          {/* Contextual Breadcrumbs */}
+          <ModernBreadcrumbs className="flex-shrink-0" />
+          
           <main className="flex-1 overflow-y-auto p-8 touch-optimized">
             {children}
           </main>

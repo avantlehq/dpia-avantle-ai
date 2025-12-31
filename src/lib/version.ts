@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.84" as const
-export const VERSION_NAME = "STAGE 2: Mobile UX Polish - Swipe Gestures + Touch Optimization" as const
-export const BUILD_DATE = "2025-12-28"
+export const VERSION = "3.21.85" as const
+export const VERSION_NAME = "STAGE 3: Navigation Breadcrumbs - Complete UX Enhancement" as const
+export const BUILD_DATE = "2025-12-31"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,15 +14,26 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
-  "3.21.71": {
-    date: "2025-12-28",
-    name: "FINAL FIX: Sidebar Toggle SSR Consistency",
+  "3.21.85": {
+    date: "2025-12-31",
+    name: "STAGE 3: Navigation Breadcrumbs - Complete UX Enhancement",
     features: [
-      "ROOT CAUSE FIXED: SSR rendering inconsistency between mounted and unmounted states",
-      "HYDRATION CONSISTENCY: SSR sidebar now renders with same logic as client-side for perfect consistency", 
-      "DEBUG DISCOVERY: Found that mounted=false was causing fixed w-64 width regardless of isCollapsed state",
-      "VISUAL TOGGLE: Sidebar now properly changes width and content when toggle button is clicked",
-      "PRODUCTION READY: Toggle functionality finally working correctly in all scenarios"
+      "BREADCRUMB NAVIGATION: Smart contextual breadcrumbs with responsive collapse and mobile optimization",
+      "SIDEBAR INTEGRATION: Perfect sync with sidebar active states and navigation logic", 
+      "MOBILE UX POLISH: 48px touch targets, swipe gestures, and responsive breadcrumb collapse",
+      "i18n FOUNDATION: Complete translation system ready for SK/EN support with fallback handling",
+      "PERFORMANCE OPTIMIZED: React.memo, GPU acceleration, spring physics animations across components"
+    ]
+  },
+  "3.21.84": {
+    date: "2025-12-28",
+    name: "STAGE 2: Mobile UX Polish - Swipe Gestures + Touch Optimization",
+    features: [
+      "MOBILE GESTURES: Custom swipe detection with velocity thresholds for drawer control",
+      "TOUCH OPTIMIZATION: All interactive elements upgraded to 48px minimum for WCAG compliance", 
+      "SPRING PHYSICS: Cubic-bezier animations with GPU acceleration for smooth mobile experience",
+      "iOS/ANDROID FIXES: Platform-specific CSS handling for viewport heights and safe areas",
+      "PERFORMANCE FOUNDATION: React.memo optimization and efficient re-render prevention"
     ]
   },
   "3.21.70": {

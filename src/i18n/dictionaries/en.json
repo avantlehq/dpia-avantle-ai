@@ -1,0 +1,115 @@
+{
+  "nav": {
+    "home": "Home",
+    "workspace": "Workspace", 
+    "more": "...",
+    "modules": {
+      "privacy": "Privacy",
+      "context": "Context",
+      "risk": "Risk",
+      "controls": "Controls", 
+      "training": "Training",
+      "trust": "Trust Center"
+    },
+    "pages": {
+      "overview": "Overview",
+      "dashboard": "DPIA Assessments",
+      "pre-check": "DPIA Pre-Check",
+      "builder": "DPIA Builder",
+      "assessments": "Assessments",
+      "templates": "Templates",
+      "exports": "Exports", 
+      "settings": "Settings",
+      "data-mapping": "Data Mapping",
+      "asset-inventory": "Asset Inventory",
+      "process-mapping": "Process Mapping",
+      "risk-assessment": "Risk Assessment",
+      "threat-modeling": "Threat Modeling",
+      "vulnerability-scan": "Vulnerability Scan",
+      "control-catalog": "Control Catalog",
+      "compliance-mapping": "Compliance Mapping",
+      "audit-trails": "Audit Trails",
+      "privacy-training": "Privacy Training",
+      "certification": "Certification",
+      "awareness": "Awareness",
+      "trust-center": "Trust Center",
+      "certifications": "Certifications",
+      "reports": "Reports"
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "saved": "Saved",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "export": "Export",
+    "import": "Import",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "finish": "Finish"
+  },
+  "dpia": {
+    "precheck": {
+      "title": "DPIA Pre-Check",
+      "description": "Quick assessment to determine if a full DPIA is required for your processing activity.",
+      "questions": {
+        "q1": "Will your processing involve systematic and extensive evaluation of personal aspects relating to natural persons?",
+        "q2": "Will your processing involve large scale processing of special categories of data or data relating to criminal convictions?", 
+        "q3": "Will your processing involve systematic monitoring of publicly accessible areas on a large scale?",
+        "q4": "Will your processing involve new technologies or innovative applications?",
+        "q5": "Will your processing prevent data subjects from exercising their rights or accessing services?",
+        "q6": "Will your processing involve profiling or automated decision-making with legal or significant effects?",
+        "q7": "Will your processing involve vulnerable data subjects (children, employees, patients)?",
+        "q8": "Will your processing involve cross-border transfers outside the EU/EEA?"
+      },
+      "results": {
+        "required": "DPIA Required - Your processing activities indicate a high risk to individuals' rights and freedoms.",
+        "recommended": "DPIA Recommended - While not strictly required, a DPIA would be beneficial for your processing activities.",
+        "notRequired": "DPIA Not Required - Your processing activities appear to be low risk, but consider conducting a DPIA if circumstances change."
+      }
+    },
+    "builder": {
+      "title": "DPIA Builder",
+      "sections": {
+        "overview": "Project Overview",
+        "dataProcessing": "Data Processing Description",
+        "riskAssessment": "Risk Assessment",
+        "mitigation": "Mitigation Measures"
+      }
+    },
+    "dashboard": {
+      "title": "DPIA Assessments",
+      "newAssessment": "New Assessment",
+      "recentAssessments": "Recent Assessments",
+      "stats": {
+        "total": "Total Assessments",
+        "pending": "Pending Review",
+        "completed": "Completed",
+        "highRisk": "High Risk"
+      }
+    }
+  },
+  "language": {
+    "current": "English",
+    "select": "Select Language",
+    "english": "English",
+    "slovak": "Slovenčina"
+  },
+  "footer": {
+    "platform": "Privacy Platform",
+    "version": "Version",
+    "rights": "All rights reserved"
+  }
+}
