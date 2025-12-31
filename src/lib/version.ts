@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.87" as const
-export const VERSION_NAME = "Fix Module Navigation - Locale-Aware Routing" as const
+export const VERSION = "3.21.88" as const
+export const VERSION_NAME = "Complete Locale Sub-Pages - All Module Routes Fixed" as const
 export const BUILD_DATE = "2025-12-31"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.88": {
+    date: "2025-12-31",
+    name: "Complete Locale Sub-Pages - All Module Routes Fixed",
+    features: [
+      "COMPLETE SUB-PAGES: Created all missing locale-aware sub-pages (/context/systems, /privacy/lia, etc.)",
+      "CONTEXT MODULE COMPLETE: All context sub-pages (/systems, /processing, /data-categories, /vendors, etc.) working",
+      "PRIVACY/RISK/CONTROLS: Complete sub-page structure for all modules with proper locale routing",
+      "TRUST-CENTER COMPLETE: Governance and audit-packages sub-pages with locale-aware navigation",
+      "LOCALE-AWARE LINKS: Updated Context overview page with proper locale-aware internal navigation links"
+    ]
+  },
   "3.21.87": {
     date: "2025-12-31",
     name: "Fix Module Navigation - Locale-Aware Routing",
