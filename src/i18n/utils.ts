@@ -39,9 +39,9 @@ export async function loadDictionary(locale: Locale): Promise<TranslationDiction
 
 // Get nested value from object using dot notation
 export function getNestedValue(obj: unknown, path: string): string | undefined {
-  return path.split('.').reduce((current, key) => {
-    return current && typeof current === 'object' ? current[key] : undefined
-  }, obj)
+  return path.split('.').reduce((current: unknown, key) => {
+    return current && typeof current === 'object' ? (current as Record<string, unknown>)[key] : undefined
+  }, obj) as string | undefined
 }
 
 // Translation function with interpolation support

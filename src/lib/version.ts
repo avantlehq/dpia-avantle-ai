@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.86" as const
-export const VERSION_NAME = "STAGE 4: Slovak/English Bilingual Support - Complete i18n" as const
+export const VERSION = "3.21.87" as const
+export const VERSION_NAME = "Fix Module Navigation - Locale-Aware Routing" as const
 export const BUILD_DATE = "2025-12-31"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.87": {
+    date: "2025-12-31",
+    name: "Fix Module Navigation - Locale-Aware Routing",
+    features: [
+      "LOCALE ROUTING FIX: Fixed module links to use correct [locale] routing structure (/{locale}/context, etc.)",
+      "MODULE CONFIG UPDATE: Updated all module hrefs to include locale prefix using getLocaleHref helper",
+      "LOCALE-AWARE PAGES: Created missing locale-aware pages for all modules in /[locale]/ structure",
+      "TOPBAR HOME FIX: Updated context-aware home link to include locale prefix for proper navigation",
+      "BREADCRUMBS TEMP DISABLED: Temporarily disabled breadcrumbs to fix build issues with useContext hooks"
+    ]
+  },
   "3.21.86": {
     date: "2025-12-31",
     name: "STAGE 4: Slovak/English Bilingual Support - Complete i18n",

@@ -27,6 +27,7 @@ import { privacyModulesConfig, getActiveModule } from '@/lib/state/modules'
 import { cn } from '@/lib/utils'
 import { IconButton } from '@/components/ui/icon-button'
 import { useSidebarContext } from '@/contexts/SidebarContext'
+import { useClientLocale } from '@/hooks/useClientLocale'
 
 // Fixed module navigation link - no floating icons, proper text+icon rows
 interface ModuleLinkProps {
@@ -70,17 +71,18 @@ export const ModernTopbar = memo(function ModernTopbar() {
   const activeModuleId = getActiveModule(pathname)
   const versionInfo = useMemo(() => getVersionInfo(), [])
   const { toggle, isCollapsed, isMobileOpen } = useSidebarContext()
+  const { locale } = useClientLocale()
   
-  // Memoize context-aware home link based on active module
+  // Memoize context-aware home link based on active module with locale
   const homeLink = useMemo(() => {
-    if (activeModuleId === 'privacy') return '/privacy' // Privacy Overview
-    if (activeModuleId === 'context') return '/context' // Context Overview  
-    if (activeModuleId === 'risk') return '/risk' // Risk Overview
-    if (activeModuleId === 'controls') return '/controls' // Controls Overview
-    if (activeModuleId === 'training') return '/training' // Training Overview
-    if (activeModuleId === 'trust-center') return '/trust-center' // Trust Center Overview
-    return '/dashboard' // Default fallback
-  }, [activeModuleId])
+    if (activeModuleId === 'privacy') return `/${locale}/privacy` // Privacy Overview
+    if (activeModuleId === 'context') return `/${locale}/context` // Context Overview  
+    if (activeModuleId === 'risk') return `/${locale}/risk` // Risk Overview
+    if (activeModuleId === 'controls') return `/${locale}/controls` // Controls Overview
+    if (activeModuleId === 'training') return `/${locale}/training` // Training Overview
+    if (activeModuleId === 'trust-center') return `/${locale}/trust-center` // Trust Center Overview
+    return `/${locale}/dashboard` // Default fallback
+  }, [activeModuleId, locale])
 
   return (
     <header className="flex items-center justify-between h-16 px-6 bg-[--background] border-b border-[--nav-border]">

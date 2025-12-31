@@ -164,7 +164,7 @@ export function extractAllKeys(obj: Record<string, unknown>, prefix = ''): strin
     if (typeof value === 'string') {
       keys.push(value)
     } else if (typeof value === 'object' && value !== null) {
-      keys.push(...extractAllKeys(value, currentPath))
+      keys.push(...extractAllKeys(value as Record<string, unknown>, currentPath))
     }
   }
   

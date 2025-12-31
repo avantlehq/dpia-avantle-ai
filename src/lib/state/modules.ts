@@ -22,6 +22,7 @@ import {
   BookOpen,
   type LucideIcon
 } from 'lucide-react'
+import { detectClientLocale } from '@/i18n/utils'
 
 // Core module interface for Avantle Privacy Platform
 export interface ModuleConfig {
@@ -34,6 +35,13 @@ export interface ModuleConfig {
   licenseRequired?: string
   roleRequired?: string[]
   description?: string
+}
+
+// Helper function to get locale-aware href
+function getLocaleHref(path: string): string {
+  if (typeof window === 'undefined') return path
+  const locale = detectClientLocale()
+  return `/${locale}${path}`
 }
 
 export interface NavItem {
@@ -53,7 +61,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
   {
     id: 'context',
     name: 'Context',
-    href: '/context',
+    href: getLocaleHref('/context'),
     icon: Database,
     color: 'var(--color-blue)',
     description: 'Foundation data and processing context',
@@ -61,49 +69,49 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'overview',
         name: 'Overview', 
-        href: '/context', 
+        href: getLocaleHref('/context'), 
         icon: LayoutDashboard,
         description: 'Context dashboard and foundation data overview'
       },
       { 
         id: 'systems',
         name: 'Systems', 
-        href: '/context/systems', 
+        href: getLocaleHref('/context/systems'), 
         icon: Server,
         description: 'IT systems and infrastructure'
       },
       { 
         id: 'processing',
         name: 'Processing Activities', 
-        href: '/context/processing', 
+        href: getLocaleHref('/context/processing'), 
         icon: FileText,
         description: 'ROPA - Record of Processing Activities'
       },
       { 
         id: 'data-categories',
         name: 'Data Categories', 
-        href: '/context/data-categories', 
+        href: getLocaleHref('/context/data-categories'), 
         icon: Folder,
         description: 'Personal data classification'
       },
       { 
         id: 'data-flows',
         name: 'Data Flows', 
-        href: '/context/data-flows', 
+        href: getLocaleHref('/context/data-flows'), 
         icon: ArrowRight,
         description: 'Data movement and transfers'
       },
       { 
         id: 'vendors',
         name: 'Vendors / Processors', 
-        href: '/context/vendors', 
+        href: getLocaleHref('/context/vendors'), 
         icon: Users,
         description: 'Third-party data processors'
       },
       { 
         id: 'locations',
         name: 'Locations & Jurisdictions', 
-        href: '/context/locations', 
+        href: getLocaleHref('/context/locations'), 
         icon: Globe,
         description: 'Geographic data locations'
       }
@@ -114,7 +122,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
   {
     id: 'privacy',
     name: 'Privacy',
-    href: '/privacy',
+    href: getLocaleHref('/privacy'),
     icon: Shield,
     color: 'var(--color-green)',
     description: 'Privacy impact assessments and compliance',
@@ -122,28 +130,28 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'overview',
         name: 'Overview', 
-        href: '/privacy', 
+        href: getLocaleHref('/privacy'), 
         icon: LayoutDashboard,
         description: 'Privacy dashboard and statistics'
       },
       { 
         id: 'dpia-precheck',
         name: 'DPIA Pre-Check', 
-        href: '/precheck', // Keep existing working route for now
+        href: getLocaleHref('/precheck'), // Keep existing working route for now
         icon: Sparkles,
         description: 'Quick GDPR Article 35 evaluation'
       },
       { 
         id: 'dpia-assessments',
         name: 'DPIA Assessments', 
-        href: '/dashboard', // Points to dashboard with existing assessments
+        href: getLocaleHref('/dashboard'), // Points to dashboard with existing assessments
         icon: Target,
         description: 'Data Protection Impact Assessments'
       },
       { 
         id: 'lia',
         name: 'LIA', 
-        href: '/privacy/lia', // FUTURE-PROOF: expandable
+        href: getLocaleHref('/privacy/lia'), // FUTURE-PROOF: expandable
         icon: Scale,
         description: 'Legitimate Interest Assessment',
         disabled: true
@@ -151,7 +159,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'tia',
         name: 'TIA', 
-        href: '/privacy/tia', // FUTURE-PROOF: expandable
+        href: getLocaleHref('/privacy/tia'), // FUTURE-PROOF: expandable
         icon: Plane,
         description: 'Transfer Impact Assessment',
         disabled: true
@@ -159,7 +167,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'policies',
         name: 'Privacy Policies', 
-        href: '/privacy/policies', // FUTURE-PROOF: expandable
+        href: getLocaleHref('/privacy/policies'), // FUTURE-PROOF: expandable
         icon: BookOpen,
         description: 'Privacy policy management',
         disabled: true
@@ -171,7 +179,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
   {
     id: 'risk',
     name: 'Risk',
-    href: '/risk',
+    href: getLocaleHref('/risk'),
     icon: AlertTriangle,
     color: 'var(--color-red)',
     description: 'Privacy risk identification and management',
@@ -180,7 +188,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'risk-overview',
         name: 'Risk Overview', 
-        href: '/risk', 
+        href: getLocaleHref('/risk'), 
         icon: LayoutDashboard,
         description: 'Risk dashboard and metrics',
         disabled: true
@@ -188,7 +196,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'privacy-risks',
         name: 'Privacy Risks', 
-        href: '/risk/privacy-risks', 
+        href: getLocaleHref('/risk/privacy-risks'), 
         icon: AlertTriangle,
         description: 'Identified privacy risks',
         disabled: true
@@ -196,7 +204,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'risk-register',
         name: 'Risk Register', 
-        href: '/risk/register', 
+        href: getLocaleHref('/risk/register'), 
         icon: FileText,
         description: 'Centralized risk registry',
         disabled: true
@@ -208,7 +216,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
   {
     id: 'controls',
     name: 'Controls',
-    href: '/controls',
+    href: getLocaleHref('/controls'),
     icon: Lock,
     color: 'var(--color-orange)',
     description: 'Technical and organizational measures',
@@ -217,7 +225,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'controls-overview',
         name: 'Controls Overview', 
-        href: '/controls', 
+        href: getLocaleHref('/controls'), 
         icon: LayoutDashboard,
         description: 'Controls dashboard',
         disabled: true
@@ -225,7 +233,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'toms',
         name: 'TOMs', 
-        href: '/controls/toms', 
+        href: getLocaleHref('/controls/toms'), 
         icon: Lock,
         description: 'Technical & Organizational Measures',
         disabled: true
@@ -237,7 +245,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
   {
     id: 'training',
     name: 'Training',
-    href: '/training',
+    href: getLocaleHref('/training'),
     icon: GraduationCap,
     color: 'var(--color-purple)',
     description: 'Privacy awareness and training',
@@ -246,7 +254,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'training-overview',
         name: 'Training Overview', 
-        href: '/training', 
+        href: getLocaleHref('/training'), 
         icon: LayoutDashboard,
         description: 'Training dashboard',
         disabled: true
@@ -258,7 +266,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
   {
     id: 'trust-center',
     name: 'Trust Center',
-    href: '/trust-center',
+    href: getLocaleHref('/trust-center'),
     icon: CheckCircle,
     color: 'var(--color-gray)',
     description: 'Audit packages and compliance reporting',
@@ -267,7 +275,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'governance',
         name: 'Governance Overview', 
-        href: '/trust-center/governance', 
+        href: getLocaleHref('/trust-center/governance'), 
         icon: LayoutDashboard,
         description: 'Cross-module compliance status',
         disabled: true
@@ -275,7 +283,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'audit-packages',
         name: 'Audit Packages', 
-        href: '/trust-center/audit-packages', 
+        href: getLocaleHref('/trust-center/audit-packages'), 
         icon: FileText,
         description: 'Compliance audit bundles',
         disabled: true
