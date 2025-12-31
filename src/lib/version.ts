@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.83" as const
-export const VERSION_NAME = "STAGE 1: Performance Foundation - React.memo + CSS Optimizations" as const
+export const VERSION = "3.21.84" as const
+export const VERSION_NAME = "STAGE 2: Mobile UX Polish - Swipe Gestures + Touch Optimization" as const
 export const BUILD_DATE = "2025-12-28"
 
 export const getVersionInfo = () => ({

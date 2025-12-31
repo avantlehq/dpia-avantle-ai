@@ -496,41 +496,52 @@ nav a button *,
    PERFORMANCE OPTIMIZATION CSS - GPU ACCELERATION
    ===================================================== */
 
-/* Sidebar animation performance optimization */
+/* Sidebar animation performance optimization with spring physics */
 aside[data-sidebar="true"] {
   will-change: width, transform;
   transform: translate3d(0, 0, 0); /* Force GPU acceleration */
-  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth spring deceleration */
 }
 
-/* Mobile drawer performance optimization */
+/* Mobile drawer performance optimization with spring physics */
 aside[data-mobile-drawer="true"] {
   will-change: transform;
   transform: translate3d(-100%, 0, 0); /* GPU accelerated initial position */
-  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1); /* Spring bounce effect */
 }
 
 aside[data-mobile-drawer="true"][data-open="true"] {
   transform: translate3d(0, 0, 0); /* GPU accelerated open position */
+  transition: transform 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth deceleration */
 }
 
-/* Optimize navigation link hover states */
+/* Optimize navigation link hover states with spring physics */
 .modern-nav-link {
   will-change: background-color, transform;
-  transition: background-color 200ms ease, transform 150ms ease;
+  transition: 
+    background-color 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .modern-nav-link:hover {
-  transform: translate3d(0, 0, 0); /* Subtle GPU optimization */
+  transform: translate3d(0, -1px, 0) scale(1.02); /* Subtle lift and scale */
 }
 
-/* Optimized button animations */
+/* Optimized button animations with spring physics */
 button, [role="button"] {
-  transition: background-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+  transition: 
+    background-color 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 250ms ease;
+}
+
+button:hover, [role="button"]:hover {
+  transform: translate3d(0, -1px, 0); /* Subtle lift on hover */
 }
 
 button:active, [role="button"]:active {
-  transform: translateY(1px); /* Micro-interaction feedback */
+  transform: translate3d(0, 1px, 0) scale(0.98); /* Press feedback with scale */
+  transition-duration: 100ms; /* Faster for immediate feedback */
 }
 
 /* Backdrop blur optimization */
@@ -549,4 +560,83 @@ button:active, [role="button"]:active {
 /* Prevent layout shift during animations */
 .prevent-layout-shift {
   contain: layout;
+}
+
+/* =====================================================
+   MOBILE-SPECIFIC RESPONSIVE TWEAKS - iOS/ANDROID
+   ===================================================== */
+
+/* iOS Safari viewport fixes */
+@supports (-webkit-touch-callout: none) {
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+  
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* iOS Safari bottom safe area handling */
+@supports (padding: max(0px)) {
+  .mobile-safe-area {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Android Chrome navigation bar handling */
+@media screen and (max-width: 768px) {
+  .h-screen {
+    height: 100svh; /* Small viewport height for Android */
+  }
+  
+  .min-h-screen {
+    min-height: 100svh;
+  }
+}
+
+/* Touch action optimization for better scrolling */
+.touch-optimized {
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: none;
+}
+
+/* iOS button styling reset */
+button, input[type="button"], input[type="submit"] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  border-radius: inherit;
+}
+
+/* Prevent zoom on iOS when focusing inputs */
+input, select, textarea {
+  font-size: 16px;
+}
+
+/* Android text rendering optimization */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Mobile tap highlights */
+* {
+  -webkit-tap-highlight-color: rgba(96, 165, 250, 0.2);
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection for content areas */
+main, article, p, span, div[contenteditable] {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
 }

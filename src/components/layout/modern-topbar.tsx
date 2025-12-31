@@ -89,7 +89,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
         {/* Sidebar Toggle Button */}
         <IconButton
           variant="ghost"
-          size="md"
+          size="lg"
           icon={isMobileOpen ? <X /> : <Menu />}
           onClick={toggle}
           aria-label={isMobileOpen ? "Close sidebar" : "Toggle sidebar"}
@@ -154,7 +154,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 border-none"
+              className="h-12 w-12 p-0 border-none"
               style={{ 
                 backgroundColor: 'transparent',
                 color: '#9ca3af',
@@ -213,7 +213,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
             <Button 
               variant="ghost" 
               size="sm" 
-              className="h-9 w-9 p-0 border-none"
+              className="h-12 w-12 p-0 border-none"
               style={{ 
                 backgroundColor: 'transparent',
                 color: '#9ca3af',

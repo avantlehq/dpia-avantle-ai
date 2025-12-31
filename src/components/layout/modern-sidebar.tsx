@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, type NavItem } from '@/lib/state/modules'
 import { useSidebarContext } from '@/contexts/SidebarContext'
+import { useSwipeGesture } from '@/hooks/useSwipeGesture'
 
 interface ModernSidebarProps {
   className?: string
@@ -49,8 +50,8 @@ const SidebarLink = memo(function SidebarLink({ item, isActive, collapsed }: Sid
         color: isActive ? 'var(--text-primary)' : 'var(--text-muted)', // Design token colors
         paddingLeft: isActive ? '9px' : '12px', // Compensate for border width
         paddingRight: '8px', // Controlled right padding
-        paddingTop: '10px',
-        paddingBottom: '10px',
+        paddingTop: '14px', // Increased for 48px touch target
+        paddingBottom: '14px',
         marginLeft: '0px', // No left margin - let border be the left edge
         marginRight: '12px', // Right margin to stay within sidebar bounds
         borderRadius: '6px', // Rounded corners to contain the highlight
@@ -72,7 +73,7 @@ const SidebarLink = memo(function SidebarLink({ item, isActive, collapsed }: Sid
       {/* When collapsed/rail mode, show first letter as icon replacement */}
       {collapsed && (
         <div 
-          className="flex items-center justify-center w-full h-8 rounded transition-colors"
+          className="flex items-center justify-center w-full h-12 rounded transition-colors"
           style={{
             color: isActive ? 'var(--brand-primary)' : 'var(--text-muted)',
             backgroundColor: isActive ? 'rgba(96,165,250,0.2)' : 'transparent'
@@ -117,6 +118,7 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
     isMobileOpen, 
     showAsDrawer, 
     closeMobileDrawer,
+    toggle,
     mounted,
     isDesktop
   } = useSidebarContext()
@@ -130,6 +132,15 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
       pathname === item.href || pathname.startsWith(item.href + '/')
     )?.id, [moduleConfig?.items, pathname]
   )
+
+  // Swipe gesture handlers for mobile drawer
+  const swipeHandlers = useSwipeGesture({
+    onSwipeLeft: closeMobileDrawer, // Swipe left to close drawer
+    onSwipeRight: showAsDrawer && !isMobileOpen ? toggle : undefined, // Swipe right from edge to open
+    minDistance: 50,
+    maxVerticalDistance: 100,
+    velocityThreshold: 0.3
+  })
 
   // Lock body scroll when mobile drawer is open - ALWAYS call hooks in same order
   useEffect(() => {
@@ -226,6 +237,7 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
             backgroundColor: 'var(--surface-1)', 
             borderRight: `1px solid var(--border-subtle)`
           }}
+          {...swipeHandlers}
         >
           {sidebarContent}
         </aside>
