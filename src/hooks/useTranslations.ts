@@ -163,9 +163,9 @@ export function useTranslations(namespace?: string) {
     
     // Simple variable replacement
     if (variables) {
-      return Object.entries(variables).reduce((text, [varKey, varValue]) => {
+      return Object.entries(variables).reduce((text: string, [varKey, varValue]) => {
         return text.replace(new RegExp(`\\{${varKey}\\}`, 'g'), String(varValue))
-      }, value)
+      }, value as string)
     }
     
     return value
