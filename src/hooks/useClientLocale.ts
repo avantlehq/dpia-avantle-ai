@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { detectClientLocale, setClientLocale, type Locale } from '@/i18n/utils'
+import { detectClientLocale, setClientLocale } from '@/i18n/utils'
+import { type Locale } from '@/i18n/config'
 
 export function useClientLocale() {
   const [locale, setLocale] = useState<Locale>('en')
