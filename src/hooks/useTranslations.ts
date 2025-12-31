@@ -156,7 +156,8 @@ export function useTranslations(namespace?: string) {
     if (!namespacedDict) return key
     
     // Navigate to nested value using dot notation
-    const value = key.split('.').reduce((obj, k) => obj?.[k], namespacedDict)
+    const value = key.split('.').reduce((obj: Record<string, unknown>, k) => 
+      obj?.[k] as Record<string, unknown>, namespacedDict as Record<string, unknown>)
     
     if (typeof value !== 'string') return key
     
