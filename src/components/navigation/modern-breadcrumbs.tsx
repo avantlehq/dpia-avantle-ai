@@ -1,6 +1,6 @@
 'use client'
 
-import React, { memo, useMemo, useCallback } from 'react'
+import React, { memo, useMemo } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronRight } from 'lucide-react'
