@@ -491,3 +491,62 @@ nav a button *,
 .secondary-cta-button:hover {
   background-color: #2A5A9A !important;
 }
+
+/* =====================================================
+   PERFORMANCE OPTIMIZATION CSS - GPU ACCELERATION
+   ===================================================== */
+
+/* Sidebar animation performance optimization */
+aside[data-sidebar="true"] {
+  will-change: width, transform;
+  transform: translate3d(0, 0, 0); /* Force GPU acceleration */
+  transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mobile drawer performance optimization */
+aside[data-mobile-drawer="true"] {
+  will-change: transform;
+  transform: translate3d(-100%, 0, 0); /* GPU accelerated initial position */
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+aside[data-mobile-drawer="true"][data-open="true"] {
+  transform: translate3d(0, 0, 0); /* GPU accelerated open position */
+}
+
+/* Optimize navigation link hover states */
+.modern-nav-link {
+  will-change: background-color, transform;
+  transition: background-color 200ms ease, transform 150ms ease;
+}
+
+.modern-nav-link:hover {
+  transform: translate3d(0, 0, 0); /* Subtle GPU optimization */
+}
+
+/* Optimized button animations */
+button, [role="button"] {
+  transition: background-color 200ms ease, transform 150ms ease, box-shadow 200ms ease;
+}
+
+button:active, [role="button"]:active {
+  transform: translateY(1px); /* Micro-interaction feedback */
+}
+
+/* Backdrop blur optimization */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  will-change: backdrop-filter;
+}
+
+/* Smooth scrolling optimization */
+.scroll-smooth {
+  scroll-behavior: smooth;
+  will-change: scroll-position;
+}
+
+/* Prevent layout shift during animations */
+.prevent-layout-shift {
+  contain: layout;
+}

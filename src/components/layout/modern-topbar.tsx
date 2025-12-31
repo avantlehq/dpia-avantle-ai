@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { memo, useMemo } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -39,7 +39,7 @@ interface ModuleLinkProps {
   isActive: boolean
 }
 
-function ModuleLink({ module, isActive }: ModuleLinkProps) {
+const ModuleLink = memo(function ModuleLink({ module, isActive }: ModuleLinkProps) {
   return (
     <Link 
       href={module.href}
@@ -63,16 +63,16 @@ function ModuleLink({ module, isActive }: ModuleLinkProps) {
       {module.name}
     </Link>
   )
-}
+})
 
-export function ModernTopbar() {
+export const ModernTopbar = memo(function ModernTopbar() {
   const pathname = usePathname()
   const activeModuleId = getActiveModule(pathname)
-  const versionInfo = getVersionInfo()
+  const versionInfo = useMemo(() => getVersionInfo(), [])
   const { toggle, isCollapsed, isMobileOpen } = useSidebarContext()
   
-  // Context-aware home link based on active module
-  const getHomeLink = () => {
+  // Memoize context-aware home link based on active module
+  const homeLink = useMemo(() => {
     if (activeModuleId === 'privacy') return '/privacy' // Privacy Overview
     if (activeModuleId === 'context') return '/context' // Context Overview  
     if (activeModuleId === 'risk') return '/risk' // Risk Overview
@@ -80,7 +80,7 @@ export function ModernTopbar() {
     if (activeModuleId === 'training') return '/training' // Training Overview
     if (activeModuleId === 'trust-center') return '/trust-center' // Trust Center Overview
     return '/dashboard' // Default fallback
-  }
+  }, [activeModuleId])
 
   return (
     <header className="flex items-center justify-between h-16 px-6 bg-[--background] border-b border-[--nav-border]">
@@ -100,7 +100,7 @@ export function ModernTopbar() {
         
         {/* Clickable Brand Lockup */}
         <Link 
-          href={getHomeLink()} 
+          href={homeLink} 
           className="flex items-center gap-3 pl-2 pr-8 py-2 hover:brightness-110 transition-all duration-200 cursor-pointer group"
         >
           {/* Product Mark */}
@@ -255,4 +255,4 @@ export function ModernTopbar() {
       </div>
     </header>
   )
-}
+})

@@ -56,7 +56,8 @@
       "Bash(SUPABASE_SERVICE_ROLE=dummy-service-role pnpm build)",
       "Bash(NODE_ENV=production pnpm build)",
       "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\README.md\")",
-      "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\privacy\\layout.tsx\")"
+      "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\privacy\\layout.tsx\")",
+      "Bash(rg:*)"
     ],
     "deny": [],
     "ask": [],

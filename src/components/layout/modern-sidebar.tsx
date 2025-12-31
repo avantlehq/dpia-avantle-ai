@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, memo, useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -18,8 +18,27 @@ interface SidebarLinkProps {
   collapsed: boolean
 }
 
-function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
+const SidebarLink = memo(function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   const isDisabled = item.disabled
+  
+  // Optimized hover handlers with useCallback
+  const handleMouseEnter = useCallback((e: React.MouseEvent) => {
+    if (!isActive) {
+      const target = e.currentTarget.querySelector('div')
+      if (target) {
+        target.style.backgroundColor = 'rgba(255,255,255,0.05)'
+      }
+    }
+  }, [isActive])
+  
+  const handleMouseLeave = useCallback((e: React.MouseEvent) => {
+    if (!isActive) {
+      const target = e.currentTarget.querySelector('div')
+      if (target) {
+        target.style.backgroundColor = 'transparent'
+      }
+    }
+  }, [isActive])
   
   const navRowContent = (
     <div 
@@ -82,29 +101,15 @@ function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
       className="group relative block modern-nav-link"
       aria-current={isActive ? "page" : undefined}
       title={collapsed ? item.name : undefined} // Show tooltip in rail mode
-      onMouseEnter={(e) => {
-        if (!isActive) {
-          const target = e.currentTarget.querySelector('div')
-          if (target) {
-            target.style.backgroundColor = 'rgba(255,255,255,0.05)'
-          }
-        }
-      }}
-      onMouseLeave={(e) => {
-        if (!isActive) {
-          const target = e.currentTarget.querySelector('div')
-          if (target) {
-            target.style.backgroundColor = 'transparent'
-          }
-        }
-      }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       {navRowContent}
     </Link>
   )
-}
+})
 
-export function ModernSidebar({ className }: ModernSidebarProps) {
+export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSidebarProps) {
   const pathname = usePathname()
   const { 
     mode,
@@ -119,10 +124,12 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   const activeModuleId = getActiveModule(pathname)
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
   
-  // Find active item within current module
-  const activeItemId = moduleConfig?.items.find(item => 
-    pathname === item.href || pathname.startsWith(item.href + '/')
-  )?.id
+  // Memoize active item calculation
+  const activeItemId = React.useMemo(() => 
+    moduleConfig?.items.find(item => 
+      pathname === item.href || pathname.startsWith(item.href + '/')
+    )?.id, [moduleConfig?.items, pathname]
+  )
 
   // Lock body scroll when mobile drawer is open - ALWAYS call hooks in same order
   useEffect(() => {
@@ -143,8 +150,9 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     const ssrWidth = isDesktop && isCollapsed ? '64px' : '256px'
     return (
       <aside 
+        data-sidebar="true"
         className={cn(
-          "flex flex-col transition-all duration-300",
+          "flex flex-col prevent-layout-shift",
           className
         )}
         style={{ 
@@ -164,7 +172,7 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
     <>
       {/* Navigation Items - Clean start from top, no header */}
       <nav 
-        className="flex-1 pt-6 pb-6 space-y-2" 
+        className="flex-1 pt-6 pb-6 space-y-2 scroll-smooth" 
         role="navigation" 
         aria-label="Module navigation"
         id="main-sidebar"
@@ -174,17 +182,20 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
           overflow: 'hidden' // Prevent any overflow
         }}
       >
-        {moduleConfig?.items.map((item) => {
-          const isActive = activeItemId === item.id
-          return (
-            <SidebarLink
-              key={item.id}
-              item={item}
-              isActive={isActive}
-              collapsed={isDesktop && isCollapsed}
-            />
-          )
-        })}
+        {/* Virtual scrolling container - Future enhancement ready */}
+        <div className="navigation-items-container">
+          {moduleConfig?.items.map((item) => {
+            const isActive = activeItemId === item.id
+            return (
+              <SidebarLink
+                key={item.id}
+                item={item}
+                isActive={isActive}
+                collapsed={isDesktop && isCollapsed}
+              />
+            )
+          })}
+        </div>
       </nav>
     </>
   )
@@ -204,9 +215,10 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
         
         {/* Mobile Drawer */}
         <aside 
+          data-mobile-drawer="true"
+          data-open={isMobileOpen}
           className={cn(
-            "fixed top-0 left-0 h-full w-64 flex flex-col transition-transform duration-300 z-50",
-            isMobileOpen ? "translate-x-0" : "-translate-x-full",
+            "fixed top-0 left-0 h-full w-64 flex flex-col z-50",
             showAsDrawer ? "block" : "hidden", // Show only when mobile drawer mode
             className
           )}
@@ -227,8 +239,9 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
   return (
     <aside 
       key={`sidebar-${mode}-${mounted}`}
+      data-sidebar="true"
       className={cn(
-        "flex flex-col transition-all duration-300 flex-shrink-0",
+        "flex flex-col flex-shrink-0 prevent-layout-shift",
         // Remove hidden lg:flex - always show on desktop, use showAsDrawer for mobile logic
         className
       )}
@@ -243,4 +256,4 @@ export function ModernSidebar({ className }: ModernSidebarProps) {
       {sidebarContent}
     </aside>
   )
-}
+})

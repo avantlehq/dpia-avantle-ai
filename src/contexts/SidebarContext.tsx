@@ -23,7 +23,20 @@ export function SidebarProvider({ children }: SidebarProviderProps) {
 export function useSidebarContext() {
   const context = useContext(SidebarContext)
   if (!context) {
-    throw new Error('useSidebarContext must be used within a SidebarProvider')
+    // Return default values for SSR safety instead of throwing
+    return {
+      mode: 'expanded' as const,
+      isMobileOpen: false,
+      isDesktop: true,
+      mounted: false,
+      toggle: () => {},
+      closeMobileDrawer: () => {},
+      setMode: () => {},
+      isExpanded: true,
+      isCollapsed: false,
+      showAsDrawer: false,
+      showAsRail: false,
+    }
   }
   return context
 }
