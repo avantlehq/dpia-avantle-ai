@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.97" as const
-export const VERSION_NAME = "Fix Build Error - Remove Duplicate Translation Key" as const
+export const VERSION = "3.21.98" as const
+export const VERSION_NAME = "Complete Slovak Sidebar Translations - Fix Missing Controls & Training Keys" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.98": {
+    date: "2026-01-01",
+    name: "Complete Slovak Sidebar Translations - Fix Missing Controls & Training Keys",
+    features: [
+      "SLOVAK TRANSLATIONS COMPLETE: Added missing 'controls-overview' and 'training-overview' translation keys",
+      "SIDEBAR TRANSLATION FIX: Controls sidebar now shows 'Prehľad kontrol' instead of 'pages.controls-overview'",
+      "TRAINING TRANSLATION FIX: Training sidebar now shows 'Prehľad školení' instead of 'pages.training-overview'",
+      "FULL SLOVAK COVERAGE: All module sidebars now display proper Slovak text without 'pages.' prefixes",
+      "SYSTEMATIC CHECK: Verified all module item IDs have corresponding Slovak translation keys"
+    ]
+  },
   "3.21.97": {
     date: "2026-01-01",
     name: "Fix Build Error - Remove Duplicate Translation Key",
