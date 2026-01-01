@@ -8,6 +8,7 @@ import { getActiveModule, getModuleConfig, type NavItem } from '@/lib/state/modu
 import { useSidebarContext } from '@/contexts/SidebarContext'
 import { useSwipeGesture } from '@/hooks/useSwipeGesture'
 import { useTranslations } from '@/hooks/useTranslations'
+import { SidebarHeader } from './sidebar-header'
 
 interface ModernSidebarProps {
   className?: string
@@ -145,7 +146,7 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
     }
     
     return activeItem?.id
-  }, [moduleConfig?.items, pathname])
+  }, [moduleConfig.items, pathname])
 
   // Swipe gesture handlers for mobile drawer
   const swipeHandlers = useSwipeGesture({
@@ -167,6 +168,41 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
     return () => {
       document.body.style.overflow = ''
     }
+  }, [showAsDrawer, isMobileOpen])
+
+  // Focus trap for mobile drawer
+  useEffect(() => {
+    if (!showAsDrawer || !isMobileOpen) return
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return
+
+      const sidebar = document.querySelector('[data-mobile-drawer="true"]') as HTMLElement
+      if (!sidebar) return
+
+      const focusableElements = sidebar.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      const firstElement = focusableElements[0] as HTMLElement
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
+
+      if (event.shiftKey) {
+        // Shift+Tab: if focused on first element, focus last
+        if (document.activeElement === firstElement) {
+          event.preventDefault()
+          lastElement?.focus()
+        }
+      } else {
+        // Tab: if focused on last element, focus first
+        if (document.activeElement === lastElement) {
+          event.preventDefault()
+          firstElement?.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
   }, [showAsDrawer, isMobileOpen])
 
   // Prevent hydration mismatch by not rendering until mounted
@@ -195,7 +231,10 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
   // Sidebar content (shared between desktop and mobile)
   const sidebarContent = (
     <>
-      {/* Navigation Items - Clean start from top, no header */}
+      {/* Sidebar Header with HOME and close button */}
+      <SidebarHeader />
+      
+      {/* Navigation Items */}
       <nav 
         className="flex-1 pt-6 pb-6 space-y-2 scroll-smooth" 
         role="navigation" 
@@ -229,12 +268,15 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
   if (showAsDrawer) {
     return (
       <>
-        {/* Backdrop */}
+        {/* Backdrop with animation */}
         {isMobileOpen && (
           <div 
-            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden transition-opacity duration-300 ease-out"
             onClick={closeMobileDrawer}
             aria-hidden="true"
+            style={{
+              animation: isMobileOpen ? 'fadeIn 0.3s ease-out' : 'fadeOut 0.3s ease-out'
+            }}
           />
         )}
         
@@ -242,8 +284,12 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
         <aside 
           data-mobile-drawer="true"
           data-open={isMobileOpen}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
           className={cn(
-            "fixed top-0 left-0 h-full w-64 flex flex-col z-50",
+            "fixed top-0 left-0 h-full w-64 flex flex-col z-50 transition-transform duration-300 ease-out",
+            isMobileOpen ? "translate-x-0" : "-translate-x-full",
             showAsDrawer ? "block" : "hidden", // Show only when mobile drawer mode
             className
           )}

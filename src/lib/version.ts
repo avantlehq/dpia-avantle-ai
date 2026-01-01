@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.113" as const
-export const VERSION_NAME = "⭐ STAGE 5 COMPLETE: UX Polish Done - Loading States & Error Handling!" as const
+export const VERSION = "3.21.114" as const
+export const VERSION_NAME = "🎯 Enhanced Sidebar UX - Close Button & Focus Management" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.114": {
+    date: "2026-01-01",
+    name: "🎯 Enhanced Sidebar UX - Close Button & Focus Management",
+    features: [
+      "SIDEBAR HEADER: Added SidebarHeader component with HOME navigation and explicit close button (40×40px hit area)",
+      "MOBILE DRAWER UX: Enhanced mobile overlay with backdrop, smooth animations, and multiple close methods",
+      "FOCUS MANAGEMENT: Implemented focus trap for mobile drawer with automatic focus restoration to hamburger button",
+      "ACCESSIBILITY EXCELLENCE: Added proper ARIA attributes (role='dialog', aria-modal='true', aria-expanded)",
+      "KEYBOARD NAVIGATION: Enhanced ESC key support and Tab cycling within drawer for full keyboard accessibility",
+      "DESKTOP EXPERIENCE: Added collapse toggle with chevron icons, close button hidden in docked mode",
+      "ANIMATION POLISH: Smooth slide-in/out transitions with fade effects, respects prefers-reduced-motion",
+      "ENHANCED TOPBAR: Improved hamburger button with context-aware ARIA labels and proper control relationships"
+    ]
+  },
   "3.21.113": {
     date: "2026-01-01",
     name: "⭐ STAGE 5 COMPLETE: UX Polish Done - Loading States & Error Handling!",

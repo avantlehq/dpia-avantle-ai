@@ -97,8 +97,8 @@ export const ModernTopbar = memo(function ModernTopbar() {
           size="lg"
           icon={isMobileOpen ? <X /> : <Menu />}
           onClick={toggle}
-          aria-label={isMobileOpen ? "Close sidebar" : "Toggle sidebar"}
-          aria-expanded={!isCollapsed && !isMobileOpen}
+          aria-label={showAsDrawer ? (isMobileOpen ? "Close sidebar" : "Open sidebar") : (isCollapsed ? "Expand sidebar" : "Collapse sidebar")}
+          aria-expanded={showAsDrawer ? isMobileOpen : !isCollapsed}
           aria-controls="main-sidebar"
           className="mr-3"
         />

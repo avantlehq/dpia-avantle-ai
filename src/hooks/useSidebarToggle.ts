@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 
 type SidebarMode = 'expanded' | 'collapsed'
 
@@ -13,6 +13,9 @@ export function useSidebarToggle() {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(true)
   const [mounted, setMounted] = useState(false)
+  
+  // Focus management for drawer mode
+  const lastFocusedElementRef = useRef<HTMLElement | null>(null)
 
   // Track hydration to prevent SSR mismatch
   useEffect(() => {
@@ -64,13 +67,26 @@ export function useSidebarToggle() {
       }
     } else {
       // Mobile: toggle drawer open/close
+      if (!isMobileOpen) {
+        // Opening drawer - store current focus
+        lastFocusedElementRef.current = document.activeElement as HTMLElement
+      }
       setIsMobileOpen(prev => !prev)
     }
-  }, [isDesktop, mode])
+  }, [isDesktop, mode, isMobileOpen])
 
   // Close mobile drawer (for backdrop click, ESC key)
   const closeMobileDrawer = useCallback(() => {
     setIsMobileOpen(false)
+    
+    // Restore focus to the element that opened the drawer
+    if (lastFocusedElementRef.current) {
+      // Small delay to ensure drawer is fully closed
+      setTimeout(() => {
+        lastFocusedElementRef.current?.focus()
+        lastFocusedElementRef.current = null
+      }, 100)
+    }
   }, [])
 
   // Set specific mode (for programmatic control)
@@ -99,15 +115,20 @@ export function useSidebarToggle() {
         }
       }
 
-      // ESC key closes mobile drawer
-      if (event.key === 'Escape' && !isDesktop && isMobileOpen) {
-        closeMobileDrawer()
+      // ESC key closes mobile drawer OR collapses desktop sidebar
+      if (event.key === 'Escape') {
+        if (!isDesktop && isMobileOpen) {
+          closeMobileDrawer()
+        } else if (isDesktop && mode === 'expanded') {
+          // Optional: ESC also collapses desktop sidebar
+          setSidebarMode('collapsed')
+        }
       }
     }
 
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [toggle, closeMobileDrawer, isDesktop, isMobileOpen])
+  }, [toggle, closeMobileDrawer, isDesktop, isMobileOpen, mode, setSidebarMode])
 
   return {
     // State

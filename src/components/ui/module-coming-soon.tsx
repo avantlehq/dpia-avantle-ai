@@ -1,11 +1,9 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { LucideIcon, Clock, ArrowRight, Sparkles } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { useTranslations } from '@/hooks/useTranslations'
-import { useState, useEffect } from 'react'
 
 interface ModuleComingSoonProps {
   icon: LucideIcon
@@ -36,20 +34,22 @@ export function ModuleComingSoon({
   estimatedTimeline,
   moduleColor = '#4A90E2'
 }: ModuleComingSoonProps) {
-  const [mounted, setMounted] = useState(false)
-  const { t } = useTranslations('common')
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
+    setIsMounted(true)
   }, [])
 
-  // Default fallback text for SSR
-  const upcomingFeaturesText = mounted ? t('upcomingFeatures') : 'Upcoming Features'
-  const notifyWhenReadyText = mounted ? t('notifyWhenReady') : 'Notify When Ready'
-  const whyThisModuleText = mounted ? t('whyThisModule') : 'Why This Module?'
-  const moduleImportanceText = mounted ? t('moduleImportance') : 'This module will help you maintain GDPR compliance and streamline your privacy management workflow.'
-  const currentProgressText = mounted ? t('currentProgress') : 'Current Progress'
-  const inDevelopmentText = mounted ? t('inDevelopment') : 'Currently in development. Check back soon for updates on our progress.'
+  // Don't render on server-side to avoid SSR conflicts
+  if (!isMounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-pulse text-gray-400">Loading...</div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="space-y-6">
@@ -91,7 +91,7 @@ export function ModuleComingSoon({
           <div className="bg-gray-900/50 rounded-xl p-6 mb-8">
             <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center gap-2">
               <Sparkles className="h-5 w-5 text-blue-400" />
-              {upcomingFeaturesText}
+              Upcoming Features
             </h3>
             <div className="grid gap-3 max-w-md mx-auto">
               {features.map((feature, index) => (
@@ -109,7 +109,7 @@ export function ModuleComingSoon({
               </div>
             )}
             <Button variant="outline" size="sm" disabled className="group">
-              {notifyWhenReadyText}
+              Notify When Ready
               <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
@@ -121,10 +121,10 @@ export function ModuleComingSoon({
         <Card className="avantle-border bg-card backdrop-blur-sm">
           <CardContent className="p-6">
             <h4 className="text-lg font-semibold text-white mb-3">
-              {whyThisModuleText}
+              Why This Module?
             </h4>
             <p className="text-gray-400 text-sm">
-              {moduleImportanceText}
+              This module will help you maintain GDPR compliance and streamline your privacy management workflow.
             </p>
           </CardContent>
         </Card>
@@ -132,10 +132,10 @@ export function ModuleComingSoon({
         <Card className="avantle-border bg-card backdrop-blur-sm">
           <CardContent className="p-6">
             <h4 className="text-lg font-semibold text-white mb-3">
-              {currentProgressText}
+              Current Progress
             </h4>
             <p className="text-gray-400 text-sm">
-              {inDevelopmentText}
+              Currently in development. Check back soon for updates on our progress.
             </p>
           </CardContent>
         </Card>
