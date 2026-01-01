@@ -95,7 +95,7 @@ export function DefaultErrorFallback({ error, resetError }: ErrorFallbackProps) 
           <div className="flex gap-3 pt-2">
             <Button
               onClick={resetError}
-              variant="default"
+              variant="primary"
               leftIcon={<RefreshCw className="h-4 w-4" />}
             >
               Try Again
@@ -127,7 +127,7 @@ export function DashboardErrorFallback({ resetError }: ErrorFallbackProps) {
           We couldn&apos;t load your assessment dashboard. This might be a temporary issue.
         </p>
         <div className="flex justify-center gap-3">
-          <Button onClick={resetError} variant="default">
+          <Button onClick={resetError} variant="primary">
             Retry
           </Button>
           <Button onClick={() => window.location.reload()} variant="outline">

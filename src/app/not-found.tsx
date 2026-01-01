@@ -26,14 +26,15 @@ export default function NotFound() {
                 Go to Homepage
               </Button>
             </Link>
-            <Button
-              variant="outline"
-              onClick={() => window.history.back()}
-              leftIcon={<ArrowLeft className="h-4 w-4" />}
-              className="flex-1"
-            >
-              Go Back
-            </Button>
+            <Link href="javascript:history.back()" className="flex-1">
+              <Button
+                variant="outline"
+                leftIcon={<ArrowLeft className="h-4 w-4" />}
+                className="w-full"
+              >
+                Go Back
+              </Button>
+            </Link>
           </div>
           
           <div className="pt-4 border-t">

@@ -121,7 +121,6 @@ export function AssessmentProgressIndicator({ currentStep = 0 }: { currentStep?:
   return (
     <ProgressIndicator 
       steps={steps} 
-      currentStep={currentStep} 
       progress={progress}
       showPercentage
     />

@@ -15,7 +15,7 @@ interface ErrorMessageProps {
   actions?: Array<{
     label: string
     action: () => void
-    variant?: 'default' | 'outline' | 'ghost'
+    variant?: 'primary' | 'secondary' | 'destructive' | 'ghost' | 'outline'
   }>
   dismissible?: boolean
   onDismiss?: () => void

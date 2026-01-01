@@ -62,7 +62,7 @@ export default function Error({
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <Button
               onClick={reset}
-              variant="default"
+              variant="primary"
               leftIcon={<RefreshCw className="h-4 w-4" />}
               className="flex-1"
             >
