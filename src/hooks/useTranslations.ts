@@ -20,7 +20,8 @@ export function useTranslations(namespace?: string) {
             risk: 'Risk',
             controls: 'Controls',
             training: 'Training',
-            trust: 'Trust Center'
+            trust: 'Trust Center',
+            'trust-center': 'Trust Center'
           },
           pages: {
             overview: 'Overview',
@@ -32,7 +33,10 @@ export function useTranslations(namespace?: string) {
             assessments: 'Assessments',
             templates: 'Templates',
             exports: 'Exports',
-            settings: 'Settings'
+            settings: 'Settings',
+            'risk-overview': 'Risk Overview',
+            'privacy-risks': 'Privacy Risks', 
+            'risk-register': 'Risk Register'
           }
         },
         common: {
@@ -78,6 +82,21 @@ export function useTranslations(namespace?: string) {
             drafts: 'Drafts',
             overdue: 'Overdue'
           }
+        },
+        help: {
+          title: 'Help & Support',
+          description: 'Documentation, support, and resources for Avantle Privacy Platform',
+          documentation: 'Documentation',
+          documentationDescription: 'Comprehensive guides and API documentation',
+          support: 'Contact Support',
+          supportDescription: 'Get help from our privacy compliance experts',
+          community: 'Community',
+          communityDescription: 'Connect with other privacy professionals',
+          status: 'System Status',
+          statusDescription: 'Check platform availability and performance',
+          comingSoon: 'Coming Soon',
+          tempMessage: 'Help Center Under Development',
+          tempDescription: 'We are building comprehensive help resources for privacy professionals. Check back soon for guides, tutorials, and support documentation.'
         }
       },
       sk: {
@@ -91,7 +110,8 @@ export function useTranslations(namespace?: string) {
             risk: 'Riziko',
             controls: 'Kontroly',
             training: 'Školenia',
-            trust: 'Centrum dôvery'
+            trust: 'Centrum dôvery',
+            'trust-center': 'Centrum dôvery'
           },
           pages: {
             overview: 'Prehľad',
@@ -104,6 +124,9 @@ export function useTranslations(namespace?: string) {
             templates: 'Šablóny',
             exports: 'Exporty',
             settings: 'Nastavenia',
+            'risk-overview': 'Prehľad rizík',
+            'privacy-risks': 'Riziká súkromia',
+            'risk-register': 'Register rizík',
             systems: 'Systémy',
             processing: 'Spracovanie',
             'data-categories': 'Kategórie údajov',
@@ -230,6 +253,21 @@ export function useTranslations(namespace?: string) {
             drafts: 'Návrhy',
             overdue: 'Po termíne'
           }
+        },
+        help: {
+          title: 'Pomoc a podpora',
+          description: 'Dokumentácia, podpora a zdroje pre Avantle Privacy Platform',
+          documentation: 'Dokumentácia',
+          documentationDescription: 'Komplexné návody a API dokumentácia',
+          support: 'Kontaktovať podporu',
+          supportDescription: 'Získajte pomoc od našich expertov na compliance ochrany údajov',
+          community: 'Komunita',
+          communityDescription: 'Spojte sa s inými odborníkmi na ochranu súkromia',
+          status: 'Stav systému',
+          statusDescription: 'Skontrolujte dostupnosť a výkonnosť platformy',
+          comingSoon: 'Pripravuje sa',
+          tempMessage: 'Help centrum sa vyvíja',
+          tempDescription: 'Budujeme komplexné zdroje pomoci pre odborníkov na ochranu súkromia. Čoskoro sa vráťte pre návody, tutoriály a dokumentáciu podpory.'
         },
         context: {
           title: 'Prehľad kontextu',

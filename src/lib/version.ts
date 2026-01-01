@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.95" as const
-export const VERSION_NAME = "Fix Navigation Translations - Topbar & Privacy Sidebar" as const
+export const VERSION = "3.21.96" as const
+export const VERSION_NAME = "Complete Navigation i18n - Trust Center, Help Page & Risk Sidebar" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.96": {
+    date: "2026-01-01",
+    name: "Complete Navigation i18n - Trust Center, Help Page & Risk Sidebar",
+    features: [
+      "TRUST CENTER FIX: Fixed topbar showing 'modules.trust-center' instead of 'Centrum dôvery'",
+      "HELP PAGE CREATED: Added complete Help/Support page with SK/EN translations and coming soon content",
+      "RISK SIDEBAR FIX: Fixed Risk module sidebar showing translation keys instead of proper Slovak/English text",
+      "HELP TRANSLATIONS: Added comprehensive help section translations (documentation, support, community, status)",
+      "NAVIGATION POLISH: All topbar modules and sidebar items now display correctly in both languages"
+    ]
+  },
   "3.21.95": {
     date: "2026-01-01",
     name: "Fix Navigation Translations - Topbar & Privacy Sidebar",
