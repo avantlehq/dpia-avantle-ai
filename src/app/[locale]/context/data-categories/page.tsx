@@ -2,10 +2,10 @@
 
 import React from 'react'
 import { Folder } from 'lucide-react'
-import dynamic from 'next/dynamic'
+import nextDynamic from 'next/dynamic'
 
 // Dynamic import to avoid SSR issues
-const ModuleComingSoon = dynamic(
+const ModuleComingSoon = nextDynamic(
   () => import('@/components/ui/module-coming-soon').then(mod => ({ default: mod.ModuleComingSoon })),
   { 
     ssr: false,
@@ -18,6 +18,9 @@ const ModuleComingSoon = dynamic(
     )
   }
 )
+
+// Force dynamic rendering to avoid SSR issues
+export const dynamic = 'force-dynamic'
 
 export default function DataCategoriesPage() {
   const features = [

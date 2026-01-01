@@ -4,6 +4,9 @@ import React from 'react'
 import { FileText } from 'lucide-react'
 import { ModuleComingSoon } from '@/components/ui/module-coming-soon'
 
+// Force dynamic rendering to avoid SSR issues
+export const dynamic = 'force-dynamic'
+
 export default function RiskRegisterPage() {
   const features = [
     'Centralized risk inventory with unique risk IDs',

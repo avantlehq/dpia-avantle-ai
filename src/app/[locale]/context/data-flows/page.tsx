@@ -2,10 +2,10 @@
 
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
-import dynamic from 'next/dynamic'
+import nextDynamic from 'next/dynamic'
 
 // Dynamic import to avoid SSR issues
-const ModuleComingSoon = dynamic(
+const ModuleComingSoon = nextDynamic(
   () => import('@/components/ui/module-coming-soon').then(mod => ({ default: mod.ModuleComingSoon })),
   { 
     ssr: false,
