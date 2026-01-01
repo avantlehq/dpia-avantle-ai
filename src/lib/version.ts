@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.107" as const
-export const VERSION_NAME = "STAGE 5A: Professional Empty States - LIA & TOMs Redesign" as const
+export const VERSION = "3.21.108" as const
+export const VERSION_NAME = "Enable Professional Empty States in Sidebar - LIA & TOMs Navigation" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({

@@ -153,8 +153,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
         name: 'LIA', 
         href: getLocaleHref('/privacy/lia'), // FUTURE-PROOF: expandable
         icon: Scale,
-        description: 'Legitimate Interest Assessment',
-        disabled: true
+        description: 'Legitimate Interest Assessment'
       },
       { 
         id: 'tia',
@@ -235,8 +234,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
         name: 'TOMs', 
         href: getLocaleHref('/controls/toms'), 
         icon: Lock,
-        description: 'Technical & Organizational Measures',
-        disabled: true
+        description: 'Technical & Organizational Measures'
       }
     ]
   },
