@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.114" as const
-export const VERSION_NAME = "🎯 Enhanced Sidebar UX - Close Button & Focus Management" as const
+export const VERSION = "3.21.115" as const
+export const VERSION_NAME = "🔧 SSR Build Compatibility - Enhanced Sidebar + CI Fixes" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.115": {
+    date: "2026-01-01", 
+    name: "🔧 SSR Build Compatibility - Enhanced Sidebar + CI Fixes",
+    features: [
+      "SSR COMPATIBILITY: Added export const dynamic = 'force-dynamic' to all problematic pages to resolve Next.js 16 SSR issues",
+      "CONTEXT LAYOUT: Created context/layout.tsx to force dynamic rendering for all context module pages", 
+      "BUILD FIXES: Resolved TypeScript errors and naming conflicts between next/dynamic imports",
+      "CI IMPROVEMENTS: Progressive fixes for 'Cannot read properties of null (reading useContext)' build errors",
+      "PRODUCTION STABILITY: Maintained working v3.21.114 enhanced sidebar functionality throughout fixes",
+      "COMPREHENSIVE SSR FIXES: Applied force-dynamic to 15+ pages including ModuleComingSoon, error, and precheck pages",
+      "NEXT.JS 16 SUPPORT: Enhanced compatibility with Next.js 16 SSR and static generation processes"
+    ]
+  },
   "3.21.114": {
     date: "2026-01-01",
     name: "🎯 Enhanced Sidebar UX - Close Button & Focus Management",
