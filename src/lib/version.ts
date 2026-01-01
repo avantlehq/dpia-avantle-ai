@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.104" as const
-export const VERSION_NAME = "Simplified Content Spacing - Direct Padding Approach" as const
+export const VERSION = "3.21.105" as const
+export const VERSION_NAME = "Debug Spacing - Extreme Test with 0px Left Padding" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({

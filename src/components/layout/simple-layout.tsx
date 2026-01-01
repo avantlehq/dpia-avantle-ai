@@ -39,7 +39,7 @@ function LayoutContent({ children }: SimpleLayoutProps) {
         
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          <main className="flex-1 overflow-y-auto touch-optimized" style={{ padding: '32px 32px 32px 40px' }}>
+          <main className="flex-1 overflow-y-auto touch-optimized" style={{ padding: '32px 32px 32px 0px', backgroundColor: 'rgba(255,0,0,0.1)' }}>
             {children}
           </main>
           
