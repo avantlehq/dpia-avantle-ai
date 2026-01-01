@@ -6,6 +6,9 @@ import { SimpleLayout } from '@/components/layout/simple-layout'
 import { locales } from '@/i18n/config'
 import "../globals.css"
 
+// Force dynamic rendering to resolve persistent SSR issues
+export const dynamic = 'force-dynamic'
+
 type Props = {
   children: React.ReactNode;
   params: Promise<{ locale: string }>;

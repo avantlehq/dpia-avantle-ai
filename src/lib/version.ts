@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.115" as const
-export const VERSION_NAME = "🔧 SSR Build Compatibility - Enhanced Sidebar + CI Fixes" as const
+export const VERSION = "3.21.116" as const
+export const VERSION_NAME = "🛠️ Complete SSR Fix - Root Layout + Global Error Resolution" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
