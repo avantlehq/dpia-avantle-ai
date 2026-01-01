@@ -73,7 +73,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
   const pathname = usePathname()
   const activeModuleId = getActiveModule(pathname)
   const versionInfo = useMemo(() => getVersionInfo(), [])
-  const { toggle, isCollapsed, isMobileOpen } = useSidebarContext()
+  const { toggle, isCollapsed, isMobileOpen, showAsDrawer } = useSidebarContext()
   const { locale } = useClientLocale()
   
   // Memoize context-aware home link based on active module with locale

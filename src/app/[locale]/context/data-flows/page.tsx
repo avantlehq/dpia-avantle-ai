@@ -2,7 +2,22 @@
 
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
-import { ModuleComingSoon } from '@/components/ui/module-coming-soon'
+import dynamic from 'next/dynamic'
+
+// Dynamic import to avoid SSR issues
+const ModuleComingSoon = dynamic(
+  () => import('@/components/ui/module-coming-soon').then(mod => ({ default: mod.ModuleComingSoon })),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-pulse text-gray-400">Loading...</div>
+        </div>
+      </div>
+    )
+  }
+)
 
 export default function DataFlowsPage() {
   const features = [
