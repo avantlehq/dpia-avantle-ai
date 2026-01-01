@@ -1,12 +1,12 @@
 'use client'
 
-import React, { memo, useMemo } from 'react'
+import React, { memo, useMemo, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, privacyModulesConfig } from '@/lib/state/modules'
-import { useTranslations } from '@/hooks/useTranslations'
+import { detectClientLocale } from '@/i18n/utils'
 
 interface BreadcrumbItem {
   id: string
@@ -22,13 +22,83 @@ interface ModernBreadcrumbsProps {
   mobileMaxItems?: number // Separate limit for mobile screens
 }
 
+// SSR-safe translation function
+function getTranslation(locale: string, key: string): string {
+  const translations: Record<string, Record<string, string>> = {
+    en: {
+      'home': 'Home',
+      'more': '...',
+      'modules.context': 'Context',
+      'modules.privacy': 'Privacy',
+      'modules.risk': 'Risk',
+      'modules.controls': 'Controls',
+      'modules.training': 'Training',
+      'modules.trust-center': 'Trust Center',
+      'pages.overview': 'Overview',
+      'pages.systems': 'Systems',
+      'pages.processing': 'Processing Activities',
+      'pages.data-categories': 'Data Categories',
+      'pages.data-flows': 'Data Flows',
+      'pages.vendors': 'Vendors / Processors',
+      'pages.locations': 'Locations & Jurisdictions',
+      'pages.dpia-precheck': 'DPIA Pre-Check',
+      'pages.dpia-assessments': 'DPIA Assessments',
+      'pages.lia': 'LIA',
+      'pages.tia': 'TIA',
+      'pages.policies': 'Privacy Policies'
+    },
+    sk: {
+      'home': 'Domov',
+      'more': '...',
+      'modules.context': 'Kontext',
+      'modules.privacy': 'Ochrana údajov',
+      'modules.risk': 'Riziko',
+      'modules.controls': 'Kontroly',
+      'modules.training': 'Školenia',
+      'modules.trust-center': 'Centrum dôvery',
+      'pages.overview': 'Prehľad',
+      'pages.systems': 'Systémy',
+      'pages.processing': 'Spracovanie',
+      'pages.data-categories': 'Kategórie údajov',
+      'pages.data-flows': 'Toky údajov',
+      'pages.vendors': 'Dodávatelia',
+      'pages.locations': 'Lokality',
+      'pages.dpia-precheck': 'DPIA Kontrola',
+      'pages.dpia-assessments': 'DPIA Hodnotenia',
+      'pages.lia': 'LIA',
+      'pages.tia': 'TIA',
+      'pages.policies': 'Zásady'
+    }
+  }
+  
+  return translations[locale]?.[key] || translations['en']?.[key] || key
+}
+
 const ModernBreadcrumbs = memo(function ModernBreadcrumbs({ 
   className, 
   maxItems = 4,
   mobileMaxItems = 2 
 }: ModernBreadcrumbsProps) {
   const pathname = usePathname()
-  const { t } = useTranslations('nav')
+  const [locale, setLocale] = useState('en')
+  const [mounted, setMounted] = useState(false)
+
+  // SSR-safe locale detection
+  useEffect(() => {
+    if (pathname) {
+      const pathSegments = pathname.split('/').filter(Boolean)
+      const firstSegment = pathSegments[0]
+      
+      if (firstSegment === 'sk' || firstSegment === 'en') {
+        setLocale(firstSegment)
+      } else {
+        setLocale(detectClientLocale())
+      }
+    }
+    setMounted(true)
+  }, [pathname])
+  
+  const t = (key: string) => getTranslation(locale, key)
   
   // Generate breadcrumb trail based on current route - synced with sidebar navigation
   const breadcrumbs = useMemo(() => {
@@ -80,7 +150,7 @@ const ModernBreadcrumbs = memo(function ModernBreadcrumbs({
     }
     
     return items
-  }, [pathname, t])
+  }, [pathname, locale, mounted])
   
   // Smart responsive collapse with mobile optimization
   const visibleBreadcrumbs = useMemo(() => {
@@ -131,10 +201,10 @@ const ModernBreadcrumbs = memo(function ModernBreadcrumbs({
       ...(beforeLast ? [beforeLast] : []),
       last
     ].filter(Boolean)
-  }, [breadcrumbs, maxItems, mobileMaxItems, t])
+  }, [breadcrumbs, maxItems, mobileMaxItems, locale])
   
-  if (breadcrumbs.length <= 1) {
-    return null // Don't show breadcrumbs for simple single-level pages
+  if (breadcrumbs.length <= 1 || !mounted) {
+    return null // Don't show breadcrumbs for simple single-level pages or during SSR
   }
   
   return (

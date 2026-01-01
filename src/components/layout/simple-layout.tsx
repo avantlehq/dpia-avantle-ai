@@ -40,7 +40,7 @@ function LayoutContent({ children }: SimpleLayoutProps) {
         
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Contextual Breadcrumbs - disabled for locale routing fix */}
+          {/* Contextual Breadcrumbs - temporarily disabled for build fix */}
           {/* <ModernBreadcrumbs className="flex-shrink-0" /> */}
           
           <main className="flex-1 overflow-y-auto p-8 touch-optimized">

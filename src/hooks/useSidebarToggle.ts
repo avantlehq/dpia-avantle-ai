@@ -19,9 +19,9 @@ export function useSidebarToggle() {
     setMounted(true)
   }, [])
 
-  // Initialize screen size and localStorage
+  // Initialize screen size and localStorage - SSR safe
   useEffect(() => {
-    if (typeof window === 'undefined') return
+    if (!mounted || typeof window === 'undefined') return
 
     const updateScreenSize = () => {
       const desktop = window.innerWidth >= DESKTOP_BREAKPOINT
@@ -31,15 +31,18 @@ export function useSidebarToggle() {
       }
     }
 
-    // Load from localStorage - start fresh for debugging
-    localStorage.removeItem(STORAGE_KEY) // TEMP: Clear any stuck state
-    const savedMode = localStorage.getItem(STORAGE_KEY) as SidebarMode
-    if (savedMode === 'collapsed' || savedMode === 'expanded') {
-      setMode(savedMode)
-    } else {
-      // Ensure we start expanded
+    // Load from localStorage after mount only
+    try {
+      const savedMode = localStorage.getItem(STORAGE_KEY) as SidebarMode
+      if (savedMode === 'collapsed' || savedMode === 'expanded') {
+        setMode(savedMode)
+      } else {
+        setMode('expanded')
+        localStorage.setItem(STORAGE_KEY, 'expanded')
+      }
+    } catch {
+      // Fallback for localStorage errors
       setMode('expanded')
-      localStorage.setItem(STORAGE_KEY, 'expanded')
     }
 
     // Set initial screen size
@@ -48,7 +51,7 @@ export function useSidebarToggle() {
     // Listen for resize
     window.addEventListener('resize', updateScreenSize)
     return () => window.removeEventListener('resize', updateScreenSize)
-  }, [])
+  }, [mounted])
 
   // Toggle sidebar based on current context (desktop vs mobile)
   const toggle = useCallback(() => {
