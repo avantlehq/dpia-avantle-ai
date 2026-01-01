@@ -10,8 +10,43 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useClientLocale } from '@/hooks/useClientLocale'
 import { useTranslations } from '@/hooks/useTranslations'
+import { useState, useEffect } from 'react'
 
 export default function ContextOverviewPage() {
+  const [mounted, setMounted] = useState(false)
+  
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    // SSR fallback with English defaults
+    return (
+      <div className="space-y-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h1 className="text-2xl font-semibold text-foreground">Context</h1>
+            <p className="text-muted-foreground">
+              Foundation data and processing context
+            </p>
+          </div>
+          <div className="flex items-center" style={{ gap: '32px' }}>
+            <Link href="/en/context/systems">
+              <Button variant="secondary" size="md">
+                Register System
+              </Button>
+            </Link>
+            <Link href="/en/context/processing">
+              <Button variant="primary" size="md">
+                Add Processing
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   const { locale } = useClientLocale()
   const { t } = useTranslations('context')
   
@@ -20,9 +55,9 @@ export default function ContextOverviewPage() {
       {/* Header with CTAs - matching dashboard style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+          <h1 className="text-2xl font-semibold text-foreground">{title}</h1>
           <p className="text-muted-foreground">
-            {t('description')}
+            {description}
           </p>
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
