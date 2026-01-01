@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.101" as const
-export const VERSION_NAME = "Fix Main Content Layout - Add Left Margin from Sidebar" as const
+export const VERSION = "3.21.102" as const
+export const VERSION_NAME = "Aggressive Main Content Spacing Fix - Nested Margin Approach" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.102": {
+    date: "2026-01-01",
+    name: "Aggressive Main Content Spacing Fix - Nested Margin Approach",
+    features: [
+      "AGGRESSIVE SPACING FIX: Switched from Tailwind classes to inline styles to prevent CSS override issues",
+      "NESTED MARGIN APPROACH: Main has 32px padding + inner div has 24px left margin = 56px total left spacing",
+      "GUARANTEED VISIBILITY: Using explicit style attributes to ensure spacing isn't overridden by global CSS",
+      "ENHANCED SEPARATION: Content now has substantial breathing room from 256px sidebar border",
+      "CSS OVERRIDE PROTECTION: Inline styles have higher specificity than any conflicting CSS rules"
+    ]
+  },
   "3.21.101": {
     date: "2026-01-01",
     name: "Fix Main Content Layout - Add Left Margin from Sidebar",
