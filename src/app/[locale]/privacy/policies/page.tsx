@@ -1,33 +1,26 @@
 'use client'
 
 import React from 'react'
+import { BookOpen } from 'lucide-react'
+import { ModuleComingSoon } from '@/components/ui/module-coming-soon'
 
 export default function PoliciesPage() {
+  const features = [
+    'GDPR-compliant policy template generator',
+    'Multi-language policy support (EU languages)',
+    'Automated policy updates based on processing changes',
+    'Version control and change tracking',
+    'Legal review workflow and approval process'
+  ]
+
   return (
-    <div className="space-y-6">
-      <div className="border-b border-gray-700/50 pb-6">
-        <h1 className="text-3xl font-bold text-white mb-2">
-          Privacy Policies
-        </h1>
-        <p className="text-gray-400">
-          Privacy policy management and generation
-        </p>
-      </div>
-      
-      <div className="bg-gray-800/50 rounded-lg p-8 text-center border border-gray-700/30">
-        <div className="mb-4">
-          <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-2xl">📖</span>
-          </div>
-        </div>
-        <h2 className="text-xl font-semibold text-white mb-2">Privacy Policy Management</h2>
-        <p className="text-gray-400 mb-6">
-          Create, manage, and maintain GDPR-compliant privacy policies and notices for your organization.
-        </p>
-        <div className="text-sm text-gray-500">
-          Coming soon in future release
-        </div>
-      </div>
-    </div>
+    <ModuleComingSoon
+      icon={BookOpen}
+      title="Privacy Policies"
+      description="Comprehensive privacy policy management and automated generation"
+      features={features}
+      estimatedTimeline="Q2 2026"
+      moduleColor="#9B59B6"
+    />
   )
 }

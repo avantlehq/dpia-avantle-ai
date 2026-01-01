@@ -160,16 +160,14 @@ export const privacyModulesConfig: ModuleConfig[] = [
         name: 'TIA', 
         href: getLocaleHref('/privacy/tia'), // FUTURE-PROOF: expandable
         icon: Plane,
-        description: 'Transfer Impact Assessment',
-        disabled: true
+        description: 'Transfer Impact Assessment'
       },
       { 
         id: 'policies',
         name: 'Privacy Policies', 
         href: getLocaleHref('/privacy/policies'), // FUTURE-PROOF: expandable
         icon: BookOpen,
-        description: 'Privacy policy management',
-        disabled: true
+        description: 'Privacy policy management'
       }
     ]
   },
