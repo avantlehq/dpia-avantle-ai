@@ -68,7 +68,14 @@ export function useTranslations(namespace?: string) {
           search: 'Search',
           back: 'Back',
           next: 'Next',
-          finish: 'Finish'
+          finish: 'Finish',
+          // Empty States
+          upcomingFeatures: 'Upcoming Features',
+          notifyWhenReady: 'Notify When Ready',
+          whyThisModule: 'Why This Module?',
+          moduleImportance: 'This module will help you maintain GDPR compliance and streamline your privacy management workflow.',
+          currentProgress: 'Current Progress',
+          inDevelopment: 'Currently in development. Check back soon for updates on our progress.'
         },
         dpia: {
           dashboard: {
@@ -199,7 +206,14 @@ export function useTranslations(namespace?: string) {
           supervisoryAuthority: 'Dozorný orgán',
           dpo: 'Zodpovedná osoba',
           privacyByDesign: 'Ochrana súkromia od návrhu',
-          privacyByDefault: 'Ochrana súkromia v základnom nastavení'
+          privacyByDefault: 'Ochrana súkromia v základnom nastavení',
+          // Empty States  
+          upcomingFeatures: 'Pripravované funkcionaliny',
+          notifyWhenReady: 'Upozorniť keď bude hotové',
+          whyThisModule: 'Prečo tento modul?',
+          moduleImportance: 'Tento modul vám pomôže udržať GDPR compliance a zefektívniť správu ochrany údajov.',
+          currentProgress: 'Aktuálny stav',
+          inDevelopment: 'Momentálne vo vývoji. Vráťte sa čoskoro pre aktualizácie pokroku.'
         },
         dpia: {
           dashboard: {
