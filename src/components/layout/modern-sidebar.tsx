@@ -128,18 +128,9 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
   const activeModuleId = getActiveModule(pathname)
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
   
-  // Memoize active item calculation
+  // Memoize active item calculation with improved specificity matching
   const activeItemId = React.useMemo(() => {
     if (!moduleConfig?.items) return undefined
-    
-    // Debug logging to understand the issue
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Sidebar Debug:', {
-        pathname,
-        moduleId: activeModuleId,
-        items: moduleConfig.items.map(item => ({ id: item.id, href: item.href }))
-      })
-    }
     
     // First try to find exact matches to avoid prefix collision issues
     let activeItem = moduleConfig.items.find(item => pathname === item.href)
@@ -151,15 +142,6 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
         .sort((a, b) => b.href.length - a.href.length) // Longest (most specific) first
         
       activeItem = subPathMatches[0] // Take the most specific match
-    }
-    
-    if (process.env.NODE_ENV === 'development' && activeItem) {
-      console.log(`Active item found:`, { 
-        itemId: activeItem.id, 
-        itemHref: activeItem.href, 
-        pathname, 
-        matchType: pathname === activeItem.href ? 'exact' : 'subpath'
-      })
     }
     
     return activeItem?.id
