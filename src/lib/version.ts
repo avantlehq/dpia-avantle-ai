@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.90" as const
-export const VERSION_NAME = "Complete Slovak Translations - Business Ready Platform" as const
+export const VERSION = "3.21.91" as const
+export const VERSION_NAME = "Fix Locale Detection - URL-Based Slovak Switching" as const
 export const BUILD_DATE = "2025-12-31"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.91": {
+    date: "2025-12-31",
+    name: "Fix Locale Detection - URL-Based Slovak Switching",
+    features: [
+      "LOCALE URL DETECTION: Fixed useClientLocale hook to detect locale from URL pathname (/sk/, /en/)",
+      "PROPER SLOVAK SWITCHING: Pages now correctly render in Slovak when URL contains /sk/ prefix",
+      "NAVIGATION LOCALE FIX: Language switcher now properly navigates to locale-aware URLs",
+      "PATHNAME INTEGRATION: Added usePathname to detect locale from browser URL segments",
+      "TRANSLATION ACTIVATION: Slovak translations now properly activate based on URL structure"
+    ]
+  },
   "3.21.90": {
     date: "2025-12-31",
     name: "Complete Slovak Translations - Business Ready Platform",
