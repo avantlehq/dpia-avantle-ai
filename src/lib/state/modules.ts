@@ -195,8 +195,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
         name: 'Privacy Risks', 
         href: getLocaleHref('/risk/privacy-risks'), 
         icon: AlertTriangle,
-        description: 'Identified privacy risks',
-        disabled: true
+        description: 'Identified privacy risks'
       },
       { 
         id: 'risk-register',
