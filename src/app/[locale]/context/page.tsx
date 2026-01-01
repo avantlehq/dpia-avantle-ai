@@ -9,18 +9,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useClientLocale } from '@/hooks/useClientLocale'
+import { useTranslations } from '@/hooks/useTranslations'
 
 export default function ContextOverviewPage() {
   const { locale } = useClientLocale()
+  const { t } = useTranslations('context')
   
   return (
     <div className="space-y-6">
       {/* Header with CTAs - matching dashboard style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">Context Overview</h1>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground">
-            Foundation data and processing context for privacy compliance
+            {t('description')}
           </p>
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
@@ -29,9 +31,9 @@ export default function ContextOverviewPage() {
             <Button 
               variant="secondary" 
               size="md"
-              title="Register new IT system or service"
+              title={t('systemsDescription')}
             >
-              Register System
+              {t('registerSystem')}
             </Button>
           </Link>
           
@@ -41,7 +43,7 @@ export default function ContextOverviewPage() {
               variant="primary" 
               size="md"
             >
-              Add Processing
+              {t('addProcessing')}
             </Button>
           </Link>
         </div>
@@ -49,7 +51,7 @@ export default function ContextOverviewPage() {
 
       {/* Foundation Data Overview - matching dashboard pills */}
       <div className="space-y-5">
-        <h2 className="text-lg font-medium text-foreground">Foundation Data Overview</h2>
+        <h2 className="text-lg font-medium text-foreground">{t('foundationData')}</h2>
         
         {/* Status Pills Group - matching dashboard style */}
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
@@ -72,7 +74,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              Systems
+              {t('systems')}
             </span>
             <span 
               style={{ 
@@ -104,7 +106,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              Processing Activities
+              {t('processingActivities')}
             </span>
             <span 
               style={{ 
@@ -136,7 +138,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              Data Categories
+              {t('dataCategories')}
             </span>
             <span 
               style={{ 
@@ -168,7 +170,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              Vendors
+              {t('vendors')}
             </span>
             <span 
               style={{ 
@@ -190,7 +192,7 @@ export default function ContextOverviewPage() {
       <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            Foundation Data Components
+            {t('foundationComponents')}
             <Link href={`/${locale}/context/systems`}>
               <Button
                 variant="outline"
@@ -198,7 +200,7 @@ export default function ContextOverviewPage() {
                 className="gap-2"
               >
                 <Plus className="h-4 w-4" />
-                Add Component
+                {t('addComponent')}
               </Button>
             </Link>
           </CardTitle>
@@ -206,9 +208,9 @@ export default function ContextOverviewPage() {
         <CardContent>
           <div className="text-center py-12">
             <Database className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">Foundation data ready</h3>
+            <h3 className="text-lg font-medium text-foreground mb-2">{t('foundationReady')}</h3>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Your context components are properly configured. Manage systems, processing activities, and vendor relationships.
+              {t('foundationDescription')}
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - Manage Systems */}
@@ -216,9 +218,9 @@ export default function ContextOverviewPage() {
                 <Button 
                   variant="secondary" 
                   size="md"
-                  title="Manage IT systems and infrastructure"
+                  title={t('systemsDescription')}
                 >
-                  Manage Systems
+                  {t('manageSystem')}
                 </Button>
               </Link>
               
@@ -228,7 +230,7 @@ export default function ContextOverviewPage() {
                   variant="primary" 
                   size="lg"
                 >
-                  View Processing
+                  {t('viewProcessing')}
                 </Button>
               </Link>
             </div>

@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.89" as const
-export const VERSION_NAME = "Update CLAUDE.md - Slovak Business Ready Documentation" as const
+export const VERSION = "3.21.90" as const
+export const VERSION_NAME = "Complete Slovak Translations - Business Ready Platform" as const
 export const BUILD_DATE = "2025-12-31"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.90": {
+    date: "2025-12-31",
+    name: "Complete Slovak Translations - Business Ready Platform",
+    features: [
+      "COMPLETE SLOVAK TRANSLATIONS: Added comprehensive Slovak terminology for all modules (Context, Privacy, Risk, Controls, Training, Trust Center)",
+      "GDPR LEGAL TERMINOLOGY: Professional Slovak translations for DPIA, LIA, TIA with proper legal precision",
+      "CONTEXT MODULE LOCALIZED: Complete Slovak UI for Context overview page with proper terminology",
+      "NAVIGATION TRANSLATIONS: All module names and page titles properly translated for Slovak users",
+      "BUSINESS READY: Platform now fully functional in Slovak for lawyer collaboration and MVP testing"
+    ]
+  },
   "3.21.89": {
     date: "2025-12-31",
     name: "Update CLAUDE.md - Slovak Business Ready Documentation",
