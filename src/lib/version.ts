@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.93" as const
-export const VERSION_NAME = "Complete Slovak Translations - Business Ready GDPR Platform" as const
+export const VERSION = "3.21.94" as const
+export const VERSION_NAME = "Remove Breadcrumbs - Simplified Navigation Architecture" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.94": {
+    date: "2026-01-01",
+    name: "Remove Breadcrumbs - Simplified Navigation Architecture",
+    features: [
+      "BREADCRUMBS REMOVED: Eliminated breadcrumb navigation component to simplify architecture",
+      "CLEAN LAYOUT: Streamlined SimpleLayout without unnecessary navigation complexity",
+      "PERFORMANCE OPTIMIZATION: Removed SSR problematic component reducing build complexity",
+      "FOCUSED UX: Two-layer navigation (topbar + sidebar) provides cleaner user experience",
+      "ARCHITECTURAL SIMPLIFICATION: Reduced component dependencies and import overhead"
+    ]
+  },
   "3.21.93": {
     date: "2026-01-01",
     name: "Complete Slovak Translations - Business Ready GDPR Platform",
