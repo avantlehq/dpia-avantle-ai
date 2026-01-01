@@ -145,7 +145,7 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
     }
     
     return activeItem?.id
-  }, [moduleConfig?.items, pathname, activeModuleId])
+  }, [moduleConfig?.items, pathname])
 
   // Swipe gesture handlers for mobile drawer
   const swipeHandlers = useSwipeGesture({
