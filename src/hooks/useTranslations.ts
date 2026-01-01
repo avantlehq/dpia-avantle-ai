@@ -133,7 +133,6 @@ export function useTranslations(namespace?: string) {
             'data-flows': 'Toky údajov',
             vendors: 'Dodávatelia',
             locations: 'Lokality',
-            'privacy-risks': 'Riziká súkromia',
             register: 'Register',
             toms: 'TOMs',
             governance: 'Správa',

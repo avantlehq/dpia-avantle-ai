@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.96" as const
-export const VERSION_NAME = "Complete Navigation i18n - Trust Center, Help Page & Risk Sidebar" as const
+export const VERSION = "3.21.97" as const
+export const VERSION_NAME = "Fix Build Error - Remove Duplicate Translation Key" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.97": {
+    date: "2026-01-01",
+    name: "Fix Build Error - Remove Duplicate Translation Key",
+    features: [
+      "BUILD FIX: Removed duplicate 'privacy-risks' translation key that was causing TypeScript compilation error",
+      "TYPESCRIPT CLEAN: Resolved object literal multiple properties error in useTranslations.ts",
+      "COMPILATION SUCCESS: TypeScript now compiles successfully without duplicate key conflicts",
+      "PRODUCTION READY: Fixed critical build blocker while maintaining all translation functionality",
+      "CODE CLEANUP: Ensured unique translation keys across Slovak navigation sections"
+    ]
+  },
   "3.21.96": {
     date: "2026-01-01",
     name: "Complete Navigation i18n - Trust Center, Help Page & Risk Sidebar",
