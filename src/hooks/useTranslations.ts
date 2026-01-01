@@ -38,7 +38,19 @@ export function useTranslations(namespace?: string) {
             'privacy-risks': 'Privacy Risks', 
             'risk-register': 'Risk Register',
             'controls-overview': 'Controls Overview',
-            'training-overview': 'Training Overview'
+            'training-overview': 'Training Overview',
+            systems: 'Systems',
+            processing: 'Processing Activities',
+            'data-categories': 'Data Categories',
+            'data-flows': 'Data Flows',
+            vendors: 'Vendors / Processors',
+            locations: 'Locations & Jurisdictions',
+            lia: 'LIA',
+            tia: 'TIA',
+            policies: 'Privacy Policies',
+            toms: 'TOMs',
+            governance: 'Governance Overview',
+            'audit-packages': 'Audit Packages'
           }
         },
         common: {

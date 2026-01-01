@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.99" as const
-export const VERSION_NAME = "Complete English Sidebar Translations - Fix Missing Controls & Training Keys" as const
+export const VERSION = "3.21.100" as const
+export const VERSION_NAME = "Complete All Missing English Translation Keys - Full Sidebar Coverage" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.100": {
+    date: "2026-01-01",
+    name: "Complete All Missing English Translation Keys - Full Sidebar Coverage",
+    features: [
+      "ALL ENGLISH KEYS ADDED: Added 12 missing translation keys (systems, processing, data-categories, data-flows, vendors, locations, lia, tia, policies, toms, governance, audit-packages)",
+      "CONTEXT MODULE FIX: All 6 Context sidebar items now show proper English text instead of 'pages.' prefixes",
+      "PRIVACY MODULE FIX: LIA, TIA, and Policies sidebar items now translated properly",
+      "TRUST CENTER FIX: Governance and Audit Packages sidebar items now display correct English text",
+      "SYSTEMATIC SOLUTION: All module item IDs from modules.ts now have corresponding English translation keys"
+    ]
+  },
   "3.21.99": {
     date: "2026-01-01",
     name: "Complete English Sidebar Translations - Fix Missing Controls & Training Keys",
