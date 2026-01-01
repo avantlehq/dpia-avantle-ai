@@ -31,9 +31,11 @@ dpia table ako root            // nie je škálovateľné
 
 **DPIA Suite** - European platform for automated GDPR Data Protection Impact Assessments with complete workflow.
 
-**Current Status: VERSION 3.21.91 - Complete Slovak/English Bilingual Platform**
+**Current Status: VERSION 3.21.92 - Complete Slovak/English Bilingual Platform**
 
 ### Latest Achievements (January 1, 2026)
+- ✅ **SIDEBAR TRANSLATIONS FIX**: Fixed sidebar navigation items to properly display Slovak/English translations
+- ✅ **COMPLETE BILINGUAL UI**: All UI elements (pages, sidebar, topbar) now fully functional in both languages
 - ✅ **LOCALE DETECTION FIX**: Fixed critical bug where Slovak translations weren't activating on /sk/ URLs
 - ✅ **URL-BASED SWITCHING**: useClientLocale hook now properly detects locale from URL pathname segments  
 - ✅ **PRODUCTION READY**: Slovak translations now correctly render on https://dpia.avantle.ai/sk/ URLs
@@ -189,6 +191,7 @@ Privacy Platform 3.21.50    Context · Privacy · Risk · Controls · Training �
 - **Locale Routing**: Fixed module navigation to work with [locale] routing structure
 - **Complete Sub-Pages**: All module sub-pages now exist in locale-aware structure
 - **Locale Detection**: Fixed URL-based Slovak switching - pages now correctly render Slovak when URL contains /sk/
+- **Sidebar Translations**: Fixed sidebar navigation items to use useTranslations hook for proper Slovak/English display
 
 ### Development Commands
 ```bash
@@ -305,6 +308,7 @@ git add . && git commit -m "message" && git push origin main
 
 ### **STAGE 4 COMPLETE: Bilingual Platform** ✅
 - **Slovak/English Support**: Complete client-side locale switching system
+- **Sidebar Translations**: Fixed navigation items to properly display in Slovak/English
 - **Locale Detection Fixed**: URLs like /sk/context now properly activate Slovak translations
 - **Locale Routing**: All modules work with [locale] structure (/{locale}/context, etc.)
 - **Sub-Pages Complete**: All 25+ module sub-pages created in locale-aware structure
@@ -314,7 +318,8 @@ git add . && git commit -m "message" && git push origin main
 ### **Production Status: LIVE & FUNCTIONAL** 🚀
 - **URL**: https://dpia.avantle.ai
 - **Build**: Clean deployment with functional Slovak/English switching
-- **Navigation**: Complete module navigation working SK/EN
+- **Navigation**: Complete module navigation working SK/EN (topbar + sidebar)
+- **Sidebar i18n**: Navigation items properly translated ("Systémy", "Spracovanie", etc.)
 - **Locale Detection**: Fixed - Slovak translations properly activate on /sk/ URLs
 - **Business Ready**: Fully prepared for Slovak lawyer collaboration
 
