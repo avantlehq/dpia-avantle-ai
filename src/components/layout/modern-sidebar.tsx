@@ -129,11 +129,41 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
   
   // Memoize active item calculation
-  const activeItemId = React.useMemo(() => 
-    moduleConfig?.items.find(item => 
-      pathname === item.href || pathname.startsWith(item.href + '/')
-    )?.id, [moduleConfig?.items, pathname]
-  )
+  const activeItemId = React.useMemo(() => {
+    if (!moduleConfig?.items) return undefined
+    
+    // Debug logging to understand the issue
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Sidebar Debug:', {
+        pathname,
+        moduleId: activeModuleId,
+        items: moduleConfig.items.map(item => ({ id: item.id, href: item.href }))
+      })
+    }
+    
+    // First try to find exact matches to avoid prefix collision issues
+    let activeItem = moduleConfig.items.find(item => pathname === item.href)
+    
+    // If no exact match, then check for sub-path matches, but sort by specificity (longest href first)
+    if (!activeItem) {
+      const subPathMatches = moduleConfig.items
+        .filter(item => pathname.startsWith(item.href + '/'))
+        .sort((a, b) => b.href.length - a.href.length) // Longest (most specific) first
+        
+      activeItem = subPathMatches[0] // Take the most specific match
+    }
+    
+    if (process.env.NODE_ENV === 'development' && activeItem) {
+      console.log(`Active item found:`, { 
+        itemId: activeItem.id, 
+        itemHref: activeItem.href, 
+        pathname, 
+        matchType: pathname === activeItem.href ? 'exact' : 'subpath'
+      })
+    }
+    
+    return activeItem?.id
+  }, [moduleConfig?.items, pathname, activeModuleId])
 
   // Swipe gesture handlers for mobile drawer
   const swipeHandlers = useSwipeGesture({
