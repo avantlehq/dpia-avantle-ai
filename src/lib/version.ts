@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.91" as const
-export const VERSION_NAME = "Fix Locale Detection - URL-Based Slovak Switching" as const
-export const BUILD_DATE = "2025-12-31"
+export const VERSION = "3.21.92" as const
+export const VERSION_NAME = "Fix Sidebar Translations - Slovak Navigation Items" as const
+export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.92": {
+    date: "2026-01-01",
+    name: "Fix Sidebar Translations - Slovak Navigation Items",
+    features: [
+      "SIDEBAR TRANSLATIONS: Fixed sidebar navigation items to display in Slovak/English based on selected locale",
+      "USETRANSLATIONS INTEGRATION: Added useTranslations hook to ModernSidebar component",
+      "NAVIGATION LOCALIZATION: Sidebar items now properly use t('pages.{item.id}') for translated names",
+      "TOOLTIP TRANSLATIONS: Collapsed sidebar tooltips now display in correct language",
+      "COMPLETE SIDEBAR i18n: All sidebar text including disabled item tooltips now fully localized"
+    ]
+  },
   "3.21.91": {
     date: "2025-12-31",
     name: "Fix Locale Detection - URL-Based Slovak Switching",

@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { getActiveModule, getModuleConfig, type NavItem } from '@/lib/state/modules'
 import { useSidebarContext } from '@/contexts/SidebarContext'
 import { useSwipeGesture } from '@/hooks/useSwipeGesture'
+import { useTranslations } from '@/hooks/useTranslations'
 
 interface ModernSidebarProps {
   className?: string
@@ -21,6 +22,7 @@ interface SidebarLinkProps {
 
 const SidebarLink = memo(function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   const isDisabled = item.disabled
+  const { t } = useTranslations('nav')
   
   // Optimized hover handlers with useCallback
   const handleMouseEnter = useCallback((e: React.MouseEvent) => {
@@ -67,7 +69,7 @@ const SidebarLink = memo(function SidebarLink({ item, isActive, collapsed }: Sid
             fontWeight: isActive ? '600' : '400', // Semibold if active
             color: 'inherit' // Inherit from parent div
           }}
-        >{item.name}</span>
+        >{t(`pages.${item.id}`)}</span>
       )}
       
       {/* When collapsed/rail mode, show first letter as icon replacement */}
@@ -78,10 +80,10 @@ const SidebarLink = memo(function SidebarLink({ item, isActive, collapsed }: Sid
             color: isActive ? 'var(--brand-primary)' : 'var(--text-muted)',
             backgroundColor: isActive ? 'rgba(96,165,250,0.2)' : 'transparent'
           }}
-          title={item.name} // Tooltip for accessibility
+          title={t(`pages.${item.id}`)} // Tooltip for accessibility
         >
           <span className="text-sm font-semibold">
-            {item.name.charAt(0).toUpperCase()}
+            {t(`pages.${item.id}`).charAt(0).toUpperCase()}
           </span>
         </div>
       )}
@@ -90,7 +92,7 @@ const SidebarLink = memo(function SidebarLink({ item, isActive, collapsed }: Sid
 
   if (isDisabled) {
     return (
-      <div className="group relative" title={`${item.name} - Coming soon`}>
+      <div className="group relative" title={`${t(`pages.${item.id}`)} - Coming soon`}>
         {navRowContent}
       </div>
     )
@@ -101,7 +103,7 @@ const SidebarLink = memo(function SidebarLink({ item, isActive, collapsed }: Sid
       href={item.href}
       className="group relative block modern-nav-link"
       aria-current={isActive ? "page" : undefined}
-      title={collapsed ? item.name : undefined} // Show tooltip in rail mode
+      title={collapsed ? t(`pages.${item.id}`) : undefined} // Show tooltip in rail mode
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
