@@ -8,56 +8,19 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { useClientLocale } from '@/hooks/useClientLocale'
-import { useTranslations } from '@/hooks/useTranslations'
-import { useState, useEffect } from 'react'
 
 export default function ContextOverviewPage() {
-  const [mounted, setMounted] = useState(false)
-  
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    // SSR fallback with English defaults
-    return (
-      <div className="space-y-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold text-foreground">Context</h1>
-            <p className="text-muted-foreground">
-              Foundation data and processing context
-            </p>
-          </div>
-          <div className="flex items-center" style={{ gap: '32px' }}>
-            <Link href="/en/context/systems">
-              <Button variant="secondary" size="md">
-                Register System
-              </Button>
-            </Link>
-            <Link href="/en/context/processing">
-              <Button variant="primary" size="md">
-                Add Processing
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  const { locale } = useClientLocale()
-  const { t } = useTranslations('context')
+  // Simplified version without translations to avoid SSR issues
+  const locale = 'en' // Default to English for now
   
   return (
     <div className="space-y-6">
       {/* Header with CTAs - matching dashboard style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
+          <h1 className="text-2xl font-semibold text-foreground">Context</h1>
           <p className="text-muted-foreground">
-            {t('description')}
+            Foundation data and processing context
           </p>
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
@@ -66,9 +29,9 @@ export default function ContextOverviewPage() {
             <Button 
               variant="secondary" 
               size="md"
-              title={t('systemsDescription')}
+              title="IT systems and infrastructure"
             >
-              {t('registerSystem')}
+              Register System
             </Button>
           </Link>
           
@@ -78,7 +41,7 @@ export default function ContextOverviewPage() {
               variant="primary" 
               size="md"
             >
-              {t('addProcessing')}
+              Add Processing
             </Button>
           </Link>
         </div>
@@ -86,7 +49,7 @@ export default function ContextOverviewPage() {
 
       {/* Foundation Data Overview - matching dashboard pills */}
       <div className="space-y-5">
-        <h2 className="text-lg font-medium text-foreground">{t('foundationData')}</h2>
+        <h2 className="text-lg font-medium text-foreground">Foundation Data</h2>
         
         {/* Status Pills Group - matching dashboard style */}
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
@@ -109,7 +72,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              {t('systems')}
+              Systems
             </span>
             <span 
               style={{ 
@@ -141,7 +104,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              {t('processingActivities')}
+              Processing Activities
             </span>
             <span 
               style={{ 
@@ -173,7 +136,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              {t('dataCategories')}
+              Data Categories
             </span>
             <span 
               style={{ 
@@ -205,7 +168,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              {t('vendors')}
+              Vendors
             </span>
             <span 
               style={{ 
@@ -227,7 +190,7 @@ export default function ContextOverviewPage() {
       <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            {t('foundationComponents')}
+            Foundation Components
             <Link href={`/${locale}/context/systems`}>
               <Button
                 variant="outline"
@@ -235,7 +198,7 @@ export default function ContextOverviewPage() {
                 className="gap-2"
               >
                 <Plus className="h-4 w-4" />
-                {t('addComponent')}
+                Add Component
               </Button>
             </Link>
           </CardTitle>
@@ -243,9 +206,9 @@ export default function ContextOverviewPage() {
         <CardContent>
           <div className="text-center py-12">
             <Database className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">{t('foundationReady')}</h3>
+            <h3 className="text-lg font-medium text-foreground mb-2">Foundation Ready</h3>
             <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              {t('foundationDescription')}
+              Set up your foundational data context to enable comprehensive privacy assessments and compliance tracking.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
               {/* Secondary CTA - Manage Systems */}
@@ -253,9 +216,9 @@ export default function ContextOverviewPage() {
                 <Button 
                   variant="secondary" 
                   size="md"
-                  title={t('systemsDescription')}
+                  title="IT systems and infrastructure"
                 >
-                  {t('manageSystem')}
+                  Manage Systems
                 </Button>
               </Link>
               
@@ -265,7 +228,7 @@ export default function ContextOverviewPage() {
                   variant="primary" 
                   size="lg"
                 >
-                  {t('viewProcessing')}
+                  View Processing
                 </Button>
               </Link>
             </div>
