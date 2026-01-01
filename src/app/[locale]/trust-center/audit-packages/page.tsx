@@ -1,33 +1,26 @@
 'use client'
 
 import React from 'react'
+import { FileText } from 'lucide-react'
+import { ModuleComingSoon } from '@/components/ui/module-coming-soon'
 
 export default function AuditPackagesPage() {
+  const features = [
+    'Automated compliance documentation collection',
+    'Pre-configured audit templates by jurisdiction',
+    'Evidence package generation with digital signatures',
+    'Regulatory mapping and requirement tracking',
+    'Audit readiness checklists and gap analysis'
+  ]
+
   return (
-    <div className="space-y-6">
-      <div className="border-b border-gray-700/50 pb-6">
-        <h1 className="text-3xl font-bold text-white mb-2">
-          Audit Packages
-        </h1>
-        <p className="text-gray-400">
-          Compliance audit bundles and documentation
-        </p>
-      </div>
-      
-      <div className="bg-gray-800/50 rounded-lg p-8 text-center border border-gray-700/30">
-        <div className="mb-4">
-          <div className="w-16 h-16 bg-gray-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-2xl">📦</span>
-          </div>
-        </div>
-        <h2 className="text-xl font-semibold text-white mb-2">Audit Package Generation</h2>
-        <p className="text-gray-400 mb-6">
-          Generate comprehensive audit packages with all compliance documentation for regulatory reviews.
-        </p>
-        <div className="text-sm text-gray-500">
-          Coming soon in future release
-        </div>
-      </div>
-    </div>
+    <ModuleComingSoon
+      icon={FileText}
+      title="Audit Packages"
+      description="Comprehensive compliance audit bundles and regulatory documentation"
+      features={features}
+      estimatedTimeline="Q4 2027"
+      moduleColor="#A9A9A9"
+    />
   )
 }

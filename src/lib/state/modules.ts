@@ -202,8 +202,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
         name: 'Risk Register', 
         href: getLocaleHref('/risk/register'), 
         icon: FileText,
-        description: 'Centralized risk registry',
-        disabled: true
+        description: 'Centralized risk registry'
       }
     ]
   },
@@ -272,16 +271,14 @@ export const privacyModulesConfig: ModuleConfig[] = [
         name: 'Governance Overview', 
         href: getLocaleHref('/trust-center/governance'), 
         icon: LayoutDashboard,
-        description: 'Cross-module compliance status',
-        disabled: true
+        description: 'Cross-module compliance status'
       },
       { 
         id: 'audit-packages',
         name: 'Audit Packages', 
         href: getLocaleHref('/trust-center/audit-packages'), 
         icon: FileText,
-        description: 'Compliance audit bundles',
-        disabled: true
+        description: 'Compliance audit bundles'
       }
     ]
   }
