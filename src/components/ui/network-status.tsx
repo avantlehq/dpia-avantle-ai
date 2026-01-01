@@ -1,8 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { WifiOff, Wifi, AlertCircle } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { WifiOff, Wifi } from 'lucide-react'
 import { ErrorMessage } from '@/components/ui/error-message'
 
 interface NetworkStatusProps {
@@ -11,27 +10,26 @@ interface NetworkStatusProps {
 }
 
 export function NetworkStatus({ onRetry, showOfflineMessage = true }: NetworkStatusProps) {
-  const [isOnline, setIsOnline] = useState(true)
   const [showOfflineAlert, setShowOfflineAlert] = useState(false)
 
   useEffect(() => {
     const handleOnline = () => {
-      setIsOnline(true)
       setShowOfflineAlert(false)
     }
 
     const handleOffline = () => {
-      setIsOnline(false)
       if (showOfflineMessage) {
         setShowOfflineAlert(true)
       }
     }
 
-    // Set initial state
-    setIsOnline(navigator.onLine)
-
     window.addEventListener('online', handleOnline)
     window.addEventListener('offline', handleOffline)
+
+    // Set initial state
+    if (!navigator.onLine && showOfflineMessage) {
+      setShowOfflineAlert(true)
+    }
 
     return () => {
       window.removeEventListener('online', handleOnline)
@@ -68,7 +66,10 @@ export function useNetworkStatus() {
     const handleOnline = () => setIsOnline(true)
     const handleOffline = () => setIsOnline(false)
 
-    setIsOnline(navigator.onLine)
+    // Set initial state immediately without effect
+    if (typeof window !== 'undefined') {
+      setIsOnline(navigator.onLine)
+    }
 
     window.addEventListener('online', handleOnline)
     window.addEventListener('offline', handleOffline)
@@ -152,7 +153,7 @@ export function useApiWithRetry() {
 
   const retryManager = new RetryManager()
 
-  const execute = async <T>(
+  const execute = async <T,>(
     operation: () => Promise<T>,
     options?: {
       onSuccess?: (data: T) => void

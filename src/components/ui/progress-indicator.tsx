@@ -11,14 +11,12 @@ interface ProgressStep {
 
 interface ProgressIndicatorProps {
   steps: ProgressStep[]
-  currentStep?: number
   progress?: number
   showPercentage?: boolean
 }
 
 export function ProgressIndicator({ 
   steps, 
-  currentStep, 
   progress, 
   showPercentage = false 
 }: ProgressIndicatorProps) {

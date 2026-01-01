@@ -144,7 +144,7 @@ export function FormErrorSummary({
 }
 
 // Validation helpers
-export function validateRequired(value: any, fieldName: string = 'This field'): string | undefined {
+export function validateRequired(value: unknown, fieldName: string = 'This field'): string | undefined {
   if (value === undefined || value === null || value === '') {
     return `${fieldName} is required`
   }
@@ -187,7 +187,7 @@ export function validateUrl(url: string): string | undefined {
 }
 
 // Compose multiple validators
-export function validateField(value: any, validators: ((value: any) => string | undefined)[]): string[] {
+export function validateField(value: unknown, validators: ((value: unknown) => string | undefined)[]): string[] {
   return validators
     .map(validator => validator(value))
     .filter((error): error is string => error !== undefined)

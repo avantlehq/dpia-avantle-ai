@@ -33,8 +33,7 @@ export function ModuleComingSoon({
   description,
   features,
   estimatedTimeline,
-  moduleColor = '#4A90E2',
-  className
+  moduleColor = '#4A90E2'
 }: ModuleComingSoonProps) {
   const { t } = useTranslations('common')
 

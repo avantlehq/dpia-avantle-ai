@@ -15,7 +15,7 @@ import {
 import { RefreshCw, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
-import { StatCardSkeleton, AssessmentCardSkeleton, SkeletonCard } from '@/components/ui/skeleton'
+import { StatCardSkeleton, AssessmentCardSkeleton } from '@/components/ui/skeleton'
 
 interface Assessment {
   id: string

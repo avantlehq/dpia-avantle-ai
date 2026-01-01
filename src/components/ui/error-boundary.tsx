@@ -115,7 +115,7 @@ export function DefaultErrorFallback({ error, resetError }: ErrorFallbackProps) 
 }
 
 // Specialized error fallbacks for different contexts
-export function DashboardErrorFallback({ error, resetError }: ErrorFallbackProps) {
+export function DashboardErrorFallback({ resetError }: ErrorFallbackProps) {
   return (
     <Card className="avantle-border bg-card backdrop-blur-sm">
       <CardContent className="p-8 text-center">
@@ -124,7 +124,7 @@ export function DashboardErrorFallback({ error, resetError }: ErrorFallbackProps
           Failed to load dashboard
         </h3>
         <p className="text-muted-foreground mb-6">
-          We couldn't load your assessment dashboard. This might be a temporary issue.
+          We couldn&apos;t load your assessment dashboard. This might be a temporary issue.
         </p>
         <div className="flex justify-center gap-3">
           <Button onClick={resetError} variant="default">
@@ -139,7 +139,7 @@ export function DashboardErrorFallback({ error, resetError }: ErrorFallbackProps
   )
 }
 
-export function FormErrorFallback({ error, resetError }: ErrorFallbackProps) {
+export function FormErrorFallback({ resetError }: ErrorFallbackProps) {
   return (
     <div className="p-6 border border-destructive/20 bg-destructive/5 rounded-lg">
       <div className="flex items-start gap-3">
