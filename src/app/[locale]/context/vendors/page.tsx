@@ -1,33 +1,26 @@
 'use client'
 
 import React from 'react'
+import { Users } from 'lucide-react'
+import { ModuleComingSoon } from '@/components/ui/module-coming-soon'
 
 export default function VendorsPage() {
+  const features = [
+    'Vendor registry with DPA management',
+    'Processor vs sub-processor classification',
+    'Compliance status monitoring and alerts',
+    'Contract lifecycle and renewal tracking',
+    'Vendor risk assessment and scoring'
+  ]
+
   return (
-    <div className="space-y-6">
-      <div className="border-b border-gray-700/50 pb-6">
-        <h1 className="text-3xl font-bold text-white mb-2">
-          Vendors / Processors
-        </h1>
-        <p className="text-gray-400">
-          Third-party data processor management
-        </p>
-      </div>
-      
-      <div className="bg-gray-800/50 rounded-lg p-8 text-center border border-gray-700/30">
-        <div className="mb-4">
-          <div className="w-16 h-16 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-2xl">👥</span>
-          </div>
-        </div>
-        <h2 className="text-xl font-semibold text-white mb-2">Vendor Management</h2>
-        <p className="text-gray-400 mb-6">
-          Manage third-party vendors and data processors. Track DPAs, compliance status, and risk assessments.
-        </p>
-        <div className="text-sm text-gray-500">
-          Coming soon in future release
-        </div>
-      </div>
-    </div>
+    <ModuleComingSoon
+      icon={Users}
+      title="Vendors / Processors"
+      description="Third-party data processor and vendor management with DPA tracking"
+      features={features}
+      estimatedTimeline="Q3 2026"
+      moduleColor="#4A90E2"
+    />
   )
 }
