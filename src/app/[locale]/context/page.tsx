@@ -55,9 +55,9 @@ export default function ContextOverviewPage() {
       {/* Header with CTAs - matching dashboard style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">{title}</h1>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground">
-            {description}
+            {t('description')}
           </p>
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
