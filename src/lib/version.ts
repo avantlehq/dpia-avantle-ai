@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.100" as const
-export const VERSION_NAME = "Complete All Missing English Translation Keys - Full Sidebar Coverage" as const
+export const VERSION = "3.21.101" as const
+export const VERSION_NAME = "Fix Main Content Layout - Add Left Margin from Sidebar" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.101": {
+    date: "2026-01-01",
+    name: "Fix Main Content Layout - Add Left Margin from Sidebar",
+    features: [
+      "LAYOUT FIX: Changed main content padding from p-8 to py-8 pr-8 pl-12 for proper left spacing",
+      "CONTENT SPACING: Added extra 16px left margin (48px total) so text/graphics don't touch sidebar border",
+      "VISUAL IMPROVEMENT: Main content now has proper breathing room from sidebar in both English and Slovak versions",
+      "RESPONSIVE LAYOUT: Maintains consistent spacing across all screen sizes while preserving existing right/top/bottom padding",
+      "PROFESSIONAL DESIGN: Eliminates content touching borders for better visual hierarchy and readability"
+    ]
+  },
   "3.21.100": {
     date: "2026-01-01",
     name: "Complete All Missing English Translation Keys - Full Sidebar Coverage",
