@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.103" as const
-export const VERSION_NAME = "Optimize Main Content Spacing - Reduce Excessive Left Margin" as const
+export const VERSION = "3.21.104" as const
+export const VERSION_NAME = "Simplified Content Spacing - Direct Padding Approach" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.104": {
+    date: "2026-01-01",
+    name: "Simplified Content Spacing - Direct Padding Approach",
+    features: [
+      "SIMPLIFIED APPROACH: Removed nested div wrapper and used direct padding on main element",
+      "REDUCED SPACING: Set left padding to 40px (down from 44px/56px) for optimal visual balance",
+      "CLEANER MARKUP: Eliminated unnecessary nested div for cleaner HTML structure",
+      "DIRECT CONTROL: Using explicit padding values (32px 32px 32px 40px) for precise spacing control",
+      "VISIBLE REDUCTION: More noticeable spacing reduction that should be clearly visible to user"
+    ]
+  },
   "3.21.103": {
     date: "2026-01-01",
     name: "Optimize Main Content Spacing - Reduce Excessive Left Margin",
