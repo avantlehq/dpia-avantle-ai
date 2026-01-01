@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.94" as const
-export const VERSION_NAME = "Remove Breadcrumbs - Simplified Navigation Architecture" as const
+export const VERSION = "3.21.95" as const
+export const VERSION_NAME = "Fix Navigation Translations - Topbar & Privacy Sidebar" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.95": {
+    date: "2026-01-01",
+    name: "Fix Navigation Translations - Topbar & Privacy Sidebar",
+    features: [
+      "TOPBAR TRANSLATIONS: Fixed module names in topbar to display Slovak/English correctly (Context → Kontext, etc.)",
+      "PRIVACY SIDEBAR FIX: Fixed Privacy sidebar showing 'pages.dpia-precheck' instead of translated text",
+      "TRANSLATION KEYS: Added missing dpia-precheck and dpia-assessments translation keys",
+      "COMPLETE NAVIGATION i18n: Both topbar modules and sidebar items now fully localized",
+      "MODULAR TRANSLATION: Added useTranslations hook to ModuleLink component for proper topbar i18n"
+    ]
+  },
   "3.21.94": {
     date: "2026-01-01",
     name: "Remove Breadcrumbs - Simplified Navigation Architecture",

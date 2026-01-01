@@ -28,6 +28,7 @@ import { cn } from '@/lib/utils'
 import { IconButton } from '@/components/ui/icon-button'
 import { useSidebarContext } from '@/contexts/SidebarContext'
 import { useClientLocale } from '@/hooks/useClientLocale'
+import { useTranslations } from '@/hooks/useTranslations'
 
 // Fixed module navigation link - no floating icons, proper text+icon rows
 interface ModuleLinkProps {
@@ -41,6 +42,8 @@ interface ModuleLinkProps {
 }
 
 const ModuleLink = memo(function ModuleLink({ module, isActive }: ModuleLinkProps) {
+  const { t } = useTranslations('nav')
+  
   return (
     <Link 
       href={module.href}
@@ -61,7 +64,7 @@ const ModuleLink = memo(function ModuleLink({ module, isActive }: ModuleLinkProp
       aria-current={isActive ? "page" : undefined}
     >
       {/* Text-only modules for enterprise clarity */}
-      {module.name}
+      {t(`modules.${module.id}`)}
     </Link>
   )
 })
