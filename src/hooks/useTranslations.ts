@@ -36,7 +36,9 @@ export function useTranslations(namespace?: string) {
             settings: 'Settings',
             'risk-overview': 'Risk Overview',
             'privacy-risks': 'Privacy Risks', 
-            'risk-register': 'Risk Register'
+            'risk-register': 'Risk Register',
+            'controls-overview': 'Controls Overview',
+            'training-overview': 'Training Overview'
           }
         },
         common: {

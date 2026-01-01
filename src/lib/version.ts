@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.98" as const
-export const VERSION_NAME = "Complete Slovak Sidebar Translations - Fix Missing Controls & Training Keys" as const
+export const VERSION = "3.21.99" as const
+export const VERSION_NAME = "Complete English Sidebar Translations - Fix Missing Controls & Training Keys" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.99": {
+    date: "2026-01-01",
+    name: "Complete English Sidebar Translations - Fix Missing Controls & Training Keys",
+    features: [
+      "ENGLISH TRANSLATIONS COMPLETE: Added missing 'controls-overview' and 'training-overview' translation keys to English pages section",
+      "SIDEBAR TRANSLATION FIX: English Controls sidebar now shows 'Controls Overview' instead of 'pages.controls-overview'",
+      "TRAINING TRANSLATION FIX: English Training sidebar now shows 'Training Overview' instead of 'pages.training-overview'",
+      "FULL BILINGUAL COVERAGE: Both English and Slovak module sidebars now display proper text without 'pages.' prefixes",
+      "TRANSLATION PARITY: English and Slovak versions now have matching translation key coverage for all modules"
+    ]
+  },
   "3.21.98": {
     date: "2026-01-01",
     name: "Complete Slovak Sidebar Translations - Fix Missing Controls & Training Keys",
