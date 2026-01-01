@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.105" as const
-export const VERSION_NAME = "Debug Spacing - Extreme Test with 0px Left Padding" as const
+export const VERSION = "3.21.106" as const
+export const VERSION_NAME = "Optimal Content Spacing - 16px Left Padding Balance" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,27 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.106": {
+    date: "2026-01-01",
+    name: "Optimal Content Spacing - 16px Left Padding Balance",
+    features: [
+      "OPTIMAL BALANCE: Set left padding to 16px for perfect balance between separation and space efficiency",
+      "USER FEEDBACK: Found optimal spacing after testing extreme values (0px was too close, 40px+ too far)",
+      "CLEAN LAYOUT: Removed debug red background, restored clean appearance",
+      "SPACE EFFICIENT: 16px provides clear separation while maximizing content area usage",
+      "VISUAL VERIFICATION: Confirmed changes work correctly through debug testing process"
+    ]
+  },
+  "3.21.105": {
+    date: "2026-01-01",
+    name: "Debug Spacing - Extreme Test with 0px Left Padding",
+    features: [
+      "DEBUG TEST: Set left padding to 0px to verify changes are taking effect",
+      "VISUAL INDICATOR: Added red background tint to main content area for verification",
+      "EXTREME CHANGE: Content touching sidebar border directly to confirm functionality",
+      "TROUBLESHOOTING: Successfully identified that changes were working but too subtle"
+    ]
+  },
   "3.21.104": {
     date: "2026-01-01",
     name: "Simplified Content Spacing - Direct Padding Approach",
