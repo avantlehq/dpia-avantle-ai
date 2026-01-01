@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.102" as const
-export const VERSION_NAME = "Aggressive Main Content Spacing Fix - Nested Margin Approach" as const
+export const VERSION = "3.21.103" as const
+export const VERSION_NAME = "Optimize Main Content Spacing - Reduce Excessive Left Margin" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.103": {
+    date: "2026-01-01",
+    name: "Optimize Main Content Spacing - Reduce Excessive Left Margin",
+    features: [
+      "SPACING OPTIMIZATION: Reduced inner div left margin from 24px to 12px for better visual balance",
+      "REFINED LAYOUT: Total left spacing now 44px (32px + 12px) instead of excessive 56px",
+      "USER FEEDBACK: Responded to feedback that spacing was unnecessarily large while maintaining separation",
+      "VISUAL BALANCE: Content now has appropriate breathing room without wasting screen real estate",
+      "PROFESSIONAL SPACING: Maintains clear separation from sidebar while optimizing content area usage"
+    ]
+  },
   "3.21.102": {
     date: "2026-01-01",
     name: "Aggressive Main Content Spacing Fix - Nested Margin Approach",
