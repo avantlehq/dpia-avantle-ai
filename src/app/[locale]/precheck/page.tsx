@@ -14,6 +14,9 @@ import { ErrorState } from '@/components/ui/error-state'
 import { LoadingSkeleton } from '@/components/ui/loading-skeleton'
 import type { PrecheckSubmission } from '@/lib/validations/precheck'
 
+// Force dynamic rendering to avoid SSR issues
+export const dynamic = 'force-dynamic'
+
 export default function PrecheckPage() {
   const [results, setResults] = useState<PrecheckResult | null>(null)
   const [isLoading, setIsLoading] = useState(false)
