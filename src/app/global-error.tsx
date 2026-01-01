@@ -14,7 +14,7 @@ export default function GlobalError({
   const handleReset = () => {
     try {
       reset()
-    } catch (err) {
+    } catch {
       // Fallback: reload the page
       if (typeof window !== 'undefined') {
         window.location.reload()
