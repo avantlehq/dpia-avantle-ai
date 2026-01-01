@@ -15,6 +15,7 @@ import {
 import { RefreshCw, FileText, Clock, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
+import { StatCardSkeleton, AssessmentCardSkeleton, SkeletonCard } from '@/components/ui/skeleton'
 
 interface Assessment {
   id: string
@@ -167,103 +168,111 @@ export function DynamicDashboardContent() {
         <h2 className="text-lg font-medium text-foreground">Assessment Overview</h2>
         
         {/* Status Pills Group */}
-        <div className="flex flex-wrap" style={{ gap: '12px' }}>
-          {/* Completed Pill */}
-          <div 
-            className="inline-flex items-center rounded-lg"
-            style={{ 
-              height: '38px',
-              paddingLeft: '12px',
-              paddingRight: '16px',
-              backgroundColor: 'transparent',
-              borderLeft: '3px solid #22c55e',
-              gap: '8px'
-            }}
-          >
-            <span 
-              style={{ 
-                fontSize: '14px',
-                color: '#9ca3af',
-                fontWeight: '500'
-              }}
-            >
-              Completed
-            </span>
-            <span 
-              style={{ 
-                fontSize: '16px',
-                color: '#ffffff',
-                fontWeight: '600'
-              }}
-            >
-              {isLoading ? '...' : stats.completed}
-            </span>
+        {isLoading ? (
+          <div className="flex flex-wrap" style={{ gap: '12px' }}>
+            <StatCardSkeleton />
+            <StatCardSkeleton />
+            <StatCardSkeleton />
           </div>
+        ) : (
+          <div className="flex flex-wrap" style={{ gap: '12px' }}>
+            {/* Completed Pill */}
+            <div 
+              className="inline-flex items-center rounded-lg"
+              style={{ 
+                height: '38px',
+                paddingLeft: '12px',
+                paddingRight: '16px',
+                backgroundColor: 'transparent',
+                borderLeft: '3px solid #22c55e',
+                gap: '8px'
+              }}
+            >
+              <span 
+                style={{ 
+                  fontSize: '14px',
+                  color: '#9ca3af',
+                  fontWeight: '500'
+                }}
+              >
+                Completed
+              </span>
+              <span 
+                style={{ 
+                  fontSize: '16px',
+                  color: '#ffffff',
+                  fontWeight: '600'
+                }}
+              >
+                {stats.completed}
+              </span>
+            </div>
 
-          {/* In Progress Pill */}
-          <div 
-            className="inline-flex items-center rounded-lg"
-            style={{ 
-              height: '38px',
-              paddingLeft: '12px',
-              paddingRight: '16px',
-              backgroundColor: 'transparent',
-              borderLeft: '3px solid #3b82f6',
-              gap: '8px'
-            }}
-          >
-            <span 
+            {/* In Progress Pill */}
+            <div 
+              className="inline-flex items-center rounded-lg"
               style={{ 
-                fontSize: '14px',
-                color: '#9ca3af',
-                fontWeight: '500'
+                height: '38px',
+                paddingLeft: '12px',
+                paddingRight: '16px',
+                backgroundColor: 'transparent',
+                borderLeft: '3px solid #3b82f6',
+                gap: '8px'
               }}
             >
-              In Progress
-            </span>
-            <span 
-              style={{ 
-                fontSize: '16px',
-                color: '#ffffff',
-                fontWeight: '600'
-              }}
-            >
-              {isLoading ? '...' : stats.inProgress}
-            </span>
-          </div>
+              <span 
+                style={{ 
+                  fontSize: '14px',
+                  color: '#9ca3af',
+                  fontWeight: '500'
+                }}
+              >
+                In Progress
+              </span>
+              <span 
+                style={{ 
+                  fontSize: '16px',
+                  color: '#ffffff',
+                  fontWeight: '600'
+                }}
+              >
+                {stats.inProgress}
+              </span>
+            </div>
 
-          {/* Drafts Pill */}
-          <div 
-            className="inline-flex items-center rounded-lg"
-            style={{ 
-              height: '38px',
-              paddingLeft: '12px',
-              paddingRight: '16px',
-              backgroundColor: 'transparent',
-              borderLeft: '3px solid #9ca3af',
-              gap: '8px'
-            }}
-          >
-            <span 
+            {/* Drafts Pill */}
+            <div 
+              className="inline-flex items-center rounded-lg"
               style={{ 
-                fontSize: '14px',
-                color: '#9ca3af',
-                fontWeight: '500'
+                height: '38px',
+                paddingLeft: '12px',
+                paddingRight: '16px',
+                backgroundColor: 'transparent',
+                borderLeft: '3px solid #9ca3af',
+                gap: '8px'
               }}
             >
-              Drafts
-            </span>
-            <span 
-              style={{ 
-                fontSize: '16px',
-                color: '#ffffff',
-                fontWeight: '600'
-              }}
-            >
-              {isLoading ? '...' : stats.drafts}
-            </span>
+              <span 
+                style={{ 
+                  fontSize: '14px',
+                  color: '#9ca3af',
+                  fontWeight: '500'
+                }}
+              >
+                Drafts
+              </span>
+              <span 
+                style={{ 
+                  fontSize: '16px',
+                  color: '#ffffff',
+                  fontWeight: '600'
+                }}
+              >
+                {stats.drafts}
+              </span>
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Increased Spacing Before Table */}
@@ -288,9 +297,10 @@ export function DynamicDashboardContent() {
         </CardHeader>
         <CardContent>
           {isLoading ? (
-            <div className="text-center py-12">
-              <RefreshCw className="h-8 w-8 mx-auto text-muted-foreground animate-spin mb-4" />
-              <p className="text-muted-foreground">Loading assessments...</p>
+            <div className="space-y-4">
+              <AssessmentCardSkeleton />
+              <AssessmentCardSkeleton />
+              <AssessmentCardSkeleton />
             </div>
           ) : assessments.length === 0 ? (
             <div className="text-center py-12">

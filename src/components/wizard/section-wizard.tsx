@@ -81,6 +81,7 @@ export function SectionWizard({
         value={value}
         onChange={(value) => onFieldChange(field.id, value)}
         onBlur={onFieldBlur}
+        isLoading={loading}
       />
     )
   }
@@ -97,9 +98,10 @@ export function SectionWizard({
                 size="sm"
                 onClick={onSave}
                 disabled={loading}
+                isLoading={loading}
                 className="avantle-border"
+                leftIcon={!loading ? <Save className="h-4 w-4" /> : undefined}
               >
-                <Save className="mr-2 h-4 w-4" />
                 Save Progress
               </Button>
             </CardTitle>
@@ -143,10 +145,11 @@ export function SectionWizard({
             <Button
               onClick={onNext}
               disabled={loading || !canGoNext}
+              isLoading={loading}
               className="avantle-glow"
+              rightIcon={!isLastSection && !loading ? <ChevronRight className="h-4 w-4" /> : undefined}
             >
               {isLastSection ? 'Submit Assessment' : 'Next Section'}
-              {!isLastSection && <ChevronRight className="ml-2 h-4 w-4" />}
             </Button>
           </div>
         </div>

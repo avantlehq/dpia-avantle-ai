@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
+import { FormFieldSkeleton } from '@/components/ui/skeleton'
 
 interface TemplateField {
   id: string
@@ -22,9 +23,14 @@ interface FormFieldProps {
   value: unknown
   onChange: (value: unknown) => void
   onBlur: () => void
+  isLoading?: boolean
 }
 
-export function FormField({ field, value, onChange, onBlur }: FormFieldProps) {
+export function FormField({ field, value, onChange, onBlur, isLoading = false }: FormFieldProps) {
+  
+  if (isLoading) {
+    return <FormFieldSkeleton />
+  }
   
   const renderField = () => {
     switch (field.type) {
