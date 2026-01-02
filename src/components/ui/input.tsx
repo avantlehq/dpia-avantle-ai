@@ -5,18 +5,20 @@ import { cn } from "@/lib/utils"
 
 // Enhanced input variants with design tokens
 const inputVariants = cva(
-  "flex w-full rounded-[10px] border text-sm transition-all duration-150 ease-out file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[--text-muted] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--focus-ring] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0] disabled:cursor-not-allowed disabled:opacity-50",
+  "flex w-full border file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[--text-muted] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "border-[--border-default] bg-[--surface-1] text-[--text-primary] focus-visible:border-[--border-focus]",
-        error: "border-[--brand-destructive] bg-[--surface-1] text-[--text-primary] focus-visible:ring-[--brand-destructive]",
-        success: "border-[--color-green] bg-[--surface-1] text-[--text-primary] focus-visible:ring-[--color-green]"
+        default: "border-[--border-default] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--focus-ring-color] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0] focus-visible:border-[--border-focus]",
+        error: "border-[--status-error-border] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-error] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        success: "border-[--status-success-border] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-success] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        warning: "border-[--status-warning-border] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-warning] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        info: "border-[--status-info-border] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-info] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]"
       },
       size: {
-        sm: "h-8 px-3 py-2 text-xs",
-        md: "h-10 px-3 py-2",
-        lg: "h-12 px-4 py-3 text-base"
+        sm: "h-[--height-sm] px-[--space-3] py-[--space-1] text-[--text-sm] rounded-[--radius-md]",
+        md: "h-[--height-md] px-[--space-3] py-[--space-2] text-[--text-base] rounded-[--radius-default]",
+        lg: "h-[--height-lg] px-[--space-4] py-[--space-3] text-[--text-lg] rounded-[--radius-lg]"
       }
     },
     defaultVariants: {

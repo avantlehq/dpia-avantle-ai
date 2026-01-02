@@ -7,20 +7,22 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-// Select trigger variants with design tokens
+// Enhanced select trigger variants with design tokens
 const selectTriggerVariants = cva(
-  "flex w-full items-center justify-between gap-2 rounded-[10px] border text-sm transition-all duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--focus-ring] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0] disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+  "flex w-full items-center justify-between whitespace-nowrap border file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[--text-muted] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
   {
     variants: {
       variant: {
-        default: "border-[--border-default] bg-[--surface-1] text-[--text-primary] placeholder:text-[--text-muted]",
-        error: "border-[--brand-destructive] bg-[--surface-1] text-[--text-primary] focus-visible:ring-[--brand-destructive]",
-        success: "border-[--color-green] bg-[--surface-1] text-[--text-primary] focus-visible:ring-[--color-green]"
+        default: "border-[--border-default] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--focus-ring-color] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0] focus-visible:border-[--border-focus]",
+        error: "border-[--status-error-border] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-error] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        success: "border-[--status-success-border] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-success] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        warning: "border-[--status-warning-border] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-warning] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        info: "border-[--status-info-border] bg-[--surface-1] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-info] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]"
       },
       size: {
-        sm: "h-8 px-3 text-xs",
-        default: "h-9 px-3",
-        lg: "h-12 px-4 text-base"
+        sm: "h-[--height-sm] px-[--space-3] py-[--space-1] text-[--text-sm] rounded-[--radius-md] gap-[--space-2]",
+        default: "h-[--height-md] px-[--space-3] py-[--space-2] text-[--text-base] rounded-[--radius-default] gap-[--space-2]",
+        lg: "h-[--height-lg] px-[--space-4] py-[--space-3] text-[--text-lg] rounded-[--radius-lg] gap-[--space-3]"
       }
     },
     defaultVariants: {
@@ -91,7 +93,7 @@ function SelectContent({
       <SelectPrimitive.Content
         data-slot="select-content"
         className={cn(
-          "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-[10px] border border-[--border-default] bg-[--surface-2] text-[--text-primary] shadow-lg",
+          "relative max-h-96 min-w-[8rem] overflow-hidden border border-[--border-default] bg-[--surface-2] text-[--text-primary] rounded-[--radius-lg] shadow-[--shadow-lg] z-[--z-dropdown]",
           "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
           position === "popper" &&
             "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
@@ -104,7 +106,7 @@ function SelectContent({
         <SelectScrollUpButton />
         <SelectPrimitive.Viewport
           className={cn(
-            "p-1",
+            "p-[--space-1]",
             position === "popper" &&
               "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)] scroll-my-1"
           )}
@@ -124,7 +126,7 @@ function SelectLabel({
   return (
     <SelectPrimitive.Label
       data-slot="select-label"
-      className={cn("py-1.5 pl-8 pr-2 text-sm font-semibold text-[--text-muted]", className)}
+      className={cn("py-[--space-1-5] pl-[--space-8] pr-[--space-2] text-[--text-sm] font-semibold text-[--text-muted]", className)}
       {...props}
     />
   )
@@ -139,12 +141,12 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "relative flex w-full cursor-default select-none items-center rounded-lg py-2 pl-8 pr-2 text-sm outline-none hover:bg-[--interactive-hover] focus:bg-[--interactive-hover] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+        "relative flex w-full cursor-default select-none items-center outline-none py-[--space-2] pl-[--space-8] pr-[--space-2] text-[--text-sm] rounded-[--radius-md] transition-[--transition-colors] hover:bg-[--interactive-hover] focus:bg-[--interactive-hover] data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         className
       )}
       {...props}
     >
-      <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <span className="absolute left-[--space-2] flex h-[--space-3-5] w-[--space-3-5] items-center justify-center">
         <SelectPrimitive.ItemIndicator>
           <CheckIcon className="h-4 w-4" />
         </SelectPrimitive.ItemIndicator>
@@ -161,7 +163,7 @@ function SelectSeparator({
   return (
     <SelectPrimitive.Separator
       data-slot="select-separator"
-      className={cn("-mx-1 my-1 h-px bg-[--border-default]", className)}
+      className={cn("-mx-[--space-1] my-[--space-1] h-px bg-[--border-default]", className)}
       {...props}
     />
   )
@@ -175,7 +177,7 @@ function SelectScrollUpButton({
     <SelectPrimitive.ScrollUpButton
       data-slot="select-scroll-up-button"
       className={cn(
-        "flex cursor-default items-center justify-center py-1",
+        "flex cursor-default items-center justify-center py-[--space-1]",
         className
       )}
       {...props}
@@ -193,7 +195,7 @@ function SelectScrollDownButton({
     <SelectPrimitive.ScrollDownButton
       data-slot="select-scroll-down-button"
       className={cn(
-        "flex cursor-default items-center justify-center py-1",
+        "flex cursor-default items-center justify-center py-[--space-1]",
         className
       )}
       {...props}

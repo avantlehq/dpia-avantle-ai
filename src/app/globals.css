@@ -71,11 +71,163 @@
   --interactive-press: rgba(255, 255, 255, 0.08);  /* Press/active overlay */
   --focus-ring: #4A90E2;                /* Focus outline color */
   
-  /* Status Colors */
+  /* =====================================================
+     ENHANCED SEMANTIC COLOR SYSTEM
+     ===================================================== */
+  
+  /* Status Colors - Primary States */
   --status-success: #22c55e;            /* Success indicators */
+  --status-success-hover: #16a34a;      /* Success hover state */
+  --status-success-bg: rgba(34, 197, 94, 0.1);    /* Success background */
+  --status-success-border: rgba(34, 197, 94, 0.3); /* Success border */
+  
   --status-warning: #f59e0b;            /* Warning indicators */
+  --status-warning-hover: #d97706;      /* Warning hover state */
+  --status-warning-bg: rgba(245, 158, 11, 0.1);   /* Warning background */
+  --status-warning-border: rgba(245, 158, 11, 0.3); /* Warning border */
+  
   --status-error: #ef4444;              /* Error indicators */
+  --status-error-hover: #dc2626;        /* Error hover state */
+  --status-error-bg: rgba(239, 68, 68, 0.1);      /* Error background */
+  --status-error-border: rgba(239, 68, 68, 0.3);  /* Error border */
+  
   --status-info: #3b82f6;               /* Information indicators */
+  --status-info-hover: #2563eb;         /* Info hover state */
+  --status-info-bg: rgba(59, 130, 246, 0.1);      /* Info background */
+  --status-info-border: rgba(59, 130, 246, 0.3);  /* Info border */
+  
+  /* Semantic Color Aliases */
+  --color-success: var(--status-success);
+  --color-warning: var(--status-warning);
+  --color-error: var(--status-error);
+  --color-info: var(--status-info);
+
+  /* =====================================================
+     TYPOGRAPHY SCALE SYSTEM
+     ===================================================== */
+  
+  /* Font Families */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Fira Code', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+  
+  /* Typography Scale - Professional Hierarchy */
+  --text-3xl: 2.25rem;    /* 36px - Page titles, major headings */
+  --text-2xl: 1.875rem;   /* 30px - Section headings */
+  --text-xl: 1.5rem;      /* 24px - Subsection headings */
+  --text-lg: 1.125rem;    /* 18px - Card titles, form labels */
+  --text-base: 1rem;      /* 16px - Body text, buttons */
+  --text-sm: 0.875rem;    /* 14px - Helper text, captions */
+  --text-xs: 0.75rem;     /* 12px - Overlines, badges */
+  
+  /* Line Heights - Optimized for Readability */
+  --leading-none: 1;      /* Tight - for large headings */
+  --leading-tight: 1.2;   /* Tight - for headings */
+  --leading-normal: 1.5;  /* Normal - for body text */
+  --leading-relaxed: 1.6; /* Relaxed - for long form content */
+  
+  /* Font Weights */
+  --font-normal: 400;     /* Regular text */
+  --font-medium: 500;     /* Labels, UI elements */
+  --font-semibold: 600;   /* Headings, buttons */
+  --font-bold: 700;       /* Emphasis, titles */
+  
+  /* Letter Spacing */
+  --tracking-tight: -0.025em;   /* Tight - for large headings */
+  --tracking-normal: 0;         /* Normal - for body text */
+  --tracking-wide: 0.025em;     /* Wide - for small caps, buttons */
+
+  /* =====================================================
+     MATHEMATICAL SPACING SYSTEM (4px Grid)
+     ===================================================== */
+  
+  /* Base Unit: 4px */
+  --space-px: 1px;              /* 1px - borders, dividers */
+  --space-0: 0;                 /* 0px - reset spacing */
+  --space-0-5: 0.125rem;        /* 2px - fine adjustments */
+  --space-1: 0.25rem;           /* 4px - base unit */
+  --space-1-5: 0.375rem;        /* 6px - small gaps */
+  --space-2: 0.5rem;            /* 8px - tight spacing */
+  --space-2-5: 0.625rem;        /* 10px - compact spacing */
+  --space-3: 0.75rem;           /* 12px - standard spacing */
+  --space-3-5: 0.875rem;        /* 14px - medium spacing */
+  --space-4: 1rem;              /* 16px - comfortable spacing */
+  --space-5: 1.25rem;           /* 20px - relaxed spacing */
+  --space-6: 1.5rem;            /* 24px - section spacing */
+  --space-7: 1.75rem;           /* 28px - loose spacing */
+  --space-8: 2rem;              /* 32px - page sections */
+  --space-10: 2.5rem;           /* 40px - major sections */
+  --space-12: 3rem;             /* 48px - page margins */
+  --space-16: 4rem;             /* 64px - layout sections */
+  --space-20: 5rem;             /* 80px - page headers */
+  --space-24: 6rem;             /* 96px - major layout */
+  --space-32: 8rem;             /* 128px - page separation */
+  
+  /* Component-Specific Spacing */
+  --space-button-x: var(--space-4);      /* 16px - button horizontal padding */
+  --space-button-y: var(--space-2-5);    /* 10px - button vertical padding */
+  --space-input-x: var(--space-3);       /* 12px - input horizontal padding */
+  --space-input-y: var(--space-2-5);     /* 10px - input vertical padding */
+  --space-card: var(--space-6);          /* 24px - card padding */
+  --space-section: var(--space-8);       /* 32px - section spacing */
+
+  /* =====================================================
+     COMPONENT TOKEN SYSTEM
+     ===================================================== */
+  
+  /* Border Radius Scale */
+  --radius-none: 0;                /* No radius - sharp corners */
+  --radius-sm: 0.375rem;          /* 6px - small elements, badges */
+  --radius-md: 0.5rem;            /* 8px - buttons, inputs (legacy support) */
+  --radius-default: 0.625rem;     /* 10px - default border radius */
+  --radius-lg: 0.75rem;           /* 12px - cards, panels */
+  --radius-xl: 1rem;              /* 16px - large containers */
+  --radius-2xl: 1.25rem;          /* 20px - hero elements */
+  --radius-full: 9999px;          /* Pill shape - avatars, pills */
+  
+  /* Shadow Scale - Professional Elevation */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-none: none;
+  
+  /* Transition Standards */
+  --transition-fast: 150ms ease-out;          /* Quick interactions */
+  --transition-normal: 250ms ease-out;        /* Standard transitions */
+  --transition-slow: 350ms ease-out;          /* Deliberate animations */
+  --transition-colors: color 150ms ease-out, background-color 150ms ease-out, border-color 150ms ease-out;
+  --transition-transform: transform 150ms ease-out;
+  --transition-opacity: opacity 150ms ease-out;
+  --transition-all: all 150ms ease-out;
+  
+  /* Focus System - Accessibility First */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--brand-primary);
+  --focus-ring-opacity: 0.5;
+  --focus-ring: var(--focus-ring-width) solid var(--focus-ring-color);
+  --focus-ring-shadow: 0 0 0 var(--focus-ring-offset) var(--surface-0), 
+                       0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
+  
+  /* Component Height Scale */
+  --height-xs: 1.5rem;        /* 24px - small badges, chips */
+  --height-sm: 2rem;          /* 32px - small buttons, inputs */
+  --height-md: 2.5rem;        /* 40px - default buttons, inputs */
+  --height-lg: 3rem;          /* 48px - large buttons, inputs */
+  --height-xl: 3.5rem;        /* 56px - hero buttons */
+  
+  /* Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
 
   /* LEGACY NAVIGATION TOKENS (to be migrated) */
   --accent: var(--brand-primary);       /* DEPRECATED: Use --brand-primary */
@@ -154,6 +306,148 @@ nav a:active {
   --sidebar-border: oklch(0.2 0 0);
   --sidebar-ring: oklch(0.7 0.15 270);
 }
+
+/* Update body to use enhanced design tokens */
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+/* =====================================================
+   ENHANCED TYPOGRAPHY UTILITY CLASSES
+   ===================================================== */
+
+/* Heading Styles */
+.text-3xl {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--font-bold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text-2xl {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text-xl {
+  font-size: var(--text-xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--font-semibold);
+}
+
+.text-lg {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  font-weight: var(--font-medium);
+}
+
+.text-base {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+}
+
+.text-sm {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* Semantic Typography Classes */
+.heading-page {
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--font-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+.heading-section {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+}
+
+.heading-subsection {
+  font-size: var(--text-xl);
+  line-height: var(--leading-tight);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+}
+
+.heading-card {
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  font-weight: var(--font-medium);
+  color: var(--text-primary);
+}
+
+.body-large {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-primary);
+}
+
+.body {
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-primary);
+}
+
+.body-small {
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--text-secondary);
+}
+
+.caption {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+  letter-spacing: var(--tracking-wide);
+}
+
+.overline {
+  font-size: var(--text-xs);
+  line-height: var(--leading-normal);
+  font-weight: var(--font-semibold);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* =====================================================
+   ENHANCED COMPONENT UTILITY CLASSES
+   ===================================================== */
+
+/* Spacing Utilities */
+.space-section { margin-bottom: var(--space-section); }
+.space-card { padding: var(--space-card); }
+.gap-section { gap: var(--space-section); }
+
+/* Border Radius Utilities */
+.rounded-default { border-radius: var(--radius-default); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+
+/* Shadow Utilities */
+.shadow-card { box-shadow: var(--shadow-sm); }
+.shadow-elevated { box-shadow: var(--shadow-md); }
+.shadow-floating { box-shadow: var(--shadow-lg); }
+
+/* Transition Utilities */
+.transition-default { transition: var(--transition-all); }
+.transition-colors { transition: var(--transition-colors); }
+.transition-transform { transition: var(--transition-transform); }
 
 
 @layer base {

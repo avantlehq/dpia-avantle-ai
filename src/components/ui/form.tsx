@@ -80,7 +80,7 @@ function FormItem({ className, ...props }: React.ComponentProps<"div">) {
     <FormItemContext.Provider value={{ id }}>
       <div
         data-slot="form-item"
-        className={cn("grid gap-2", className)}
+        className={cn("grid gap-[--space-2]", className)}
         {...props}
       />
     </FormItemContext.Provider>
@@ -97,7 +97,7 @@ function FormLabel({
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn("data-[error=true]:text-[--brand-destructive]", className)}
+      className={cn("data-[error=true]:text-[--status-error]", className)}
       htmlFor={formItemId}
       {...props}
     />
@@ -129,7 +129,7 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="form-description"
       id={formDescriptionId}
-      className={cn("text-[--text-muted] text-sm", className)}
+      className={cn("text-[--text-muted] text-[--text-sm]", className)}
       {...props}
     />
   )
@@ -147,7 +147,7 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-[--brand-destructive] text-sm flex items-center gap-2", className)}
+      className={cn("text-[--status-error] text-[--text-sm] flex items-center gap-[--space-2]", className)}
       {...props}
     >
       {body}
@@ -168,16 +168,16 @@ function FormHeader({
 }) {
   return (
     <div
-      className={cn("space-y-2 pb-6 border-b border-[--border-default]", className)}
+      className={cn("space-y-[--space-2] pb-[--space-6] border-b border-[--border-default]", className)}
       {...props}
     >
       {title && (
-        <h2 className="text-xl font-semibold text-[--text-primary]">
+        <h2 className="text-[--text-xl] font-semibold text-[--text-primary]">
           {title}
         </h2>
       )}
       {description && (
-        <p className="text-sm text-[--text-muted]">
+        <p className="text-[--text-sm] text-[--text-muted]">
           {description}
         </p>
       )}
@@ -204,7 +204,7 @@ function FormFooter({
   return (
     <div
       className={cn(
-        "flex items-center gap-3 pt-6 border-t border-[--border-default]",
+        "flex items-center gap-[--space-3] pt-[--space-6] border-t border-[--border-default]",
         alignmentClasses[align],
         className
       )}
@@ -229,30 +229,30 @@ function FormSection({
 }) {
   const variantClasses = {
     default: "",
-    bordered: "p-6 border border-[--border-default] rounded-[10px]",
-    card: "p-6 bg-[--surface-1] border border-[--border-default] rounded-[10px] shadow-sm"
+    bordered: "p-[--space-6] border border-[--border-default] rounded-[--radius-default]",
+    card: "p-[--space-6] bg-[--surface-1] border border-[--border-default] rounded-[--radius-default] shadow-[--shadow-sm]"
   }
 
   return (
     <div
-      className={cn("space-y-4", variantClasses[variant], className)}
+      className={cn("space-y-[--space-4]", variantClasses[variant], className)}
       {...props}
     >
       {(title || description) && (
-        <div className="space-y-1 pb-4">
+        <div className="space-y-[--space-1] pb-[--space-4]">
           {title && (
-            <h3 className="text-base font-medium text-[--text-primary]">
+            <h3 className="text-[--text-base] font-medium text-[--text-primary]">
               {title}
             </h3>
           )}
           {description && (
-            <p className="text-sm text-[--text-muted]">
+            <p className="text-[--text-sm] text-[--text-muted]">
               {description}
             </p>
           )}
         </div>
       )}
-      <div className="space-y-4">
+      <div className="space-y-[--space-4]">
         {children}
       </div>
     </div>
@@ -279,9 +279,9 @@ function FormGrid({
   }
 
   const gapClasses = {
-    sm: "gap-3",
-    md: "gap-4",
-    lg: "gap-6"
+    sm: "gap-[--space-3]",
+    md: "gap-[--space-4]",
+    lg: "gap-[--space-6]"
   }
 
   return (

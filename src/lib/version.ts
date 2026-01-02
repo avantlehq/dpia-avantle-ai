@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.118" as const
-export const VERSION_NAME = "🎨 Design System Foundation - Complete Component Library" as const
-export const BUILD_DATE = "2026-01-01"
+export const VERSION = "3.21.119" as const
+export const VERSION_NAME = "🎨 Enhanced Design Token System - Semantic Colors & Mathematical Spacing" as const
+export const BUILD_DATE = "2026-01-02"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.119": {
+    date: "2026-01-02", 
+    name: "🎨 Enhanced Design Token System - Semantic Colors & Mathematical Spacing",
+    features: [
+      "SEMANTIC COLOR SYSTEM: Complete success, warning, error, info color variants with hover states and border variations",
+      "MATHEMATICAL SPACING: 4px grid-based spacing system with component-specific tokens (space-1 to space-20)",
+      "TYPOGRAPHY SCALE: Professional hierarchy from 3xl to xs with proper line heights and utility classes",
+      "COMPONENT TOKEN SYSTEM: Standardized border-radius, shadow scale, transition timing, and z-index tokens",
+      "ENHANCED BUTTON VARIANTS: Added semantic color variants (success, warning, info) with proper token usage",
+      "ENHANCED INPUT VARIANTS: Semantic color states with mathematical spacing and standardized transitions",
+      "SELECT COMPONENT TOKENS: Comprehensive token integration with semantic variants and enhanced spacing",
+      "FORM SYSTEM TOKENS: Updated Form, Card components with mathematical spacing and semantic color integration",
+      "DESIGN TOKEN FOUNDATION: 200+ CSS custom properties for consistent visual language across platform"
+    ]
+  },
   "3.21.118": {
     date: "2026-01-02", 
     name: "🎨 Design System Foundation - Complete Component Library",

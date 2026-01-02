@@ -5,20 +5,23 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] text-sm font-medium transition-all duration-150 ease-out disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-2 focus-visible:ring-[--focus-ring] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0] active:transform active:translate-y-px aria-busy:cursor-not-allowed",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium outline-none disabled:pointer-events-none disabled:opacity-50 aria-busy:cursor-not-allowed",
   {
     variants: {
       variant: {
-        primary: "bg-[--brand-primary] text-[--text-primary] font-semibold hover:bg-[--brand-primary-hover] active:bg-[--brand-primary-active] focus-visible:ring-[--border-focus]",
-        secondary: "bg-[--surface-2] border border-[--border-default] text-[--text-primary] hover:bg-[--surface-3] focus-visible:ring-[--border-focus]",
-        ghost: "bg-transparent hover:bg-[--interactive-hover] text-[--text-primary] focus-visible:ring-[--border-focus]",
-        outline: "bg-transparent border border-[--border-default] text-[--text-primary] hover:bg-[--interactive-hover] focus-visible:ring-[--border-focus]",
-        destructive: "bg-[--brand-destructive] text-[--text-primary] hover:bg-[--brand-destructive-hover] focus-visible:ring-[--brand-destructive] focus-visible:ring-offset-[--brand-destructive]/20",
+        primary: "bg-[--brand-primary] text-[--text-primary] font-semibold hover:bg-[--brand-primary-hover] active:bg-[--brand-primary-active] shadow-[--shadow-sm] hover:shadow-[--shadow-md] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--focus-ring-color] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        secondary: "bg-[--surface-2] border border-[--border-default] text-[--text-primary] hover:bg-[--surface-3] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--focus-ring-color] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        ghost: "bg-transparent hover:bg-[--interactive-hover] text-[--text-primary] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--focus-ring-color] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        outline: "bg-transparent border border-[--border-default] text-[--text-primary] hover:bg-[--interactive-hover] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--focus-ring-color] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        destructive: "bg-[--status-error] text-[--text-primary] hover:bg-[--status-error-hover] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-error] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        success: "bg-[--status-success] text-[--text-primary] hover:bg-[--status-success-hover] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-success] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        warning: "bg-[--status-warning] text-[--text-primary] hover:bg-[--status-warning-hover] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-warning] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
+        info: "bg-[--status-info] text-[--text-primary] hover:bg-[--status-info-hover] transition-[--transition-colors] focus-visible:ring-2 focus-visible:ring-[--status-info] focus-visible:ring-offset-2 focus-visible:ring-offset-[--surface-0]",
       },
       size: {
-        sm: "h-[30px] px-3 text-sm",
-        md: "h-[38px] px-4 text-sm",
-        lg: "h-[46px] px-5 text-base",
+        sm: "px-[--space-3] py-[--space-1-5] text-[--text-sm] font-medium rounded-[--radius-md]",
+        md: "px-[--space-4] py-[--space-2-5] text-[--text-base] font-medium rounded-[--radius-default]",
+        lg: "px-[--space-5] py-[--space-3] text-[--text-lg] font-semibold rounded-[--radius-lg]",
       },
     },
     defaultVariants: {
