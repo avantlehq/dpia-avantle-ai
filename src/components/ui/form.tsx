@@ -97,7 +97,7 @@ function FormLabel({
     <Label
       data-slot="form-label"
       data-error={!!error}
-      className={cn("data-[error=true]:text-destructive", className)}
+      className={cn("data-[error=true]:text-[--brand-destructive]", className)}
       htmlFor={formItemId}
       {...props}
     />
@@ -129,7 +129,7 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="form-description"
       id={formDescriptionId}
-      className={cn("text-muted-foreground text-sm", className)}
+      className={cn("text-[--text-muted] text-sm", className)}
       {...props}
     />
   )
@@ -147,11 +147,155 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
     <p
       data-slot="form-message"
       id={formMessageId}
-      className={cn("text-destructive text-sm", className)}
+      className={cn("text-[--brand-destructive] text-sm flex items-center gap-2", className)}
       {...props}
     >
       {body}
     </p>
+  )
+}
+
+// Additional form layout components
+function FormHeader({ 
+  className, 
+  title, 
+  description, 
+  children, 
+  ...props 
+}: React.HTMLAttributes<HTMLDivElement> & {
+  title?: string
+  description?: string
+}) {
+  return (
+    <div
+      className={cn("space-y-2 pb-6 border-b border-[--border-default]", className)}
+      {...props}
+    >
+      {title && (
+        <h2 className="text-xl font-semibold text-[--text-primary]">
+          {title}
+        </h2>
+      )}
+      {description && (
+        <p className="text-sm text-[--text-muted]">
+          {description}
+        </p>
+      )}
+      {children}
+    </div>
+  )
+}
+
+function FormFooter({ 
+  className, 
+  align = "right", 
+  children, 
+  ...props 
+}: React.HTMLAttributes<HTMLDivElement> & {
+  align?: "left" | "center" | "right" | "between"
+}) {
+  const alignmentClasses = {
+    left: "justify-start",
+    center: "justify-center", 
+    right: "justify-end",
+    between: "justify-between"
+  }
+
+  return (
+    <div
+      className={cn(
+        "flex items-center gap-3 pt-6 border-t border-[--border-default]",
+        alignmentClasses[align],
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  )
+}
+
+function FormSection({ 
+  className, 
+  title, 
+  description, 
+  variant = "default",
+  children, 
+  ...props 
+}: React.HTMLAttributes<HTMLDivElement> & {
+  title?: string
+  description?: string
+  variant?: "default" | "bordered" | "card"
+}) {
+  const variantClasses = {
+    default: "",
+    bordered: "p-6 border border-[--border-default] rounded-[10px]",
+    card: "p-6 bg-[--surface-1] border border-[--border-default] rounded-[10px] shadow-sm"
+  }
+
+  return (
+    <div
+      className={cn("space-y-4", variantClasses[variant], className)}
+      {...props}
+    >
+      {(title || description) && (
+        <div className="space-y-1 pb-4">
+          {title && (
+            <h3 className="text-base font-medium text-[--text-primary]">
+              {title}
+            </h3>
+          )}
+          {description && (
+            <p className="text-sm text-[--text-muted]">
+              {description}
+            </p>
+          )}
+        </div>
+      )}
+      <div className="space-y-4">
+        {children}
+      </div>
+    </div>
+  )
+}
+
+function FormGrid({ 
+  className, 
+  columns = 1, 
+  gap = "md", 
+  children, 
+  ...props 
+}: React.HTMLAttributes<HTMLDivElement> & {
+  columns?: 1 | 2 | 3 | 4 | 6 | 12
+  gap?: "sm" | "md" | "lg"
+}) {
+  const gridClasses = {
+    1: "grid-cols-1",
+    2: "grid-cols-1 md:grid-cols-2", 
+    3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+    4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+    6: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6",
+    12: "grid-cols-12"
+  }
+
+  const gapClasses = {
+    sm: "gap-3",
+    md: "gap-4",
+    lg: "gap-6"
+  }
+
+  return (
+    <div
+      className={cn(
+        "grid",
+        gridClasses[columns],
+        gapClasses[gap],
+        className
+      )}
+      {...props}
+    >
+      {children}
+    </div>
   )
 }
 
@@ -164,4 +308,8 @@ export {
   FormDescription,
   FormMessage,
   FormField,
+  FormHeader,
+  FormFooter,
+  FormSection,
+  FormGrid,
 }

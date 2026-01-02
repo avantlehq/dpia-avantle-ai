@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.117" as const
-export const VERSION_NAME = "🔧 Next.js 16.1.1 Upgrade + Build System Analysis" as const
+export const VERSION = "3.21.118" as const
+export const VERSION_NAME = "🎨 Design System Foundation - Complete Component Library" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.118": {
+    date: "2026-01-02", 
+    name: "🎨 Design System Foundation - Complete Component Library",
+    features: [
+      "COMPONENT LIBRARY EXPANSION: Enhanced Button, Input, Select, Textarea with design token integration",
+      "FORM SYSTEM ENHANCEMENT: Advanced React Hook Form components with validation, layouts, and error handling",
+      "DESIGN TOKENS INTEGRATION: Comprehensive CSS variable system across all components with variants",
+      "INPUT COMPONENT FAMILY: Text, Select, Textarea with error/success/loading states and consistent API",
+      "FORM LAYOUT COMPONENTS: FormHeader, FormFooter, FormSection, FormGrid for professional form architecture",
+      "CARD SYSTEM COMPLETE: Headers, content, actions, borders, shadows with slot-based architecture",
+      "COMPONENT SHOWCASE: Comprehensive documentation and usage examples for entire design system",
+      "TYPESCRIPT IMPROVEMENTS: Fixed ref forwarding and size conflicts across component interfaces"
+    ]
+  },
   "3.21.117": {
     date: "2026-01-02", 
     name: "🔧 Next.js 16.1.1 Upgrade + Build System Analysis",
