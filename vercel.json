@@ -5,7 +5,7 @@
     }
   },
   "framework": "nextjs",
-  "buildCommand": "pnpm build --no-lint",
+  "buildCommand": "pnpm build",
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install --frozen-lockfile",
   "outputDirectory": ".next",
