@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.116" as const
-export const VERSION_NAME = "🛠️ Complete SSR Fix - Root Layout + Global Error Resolution" as const
+export const VERSION = "3.21.117" as const
+export const VERSION_NAME = "🔧 Next.js 16.1.1 Upgrade + Build System Analysis" as const
 export const BUILD_DATE = "2026-01-01"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.117": {
+    date: "2026-01-02", 
+    name: "🔧 Next.js 16.1.1 Upgrade + Build System Analysis",
+    features: [
+      "NEXT.JS UPGRADE: Updated from 16.0.10 to 16.1.1 with latest security fixes (CVE-2025-55182, CVE-2025-66478)",
+      "BUILD SYSTEM ANALYSIS: Identified root cause of CI errors - Next.js built-in global-error component SSR bug",
+      "PRODUCTION STATUS VERIFIED: Site working correctly at https://dpia.avantle.ai despite CI build warnings",
+      "VERCEL DEPLOYMENT: Enhanced deployment configuration with production environment settings",
+      "SSR ISSUE DOCUMENTATION: Confirmed useContext SSR bug persists in Next.js 16.1.1 for global-error route",
+      "TURBOPACK IMPROVEMENTS: File system caching enabled by default, 20MB smaller install size",
+      "SECURITY HARDENING: Critical RCE vulnerabilities patched in React Server Components"
+    ]
+  },
   "3.21.115": {
     date: "2026-01-01", 
     name: "🔧 SSR Build Compatibility - Enhanced Sidebar + CI Fixes",

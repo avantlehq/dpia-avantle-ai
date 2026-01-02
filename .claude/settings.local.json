@@ -57,7 +57,9 @@
       "Bash(NODE_ENV=production pnpm build)",
       "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\README.md\")",
       "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\privacy\\layout.tsx\")",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "WebSearch",
+      "Bash(del src/app/global-error.tsx)"
     ],
     "deny": [],
     "ask": [],
