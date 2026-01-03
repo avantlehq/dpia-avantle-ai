@@ -40,13 +40,12 @@ export function WizardNavigation({
             <Button 
               variant="outline" 
               onClick={onPrevious}
-              className="inline-flex items-center justify-center bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-300 hover:border-gray-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
+              className="inline-flex items-center justify-center shadow-[--shadow-lg] hover:shadow-[--shadow-xl] transform hover:scale-102 transition-[--transition-all] px-[--space-6] py-[--space-3] font-semibold rounded-[--radius-lg] cursor-pointer"
               style={{
-                backgroundColor: '#ffffff',
-                borderColor: '#9ca3af',
-                borderRadius: '8px',
-                color: '#4b5563',
-                fontSize: '16px',
+                backgroundColor: 'var(--surface-1)',
+                borderColor: 'var(--border-default)',
+                color: 'var(--text-primary)',
+                fontSize: 'var(--text-base)',
                 fontWeight: '600'
               }}
             >
@@ -60,13 +59,12 @@ export function WizardNavigation({
           {/* Save Draft */}
           <Button 
             variant="outline"
-            className="inline-flex items-center justify-center bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl border border-gray-300 hover:border-gray-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
+            className="inline-flex items-center justify-center shadow-[--shadow-lg] hover:shadow-[--shadow-xl] transform hover:scale-102 transition-[--transition-all] px-[--space-6] py-[--space-3] font-semibold rounded-[--radius-lg] cursor-pointer"
             style={{
-              backgroundColor: '#ffffff',
-              borderColor: '#9ca3af',
-              borderRadius: '8px',
-              color: '#4b5563',
-              fontSize: '16px',
+              backgroundColor: 'var(--surface-1)',
+              borderColor: 'var(--border-default)',
+              color: 'var(--text-primary)',
+              fontSize: 'var(--text-base)',
               fontWeight: '600'
             }}
           >
@@ -78,13 +76,12 @@ export function WizardNavigation({
           {isLastSection ? (
             <Button 
               onClick={() => window.open(`/api/export?assessment_id=${assessmentId}&format=pdf`, '_blank')}
-              className="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 shadow-lg hover:shadow-xl border border-green-500 hover:border-green-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
+              className="inline-flex items-center justify-center shadow-[--shadow-lg] hover:shadow-[--shadow-xl] transform hover:scale-102 transition-[--transition-all] px-[--space-6] py-[--space-3] font-semibold rounded-[--radius-lg] cursor-pointer"
               style={{
-                backgroundColor: '#16a34a',
-                borderColor: '#22c55e',
-                borderRadius: '8px',
-                color: '#ffffff',
-                fontSize: '16px',
+                backgroundColor: 'var(--status-success)',
+                borderColor: 'var(--status-success-border)',
+                color: 'var(--text-primary)',
+                fontSize: 'var(--text-base)',
                 fontWeight: '600'
               }}
             >
@@ -95,14 +92,14 @@ export function WizardNavigation({
             <Button 
               onClick={onNext}
               disabled={!canProceed}
-              className="inline-flex items-center justify-center bg-orange-600 hover:bg-orange-700 shadow-lg hover:shadow-xl border border-orange-500 hover:border-orange-400 transform hover:scale-102 transition-all duration-300 px-6 py-3 font-semibold rounded-lg cursor-pointer"
+              className="inline-flex items-center justify-center shadow-[--shadow-lg] hover:shadow-[--shadow-xl] transform hover:scale-102 transition-[--transition-all] px-[--space-6] py-[--space-3] font-semibold rounded-[--radius-lg] cursor-pointer"
               style={{
-                backgroundColor: canProceed ? '#ea580c' : '#9ca3af',
-                borderColor: canProceed ? '#f97316' : '#9ca3af',
-                borderRadius: '8px',
-                color: '#ffffff',
-                fontSize: '16px',
-                fontWeight: '600'
+                backgroundColor: canProceed ? 'var(--brand-primary)' : 'var(--text-muted)',
+                borderColor: canProceed ? 'var(--brand-primary-border)' : 'var(--border-muted)',
+                color: 'var(--text-on-primary)',
+                fontSize: 'var(--text-base)',
+                fontWeight: '600',
+                border: `1px solid ${canProceed ? 'var(--brand-primary-border)' : 'var(--border-muted)'}`
               }}
             >
               Next Section
