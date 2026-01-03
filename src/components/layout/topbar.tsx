@@ -29,6 +29,7 @@ import {
   FileText
 } from 'lucide-react'
 import { ThemeSwitcher } from '@/components/ui/theme-switcher'
+import { SimpleThemeTest } from '@/components/ui/simple-theme-test'
 import { ModuleTopbar } from '@/components/navigation/module-topbar'
 
 export function Topbar() {
@@ -102,6 +103,14 @@ export function Topbar() {
 
         {/* Theme Switcher */}
         <ThemeSwitcher />
+        
+        {/* Debug: Basic Theme Test */}
+        <div className="px-2 py-1 bg-red-500 text-white text-xs">
+          Theme Test
+        </div>
+        
+        {/* Simple Theme Switcher */}
+        <SimpleThemeTest />
 
         {/* Language Switcher */}
         <DropdownMenu>
