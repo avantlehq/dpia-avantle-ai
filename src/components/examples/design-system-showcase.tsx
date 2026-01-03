@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Plus, Save, X, Search, Filter, CheckCircle, AlertTriangle, XCircle, Info, Copy } from 'lucide-react'
+import { ThemeSwitcher } from '@/components/ui/theme-switcher'
 
 import { Button } from '@/components/ui/button'
 import { Input, Textarea } from '@/components/ui/input'
@@ -61,16 +62,21 @@ export function DesignSystemShowcase() {
         <p className="text-[--text-lg] text-[--text-muted]">
           Comprehensive demonstration of 200+ design tokens with semantic colors, mathematical spacing, and typography scale.
         </p>
-        <div className="flex flex-wrap gap-2">
-          <span className="px-[--space-3] py-[--space-1] bg-[--status-success-bg] text-[--status-success] rounded-[--radius-md] text-[--text-xs] font-medium">
-            v3.21.119 Enhanced Tokens
-          </span>
-          <span className="px-[--space-3] py-[--space-1] bg-[--status-info-bg] text-[--status-info] rounded-[--radius-md] text-[--text-xs] font-medium">
-            200+ CSS Variables
-          </span>
-          <span className="px-[--space-3] py-[--space-1] bg-[--status-warning-bg] text-[--status-warning] rounded-[--radius-md] text-[--text-xs] font-medium">
-            4px Grid System
-          </span>
+        <div className="flex flex-wrap gap-[--space-2] items-center">
+          <div className="flex flex-wrap gap-[--space-2]">
+            <span className="px-[--space-3] py-[--space-1] bg-[--status-success-bg] text-[--status-success] rounded-[--radius-md] text-[--text-xs] font-medium">
+              v3.21.119 Enhanced Tokens
+            </span>
+            <span className="px-[--space-3] py-[--space-1] bg-[--status-info-bg] text-[--status-info] rounded-[--radius-md] text-[--text-xs] font-medium">
+              200+ CSS Variables
+            </span>
+            <span className="px-[--space-3] py-[--space-1] bg-[--status-warning-bg] text-[--status-warning] rounded-[--radius-md] text-[--text-xs] font-medium">
+              4px Grid System
+            </span>
+          </div>
+          <div className="ml-auto">
+            <ThemeSwitcher />
+          </div>
         </div>
       </div>
 

@@ -536,7 +536,10 @@ body {
   flex-direction: column;
 }
 
-/* Light mode - class-based (works with next-themes) */
+/* =====================================================
+   LIGHT THEME - ENHANCED DESIGN TOKEN SYSTEM
+   ===================================================== */
+
 .light {
   /* Light mode backgrounds */
   --background: #FFFFFF;
@@ -559,6 +562,52 @@ body {
   --input: #E2E8F0;
   --ring: #2563EB;
   
+  /* Enhanced Brand Colors - Light Mode */
+  --brand-primary: #2563eb;             /* Darker blue for light backgrounds */
+  --brand-primary-hover: #1d4ed8;       /* Primary hover state */
+  --brand-primary-active: #1e40af;      /* Primary active/pressed state */
+  --brand-destructive: #dc2626;         /* Error/delete actions */
+  --brand-destructive-hover: #b91c1c;   /* Destructive hover */
+
+  /* Enhanced Surface Colors - Light Mode */
+  --surface-0: #ffffff;                 /* Pure white background */
+  --surface-1: #f8fafc;                 /* Cards, panels - slightly off-white */
+  --surface-2: #f1f5f9;                 /* Secondary surfaces, table rows */
+  --surface-3: #e2e8f0;                 /* Tertiary surfaces, hover states */
+
+  /* Enhanced Text Colors - Light Mode */
+  --text-primary: #0f172a;              /* Dark text on light background */
+  --text-secondary: #334155;            /* Secondary text */
+  --text-muted: #64748b;                /* Muted text, placeholders */
+
+  /* Enhanced Border & Interactive Colors - Light Mode */
+  --border-default: #e2e8f0;            /* Default borders, dividers */
+  --border-subtle: #f1f5f9;             /* Subtle borders */
+  --border-focus: #2563eb;              /* Focus border color */
+  --interactive-hover: rgba(15, 23, 42, 0.05);  /* Light hover overlay */
+  --interactive-press: rgba(15, 23, 42, 0.1);   /* Light press overlay */
+
+  /* Enhanced Semantic Colors - Light Mode */
+  --status-success: #059669;            /* Success actions, positive feedback */
+  --status-success-hover: #047857;      /* Success hover state */
+  --status-success-bg: rgba(5, 150, 105, 0.1);     /* Success background overlay */
+  --status-success-border: rgba(5, 150, 105, 0.3); /* Success border color */
+
+  --status-warning: #d97706;            /* Warning actions, caution states */
+  --status-warning-hover: #b45309;      /* Warning hover state */
+  --status-warning-bg: rgba(217, 119, 6, 0.1);     /* Warning background */
+  --status-warning-border: rgba(217, 119, 6, 0.3); /* Warning border */
+
+  --status-error: #dc2626;              /* Error actions, destructive states */
+  --status-error-hover: #b91c1c;        /* Error hover state */
+  --status-error-bg: rgba(220, 38, 38, 0.1);       /* Error background */
+  --status-error-border: rgba(220, 38, 38, 0.3);   /* Error border */
+
+  --status-info: #2563eb;               /* Info actions, neutral feedback */
+  --status-info-hover: #1d4ed8;         /* Info hover state */
+  --status-info-bg: rgba(37, 99, 235, 0.1);        /* Info background */
+  --status-info-border: rgba(37, 99, 235, 0.3);    /* Info border */
+
   /* Light mode category colors (darker for contrast) */
   --color-blue: #2563EB;
   --color-green: #16A34A;
@@ -575,12 +624,17 @@ body {
   --color-purple-light: #8B5CF6;
   --color-gray-light: #9CA3AF;
   
-  /* Same opacity standards */
+  /* Opacity standards remain consistent */
   --border-opacity: 0.3;
   --icon-opacity: 0.15;
   --hover-opacity: 0.25;
   --underline-thickness: 2px;
   --underline-opacity: 0.4;
+
+  /* Focus System - Light Mode */
+  --focus-ring-color: #2563eb;
+  --focus-ring-shadow: 0 0 0 var(--focus-ring-offset) var(--surface-0), 
+                       0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-ring-color);
 }
 
 

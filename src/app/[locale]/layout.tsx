@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { SimpleLayout } from '@/components/layout/simple-layout'
+import { ThemeProvider } from '@/components/providers/theme-provider'
 import { locales } from '@/i18n/config'
 import "../globals.css"
 
@@ -52,11 +53,18 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        <NextIntlClientProvider messages={messages}>
-          <SimpleLayout>
-            {children}
-          </SimpleLayout>
-        </NextIntlClientProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NextIntlClientProvider messages={messages}>
+            <SimpleLayout>
+              {children}
+            </SimpleLayout>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -28,6 +28,7 @@ import {
   AlertTriangle,
   FileText
 } from 'lucide-react'
+import { ThemeSwitcher } from '@/components/ui/theme-switcher'
 import { ModuleTopbar } from '@/components/navigation/module-topbar'
 
 export function Topbar() {
@@ -98,6 +99,9 @@ export function Topbar() {
         >
           <HelpCircle className="h-4 w-4 text-orange-600 dark:text-orange-400" />
         </Button>
+
+        {/* Theme Switcher */}
+        <ThemeSwitcher />
 
         {/* Language Switcher */}
         <DropdownMenu>
