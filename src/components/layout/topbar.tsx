@@ -28,8 +28,8 @@ import {
   AlertTriangle,
   FileText
 } from 'lucide-react'
-import { ThemeSwitcher } from '@/components/ui/theme-switcher'
-import { SimpleThemeTest } from '@/components/ui/simple-theme-test'
+// import { ThemeSwitcher } from '@/components/ui/theme-switcher'
+// import { SimpleThemeTest } from '@/components/ui/simple-theme-test'
 import { ModuleTopbar } from '@/components/navigation/module-topbar'
 
 export function Topbar() {
@@ -102,15 +102,15 @@ export function Topbar() {
         </Button>
 
         {/* Theme Switcher */}
-        <ThemeSwitcher />
+        {/* <ThemeSwitcher /> */}
         
         {/* Debug: Basic Theme Test */}
         <div className="px-2 py-1 bg-red-500 text-white text-xs">
-          Theme Test
+          Theme Test - v3.21.125
         </div>
         
         {/* Simple Theme Switcher */}
-        <SimpleThemeTest />
+        {/* <SimpleThemeTest /> */}
 
         {/* Language Switcher */}
         <DropdownMenu>
