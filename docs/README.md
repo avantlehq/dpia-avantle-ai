@@ -8,6 +8,7 @@ Welcome to the Avantle Privacy Platform developer documentation. This directory 
 - **[Design System](./design-system.md)** - Complete design token system, component library, and UI patterns
 - **[Architecture](./architecture.md)** - System architecture, module structure, and technical decisions
 - **[Data Model](./data-model.md)** - Database schema, entity relationships, and data flow
+- **[Database Schema Diagrams](./data-model-mermaid.md)** - Interactive Mermaid.js ER diagrams and comprehensive data dictionary
 - **[API Reference](./api-reference.md)** - REST endpoints, authentication, and integration patterns
 
 ### Development Guides

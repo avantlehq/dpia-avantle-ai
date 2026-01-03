@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.136" as const
-export const VERSION_NAME = "📚 CLAUDE.md Update - Documentation Architecture Sync with /docs/ Folder" as const
+export const VERSION = "3.21.137" as const
+export const VERSION_NAME = "🗃️ Complete Database Schema Documentation - Mermaid ER Diagrams & Data Dictionary" as const
 export const BUILD_DATE = "2026-01-03"
 
 export const getVersionInfo = () => ({
