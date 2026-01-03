@@ -31,19 +31,17 @@ dpia table ako root            // nie je škálovateľné
 
 **DPIA Suite** - European platform for automated GDPR Data Protection Impact Assessments with complete workflow.
 
-**Current Status: VERSION 3.21.119 - Enhanced Design Token System Complete**
+**Current Status: VERSION 3.21.135 - Complete Developer Documentation System**
 
-### Latest Achievements (January 2, 2026)
-- ✅ **ENHANCED DESIGN TOKEN SYSTEM**: Semantic color variants (success, warning, error, info) with comprehensive token architecture
-- ✅ **MATHEMATICAL SPACING**: 4px grid-based spacing system with tokens from space-1 (4px) to space-20 (80px)
-- ✅ **TYPOGRAPHY SCALE**: Professional hierarchy from 3xl to xs with proper line heights and utility classes
-- ✅ **COMPONENT TOKEN SYSTEM**: Standardized border-radius, shadow scale, transition timing, and z-index tokens
-- ✅ **SEMANTIC BUTTON VARIANTS**: Enhanced Button component with success, warning, info variants using design tokens
-- ✅ **SEMANTIC INPUT VARIANTS**: Input/Select components with semantic color states and mathematical spacing
-- ✅ **200+ CSS TOKENS**: Comprehensive CSS custom properties for consistent visual language across platform
-- ✅ **ZERO VISUAL REGRESSION**: All enhancements maintain existing appearance while adding token foundation
-- ✅ **MATHEMATICAL PRECISION**: 4px grid system ensures scalable, precise spacing throughout interface
-- ✅ **PRODUCTION DEPLOYMENT**: All enhanced tokens live at https://dpia.avantle.ai with full backward compatibility
+### Latest Achievements (January 3, 2026)
+- ✅ **COMPLETE DEVELOPER DOCUMENTATION**: Comprehensive /docs/ folder with design system, architecture, and data model
+- ✅ **PRIORITY 3 BUSINESS VALUE**: DPIA form enhancement with semantic validation states using design token system
+- ✅ **THEME-AWARE BUTTON FIX**: Resolved white button visibility issue in DPIA assessments for both light/dark themes
+- ✅ **DESIGN SYSTEM DOCS**: Complete component library reference with usage patterns and implementation examples
+- ✅ **DATA MODEL DOCUMENTATION**: Database schema, JSON templates, risk scoring, and RLS security architecture
+- ✅ **ARCHITECTURE GUIDE**: Module system, routing, form architecture, and deployment pipeline documentation
+- ✅ **DEVELOPER ONBOARDING**: Structured learning path from setup to advanced component development
+- ✅ **DOCUMENTATION SYNC**: Complementary relationship between CLAUDE.md (AI context) and /docs/ (developer reference)
 
 ### Foundation Achievements  
 - ✅ **Modern SaaS Navigation**: Professional text-only design, 32px spacing, context-aware routing
@@ -66,8 +64,9 @@ dpia table ako root            // nie je škálovateľné
 - Framework: Next.js 16.1.1 + React 19 + TypeScript
 - Backend: Supabase (service role key bypassing RLS)
 - Styling: Tailwind CSS + Design Token System (CSS variables)
-- Theme: Production-ready token system with scalable color management
-- Components: Complete component library (Button, Input, Select, Textarea, Form, Card systems)
+- Theme: Dark/Light switching with next-themes + production token system
+- Components: Complete component library with semantic validation states
+- Documentation: Comprehensive /docs/ system for developer onboarding
 - Security: CVE-2025-55182 & CVE-2025-66478 patched, enterprise-grade
 
 ## Enterprise Navigation Architecture
@@ -79,9 +78,9 @@ dpia table ako root            // nie je škálovateľné
 - **Context-Aware Home**: Brand logo routes to appropriate module overview
 - **Version Display**: "Privacy Platform X.X.X" visible for user reference
 
-### Navigation Structure (v3.21.119)
+### Navigation Structure (v3.21.135)
 ```
-Privacy Platform 3.21.119    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
+Privacy Platform 3.21.135    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
 ```
 
 **Left**: Brand + Version (context-aware routing)  
@@ -290,15 +289,15 @@ Privacy Platform 3.21.119    Context · Privacy · Risk · Controls · Training 
 
 ## Technical Insights
 
-### Critical Fixes (Latest: v3.21.119)
+### Critical Fixes (Latest: v3.21.135)
+- **Complete Developer Documentation**: /docs/ folder with design system, architecture, data model documentation
+- **Theme-Aware Button Visibility**: Fixed white buttons in DPIA assessments using design token system
+- **DPIA Form Enhancement**: Semantic validation states with success/error/warning visual feedback
+- **Priority 3 Business Value**: Core DPIA functionality enhanced with professional validation patterns
+- **Documentation Architecture**: Complementary CLAUDE.md (AI context) + /docs/ (developer reference) structure
 - **Enhanced Design Token System**: 200+ CSS tokens with semantic colors, mathematical spacing, typography scale
-- **Semantic Color Variants**: Success, warning, error, info states with comprehensive hover and border tokens
-- **Mathematical Spacing**: 4px grid-based system (space-1 to space-20) for pixel-perfect, scalable layouts
-- **Component Token Integration**: Button, Input, Select, Form, Card components enhanced with comprehensive token usage
-- **Typography Scale**: Professional hierarchy (3xl to xs) with proper line heights and utility class integration
-- **Component Library**: Complete redesign of Input, Select, Textarea with design token integration
-- **Form System**: Enhanced React Hook Form components with professional layouts and validation
-- **TypeScript Improvements**: Fixed ref forwarding conflicts and size property collisions
+- **Dark/Light Theme System**: Complete theme switching with next-themes and SSR-safe implementation
+- **Component Playground**: Interactive design system testing environment with live component preview
 - **Next.js Upgrade**: Updated to 16.1.1 with security patches (CVE-2025-55182, CVE-2025-66478)
 - **Build System**: Resolved Vercel deployment configuration with proper build commands
 - **SSR Compatibility**: Identified global-error framework limitation (doesn't affect functionality)
@@ -327,15 +326,40 @@ git add . && git commit -m "message" && git push origin main
 
 **Local Path**: `C:\Users\rasti\Projects\avantlehq\dpia-avantle-ai\`
 
+## 📚 **DOCUMENTATION ARCHITECTURE**
+
+### **Complementary Documentation System**
+**CLAUDE.md** (This file) - **AI Context & Development History**
+- Future-proof architecture requirements and constraints
+- Development status, achievements, and technical insights
+- Component architecture with implementation details
+- Navigation patterns and UX design principles
+- Version management and deployment workflow
+- Development context for Claude Code AI assistance
+
+**`/docs/` Folder** - **Developer Reference & Onboarding**
+- **`/docs/README.md`** - Documentation index with learning paths
+- **`/docs/design-system.md`** - Design tokens, component API, usage patterns
+- **`/docs/architecture.md`** - System overview, tech stack, module structure
+- **`/docs/data-model.md`** - Database schema, JSON templates, validation
+
+### **Documentation Usage Guidelines**
+- **New Developers**: Start with `/docs/README.md` for structured onboarding
+- **Component Development**: Reference `/docs/design-system.md` for patterns and tokens
+- **System Understanding**: Use `/docs/architecture.md` for module relationships
+- **Database Work**: Check `/docs/data-model.md` for schema and data flow
+- **AI Context**: CLAUDE.md provides development context for Claude Code sessions
+- **No Overlap**: Each document serves distinct purpose without redundancy
+
 ## 🎯 **DEVELOPMENT STATUS**
 
-### **ENHANCED DESIGN TOKEN SYSTEM: COMPLETE ✅ (v3.21.119)** 
-- **ACHIEVED**: Comprehensive 200+ token system with semantic colors, mathematical spacing, and typography scale
-- **SEMANTIC COLOR SYSTEM**: Success, warning, error, info variants with hover states and border variations
-- **MATHEMATICAL SPACING**: 4px grid-based system (space-1 to space-20) for pixel-perfect scalable layouts
-- **COMPONENT INTEGRATION**: Button, Input, Select, Form, Card components enhanced with comprehensive token usage
-- **TYPOGRAPHY SCALE**: Professional hierarchy (3xl to xs) with proper line heights and utility class integration
-- **PRODUCTION**: All enhanced tokens live and functional at https://dpia.avantle.ai with zero breaking changes
+### **COMPLETE DEVELOPER DOCUMENTATION: ACHIEVED ✅ (v3.21.135)** 
+- **DOCUMENTATION SYSTEM**: Comprehensive /docs/ folder with design system, architecture, and data model
+- **PRIORITY 3 COMPLETE**: DPIA form enhancement with semantic validation states and theme-aware buttons
+- **THEME SYSTEM**: Dark/light switching with design token compatibility across all components
+- **DEVELOPER ONBOARDING**: Structured learning path from setup to advanced component development
+- **DOCUMENTATION SYNC**: CLAUDE.md focuses on AI context, /docs/ provides developer reference
+- **BUSINESS VALUE**: Core DPIA functionality enhanced with professional validation and user experience
 
 ### **BUILD SYSTEM ANALYSIS: RESOLVED ✅ (v3.21.117-118)**
 - **ACHIEVED**: Next.js 16.1.1 upgrade with latest security patches (CVE-2025-55182, CVE-2025-66478)
@@ -348,7 +372,8 @@ git add . && git commit -m "message" && git push origin main
 - ✅ **STAGE 4**: Full Slovak/English bilingual platform (v3.21.86-113)
 - ✅ **STAGE 5**: Enhanced sidebar UX with accessibility (v3.21.114-116)
 - ✅ **STAGE 6**: Design System Foundation with complete component library (v3.21.117-118)
-- ✅ **STAGE 7**: Enhanced Design Token System with semantic colors and mathematical spacing (v3.21.119)
+- ✅ **STAGE 7**: Enhanced Design Token System with semantic colors and mathematical spacing (v3.21.119-134)
+- ✅ **STAGE 8**: Complete Developer Documentation and Business Value Enhancement (v3.21.135)
 
 ### **POTENTIAL FUTURE ENHANCEMENTS**
 
