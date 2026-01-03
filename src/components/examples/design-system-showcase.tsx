@@ -4,7 +4,7 @@ import * as React from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Plus, Save, X, Search, Filter, CheckCircle, AlertTriangle, XCircle, Info, Copy } from 'lucide-react'
+import { Plus, Save, X, Search, Filter, CheckCircle, AlertTriangle, XCircle, Info } from 'lucide-react'
 import { ThemeSwitcher } from '@/components/ui/theme-switcher'
 
 import { Button } from '@/components/ui/button'
@@ -967,7 +967,7 @@ export function DesignSystemShowcase() {
                 </ul>
               </div>
               <div className="space-y-[--space-2]">
-                <h4 className="text-[--text-sm] font-medium text-[--status-error]">✗ Don't</h4>
+                <h4 className="text-[--text-sm] font-medium text-[--status-error]">✗ Don&apos;t</h4>
                 <ul className="text-[--text-xs] text-[--text-muted] space-y-[--space-1]">
                   <li>• Mix hardcoded values with tokens</li>
                   <li>• Use success colors for destructive actions</li>
