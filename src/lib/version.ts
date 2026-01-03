@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.121" as const
-export const VERSION_NAME = "🎮 Priority 2 Complete: Theme System Enhancement - Dark/Light + Component Playground" as const
+export const VERSION = "3.21.122" as const
+export const VERSION_NAME = "🎮 Theme Switcher Fixed: Production-Ready Dark/Light Switching" as const
 export const BUILD_DATE = "2026-01-03"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.122": {
+    date: "2026-01-03", 
+    name: "🎮 Theme Switcher Fixed: Production-Ready Dark/Light Switching",
+    features: [
+      "THEME SWITCHER VISIBILITY FIX: Fixed theme switcher not appearing in production topbar",
+      "CSS RELIABILITY: Removed design token CSS classes causing rendering issues in production",
+      "SIMPLIFIED STYLING: Used standard Tailwind classes for better compilation compatibility",
+      "PRODUCTION READY: Theme switcher now visible and functional at https://dpia.avantle.ai",
+      "THEME SWITCHING WORKS: Light/Dark/System switching fully operational across platform",
+      "COMPONENT PLAYGROUND: Interactive testing environment working with theme switching"
+    ]
+  },
   "3.21.121": {
     date: "2026-01-03", 
     name: "🎮 Priority 2 Complete: Theme System Enhancement - Dark/Light + Component Playground",
