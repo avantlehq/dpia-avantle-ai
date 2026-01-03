@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.122" as const
-export const VERSION_NAME = "🎮 Theme Switcher Fixed: Production-Ready Dark/Light Switching" as const
+export const VERSION = "3.21.123" as const
+export const VERSION_NAME = "🔧 Debug: Theme Switcher Visibility Investigation" as const
 export const BUILD_DATE = "2026-01-03"
 
 export const getVersionInfo = () => ({
