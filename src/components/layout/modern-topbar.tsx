@@ -107,7 +107,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
         {/* Clickable Brand Lockup */}
         <Link 
           href={homeLink} 
-          className="flex items-center gap-3 pl-2 pr-8 py-2 hover:brightness-110 transition-all duration-200 cursor-pointer group"
+          className="flex items-center gap-3 pl-2 pr-8 py-2 hover:brightness-110 transition-all duration-200 cursor-pointer group no-underline"
         >
           {/* Product Mark */}
           <ShieldCheck 
@@ -118,6 +118,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
           {/* Product Name */}
           <span 
             className="font-bold transition-colors duration-200 text-[--text-primary]"
+            style={{ textDecoration: 'none' }}
           >
             Privacy Platform
           </span>
@@ -125,6 +126,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
           {/* Version */}
           <span 
             className="text-xs font-normal ml-3 text-[--text-muted]"
+            style={{ textDecoration: 'none' }}
           >
             v{versionInfo.version}
           </span>

@@ -12,7 +12,7 @@ export default function DesignSystemLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
           <div className="min-h-screen bg-[--background] text-[--text-primary]">

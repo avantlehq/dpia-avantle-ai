@@ -3,6 +3,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Force dark theme as default */
+:root {
+  color-scheme: dark;
+}
+
+/* Remove text decoration from navigation links */
+.no-underline, .no-underline * {
+  text-decoration: none !important;
+}
+
 /* Avantle.ai Dark Mode Design - Default Theme */
 :root {
   --radius: 0.5rem;
