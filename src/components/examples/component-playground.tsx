@@ -9,7 +9,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { ThemeSwitcher } from '@/components/ui/theme-switcher'
 import { Copy, CheckCircle, Info, RefreshCw, Play, Code } from 'lucide-react'
-import type { VariantProps } from 'class-variance-authority'
 
 // Type definitions for playground state
 interface PlaygroundState {
@@ -27,6 +26,8 @@ type InputVariant = 'default' | 'success' | 'warning' | 'error'
 type InputSize = 'sm' | 'md' | 'lg'
 type SelectVariant = 'default' | 'success' | 'warning' | 'error'
 type SelectSize = 'sm' | 'default' | 'lg'
+type ComponentType = PlaygroundState['component']
+type PlaygroundStateValue = PlaygroundState['state']
 
 export function ComponentPlayground() {
   const [playground, setPlayground] = useState<PlaygroundState>({
@@ -234,7 +235,7 @@ export function ComponentPlayground() {
               <label className="text-[--text-sm] font-medium text-[--text-primary]">Component</label>
               <Select value={playground.component} onValueChange={(value) => setPlayground(prev => ({ 
                 ...prev, 
-                component: value as any,
+                component: value as ComponentType,
                 variant: componentOptions[value as keyof typeof componentOptions].variants[0],
                 size: componentOptions[value as keyof typeof componentOptions].sizes[0]
               }))}>
@@ -288,7 +289,7 @@ export function ComponentPlayground() {
             {playground.component !== 'card' && (
               <div className="space-y-[--space-2]">
                 <label className="text-[--text-sm] font-medium text-[--text-primary]">State</label>
-                <Select value={playground.state} onValueChange={(value) => setPlayground(prev => ({ ...prev, state: value as any }))}>
+                <Select value={playground.state} onValueChange={(value) => setPlayground(prev => ({ ...prev, state: value as PlaygroundStateValue }))}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
