@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { LanguageSwitcher } from '@/components/ui/language-switcher'
+import { ThemeSwitcher } from '@/components/ui/theme-switcher'
 import { getVersionInfo } from '@/lib/version'
 import { 
   User, 
@@ -153,10 +154,8 @@ export const ModernTopbar = memo(function ModernTopbar() {
 
       {/* Right: Clean utilities with proper spacing */}
       <div className="flex items-center" style={{ gap: '16px' }}>
-        {/* Debug Test Box */}
-        <div className="px-2 py-1 bg-red-500 text-white text-xs">
-          Theme Test - v3.21.126
-        </div>
+        {/* Theme Switcher */}
+        <ThemeSwitcher />
         
         {/* Language Switcher */}
         <LanguageSwitcher />

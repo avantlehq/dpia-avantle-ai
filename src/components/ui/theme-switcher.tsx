@@ -15,8 +15,6 @@ export function ThemeSwitcher() {
   const { setTheme, theme } = useTheme()
   const [mounted, setMounted] = React.useState(false)
 
-  console.log('ThemeSwitcher render:', { theme, mounted })
-
   // useEffect only runs on the client, so now we can safely show the UI
   React.useEffect(() => {
     setMounted(true)
@@ -25,14 +23,12 @@ export function ThemeSwitcher() {
   if (!mounted) {
     return (
       <Button 
-        variant="outline" 
+        variant="ghost" 
         size="sm" 
-        className="h-9 px-2 border-red-500"
+        className="h-9 w-9 p-0"
         disabled
-        title="Theme Switcher Loading..."
       >
         <Monitor className="h-4 w-4" />
-        <span className="ml-2 text-xs">Loading</span>
       </Button>
     )
   }
@@ -63,9 +59,9 @@ export function ThemeSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button 
-          variant="outline" 
+          variant="ghost" 
           size="sm" 
-          className="h-9 px-3 gap-2 border-blue-500"
+          className="h-9 px-3 gap-2"
           title={`Current theme: ${theme}`}
         >
           {getThemeIcon()}

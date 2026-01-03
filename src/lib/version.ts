@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.126" as const
-export const VERSION_NAME = "🎯 Debug: Found Correct Topbar - ModernTopbar" as const
+export const VERSION = "3.21.127" as const
+export const VERSION_NAME = "🌙☀️ Theme Switcher Working! Added to Correct ModernTopbar" as const
 export const BUILD_DATE = "2026-01-03"
 
 export const getVersionInfo = () => ({
