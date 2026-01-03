@@ -25,7 +25,7 @@ export function ThemeSwitcher() {
       <Button 
         variant="outline" 
         size="sm" 
-        className="h-9 px-2 bg-transparent hover:bg-[--surface-2] border-[--border-default] transition-[--transition-colors]"
+        className="h-9 px-2"
         disabled
       >
         <Monitor className="h-4 w-4" />
@@ -36,11 +36,11 @@ export function ThemeSwitcher() {
   const getThemeIcon = () => {
     switch (theme) {
       case 'light':
-        return <Sun className="h-4 w-4 text-[--status-warning]" />
+        return <Sun className="h-4 w-4" />
       case 'dark':
-        return <Moon className="h-4 w-4 text-[--brand-primary]" />
+        return <Moon className="h-4 w-4" />
       default:
-        return <Monitor className="h-4 w-4 text-[--text-muted]" />
+        return <Monitor className="h-4 w-4" />
     }
   }
 
@@ -61,33 +61,24 @@ export function ThemeSwitcher() {
         <Button 
           variant="outline" 
           size="sm" 
-          className="h-9 px-3 bg-transparent hover:bg-[--surface-2] border-[--border-default] hover:border-[--border-focus] transition-[--transition-colors] gap-[--space-2]"
+          className="h-9 px-3 gap-2"
         >
           {getThemeIcon()}
-          <span className="hidden sm:inline font-medium text-[--text-primary]">
+          <span className="hidden sm:inline font-medium">
             {getThemeLabel()}
           </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
-        <DropdownMenuItem 
-          onClick={() => setTheme('light')}
-          className={theme === 'light' ? 'bg-[--status-success-bg] text-[--status-success]' : ''}
-        >
+        <DropdownMenuItem onClick={() => setTheme('light')}>
           <Sun className="mr-2 h-4 w-4" />
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem 
-          onClick={() => setTheme('dark')}
-          className={theme === 'dark' ? 'bg-[--status-success-bg] text-[--status-success]' : ''}
-        >
+        <DropdownMenuItem onClick={() => setTheme('dark')}>
           <Moon className="mr-2 h-4 w-4" />
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem 
-          onClick={() => setTheme('system')}
-          className={theme === 'system' ? 'bg-[--status-success-bg] text-[--status-success]' : ''}
-        >
+        <DropdownMenuItem onClick={() => setTheme('system')}>
           <Monitor className="mr-2 h-4 w-4" />
           <span>System</span>
         </DropdownMenuItem>
