@@ -3,12 +3,13 @@
 import * as React from 'react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Input, Textarea } from '@/components/ui/input'
+import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ThemeSwitcher } from '@/components/ui/theme-switcher'
-import { Copy, CheckCircle, AlertTriangle, XCircle, Info, RefreshCw, Play, Code } from 'lucide-react'
+import { Copy, CheckCircle, Info, RefreshCw, Play, Code } from 'lucide-react'
+import type { VariantProps } from 'class-variance-authority'
 
 // Type definitions for playground state
 interface PlaygroundState {
@@ -19,6 +20,14 @@ interface PlaygroundState {
   theme: 'light' | 'dark'
 }
 
+// Component variant type definitions
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'outline' | 'destructive' | 'success' | 'warning' | 'info'
+type ButtonSize = 'sm' | 'md' | 'lg'
+type InputVariant = 'default' | 'success' | 'warning' | 'error'
+type InputSize = 'sm' | 'md' | 'lg'
+type SelectVariant = 'default' | 'success' | 'warning' | 'error'
+type SelectSize = 'sm' | 'default' | 'lg'
+
 export function ComponentPlayground() {
   const [playground, setPlayground] = useState<PlaygroundState>({
     component: 'button',
@@ -28,7 +37,6 @@ export function ComponentPlayground() {
     theme: 'dark'
   })
 
-  const [showCode, setShowCode] = useState(false)
   const [copied, setCopied] = useState(false)
 
   // Component configuration options
@@ -123,8 +131,8 @@ export function ComponentPlayground() {
       case 'button':
         return (
           <Button 
-            variant={variant as any} 
-            size={size as any}
+            variant={variant as ButtonVariant} 
+            size={size as ButtonSize}
             leftIcon={<CheckCircle className="h-4 w-4" />}
             {...commonProps}
           >
@@ -135,8 +143,8 @@ export function ComponentPlayground() {
       case 'input':
         return (
           <Input 
-            variant={variant as any} 
-            size={size as any}
+            variant={variant as InputVariant} 
+            size={size as InputSize}
             placeholder="Enter text..."
             {...commonProps}
           />
@@ -145,7 +153,7 @@ export function ComponentPlayground() {
       case 'select':
         return (
           <Select disabled={state === 'disabled'}>
-            <SelectTrigger variant={variant as any} size={size as any}>
+            <SelectTrigger variant={variant as SelectVariant} size={size as SelectSize}>
               <SelectValue placeholder="Choose option..." />
             </SelectTrigger>
             <SelectContent>
@@ -399,16 +407,16 @@ export function ComponentPlayground() {
                   {variant}
                 </p>
                 {playground.component === 'button' && (
-                  <Button variant={variant as any} size={playground.size as any}>
+                  <Button variant={variant as ButtonVariant} size={playground.size as ButtonSize}>
                     {variant}
                   </Button>
                 )}
                 {playground.component === 'input' && (
-                  <Input variant={variant as any} size={playground.size as any} placeholder={`${variant} input`} />
+                  <Input variant={variant as InputVariant} size={playground.size as InputSize} placeholder={`${variant} input`} />
                 )}
                 {playground.component === 'select' && (
                   <Select>
-                    <SelectTrigger variant={variant as any} size={playground.size as any}>
+                    <SelectTrigger variant={variant as SelectVariant} size={playground.size as SelectSize}>
                       <SelectValue placeholder={`${variant} select`} />
                     </SelectTrigger>
                     <SelectContent>
