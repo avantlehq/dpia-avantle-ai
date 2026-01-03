@@ -164,7 +164,7 @@ export function DynamicFormGenerator({
   const renderField = (field: FieldDefinition) => {
     const hasError = !!form.formState.errors[field.id]
     const fieldValue = watchedFields[field.id]
-    const hasValue = fieldValue && fieldValue !== ''
+    const hasValue = Boolean(fieldValue && fieldValue !== '')
     const validationState = getValidationState(hasError, hasValue)
     
     switch (field.type) {
@@ -338,7 +338,7 @@ export function DynamicFormGenerator({
                                 }
                               `}
                               style={{
-                                backgroundColor: isSelected ? `${accentColor}` : undefined,
+                                backgroundColor: isSelected ? 'var(--brand-primary)' : undefined,
                                 fontSize: '16px'
                               }}
                               onClick={() => {
@@ -407,7 +407,7 @@ export function DynamicFormGenerator({
                                 }
                               `}
                               style={{
-                                backgroundColor: isSelected ? `${accentColor}` : undefined
+                                backgroundColor: isSelected ? 'var(--brand-primary)' : undefined
                               }}
                               onClick={() => {
                                 setFieldRef(field.id, document.activeElement as HTMLElement)
@@ -473,7 +473,7 @@ export function DynamicFormGenerator({
                               }
                             `}
                             style={{
-                              backgroundColor: isSelected ? `${accentColor}` : undefined
+                              backgroundColor: isSelected ? 'var(--brand-primary)' : undefined
                             }}
                             onClick={() => {
                               setFieldRef(field.id, document.activeElement as HTMLElement)
@@ -544,7 +544,7 @@ export function DynamicFormGenerator({
                                   }
                                 `}
                                 style={{
-                                  backgroundColor: isSelected ? `${accentColor}` : undefined
+                                  backgroundColor: isSelected ? 'var(--brand-primary)' : undefined
                                 }}
                                 onClick={() => {
                                   if (_index === 0) setFieldRef(field.id, document.activeElement as HTMLElement)
@@ -650,8 +650,8 @@ export function DynamicFormGenerator({
                 disabled={loading}
                 className="inline-flex items-center justify-center shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 px-8 py-4 font-bold rounded-xl cursor-pointer min-w-[200px] text-lg"
                 style={{
-                  backgroundColor: loading ? '#9ca3af' : successColor,
-                  borderColor: loading ? '#9ca3af' : successColor,
+                  backgroundColor: loading ? 'var(--text-muted)' : 'var(--status-success)',
+                  borderColor: loading ? 'var(--text-muted)' : 'var(--status-success)',
                   borderRadius: '12px',
                   color: '#ffffff',
                   fontSize: '18px',
