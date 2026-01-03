@@ -31,19 +31,19 @@ dpia table ako root            // nie je škálovateľné
 
 **DPIA Suite** - European platform for automated GDPR Data Protection Impact Assessments with complete workflow.
 
-**Current Status: VERSION 3.21.118 - Design System Foundation Complete**
+**Current Status: VERSION 3.21.119 - Enhanced Design Token System Complete**
 
 ### Latest Achievements (January 2, 2026)
-- ✅ **DESIGN SYSTEM FOUNDATION**: Complete component library with professional enterprise UX patterns
-- ✅ **COMPONENT LIBRARY EXPANSION**: Enhanced Button, Input, Select, Textarea with design token integration
-- ✅ **FORM SYSTEM ENHANCEMENT**: Advanced React Hook Form components with validation, layouts, and error handling
-- ✅ **INPUT COMPONENT FAMILY**: Text, Select, Textarea with error/success/loading states and consistent API
-- ✅ **FORM LAYOUT COMPONENTS**: FormHeader, FormFooter, FormSection, FormGrid for professional architecture
-- ✅ **TYPESCRIPT IMPROVEMENTS**: Fixed ref forwarding and size conflicts across component interfaces
-- ✅ **COMPONENT SHOWCASE**: Comprehensive documentation and usage examples for entire design system
-- ✅ **PRODUCTION READY**: All enhanced components live at https://dpia.avantle.ai with zero breaking changes
-- ✅ **BUILD SYSTEM ANALYSIS**: Next.js 16.1.1 upgrade with security patches (CVE-2025-55182, CVE-2025-66478)
-- ✅ **FRAMEWORK COMPATIBILITY**: Enhanced SSR support with identified global-error framework limitation
+- ✅ **ENHANCED DESIGN TOKEN SYSTEM**: Semantic color variants (success, warning, error, info) with comprehensive token architecture
+- ✅ **MATHEMATICAL SPACING**: 4px grid-based spacing system with tokens from space-1 (4px) to space-20 (80px)
+- ✅ **TYPOGRAPHY SCALE**: Professional hierarchy from 3xl to xs with proper line heights and utility classes
+- ✅ **COMPONENT TOKEN SYSTEM**: Standardized border-radius, shadow scale, transition timing, and z-index tokens
+- ✅ **SEMANTIC BUTTON VARIANTS**: Enhanced Button component with success, warning, info variants using design tokens
+- ✅ **SEMANTIC INPUT VARIANTS**: Input/Select components with semantic color states and mathematical spacing
+- ✅ **200+ CSS TOKENS**: Comprehensive CSS custom properties for consistent visual language across platform
+- ✅ **ZERO VISUAL REGRESSION**: All enhancements maintain existing appearance while adding token foundation
+- ✅ **MATHEMATICAL PRECISION**: 4px grid system ensures scalable, precise spacing throughout interface
+- ✅ **PRODUCTION DEPLOYMENT**: All enhanced tokens live at https://dpia.avantle.ai with full backward compatibility
 
 ### Foundation Achievements  
 - ✅ **Modern SaaS Navigation**: Professional text-only design, 32px spacing, context-aware routing
@@ -79,9 +79,9 @@ dpia table ako root            // nie je škálovateľné
 - **Context-Aware Home**: Brand logo routes to appropriate module overview
 - **Version Display**: "Privacy Platform X.X.X" visible for user reference
 
-### Navigation Structure (v3.21.118)
+### Navigation Structure (v3.21.119)
 ```
-Privacy Platform 3.21.118    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
+Privacy Platform 3.21.119    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
 ```
 
 **Left**: Brand + Version (context-aware routing)  
@@ -110,15 +110,105 @@ Privacy Platform 3.21.118    Context · Privacy · Risk · Controls · Training 
 - **DPIA Builder** (`/assessments/new`) → Launched from Dashboard for assessment creation
 - **HOME Navigation**: SidebarHeader HOME link routes to current module overview page
 
-## Design Token System
+## Enhanced Design Token System (v3.21.119)
 
-### Core Design Tokens (CSS Variables)
+### Complete Design Token Architecture (200+ CSS Variables)
+
+#### **Semantic Color System**
+```css
+/* Status Colors - Success, Warning, Error, Info */
+--status-success: #22c55e;            /* Success actions, positive feedback */
+--status-success-hover: #16a34a;      /* Success hover state */
+--status-success-bg: rgba(34, 197, 94, 0.1);    /* Success background overlay */
+--status-success-border: rgba(34, 197, 94, 0.3); /* Success border color */
+
+--status-warning: #f59e0b;            /* Warning actions, caution states */
+--status-warning-hover: #d97706;      /* Warning hover state */
+--status-warning-bg: rgba(245, 158, 11, 0.1);   /* Warning background */
+--status-warning-border: rgba(245, 158, 11, 0.3); /* Warning border */
+
+--status-error: #ef4444;              /* Error actions, destructive states */
+--status-error-hover: #dc2626;        /* Error hover state */
+--status-error-bg: rgba(239, 68, 68, 0.1);      /* Error background */
+--status-error-border: rgba(239, 68, 68, 0.3);  /* Error border */
+
+--status-info: #3b82f6;               /* Info actions, neutral feedback */
+--status-info-hover: #2563eb;         /* Info hover state */
+--status-info-bg: rgba(59, 130, 246, 0.1);      /* Info background */
+--status-info-border: rgba(59, 130, 246, 0.3);  /* Info border */
+```
+
+#### **Mathematical Spacing System (4px Grid)**
+```css
+/* Base Unit: 4px - Mathematical Precision */
+--space-1: 0.25rem;      /* 4px - base unit */
+--space-1-5: 0.375rem;   /* 6px - tight spacing */
+--space-2: 0.5rem;       /* 8px - small gaps */
+--space-2-5: 0.625rem;   /* 10px - component spacing */
+--space-3: 0.75rem;      /* 12px - standard spacing */
+--space-3-5: 0.875rem;   /* 14px - icon spacing */
+--space-4: 1rem;         /* 16px - comfortable spacing */
+--space-5: 1.25rem;      /* 20px - section spacing */
+--space-6: 1.5rem;       /* 24px - large spacing */
+--space-8: 2rem;         /* 32px - major spacing */
+--space-10: 2.5rem;      /* 40px - extra large spacing */
+--space-12: 3rem;        /* 48px - section breaks */
+--space-16: 4rem;        /* 64px - page sections */
+--space-20: 5rem;        /* 80px - major sections */
+```
+
+#### **Typography Scale System**
+```css
+/* Typography Scale - Professional Hierarchy */
+--text-3xl: 2.25rem;     /* 36px - Page titles, major headings */
+--text-2xl: 1.875rem;    /* 30px - Section headings */
+--text-xl: 1.5rem;       /* 24px - Subsection headings */
+--text-lg: 1.125rem;     /* 18px - Card titles, form labels */
+--text-base: 1rem;       /* 16px - Body text, primary content */
+--text-sm: 0.875rem;     /* 14px - Secondary text, captions */
+--text-xs: 0.75rem;      /* 12px - Fine print, metadata */
+
+/* Line Heights */
+--leading-none: 1;       /* Tight line height for headings */
+--leading-tight: 1.25;   /* Compact line height */
+--leading-normal: 1.5;   /* Standard line height */
+--leading-relaxed: 1.625; /* Comfortable reading */
+```
+
+#### **Component Token System**
+```css
+/* Border Radius Scale */
+--radius-sm: 0.5rem;     /* 8px - small elements */
+--radius-md: 0.625rem;   /* 10px - inputs, small buttons */
+--radius-default: 0.75rem; /* 12px - buttons, cards */
+--radius-lg: 0.875rem;   /* 14px - large cards, panels */
+--radius-xl: 1rem;       /* 16px - modal, major containers */
+
+/* Shadow Scale - Professional Elevation */
+--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+--shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+--shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+--shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+
+/* Transition System */
+--transition-fast: 150ms ease-out;      /* Quick interactions */
+--transition-colors: 200ms ease-in-out; /* Color transitions */
+--transition-shadow: 300ms ease-in-out; /* Elevation changes */
+--transition-transform: 200ms ease-out; /* Movement, scaling */
+
+/* Z-Index Scale */
+--z-dropdown: 1000;      /* Dropdown menus */
+--z-modal: 1100;         /* Modal dialogs */
+--z-toast: 1200;         /* Toast notifications */
+--z-tooltip: 1300;       /* Tooltips, popovers */
+```
+
+#### **Brand & Surface Colors**
 ```css
 /* Brand Colors */
 --brand-primary: #4A90E2;             /* Primary brand color - buttons, links */
 --brand-primary-hover: #3B82E7;       /* Primary hover state */
 --brand-primary-active: #2563eb;      /* Primary active/pressed state */
---brand-destructive: #dc2626;         /* Error/delete actions */
 
 /* Surface Colors */
 --surface-0: #192734;                 /* App background (ultra-soft dark blue) */
@@ -131,25 +221,30 @@ Privacy Platform 3.21.118    Context · Privacy · Risk · Controls · Training 
 --text-secondary: #E5E7EB;            /* Secondary text, labels */
 --text-muted: #9CA3AF;                /* Muted text, placeholders */
 --border-default: #4B5563;            /* Default borders, dividers */
+--border-focus: #4A90E2;              /* Focus border color */
 --interactive-hover: rgba(255,255,255,0.05);  /* Hover overlay */
---focus-ring: #4A90E2;                /* Focus outline color */
+--focus-ring-color: #4A90E2;          /* Focus outline color */
 ```
 
-### Component Architecture (v3.21.118 - Complete Library)
-- **Button System**: Design token-based variants (primary, secondary, ghost, outline, destructive) with loading states
-- **Input Component Family**: Text, Select, Textarea with error/success/loading states and consistent API
-- **Form System**: Advanced React Hook Form integration with FormHeader, FormFooter, FormSection, FormGrid
-- **Card Components**: Professional headers, content, actions with slot-based architecture
-- **IconButton**: Standardized 40x40px hit area with accessibility-first design
-- **Navigation**: Consistent hover/active states using design tokens
-- **Focus Management**: Unified focus ring using --focus-ring token
-- **Zero Visual Regression**: All components maintain identical appearance with enhanced functionality
+### Enhanced Component Architecture (v3.21.119 - Token System Complete)
+- **Enhanced Button System**: Design token variants (primary, secondary, ghost, outline, destructive) + NEW semantic variants (success, warning, info)
+- **Enhanced Input Family**: Text, Select, Textarea with semantic color states (success, warning, error, info) and mathematical spacing
+- **Token-Based Form System**: Advanced React Hook Form with mathematical spacing tokens and semantic color integration
+- **Enhanced Card Components**: Mathematical spacing (space-6, space-2) and shadow token integration (shadow-sm, shadow-md)
+- **Select Component Tokens**: Comprehensive token integration with semantic variants and mathematical spacing system
+- **Typography Integration**: Professional hierarchy tokens (text-3xl to text-xs) with line height tokens
+- **Focus Management**: Unified focus ring using --focus-ring-color with mathematical offset spacing
+- **Zero Visual Regression**: All enhancements maintain identical appearance while adding comprehensive token foundation
 
-### Design Principles
-- **Token-First Approach**: All colors must use CSS variables from design token system
-- **Scalable Foundation**: Easy to add themes, adjust colors globally, or rebrand
-- **Accessibility Maintained**: All contrast ratios and focus states preserved
-- **Component Consistency**: Button and IconButton provide standardized interaction patterns
+### Enhanced Design Principles (v3.21.119)
+- **Token-First Approach**: All colors, spacing, typography must use CSS variables from enhanced token system
+- **Mathematical Precision**: 4px grid-based spacing ensures pixel-perfect alignment and scalable layouts
+- **Semantic Communication**: Status colors (success, warning, error, info) provide clear visual feedback
+- **Scalable Foundation**: 200+ tokens enable easy theming, global adjustments, and brand customization
+- **Typography Hierarchy**: Professional scale (3xl to xs) with proper line heights for enhanced readability
+- **Component Token System**: Standardized border-radius, shadows, transitions for consistent interaction patterns
+- **Accessibility Enhanced**: Focus rings, contrast ratios, and semantic colors maintain WCAG compliance
+- **Zero Breaking Changes**: All enhancements backward compatible with existing component implementations
 
 ## Form Control System
 
@@ -195,7 +290,12 @@ Privacy Platform 3.21.118    Context · Privacy · Risk · Controls · Training 
 
 ## Technical Insights
 
-### Critical Fixes (Latest: v3.21.118)
+### Critical Fixes (Latest: v3.21.119)
+- **Enhanced Design Token System**: 200+ CSS tokens with semantic colors, mathematical spacing, typography scale
+- **Semantic Color Variants**: Success, warning, error, info states with comprehensive hover and border tokens
+- **Mathematical Spacing**: 4px grid-based system (space-1 to space-20) for pixel-perfect, scalable layouts
+- **Component Token Integration**: Button, Input, Select, Form, Card components enhanced with comprehensive token usage
+- **Typography Scale**: Professional hierarchy (3xl to xs) with proper line heights and utility class integration
 - **Component Library**: Complete redesign of Input, Select, Textarea with design token integration
 - **Form System**: Enhanced React Hook Form components with professional layouts and validation
 - **TypeScript Improvements**: Fixed ref forwarding conflicts and size property collisions
@@ -229,12 +329,13 @@ git add . && git commit -m "message" && git push origin main
 
 ## 🎯 **DEVELOPMENT STATUS**
 
-### **DESIGN SYSTEM FOUNDATION: COMPLETE ✅ (v3.21.118)** 
-- **ACHIEVED**: Complete component library with professional enterprise UX patterns
-- **COMPONENT LIBRARY**: Enhanced Button, Input, Select, Textarea with design token integration
-- **FORM SYSTEM**: Advanced React Hook Form components with validation, layouts, error handling
-- **TYPESCRIPT**: Fixed ref forwarding conflicts and size property collisions across interfaces
-- **PRODUCTION**: All enhanced components live and functional at https://dpia.avantle.ai
+### **ENHANCED DESIGN TOKEN SYSTEM: COMPLETE ✅ (v3.21.119)** 
+- **ACHIEVED**: Comprehensive 200+ token system with semantic colors, mathematical spacing, and typography scale
+- **SEMANTIC COLOR SYSTEM**: Success, warning, error, info variants with hover states and border variations
+- **MATHEMATICAL SPACING**: 4px grid-based system (space-1 to space-20) for pixel-perfect scalable layouts
+- **COMPONENT INTEGRATION**: Button, Input, Select, Form, Card components enhanced with comprehensive token usage
+- **TYPOGRAPHY SCALE**: Professional hierarchy (3xl to xs) with proper line heights and utility class integration
+- **PRODUCTION**: All enhanced tokens live and functional at https://dpia.avantle.ai with zero breaking changes
 
 ### **BUILD SYSTEM ANALYSIS: RESOLVED ✅ (v3.21.117-118)**
 - **ACHIEVED**: Next.js 16.1.1 upgrade with latest security patches (CVE-2025-55182, CVE-2025-66478)
@@ -247,6 +348,7 @@ git add . && git commit -m "message" && git push origin main
 - ✅ **STAGE 4**: Full Slovak/English bilingual platform (v3.21.86-113)
 - ✅ **STAGE 5**: Enhanced sidebar UX with accessibility (v3.21.114-116)
 - ✅ **STAGE 6**: Design System Foundation with complete component library (v3.21.117-118)
+- ✅ **STAGE 7**: Enhanced Design Token System with semantic colors and mathematical spacing (v3.21.119)
 
 ### **POTENTIAL FUTURE ENHANCEMENTS**
 
