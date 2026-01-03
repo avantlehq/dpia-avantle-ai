@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Input, Textarea } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, CardAction } from '@/components/ui/card'
+import Link from 'next/link'
 import { 
   Form, 
   FormControl, 
@@ -74,7 +75,12 @@ export function DesignSystemShowcase() {
               4px Grid System
             </span>
           </div>
-          <div className="ml-auto">
+          <div className="ml-auto flex items-center gap-[--space-3]">
+            <Link href="/design-system/playground">
+              <Button variant="primary" size="sm" leftIcon={<Info className="h-4 w-4" />}>
+                Interactive Playground
+              </Button>
+            </Link>
             <ThemeSwitcher />
           </div>
         </div>

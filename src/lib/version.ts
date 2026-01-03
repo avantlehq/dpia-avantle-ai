@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.119" as const
-export const VERSION_NAME = "🎨 Enhanced Design Token System - Semantic Colors & Mathematical Spacing" as const
-export const BUILD_DATE = "2026-01-02"
+export const VERSION = "3.21.120" as const
+export const VERSION_NAME = "🎮 Priority 2 Complete: Theme System Enhancement - Dark/Light + Component Playground" as const
+export const BUILD_DATE = "2026-01-03"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.120": {
+    date: "2026-01-03", 
+    name: "🎮 Priority 2 Complete: Theme System Enhancement - Dark/Light + Component Playground",
+    features: [
+      "THEME SWITCHING SYSTEM: Complete dark/light theme switching with next-themes, SSR-safe, system detection support",
+      "COMPREHENSIVE LIGHT THEME: 60+ light theme CSS variables for surfaces, text, borders, semantic colors",
+      "THEME PROVIDER INTEGRATION: Root-level ThemeProvider with class-based switching, localStorage persistence",
+      "THEME SWITCHER COMPONENT: Professional dropdown with sun/moon/monitor icons, instant switching, mounted state protection",
+      "INTERACTIVE COMPONENT PLAYGROUND: Full testing environment at /design-system/playground with live preview",
+      "PLAYGROUND FEATURES: Component configurator, live preview, code generation, variant showcase, spacing demonstration",
+      "DESIGN SYSTEM NAVIGATION: Added playground link to design system showcase for easy access to interactive testing",
+      "PRIORITY 2 ACHIEVEMENT: Complete implementation of dark/light theme switching + component playground as requested"
+    ]
+  },
   "3.21.119": {
     date: "2026-01-02", 
     name: "🎨 Enhanced Design Token System - Semantic Colors & Mathematical Spacing",
