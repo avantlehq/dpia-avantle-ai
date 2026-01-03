@@ -38,15 +38,32 @@ interface DynamicFormGeneratorProps {
   onChange?: (data: Record<string, unknown>) => void
 }
 
-// Neutral accent color for professional compliance forms
-const getFormAccentColor = (): string => {
-  // Muted indigo accent for selected states - calm and professional
-  return '#6366f1' // indigo-500 - muted blue accent for selection states
-}
-
-// Green reserved exclusively for completion/success states
-const getSuccessColor = (): string => {
-  return 'var(--color-green)' // #7ED321 - reserved for success/completion only
+// Enhanced semantic validation states using design tokens
+const getValidationState = (hasError: boolean, hasValue: boolean) => {
+  if (hasError) {
+    return {
+      borderColor: 'var(--status-error-border)',
+      backgroundColor: 'var(--status-error-bg)',
+      textColor: 'var(--status-error)',
+      iconColor: 'var(--status-error)'
+    }
+  }
+  
+  if (hasValue) {
+    return {
+      borderColor: 'var(--status-success-border)',
+      backgroundColor: 'var(--status-success-bg)',
+      textColor: 'var(--status-success)',
+      iconColor: 'var(--status-success)'
+    }
+  }
+  
+  return {
+    borderColor: 'var(--border-default)',
+    backgroundColor: 'var(--surface-1)',
+    textColor: 'var(--text-primary)',
+    iconColor: 'var(--text-muted)'
+  }
 }
 
 
@@ -127,8 +144,8 @@ export function DynamicFormGenerator({
   })
 
 
-  const accentColor = getFormAccentColor()
-  const successColor = getSuccessColor()
+  // Enhanced form state tracking
+  const watchedFields = form.watch()
 
   // Enhanced submit handler with validation and focus management
   const handleSubmit = useCallback((data: Record<string, unknown>) => {
@@ -146,6 +163,9 @@ export function DynamicFormGenerator({
 
   const renderField = (field: FieldDefinition) => {
     const hasError = !!form.formState.errors[field.id]
+    const fieldValue = watchedFields[field.id]
+    const hasValue = fieldValue && fieldValue !== ''
+    const validationState = getValidationState(hasError, hasValue)
     
     switch (field.type) {
       case 'text':
@@ -156,28 +176,39 @@ export function DynamicFormGenerator({
             name={field.id}
             render={({ field: formField }) => (
               <FormItem 
-                className={hasError ? "border-l-4 border-l-red-500 pl-4 bg-red-50/30" : ""}
+                className="transition-[--transition-colors] duration-200"
+                style={{
+                  borderLeft: hasError || hasValue ? `4px solid ${validationState.borderColor}` : undefined,
+                  paddingLeft: hasError || hasValue ? 'var(--space-4)' : undefined,
+                  backgroundColor: hasError ? validationState.backgroundColor : undefined,
+                  borderRadius: hasError || hasValue ? 'var(--radius-md)' : undefined,
+                  padding: hasError || hasValue ? 'var(--space-3)' : undefined
+                }}
               >
                 <FormLabel 
-                  className="text-lg font-semibold text-muted-foreground leading-relaxed mb-3 block"
+                  className="text-[--text-lg] font-semibold leading-relaxed mb-[--space-3] block"
+                  style={{ color: 'var(--text-muted)' }}
                 >
                   {field.label}
-                  {field.required && <span className="text-red-500 ml-1">*</span>}
+                  {field.required && <span style={{ color: 'var(--status-error)' }} className="ml-1">*</span>}
                 </FormLabel>
                 <FormControl>
                   <Input 
                     placeholder={field.placeholder} 
+                    variant={hasError ? 'error' : hasValue ? 'success' : 'default'}
                     {...formField}
                     ref={(el) => {
                       formField.ref(el)
                       setFieldRef(field.id, el)
                     }}
                     value={formField.value as string}
-                    className={`text-base h-11 ml-6 ${hasError ? 'border-red-500 ring-red-200' : ''}`}
-                    style={{ fontSize: '16px' }}
+                    className="text-[--text-base] h-[--height-lg] ml-[--space-6]"
                   />
                 </FormControl>
-                <FormMessage className="ml-6" />
+                <FormMessage 
+                  className="ml-[--space-6] mt-[--space-1]" 
+                  style={{ color: 'var(--status-error)' }}
+                />
               </FormItem>
             )}
           />

@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.130" as const
-export const VERSION_NAME = "🔧 Fix: Dark Default + Remove Underlines + Polish" as const
+export const VERSION = "3.21.132" as const
+export const VERSION_NAME = "📋 DPIA Forms Enhanced: Semantic Validation States with Design Tokens" as const
 export const BUILD_DATE = "2026-01-03"
 
 export const getVersionInfo = () => ({

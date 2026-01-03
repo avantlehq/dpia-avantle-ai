@@ -19,15 +19,15 @@ export function ValidationPanel({ validationResult, isValidating, className }: V
     return (
       <Card className={className}>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Info className="h-5 w-5 text-blue-500" />
+          <CardTitle className="flex items-center gap-[--space-2]">
+            <Info className="h-5 w-5" style={{ color: 'var(--status-info)' }} />
             Validating Assessment...
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="animate-pulse">
-            <div className="h-4 bg-gray-200 rounded mb-2"></div>
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+            <div className="h-4 rounded mb-[--space-2]" style={{ backgroundColor: 'var(--surface-2)' }}></div>
+            <div className="h-4 rounded w-3/4" style={{ backgroundColor: 'var(--surface-2)' }}></div>
           </div>
         </CardContent>
       </Card>
@@ -44,17 +44,27 @@ export function ValidationPanel({ validationResult, isValidating, className }: V
     <Card className={className}>
       <CardHeader>
         <CardTitle className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-[--space-2]">
             {isValid && errors.length === 0 ? (
-              <CheckCircle className="h-5 w-5 text-green-500" />
+              <CheckCircle className="h-5 w-5" style={{ color: 'var(--status-success)' }} />
             ) : errors.length > 0 ? (
-              <XCircle className="h-5 w-5 text-red-500" />
+              <XCircle className="h-5 w-5" style={{ color: 'var(--status-error)' }} />
             ) : (
-              <AlertTriangle className="h-5 w-5 text-yellow-500" />
+              <AlertTriangle className="h-5 w-5" style={{ color: 'var(--status-warning)' }} />
             )}
             <span>Assessment Validation</span>
           </div>
-          <Badge variant={isValid && errors.length === 0 ? "secondary" : errors.length > 0 ? "destructive" : "secondary"}>
+          <Badge 
+            variant={isValid && errors.length === 0 ? "secondary" : errors.length > 0 ? "destructive" : "secondary"}
+            style={{
+              backgroundColor: isValid && errors.length === 0 ? 'var(--status-success-bg)' : 
+                              errors.length > 0 ? 'var(--status-error-bg)' : 'var(--status-warning-bg)',
+              color: isValid && errors.length === 0 ? 'var(--status-success)' : 
+                     errors.length > 0 ? 'var(--status-error)' : 'var(--status-warning)',
+              border: `1px solid ${isValid && errors.length === 0 ? 'var(--status-success-border)' : 
+                                  errors.length > 0 ? 'var(--status-error-border)' : 'var(--status-warning-border)'}`
+            }}
+          >
             {completionPercentage}% Complete
           </Badge>
         </CardTitle>
