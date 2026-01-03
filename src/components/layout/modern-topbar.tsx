@@ -117,16 +117,14 @@ export const ModernTopbar = memo(function ModernTopbar() {
           
           {/* Product Name */}
           <span 
-            className="font-bold transition-colors duration-200" 
-            style={{ color: '#ffffff' }}
+            className="font-bold transition-colors duration-200 text-[--text-primary]"
           >
             Privacy Platform
           </span>
           
           {/* Version */}
           <span 
-            className="text-xs font-normal" 
-            style={{ marginLeft: '12px', color: '#9ca3af' }}
+            className="text-xs font-normal ml-3 text-[--text-muted]"
           >
             v{versionInfo.version}
           </span>

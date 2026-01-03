@@ -541,12 +541,12 @@ body {
    ===================================================== */
 
 .light {
-  /* Light mode backgrounds */
-  --background: #FFFFFF;
+  /* Light mode backgrounds - Softer whites */
+  --background: #FEFEFE;
   --foreground: #0F172A;
-  --card: #F8F9FA;
+  --card: #F7F8FA;
   --card-foreground: #0F172A;
-  --popover: #FFFFFF;
+  --popover: #FEFEFE;
   --popover-foreground: #0F172A;
   --primary: #2563EB;
   --primary-foreground: #FFFFFF;
@@ -569,11 +569,11 @@ body {
   --brand-destructive: #dc2626;         /* Error/delete actions */
   --brand-destructive-hover: #b91c1c;   /* Destructive hover */
 
-  /* Enhanced Surface Colors - Light Mode */
-  --surface-0: #ffffff;                 /* Pure white background */
-  --surface-1: #f8fafc;                 /* Cards, panels - slightly off-white */
-  --surface-2: #f1f5f9;                 /* Secondary surfaces, table rows */
-  --surface-3: #e2e8f0;                 /* Tertiary surfaces, hover states */
+  /* Enhanced Surface Colors - Light Mode (Softened) */
+  --surface-0: #fefefe;                 /* Softer white background */
+  --surface-1: #f6f8fa;                 /* Cards, panels - warmer off-white */
+  --surface-2: #eef2f6;                 /* Secondary surfaces, table rows */
+  --surface-3: #dde5ec;                 /* Tertiary surfaces, hover states */
 
   /* Enhanced Text Colors - Light Mode */
   --text-primary: #0f172a;              /* Dark text on light background */

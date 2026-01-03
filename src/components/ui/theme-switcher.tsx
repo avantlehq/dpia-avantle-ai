@@ -2,14 +2,8 @@
 
 import * as React from 'react'
 import { useTheme } from 'next-themes'
-import { Moon, Sun, Monitor } from 'lucide-react'
+import { Moon, Sun } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 
 export function ThemeSwitcher() {
   const { setTheme, theme } = useTheme()
@@ -18,7 +12,15 @@ export function ThemeSwitcher() {
   // useEffect only runs on the client, so now we can safely show the UI
   React.useEffect(() => {
     setMounted(true)
-  }, [])
+    // Set default theme to dark if no theme is set
+    if (!theme) {
+      setTheme('dark')
+    }
+  }, [theme, setTheme])
+
+  const toggleTheme = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
 
   if (!mounted) {
     return (
@@ -28,62 +30,24 @@ export function ThemeSwitcher() {
         className="h-9 w-9 p-0"
         disabled
       >
-        <Monitor className="h-4 w-4" />
+        <Moon className="h-4 w-4" />
       </Button>
     )
   }
 
-  const getThemeIcon = () => {
-    switch (theme) {
-      case 'light':
-        return <Sun className="h-4 w-4" />
-      case 'dark':
-        return <Moon className="h-4 w-4" />
-      default:
-        return <Monitor className="h-4 w-4" />
-    }
-  }
-
-  const getThemeLabel = () => {
-    switch (theme) {
-      case 'light':
-        return 'Light'
-      case 'dark':
-        return 'Dark'
-      default:
-        return 'System'
-    }
-  }
-
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="h-9 px-3 gap-2"
-          title={`Current theme: ${theme}`}
-        >
-          {getThemeIcon()}
-          <span className="hidden sm:inline font-medium">
-            {getThemeLabel()}
-          </span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-40">
-        <DropdownMenuItem onClick={() => setTheme('light')}>
-          <Sun className="mr-2 h-4 w-4" />
-          <span>Light</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('dark')}>
-          <Moon className="mr-2 h-4 w-4" />
-          <span>Dark</span>
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme('system')}>
-          <Monitor className="mr-2 h-4 w-4" />
-          <span>System</span>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <Button 
+      variant="ghost" 
+      size="sm" 
+      className="h-9 w-9 p-0"
+      onClick={toggleTheme}
+      title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+    >
+      {theme === 'light' ? (
+        <Sun className="h-4 w-4" />
+      ) : (
+        <Moon className="h-4 w-4" />
+      )}
+    </Button>
   )
 }
