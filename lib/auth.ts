@@ -32,7 +32,7 @@ export function getCurrentUser(): User | null {
   
   try {
     const userData = localStorage.getItem('user_data')
-    return userData ? JSON.parse(userData) : null
+    return userData ? JSON.parse(userData) as User : null
   } catch {
     return null
   }
@@ -50,7 +50,7 @@ export async function login(email: string, password: string): Promise<{
     if (response.success && response.data) {
       return {
         success: true,
-        user: response.data.user
+        user: response.data.user as User
       }
     } else {
       return {

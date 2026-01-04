@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { Shield, User, Settings } from "lucide-react"
 import { getCurrentUser, isAdmin, isPartnerAdmin } from "@/lib/auth"
 import type { User as UserType } from "@/lib/auth"
-import { getVersionString } from "@/lib/version"
+import { getVersionString } from "@/src/lib/version"
 
 export function SiteHeader() {
   const [user, setUser] = useState<UserType | null>(null)

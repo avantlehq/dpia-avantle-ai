@@ -1,7 +1,9 @@
+'use client'
+
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { Card } from "@/components/ui/card"
-import { CHANGELOG, getVersionInfo } from "@/lib/version"
+import { CHANGELOG, getVersionInfo } from "@/src/lib/version"
 import { CalendarDays, GitCommit, Tag } from "lucide-react"
 
 export default function ChangelogPage() {

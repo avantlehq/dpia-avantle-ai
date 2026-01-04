@@ -1,7 +1,7 @@
 "use client"
 
 import { Shield } from "lucide-react"
-import { getVersionInfo } from "@/lib/version"
+import { getVersionInfo } from "@/src/lib/version"
 
 export function SiteFooter() {
   const versionInfo = getVersionInfo()

@@ -40,9 +40,11 @@ export interface Tenant {
   id: string
   partner_id: string
   name: string
+  slug: string
   tenant_type: 'UI' | 'API' | 'HYBRID'
   status: 'ACTIVE' | 'SUSPENDED' | 'PENDING'
   created_at: string
+  custom_domain?: string
   partner: {
     id: string
     name: string
@@ -89,14 +91,14 @@ export interface AdminActivity {
 
 class CoreApiClient {
   private baseUrl: string
-  private token: string | null = null
+  private token: string = ''
 
   constructor(baseUrl: string = 'https://core-avantle-ezuyyhjei-ramix24s-projects.vercel.app') {
     this.baseUrl = baseUrl
     
     // Get token from localStorage in browser
     if (typeof window !== 'undefined') {
-      this.token = localStorage.getItem('core_api_token')
+      this.token = localStorage.getItem('core_api_token') || ''
     }
   }
 
@@ -106,13 +108,13 @@ class CoreApiClient {
   ): Promise<ApiResponse<T>> {
     const url = `${this.baseUrl}${endpoint}`
     
-    const headers: HeadersInit = {
+    const headers: Record<string, string> = {
       'Content-Type': 'application/json',
-      ...options.headers,
+      ...(options.headers as Record<string, string>),
     }
 
     if (this.token) {
-      headers.Authorization = `Bearer ${this.token}`
+      headers['Authorization'] = `Bearer ${this.token}`
     }
 
     try {
@@ -164,7 +166,7 @@ class CoreApiClient {
       body: JSON.stringify({ email, password })
     })
 
-    if (response.success && response.data) {
+    if (response.success && response.data && response.data.access_token) {
       this.token = response.data.access_token
       if (typeof window !== 'undefined') {
         localStorage.setItem('core_api_token', this.token)
@@ -176,7 +178,7 @@ class CoreApiClient {
   }
 
   async logout(): Promise<void> {
-    this.token = null
+    this.token = ''
     if (typeof window !== 'undefined') {
       localStorage.removeItem('core_api_token')
       localStorage.removeItem('user_data')
@@ -192,7 +194,7 @@ class CoreApiClient {
   }
 
   isAuthenticated(): boolean {
-    return !!this.token
+    return this.token !== ''
   }
 
   // Partners API

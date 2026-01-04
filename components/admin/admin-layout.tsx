@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { User, Settings, BarChart3, Users, Building2, Globe, LogOut, Shield } from 'lucide-react'
 import { checkAuth, logout, User as UserType } from '@/lib/auth'
-import { getVersionString } from '@/lib/version'
+import { getVersionString } from '@/src/lib/version'
 
 interface AdminLayoutProps {
   children: React.ReactNode
