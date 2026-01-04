@@ -64,5 +64,24 @@
     "generating": "Generating export...",
     "success": "Export generated successfully",
     "download": "Download"
+  },
+  "help": {
+    "title": "Help & Support",
+    "comingSoon": "Coming Soon",
+    "description": "We're working on comprehensive help documentation and support resources.",
+    "features": {
+      "userGuide": "User Guide & Tutorials",
+      "faq": "Frequently Asked Questions",
+      "support": "Technical Support",
+      "legal": "Legal & Compliance Resources",
+      "api": "API Documentation",
+      "videos": "Video Tutorials"
+    },
+    "contact": {
+      "title": "Need help now?",
+      "email": "Contact us at",
+      "response": "We typically respond within 24 hours"
+    },
+    "backToDashboard": "Back to Dashboard"
   }
 }

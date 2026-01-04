@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.137" as const
-export const VERSION_NAME = "🗃️ Complete Database Schema Documentation - Mermaid ER Diagrams & Data Dictionary" as const
-export const BUILD_DATE = "2026-01-03"
+export const VERSION = "3.21.138" as const
+export const VERSION_NAME = "🎨 Enhanced Version Display & Help System - UX Polish & Support Pages" as const
+export const BUILD_DATE = "2026-01-04"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.138": {
+    date: "2026-01-04", 
+    name: "🎨 Enhanced Version Display & Help System - UX Polish & Support Pages",
+    features: [
+      "VERSION DISPLAY POLISH: Fixed version display in topbar - proper spacing (8px margin-left), better font-weight (500), and subtle opacity (70%)",
+      "COMPREHENSIVE HELP SYSTEM: Created complete help/coming-soon page with professional design and SK/EN bilingual support",
+      "HELP ICON LINKING: Connected help icon in topbar to new help page with locale-aware routing (/{locale}/help)",
+      "HELP FEATURE GRID: Added User Guide, FAQ, Technical Support, Legal Resources, API Documentation, and Video Tutorials sections",
+      "CONTACT INTEGRATION: Added support@avantle.ai email contact with mailto: functionality and response time information",
+      "TRANSLATION SYSTEM: Added comprehensive help translations in messages/en.json and messages/sk.json files",
+      "DESIGN TOKEN COMPLIANCE: All new components use CSS variables for theme-aware styling and consistent design",
+      "PROFESSIONAL UX: Enhanced version text readability and help page accessibility with proper navigation and contact options"
+    ]
+  },
   "3.21.122": {
     date: "2026-01-03", 
     name: "🎮 Theme Switcher Fixed: Production-Ready Dark/Light Switching",

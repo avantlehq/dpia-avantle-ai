@@ -123,12 +123,17 @@ export const ModernTopbar = memo(function ModernTopbar() {
             Privacy Platform
           </span>
           
-          {/* Version */}
+          {/* Version - proper spacing and subtle styling */}
           <span 
-            className="text-xs font-normal ml-3 text-[--text-muted]"
-            style={{ textDecoration: 'none' }}
+            className="text-xs font-medium text-[--text-muted] opacity-70"
+            style={{ 
+              textDecoration: 'none',
+              marginLeft: '8px',
+              color: 'var(--text-muted)',
+              fontWeight: '500'
+            }}
           >
-            v{versionInfo.version}
+            {versionInfo.version}
           </span>
         </Link>
         
@@ -161,29 +166,31 @@ export const ModernTopbar = memo(function ModernTopbar() {
         <LanguageSwitcher />
 
         {/* Help */}
-        <Button
-          variant="ghost"
-          size="sm"
-          className="h-9 w-9 p-0 border-none"
-          style={{ 
-            backgroundColor: 'transparent',
-            color: '#9ca3af',
-            transition: 'all 0.2s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)'
-            const icon = e.currentTarget.querySelector('svg')
-            if (icon) icon.style.color = '#60a5fa'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'transparent'
-            const icon = e.currentTarget.querySelector('svg')
-            if (icon) icon.style.color = '#9ca3af'
-          }}
-          title="Help & Support"
-        >
-          <HelpCircle className="h-4 w-4" style={{ color: '#9ca3af', transition: 'color 0.2s ease' }} />
-        </Button>
+        <Link href={`/${locale}/help`}>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-9 w-9 p-0 border-none"
+            style={{ 
+              backgroundColor: 'transparent',
+              color: '#9ca3af',
+              transition: 'all 0.2s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)'
+              const icon = e.currentTarget.querySelector('svg')
+              if (icon) icon.style.color = '#60a5fa'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'transparent'
+              const icon = e.currentTarget.querySelector('svg')
+              if (icon) icon.style.color = '#9ca3af'
+            }}
+            title="Help & Support"
+          >
+            <HelpCircle className="h-4 w-4" style={{ color: '#9ca3af', transition: 'color 0.2s ease' }} />
+          </Button>
+        </Link>
 
         {/* User Menu */}
         <DropdownMenu>

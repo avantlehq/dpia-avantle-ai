@@ -64,5 +64,24 @@
     "generating": "Generuje sa export...",
     "success": "Export úspešne vytvorený",
     "download": "Stiahnuť"
+  },
+  "help": {
+    "title": "Pomoc a Podpora",
+    "comingSoon": "Už čoskoro",
+    "description": "Pracujeme na komprehenzívnej dokumentácii a podporných zdrojoch.",
+    "features": {
+      "userGuide": "Používateľský Sprievodca",
+      "faq": "Často Kladené Otázky",
+      "support": "Technická Podpora",
+      "legal": "Právne a Compliance Zdroje",
+      "api": "API Dokumentácia",
+      "videos": "Video Tutoriály"
+    },
+    "contact": {
+      "title": "Potrebujete pomoc teraz?",
+      "email": "Kontaktujte nás na",
+      "response": "Obvykle odpovedáme do 24 hodín"
+    },
+    "backToDashboard": "Späť na Dashboard"
   }
 }
