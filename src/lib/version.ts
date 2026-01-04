@@ -1,10 +1,23 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.1.1'
-export const VERSION_NAME = 'Language Switching Fix'
+export const VERSION = '1.1.2'
+export const VERSION_NAME = 'Emergency Deployment Fix'
 
 export const CHANGELOG = [
+  {
+    version: '1.1.2',
+    name: 'Emergency Deployment Fix',
+    date: '2026-01-04',
+    changes: [
+      '🚑 **EMERGENCY FIX**: Resolved critical build errors preventing deployment',
+      '🔧 **TRANSLATION SYSTEM**: Temporarily disabled useTranslation to fix useContext SSR errors',
+      '💬 **FALLBACK CONTENT**: Added hardcoded English translations as temporary fallback',
+      '🏗️ **BUILD COMPATIBILITY**: Fixed SSR compatibility issues with client components',
+      '⚡ **DEPLOYMENT READY**: Platform can now build and deploy successfully',
+      '🔄 **TEMPORARY MEASURES**: All changes are temporary until proper translation system is restored'
+    ]
+  },
   {
     version: '1.1.1',
     name: 'Language Switching Fix',
