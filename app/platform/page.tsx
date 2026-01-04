@@ -1,18 +1,11 @@
-// 'use client' - Temporarily removed for SSR compatibility
+'use client'
 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-// import { useTranslation } from "@/lib/i18n/use-translation"
+import { useTranslation } from "@/lib/i18n/use-translation"
 
 export default function PlatformPage() {
-  // const { t } = useTranslation()
-  // Temporary placeholder
-  const t = {
-    platformPageTitle: "Avantle Privacy Platform",
-    platformPageSubtitle: "Complete platform for privacy compliance and data protection",
-    launchPlatform: "Launch Platform", 
-    platformAdministration: "Platform Administration"
-  }
+  const { t } = useTranslation()
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />

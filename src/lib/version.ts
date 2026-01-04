@@ -1,10 +1,23 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.1.5'
-export const VERSION_NAME = 'Branding & Typography Refinement'
+export const VERSION = '1.1.6'
+export const VERSION_NAME = 'Language Switcher Restoration'
 
 export const CHANGELOG = [
+  {
+    version: '1.1.6',
+    name: 'Language Switcher Restoration',
+    date: '2026-01-04',
+    changes: [
+      '🌐 **LANGUAGE SWITCHER RESTORED**: User clarification - never wanted it removed!',
+      '🔧 **TRANSLATION SYSTEM**: Re-enabled useTranslation hook across all components',
+      '⚡ **CLIENT COMPONENTS**: Restored \'use client\' directives for proper functionality',
+      '🎯 **ADMIN NAVIGATION**: Re-enabled admin and partner navigation links',
+      '📱 **FULL FUNCTIONALITY**: Complete SK/DE/EN translation support restored',
+      '🚨 **APOLOGY**: Misunderstood user intent - language switcher should work, not be removed!'
+    ]
+  },
   {
     version: '1.1.5',
     name: 'Branding & Typography Refinement',

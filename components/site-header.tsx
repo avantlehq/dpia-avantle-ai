@@ -1,27 +1,21 @@
-// "use client" - Temporarily removed for SSR compatibility
+'use client'
 
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import { Shield, User, Settings } from "lucide-react"
-// import { getCurrentUser, isAdmin, isPartnerAdmin } from "@/lib/auth"
-// import type { User as UserType } from "@/lib/auth"
+import { getCurrentUser, isAdmin, isPartnerAdmin } from "@/lib/auth"
+import type { User as UserType } from "@/lib/auth"
 import { getVersionString } from "@/src/lib/version"
-// import { useTranslation } from "@/lib/i18n/use-translation"
-// import { LanguageSwitcher } from "./language-switcher" - REMOVED
+import { useTranslation } from "@/lib/i18n/use-translation"
+import { LanguageSwitcher } from "./language-switcher"
 
 export function SiteHeader() {
-  // const [user, setUser] = useState<UserType | null>(null)
-  // Temporarily simplified for SSR
-  const user = null
-  // const { t } = useTranslation()
-  // Temporary placeholder  
-  const t = {
-    platform: "Platform",
-    privacyByDesign: "Privacy by Design", 
-    dpiaSuite: "Privacy Platform",
-    partners: "Partners",
-    platformAdmin: "Platform Admin",
-    login: "Login"
-  }
+  const [user, setUser] = useState<UserType | null>(null)
+  const { t } = useTranslation()
+
+  useEffect(() => {
+    setUser(getCurrentUser())
+  }, [])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -73,33 +67,35 @@ export function SiteHeader() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </a>
-            {/* Temporarily disabled admin links
-            <Link 
-              href="/partners" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t.partners}
-            </Link>
-            <Link 
-              href="/admin" 
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center space-x-1"
-            >
-              <Settings className="h-3 w-3" />
-              <span>{t.platformAdmin}</span>
-            </Link>
-            */}
+            {user && isPartnerAdmin(user) && (
+              <Link 
+                href="/partners" 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {t.partners}
+              </Link>
+            )}
+            {user && isAdmin(user) && (
+              <Link 
+                href="/admin" 
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center space-x-1"
+              >
+                <Settings className="h-3 w-3" />
+                <span>{t.platformAdmin}</span>
+              </Link>
+            )}
           </nav>
         </div>
 
         {/* User Actions */}
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="flex items-center space-x-4">
-            {/* LanguageSwitcher COMPLETELY REMOVED */}
+            <LanguageSwitcher />
             {user ? (
               <div className="flex items-center space-x-3">
                 <div className="hidden sm:block text-right">
-                  <p className="text-sm font-medium text-foreground">Guest</p>
-                  <p className="text-xs text-muted-foreground">Visitor</p>
+                  <p className="text-sm font-medium text-foreground">{user.name}</p>
+                  <p className="text-xs text-muted-foreground">{user.role}</p>
                 </div>
                 <div className="h-8 w-8 rounded-full bg-dpia-blue/20 flex items-center justify-center">
                   <User className="h-4 w-4 text-dpia-blue" />
