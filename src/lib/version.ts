@@ -1,10 +1,22 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.1.11'
-export const VERSION_NAME = 'Reactive Language Switching'
+export const VERSION = '1.1.12'
+export const VERSION_NAME = 'TypeScript Event Handler Fix'
 
 export const CHANGELOG = [
+  {
+    version: '1.1.12',
+    name: 'TypeScript Event Handler Fix',
+    date: '2026-01-04',
+    changes: [
+      '🔧 **TYPESCRIPT FIX**: Fixed custom event handler typing for addEventListener',
+      '⚡ **BUILD READY**: Resolved Event vs CustomEvent type mismatch',
+      '🌐 **REACTIVE SWITCHING**: Language switching system ready for production',
+      '🎯 **TYPE SAFETY**: Proper event typing with CustomEvent<Locale> casting',
+      '✅ **DEPLOYMENT SUCCESS**: All TypeScript errors resolved for production build'
+    ]
+  },
   {
     version: '1.1.11',
     name: 'Reactive Language Switching',
