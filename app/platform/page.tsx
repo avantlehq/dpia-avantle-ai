@@ -1,7 +1,11 @@
+'use client'
+
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { useTranslation } from "@/lib/i18n/use-translation"
 
 export default function PlatformPage() {
+  const { t } = useTranslation()
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
@@ -15,12 +19,11 @@ export default function PlatformPage() {
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <span className="text-foreground">Avantle Privacy</span>
-              <span className="text-dpia-blue block md:inline"> Platform</span>
+              <span className="text-foreground">{t.platformPageTitle}</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Enterprise-grade privacy compliance platform built for European data sovereignty and GDPR automation.
+              {t.platformPageSubtitle}
             </p>
           </div>
 
@@ -148,13 +151,13 @@ export default function PlatformPage() {
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-dpia-blue text-white rounded-lg hover:bg-dpia-blue/90 transition-colors font-medium"
               >
-                Launch DPIA Platform
+                {t.launchPlatform}
               </a>
               <a 
                 href="/admin" 
                 className="px-6 py-3 border border-dpia-blue text-dpia-blue rounded-lg hover:bg-dpia-blue/5 transition-colors font-medium"
               >
-                Platform Administration
+                {t.platformAdministration}
               </a>
             </div>
           </div>

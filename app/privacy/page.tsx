@@ -1,7 +1,11 @@
+'use client'
+
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { useTranslation } from "@/lib/i18n/use-translation"
 
 export default function PrivacyPage() {
+  const { t } = useTranslation()
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
@@ -12,16 +16,15 @@ export default function PrivacyPage() {
           <div className="text-center space-y-6 mb-16">
             <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-dpia-green/10 border border-dpia-green/20">
               <div className="w-2 h-2 rounded-full bg-dpia-green animate-pulse"></div>
-              <span className="text-sm font-medium text-dpia-green">Privacy by Design</span>
+              <span className="text-sm font-medium text-dpia-green">{t.privacyByDesignBadge}</span>
             </div>
             
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <span className="text-foreground">Privacy</span>
-              <span className="text-dpia-green"> by Design</span>
+              <span className="text-foreground">{t.privacyPageTitle}</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Our foundational approach to building privacy-first technology that respects user rights and European values.
+              {t.privacyPageSubtitle}
             </p>
           </div>
 
@@ -192,7 +195,7 @@ export default function PrivacyPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 px-6 py-3 bg-dpia-blue text-white rounded-lg hover:bg-dpia-blue/90 transition-colors font-medium"
             >
-              <span>Launch DPIA Platform</span>
+              <span>{t.launchPlatform}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>

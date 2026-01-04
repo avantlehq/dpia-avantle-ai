@@ -6,9 +6,12 @@ import { Shield, User, Settings } from "lucide-react"
 import { getCurrentUser, isAdmin, isPartnerAdmin } from "@/lib/auth"
 import type { User as UserType } from "@/lib/auth"
 import { getVersionString } from "@/src/lib/version"
+import { useTranslation } from "@/lib/i18n/use-translation"
+import { LanguageSwitcher } from "./language-switcher"
 
 export function SiteHeader() {
   const [user, setUser] = useState<UserType | null>(null)
+  const { t } = useTranslation()
 
   useEffect(() => {
     setUser(getCurrentUser())
@@ -46,13 +49,13 @@ export function SiteHeader() {
               href="/platform" 
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              Platform
+              {t.platform}
             </Link>
             <Link 
               href="/privacy" 
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              Privacy by Design
+              {t.privacyByDesign}
             </Link>
             <a 
               href="https://dpia.avantle.ai" 
@@ -60,7 +63,7 @@ export function SiteHeader() {
               rel="noopener noreferrer"
               className="text-sm text-muted-foreground hover:text-dpia-blue transition-colors flex items-center space-x-1"
             >
-              <span>DPIA Suite</span>
+              <span>{t.dpiaSuite}</span>
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
@@ -70,7 +73,7 @@ export function SiteHeader() {
                 href="/partners" 
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                Partners
+                {t.partners}
               </Link>
             )}
             {user && isAdmin(user) && (
@@ -79,7 +82,7 @@ export function SiteHeader() {
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center space-x-1"
               >
                 <Settings className="h-3 w-3" />
-                <span>Platform Admin</span>
+                <span>{t.platformAdmin}</span>
               </Link>
             )}
           </nav>
@@ -88,6 +91,7 @@ export function SiteHeader() {
         {/* User Actions */}
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="flex items-center space-x-4">
+            <LanguageSwitcher />
             {user ? (
               <div className="flex items-center space-x-3">
                 <div className="hidden sm:block text-right">
@@ -103,7 +107,7 @@ export function SiteHeader() {
                 href="/login"
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                Login
+                {t.login}
               </Link>
             )}
           </div>

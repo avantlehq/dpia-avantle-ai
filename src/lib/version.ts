@@ -1,10 +1,25 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.0.4'
-export const VERSION_NAME = 'Clean Typography'
+export const VERSION = '1.1.0'
+export const VERSION_NAME = 'Multi-Language Support'
 
 export const CHANGELOG = [
+  {
+    version: '1.1.0',
+    name: 'Multi-Language Support',
+    date: '2026-01-04',
+    changes: [
+      '🌍 **MULTI-LANGUAGE**: Complete Slovak/English/German support implemented',
+      '📝 **BUTTON UPDATE**: Changed "Launch DPIA Platform" to "Launch Platform"',
+      '🇺🇸🇸🇰🇩🇪 **3 LANGUAGES**: Full translation system for EN/SK/DE',
+      '🌐 **LANGUAGE SWITCHER**: Globe icon with dropdown for language selection',
+      '📋 **COMPREHENSIVE**: All major pages and navigation translated',
+      '📦 **CUSTOM I18N**: Lightweight translation system without external dependencies',
+      '💾 **LOCALSTORAGE**: Language preference persistence across sessions',
+      '🎯 **UX IMPROVED**: Flag indicators and native language names'
+    ]
+  },
   {
     version: '1.0.4',
     name: 'Clean Typography',
