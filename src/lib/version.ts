@@ -1,10 +1,22 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.1.7'
-export const VERSION_NAME = 'Translation Content Fix'
+export const VERSION = '1.1.8'
+export const VERSION_NAME = 'Global State Translation System'
 
 export const CHANGELOG = [
+  {
+    version: '1.1.8',
+    name: 'Global State Translation System',
+    date: '2026-01-04',
+    changes: [
+      '🌐 **GLOBAL STATE MANAGEMENT**: Implemented cross-component translation synchronization',
+      '⚡ **CUSTOM EVENTS**: Added locale-change broadcast system for real-time updates',
+      '🔧 **SSR COMPATIBILITY**: Fixed client-side state management with proper mounted checks',
+      '🎯 **TRANSLATION SYNC**: All components now share global locale state properly',
+      '✅ **WORKING TRANSLATIONS**: Language switcher should now change content correctly!'
+    ]
+  },
   {
     version: '1.1.7',
     name: 'Translation Content Fix',

@@ -22,7 +22,7 @@ export function LanguageSwitcher() {
         aria-label="Change language"
       >
         <Globe className="h-4 w-4" />
-        <span className="text-xs font-mono uppercase">{languageFlags[locale]}</span>
+        <span className="text-xs font-mono uppercase">{languageFlags[locale as Locale]}</span>
       </button>
 
       {isOpen && (
@@ -44,9 +44,9 @@ export function LanguageSwitcher() {
                     locale === loc ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground'
                   }`}
                 >
-                  <span className="text-sm font-mono font-bold">{languageFlags[loc]}</span>
+                  <span className="text-sm font-mono font-bold">{languageFlags[loc as Locale]}</span>
                   <div className="flex-1">
-                    <div className="font-medium">{languageNames[loc]}</div>
+                    <div className="font-medium">{languageNames[loc as Locale]}</div>
                   </div>
                   {locale === loc && (
                     <div className="w-2 h-2 rounded-full bg-dpia-blue" />

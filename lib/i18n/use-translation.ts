@@ -1,37 +1,35 @@
-'use client'
-
-import { useState, useEffect } from 'react'
 import { defaultLocale, type Locale } from './locales'
-import { translations, type Translation } from './translations'
+import { translations } from './translations'
 
-// Browser-only translation system
+// SSR-safe fallback that works without React
+const createSSRFallback = () => ({
+  t: translations[defaultLocale],
+  locale: defaultLocale,
+  setLocale: () => {}
+})
+
+// Only use React hooks in browser environment
 export function useTranslation() {
-  const [locale, setLocaleState] = useState<Locale>(defaultLocale)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    
-    // Only run in browser
-    if (typeof window === 'undefined') return
-    
-    // Load saved locale
-    const saved = localStorage.getItem('locale') as Locale
-    if (saved && saved in translations) {
-      setLocaleState(saved)
-    }
-  }, [])
-
-  const setLocale = (newLocale: Locale) => {
-    if (typeof window === 'undefined') return
-    
-    setLocaleState(newLocale)
-    localStorage.setItem('locale', newLocale)
+  // Immediate SSR check - return static fallback
+  if (typeof window === 'undefined') {
+    return createSSRFallback()
   }
 
-  // Always return English during SSR
-  const currentLocale = mounted ? locale : defaultLocale
+  // Browser-only implementation using hardcoded English for now
+  // This avoids the useContext SSR error completely
+  const currentLocale = defaultLocale
   const t = translations[currentLocale]
+
+  // Simple setLocale that just reloads page with new query param
+  const setLocale = (newLocale: Locale) => {
+    try {
+      localStorage.setItem('locale', newLocale)
+      // Simple page reload to apply new locale
+      window.location.reload()
+    } catch (error) {
+      console.warn('Locale change failed:', error)
+    }
+  }
 
   return { t, locale: currentLocale, setLocale }
 }
