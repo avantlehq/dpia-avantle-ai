@@ -1,10 +1,26 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.0.2'
-export const VERSION_NAME = 'DPIA Color Alignment'
+export const VERSION = '1.0.3'
+export const VERSION_NAME = 'Privacy Platform Branding'
 
 export const CHANGELOG = [
+  {
+    version: '1.0.3',
+    name: 'Privacy Platform Branding',
+    date: '2026-01-04',
+    changes: [
+      '🎆 **HOMEPAGE REDESIGN**: Complete redesign reflecting "Avantle Privacy Platform"',
+      '🏢 **ENHANCED BRANDING**: Logo updated to "Avantle Privacy Platform" with visual separator',
+      '📊 **FEATURES SHOWCASE**: Added 3-column features grid with privacy-focused messaging',
+      '🚀 **PLATFORM CTA**: Direct links to DPIA Platform and Platform Administration',
+      '🌐 **NAVIGATION UPDATE**: New "Platform" and "Privacy by Design" navigation sections',
+      '📝 **NEW PAGES**: Created comprehensive /platform and /privacy informational pages',
+      '🇪🇺 **EUROPEAN FOCUS**: Emphasize European data sovereignty and GDPR compliance',
+      '🎨 **VISUAL IMPROVEMENTS**: Professional card layouts with privacy-themed icons',
+      '🔗 **BETTER UX**: Clear platform access points and architectural explanation'
+    ]
+  },
   {
     version: '1.0.2',
     name: 'DPIA Color Alignment',

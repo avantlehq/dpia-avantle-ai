@@ -18,11 +18,19 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center">
         <div className="mr-4 hidden md:flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <Shield className="h-6 w-6 text-dpia-blue" />
+          <Link href="/" className="mr-6 flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
+              <Shield className="h-7 w-7 text-dpia-blue" />
+              <div className="h-6 w-px bg-border"></div>
+            </div>
             <div className="hidden sm:block">
               <div className="flex items-baseline space-x-2">
-                <span className="font-bold text-foreground">Avantle.ai</span>
+                <div className="flex flex-col">
+                  <span className="font-bold text-foreground leading-tight">
+                    Avantle <span className="text-dpia-blue">Privacy</span>
+                  </span>
+                  <span className="text-xs text-muted-foreground">Platform</span>
+                </div>
                 <span className="text-xs text-muted-foreground font-mono">
                   {getVersionString()}
                 </span>
@@ -33,13 +41,30 @@ export function SiteHeader() {
         
         {/* Navigation Links */}
         <div className="hidden md:flex items-center space-x-6 flex-1">
-          <nav className="flex items-center space-x-4">
+          <nav className="flex items-center space-x-6">
             <Link 
-              href="/manifesto" 
+              href="/platform" 
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              Manifesto
+              Platform
             </Link>
+            <Link 
+              href="/privacy" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Privacy by Design
+            </Link>
+            <a 
+              href="https://dpia.avantle.ai" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-dpia-blue transition-colors flex items-center space-x-1"
+            >
+              <span>DPIA Suite</span>
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
             {user && isPartnerAdmin(user) && (
               <Link 
                 href="/partners" 
@@ -54,7 +79,7 @@ export function SiteHeader() {
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center space-x-1"
               >
                 <Settings className="h-3 w-3" />
-                <span>Admin</span>
+                <span>Platform Admin</span>
               </Link>
             )}
           </nav>

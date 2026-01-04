@@ -47,16 +47,59 @@ Context for Claude Code working with Avantle.ai repository - Control Plane Front
 
 ## Architecture Context
 
+### **🏗️ PLATFORM RESPONSIBILITY SPLIT** 
+
+#### **avantle.ai**
+**Partner-facing Frontend + Admin Console (Control Plane Frontend)**
+- **Marketing platform** - Public landing page and product information
+- **Partner signup / onboarding** - New partner registration and setup
+- **Partner Admin Panel** - Partner-specific management interface
+- **Platform Admin Console** (len pre platform adminov) - Full system administration
+- **Správa:**
+  - partnerov (partners)
+  - tenantov (tenants) 
+  - domén (domains)
+  - produktov (enable/disable)
+  - usage (read-only)
+
+**Backend**: core.avantle.ai
+**Nikdy**: nepracuje s DPIA workflow ani dátami.
+
+#### **core.avantle.ai**
+**Control Plane API (Backend)**
+- **Identity, roly, RBAC** - Authentication and authorization
+- **Partners / Tenants** - Organization and tenant management
+- **Domains → tenant resolution** - Custom domain routing
+- **Product access** (opaque product_key) - Feature access control
+- **Plans / quotas / usage counters** - Billing and limits
+- **Audit log rozhodnutí** - Decision tracking and compliance
+
+**Bez UI** - Pure API backend.
+**Backend pre**: avantle.ai (Admin/Partner) aj pre runtime.
+
+#### **dpia.avantle.ai**
+**Execution / Runtime aplikácia**
+- **DPIA / ROPA / LIA workflows** - Core business functionality
+- **Klientské dáta, exporty** - Client data processing and exports
+- **Whitelabel domény partnerov** - Partner-branded access
+- **UI pre partnerov a tenantov** len v kontexte práce s klientmi
+
+**Nikdy:**
+- onboarding partnerov
+- platform admin
+- plány, produkty, globálne nastavenia
+
+### **Prečo je toto správne (a prečo už to nemeníš)**
+- **Čistý model control-plane vs execution-plane** - Clear architectural separation
+- **Žiadne miešanie adminu do business runtime** - Admin isolated from business logic
+- **dpia.avantle.ai ostáva „produkt", nie „platforma"** - Product focus maintained
+- **avantle.ai je prirodzená konzola typu AWS / Shopify / Atlassian** - Standard platform pattern
+- **Bezpečnosť: admin povrchy sú izolované** - Security through isolation
+
 ### Multi-Tier Platform Architecture
 ```
 Partner Browser → avantle.ai (Frontend) → core.avantle.ai (Control Plane API) → dpia.avantle.ai (Runtime)
 ```
-
-**Avantle.ai Role:**
-- **Control Plane Frontend** - Web interface for platform administration
-- **Partner Management** - Partner organization creation and management
-- **Tenant Configuration** - Tenant setup and access policy management  
-- **User Authentication** - Admin login with role-based access control
 
 ### Role-Based Access Control (RBAC)
 - **Platform Admin** (`/admin`) - Full system administration across all partners
