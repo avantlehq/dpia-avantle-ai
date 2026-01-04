@@ -17,7 +17,7 @@ export function SiteHeader() {
   const t = {
     platform: "Platform",
     privacyByDesign: "Privacy by Design", 
-    dpiaSuite: "DPIA Suite",
+    dpiaSuite: "Privacy Platform",
     partners: "Partners",
     platformAdmin: "Platform Admin",
     login: "Login"
@@ -36,9 +36,8 @@ export function SiteHeader() {
               <div className="flex items-baseline space-x-2">
                 <div className="flex flex-col">
                   <span className="font-bold text-foreground leading-tight">
-                    Avantle Privacy
+                    Privacy Platform
                   </span>
-                  <span className="text-xs text-muted-foreground">Platform</span>
                 </div>
                 <span className="text-xs text-muted-foreground font-mono">
                   {getVersionString()}

@@ -8,7 +8,7 @@ export default function HomePage() {
   // const { t } = useTranslation()
   // Temporary placeholder until translation system is fixed
   const t = {
-    europeanPrivacyPlatform: "European Privacy Platform",
+    europeanPrivacyPlatform: "Privacy Platform",
     heroTitle: "Privacy Platform",
     heroSubtitle: "Privacy by Design",
     heroDescription: "",
@@ -36,7 +36,7 @@ export default function HomePage() {
               <span className="text-sm font-medium text-dpia-blue">{t.europeanPrivacyPlatform}</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground">
               {t.heroTitle}
             </h1>
             

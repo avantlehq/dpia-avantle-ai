@@ -1,10 +1,22 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.1.4'
-export const VERSION_NAME = 'Language Switcher Removal'
+export const VERSION = '1.1.5'
+export const VERSION_NAME = 'Branding & Typography Refinement'
 
 export const CHANGELOG = [
+  {
+    version: '1.1.5',
+    name: 'Branding & Typography Refinement',
+    date: '2026-01-04',
+    changes: [
+      '📏 **TITLE SIZE**: Reduced main "Privacy Platform" title by 20% for better proportion',
+      '🏷️ **BADGE CLEANUP**: Removed "European" from badge text - now just "Privacy Platform"',
+      '🎯 **TOPBAR SIMPLIFICATION**: Changed "Avantle Privacy Platform" to just "Privacy Platform"',
+      '🔗 **NAVIGATION UPDATE**: Renamed "DPIA Suite" link to "Privacy Platform" for consistency',
+      '✨ **CLEANER BRANDING**: More focused and streamlined brand presentation'
+    ]
+  },
   {
     version: '1.1.4',
     name: 'Language Switcher Removal',
