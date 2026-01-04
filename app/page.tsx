@@ -1,11 +1,28 @@
-'use client'
+// 'use client' - Temporarily removed for SSR compatibility
 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { useTranslation } from "@/lib/i18n/use-translation"
+// import { useTranslation } from "@/lib/i18n/use-translation"
 
 export default function HomePage() {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
+  // Temporary placeholder until translation system is fixed
+  const t = {
+    europeanPrivacyPlatform: "European Privacy Platform",
+    heroTitle: "Privacy Platform",
+    heroSubtitle: "One core that powers infinite local agents",
+    heroDescription: "Privacy by Design. European data sovereignty. GDPR compliance built-in.",
+    dpiaAutomation: "DPIA Automation",
+    dpiaAutomationDesc: "Automated Data Protection Impact Assessments with guided workflows",
+    multiTenantPlatform: "Multi-Tenant Platform", 
+    multiTenantPlatformDesc: "Scalable platform for multiple organizations and partners",
+    europeanFirst: "European First",
+    europeanFirstDesc: "Built for European data sovereignty and GDPR compliance",
+    launchPlatform: "Launch Platform",
+    platformAdministration: "Platform Administration",
+    or: "or",
+    noTracking: "No tracking. No analytics. Your privacy is protected."
+  }
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />

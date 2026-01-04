@@ -1,55 +1,37 @@
 'use client'
 
-import { useState, useEffect, createContext, useContext, ReactNode } from 'react'
+import { useState, useEffect } from 'react'
 import { defaultLocale, type Locale } from './locales'
 import { translations, type Translation } from './translations'
 
-interface TranslationContextType {
-  t: Translation
-  locale: Locale
-  setLocale: (locale: Locale) => void
-}
-
-const TranslationContext = createContext<TranslationContextType | undefined>(undefined)
-
-// Provider component
-export function TranslationProvider({ children }: { children: ReactNode }) {
+// Browser-only translation system
+export function useTranslation() {
   const [locale, setLocaleState] = useState<Locale>(defaultLocale)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Load locale from localStorage on mount
+    setMounted(true)
+    
+    // Only run in browser
+    if (typeof window === 'undefined') return
+    
+    // Load saved locale
     const saved = localStorage.getItem('locale') as Locale
-    if (saved && translations[saved]) {
+    if (saved && saved in translations) {
       setLocaleState(saved)
     }
-    setMounted(true)
   }, [])
 
   const setLocale = (newLocale: Locale) => {
+    if (typeof window === 'undefined') return
+    
     setLocaleState(newLocale)
     localStorage.setItem('locale', newLocale)
   }
 
-  const t = translations[locale]
+  // Always return English during SSR
+  const currentLocale = mounted ? locale : defaultLocale
+  const t = translations[currentLocale]
 
-  // Don't render until mounted to avoid hydration mismatch
-  if (!mounted) {
-    return <div>{children}</div>
-  }
-
-  return (
-    <TranslationContext.Provider value={{ t, locale, setLocale }}>
-      {children}
-    </TranslationContext.Provider>
-  )
-}
-
-// Hook to use translations
-export function useTranslation() {
-  const context = useContext(TranslationContext)
-  if (context === undefined) {
-    throw new Error('useTranslation must be used within a TranslationProvider')
-  }
-  return context
+  return { t, locale: currentLocale, setLocale }
 }

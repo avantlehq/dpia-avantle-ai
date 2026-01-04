@@ -1,11 +1,18 @@
-'use client'
+// 'use client' - Temporarily removed for SSR compatibility
 
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
-import { useTranslation } from "@/lib/i18n/use-translation"
+// import { useTranslation } from "@/lib/i18n/use-translation"
 
 export default function PrivacyPage() {
-  const { t } = useTranslation()
+  // const { t } = useTranslation()
+  // Temporary placeholder
+  const t = {
+    privacyByDesignBadge: "Privacy by Design",
+    privacyPageTitle: "Privacy by Design", 
+    privacyPageSubtitle: "Built-in GDPR compliance and European data sovereignty",
+    launchPlatform: "Launch Platform"
+  }
   return (
     <div className="min-h-screen flex flex-col">
       <SiteHeader />
