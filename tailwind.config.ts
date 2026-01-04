@@ -62,40 +62,40 @@ const config: Config = {
         'dpia-gray': 'var(--color-gray)',
       },
       backgroundImage: {
-        // Base icon gradients (default state)
-        'icon-blue': 'linear-gradient(135deg, rgb(74 144 226 / var(--icon-opacity)) 0%, rgb(74 144 226 / var(--icon-opacity)) 100%)',
-        'icon-green': 'linear-gradient(135deg, rgb(126 211 33 / var(--icon-opacity)) 0%, rgb(126 211 33 / var(--icon-opacity)) 100%)',
-        'icon-orange': 'linear-gradient(135deg, rgb(245 166 35 / var(--icon-opacity)) 0%, rgb(245 166 35 / var(--icon-opacity)) 100%)',
-        'icon-red': 'linear-gradient(135deg, rgb(255 107 107 / var(--icon-opacity)) 0%, rgb(255 107 107 / var(--icon-opacity)) 100%)',
-        'icon-purple': 'linear-gradient(135deg, rgb(155 89 182 / var(--icon-opacity)) 0%, rgb(155 89 182 / var(--icon-opacity)) 100%)',
-        'icon-gray': 'linear-gradient(135deg, rgb(169 169 169 / var(--icon-opacity)) 0%, rgb(169 169 169 / var(--icon-opacity)) 100%)',
-        // Hover state gradients (higher opacity)
-        'icon-blue-hover': 'linear-gradient(135deg, rgb(74 144 226 / var(--hover-opacity)) 0%, rgb(74 144 226 / var(--hover-opacity)) 100%)',
-        'icon-green-hover': 'linear-gradient(135deg, rgb(126 211 33 / var(--hover-opacity)) 0%, rgb(126 211 33 / var(--hover-opacity)) 100%)',
-        'icon-orange-hover': 'linear-gradient(135deg, rgb(245 166 35 / var(--hover-opacity)) 0%, rgb(245 166 35 / var(--hover-opacity)) 100%)',
-        'icon-red-hover': 'linear-gradient(135deg, rgb(255 107 107 / var(--hover-opacity)) 0%, rgb(255 107 107 / var(--hover-opacity)) 100%)',
-        'icon-purple-hover': 'linear-gradient(135deg, rgb(155 89 182 / var(--hover-opacity)) 0%, rgb(155 89 182 / var(--hover-opacity)) 100%)',
-        'icon-gray-hover': 'linear-gradient(135deg, rgb(169 169 169 / var(--hover-opacity)) 0%, rgb(169 169 169 / var(--hover-opacity)) 100%)',
+        // Base icon gradients (default state) - Updated to match DPIA colors
+        'icon-blue': 'linear-gradient(135deg, rgb(59 130 246 / var(--icon-opacity)) 0%, rgb(59 130 246 / var(--icon-opacity)) 100%)',
+        'icon-green': 'linear-gradient(135deg, rgb(34 197 94 / var(--icon-opacity)) 0%, rgb(34 197 94 / var(--icon-opacity)) 100%)',
+        'icon-orange': 'linear-gradient(135deg, rgb(249 115 22 / var(--icon-opacity)) 0%, rgb(249 115 22 / var(--icon-opacity)) 100%)',
+        'icon-red': 'linear-gradient(135deg, rgb(239 68 68 / var(--icon-opacity)) 0%, rgb(239 68 68 / var(--icon-opacity)) 100%)',
+        'icon-purple': 'linear-gradient(135deg, rgb(139 92 246 / var(--icon-opacity)) 0%, rgb(139 92 246 / var(--icon-opacity)) 100%)',
+        'icon-gray': 'linear-gradient(135deg, rgb(156 163 175 / var(--icon-opacity)) 0%, rgb(156 163 175 / var(--icon-opacity)) 100%)',
+        // Hover state gradients (higher opacity) - Updated to match DPIA colors
+        'icon-blue-hover': 'linear-gradient(135deg, rgb(59 130 246 / var(--hover-opacity)) 0%, rgb(59 130 246 / var(--hover-opacity)) 100%)',
+        'icon-green-hover': 'linear-gradient(135deg, rgb(34 197 94 / var(--hover-opacity)) 0%, rgb(34 197 94 / var(--hover-opacity)) 100%)',
+        'icon-orange-hover': 'linear-gradient(135deg, rgb(249 115 22 / var(--hover-opacity)) 0%, rgb(249 115 22 / var(--hover-opacity)) 100%)',
+        'icon-red-hover': 'linear-gradient(135deg, rgb(239 68 68 / var(--hover-opacity)) 0%, rgb(239 68 68 / var(--hover-opacity)) 100%)',
+        'icon-purple-hover': 'linear-gradient(135deg, rgb(139 92 246 / var(--hover-opacity)) 0%, rgb(139 92 246 / var(--hover-opacity)) 100%)',
+        'icon-gray-hover': 'linear-gradient(135deg, rgb(156 163 175 / var(--hover-opacity)) 0%, rgb(156 163 175 / var(--hover-opacity)) 100%)',
       },
       borderWidth: {
         'standard': 'var(--border-thickness)',
         'underline': 'var(--underline-thickness)',
       },
       borderColor: {
-        // Category border colors with opacity
-        'dpia-blue': 'rgb(74 144 226 / var(--border-opacity))',
-        'dpia-green': 'rgb(126 211 33 / var(--border-opacity))',
-        'dpia-orange': 'rgb(245 166 35 / var(--border-opacity))',
-        'dpia-red': 'rgb(255 107 107 / var(--border-opacity))',
-        'dpia-purple': 'rgb(155 89 182 / var(--border-opacity))',
-        'dpia-gray': 'rgb(169 169 169 / var(--border-opacity))',
-        // Underline colors with opacity
-        'underline-blue': 'rgb(74 144 226 / var(--underline-opacity))',
-        'underline-green': 'rgb(126 211 33 / var(--underline-opacity))',
-        'underline-orange': 'rgb(245 166 35 / var(--underline-opacity))',
-        'underline-red': 'rgb(255 107 107 / var(--underline-opacity))',
-        'underline-purple': 'rgb(155 89 182 / var(--underline-opacity))',
-        'underline-gray': 'rgb(169 169 169 / var(--underline-opacity))',
+        // Category border colors with opacity - Updated to match DPIA
+        'dpia-blue': 'rgb(59 130 246 / var(--border-opacity))',
+        'dpia-green': 'rgb(34 197 94 / var(--border-opacity))',
+        'dpia-orange': 'rgb(249 115 22 / var(--border-opacity))',
+        'dpia-red': 'rgb(239 68 68 / var(--border-opacity))',
+        'dpia-purple': 'rgb(139 92 246 / var(--border-opacity))',
+        'dpia-gray': 'rgb(156 163 175 / var(--border-opacity))',
+        // Underline colors with opacity - Updated to match DPIA
+        'underline-blue': 'rgb(59 130 246 / var(--underline-opacity))',
+        'underline-green': 'rgb(34 197 94 / var(--underline-opacity))',
+        'underline-orange': 'rgb(249 115 22 / var(--underline-opacity))',
+        'underline-red': 'rgb(239 68 68 / var(--underline-opacity))',
+        'underline-purple': 'rgb(139 92 246 / var(--underline-opacity))',
+        'underline-gray': 'rgb(156 163 175 / var(--underline-opacity))',
       },
       borderRadius: {
         lg: "var(--radius)",

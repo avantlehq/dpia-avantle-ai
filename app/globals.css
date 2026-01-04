@@ -7,21 +7,21 @@
 :root {
   --radius: 0.5rem;
   
-  /* DPIA Color System - CSS Variables */
-  --color-blue: #4A90E2;    /* Main/Dashboard */
-  --color-green: #7ED321;   /* Assessment/Pre-check */
-  --color-orange: #F5A623;  /* Builder/DPIA */
-  --color-red: #FF6B6B;     /* Risk Management */
-  --color-purple: #9B59B6;  /* Settings/Export */
-  --color-gray: #A9A9A9;    /* Drafts/Neutral */
+  /* DPIA Color System - CSS Variables (Exact match with dpia.avantle.ai) */
+  --color-blue: #3b82f6;    /* Main/Dashboard - matches DPIA exactly */
+  --color-green: #22c55e;   /* Assessment/Pre-check - matches DPIA exactly */
+  --color-orange: #f97316;  /* Builder/DPIA - updated to match Tailwind orange */
+  --color-red: #ef4444;     /* Risk Management - matches DPIA exactly */
+  --color-purple: #8b5cf6;  /* Settings/Export - updated to match Tailwind violet */
+  --color-gray: #9ca3af;    /* Drafts/Neutral - matches DPIA exactly */
   
-  /* Lighter tints for reduced visual weight */
-  --color-blue-light: #6BA3E8;
-  --color-green-light: #96DA47;
-  --color-orange-light: #F7B649;
-  --color-red-light: #FF8A8A;
-  --color-purple-light: #B670C7;
-  --color-gray-light: #BFBFBF;
+  /* Lighter tints for reduced visual weight (matching DPIA) */
+  --color-blue-light: #60a5fa;   /* blue-400 */
+  --color-green-light: #4ade80;  /* green-400 */
+  --color-orange-light: #fb923c; /* orange-400 */
+  --color-red-light: #f87171;    /* red-400 */
+  --color-purple-light: #a78bfa; /* violet-400 */
+  --color-gray-light: #d1d5db;   /* gray-300 */
   
   /* Standardized Opacity Variables */
   --border-opacity: 0.3;     /* 30% for border accents */
@@ -39,7 +39,7 @@
   --card-foreground: oklch(0.95 0 0);
   --popover: #243240;
   --popover-foreground: oklch(0.95 0 0);
-  --primary: var(--color-blue); /* Using DPIA blue for primary accent */
+  --primary: #3b82f6; /* DPIA blue for primary accent - exact match */
   --primary-foreground: oklch(0.98 0 0);
   --secondary: #2A3946;
   --secondary-foreground: oklch(0.85 0 0);
@@ -51,7 +51,7 @@
   --destructive-foreground: oklch(0.98 0 0);
   --border: #2F404E;
   --input: #202E3B;
-  --ring: var(--color-blue);
+  --ring: #3b82f6;
 }
 
 /* Light mode - class-based (works with next-themes) */
@@ -63,7 +63,7 @@
   --card-foreground: #0F172A;
   --popover: #FFFFFF;
   --popover-foreground: #0F172A;
-  --primary: #2563EB;
+  --primary: #3b82f6;
   --primary-foreground: #FFFFFF;
   --secondary: #F1F5F9;
   --secondary-foreground: #0F172A;
@@ -75,23 +75,23 @@
   --destructive-foreground: #FFFFFF;
   --border: #E2E8F0;
   --input: #E2E8F0;
-  --ring: #2563EB;
+  --ring: #3b82f6;
   
-  /* Light mode category colors (darker for contrast) */
-  --color-blue: #2563EB;
-  --color-green: #16A34A;
-  --color-orange: #EA580C;
-  --color-red: #DC2626;
-  --color-purple: #7C3AED;
-  --color-gray: #6B7280;
+  /* Light mode category colors (exact match with DPIA) */
+  --color-blue: #3b82f6;
+  --color-green: #22c55e;
+  --color-orange: #f97316;
+  --color-red: #ef4444;
+  --color-purple: #8b5cf6;
+  --color-gray: #9ca3af;
   
-  /* Light mode lighter tints */
-  --color-blue-light: #3B82F6;
-  --color-green-light: #22C55E;
-  --color-orange-light: #F97316;
-  --color-red-light: #EF4444;
-  --color-purple-light: #8B5CF6;
-  --color-gray-light: #9CA3AF;
+  /* Light mode lighter tints (matching DPIA) */
+  --color-blue-light: #60a5fa;   /* blue-400 */
+  --color-green-light: #4ade80;  /* green-400 */
+  --color-orange-light: #fb923c; /* orange-400 */
+  --color-red-light: #f87171;    /* red-400 */
+  --color-purple-light: #a78bfa; /* violet-400 */
+  --color-gray-light: #d1d5db;   /* gray-300 */
   
   /* Same opacity standards */
   --border-opacity: 0.3;
