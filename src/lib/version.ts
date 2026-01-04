@@ -1,10 +1,22 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.1.10'
-export const VERSION_NAME = 'Hydration Fix Translation System'
+export const VERSION = '1.1.11'
+export const VERSION_NAME = 'Reactive Language Switching'
 
 export const CHANGELOG = [
+  {
+    version: '1.1.11',
+    name: 'Reactive Language Switching',
+    date: '2026-01-04',
+    changes: [
+      '🌐 **REAL-TIME SWITCHING**: Added global state management for cross-component synchronization',
+      '⚡ **CUSTOM EVENTS**: Components now communicate via \'locale-change\' event broadcasting',
+      '🔄 **STATE SYNC**: All components re-render immediately when language changes',
+      '🎯 **NO REFRESH NEEDED**: Users see content change instantly without page reload',
+      '✅ **WORKING TRANSLATIONS**: Language switcher now updates all content immediately'
+    ]
+  },
   {
     version: '1.1.10',
     name: 'Hydration Fix Translation System',
