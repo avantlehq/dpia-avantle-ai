@@ -2,6 +2,17 @@
 
 ## Database Schema (Supabase PostgreSQL)
 
+### 🎯 **Microservices Data Architecture**
+**Current**: All tables in single dpia.avantle.ai database  
+**Future**: Separated per service domain
+
+**Database Separation Strategy:**
+- **dpia.avantle.ai**: assessments, assessment_answers, form_sections (Privacy domain)
+- **context.avantle.ai**: systems, processing_activities, vendors, data_categories (Inventory domain) 
+- **risk.avantle.ai**: risks, risk_assessments, mitigation_plans (Risk domain)
+- **controls.avantle.ai**: controls, control_assessments, toms (Controls domain)
+- **core.avantle.ai**: users, tenants, workspaces (Shared infrastructure)
+
 ### Core Entities
 
 #### Users Table
@@ -252,4 +263,169 @@ interface ExportData {
 }
 ```
 
-This data model supports the complete DPIA workflow with multi-tenancy, flexible form templates, risk scoring, and compliance validation.
+## Context Module Schema (Future context.avantle.ai)
+
+### Context Domain Tables
+```sql
+-- IT Systems Registry
+systems (
+  id: uuid PRIMARY KEY,
+  workspace_id: uuid REFERENCES workspaces(id),
+  name: text NOT NULL,
+  description: text,
+  system_type: system_type, -- 'application', 'database', 'infrastructure', 'cloud_service'
+  owner: text,
+  technical_contact: text,
+  business_contact: text,
+  criticality_level: criticality_level, -- 'low', 'medium', 'high', 'critical'
+  hosting_type: hosting_type, -- 'on_premise', 'cloud', 'hybrid', 'saas'
+  hosting_location: text,
+  vendor_id: uuid REFERENCES vendors(id),
+  created_at: timestamptz DEFAULT now(),
+  updated_at: timestamptz DEFAULT now(),
+  metadata: jsonb,
+  is_active: boolean DEFAULT true
+);
+
+-- Processing Activities (ROPA - Record of Processing Activities)
+processing_activities (
+  id: uuid PRIMARY KEY,
+  workspace_id: uuid REFERENCES workspaces(id),
+  name: text NOT NULL,
+  description: text,
+  purpose: text NOT NULL,
+  legal_basis: legal_basis[], -- Array of GDPR legal bases
+  controller: text,
+  joint_controllers: text[],
+  processor_id: uuid REFERENCES vendors(id),
+  data_subject_categories: text[],
+  data_categories: uuid[] REFERENCES data_categories(id),
+  recipients: text[],
+  third_country_transfers: boolean DEFAULT false,
+  transfer_safeguards: text,
+  retention_period: text,
+  security_measures: text,
+  created_at: timestamptz DEFAULT now(),
+  updated_at: timestamptz DEFAULT now(),
+  metadata: jsonb,
+  is_active: boolean DEFAULT true
+);
+
+-- Data Categories Classification
+data_categories (
+  id: uuid PRIMARY KEY,
+  workspace_id: uuid REFERENCES workspaces(id),
+  name: text NOT NULL,
+  description: text,
+  category_type: data_category_type, -- 'personal', 'special', 'pseudonymized', 'anonymous'
+  sensitivity_level: sensitivity_level, -- 'public', 'internal', 'confidential', 'restricted'
+  special_category: boolean DEFAULT false,
+  gdpr_article: text,
+  examples: text[],
+  created_at: timestamptz DEFAULT now(),
+  parent_category_id: uuid REFERENCES data_categories(id),
+  metadata: jsonb
+);
+
+-- Vendors/Processors Registry
+vendors (
+  id: uuid PRIMARY KEY,
+  workspace_id: uuid REFERENCES workspaces(id),
+  name: text NOT NULL,
+  vendor_type: vendor_type, -- 'processor', 'joint_controller', 'sub_processor', 'service_provider'
+  contact_person: text,
+  email: text,
+  phone: text,
+  address: jsonb,
+  country: text,
+  adequacy_decision: boolean DEFAULT false,
+  transfer_mechanism: text,
+  contract_date: date,
+  contract_expiry: date,
+  dpa_signed: boolean DEFAULT false,
+  security_assessment: jsonb,
+  created_at: timestamptz DEFAULT now(),
+  updated_at: timestamptz DEFAULT now(),
+  metadata: jsonb,
+  is_active: boolean DEFAULT true
+);
+
+-- Data Flows Mapping
+data_flows (
+  id: uuid PRIMARY KEY,
+  workspace_id: uuid REFERENCES workspaces(id),
+  name: text NOT NULL,
+  description: text,
+  source_system_id: uuid REFERENCES systems(id),
+  destination_system_id: uuid REFERENCES systems(id),
+  processing_activity_id: uuid REFERENCES processing_activities(id),
+  data_categories: uuid[] REFERENCES data_categories(id),
+  flow_type: flow_type, -- 'collection', 'processing', 'sharing', 'transfer', 'deletion'
+  frequency: frequency, -- 'real_time', 'hourly', 'daily', 'weekly', 'monthly', 'on_demand'
+  volume: text,
+  encryption_in_transit: boolean DEFAULT false,
+  encryption_at_rest: boolean DEFAULT false,
+  created_at: timestamptz DEFAULT now(),
+  updated_at: timestamptz DEFAULT now(),
+  metadata: jsonb
+);
+
+-- Locations/Jurisdictions
+locations (
+  id: uuid PRIMARY KEY,
+  workspace_id: uuid REFERENCES workspaces(id),
+  name: text NOT NULL,
+  country: text NOT NULL,
+  region: text,
+  adequacy_decision: boolean DEFAULT false,
+  transfer_mechanisms: text[],
+  data_residency_requirements: text,
+  created_at: timestamptz DEFAULT now(),
+  metadata: jsonb
+);
+```
+
+### Context Module Enums
+```sql
+CREATE TYPE system_type AS ENUM ('application', 'database', 'infrastructure', 'cloud_service');
+CREATE TYPE criticality_level AS ENUM ('low', 'medium', 'high', 'critical');
+CREATE TYPE hosting_type AS ENUM ('on_premise', 'cloud', 'hybrid', 'saas');
+CREATE TYPE legal_basis AS ENUM ('consent', 'contract', 'legal_obligation', 'vital_interests', 'public_task', 'legitimate_interests');
+CREATE TYPE data_category_type AS ENUM ('personal', 'special', 'pseudonymized', 'anonymous');
+CREATE TYPE sensitivity_level AS ENUM ('public', 'internal', 'confidential', 'restricted');
+CREATE TYPE vendor_type AS ENUM ('processor', 'joint_controller', 'sub_processor', 'service_provider');
+CREATE TYPE flow_type AS ENUM ('collection', 'processing', 'sharing', 'transfer', 'deletion');
+CREATE TYPE frequency AS ENUM ('real_time', 'hourly', 'daily', 'weekly', 'monthly', 'on_demand');
+```
+
+### Context API Service Structure
+```typescript
+// Future context.avantle.ai API endpoints
+interface ContextAPI {
+  // Systems Management
+  '/api/v1/systems': CRUD<System>
+  '/api/v1/systems/:id/data-flows': DataFlow[]
+  
+  // Processing Activities (ROPA)
+  '/api/v1/processing': CRUD<ProcessingActivity>
+  '/api/v1/processing/:id/data-mapping': DataMapping
+  
+  // Data Categories
+  '/api/v1/data-categories': CRUD<DataCategory>
+  '/api/v1/data-categories/hierarchy': CategoryTree
+  
+  // Vendors/Processors
+  '/api/v1/vendors': CRUD<Vendor>
+  '/api/v1/vendors/:id/contracts': Contract[]
+  
+  // Data Flows
+  '/api/v1/data-flows': CRUD<DataFlow>
+  '/api/v1/data-flows/mapping': FlowDiagram
+  
+  // Locations
+  '/api/v1/locations': CRUD<Location>
+  '/api/v1/locations/adequacy': AdequacyStatus[]
+}
+```
+
+This data model supports the complete DPIA workflow with multi-tenancy, flexible form templates, risk scoring, and compliance validation. The Context module schema provides foundation for future context.avantle.ai backend service with comprehensive IT inventory and data mapping capabilities.

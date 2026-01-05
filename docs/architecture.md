@@ -2,17 +2,36 @@
 
 ## System Overview
 
-Avantle Privacy Platform is a Next.js 16 application built for European GDPR compliance with automated DPIA assessments.
+Avantle Privacy Platform is a microservices-based privacy compliance suite, currently implemented as unified Next.js 16 application with planned evolution to standalone products.
+
+### 🎯 **Microservices Evolution Strategy**
+**Current**: Monolithic dpia.avantle.ai with all modules  
+**Future**: Distributed microservices architecture
+
+**🏗️ Target Architecture:**
+```
+Frontend Applications:
+├── dpia.avantle.ai → Avantle Privacy (DPIA, LIA, TIA, policies)
+└── avantle.ai      → Marketing landing page
+
+Backend API Services:
+├── context.avantle.ai  → Avantle Inventory (IT systems, data mapping)
+├── risk.avantle.ai     → Avantle Risk (Enterprise risk management)
+├── controls.avantle.ai → Avantle Controls (Security frameworks)
+├── core.avantle.ai     → Avantle Core (Auth, users, tenants)
+└── lms.avantle.ai      → Avantle Training (Courses, certifications)
+```
 
 ### Technology Stack
-- **Framework**: Next.js 16.1.1 with React 19 + TypeScript
-- **Backend**: Supabase (PostgreSQL + Auth + Storage)
-- **Styling**: Tailwind CSS + Design Token System
+- **Frontend**: Next.js 16.1.1 with React 19 + TypeScript
+- **Backend APIs**: Node.js/Next.js with separate databases per service
+- **Database**: Supabase PostgreSQL (per-service separation)
 - **Authentication**: Supabase Auth with Row Level Security
+- **Styling**: Tailwind CSS + Design Token System
 - **Forms**: React Hook Form + Zod validation
 - **Internationalization**: next-intl (Slovak/English)
 - **Theme**: next-themes (Dark/Light mode)
-- **Deployment**: Vercel with automated CI/CD
+- **Deployment**: Vercel with automated CI/CD per service
 
 ## Application Architecture
 
@@ -35,15 +54,49 @@ Avantle Privacy Platform is a Next.js 16 application built for European GDPR com
 └── docs/                # Developer documentation
 ```
 
-### Module System
+### Module System (Current Monolith)
 ```
-Privacy Platform
-├── Context Module        # Data inventory and processing context
-├── Privacy Module       # DPIA, LIA, TIA assessments
-├── Risk Module         # Risk management and scoring
-├── Controls Module     # Security controls and measures
-├── Training Module     # Staff training and awareness
-└── Trust Center       # Governance and audit trails
+dpia.avantle.ai (Unified Privacy Platform)
+├── Context Module        # Data inventory and processing context → Future: context.avantle.ai
+├── Privacy Module       # DPIA, LIA, TIA assessments → Remains in dpia.avantle.ai
+├── Risk Module         # Risk management and scoring → Future: risk.avantle.ai
+├── Controls Module     # Security controls and measures → Future: controls.avantle.ai
+├── Training Module     # Staff training and awareness → Future: lms.avantle.ai
+└── Trust Center       # Governance and audit trails → Remains in dpia.avantle.ai
+```
+
+### 📡 **API Integration Pattern (Future)**
+```typescript
+// Frontend (dpia.avantle.ai) calls to backend services
+interface ServiceIntegration {
+  // Context module UI → Context API
+  '/context/systems' → 'context.avantle.ai/api/v1/systems'
+  '/context/processing' → 'context.avantle.ai/api/v1/processing'
+  
+  // Risk module UI → Risk API  
+  '/risk/assessments' → 'risk.avantle.ai/api/v1/assessments'
+  '/risk/register' → 'risk.avantle.ai/api/v1/register'
+  
+  // Controls module UI → Controls API
+  '/controls/toms' → 'controls.avantle.ai/api/v1/toms'
+  '/controls/frameworks' → 'controls.avantle.ai/api/v1/frameworks'
+  
+  // Training module UI → LMS API
+  '/training/courses' → 'lms.avantle.ai/api/v1/courses'
+  '/training/progress' → 'lms.avantle.ai/api/v1/progress'
+}
+```
+
+### 🔒 **Authentication Flow (Cross-Service)**
+```typescript
+// Shared authentication across all services
+interface AuthFlow {
+  1. User authenticates via core.avantle.ai
+  2. JWT token issued with tenant/workspace claims
+  3. Frontend (dpia.avantle.ai) includes token in all API calls
+  4. Backend services (context/risk/controls.avantle.ai) validate token
+  5. RLS policies enforce tenant isolation per service
+}
 ```
 
 ## Component Architecture
