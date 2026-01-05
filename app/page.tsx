@@ -23,7 +23,7 @@ export default function HomePage() {
               {t.heroTitle}
             </h1>
             
-            <p className="text-xl md:text-2xl lg:text-3xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl lg:text-3xl max-w-4xl mx-auto leading-relaxed" style={{color: '#A0A0A0'}}>
               {t.heroSubtitle}
             </p>
           </div>

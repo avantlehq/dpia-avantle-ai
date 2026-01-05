@@ -122,15 +122,15 @@ export const translations: Record<Locale, Translation> = {
     // Navigation
     platform: 'Platform',
     privacyByDesign: 'Privacy by Design',
-    dpiaSuite: 'Privacy Platform',
+    dpiaSuite: 'Privacy Management',
     partners: 'Partners',
     platformAdmin: 'Platform Admin',
     login: 'Login',
     
     // Homepage
-    europeanPrivacyPlatform: 'Privacy Platform',
-    heroTitle: 'Privacy Platform',
-    heroSubtitle: 'Privacy by Design',
+    europeanPrivacyPlatform: 'Privacy Management',
+    heroTitle: 'Privacy Management',
+    heroSubtitle: 'The platform for automated DPIA and GDPR compliance',
     heroDescription: '',
     
     // Features
@@ -239,15 +239,15 @@ export const translations: Record<Locale, Translation> = {
     // Navigation
     platform: 'Platforma',
     privacyByDesign: 'Privacy by Design',
-    dpiaSuite: 'Privacy Platforma',
+    dpiaSuite: 'Privacy Management',
     partners: 'Partneri',
     platformAdmin: 'Admin Platformy',
     login: 'Prihlásenie',
     
     // Homepage
-    europeanPrivacyPlatform: 'Privacy Platforma',
-    heroTitle: 'Privacy Platforma',
-    heroSubtitle: 'Privacy by Design',
+    europeanPrivacyPlatform: 'Privacy Management',
+    heroTitle: 'Privacy Management',
+    heroSubtitle: 'Platforma pre automatizované DPIA a GDPR compliance',
     heroDescription: '',
     
     // Features
@@ -356,15 +356,15 @@ export const translations: Record<Locale, Translation> = {
     // Navigation
     platform: 'Plattform',
     privacyByDesign: 'Privacy by Design',
-    dpiaSuite: 'Privacy Platform',
+    dpiaSuite: 'Privacy Management',
     partners: 'Partner',
     platformAdmin: 'Plattform Admin',
     login: 'Anmeldung',
     
     // Homepage
-    europeanPrivacyPlatform: 'Privacy Platform',
-    heroTitle: 'Privacy Platform',
-    heroSubtitle: 'Privacy by Design',
+    europeanPrivacyPlatform: 'Privacy Management',
+    heroTitle: 'Privacy Management',
+    heroSubtitle: 'Die Plattform für automatisierte DPIA und DSGVO-Compliance',
     heroDescription: '',
     
     // Features

@@ -1,10 +1,22 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.2.1' 
-export const VERSION_NAME = 'Design Revert'
+export const VERSION = '1.2.2' 
+export const VERSION_NAME = 'Privacy Management Rebrand'
 
 export const CHANGELOG = [
+  {
+    version: '1.2.2',
+    name: 'Privacy Management Rebrand',
+    date: '2026-01-05',
+    changes: [
+      '🏷️ **REBRAND**: Changed "Privacy Platform" to "Privacy Management" across all languages',
+      '📝 **NEW SUBHEADLINE**: Updated to "The platform for automated DPIA and GDPR compliance"',
+      '🌍 **MULTILINGUAL**: Updated EN/SK/DE translations with new branding',
+      '🎨 **TYPOGRAPHY**: Changed subheadline color to dimmed white (#A0A0A0) for better hierarchy',
+      '✨ **BRAND CONSISTENCY**: Unified messaging across all platform touchpoints'
+    ]
+  },
   {
     version: '1.2.1',
     name: 'Design Revert',
