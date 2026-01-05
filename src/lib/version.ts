@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.153'
-export const VERSION_NAME = 'Lawful Basis Type Fix'
+export const VERSION = '3.21.154'
+export const VERSION_NAME = 'Advanced Search Array Types Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.154',
+    name: 'Advanced Search Array Types Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **ARRAY TYPES**: Fixed lawful_bases and special_category_bases array types in advanced search',
+      '📝 **ENUM ARRAYS**: Updated string[] to proper enum union arrays for type safety',
+      '✅ **BUILD READY**: Fixed TypeScript array type errors in repository and service layers',
+      '🚀 **CONTEXT MODULE**: Processing activity advanced search now fully type-safe'
+    ]
+  },
   {
     version: '3.21.153',
     name: 'Lawful Basis Type Fix',

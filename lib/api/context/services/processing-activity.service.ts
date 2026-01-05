@@ -376,8 +376,8 @@ export class ProcessingActivityService {
   async advancedSearch(filters: {
     search?: string;
     status?: 'active' | 'inactive';
-    lawful_bases?: string[];
-    special_category_bases?: string[];
+    lawful_bases?: ('consent' | 'contract' | 'legal_obligation' | 'vital_interests' | 'public_task' | 'legitimate_interests')[];
+    special_category_bases?: ('explicit_consent' | 'employment' | 'vital_interests' | 'public_interest' | 'healthcare' | 'research' | 'legal_claims')[];
     dpo_review_required?: boolean;
     automated_decision_making?: boolean;
     profiling?: boolean;
