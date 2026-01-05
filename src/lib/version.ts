@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.138" as const
-export const VERSION_NAME = "🎨 Enhanced Version Display & Help System - UX Polish & Support Pages" as const
-export const BUILD_DATE = "2026-01-04"
+export const VERSION = "3.21.139" as const
+export const VERSION_NAME = "🔄 RESTORED: Beautiful DPIA Platform - Original Architecture Recovered" as const
+export const BUILD_DATE = "2026-01-05"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.139": {
+    date: "2026-01-05", 
+    name: "🔄 RESTORED: Beautiful DPIA Platform - Original Architecture Recovered",
+    features: [
+      "ARCHITECTURE RESTORATION: Successfully restored original beautiful DPIA platform architecture from commit a1c94e8",
+      "LAYOUT RECOVERY: Recovered left sidebar + topbar + main content window layout that was accidentally destroyed",
+      "LOCALE ROUTING: Restored [locale] internationalization structure with proper SK/EN support",
+      "SIDEBAR NAVIGATION: Restored complete module navigation with 6 privacy platform modules",
+      "CONTEXT MODULE BACKUP: Saved today's Context module work to ../context-avantle-ai for future context.avantle.ai repository",
+      "MICROSERVICES FOUNDATION: Prepared for microservices architecture with separate context.avantle.ai and dpia.avantle.ai",
+      "TRANSLATION SYSTEM: Restored complete internationalization with messages/en.json and messages/sk.json",
+      "HARD RESET SUCCESS: Used git reset --hard a1c94e8 to recover yesterday's working beautiful platform"
+    ]
+  },
   "3.21.138": {
     date: "2026-01-04", 
     name: "🎨 Enhanced Version Display & Help System - UX Polish & Support Pages",
