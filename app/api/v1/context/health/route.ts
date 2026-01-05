@@ -163,9 +163,9 @@ async function checkRepositories(contextService: ContextService): Promise<{ stat
 async function checkServices(contextService: ContextService): Promise<{ status: string; details?: any; error?: string }> {
   try {
     const checks = {
-      contextService: { status: 'healthy' },
-      jurisdictionService: { status: 'healthy' },
-      processingActivityService: { status: 'healthy' },
+      contextService: { status: 'healthy' as string, error: undefined as string | undefined },
+      jurisdictionService: { status: 'healthy' as string, error: undefined as string | undefined },
+      processingActivityService: { status: 'healthy' as string, error: undefined as string | undefined },
     };
 
     // Test jurisdiction service

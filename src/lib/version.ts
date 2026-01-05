@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.144'
-export const VERSION_NAME = 'Final Health Check Method Fix'
+export const VERSION = '3.21.145'
+export const VERSION_NAME = 'Health Check Object Type Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.145',
+    name: 'Health Check Object Type Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **OBJECT TYPE FIX**: Fixed checks object to include error property in type definition',
+      '📝 **TYPE SAFETY**: Added explicit typing for status and error properties',
+      '✅ **BUILD READY**: TypeScript object literal error resolved',
+      '🚀 **CONTEXT MODULE**: Health check service validation now fully functional'
+    ]
+  },
   {
     version: '3.21.144',
     name: 'Final Health Check Method Fix',
