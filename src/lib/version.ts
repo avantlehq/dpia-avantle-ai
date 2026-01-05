@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.173'
-export const VERSION_NAME = 'Lawful Basis Type Cast Fix'
+export const VERSION = '3.21.174'
+export const VERSION_NAME = 'Processing Activity EntityStatus Enum Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.174',
+    name: 'Processing Activity EntityStatus Enum Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **ENUM IMPORT**: Added EntityStatus enum import to processing activity service',
+      '📝 **ENUM USAGE**: Changed string status to EntityStatus.ACTIVE for type safety',
+      '✅ **BUILD READY**: Fixed TypeScript enum usage error in GDPR report generation',
+      '🚀 **CONTEXT MODULE**: Processing activity service now uses proper enum values'
+    ]
+  },
   {
     version: '3.21.173',
     name: 'Lawful Basis Type Cast Fix',

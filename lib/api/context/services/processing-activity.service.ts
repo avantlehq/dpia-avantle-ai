@@ -17,6 +17,7 @@ import type {
   PaginatedResponse,
   UUID 
 } from '../types';
+import { EntityStatus } from '../types';
 import type { ProcessingActivityRepository } from '../repositories/processing-activity.repository';
 import type { SystemRepository } from '../repositories/system.repository';
 import type { DataCategoryRepository } from '../repositories/data-category.repository';
@@ -563,7 +564,7 @@ export class ProcessingActivityService {
     } else {
       const result = await this.processingActivityRepo.findMany({ 
         limit: 1000,
-        status: 'active' 
+        status: EntityStatus.ACTIVE 
       });
       activities = result.data;
       
