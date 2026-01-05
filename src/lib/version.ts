@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.160'
-export const VERSION_NAME = 'Endpoint Type Parameter Fix'
+export const VERSION = '3.21.161'
+export const VERSION_NAME = 'Vendor Location Transform Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.161',
+    name: 'Vendor Location Transform Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **LOCATION TRANSFORM**: Fixed vendor location data transformation in findByIdWithRelations',
+      '📝 **TYPE MAPPING**: Transform nested location data from vendor_locations to PhysicalLocation[]',
+      '✅ **BUILD READY**: Fixed TypeScript location type mismatch in vendor repository',
+      '🚀 **CONTEXT MODULE**: Vendor repository location transformation now properly typed'
+    ]
+  },
   {
     version: '3.21.160',
     name: 'Endpoint Type Parameter Fix',

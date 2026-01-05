@@ -71,7 +71,13 @@ export class VendorRepository extends BaseRepository<
       throw new Error(`Failed to fetch vendor with relations: ${error.message}`);
     }
 
-    return data as Vendor;
+    // Transform the data to match Vendor type
+    const transformedData: Vendor = {
+      ...data,
+      locations: data.locations?.map((loc: any) => loc.physical_locations) || []
+    };
+    
+    return transformedData;
   }
 
   /**
