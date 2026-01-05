@@ -92,11 +92,15 @@ export class DataCategoryRepository extends BaseRepository<
       throw new Error(`Failed to fetch data category with hierarchy: ${error.message}`);
     }
 
-    // Transform the data to match DataCategory type
+    // Transform the data to match DataCategory type with proper type casting
     const transformedData: DataCategory = {
       ...data,
-      children: Array.isArray(data.children) ? data.children : data.children ? [data.children] : undefined
-    };
+      children: Array.isArray(data.children) 
+        ? (data.children as DataCategory[])
+        : data.children 
+        ? [data.children as DataCategory] 
+        : undefined
+    } as DataCategory;
     
     return transformedData;
   }

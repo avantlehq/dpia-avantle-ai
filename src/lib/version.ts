@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.147'
-export const VERSION_NAME = 'Data Category Type Transform Fix'
+export const VERSION = '3.21.148'
+export const VERSION_NAME = 'Data Category Type Casting Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.148',
+    name: 'Data Category Type Casting Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE CASTING**: Added explicit DataCategory type casting for children arrays',
+      '📝 **ENUM COMPATIBILITY': Fixed enum type mismatch between database and TypeScript types',
+      '✅ **BUILD READY**: TypeScript enum assignment error resolved',
+      '🚀 **CONTEXT MODULE**: Data category repository fully type-safe with casting'
+    ]
+  },
   {
     version: '3.21.147',
     name: 'Data Category Type Transform Fix',
