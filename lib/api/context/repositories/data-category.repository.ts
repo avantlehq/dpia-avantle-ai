@@ -126,7 +126,7 @@ export class DataCategoryRepository extends BaseRepository<
 
     // Initialize map with all categories
     categories.forEach(cat => {
-      categoryMap.set(cat.id, { ...cat, children: [] });
+      categoryMap.set(cat.id, { ...cat, children: [] } as DataCategory & { children: DataCategory[] });
     });
 
     // Build parent-child relationships

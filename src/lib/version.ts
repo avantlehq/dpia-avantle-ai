@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.149'
-export const VERSION_NAME = 'Syntax Error Fix'
+export const VERSION = '3.21.150'
+export const VERSION_NAME = 'Data Category Map Type Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.150',
+    name: 'Data Category Map Type Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE CASTING**: Added explicit type casting for categoryMap assignment',
+      '📝 **ENUM TYPE**: Fixed DataCategoryType enum compatibility in hierarchical mapping',
+      '✅ **BUILD READY**: TypeScript type assignment error in categoryMap resolved',
+      '🚀 **CONTEXT MODULE**: Data category repository hierarchical mapping now type-safe'
+    ]
+  },
   {
     version: '3.21.149',
     name: 'Syntax Error Fix',
