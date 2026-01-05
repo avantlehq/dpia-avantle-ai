@@ -119,7 +119,7 @@ async function checkDatabaseConnection(): Promise<{ status: string; latency?: nu
 /**
  * Check repository layer
  */
-async function checkRepositories(contextService: ContextService): Promise<{ status: string; details?: any }> {
+async function checkRepositories(contextService: ContextService): Promise<{ status: string; details?: any; error?: string }> {
   try {
     const checks = {
       jurisdictions: await testRepositoryOperation(
@@ -160,7 +160,7 @@ async function checkRepositories(contextService: ContextService): Promise<{ stat
 /**
  * Check service layer
  */
-async function checkServices(contextService: ContextService): Promise<{ status: string; details?: any }> {
+async function checkServices(contextService: ContextService): Promise<{ status: string; details?: any; error?: string }> {
   try {
     const checks = {
       contextService: { status: 'healthy' },
