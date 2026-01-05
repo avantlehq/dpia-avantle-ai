@@ -478,8 +478,10 @@ export class DataCategoryRepository extends BaseRepository<
           .eq('status', 'active');
 
         if (categoriesWithChildren?.length) {
-          const parentIds = [...new Set(categoriesWithChildren.map(c => c.parent_id))];
-          query = query.in('id', parentIds);
+          const parentIds = [...new Set(categoriesWithChildren.map(c => c.parent_id))].filter((id): id is string => id !== null);
+          if (parentIds.length > 0) {
+            query = query.in('id', parentIds);
+          }
         }
       } else {
         const { data: categoriesWithChildren } = await this.client
@@ -489,8 +491,10 @@ export class DataCategoryRepository extends BaseRepository<
           .eq('status', 'active');
 
         if (categoriesWithChildren?.length) {
-          const parentIds = [...new Set(categoriesWithChildren.map(c => c.parent_id))];
-          query = query.not('id', 'in', `(${parentIds.join(',')})`);
+          const parentIds = [...new Set(categoriesWithChildren.map(c => c.parent_id))].filter((id): id is string => id !== null);
+          if (parentIds.length > 0) {
+            query = query.not('id', 'in', `(${parentIds.join(',')})`);
+          }
         }
       }
     }

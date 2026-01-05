@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.151'
-export const VERSION_NAME = 'Null to Undefined Conversion Fix'
+export const VERSION = '3.21.152'
+export const VERSION_NAME = 'Parent ID Array Filter Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.152',
+    name: 'Parent ID Array Filter Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **NULL FILTER**: Added null filtering for parent_id arrays in category hierarchy queries',
+      '📝 **TYPE SAFETY**: Used type predicate filter to ensure only string IDs are passed to Supabase',
+      '✅ **BUILD READY**: Fixed TypeScript string vs null type error in advanced search',
+      '🚀 **CONTEXT MODULE**: Data category repository null-safe parentIds handling'
+    ]
+  },
   {
     version: '3.21.151',
     name: 'Null to Undefined Conversion Fix',
