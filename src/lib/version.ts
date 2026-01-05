@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.155'
-export const VERSION_NAME = 'System Repository Location Transform Fix'
+export const VERSION = '3.21.156'
+export const VERSION_NAME = 'System Criticality Type Cast Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.156',
+    name: 'System Criticality Type Cast Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE CAST**: Added explicit type casting for criticality property in system repository',
+      '📝 **ENUM MATCH**: Cast string criticality to proper enum union type',
+      '✅ **BUILD READY**: Fixed TypeScript criticality type mismatch in system transform',
+      '🚀 **CONTEXT MODULE**: System repository criticality property now properly typed'
+    ]
+  },
   {
     version: '3.21.155',
     name: 'System Repository Location Transform Fix',

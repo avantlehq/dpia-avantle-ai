@@ -89,7 +89,8 @@ export class SystemRepository extends BaseRepository<
     // Transform the data to match System type
     const transformedData: System = {
       ...data,
-      locations: data.locations?.map((loc: any) => loc.physical_locations) || []
+      locations: data.locations?.map((loc: any) => loc.physical_locations) || [],
+      criticality: data.criticality as 'low' | 'medium' | 'high' | 'critical' | null
     };
     
     return transformedData;
