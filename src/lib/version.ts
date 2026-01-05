@@ -1,10 +1,22 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.140'
-export const VERSION_NAME = 'Context Module Integration'
+export const VERSION = '3.21.141'
+export const VERSION_NAME = 'Next.js 16 Compatibility Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.141',
+    name: 'Next.js 16 Compatibility Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **NEXT.JS 16 FIX**: Updated all route handlers for async params compatibility',
+      '📝 **PARAMS ASYNC**: Changed params interface from sync to Promise<{id: string}>',
+      '⚡ **ROUTE HANDLERS**: Fixed GET/PUT/DELETE handlers in all [id] routes',
+      '✅ **BUILD READY**: Resolved TypeScript errors for Next.js 16 deployment',
+      '🚀 **CONTEXT MODULE**: Now fully compatible with Next.js 16 in DPIA platform'
+    ]
+  },
   {
     version: '3.21.140',
     name: 'Context Module Integration',

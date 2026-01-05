@@ -11,9 +11,9 @@ import { withAuth } from '@/lib/api/context/middleware/auth';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 /**
@@ -23,7 +23,7 @@ interface RouteParams {
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
     return await withAuth(async (context) => {
-      const { id } = params;
+      const { id } = await params;
 
       // Initialize context service
       const contextService = new ContextService(context);

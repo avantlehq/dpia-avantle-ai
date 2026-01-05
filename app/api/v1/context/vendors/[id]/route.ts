@@ -15,9 +15,9 @@ import { validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 /**
@@ -27,7 +27,7 @@ interface RouteParams {
 export async function GET(request: NextRequest, { params }: RouteParams) {
   try {
     return await withAuth(async (context) => {
-      const { id } = params;
+      const { id } = await params;
 
       // Initialize context service
       const contextService = new ContextService(context);
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 export async function PUT(request: NextRequest, { params }: RouteParams) {
   try {
     return await withAuth(async (context) => {
-      const { id } = params;
+      const { id } = await params;
 
       // Validate request body
       const body = await request.json();
@@ -84,7 +84,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
   try {
     return await withAuth(async (context) => {
-      const { id } = params;
+      const { id } = await params;
 
       // Initialize context service
       const contextService = new ContextService(context);

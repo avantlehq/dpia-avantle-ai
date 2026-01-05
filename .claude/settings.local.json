@@ -6,7 +6,9 @@
       "Bash(git pull:*)",
       "Bash(dir docs)",
       "Bash(git stash:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": []
