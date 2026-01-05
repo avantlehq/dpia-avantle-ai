@@ -71,7 +71,14 @@ export class ProcessingActivityService {
     }
 
     // Validate business rules
-    await this.validateProcessingActivityData({ ...existingActivity, ...data }, id);
+    const validationData = {
+      ...existingActivity,
+      ...data,
+      description: data.description ?? existingActivity.description,
+      lawful_basis_explanation: data.lawful_basis_explanation ?? existingActivity.lawful_basis_explanation,
+      data_subject_categories: data.data_subject_categories ?? existingActivity.data_subject_categories
+    };
+    await this.validateProcessingActivityData(validationData as any, id);
 
     // Update the activity
     return await this.processingActivityRepo.update(id, data);
