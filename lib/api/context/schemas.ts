@@ -139,7 +139,7 @@ export const SystemSchema = z.object({
   locations: z.array(PhysicalLocationSchema).optional(),
 }).merge(AuditFieldsSchema);
 
-export const DataCategorySchema = z.object({
+export const DataCategorySchema: z.ZodSchema<any> = z.object({
   id: UUIDSchema,
   tenant_id: UUIDSchema,
   workspace_id: UUIDSchema,

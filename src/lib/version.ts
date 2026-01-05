@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.163'
-export const VERSION_NAME = 'Vendor Contracts Type Fix'
+export const VERSION = '3.21.164'
+export const VERSION_NAME = 'DataCategorySchema Circular Reference Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.164',
+    name: 'DataCategorySchema Circular Reference Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **SCHEMA FIX**: Added explicit ZodSchema type annotation to DataCategorySchema',
+      '📝 **TYPE SAFETY**: Fixed circular reference issue in hierarchical schema definition',
+      '✅ **BUILD READY**: Resolved TypeScript implicit any type error in Zod schema',
+      '🚀 **CONTEXT MODULE**: DataCategorySchema now compiles without circular reference errors'
+    ]
+  },
   {
     version: '3.21.163',
     name: 'Vendor Contracts Type Fix',
