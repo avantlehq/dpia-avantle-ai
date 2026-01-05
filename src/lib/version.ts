@@ -1,22 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.2.0' 
-export const VERSION_NAME = 'Premium Design Upgrade'
+export const VERSION = '1.2.1' 
+export const VERSION_NAME = 'Design Revert'
 
 export const CHANGELOG = [
   {
-    version: '1.2.0',
-    name: 'Premium Design Upgrade',
+    version: '1.2.1',
+    name: 'Design Revert',
     date: '2026-01-05',
     changes: [
-      '🎨 **PREMIUM TYPOGRAPHY**: Upgraded to Inter variable fonts with tighter letter-spacing (-0.025em)',
-      '✨ **GRADIENT BUTTONS**: Added premium gradient buttons with hover glow effects',
-      '🎯 **MULTI-COLOR ICONS**: Upgraded icons with gradient backgrounds and hover animations',
-      '🌑 **DARK NAVY BACKGROUND**: Implemented premium #050505 background with subtle mesh texture',
-      '🔮 **GLOW EFFECTS**: Added blue, purple, green, and orange glow shadows for interactive elements',
-      '⚡ **SMOOTH ANIMATIONS**: Enhanced transitions with 300ms duration and scale effects',
-      '🎭 **MESH GRADIENTS**: Added radial gradient overlays for depth and visual interest'
+      '↩️ **DESIGN REVERT**: Reverted all premium design changes back to standard layout',
+      '🎨 **TYPOGRAPHY**: Restored standard Inter fonts without variable font configuration',
+      '🔵 **BUTTONS**: Reverted to simple blue/outline button styling',
+      '📐 **ICONS**: Restored simple flat icon design with standard colors',
+      '🌫️ **BACKGROUND**: Reverted back to original dark grey (#192734) background',
+      '✨ **CLEAN DESIGN**: Returned to proven, stable design system'
     ]
   },
   {

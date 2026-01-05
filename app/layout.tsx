@@ -3,11 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { cn } from '../lib/utils'
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Avantle.ai — Platform for Secure AI Agents',
@@ -33,8 +29,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={cn(
-        inter.variable,
-        "min-h-screen bg-background font-sans antialiased tracking-tight"
+        inter.className,
+        "min-h-screen bg-background font-sans antialiased"
       )}>
         {children}
       </body>

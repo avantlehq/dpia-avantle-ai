@@ -19,13 +19,6 @@ const config: Config = {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-      },
-      letterSpacing: {
-        tight: '-0.025em',
-        tighter: '-0.05em',
-      },
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
