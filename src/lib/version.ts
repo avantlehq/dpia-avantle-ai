@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.146'
-export const VERSION_NAME = 'Error Cause TypeScript Fix'
+export const VERSION = '3.21.147'
+export const VERSION_NAME = 'Data Category Type Transform Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.147',
+    name: 'Data Category Type Transform Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE TRANSFORM**: Fixed DataCategory children property type mismatch',
+      '📝 **DATA MAPPING**: Added proper transformation from Supabase response to DataCategory type',
+      '✅ **BUILD READY**: TypeScript type conversion error resolved',
+      '🚀 **CONTEXT MODULE**: Data category repository now fully type-safe'
+    ]
+  },
   {
     version: '3.21.146',
     name: 'Error Cause TypeScript Fix',
