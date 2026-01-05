@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.154'
-export const VERSION_NAME = 'Advanced Search Array Types Fix'
+export const VERSION = '3.21.155'
+export const VERSION_NAME = 'System Repository Location Transform Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.155',
+    name: 'System Repository Location Transform Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **DATA TRANSFORM**: Fixed location data transformation in system repository',
+      '📝 **TYPE MAPPING**: Properly map nested location data from system_locations to PhysicalLocation[]',
+      '✅ **BUILD READY**: Fixed TypeScript type mismatch in system with relations query',
+      '🚀 **CONTEXT MODULE**: System repository findByIdWithRelations now properly transforms data'
+    ]
+  },
   {
     version: '3.21.154',
     name: 'Advanced Search Array Types Fix',

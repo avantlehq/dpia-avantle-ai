@@ -86,7 +86,13 @@ export class SystemRepository extends BaseRepository<
       throw new Error(`Failed to fetch system with relations: ${error.message}`);
     }
 
-    return data as System;
+    // Transform the data to match System type
+    const transformedData: System = {
+      ...data,
+      locations: data.locations?.map((loc: any) => loc.physical_locations) || []
+    };
+    
+    return transformedData;
   }
 
   /**
