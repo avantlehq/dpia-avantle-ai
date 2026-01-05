@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.139" as const
-export const VERSION_NAME = "🔄 RESTORED: Beautiful DPIA Platform - Original Architecture Recovered" as const
+export const VERSION = "3.21.140" as const
+export const VERSION_NAME = "📚 DOCS COMPLETE: Microservices Strategy + Context Schema + Build Fix" as const
 export const BUILD_DATE = "2026-01-05"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.140": {
+    date: "2026-01-05", 
+    name: "📚 DOCS COMPLETE: Microservices Strategy + Context Schema + Build Fix",
+    features: [
+      "COMPREHENSIVE DOCUMENTATION UPDATE: Updated CLAUDE.md with complete microservices product strategy and evolution roadmap",
+      "CONTEXT MODULE SCHEMA: Added complete database schema to docs/data-model.md for future context.avantle.ai backend service",
+      "MICROSERVICES ARCHITECTURE: Documented API integration patterns and cross-service authentication flow in docs/architecture.md",
+      "PRODUCT PORTFOLIO VISION: Clear documentation of standalone products - Privacy, Risk, Inventory, Controls, Training",
+      "DATABASE SEPARATION STRATEGY: Documented per-service database separation for microservices evolution",
+      "BUILD FIX: Removed unused FileText import to resolve ESLint build error",
+      "DOCUMENTATION SYNC: All documentation aligned with current architecture and future microservices strategy",
+      "API INTEGRATION PATTERNS: Comprehensive documentation of frontend-to-backend service communication"
+    ]
+  },
   "3.21.139": {
     date: "2026-01-05", 
     name: "🔄 RESTORED: Beautiful DPIA Platform - Original Architecture Recovered",
