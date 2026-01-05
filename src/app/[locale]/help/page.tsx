@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { 
   HelpCircle, 
   Mail, 
-  FileText, 
   MessageCircle, 
   BookOpen,
   Video,
