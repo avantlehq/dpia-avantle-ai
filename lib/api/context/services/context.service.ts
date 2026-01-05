@@ -79,7 +79,11 @@ export class ContextService {
   }> {
     try {
       const result = await this.dataCategories.seedStandardCategories();
-      return result;
+      return {
+        success: result.success,
+        message: result.message,
+        categories_created: result.created_count
+      };
     } catch (error) {
       return {
         success: false,

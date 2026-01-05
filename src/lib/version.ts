@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.164'
-export const VERSION_NAME = 'DataCategorySchema Circular Reference Fix'
+export const VERSION = '3.21.165'
+export const VERSION_NAME = 'Context Service Property Mapping Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.165',
+    name: 'Context Service Property Mapping Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **PROPERTY MAPPING**: Fixed property name mismatch from created_count to categories_created',
+      '📝 **TYPE SAFETY**: Properly map repository response to service interface',
+      '✅ **BUILD READY**: Fixed TypeScript property missing error in context service',
+      '🚀 **CONTEXT MODULE**: Context service initializeWorkspace now properly maps response'
+    ]
+  },
   {
     version: '3.21.164',
     name: 'DataCategorySchema Circular Reference Fix',
