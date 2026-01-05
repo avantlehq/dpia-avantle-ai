@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.172'
-export const VERSION_NAME = 'Processing Activity Service Type Fix'
+export const VERSION = '3.21.173'
+export const VERSION_NAME = 'Lawful Basis Type Cast Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.173',
+    name: 'Lawful Basis Type Cast Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE CAST**: Added explicit type casting for lawfulBasis parameter in processing activity service',
+      '📝 **ENUM MATCH**: Cast validated string to proper lawful basis union type',
+      '✅ **BUILD READY**: Fixed TypeScript string vs enum type error in getActivitiesByLawfulBasis',
+      '🚀 **CONTEXT MODULE**: Processing activity service lawful basis lookup now type-safe'
+    ]
+  },
   {
     version: '3.21.172',
     name: 'Processing Activity Service Type Fix',

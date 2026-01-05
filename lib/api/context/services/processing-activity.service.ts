@@ -124,7 +124,7 @@ export class ProcessingActivityService {
       throw new Error(`Invalid lawful basis. Must be one of: ${validBases.join(', ')}`);
     }
 
-    return await this.processingActivityRepo.findByLawfulBasis(lawfulBasis);
+    return await this.processingActivityRepo.findByLawfulBasis(lawfulBasis as 'consent' | 'contract' | 'legal_obligation' | 'vital_interests' | 'public_task' | 'legitimate_interests');
   }
 
   /**
