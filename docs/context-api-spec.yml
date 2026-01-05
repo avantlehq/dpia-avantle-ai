@@ -1,0 +1,1579 @@
+openapi: 3.0.3
+info:
+  title: DPIA Context Module API
+  description: |
+    API for managing GDPR context data including jurisdictions, locations, vendors, 
+    systems, data categories, processing activities, and cross-border transfers.
+    
+    **Multi-tenant Architecture:**
+    - All endpoints are tenant/workspace scoped
+    - Authentication via JWT with tenant_id and workspace_id claims
+    - Row Level Security (RLS) enforced at database level
+    
+    **Core Entities:**
+    - **Jurisdictions**: Global reference data for countries and GDPR adequacy
+    - **Physical Locations**: Tenant-scoped data centers, offices, facilities  
+    - **Vendors**: External service providers and processors
+    - **Systems**: Internal/external IT systems and applications
+    - **Data Categories**: GDPR data classification hierarchy
+    - **Processing Activities**: Core GDPR processing records
+    - **Data Flows**: Cross-system data movement mapping
+    - **Cross-border Transfers**: International data transfer compliance
+    
+  version: 1.0.0
+  contact:
+    name: Avantle DPIA Platform
+    url: https://dpia.avantle.ai
+
+servers:
+  - url: https://dpia.avantle.ai/api/v1
+    description: Production server
+  - url: http://localhost:3000/api/v1
+    description: Development server
+
+security:
+  - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT token from core.avantle.ai with claims:
+        - tenant_id: UUID of the tenant
+        - workspace_id: UUID of the workspace
+        - sub: UUID of the user
+
+  schemas:
+    # Base types
+    UUID:
+      type: string
+      format: uuid
+      example: "550e8400-e29b-41d4-a716-446655440000"
+    
+    Timestamp:
+      type: string
+      format: date-time
+      example: "2024-01-15T10:30:00Z"
+    
+    Date:
+      type: string
+      format: date
+      example: "2024-01-15"
+
+    # Enums
+    LawfulBasis:
+      type: string
+      enum: [consent, contract, legal_obligation, vital_interests, public_task, legitimate_interests]
+      description: GDPR Article 6 lawful basis for processing
+    
+    SpecialCategoryBasis:
+      type: string
+      enum: [explicit_consent, employment, vital_interests, public_interest, healthcare, research, legal_claims]
+      description: GDPR Article 9 basis for special category data
+    
+    DataCategoryType:
+      type: string
+      enum: [personal, special, criminal, anonymous]
+      description: Type of personal data category
+    
+    DataSensitivity:
+      type: string
+      enum: [public, internal, confidential, restricted]
+      description: Internal data sensitivity classification
+    
+    EndpointType:
+      type: string
+      enum: [api, database, file_share, email, web_interface, other]
+      description: Type of system endpoint
+    
+    VendorRole:
+      type: string
+      enum: [processor, joint_controller, recipient, sub_processor]
+      description: GDPR role of vendor in processing
+    
+    TransferMechanism:
+      type: string
+      enum: [adequacy_decision, standard_contractual_clauses, binding_corporate_rules, derogation, other]
+      description: Legal mechanism for international data transfer
+    
+    FlowDirection:
+      type: string
+      enum: [inbound, outbound, bidirectional, internal]
+      description: Direction of data flow
+
+    # Audit fields
+    AuditFields:
+      type: object
+      properties:
+        created_at:
+          $ref: '#/components/schemas/Timestamp'
+        updated_at:
+          $ref: '#/components/schemas/Timestamp'
+        created_by:
+          $ref: '#/components/schemas/UUID'
+        updated_by:
+          $ref: '#/components/schemas/UUID'
+        deleted_at:
+          allOf:
+            - $ref: '#/components/schemas/Timestamp'
+            - nullable: true
+
+    # Error responses
+    Error:
+      type: object
+      required: [error, message]
+      properties:
+        error:
+          type: string
+          example: "VALIDATION_ERROR"
+        message:
+          type: string
+          example: "Name is required"
+        details:
+          type: object
+          additionalProperties: true
+
+    ValidationError:
+      allOf:
+        - $ref: '#/components/schemas/Error'
+        - type: object
+          properties:
+            fields:
+              type: object
+              additionalProperties:
+                type: array
+                items:
+                  type: string
+
+    # Core entities
+    Jurisdiction:
+      type: object
+      required: [id, country_code, name_en, name_sk, gdpr_adequacy]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        country_code:
+          type: string
+          pattern: '^[A-Z]{2}$'
+          example: "SK"
+          description: ISO 3166-1 alpha-2 country code
+        name_en:
+          type: string
+          example: "Slovakia"
+        name_sk:
+          type: string
+          example: "Slovensko"
+        gdpr_adequacy:
+          type: boolean
+          description: Whether jurisdiction has EU adequacy decision
+        supervisory_authority:
+          type: string
+          nullable: true
+          example: "Office for Personal Data Protection of the Slovak Republic"
+
+    PhysicalLocation:
+      type: object
+      required: [id, tenant_id, workspace_id, name, jurisdiction_id]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "Bratislava Data Center"
+        description:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        jurisdiction_id:
+          $ref: '#/components/schemas/UUID'
+        jurisdiction:
+          $ref: '#/components/schemas/Jurisdiction'
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    Vendor:
+      type: object
+      required: [id, tenant_id, workspace_id, name]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "AWS Europe"
+        description:
+          type: string
+          nullable: true
+        website:
+          type: string
+          nullable: true
+          format: uri
+        contact_email:
+          type: string
+          nullable: true
+          format: email
+        primary_contact:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+        contracts:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorContract'
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhysicalLocation'
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    VendorContract:
+      type: object
+      required: [id, tenant_id, workspace_id, vendor_id, contract_type, start_date]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        vendor_id:
+          $ref: '#/components/schemas/UUID'
+        contract_type:
+          type: string
+          example: "Data Processing Agreement"
+        reference_number:
+          type: string
+          nullable: true
+        start_date:
+          $ref: '#/components/schemas/Date'
+        end_date:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+            - nullable: true
+        review_date:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+            - nullable: true
+        status:
+          type: string
+          enum: [draft, active, expired, terminated]
+          default: draft
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    System:
+      type: object
+      required: [id, tenant_id, workspace_id, name]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "Customer Management System"
+        description:
+          type: string
+          nullable: true
+        system_type:
+          type: string
+          nullable: true
+          example: "CRM"
+        owner_team:
+          type: string
+          nullable: true
+        technical_contact:
+          type: string
+          nullable: true
+        business_contact:
+          type: string
+          nullable: true
+        criticality:
+          type: string
+          enum: [low, medium, high, critical]
+          nullable: true
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/SystemEndpoint'
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhysicalLocation'
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    SystemEndpoint:
+      type: object
+      required: [id, tenant_id, workspace_id, system_id, name, endpoint_type]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        system_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "Customer API"
+        endpoint_type:
+          $ref: '#/components/schemas/EndpointType'
+        url:
+          type: string
+          nullable: true
+          format: uri
+        description:
+          type: string
+          nullable: true
+        authentication_method:
+          type: string
+          nullable: true
+        encryption_in_transit:
+          type: boolean
+          default: false
+        encryption_at_rest:
+          type: boolean
+          default: false
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    DataCategory:
+      type: object
+      required: [id, tenant_id, workspace_id, name, category_type, sensitivity]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "Contact Information"
+        description:
+          type: string
+          nullable: true
+        category_type:
+          $ref: '#/components/schemas/DataCategoryType'
+        sensitivity:
+          $ref: '#/components/schemas/DataSensitivity'
+        special_category_basis:
+          allOf:
+            - $ref: '#/components/schemas/SpecialCategoryBasis'
+            - nullable: true
+        is_standard:
+          type: boolean
+          default: false
+          description: Whether this is a standard GDPR category
+        parent_id:
+          allOf:
+            - $ref: '#/components/schemas/UUID'
+            - nullable: true
+        parent:
+          allOf:
+            - $ref: '#/components/schemas/DataCategory'
+            - nullable: true
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataCategory'
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    ProcessingActivity:
+      type: object
+      required: [id, tenant_id, workspace_id, name, purpose, lawful_basis]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "Customer Registration"
+        description:
+          type: string
+          nullable: true
+        purpose:
+          type: string
+          example: "Processing customer account registrations"
+        lawful_basis:
+          $ref: '#/components/schemas/LawfulBasis'
+        lawful_basis_explanation:
+          type: string
+          nullable: true
+        data_subject_categories:
+          type: string
+          nullable: true
+        special_category_basis:
+          allOf:
+            - $ref: '#/components/schemas/SpecialCategoryBasis'
+            - nullable: true
+        automated_decision_making:
+          type: boolean
+          default: false
+        profiling:
+          type: boolean
+          default: false
+        data_source:
+          type: string
+          nullable: true
+        dpo_review_required:
+          type: boolean
+          default: false
+        review_date:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+            - nullable: true
+        last_review_date:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+            - nullable: true
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+        systems:
+          type: array
+          items:
+            type: object
+            properties:
+              system:
+                $ref: '#/components/schemas/System'
+              role:
+                type: string
+                enum: [primary, secondary, backup]
+        data_categories:
+          type: array
+          items:
+            type: object
+            properties:
+              data_category:
+                $ref: '#/components/schemas/DataCategory'
+              necessity_justification:
+                type: string
+                nullable: true
+        vendors:
+          type: array
+          items:
+            type: object
+            properties:
+              vendor:
+                $ref: '#/components/schemas/Vendor'
+              role:
+                $ref: '#/components/schemas/VendorRole'
+              contract_required:
+                type: boolean
+                default: true
+        retention_policies:
+          type: array
+          items:
+            type: object
+            properties:
+              retention_policy:
+                $ref: '#/components/schemas/RetentionPolicy'
+              applies_to_category:
+                type: string
+                nullable: true
+        data_flows:
+          type: array
+          items:
+            type: object
+            properties:
+              data_flow:
+                $ref: '#/components/schemas/DataFlow'
+              flow_purpose:
+                type: string
+                nullable: true
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    RetentionPolicy:
+      type: object
+      required: [id, tenant_id, workspace_id, name, retention_criteria]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "Customer Data Retention"
+        description:
+          type: string
+          nullable: true
+        retention_period_years:
+          type: integer
+          minimum: 0
+          nullable: true
+        retention_period_months:
+          type: integer
+          minimum: 0
+          nullable: true
+        retention_criteria:
+          type: string
+          example: "Retain for 7 years after contract termination"
+        disposal_method:
+          type: string
+          nullable: true
+        legal_basis_for_retention:
+          type: string
+          nullable: true
+        review_frequency_months:
+          type: integer
+          default: 12
+          minimum: 1
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    DataFlow:
+      type: object
+      required: [id, tenant_id, workspace_id, name, flow_direction]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          type: string
+          example: "Customer Data Sync"
+        description:
+          type: string
+          nullable: true
+        purpose:
+          type: string
+          nullable: true
+        flow_direction:
+          $ref: '#/components/schemas/FlowDirection'
+        frequency:
+          type: string
+          nullable: true
+        volume_estimate:
+          type: string
+          nullable: true
+        criticality:
+          type: string
+          enum: [low, medium, high, critical]
+          nullable: true
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataFlowEdge'
+        data_categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataCategory'
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    DataFlowEdge:
+      type: object
+      required: [id, tenant_id, workspace_id, data_flow_id, edge_order]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        data_flow_id:
+          $ref: '#/components/schemas/UUID'
+        from_system_id:
+          allOf:
+            - $ref: '#/components/schemas/UUID'
+            - nullable: true
+        from_vendor_id:
+          allOf:
+            - $ref: '#/components/schemas/UUID'
+            - nullable: true
+        to_system_id:
+          allOf:
+            - $ref: '#/components/schemas/UUID'
+            - nullable: true
+        to_vendor_id:
+          allOf:
+            - $ref: '#/components/schemas/UUID'
+            - nullable: true
+        from_system:
+          allOf:
+            - $ref: '#/components/schemas/System'
+            - nullable: true
+        from_vendor:
+          allOf:
+            - $ref: '#/components/schemas/Vendor'
+            - nullable: true
+        to_system:
+          allOf:
+            - $ref: '#/components/schemas/System'
+            - nullable: true
+        to_vendor:
+          allOf:
+            - $ref: '#/components/schemas/Vendor'
+            - nullable: true
+        edge_order:
+          type: integer
+          minimum: 0
+          default: 0
+        description:
+          type: string
+          nullable: true
+        encryption_in_transit:
+          type: boolean
+          default: false
+        authentication_required:
+          type: boolean
+          default: true
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+        cross_border_transfer:
+          allOf:
+            - $ref: '#/components/schemas/CrossBorderTransfer'
+            - nullable: true
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    CrossBorderTransfer:
+      type: object
+      required: [id, tenant_id, workspace_id, data_flow_edge_id, exporter_jurisdiction_id, importer_jurisdiction_id, transfer_mechanism]
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        tenant_id:
+          $ref: '#/components/schemas/UUID'
+        workspace_id:
+          $ref: '#/components/schemas/UUID'
+        data_flow_edge_id:
+          $ref: '#/components/schemas/UUID'
+        exporter_jurisdiction_id:
+          $ref: '#/components/schemas/UUID'
+        importer_jurisdiction_id:
+          $ref: '#/components/schemas/UUID'
+        exporter_jurisdiction:
+          $ref: '#/components/schemas/Jurisdiction'
+        importer_jurisdiction:
+          $ref: '#/components/schemas/Jurisdiction'
+        transfer_mechanism:
+          $ref: '#/components/schemas/TransferMechanism'
+        adequacy_decision_ref:
+          type: string
+          nullable: true
+        safeguards_description:
+          type: string
+          nullable: true
+        tia_required:
+          type: boolean
+          default: false
+          description: Transfer Impact Assessment required
+        tia_reference:
+          type: string
+          nullable: true
+        tia_completed_date:
+          allOf:
+            - $ref: '#/components/schemas/Date'
+            - nullable: true
+        derogation_justification:
+          type: string
+          nullable: true
+        risk_assessment_completed:
+          type: boolean
+          default: false
+        status:
+          type: string
+          enum: [active, inactive]
+          default: active
+      allOf:
+        - $ref: '#/components/schemas/AuditFields'
+
+    # Request/Response DTOs
+    CreatePhysicalLocationRequest:
+      type: object
+      required: [name, jurisdiction_id]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 1000
+        address:
+          type: string
+          maxLength: 500
+        city:
+          type: string
+          maxLength: 100
+        jurisdiction_id:
+          $ref: '#/components/schemas/UUID'
+
+    UpdatePhysicalLocationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 1000
+        address:
+          type: string
+          maxLength: 500
+        city:
+          type: string
+          maxLength: 100
+        jurisdiction_id:
+          $ref: '#/components/schemas/UUID'
+        status:
+          type: string
+          enum: [active, inactive]
+
+    CreateVendorRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 1000
+        website:
+          type: string
+          format: uri
+          maxLength: 500
+        contact_email:
+          type: string
+          format: email
+          maxLength: 255
+        primary_contact:
+          type: string
+          maxLength: 255
+
+    CreateSystemRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 1000
+        system_type:
+          type: string
+          maxLength: 100
+        owner_team:
+          type: string
+          maxLength: 255
+        technical_contact:
+          type: string
+          maxLength: 255
+        business_contact:
+          type: string
+          maxLength: 255
+        criticality:
+          type: string
+          enum: [low, medium, high, critical]
+
+    CreateDataCategoryRequest:
+      type: object
+      required: [name, category_type, sensitivity]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 1000
+        category_type:
+          $ref: '#/components/schemas/DataCategoryType'
+        sensitivity:
+          $ref: '#/components/schemas/DataSensitivity'
+        special_category_basis:
+          $ref: '#/components/schemas/SpecialCategoryBasis'
+        parent_id:
+          $ref: '#/components/schemas/UUID'
+
+    CreateProcessingActivityRequest:
+      type: object
+      required: [name, purpose, lawful_basis]
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 1000
+        purpose:
+          type: string
+          minLength: 1
+          maxLength: 1000
+        lawful_basis:
+          $ref: '#/components/schemas/LawfulBasis'
+        lawful_basis_explanation:
+          type: string
+          maxLength: 1000
+        data_subject_categories:
+          type: string
+          maxLength: 500
+        special_category_basis:
+          $ref: '#/components/schemas/SpecialCategoryBasis'
+        automated_decision_making:
+          type: boolean
+        profiling:
+          type: boolean
+        data_source:
+          type: string
+          maxLength: 500
+        dpo_review_required:
+          type: boolean
+        review_date:
+          $ref: '#/components/schemas/Date'
+
+    # List responses with pagination
+    PaginationMetadata:
+      type: object
+      properties:
+        page:
+          type: integer
+          minimum: 1
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+        total:
+          type: integer
+          minimum: 0
+        pages:
+          type: integer
+          minimum: 0
+
+    JurisdictionList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Jurisdiction'
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+
+    PhysicalLocationList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhysicalLocation'
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+
+    VendorList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vendor'
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+
+    SystemList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/System'
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+
+    DataCategoryList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataCategory'
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+
+    ProcessingActivityList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessingActivity'
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+
+  parameters:
+    PageParam:
+      name: page
+      in: query
+      description: Page number (1-based)
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+
+    LimitParam:
+      name: limit
+      in: query
+      description: Number of items per page
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+    StatusParam:
+      name: status
+      in: query
+      description: Filter by status
+      required: false
+      schema:
+        type: string
+        enum: [active, inactive]
+
+    SearchParam:
+      name: search
+      in: query
+      description: Search term for name/description
+      required: false
+      schema:
+        type: string
+        maxLength: 100
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+
+    Unauthorized:
+      description: Unauthorized - Invalid or missing JWT token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Forbidden:
+      description: Forbidden - Insufficient permissions for tenant/workspace
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    Conflict:
+      description: Conflict - Resource already exists or constraint violation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+# API ENDPOINTS
+paths:
+  # Jurisdictions (Global, read-only)
+  /jurisdictions:
+    get:
+      summary: List all jurisdictions
+      description: |
+        Get all available jurisdictions with GDPR adequacy status.
+        This is global reference data, not tenant-scoped.
+      tags: [Jurisdictions]
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - name: gdpr_adequacy
+          in: query
+          description: Filter by GDPR adequacy status
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of jurisdictions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JurisdictionList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /jurisdictions/{id}:
+    get:
+      summary: Get jurisdiction by ID
+      description: Get a specific jurisdiction by ID
+      tags: [Jurisdictions]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: Jurisdiction details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Jurisdiction'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  # Physical Locations
+  /locations:
+    get:
+      summary: List physical locations
+      description: Get all physical locations for the current tenant/workspace
+      tags: [Physical Locations]
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/StatusParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - name: jurisdiction_id
+          in: query
+          description: Filter by jurisdiction
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: List of physical locations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhysicalLocationList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      summary: Create physical location
+      description: Create a new physical location
+      tags: [Physical Locations]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePhysicalLocationRequest'
+      responses:
+        '201':
+          description: Physical location created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhysicalLocation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /locations/{id}:
+    get:
+      summary: Get physical location by ID
+      tags: [Physical Locations]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: Physical location details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhysicalLocation'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    put:
+      summary: Update physical location
+      tags: [Physical Locations]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePhysicalLocationRequest'
+      responses:
+        '200':
+          description: Physical location updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhysicalLocation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    delete:
+      summary: Delete physical location
+      description: Soft delete a physical location
+      tags: [Physical Locations]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '204':
+          description: Physical location deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  # Vendors
+  /vendors:
+    get:
+      summary: List vendors
+      description: Get all vendors for the current tenant/workspace
+      tags: [Vendors]
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/StatusParam'
+        - $ref: '#/components/parameters/SearchParam'
+      responses:
+        '200':
+          description: List of vendors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      summary: Create vendor
+      description: Create a new vendor
+      tags: [Vendors]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVendorRequest'
+      responses:
+        '201':
+          description: Vendor created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /vendors/{id}:
+    get:
+      summary: Get vendor by ID
+      tags: [Vendors]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+        - name: include
+          in: query
+          description: Include related data
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [contracts, locations]
+          style: form
+          explode: false
+      responses:
+        '200':
+          description: Vendor details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  # Systems
+  /systems:
+    get:
+      summary: List systems
+      description: Get all systems for the current tenant/workspace
+      tags: [Systems]
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/StatusParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - name: criticality
+          in: query
+          description: Filter by criticality
+          schema:
+            type: string
+            enum: [low, medium, high, critical]
+      responses:
+        '200':
+          description: List of systems
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      summary: Create system
+      description: Create a new system
+      tags: [Systems]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSystemRequest'
+      responses:
+        '201':
+          description: System created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  # Data Categories
+  /data-categories:
+    get:
+      summary: List data categories
+      description: Get all data categories for the current tenant/workspace
+      tags: [Data Categories]
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/StatusParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - name: category_type
+          in: query
+          description: Filter by category type
+          schema:
+            $ref: '#/components/schemas/DataCategoryType'
+        - name: sensitivity
+          in: query
+          description: Filter by sensitivity
+          schema:
+            $ref: '#/components/schemas/DataSensitivity'
+        - name: is_standard
+          in: query
+          description: Filter by standard categories
+          schema:
+            type: boolean
+        - name: parent_id
+          in: query
+          description: Filter by parent category
+          schema:
+            $ref: '#/components/schemas/UUID'
+      responses:
+        '200':
+          description: List of data categories
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataCategoryList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      summary: Create data category
+      description: Create a new data category
+      tags: [Data Categories]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataCategoryRequest'
+      responses:
+        '201':
+          description: Data category created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataCategory'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /data-categories/seed-standard:
+    post:
+      summary: Seed standard GDPR data categories
+      description: |
+        Create standard GDPR data categories for the current tenant/workspace.
+        This operation is idempotent and will not create duplicates.
+      tags: [Data Categories]
+      responses:
+        '201':
+          description: Standard categories seeded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Standard GDPR data categories seeded successfully"
+                  created_count:
+                    type: integer
+                    example: 15
+        '409':
+          description: Standard categories already exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  # Processing Activities
+  /processing-activities:
+    get:
+      summary: List processing activities
+      description: Get all processing activities for the current tenant/workspace
+      tags: [Processing Activities]
+      parameters:
+        - $ref: '#/components/parameters/PageParam'
+        - $ref: '#/components/parameters/LimitParam'
+        - $ref: '#/components/parameters/StatusParam'
+        - $ref: '#/components/parameters/SearchParam'
+        - name: lawful_basis
+          in: query
+          description: Filter by lawful basis
+          schema:
+            $ref: '#/components/schemas/LawfulBasis'
+        - name: dpo_review_required
+          in: query
+          description: Filter by DPO review requirement
+          schema:
+            type: boolean
+        - name: review_overdue
+          in: query
+          description: Filter by overdue reviews
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of processing activities
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingActivityList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+    post:
+      summary: Create processing activity
+      description: Create a new processing activity
+      tags: [Processing Activities]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProcessingActivityRequest'
+      responses:
+        '201':
+          description: Processing activity created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingActivity'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /processing-activities/{id}:
+    get:
+      summary: Get processing activity by ID
+      tags: [Processing Activities]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/UUID'
+        - name: include
+          in: query
+          description: Include related data
+          schema:
+            type: array
+            items:
+              type: string
+              enum: [systems, data_categories, vendors, retention_policies, data_flows]
+          style: form
+          explode: false
+      responses:
+        '200':
+          description: Processing activity details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessingActivity'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+tags:
+  - name: Jurisdictions
+    description: Global jurisdiction and GDPR adequacy reference data
+  - name: Physical Locations
+    description: Manage data centers, offices, and physical facilities
+  - name: Vendors
+    description: Manage external service providers and processors
+  - name: Systems
+    description: Manage internal and external IT systems
+  - name: Data Categories
+    description: Manage GDPR data classification hierarchy
+  - name: Processing Activities
+    description: Manage GDPR Article 30 processing records

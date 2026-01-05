@@ -200,12 +200,12 @@ git add . && git commit -m "message" && git push origin main
 
 ### File Structure
 ```
-avantle-ai/
+dpia-avantle-ai/
 ├── app/
-│   ├── admin/                 # Platform Admin Console
-│   ├── partners/              # Partner Portal  
+│   ├── platform/              # Platform information pages
+│   ├── privacy/               # Privacy by Design content  
 │   ├── login/                 # Authentication
-│   ├── unauthorized/          # Access denied
+│   ├── partners/              # Partner management (admin)
 │   └── changelog/             # Version history
 ├── components/
 │   ├── admin/                 # Admin-specific components
@@ -213,7 +213,11 @@ avantle-ai/
 │   └── site-footer.tsx        # Footer with version
 ├── lib/
 │   ├── api/core-client.ts     # Core API integration
-│   └── auth.ts                # Authentication utilities
+│   ├── auth.ts                # Authentication utilities
+│   └── i18n/                  # Internationalization
+├── docs/                      # Technical Documentation
+│   ├── README.md              # Documentation overview
+│   └── data-model.md          # Complete data model specs
 └── src/lib/version.ts         # Version management
 ```
 
@@ -267,6 +271,12 @@ avantle-ai/
 - **CORE INTEGRATION**: Fully connected to deployed core-avantle-ai API
 - **VERSION SYSTEM**: Complete version management with changelog page
 - **BUSINESS READY**: Full multi-tenant partner and tenant management capabilities
+
+### **CURRENT PHASE: DPIA BUSINESS LOGIC DEVELOPMENT**
+- **DATA MODEL DOCUMENTATION**: Complete technical specifications in `/docs/data-model.md`
+- **CONTEXT MODULE**: Designing DPIA Context data structures and workflows
+- **BUSINESS FOCUS**: Implementing actual DPIA assessment functionality
+- **ARCHITECTURE**: Separating Control Plane integration from DPIA business logic
 
 ### **FUTURE ENHANCEMENT OPPORTUNITIES**
 
