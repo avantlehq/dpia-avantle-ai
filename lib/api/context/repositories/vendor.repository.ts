@@ -15,7 +15,8 @@ import type {
   ContextClaims, 
   ListQueryParams,
   UUID,
-  EntityStatus
+  EntityStatus,
+  ContractStatus
 } from '../types';
 import { BaseRepository } from './base.repository';
 
@@ -76,7 +77,11 @@ export class VendorRepository extends BaseRepository<
     const transformedData: Vendor = {
       ...data,
       locations: data.locations?.map((loc: any) => loc.physical_locations) || [],
-      status: data.status as EntityStatus
+      status: data.status as EntityStatus,
+      contracts: data.contracts?.map((contract: any) => ({
+        ...contract,
+        status: contract.status as ContractStatus
+      })) || []
     };
     
     return transformedData;
