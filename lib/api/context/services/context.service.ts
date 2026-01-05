@@ -293,7 +293,7 @@ export class ContextService {
     
     const activitiesWithoutSystems = await this.processingActivityRepo.findMany({});
     
-    activitiesWithoutSystems.forEach(activity => {
+    activitiesWithoutSystems.data.forEach(activity => {
       issues.push({
         type: 'warning',
         category: 'processing_activities',

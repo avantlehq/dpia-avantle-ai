@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.167'
-export const VERSION_NAME = 'Protected Method Access Fix'
+export const VERSION = '3.21.168'
+export const VERSION_NAME = 'PaginatedResponse Data Access Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.168',
+    name: 'PaginatedResponse Data Access Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **DATA ACCESS FIX**: Fixed PaginatedResponse data property access in context service',
+      '📝 **OBJECT PROPERTY**: Changed from direct forEach to activitiesWithoutSystems.data.forEach',
+      '✅ **BUILD READY**: Fixed TypeScript forEach method access error on PaginatedResponse',
+      '🚀 **CONTEXT MODULE**: Context service compliance checking now properly accesses paginated data'
+    ]
+  },
   {
     version: '3.21.167',
     name: 'Protected Method Access Fix',
