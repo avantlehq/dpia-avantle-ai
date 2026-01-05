@@ -373,7 +373,7 @@ export class SystemRepository extends BaseRepository<
   /**
    * Get endpoints by type
    */
-  async getEndpointsByType(systemId: UUID, endpointType: string): Promise<SystemEndpoint[]> {
+  async getEndpointsByType(systemId: UUID, endpointType: EndpointType): Promise<SystemEndpoint[]> {
     const { data, error } = await this.client
       .from('system_endpoints')
       .select('*')

@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.159'
-export const VERSION_NAME = 'Endpoints Type Transform Fix'
+export const VERSION = '3.21.160'
+export const VERSION_NAME = 'Endpoint Type Parameter Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.160',
+    name: 'Endpoint Type Parameter Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **PARAMETER FIX**: Fixed endpointType parameter type in getEndpointsByType method',
+      '📝 **TYPE SAFETY**: Changed string parameter to EndpointType enum for type safety',
+      '✅ **BUILD READY**: Fixed TypeScript endpoint type parameter mismatch',
+      '🚀 **CONTEXT MODULE**: System repository getEndpointsByType now properly typed'
+    ]
+  },
   {
     version: '3.21.159',
     name: 'Endpoints Type Transform Fix',
