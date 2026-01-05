@@ -8,6 +8,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Database } from '../database.types';
 import type { ContextClaims } from '../types';
+import { EntityStatus } from '../types';
 
 import { JurisdictionRepository } from '../repositories/jurisdiction.repository';
 import { PhysicalLocationRepository } from '../repositories/physical-location.repository';
@@ -120,11 +121,11 @@ export class ContextService {
         activitiesCount,
         processingStats
       ] = await Promise.all([
-        this.physicalLocationRepo.count({ status: 'active' }),
-        this.vendorRepo.count({ status: 'active' }),
-        this.systemRepo.count({ status: 'active' }),
-        this.dataCategoryRepo.count({ status: 'active' }),
-        this.processingActivityRepo.count({ status: 'active' }),
+        this.physicalLocationRepo.count({ status: EntityStatus.ACTIVE }),
+        this.vendorRepo.count({ status: EntityStatus.ACTIVE }),
+        this.systemRepo.count({ status: EntityStatus.ACTIVE }),
+        this.dataCategoryRepo.count({ status: EntityStatus.ACTIVE }),
+        this.processingActivityRepo.count({ status: EntityStatus.ACTIVE }),
         this.processingActivityRepo.getStatistics()
       ]);
 

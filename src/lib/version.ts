@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.165'
-export const VERSION_NAME = 'Context Service Property Mapping Fix'
+export const VERSION = '3.21.166'
+export const VERSION_NAME = 'Context Service EntityStatus Enum Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.166',
+    name: 'Context Service EntityStatus Enum Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **ENUM USAGE**: Added EntityStatus enum import and proper enum usage in context service',
+      '📝 **TYPE SAFETY**: Changed string status values to EntityStatus.ACTIVE for type safety',
+      '✅ **BUILD READY**: Fixed TypeScript enum usage error in context service statistics',
+      '🚀 **CONTEXT MODULE**: Context service getDashboardStatistics now uses proper enum values'
+    ]
+  },
   {
     version: '3.21.165',
     name: 'Context Service Property Mapping Fix',
