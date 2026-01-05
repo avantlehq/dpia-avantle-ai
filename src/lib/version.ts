@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.141'
-export const VERSION_NAME = 'Next.js 16 Compatibility Fix'
+export const VERSION = '3.21.142'
+export const VERSION_NAME = 'Health Check Type Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.142',
+    name: 'Health Check Type Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE FIX**: Fixed TypeScript error in health check database connection function',
+      '📝 **RETURN TYPE**: Added missing error property to function return type',
+      '✅ **BUILD READY**: Resolved final TypeScript compilation error',
+      '🚀 **CONTEXT MODULE**: Health check endpoint now fully functional'
+    ]
+  },
   {
     version: '3.21.141',
     name: 'Next.js 16 Compatibility Fix',

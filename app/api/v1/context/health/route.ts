@@ -84,7 +84,7 @@ export async function GET(request: NextRequest) {
 /**
  * Check database connection
  */
-async function checkDatabaseConnection(): Promise<{ status: string; latency?: number }> {
+async function checkDatabaseConnection(): Promise<{ status: string; latency?: number; error?: string }> {
   try {
     const startTime = Date.now();
     
