@@ -386,7 +386,7 @@ export class DataCategoryRepository extends BaseRepository<
       throw new Error('Parent category does not exist');
     }
 
-    return await this.update(categoryId, { parent_id: newParentId });
+    return await this.update(categoryId, { parent_id: newParentId ?? undefined });
   }
 
   /**

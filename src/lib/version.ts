@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.150'
-export const VERSION_NAME = 'Data Category Map Type Fix'
+export const VERSION = '3.21.151'
+export const VERSION_NAME = 'Null to Undefined Conversion Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.151',
+    name: 'Null to Undefined Conversion Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE CONVERSION**: Fixed null to undefined conversion in parent_id assignment',
+      '📝 **NULL SAFETY**: Used nullish coalescing operator (??) for proper type conversion',
+      '✅ **BUILD READY**: TypeScript null vs undefined type error resolved',
+      '🚀 **CONTEXT MODULE**: Data category moveToParent function now type-safe'
+    ]
+  },
   {
     version: '3.21.150',
     name: 'Data Category Map Type Fix',
