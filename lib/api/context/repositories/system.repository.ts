@@ -18,7 +18,8 @@ import type {
   SystemQueryParams,
   UUID,
   Criticality,
-  EntityStatus
+  EntityStatus,
+  EndpointType
 } from '../types';
 import { BaseRepository } from './base.repository';
 
@@ -93,7 +94,11 @@ export class SystemRepository extends BaseRepository<
       ...data,
       locations: data.locations?.map((loc: any) => loc.physical_locations) || [],
       criticality: data.criticality as Criticality | null,
-      status: data.status as EntityStatus
+      status: data.status as EntityStatus,
+      endpoints: data.endpoints?.map((endpoint: any) => ({
+        ...endpoint,
+        endpoint_type: endpoint.endpoint_type as EndpointType
+      })) || []
     };
     
     return transformedData;

@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.158'
-export const VERSION_NAME = 'EntityStatus Enum Type Fix'
+export const VERSION = '3.21.159'
+export const VERSION_NAME = 'Endpoints Type Transform Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.159',
+    name: 'Endpoints Type Transform Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **ENDPOINTS FIX**: Added EndpointType enum import and endpoint transformation in system repository',
+      '📝 **TYPE MAPPING**: Transform endpoints array with proper EndpointType casting',
+      '✅ **BUILD READY**: Fixed TypeScript endpoints type mismatch in system with relations',
+      '🚀 **CONTEXT MODULE**: System repository endpoints property now properly typed'
+    ]
+  },
   {
     version: '3.21.158',
     name: 'EntityStatus Enum Type Fix',
