@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.169'
-export const VERSION_NAME = 'Jurisdiction Repository Method Fix'
+export const VERSION = '3.21.170'
+export const VERSION_NAME = 'Data Category Service Type Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.170',
+    name: 'Data Category Service Type Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE FIX**: Fixed null vs undefined type mismatch in data category validation',
+      '📝 **NULL HANDLING**: Added proper null to undefined conversion for description field',
+      '✅ **BUILD READY**: Fixed TypeScript type assignment error in data category service',
+      '🚀 **CONTEXT MODULE**: Data category service validation now handles null/undefined properly'
+    ]
+  },
   {
     version: '3.21.169',
     name: 'Jurisdiction Repository Method Fix',

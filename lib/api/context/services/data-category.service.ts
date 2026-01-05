@@ -86,7 +86,12 @@ export class DataCategoryService {
     }
 
     // Validate business rules
-    await this.validateDataCategoryData({ ...existingCategory, ...data }, id);
+    const validationData = {
+      ...existingCategory,
+      ...data,
+      description: data.description ?? existingCategory.description
+    };
+    await this.validateDataCategoryData(validationData as any, id);
 
     // Special validation for parent changes
     if (data.parent_id !== undefined && data.parent_id !== existingCategory.parent_id) {
