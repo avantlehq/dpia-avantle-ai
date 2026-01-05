@@ -397,8 +397,8 @@ export class ContextService {
 
     try {
       // Check database connection
-      const jurisdictionCount = await this.jurisdictionRepo.count();
-      checks.database = jurisdictionCount >= 0;
+      const jurisdictions = await this.jurisdictionRepo.findMany({ limit: 1 });
+      checks.database = true;
 
       // Check repositories
       checks.repositories = !!(

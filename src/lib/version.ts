@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.168'
-export const VERSION_NAME = 'PaginatedResponse Data Access Fix'
+export const VERSION = '3.21.169'
+export const VERSION_NAME = 'Jurisdiction Repository Method Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.169',
+    name: 'Jurisdiction Repository Method Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **METHOD FIX**: Fixed missing count method in JurisdictionRepository',
+      '📝 **ALTERNATIVE METHOD**: Changed from count() to findMany({limit: 1}) for database connectivity check',
+      '✅ **BUILD READY**: Fixed TypeScript method does not exist error',
+      '🚀 **CONTEXT MODULE**: Context service health monitoring now uses available repository methods'
+    ]
+  },
   {
     version: '3.21.168',
     name: 'PaginatedResponse Data Access Fix',
