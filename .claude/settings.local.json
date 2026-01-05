@@ -9,7 +9,8 @@
       "Bash(rm:*)",
       "Bash(git remote set-url:*)",
       "Bash(git checkout:*)",
-      "WebFetch(domain:dpia.avantle.ai)"
+      "WebFetch(domain:dpia.avantle.ai)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

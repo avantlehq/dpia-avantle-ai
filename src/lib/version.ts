@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.157'
-export const VERSION_NAME = 'Criticality Enum Import Fix'
+export const VERSION = '3.21.158'
+export const VERSION_NAME = 'EntityStatus Enum Type Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.158',
+    name: 'EntityStatus Enum Type Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **STATUS FIX**: Added EntityStatus enum import and type casting in system repository',
+      '📝 **TYPE SAFETY**: Cast string status to proper EntityStatus enum type',
+      '✅ **BUILD READY**: Fixed TypeScript status type mismatch in system transform',
+      '🚀 **CONTEXT MODULE**: System repository status property now properly typed'
+    ]
+  },
   {
     version: '3.21.157',
     name: 'Criticality Enum Import Fix',

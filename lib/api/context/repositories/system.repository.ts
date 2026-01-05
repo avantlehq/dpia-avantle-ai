@@ -17,7 +17,8 @@ import type {
   ContextClaims, 
   SystemQueryParams,
   UUID,
-  Criticality
+  Criticality,
+  EntityStatus
 } from '../types';
 import { BaseRepository } from './base.repository';
 
@@ -91,7 +92,8 @@ export class SystemRepository extends BaseRepository<
     const transformedData: System = {
       ...data,
       locations: data.locations?.map((loc: any) => loc.physical_locations) || [],
-      criticality: data.criticality as Criticality | null
+      criticality: data.criticality as Criticality | null,
+      status: data.status as EntityStatus
     };
     
     return transformedData;
