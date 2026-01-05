@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.166'
-export const VERSION_NAME = 'Context Service EntityStatus Enum Fix'
+export const VERSION = '3.21.167'
+export const VERSION_NAME = 'Protected Method Access Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.167',
+    name: 'Protected Method Access Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **ACCESS FIX**: Fixed protected method access in context service checkMissingRelationships',
+      '📝 **METHOD USAGE**: Changed from protected findManyByField to public findMany method',
+      '✅ **BUILD READY**: Fixed TypeScript protected method access error',
+      '🚀 **CONTEXT MODULE**: Context service compliance checking now uses proper public methods'
+    ]
+  },
   {
     version: '3.21.166',
     name: 'Context Service EntityStatus Enum Fix',

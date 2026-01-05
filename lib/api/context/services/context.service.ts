@@ -291,7 +291,7 @@ export class ContextService {
     // Check for processing activities without required relationships
     // e.g., activities without data categories, systems, or lawful basis
     
-    const activitiesWithoutSystems = await this.processingActivityRepo.findManyByField('id', 'NOT IN (SELECT processing_activity_id FROM processing_systems)');
+    const activitiesWithoutSystems = await this.processingActivityRepo.findMany({});
     
     activitiesWithoutSystems.forEach(activity => {
       issues.push({
