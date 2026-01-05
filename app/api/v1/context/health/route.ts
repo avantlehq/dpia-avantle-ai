@@ -170,7 +170,7 @@ async function checkServices(contextService: ContextService): Promise<{ status: 
 
     // Test jurisdiction service
     try {
-      await contextService.jurisdictions.getJurisdictionByCode('US');
+      await contextService.jurisdictions.getJurisdictionByCountryCode('US');
       checks.jurisdictionService.status = 'healthy';
     } catch (error) {
       checks.jurisdictionService = { status: 'error', error: String(error) };

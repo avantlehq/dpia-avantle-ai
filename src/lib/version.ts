@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.143'
-export const VERSION_NAME = 'Complete Health Check Fix'
+export const VERSION = '3.21.144'
+export const VERSION_NAME = 'Final Health Check Method Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.144',
+    name: 'Final Health Check Method Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **METHOD FIX**: Fixed getJurisdictionByCode to getJurisdictionByCountryCode',
+      '📝 **API CALL**: Used correct jurisdiction service method name',
+      '✅ **BUILD READY**: Final TypeScript compilation error resolved',
+      '🚀 **CONTEXT MODULE**: Health check endpoint now fully functional'
+    ]
+  },
   {
     version: '3.21.143',
     name: 'Complete Health Check Fix',
