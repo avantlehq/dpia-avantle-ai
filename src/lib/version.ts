@@ -1,10 +1,34 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '1.1.13'
-export const VERSION_NAME = 'Complete Documentation Update'
+export const VERSION = '1.1.16' 
+export const VERSION_NAME = 'German Translation Fix'
 
 export const CHANGELOG = [
+  {
+    version: '1.1.16',
+    name: 'German Translation Fix',
+    date: '2026-01-05',
+    changes: [
+      '🇩🇪 **GERMAN TYPO FIX**: Fixed "Privacy Plattform" to "Privacy Platform" in all German translations',
+      '📝 **NAVIGATION FIX**: Updated dpiaSuite translation from "Privacy Plattform" to "Privacy Platform"',
+      '🏠 **HOMEPAGE FIX**: Fixed heroTitle and europeanPrivacyPlatform translations',
+      '✨ **CONSISTENCY**: All German text now uses correct English "Platform" spelling',
+      '🔧 **QUALITY**: Fixed typography inconsistency in German language version'
+    ]
+  },
+  {
+    version: '1.1.15',
+    name: 'Footer Text Updates',
+    date: '2026-01-04',
+    changes: [
+      '📝 **FOOTER CLEANUP**: Updated description from "Privacy-first AI platform..." to "Privacy Management Platform"',
+      '🏷️ **LINK UPDATE**: Changed "DPIA Suite" to "Privacy Platform" in product links',
+      '🎯 **SIMPLIFIED MESSAGING**: More concise and focused platform description',
+      '✨ **CONSISTENT BRANDING**: Aligned footer messaging with current platform positioning',
+      '🔧 **REPOSITORY FIX**: Restored correct avantle.ai content after git conflicts'
+    ]
+  },
   {
     version: '1.1.13',
     name: 'Complete Documentation Update',

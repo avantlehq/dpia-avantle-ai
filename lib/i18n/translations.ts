@@ -356,14 +356,14 @@ export const translations: Record<Locale, Translation> = {
     // Navigation
     platform: 'Plattform',
     privacyByDesign: 'Privacy by Design',
-    dpiaSuite: 'Privacy Plattform',
+    dpiaSuite: 'Privacy Platform',
     partners: 'Partner',
     platformAdmin: 'Plattform Admin',
     login: 'Anmeldung',
     
     // Homepage
-    europeanPrivacyPlatform: 'Privacy Plattform',
-    heroTitle: 'Privacy Plattform',
+    europeanPrivacyPlatform: 'Privacy Platform',
+    heroTitle: 'Privacy Platform',
     heroSubtitle: 'Privacy by Design',
     heroDescription: '',
     

@@ -17,7 +17,7 @@ export function SiteFooter() {
               <span className="font-bold text-foreground">Avantle.ai</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-xs">
-              Privacy-first AI platform focused on European data sovereignty and GDPR compliance.
+              Privacy Management Platform
             </p>
           </div>
 
@@ -32,7 +32,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <a href="https://dpia.avantle.ai" className="text-muted-foreground hover:text-foreground transition-colors">
-                  DPIA Suite
+                  Privacy Platform
                 </a>
               </li>
               <li>

@@ -1,4 +1,4 @@
-# Avantle.ai Landing Page
+# Avantle.ai Landing Page 
 
 Privacy by Design. Intelligence by Default.
 

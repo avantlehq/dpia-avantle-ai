@@ -1,5 +1,7 @@
 {
   "regions": ["fra1"],
+  "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npm run build",
   "env": {
     "NEXT_PUBLIC_DOWNLOAD_URL": "https://example.com/avantle-manifesto.docx"
   }
