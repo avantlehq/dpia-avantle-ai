@@ -61,7 +61,14 @@ export class PhysicalLocationService {
     }
 
     // Validate business rules
-    await this.validateLocationData({ ...existingLocation, ...data }, id);
+    const validationData = {
+      ...existingLocation,
+      ...data,
+      description: data.description ?? existingLocation.description,
+      address: data.address ?? existingLocation.address,
+      city: data.city ?? existingLocation.city
+    };
+    await this.validateLocationData(validationData as any, id);
 
     // Update the location
     const updatedLocation = await this.locationRepo.update(id, data);

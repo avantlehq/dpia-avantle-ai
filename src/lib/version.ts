@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.170'
-export const VERSION_NAME = 'Data Category Service Type Fix'
+export const VERSION = '3.21.171'
+export const VERSION_NAME = 'Physical Location Service Type Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.171',
+    name: 'Physical Location Service Type Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE FIX**: Fixed null vs undefined type mismatch in physical location validation',
+      '📝 **NULL HANDLING**: Added proper null to undefined conversion for description, address, city fields',
+      '✅ **BUILD READY**: Fixed TypeScript type assignment error in physical location service',
+      '🚀 **CONTEXT MODULE**: Physical location service validation now handles null/undefined properly'
+    ]
+  },
   {
     version: '3.21.170',
     name: 'Data Category Service Type Fix',
