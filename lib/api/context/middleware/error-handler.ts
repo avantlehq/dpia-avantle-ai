@@ -457,7 +457,7 @@ export function addDevelopmentErrorDetails(
       details: {
         ...response.details,
         stack: error.stack,
-        cause: error.cause,
+        cause: (error as any).cause,
       },
     };
   }

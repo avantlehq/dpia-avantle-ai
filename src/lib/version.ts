@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.145'
-export const VERSION_NAME = 'Health Check Object Type Fix'
+export const VERSION = '3.21.146'
+export const VERSION_NAME = 'Error Cause TypeScript Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.146',
+    name: 'Error Cause TypeScript Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPESCRIPT FIX**: Fixed error.cause property compatibility issue',
+      '📝 **TYPE CASTING**: Used (error as any).cause for ES2022 compatibility',
+      '✅ **BUILD READY**: TypeScript ES version compatibility resolved',
+      '🚀 **CONTEXT MODULE**: Error handler middleware now fully compatible'
+    ]
+  },
   {
     version: '3.21.145',
     name: 'Health Check Object Type Fix',
