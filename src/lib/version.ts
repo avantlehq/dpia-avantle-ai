@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.152'
-export const VERSION_NAME = 'Parent ID Array Filter Fix'
+export const VERSION = '3.21.153'
+export const VERSION_NAME = 'Lawful Basis Type Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.153',
+    name: 'Lawful Basis Type Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **TYPE FIX**: Fixed lawful basis parameter type in processing activity repository',
+      '📝 **ENUM MATCH**: Used exact union type to match database enum values',
+      '✅ **BUILD READY**: Fixed TypeScript lawful basis string vs enum type error',
+      '🚀 **CONTEXT MODULE**: Processing activity findByLawfulBasis method now type-safe'
+    ]
+  },
   {
     version: '3.21.152',
     name: 'Parent ID Array Filter Fix',

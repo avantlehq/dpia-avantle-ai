@@ -168,7 +168,7 @@ export class ProcessingActivityRepository extends BaseRepository<
   /**
    * Get activities by lawful basis
    */
-  async findByLawfulBasis(lawfulBasis: string): Promise<ProcessingActivity[]> {
+  async findByLawfulBasis(lawfulBasis: 'consent' | 'contract' | 'legal_obligation' | 'vital_interests' | 'public_task' | 'legitimate_interests'): Promise<ProcessingActivity[]> {
     const { data, error } = await this.client
       .from('processing_activities')
       .select('*')
