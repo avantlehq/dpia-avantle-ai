@@ -1,10 +1,21 @@
 // VERSION MANAGEMENT SYSTEM FOR AVANTLE.AI
 // This file tracks the current version and changelog for the Avantle.ai platform
 
-export const VERSION = '3.21.161'
-export const VERSION_NAME = 'Vendor Location Transform Fix'
+export const VERSION = '3.21.162'
+export const VERSION_NAME = 'Vendor EntityStatus Type Fix'
 
 export const CHANGELOG = [
+  {
+    version: '3.21.162',
+    name: 'Vendor EntityStatus Type Fix',
+    date: '2026-01-05',
+    changes: [
+      '🔧 **STATUS FIX**: Added EntityStatus enum import and type casting in vendor repository',
+      '📝 **TYPE SAFETY**: Cast string status to proper EntityStatus enum type',
+      '✅ **BUILD READY**: Fixed TypeScript status type mismatch in vendor transform',
+      '🚀 **CONTEXT MODULE**: Vendor repository status property now properly typed'
+    ]
+  },
   {
     version: '3.21.161',
     name: 'Vendor Location Transform Fix',

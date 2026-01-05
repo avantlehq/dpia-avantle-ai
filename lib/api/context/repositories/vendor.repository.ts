@@ -14,7 +14,8 @@ import type {
   UpdateVendorRequest,
   ContextClaims, 
   ListQueryParams,
-  UUID 
+  UUID,
+  EntityStatus
 } from '../types';
 import { BaseRepository } from './base.repository';
 
@@ -74,7 +75,8 @@ export class VendorRepository extends BaseRepository<
     // Transform the data to match Vendor type
     const transformedData: Vendor = {
       ...data,
-      locations: data.locations?.map((loc: any) => loc.physical_locations) || []
+      locations: data.locations?.map((loc: any) => loc.physical_locations) || [],
+      status: data.status as EntityStatus
     };
     
     return transformedData;
