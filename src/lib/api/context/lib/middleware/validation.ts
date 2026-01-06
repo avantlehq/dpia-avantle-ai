@@ -30,7 +30,7 @@ export function validateBody<T>(body: unknown, schema: ZodSchema<T>): T {
 export function validateQuery<T>(searchParams: URLSearchParams, schema: ZodSchema<T>): T {
   try {
     // Convert URLSearchParams to object
-    const queryObject: Record<string, any> = {};
+    const queryObject: Record<string, unknown> = {};
     
     for (const [key, value] of searchParams.entries()) {
       // Handle array parameters (e.g., ?tags=a&tags=b)
@@ -118,7 +118,7 @@ export function withValidation<TBody, TQuery>(options: {
   body?: ZodSchema<TBody>;
   query?: ZodSchema<TQuery>;
 }) {
-  return function<T extends any[]>(
+  return function<T extends unknown[]>(
     handler: (validated: { body?: TBody; query?: TQuery }, ...args: T) => Promise<NextResponse>
   ) {
     return async (...args: T): Promise<NextResponse> => {

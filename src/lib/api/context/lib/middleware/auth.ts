@@ -223,7 +223,7 @@ export function withOptionalAuth<T extends unknown[]>(
 /**
  * Role-based authorization middleware
  */
-export function withRole<T extends any[]>(
+export function withRole<T extends unknown[]>(
   requiredRoles: string[],
   handler: (context: ContextClaims, ...args: T) => Promise<NextResponse>
 ) {
@@ -231,7 +231,7 @@ export function withRole<T extends any[]>(
     try {
       // Extract roles from JWT token (assuming they're included)
       const authHeader = args[0] && typeof args[0] === 'object' && 'headers' in args[0] 
-        ? (args[0] as NextRequest).headers.get('authorization')
+        ? (args[0] as { headers: { get: (name: string) => string | null } }).headers.get('authorization')
         : null;
 
       if (!authHeader) {
