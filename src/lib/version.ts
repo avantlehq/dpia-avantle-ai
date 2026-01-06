@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.143" as const
-export const VERSION_NAME = "✅ LIGHT THEME FIXED: Complete Text Visibility Resolution" as const
+export const VERSION = "3.21.144" as const
+export const VERSION_NAME = "🔧 BUILD FIX: ESLint Unused Variable Resolved" as const
 export const BUILD_DATE = "2026-01-06"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,15 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.144": {
+    date: "2026-01-06", 
+    name: "🔧 BUILD FIX: ESLint Unused Variable Resolved",
+    features: [
+      "ESLINT BUILD FIX: Fixed unused 'error' parameter in global-error.tsx by prefixing with underscore",
+      "CI/CD COMPLIANCE: Resolved build error that was blocking production deployment",
+      "LIGHT THEME PRESERVED: All previous light theme text visibility fixes maintained"
+    ]
+  },
   "3.21.143": {
     date: "2026-01-06", 
     name: "✅ LIGHT THEME FIXED: Complete Text Visibility Resolution",
