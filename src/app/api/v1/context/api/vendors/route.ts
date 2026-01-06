@@ -1,37 +1,37 @@
 /**
- * Context Module API - IT Systems Routes
+ * Context Module API - Vendors Routes
  * 
- * Next.js API routes for IT system management.
- * GET /api/v1/context/systems - List IT systems
- * POST /api/v1/context/systems - Create IT system
+ * Next.js API routes for vendor management.
+ * GET /api/v1/context/vendors - List vendors
+ * POST /api/v1/context/vendors - Create vendor
  */
 
 import { NextRequest, NextResponse } from 'next/server';
 import { ContextService } from '@/lib/api/context/services/context.service';
 import { 
-  SystemQueryParamsSchema,
-  CreateSystemRequestSchema 
+  VendorQueryParamsSchema,
+  CreateVendorRequestSchema 
 } from '@/lib/api/context/schemas';
-import { withDevAuth } from '@/lib/api/context/middleware/auth';
+import { withAuth } from '@/lib/api/context/middleware/auth';
 import { validateQuery, validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
 
 /**
- * GET /api/v1/context/systems
- * List IT systems with filtering and pagination
+ * GET /api/v1/context/vendors
+ * List vendors with filtering and pagination
  */
 export async function GET(request: NextRequest) {
   try {
-    return await withDevAuth(async (context) => {
+    return await withAuth(async (context) => {
       // Validate query parameters
       const url = new URL(request.url);
-      const queryParams = validateQuery(url.searchParams, SystemQueryParamsSchema);
+      const queryParams = validateQuery(url.searchParams, VendorQueryParamsSchema);
 
       // Initialize context service
       const contextService = new ContextService(context);
 
-      // Get systems
-      const result = await contextService.systems.getSystems(queryParams);
+      // Get vendors
+      const result = await contextService.vendors.getVendors(queryParams);
 
       return NextResponse.json(result);
     })(request);
@@ -42,23 +42,23 @@ export async function GET(request: NextRequest) {
 }
 
 /**
- * POST /api/v1/context/systems
- * Create new IT system
+ * POST /api/v1/context/vendors
+ * Create new vendor
  */
 export async function POST(request: NextRequest) {
   try {
-    return await withDevAuth(async (context) => {
+    return await withAuth(async (context) => {
       // Validate request body
       const body = await request.json();
-      const systemData = validateBody(body, CreateSystemRequestSchema);
+      const vendorData = validateBody(body, CreateVendorRequestSchema);
 
       // Initialize context service
       const contextService = new ContextService(context);
 
-      // Create system
-      const system = await contextService.systems.createSystem(systemData);
+      // Create vendor
+      const vendor = await contextService.vendors.createVendor(vendorData);
 
-      return NextResponse.json(system, { status: 201 });
+      return NextResponse.json(vendor, { status: 201 });
     })(request);
 
   } catch (error) {

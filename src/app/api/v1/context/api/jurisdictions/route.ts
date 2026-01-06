@@ -8,7 +8,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ContextService } from '@/lib/api/context/services/context.service';
 import { JurisdictionQueryParamsSchema } from '@/lib/api/context/schemas';
-import { withDevAuth } from '@/lib/api/context/middleware/auth';
+import { withAuth } from '@/lib/api/context/middleware/auth';
 import { validateQuery } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
 
@@ -18,7 +18,7 @@ import { handleApiError } from '@/lib/api/context/middleware/error-handler';
  */
 export async function GET(request: NextRequest) {
   try {
-    return await withDevAuth(async (context) => {
+    return await withAuth(async (context) => {
       // Validate query parameters
       const url = new URL(request.url);
       const queryParams = validateQuery(url.searchParams, JurisdictionQueryParamsSchema);
