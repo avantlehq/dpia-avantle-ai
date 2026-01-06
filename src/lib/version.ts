@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.145" as const
-export const VERSION_NAME = "🚀 CONTEXT MODULE COMPLETE: Full API Integration & Production Ready" as const
+export const VERSION = "3.21.146" as const
+export const VERSION_NAME = "🔧 CRITICAL BUILD FIX: Context API ESLint Errors Resolved" as const
 export const BUILD_DATE = "2026-01-06"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.146": {
+    date: "2026-01-06", 
+    name: "🔧 CRITICAL BUILD FIX: Context API ESLint Errors Resolved",
+    features: [
+      "CRITICAL BUILD FIX: Resolved all ESLint errors blocking Context API deployment (score never reassigned, transferAllowed const)",
+      "TYPESCRIPT IMPROVEMENTS: Replaced 'any' types with proper TypeScript annotations (unknown[], Record<string, unknown>)",
+      "REMOVED UNUSED IMPORTS: Fixed ExternalLink import error in context/systems/page.tsx",
+      "AUTH MIDDLEWARE FIX: Improved type safety in JWT token verification and generic type constraints",
+      "HEALTH ROUTE TYPES: Enhanced type annotations for repository operations and service health checks",
+      "PRODUCTION READY: All blocking ESLint errors resolved, Context API now passes build validation and ready for Vercel deployment"
+    ]
+  },
   "3.21.145": {
     date: "2026-01-06", 
     name: "🚀 CONTEXT MODULE COMPLETE: Full API Integration & Production Ready",
