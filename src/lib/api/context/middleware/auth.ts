@@ -92,6 +92,19 @@ async function verifyJwtToken(token: string): Promise<ContextClaims> {
     // Verify token
     const decoded = verify(token, jwtSecret) as { [key: string]: unknown };
 
+    // Validate required JWT claims
+    if (typeof decoded.tenant_id !== 'string' || 
+        typeof decoded.workspace_id !== 'string' || 
+        typeof decoded.sub !== 'string') {
+      return NextResponse.json(
+        { 
+          error: 'INVALID_TOKEN', 
+          message: 'Token missing required claims' 
+        },
+        { status: 401 }
+      );
+    }
+
     // Extract context claims
     const context: ContextClaims = {
       tenant_id: decoded.tenant_id,
@@ -216,7 +229,7 @@ export function withOptionalAuth<T extends unknown[]>(
 /**
  * Role-based authorization middleware
  */
-export function withRole<T extends any[]>(
+export function withRole<T extends unknown[]>(
   requiredRoles: string[],
   handler: (context: ContextClaims, ...args: T) => Promise<NextResponse>
 ) {
