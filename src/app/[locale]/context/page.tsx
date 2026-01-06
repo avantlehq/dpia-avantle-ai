@@ -1,17 +1,54 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { 
   Database,
-  Plus
+  Plus,
+  Activity,
+  Building,
+  MapPin,
+  Users,
+  GitBranch,
+  AlertTriangle
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { contextApiService } from '@/lib/context-api-service'
+
+type ContextStats = {
+  systems_total: number
+  systems_critical: number
+  processing_activities_total: number
+  processing_activities_review_overdue: number
+  vendors_total: number
+  vendors_no_dpa: number
+  data_flows_total: number
+  data_flows_cross_border: number
+  locations_total: number
+  locations_not_adequate: number
+}
 
 export default function ContextOverviewPage() {
-  // Simplified version without translations to avoid SSR issues
   const locale = 'en' // Default to English for now
+  const [stats, setStats] = useState<ContextStats | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Fetch Context statistics from real API service
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const contextStats = await contextApiService.getContextStats()
+        setStats(contextStats)
+        setIsLoading(false)
+      } catch (error) {
+        console.error('Failed to fetch context stats:', error)
+        setIsLoading(false)
+      }
+    }
+
+    fetchStats()
+  }, [])
   
   return (
     <div className="space-y-6">
@@ -47,11 +84,170 @@ export default function ContextOverviewPage() {
         </div>
       </div>
 
-      {/* Foundation Data Overview - matching dashboard pills */}
+      {/* Context Statistics Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Systems Overview */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">IT Systems</CardTitle>
+            <Database className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-foreground">
+              {isLoading ? '...' : stats?.systems_total || 0}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {isLoading ? '...' : stats?.systems_critical || 0} critical systems
+            </p>
+            <Link href={`/${locale}/context/systems`}>
+              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
+                View systems →
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Processing Activities */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Processing Activities</CardTitle>
+            <Activity className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-foreground">
+              {isLoading ? '...' : stats?.processing_activities_total || 0}
+            </div>
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              {!isLoading && stats?.processing_activities_review_overdue && stats.processing_activities_review_overdue > 0 ? (
+                <>
+                  <AlertTriangle className="h-3 w-3 text-red-500" />
+                  {stats.processing_activities_review_overdue} overdue reviews
+                </>
+              ) : (
+                'ROPA compliance tracking'
+              )}
+            </p>
+            <Link href={`/${locale}/context/processing`}>
+              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
+                View activities →
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Vendors & Processors */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Vendors & Processors</CardTitle>
+            <Building className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-foreground">
+              {isLoading ? '...' : stats?.vendors_total || 0}
+            </div>
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              {!isLoading && stats?.vendors_no_dpa && stats.vendors_no_dpa > 0 ? (
+                <>
+                  <AlertTriangle className="h-3 w-3 text-red-500" />
+                  {stats.vendors_no_dpa} missing DPA
+                </>
+              ) : (
+                'DPA compliance tracking'
+              )}
+            </p>
+            <Link href={`/${locale}/context/vendors`}>
+              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
+                View vendors →
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Data Flows */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Data Flows</CardTitle>
+            <GitBranch className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-foreground">
+              {isLoading ? '...' : stats?.data_flows_total || 0}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {isLoading ? '...' : stats?.data_flows_cross_border || 0} cross-border transfers
+            </p>
+            <Link href={`/${locale}/context/data-flows`}>
+              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
+                View flows →
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Locations */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Locations & Jurisdictions</CardTitle>
+            <MapPin className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-foreground">
+              {isLoading ? '...' : stats?.locations_total || 0}
+            </div>
+            <p className="text-xs text-muted-foreground flex items-center gap-1">
+              {!isLoading && stats?.locations_not_adequate && stats.locations_not_adequate > 0 ? (
+                <>
+                  <AlertTriangle className="h-3 w-3 text-red-500" />
+                  {stats.locations_not_adequate} without adequacy
+                </>
+              ) : (
+                'Adequacy decision tracking'
+              )}
+            </p>
+            <Link href={`/${locale}/context/locations`}>
+              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
+                View locations →
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+
+        {/* Quick Actions Card */}
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Quick Actions</CardTitle>
+            <Plus className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Link href={`/${locale}/context/systems`}>
+                <Button variant="outline" size="sm" className="w-full justify-start">
+                  <Database className="h-4 w-4 mr-2" />
+                  Add System
+                </Button>
+              </Link>
+              <Link href={`/${locale}/context/processing`}>
+                <Button variant="outline" size="sm" className="w-full justify-start">
+                  <Activity className="h-4 w-4 mr-2" />
+                  Add Processing
+                </Button>
+              </Link>
+              <Link href={`/${locale}/context/vendors`}>
+                <Button variant="outline" size="sm" className="w-full justify-start">
+                  <Users className="h-4 w-4 mr-2" />
+                  Add Vendor
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Foundation Data Overview - Legacy pills for backward compatibility */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">Foundation Data</h2>
         
-        {/* Status Pills Group - matching dashboard style */}
+        {/* Status Pills Group - now showing real stats */}
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
           {/* Systems Pill */}
           <div 
@@ -81,7 +277,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '600'
               }}
             >
-              12
+              {isLoading ? '...' : stats?.systems_total || 0}
             </span>
           </div>
 
@@ -113,11 +309,11 @@ export default function ContextOverviewPage() {
                 fontWeight: '600'
               }}
             >
-              45
+              {isLoading ? '...' : stats?.processing_activities_total || 0}
             </span>
           </div>
 
-          {/* Data Categories Pill */}
+          {/* Data Flows Pill */}
           <div 
             className="inline-flex items-center rounded-lg"
             style={{ 
@@ -136,7 +332,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '500'
               }}
             >
-              Data Categories
+              Data Flows
             </span>
             <span 
               style={{ 
@@ -145,7 +341,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '600'
               }}
             >
-              28
+              {isLoading ? '...' : stats?.data_flows_total || 0}
             </span>
           </div>
 
@@ -177,7 +373,7 @@ export default function ContextOverviewPage() {
                 fontWeight: '600'
               }}
             >
-              18
+              {isLoading ? '...' : stats?.vendors_total || 0}
             </span>
           </div>
         </div>
