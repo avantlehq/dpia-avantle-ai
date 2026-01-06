@@ -200,7 +200,7 @@ export function DynamicDashboardContent() {
               <span 
                 style={{ 
                   fontSize: '16px',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   fontWeight: '600'
                 }}
               >
@@ -232,7 +232,7 @@ export function DynamicDashboardContent() {
               <span 
                 style={{ 
                   fontSize: '16px',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   fontWeight: '600'
                 }}
               >
@@ -264,7 +264,7 @@ export function DynamicDashboardContent() {
               <span 
                 style={{ 
                   fontSize: '16px',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   fontWeight: '600'
                 }}
               >
@@ -316,7 +316,7 @@ export function DynamicDashboardContent() {
                     className="primary-cta-button group"
                     style={{
                       background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-                      color: '#ffffff',
+                      color: 'var(--text-primary)',
                       border: 'none',
                       borderRadius: '12px',
                       padding: '14px 28px',

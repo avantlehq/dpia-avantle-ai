@@ -58,7 +58,7 @@ const ModuleLink = memo(function ModuleLink({ module, isActive }: ModuleLinkProp
       style={{
         backgroundColor: isActive ? 'rgba(96, 165, 250, 0.15)' : 'transparent',
         padding: '8px 12px',
-        color: isActive ? '#ffffff' : '#9ca3af',
+        color: isActive ? 'var(--text-primary)' : '#9ca3af',
         boxShadow: isActive ? 'inset 0 -2px 0 #60a5fa' : 'none',
         borderRadius: '4px'
       }}

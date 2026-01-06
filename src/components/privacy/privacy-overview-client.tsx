@@ -76,7 +76,7 @@ export function PrivacyOverviewClient() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -108,7 +108,7 @@ export function PrivacyOverviewClient() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -140,7 +140,7 @@ export function PrivacyOverviewClient() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -172,7 +172,7 @@ export function PrivacyOverviewClient() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >

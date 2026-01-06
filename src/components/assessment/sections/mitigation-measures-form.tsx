@@ -219,7 +219,7 @@ export function MitigationForm({ assessmentId, onComplete }: MitigationMeasuresF
               backgroundColor: isCompleting ? '#9ca3af' : '#16a34a',
               borderColor: isCompleting ? '#9ca3af' : '#22c55e',
               borderRadius: '8px',
-              color: '#ffffff',
+              color: 'var(--text-primary)',
               fontSize: '16px',
               fontWeight: '600'
             }}

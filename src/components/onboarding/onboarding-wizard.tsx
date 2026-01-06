@@ -237,7 +237,7 @@ export function OnboardingWizard() {
               backgroundColor: '#2563eb',
               borderColor: '#3b82f6',
               borderRadius: '8px',
-              color: '#ffffff',
+              color: 'var(--text-primary)',
               fontSize: '18px',
               fontWeight: '600'
             }}
@@ -253,7 +253,7 @@ export function OnboardingWizard() {
               backgroundColor: '#2563eb',
               borderColor: '#3b82f6',
               borderRadius: '8px',
-              color: '#ffffff',
+              color: 'var(--text-primary)',
               fontSize: '18px',
               fontWeight: '600'
             }}
@@ -345,7 +345,7 @@ export function OnboardingWizard() {
             backgroundColor: '#2563eb',
             borderColor: '#3b82f6',
             borderRadius: '8px',
-            color: '#ffffff',
+            color: 'var(--text-primary)',
             fontSize: '18px',
             fontWeight: '600'
           }}
@@ -362,7 +362,7 @@ export function OnboardingWizard() {
             backgroundColor: '#2563eb',
             borderColor: '#3b82f6',
             borderRadius: '8px',
-            color: '#ffffff',
+            color: 'var(--text-primary)',
             fontSize: '18px',
             fontWeight: '600'
           }}

@@ -22,7 +22,7 @@ export default function TrustCenterOverviewPage() {
               className="secondary-cta-button"
               style={{
                 backgroundColor: '#357ABD',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 border: 'none',
                 borderRadius: '8px',
                 padding: '12px 20px',
@@ -44,7 +44,7 @@ export default function TrustCenterOverviewPage() {
               className="primary-cta-button"
               style={{
                 backgroundColor: '#357ABD',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 border: 'none',
                 borderRadius: '8px',
                 padding: '12px 24px',
@@ -91,7 +91,7 @@ export default function TrustCenterOverviewPage() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -123,7 +123,7 @@ export default function TrustCenterOverviewPage() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -155,7 +155,7 @@ export default function TrustCenterOverviewPage() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -187,7 +187,7 @@ export default function TrustCenterOverviewPage() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -231,7 +231,7 @@ export default function TrustCenterOverviewPage() {
                   className="secondary-cta-button"
                   style={{
                     backgroundColor: '#357ABD',
-                    color: '#ffffff',
+                    color: 'var(--text-primary)',
                     border: 'none',
                     borderRadius: '8px',
                     padding: '12px 20px',
@@ -253,7 +253,7 @@ export default function TrustCenterOverviewPage() {
                   className="primary-cta-button"
                   style={{
                     backgroundColor: '#357ABD',
-                    color: '#ffffff',
+                    color: 'var(--text-primary)',
                     border: 'none',
                     borderRadius: '8px',
                     padding: '12px 24px',

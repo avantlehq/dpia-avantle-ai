@@ -87,7 +87,7 @@ export default async function PrivacyOverview({ params }: Props) {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -119,7 +119,7 @@ export default async function PrivacyOverview({ params }: Props) {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -151,7 +151,7 @@ export default async function PrivacyOverview({ params }: Props) {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -183,7 +183,7 @@ export default async function PrivacyOverview({ params }: Props) {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >

@@ -59,7 +59,8 @@
       "Bash(del \"C:\\Users\\rasti\\Projects\\avantlehq\\dpia-avantle-ai\\src\\app\\privacy\\layout.tsx\")",
       "Bash(rg:*)",
       "WebSearch",
-      "Bash(del src/app/global-error.tsx)"
+      "Bash(del src/app/global-error.tsx)",
+      "Bash(sed:*)"
     ],
     "deny": [],
     "ask": [],

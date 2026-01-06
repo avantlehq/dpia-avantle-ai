@@ -653,7 +653,7 @@ export function DynamicFormGenerator({
                   backgroundColor: loading ? 'var(--text-muted)' : 'var(--status-success)',
                   borderColor: loading ? 'var(--text-muted)' : 'var(--status-success)',
                   borderRadius: '12px',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   fontSize: '18px',
                   fontWeight: '700',
                   border: 'none'

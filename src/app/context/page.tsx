@@ -72,7 +72,7 @@ export default function ContextOverviewPage() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -104,7 +104,7 @@ export default function ContextOverviewPage() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -136,7 +136,7 @@ export default function ContextOverviewPage() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >
@@ -168,7 +168,7 @@ export default function ContextOverviewPage() {
             <span 
               style={{ 
                 fontSize: '16px',
-                color: '#ffffff',
+                color: 'var(--text-primary)',
                 fontWeight: '600'
               }}
             >

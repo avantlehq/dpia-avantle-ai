@@ -179,7 +179,7 @@ export default function NewAssessmentPage() {
                   style={{
                     backgroundColor: '#ea580c',
                     borderColor: '#ea580c',
-                    color: '#ffffff',
+                    color: 'var(--text-primary)',
                     fontSize: '16px',
                     fontWeight: '500'
                   }}
