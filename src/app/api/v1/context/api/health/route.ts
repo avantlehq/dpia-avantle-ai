@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
 
       // Determine overall status
       const hasErrors = Object.values(checks).some((check: unknown) => 
-        typeof check === 'object' && check.status === 'error'
+        typeof check === 'object' && check !== null && 'status' in check && check.status === 'error'
       );
 
       const overallStatus = hasErrors ? 'degraded' : 'healthy';
