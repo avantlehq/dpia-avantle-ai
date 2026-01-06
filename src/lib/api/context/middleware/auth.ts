@@ -96,13 +96,7 @@ async function verifyJwtToken(token: string): Promise<ContextClaims> {
     if (typeof decoded.tenant_id !== 'string' || 
         typeof decoded.workspace_id !== 'string' || 
         typeof decoded.sub !== 'string') {
-      return NextResponse.json(
-        { 
-          error: 'INVALID_TOKEN', 
-          message: 'Token missing required claims' 
-        },
-        { status: 401 }
-      );
+      throw new Error('Token missing required claims: tenant_id, workspace_id, or sub must be strings');
     }
 
     // Extract context claims
@@ -255,7 +249,7 @@ export function withRole<T extends unknown[]>(
       }
 
       const decoded = verify(token, jwtSecret) as { [key: string]: unknown };
-      const userRoles = decoded.roles || [];
+      const userRoles = Array.isArray(decoded.roles) ? decoded.roles : [];
 
       // Check if user has any of the required roles
       const hasRequiredRole = requiredRoles.some(role => userRoles.includes(role));
