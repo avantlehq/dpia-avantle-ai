@@ -92,11 +92,18 @@ async function verifyJwtToken(token: string): Promise<ContextClaims> {
     // Verify token
     const decoded = verify(token, jwtSecret) as { [key: string]: unknown };
 
-    // Extract context claims
+    // Validate required JWT claims
+    if (typeof decoded.tenant_id !== 'string' || 
+        typeof decoded.workspace_id !== 'string' || 
+        typeof decoded.sub !== 'string') {
+      throw new Error('Token missing required claims: tenant_id, workspace_id, or sub must be strings');
+    }
+
+    // Extract context claims - TypeScript now knows these are strings after validation
     const context: ContextClaims = {
-      tenant_id: decoded.tenant_id,
-      workspace_id: decoded.workspace_id,
-      sub: decoded.sub,
+      tenant_id: decoded.tenant_id as string,
+      workspace_id: decoded.workspace_id as string,
+      sub: decoded.sub as string,
     };
 
     // Validate UUID format for context IDs
@@ -242,7 +249,7 @@ export function withRole<T extends any[]>(
       }
 
       const decoded = verify(token, jwtSecret) as { [key: string]: unknown };
-      const userRoles = decoded.roles || [];
+      const userRoles = Array.isArray(decoded.roles) ? decoded.roles as string[] : [];
 
       // Check if user has any of the required roles
       const hasRequiredRole = requiredRoles.some(role => userRoles.includes(role));
