@@ -571,9 +571,9 @@ export class SystemService {
     return { level, issues, recommendations };
   }
 
-  private assessSystemSecurityCompliance(securityOverview: any): { score: number; issues: string[] } {
+  private assessSystemSecurityCompliance(securityOverview: { security_score: number }): { score: number; issues: string[] } {
     const issues: string[] = [];
-    let score = securityOverview.security_score;
+    const score = securityOverview.security_score;
 
     if (score < 80) {
       issues.push('Security score below recommended threshold');

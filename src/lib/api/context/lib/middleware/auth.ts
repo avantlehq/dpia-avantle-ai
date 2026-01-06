@@ -12,7 +12,7 @@ import type { ContextClaims } from '../types';
 /**
  * Authentication middleware for Context API routes
  */
-export function withAuth<T extends any[]>(
+export function withAuth<T extends unknown[]>(
   handler: (context: ContextClaims, ...args: T) => Promise<NextResponse>
 ) {
   return async (request: NextRequest, ...args: T): Promise<NextResponse> => {
@@ -90,7 +90,7 @@ async function verifyJwtToken(token: string): Promise<ContextClaims> {
 
   try {
     // Verify token
-    const decoded = verify(token, jwtSecret) as any;
+    const decoded = verify(token, jwtSecret) as { [key: string]: unknown };
 
     // Extract context claims
     const context: ContextClaims = {
@@ -154,7 +154,7 @@ export function extractContextFromHeaders(request: NextRequest): ContextClaims |
 /**
  * Development-only authentication bypass
  */
-export function withDevAuth<T extends any[]>(
+export function withDevAuth<T extends unknown[]>(
   handler: (context: ContextClaims, ...args: T) => Promise<NextResponse>
 ) {
   return async (request: NextRequest, ...args: T): Promise<NextResponse> => {
@@ -187,7 +187,7 @@ export function withDevAuth<T extends any[]>(
 /**
  * Optional authentication middleware (allows both authenticated and anonymous access)
  */
-export function withOptionalAuth<T extends any[]>(
+export function withOptionalAuth<T extends unknown[]>(
   handler: (context: ContextClaims | null, ...args: T) => Promise<NextResponse>
 ) {
   return async (request: NextRequest, ...args: T): Promise<NextResponse> => {
@@ -241,7 +241,7 @@ export function withRole<T extends any[]>(
         throw new Error('JWT secret not configured');
       }
 
-      const decoded = verify(token, jwtSecret) as any;
+      const decoded = verify(token, jwtSecret) as { [key: string]: unknown };
       const userRoles = decoded.roles || [];
 
       // Check if user has any of the required roles
@@ -274,7 +274,7 @@ export function withRole<T extends any[]>(
  */
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
-export function withRateLimit<T extends any[]>(
+export function withRateLimit<T extends unknown[]>(
   maxRequests: number = 100,
   windowMs: number = 60000, // 1 minute
   handler: (context: ContextClaims, ...args: T) => Promise<NextResponse>
