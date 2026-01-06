@@ -3,9 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Force dark theme as default */
+/* Allow both light and dark themes */
 :root {
-  color-scheme: dark;
+  color-scheme: light dark;
 }
 
 /* Remove text decoration from navigation links */
@@ -795,14 +795,14 @@ body {
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1)) !important;
 }
 
-/* Fix assessment names visibility - ensure they're white/light */
+/* Fix assessment names visibility - use design tokens */
 .text-foreground {
-  color: #ffffff !important;
+  color: var(--text-primary) !important;
 }
 
 /* Override any dark text in tables */
 [data-slot="table"] .text-foreground {
-  color: #ffffff !important;
+  color: var(--text-primary) !important;
 }
 
 /* =====================================================
@@ -840,7 +840,7 @@ body {
 
 /* Ensure table cell text is visible */
 table td a, table th, table td {
-  color: #ffffff !important;
+  color: var(--text-primary) !important;
 }
 
 /* =====================================================

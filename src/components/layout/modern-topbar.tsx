@@ -51,9 +51,9 @@ const ModuleLink = memo(function ModuleLink({ module, isActive }: ModuleLinkProp
       className={cn(
         "modern-nav-link px-1 py-3 text-sm font-medium transition-all duration-200",
         "focus:outline-none",
-        // Clear contrast between active and inactive
-        !isActive && "text-gray-400 hover:opacity-80",
-        isActive && "text-white"
+        // Clear contrast between active and inactive  
+        !isActive && "text-gray-400 hover:opacity-80"
+        // Active color controlled by inline style for theme compatibility
       )}
       style={{
         backgroundColor: isActive ? 'rgba(96, 165, 250, 0.15)' : 'transparent',

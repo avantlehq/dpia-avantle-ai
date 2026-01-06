@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.142" as const
-export const VERSION_NAME = "🔧 BUILD FIX: SSR Compatibility + Light Theme Complete" as const
+export const VERSION = "3.21.143" as const
+export const VERSION_NAME = "✅ LIGHT THEME FIXED: Complete Text Visibility Resolution" as const
 export const BUILD_DATE = "2026-01-06"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.143": {
+    date: "2026-01-06", 
+    name: "✅ LIGHT THEME FIXED: Complete Text Visibility Resolution",
+    features: [
+      "ROOT CAUSE FIXED: Changed color-scheme from 'dark' to 'light dark' to allow proper theme switching",
+      "CSS OVERRIDES REMOVED: Replaced hardcoded #ffffff colors in .text-foreground and table CSS rules with var(--text-primary)",
+      "TAILWIND CLASS CONFLICT: Removed text-white Tailwind class that was overriding inline design token styles",
+      "THEME COMPATIBILITY: All text now properly switches between dark (#ffffff) and light (#0f172a) based on theme",
+      "COMPLETE FIX: Module headers, status pills, navigation, tables, and all components now visible in light theme",
+      "PRODUCTION READY: Light theme text visibility finally resolved across entire platform"
+    ]
+  },
   "3.21.142": {
     date: "2026-01-06", 
     name: "🔧 BUILD FIX: SSR Compatibility + Light Theme Complete",
