@@ -211,8 +211,8 @@ export class JurisdictionService {
     const toEuEea = toJurisdiction.gdpr_adequacy;
 
     const transferAllowed = true;
-    let transferMechanism: string = 'adequacy_decision';
-    let riskLevel: string = 'low';
+    let transferMechanism: 'adequacy_decision' | 'standard_contractual_clauses' | 'binding_corporate_rules' | 'derogation' | 'prohibited' = 'adequacy_decision';
+    let riskLevel: 'low' | 'medium' | 'high' = 'low';
     let safeguardsRequired = false;
     let additionalMeasures: string[] = [];
 
