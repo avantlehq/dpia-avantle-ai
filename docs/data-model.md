@@ -2,8 +2,8 @@
 
 ## Database Schema (Supabase PostgreSQL)
 
-### 🎯 **Microservices Data Architecture**
-**Current**: All tables in single dpia.avantle.ai database  
+### 🎯 **Microservices Data Architecture** 
+**Current (v3.21.150)**: All tables in single dpia.avantle.ai database with Context module fully implemented  
 **Future**: Separated per service domain
 
 **Database Separation Strategy:**
