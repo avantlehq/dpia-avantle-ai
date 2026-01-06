@@ -390,7 +390,7 @@ export function withErrorHandler<T extends unknown[]>(
       return await handler(...args);
     } catch (error) {
       // Extract path from request if available
-      const request = args[0] as { url?: string };
+      const request = args[0] as { url?: string; nextUrl?: { pathname: string } };
       const path = request && request.nextUrl ? request.nextUrl.pathname : undefined;
       
       return handleApiError(error, path);
