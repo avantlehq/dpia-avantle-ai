@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.140" as const
-export const VERSION_NAME = "📚 DOCS COMPLETE: Microservices Strategy + Context Schema + Build Fix" as const
-export const BUILD_DATE = "2026-01-05"
+export const VERSION = "3.21.142" as const
+export const VERSION_NAME = "🔧 BUILD FIX: SSR Compatibility + Light Theme Complete" as const
+export const BUILD_DATE = "2026-01-06"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,33 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.142": {
+    date: "2026-01-06", 
+    name: "🔧 BUILD FIX: SSR Compatibility + Light Theme Complete",
+    features: [
+      "SSR BUILD FIX: Added force-dynamic export to root layout to resolve persistent Next.js 16.1.1 SSR errors",
+      "GLOBAL ERROR HANDLER: Added explicit global-error.tsx component for better error boundary handling",
+      "BUILD COMPATIBILITY: Improved SSR compatibility while maintaining light theme text visibility fixes",
+      "PRODUCTION DEPLOYMENT: Enhanced deployment stability with proper SSR configuration",
+      "FRAMEWORK COMPATIBILITY: Addressed known Next.js 16.1.1 useContext SSR limitations documented in CLAUDE.md",
+      "LIGHT THEME COMPLETE: All previous light theme text visibility fixes preserved and functional"
+    ]
+  },
+  "3.21.141": {
+    date: "2026-01-06", 
+    name: "🎨 LIGHT THEME FIX: Text Visibility in White Theme Resolved",
+    features: [
+      "WHITE THEME TEXT VISIBILITY FIX: Replaced all hardcoded 'color: #ffffff' with 'var(--text-primary)' design tokens across 22+ components",
+      "MODULE HEADER FIX: Fixed white text on white background issue in all main content areas (Privacy, Context, Risk, Controls, Training, Trust Center)",
+      "DESIGN TOKEN COMPLIANCE: All text colors now use CSS design tokens for proper theme-aware display",
+      "COMPREHENSIVE MODULE FIX: Fixed text visibility in module overview pages, status pills, and dashboard components",
+      "THEME COMPATIBILITY: Text now automatically adapts to dark/light themes using --text-primary CSS variable",
+      "TOPBAR NAVIGATION FIX: Fixed active module text colors to properly display in light theme",
+      "ASSESSMENT COMPONENTS: Fixed form generators, precheck forms, and wizard components text visibility",
+      "DASHBOARD STATISTICS: Fixed all status pill numbers to be visible in both dark and light themes",
+      "PRODUCTION READY: All modules now fully functional and readable in light theme mode"
+    ]
+  },
   "3.21.140": {
     date: "2026-01-05", 
     name: "📚 DOCS COMPLETE: Microservices Strategy + Context Schema + Build Fix",

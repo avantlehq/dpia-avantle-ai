@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css"
 
+// Force dynamic rendering to resolve SSR issues
+export const dynamic = 'force-dynamic'
+
 // This layout is only used for locale detection and redirects
 // The actual layout is in [locale]/layout.tsx
 
