@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.148" as const
-export const VERSION_NAME = "🔧 AUTH FIX: Context API Authentication Resolved" as const
+export const VERSION = "3.21.149" as const
+export const VERSION_NAME = "✅ BUILD FIX: ESLint Errors Resolved + Auth Fixed" as const
 export const BUILD_DATE = "2026-01-06"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.149": {
+    date: "2026-01-06", 
+    name: "✅ BUILD FIX: ESLint Errors Resolved + Auth Fixed",
+    features: [
+      "ESLINT BUILD ERRORS RESOLVED: Fixed critical const reassignment errors in system.service.ts and jurisdiction.service.ts",
+      "TYPESCRIPT COMPLIANCE: Replaced all 'any' types with proper TypeScript types in auth middleware and health routes",
+      "CI/CD PIPELINE FIXED: Resolved build-blocking errors that were preventing successful deployment",
+      "CONTEXT API AUTHENTICATION: Maintained withDevAuth fix for 401 Unauthorized error resolution",
+      "PRODUCTION READY: Both authentication and build issues resolved for stable deployment"
+    ]
+  },
   "3.21.148": {
     date: "2026-01-06", 
     name: "🔧 AUTH FIX: Context API Authentication Resolved",
