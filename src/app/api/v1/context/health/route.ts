@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   try {
     return await withOptionalAuth(async (context) => {
       const timestamp = new Date().toISOString();
-      const checks: any = {
+      const checks: Record<string, unknown> = {
         timestamp,
         status: 'healthy',
         version: '1.0.0',
@@ -61,8 +61,8 @@ export async function GET(request: NextRequest) {
       }
 
       // Determine overall status
-      const hasErrors = Object.values(checks).some((check: any) => 
-        typeof check === 'object' && check.status === 'error'
+      const hasErrors = Object.values(checks).some((check: unknown) => 
+        typeof check === 'object' && check !== null && 'status' in check && (check as { status: string }).status === 'error'
       );
 
       const overallStatus = hasErrors ? 'degraded' : 'healthy';
@@ -119,7 +119,7 @@ async function checkDatabaseConnection(): Promise<{ status: string; latency?: nu
 /**
  * Check repository layer
  */
-async function checkRepositories(contextService: ContextService): Promise<{ status: string; details?: any; error?: string }> {
+async function checkRepositories(contextService: ContextService): Promise<{ status: string; details?: Record<string, unknown>; error?: string }> {
   try {
     const checks = {
       jurisdictions: await testRepositoryOperation(
@@ -160,7 +160,7 @@ async function checkRepositories(contextService: ContextService): Promise<{ stat
 /**
  * Check service layer
  */
-async function checkServices(contextService: ContextService): Promise<{ status: string; details?: any; error?: string }> {
+async function checkServices(contextService: ContextService): Promise<{ status: string; details?: Record<string, unknown>; error?: string }> {
   try {
     const checks = {
       contextService: { status: 'healthy' as string, error: undefined as string | undefined },
@@ -194,7 +194,7 @@ async function checkServices(contextService: ContextService): Promise<{ status: 
 /**
  * Test individual repository operation
  */
-async function testRepositoryOperation(operation: () => Promise<any>): Promise<{ status: string; latency?: number; error?: string }> {
+async function testRepositoryOperation(operation: () => Promise<unknown>): Promise<{ status: string; latency?: number; error?: string }> {
   try {
     const startTime = Date.now();
     await operation();

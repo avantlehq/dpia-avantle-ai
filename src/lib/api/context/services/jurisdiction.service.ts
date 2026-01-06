@@ -210,7 +210,7 @@ export class JurisdictionService {
     const fromEuEea = fromJurisdiction.gdpr_adequacy;
     const toEuEea = toJurisdiction.gdpr_adequacy;
 
-    let transferAllowed = true;
+    const transferAllowed = true;
     let transferMechanism: any = 'adequacy_decision';
     let riskLevel: any = 'low';
     let safeguardsRequired = false;
