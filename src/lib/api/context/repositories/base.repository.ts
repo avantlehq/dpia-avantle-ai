@@ -229,6 +229,7 @@ export abstract class BaseRepository<
   /**
    * Prepare data for creation (add tenant/workspace/audit fields)
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareCreateData(data: TCreate): any {
     return {
       ...data,
@@ -242,6 +243,7 @@ export abstract class BaseRepository<
   /**
    * Prepare data for update (add audit fields)
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareUpdateData(data: TUpdate): any {
     return {
       ...data,
@@ -266,6 +268,7 @@ export abstract class BaseRepository<
   /**
    * Apply search filters to query
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected applySearch(query: any, search: string): any {
     // Default implementation searches by name and description
     return query.or(`name.ilike.%${search}%,description.ilike.%${search}%`);
@@ -274,7 +277,8 @@ export abstract class BaseRepository<
   /**
    * Apply additional filters to query
    */
-  protected applyFilters(query: any, params: unknown): any {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected applyFilters(query: any, _params: unknown): any {
     // Default implementation - subclasses override for specific filters
     return query;
   }
@@ -282,6 +286,7 @@ export abstract class BaseRepository<
   /**
    * Apply ordering to query
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected applyOrdering(query: any): any {
     // Default ordering by created_at desc
     return query.order('created_at', { ascending: false });
@@ -290,7 +295,8 @@ export abstract class BaseRepository<
   /**
    * Apply includes for related data
    */
-  protected applyIncludes(query: any, include: string[]): any {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected applyIncludes(query: any, _include: string[]): any {
     // Default implementation - subclasses override for specific includes
     return query;
   }
@@ -298,6 +304,7 @@ export abstract class BaseRepository<
   /**
    * Get entity by field value
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected async findByField(field: string, value: any): Promise<TEntity | null> {
     const { data, error } = await this.client
       .from(this.tableName as keyof Database['public']['Tables'])
@@ -318,6 +325,7 @@ export abstract class BaseRepository<
   /**
    * Get entities by field value
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected async findManyByField(field: string, value: any): Promise<TEntity[]> {
     const { data, error } = await this.client
       .from(this.tableName as keyof Database['public']['Tables'])
