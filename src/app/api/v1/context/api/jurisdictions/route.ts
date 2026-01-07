@@ -23,8 +23,13 @@ export async function GET(request: NextRequest) {
       const url = new URL(request.url);
       const queryParams = validateQuery(url.searchParams, JurisdictionQueryParamsSchema);
 
-      // Initialize context service
-      const contextService = new ContextService(context);
+      // Initialize context service with default anonymous context if null
+      const effectiveContext = context || {
+        tenant_id: '00000000-0000-0000-0000-000000000001',
+        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        sub: '00000000-0000-0000-0000-000000000001'
+      };
+      const contextService = new ContextService(effectiveContext);
 
       // Get jurisdictions
       const result = await contextService.jurisdictions.getJurisdictions(queryParams);

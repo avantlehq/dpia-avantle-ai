@@ -29,8 +29,13 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
     return await withOptionalAuth(async (context) => {
       const { id } = await params;
 
-      // Initialize context service
-      const contextService = new ContextService(context);
+      // Initialize context service with default anonymous context if null
+      const effectiveContext = context || {
+        tenant_id: '00000000-0000-0000-0000-000000000001',
+        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        sub: '00000000-0000-0000-0000-000000000001'
+      };
+      const contextService = new ContextService(effectiveContext);
 
       // Get processing activity
       const activity = await contextService.processingActivities.getProcessingActivityById(id);
@@ -63,8 +68,13 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
       const body = await request.json();
       const activityData = validateBody(body, UpdateProcessingActivityRequestSchema);
 
-      // Initialize context service
-      const contextService = new ContextService(context);
+      // Initialize context service with default anonymous context if null
+      const effectiveContext = context || {
+        tenant_id: '00000000-0000-0000-0000-000000000001',
+        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        sub: '00000000-0000-0000-0000-000000000001'
+      };
+      const contextService = new ContextService(effectiveContext);
 
       // Update processing activity
       const activity = await contextService.processingActivities.updateProcessingActivity(id, activityData);
@@ -86,8 +96,13 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
     return await withOptionalAuth(async (context) => {
       const { id } = await params;
 
-      // Initialize context service
-      const contextService = new ContextService(context);
+      // Initialize context service with default anonymous context if null
+      const effectiveContext = context || {
+        tenant_id: '00000000-0000-0000-0000-000000000001',
+        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        sub: '00000000-0000-0000-0000-000000000001'
+      };
+      const contextService = new ContextService(effectiveContext);
 
       // Delete processing activity
       await contextService.processingActivities.deleteProcessingActivity(id);

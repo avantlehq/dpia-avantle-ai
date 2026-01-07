@@ -29,8 +29,13 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
     return await withOptionalAuth(async (context) => {
       const { id } = await params;
 
-      // Initialize context service
-      const contextService = new ContextService(context);
+      // Initialize context service with default anonymous context if null
+      const effectiveContext = context || {
+        tenant_id: '00000000-0000-0000-0000-000000000001',
+        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        sub: '00000000-0000-0000-0000-000000000001'
+      };
+      const contextService = new ContextService(effectiveContext);
 
       // Get system
       const system = await contextService.systems.getSystemById(id);
@@ -63,8 +68,13 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
       const body = await request.json();
       const systemData = validateBody(body, UpdateSystemRequestSchema);
 
-      // Initialize context service
-      const contextService = new ContextService(context);
+      // Initialize context service with default anonymous context if null
+      const effectiveContext = context || {
+        tenant_id: '00000000-0000-0000-0000-000000000001',
+        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        sub: '00000000-0000-0000-0000-000000000001'
+      };
+      const contextService = new ContextService(effectiveContext);
 
       // Update system
       const system = await contextService.systems.updateSystem(id, systemData);
@@ -86,8 +96,13 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
     return await withOptionalAuth(async (context) => {
       const { id } = await params;
 
-      // Initialize context service
-      const contextService = new ContextService(context);
+      // Initialize context service with default anonymous context if null
+      const effectiveContext = context || {
+        tenant_id: '00000000-0000-0000-0000-000000000001',
+        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        sub: '00000000-0000-0000-0000-000000000001'
+      };
+      const contextService = new ContextService(effectiveContext);
 
       // Delete system
       await contextService.systems.deleteSystem(id);

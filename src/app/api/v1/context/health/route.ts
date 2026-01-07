@@ -44,7 +44,13 @@ export async function GET(request: NextRequest) {
       // Service availability checks
       try {
         if (context) {
-          const contextService = new ContextService(context);
+          // Initialize context service with default anonymous context if null
+          const effectiveContext = context || {
+            tenant_id: '00000000-0000-0000-0000-000000000001',
+            workspace_id: '00000000-0000-0000-0000-000000000001', 
+            sub: '00000000-0000-0000-0000-000000000001'
+          };
+          const contextService = new ContextService(effectiveContext);
           
           // Test basic repository operations
           checks.repositories = await checkRepositories(contextService);
