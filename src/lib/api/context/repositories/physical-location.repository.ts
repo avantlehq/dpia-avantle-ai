@@ -32,6 +32,7 @@ export class PhysicalLocationRepository extends BaseRepository<
   /**
    * Apply specific filters for physical locations
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected applyFilters(query: any, params: Partial<PhysicalLocationQueryParams>): any {
     let filteredQuery = query;
 
