@@ -28,8 +28,10 @@ export class SystemService {
   /**
    * Get all systems with filtering and pagination
    */
-  async getSystems(params: SystemQueryParams = {}): Promise<PaginatedResponse<System & { endpoint_count: number }>> {
-    return await this.systemRepo.findManyWithEndpointCounts(params);
+  async getSystems(params: SystemQueryParams = {}): Promise<PaginatedResponse<System>> {
+    // Use simple findMany instead of complex endpoint count query
+    // TODO: Re-enable findManyWithEndpointCounts when system_endpoints table has data
+    return await this.systemRepo.findMany(params);
   }
 
   /**

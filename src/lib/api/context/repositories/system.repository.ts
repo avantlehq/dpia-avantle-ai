@@ -36,6 +36,13 @@ export class SystemRepository extends BaseRepository<
   }
 
   /**
+   * Override to disable automatic status filtering - causing issues
+   */
+  protected supportsStatus(): boolean {
+    return false; // Temporarily disable until status enum is fixed
+  }
+
+  /**
    * Apply specific filters for systems
    */
   protected applyFilters(query: any, params: Partial<SystemQueryParams>): any {
