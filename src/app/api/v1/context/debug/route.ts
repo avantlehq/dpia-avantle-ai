@@ -16,32 +16,33 @@ export async function GET(request: NextRequest) {
     // SEED TEST DATA FIRST
     await seedTestSystems(supabase);
 
-    // Test 1: Count all systems (no filtering)
-    const { data: allSystems, error: allError, count: allCount } = await supabase
-      .from('systems')
-      .select('*', { count: 'exact' });
+    // Test 1: Count vendors (check for DATABASE_ERROR cause)
+    const { data: allVendors, error: allError, count: allCount } = await supabase
+      .from('vendors')
+      .select('*', { count: 'exact' })
+      .eq('workspace_id', '00000000-0000-0000-0000-000000000001');
 
-    // Test 2: Count systems with default workspace filter
+    // Test 2: Count systems (known working)
     const { data: workspaceSystems, error: workspaceError, count: workspaceCount } = await supabase
       .from('systems')
       .select('*', { count: 'exact' })
       .eq('workspace_id', '00000000-0000-0000-0000-000000000001');
 
-    // Test 3: Check table structure
+    // Test 3: Check vendors table structure
     const { data: tableInfo, error: tableError } = await supabase
-      .from('systems')
+      .from('vendors')
       .select('id, workspace_id, tenant_id, name')
       .limit(3);
 
     return NextResponse.json({
       debug: 'Context API Database Debug',
       tests: {
-        all_systems: {
+        vendors_query: {
           count: allCount,
           error: allError?.message,
-          data: allSystems?.slice(0, 2) // First 2 rows
+          data: allVendors?.slice(0, 2) // First 2 rows
         },
-        workspace_filtered: {
+        systems_query: {
           count: workspaceCount,
           error: workspaceError?.message,
           data: workspaceSystems?.slice(0, 2)
