@@ -457,7 +457,7 @@ export function addDevelopmentErrorDetails(
       details: {
         ...(response.details && typeof response.details === 'object' ? response.details : {}),
         stack: error.stack,
-        cause: (error as any).cause,
+        cause: (error as Error & { cause?: unknown }).cause,
       },
     };
   }

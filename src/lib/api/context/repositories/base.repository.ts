@@ -38,7 +38,7 @@ export abstract class BaseRepository<
     } = params;
 
     let query = this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .select('*', { count: 'exact' });
 
     // Apply workspace filtering for multi-tenant isolation
@@ -88,7 +88,7 @@ export abstract class BaseRepository<
    * Get a single entity by ID
    */
   async findById(id: UUID, include?: string[]): Promise<TEntity | null> {
-    let query = this.client.from(this.tableName as any).select('*');
+    let query = this.client.from(this.tableName as keyof Database['public']['Tables']).select('*');
 
     // Apply workspace filtering for multi-tenant isolation
     query = query.eq('workspace_id', this.context.workspace_id);
@@ -117,7 +117,7 @@ export abstract class BaseRepository<
     const entityData = this.prepareCreateData(data);
 
     const { data: created, error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .insert(entityData)
       .select()
       .single();
@@ -136,7 +136,7 @@ export abstract class BaseRepository<
     const entityData = this.prepareUpdateData(data);
 
     const { data: updated, error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .update(entityData)
       .eq('id', id)
       .eq('workspace_id', this.context.workspace_id)
@@ -155,7 +155,7 @@ export abstract class BaseRepository<
    */
   async delete(id: UUID): Promise<void> {
     const { error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .update({
         deleted_at: new Date().toISOString(),
         updated_by: this.context.sub,
@@ -173,7 +173,7 @@ export abstract class BaseRepository<
    */
   async hardDelete(id: UUID): Promise<void> {
     const { error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .delete()
       .eq('id', id)
       .eq('workspace_id', this.context.workspace_id);
@@ -188,7 +188,7 @@ export abstract class BaseRepository<
    */
   async exists(id: UUID): Promise<boolean> {
     const { data, error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .select('id')
       .eq('id', id)
       .eq('workspace_id', this.context.workspace_id)
@@ -206,7 +206,7 @@ export abstract class BaseRepository<
    */
   async count(params: Partial<TQueryParams> = {}): Promise<number> {
     let query = this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .select('*', { count: 'exact', head: true });
 
     // Apply workspace filtering for multi-tenant isolation
@@ -274,7 +274,7 @@ export abstract class BaseRepository<
   /**
    * Apply additional filters to query
    */
-  protected applyFilters(query: any, params: any): any {
+  protected applyFilters(query: any, params: unknown): any {
     // Default implementation - subclasses override for specific filters
     return query;
   }
@@ -300,7 +300,7 @@ export abstract class BaseRepository<
    */
   protected async findByField(field: string, value: any): Promise<TEntity | null> {
     const { data, error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .select('*')
       .eq(field, value)
       .single();
@@ -320,7 +320,7 @@ export abstract class BaseRepository<
    */
   protected async findManyByField(field: string, value: any): Promise<TEntity[]> {
     const { data, error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .select('*')
       .eq(field, value);
 
@@ -338,7 +338,7 @@ export abstract class BaseRepository<
     const entityData = items.map(item => this.prepareCreateData(item));
 
     const { data, error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .insert(entityData)
       .select();
 
@@ -369,7 +369,7 @@ export abstract class BaseRepository<
    */
   async bulkDelete(ids: UUID[]): Promise<void> {
     const { error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .update({
         deleted_at: new Date().toISOString(),
         updated_by: this.context.sub,
@@ -386,7 +386,7 @@ export abstract class BaseRepository<
    */
   async restore(id: UUID): Promise<TEntity> {
     const { data, error } = await this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .update({
         deleted_at: null,
         updated_by: this.context.sub,
@@ -412,7 +412,7 @@ export abstract class BaseRepository<
     } = params;
 
     let query = this.client
-      .from(this.tableName as any)
+      .from(this.tableName as keyof Database['public']['Tables'])
       .select('*', { count: 'exact' })
       .not('deleted_at', 'is', null);
 
