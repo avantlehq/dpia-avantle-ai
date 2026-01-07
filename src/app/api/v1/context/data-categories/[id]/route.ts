@@ -10,7 +10,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ContextService } from '@/lib/api/context/services/context.service';
 import { UpdateDataCategoryRequestSchema } from '@/lib/api/context/schemas';
-import { withAuth } from '@/lib/api/context/middleware/auth';
+import { withOptionalAuth } from '@/lib/api/context/middleware/auth';
 import { validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
 
@@ -27,7 +27,7 @@ interface RouteContext {
  */
 export async function GET(request: NextRequest, { params }: RouteContext) {
   try {
-    return await withAuth(async (context) => {
+    return await withOptionalAuth(async (context) => {
       const { id } = await params;
 
       // Initialize context service
@@ -57,7 +57,7 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
  */
 export async function PUT(request: NextRequest, { params }: RouteContext) {
   try {
-    return await withAuth(async (context) => {
+    return await withOptionalAuth(async (context) => {
       const { id } = await params;
 
       // Validate request body
@@ -84,7 +84,7 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
  */
 export async function DELETE(request: NextRequest, { params }: RouteContext) {
   try {
-    return await withAuth(async (context) => {
+    return await withOptionalAuth(async (context) => {
       const { id } = await params;
 
       // Initialize context service
