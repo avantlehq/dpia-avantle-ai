@@ -74,17 +74,14 @@ export const createContextClient = (contextClaims: {
   workspace_id: string;
   sub: string;
 }) => {
-  // Create a JWT token with context claims for RLS
-  const token = Buffer.from(JSON.stringify({
-    iss: 'dpia-avantle-ai',
-    sub: contextClaims.sub,
-    tenant_id: contextClaims.tenant_id,
-    workspace_id: contextClaims.workspace_id,
-    iat: Math.floor(Date.now() / 1000),
-    exp: Math.floor(Date.now() / 1000) + 3600, // 1 hour
-  })).toString('base64');
-
-  return setAuthToken(supabase, token);
+  // Use service role client to bypass RLS since we handle workspace isolation in queries
+  if (supabaseAdmin) {
+    return supabaseAdmin;
+  }
+  
+  // Fallback to anon client if service role not available
+  console.warn('Service role not available, using anonymous client');
+  return supabase;
 };
 
 // Health check function

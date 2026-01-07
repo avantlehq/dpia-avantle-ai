@@ -41,7 +41,9 @@ export abstract class BaseRepository<
       .from(this.tableName as any)
       .select('*', { count: 'exact' });
 
-    // Apply tenant/workspace filtering (handled by RLS)
+    // Apply workspace filtering for multi-tenant isolation
+    query = query.eq('workspace_id', this.context.workspace_id);
+
     // Additional filtering is implemented in subclasses
 
     // Apply status filtering if supported
@@ -87,6 +89,9 @@ export abstract class BaseRepository<
    */
   async findById(id: UUID, include?: string[]): Promise<TEntity | null> {
     let query = this.client.from(this.tableName as any).select('*');
+
+    // Apply workspace filtering for multi-tenant isolation
+    query = query.eq('workspace_id', this.context.workspace_id);
 
     // Apply includes if supported
     if (include?.length) {
@@ -134,6 +139,7 @@ export abstract class BaseRepository<
       .from(this.tableName as any)
       .update(entityData)
       .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id)
       .select()
       .single();
 
@@ -154,7 +160,8 @@ export abstract class BaseRepository<
         deleted_at: new Date().toISOString(),
         updated_by: this.context.sub,
       })
-      .eq('id', id);
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id);
 
     if (error) {
       throw new Error(`Failed to delete ${this.tableName}: ${error.message}`);
@@ -168,7 +175,8 @@ export abstract class BaseRepository<
     const { error } = await this.client
       .from(this.tableName as any)
       .delete()
-      .eq('id', id);
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id);
 
     if (error) {
       throw new Error(`Failed to hard delete ${this.tableName}: ${error.message}`);
@@ -183,6 +191,7 @@ export abstract class BaseRepository<
       .from(this.tableName as any)
       .select('id')
       .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id)
       .single();
 
     if (error && error.code !== 'PGRST116') {
@@ -199,6 +208,9 @@ export abstract class BaseRepository<
     let query = this.client
       .from(this.tableName as any)
       .select('*', { count: 'exact', head: true });
+
+    // Apply workspace filtering for multi-tenant isolation
+    query = query.eq('workspace_id', this.context.workspace_id);
 
     // Apply filters
     query = this.applyFilters(query, params);
