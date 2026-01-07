@@ -36,6 +36,7 @@ export class ProcessingActivityRepository extends BaseRepository<
   /**
    * Apply specific filters for processing activities
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected applyFilters(query: any, params: Partial<ProcessingActivityQueryParams>): any {
     let filteredQuery = query;
 
@@ -58,6 +59,7 @@ export class ProcessingActivityRepository extends BaseRepository<
   /**
    * Apply includes for related data
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected applyIncludes(query: any, include: string[]): any {
     let selectFields = '*';
 
@@ -253,6 +255,7 @@ export class ProcessingActivityRepository extends BaseRepository<
   /**
    * Get systems for processing activity
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async getSystems(processingActivityId: UUID): Promise<any[]> {
     const { data, error } = await this.client
       .from('processing_systems')

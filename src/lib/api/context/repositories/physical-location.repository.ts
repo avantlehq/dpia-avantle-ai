@@ -47,6 +47,7 @@ export class PhysicalLocationRepository extends BaseRepository<
   /**
    * Apply includes for related data
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected applyIncludes(query: any, include: string[]): any {
     let selectFields = '*';
 
@@ -203,6 +204,7 @@ export class PhysicalLocationRepository extends BaseRepository<
     // Group by jurisdiction and count
     const stats = new Map();
     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (data as any[]).forEach(location => {
       const jurisdictionId = location.jurisdiction_id;
       const jurisdiction = location.jurisdiction;
@@ -270,6 +272,7 @@ export class PhysicalLocationRepository extends BaseRepository<
 
     // Check name uniqueness for new locations
     if ('name' in data && data.name) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const excludeId = 'id' in data ? (data as any).id : undefined;
       const nameExists = await this.nameExists(data.name, excludeId);
       
@@ -399,6 +402,7 @@ export class PhysicalLocationRepository extends BaseRepository<
         .eq('gdpr_adequacy', true);
 
       if (adequateJurisdictions?.length) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const adequateIds = adequateJurisdictions.map((j: any) => j.id);
         query = query.in('jurisdiction_id', adequateIds);
       }
