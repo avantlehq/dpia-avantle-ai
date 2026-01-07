@@ -16,6 +16,7 @@ import type {
   UpdateSystemEndpointRequest,
   ContextClaims, 
   SystemQueryParams,
+  PaginatedResponse,
   UUID,
   Criticality,
   EntityStatus,
@@ -40,6 +41,35 @@ export class SystemRepository extends BaseRepository<
    */
   protected supportsStatus(): boolean {
     return false; // Temporarily disable until status enum is fixed
+  }
+
+  /**
+   * Override findMany with simplified query - debug BaseRepository issues
+   */
+  async findMany(params: SystemQueryParams = {}): Promise<PaginatedResponse<System>> {
+    const { page = 1, limit = 20 } = params;
+
+    // Simple direct query without complex BaseRepository logic
+    const { data, error, count } = await this.client
+      .from('systems')
+      .select('*', { count: 'exact' })
+      .eq('workspace_id', this.context.workspace_id)
+      .order('created_at', { ascending: false })
+      .range((page - 1) * limit, page * limit - 1);
+
+    if (error) {
+      throw new Error(`Systems query failed: ${error.message}`);
+    }
+
+    return {
+      data: data as System[],
+      pagination: {
+        page,
+        limit,
+        total: count || 0,
+        pages: Math.ceil((count || 0) / limit),
+      },
+    };
   }
 
   /**
