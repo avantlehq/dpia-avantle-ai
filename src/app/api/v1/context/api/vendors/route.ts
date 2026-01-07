@@ -12,7 +12,7 @@ import {
   VendorQueryParamsSchema,
   CreateVendorRequestSchema 
 } from '@/lib/api/context/schemas';
-import { withAuth } from '@/lib/api/context/middleware/auth';
+import { withOptionalAuth } from '@/lib/api/context/middleware/auth';
 import { validateQuery, validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
 
@@ -22,7 +22,7 @@ import { handleApiError } from '@/lib/api/context/middleware/error-handler';
  */
 export async function GET(request: NextRequest) {
   try {
-    return await withAuth(async (context) => {
+    return await withOptionalAuth(async (context) => {
       // Validate query parameters
       const url = new URL(request.url);
       const queryParams = validateQuery(url.searchParams, VendorQueryParamsSchema);
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    return await withAuth(async (context) => {
+    return await withOptionalAuth(async (context) => {
       // Validate request body
       const body = await request.json();
       const vendorData = validateBody(body, CreateVendorRequestSchema);
