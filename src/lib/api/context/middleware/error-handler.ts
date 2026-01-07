@@ -14,7 +14,7 @@ import { ValidationError } from './validation';
 interface APIErrorResponse {
   error: string;
   message: string;
-  details?: any;
+  details?: unknown;
   timestamp: string;
   path?: string;
 }
@@ -22,7 +22,7 @@ interface APIErrorResponse {
 /**
  * Known error types and their HTTP status codes
  */
-const ERROR_STATUS_MAP = {
+const _ERROR_STATUS_MAP = {
   // Client errors (4xx)
   VALIDATION_ERROR: 400,
   INVALID_REQUEST: 400,
@@ -361,7 +361,7 @@ function handleAuthError(
 function logError(
   errorType: string, 
   message: string, 
-  context: Record<string, any>
+  context: Record<string, unknown>
 ) {
   const logEntry = {
     type: errorType,
@@ -382,7 +382,7 @@ function logError(
 /**
  * Async error handler wrapper for route handlers
  */
-export function withErrorHandler<T extends any[]>(
+export function withErrorHandler<T extends unknown[]>(
   handler: (...args: T) => Promise<NextResponse>
 ) {
   return async (...args: T): Promise<NextResponse> => {
@@ -390,7 +390,7 @@ export function withErrorHandler<T extends any[]>(
       return await handler(...args);
     } catch (error) {
       // Extract path from request if available
-      const request = args[0] as any;
+      const request = args[0] as { nextUrl?: { pathname: string } };
       const path = request && request.nextUrl ? request.nextUrl.pathname : undefined;
       
       return handleApiError(error, path);
@@ -403,7 +403,7 @@ export function withErrorHandler<T extends any[]>(
  */
 export async function safeServiceCall<T>(
   operation: () => Promise<T>,
-  errorContext?: Record<string, any>
+  errorContext?: Record<string, unknown>
 ): Promise<T> {
   try {
     return await operation();

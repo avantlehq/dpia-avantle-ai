@@ -281,7 +281,7 @@ export function withRole<T extends unknown[]>(
  */
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
 
-export function withRateLimit<T extends any[]>(
+export function withRateLimit<T extends unknown[]>(
   maxRequests: number = 100,
   windowMs: number = 60000, // 1 minute
   handler: (context: ContextClaims, ...args: T) => Promise<NextResponse>

@@ -5,7 +5,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     // Test direct database access with service role
     const supabase = createClient(
@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
 /**
  * Seed test data for systems table
  */
-async function seedTestSystems(supabase: any): Promise<void> {
+async function seedTestSystems(supabase: ReturnType<typeof createClient>): Promise<void> {
   // Check if we already have systems
   const { count } = await supabase
     .from('systems')
