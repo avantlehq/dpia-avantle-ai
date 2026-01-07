@@ -26,8 +26,10 @@ export class VendorService {
   /**
    * Get all vendors with filtering and pagination
    */
-  async getVendors(params: ListQueryParams = {}): Promise<PaginatedResponse<Vendor & { contract_count: number }>> {
-    return await this.vendorRepo.findManyWithContractCounts(params);
+  async getVendors(params: ListQueryParams = {}): Promise<PaginatedResponse<Vendor>> {
+    // Use simple findMany instead of complex contract count query
+    // TODO: Re-enable findManyWithContractCounts when vendor_contracts table has data
+    return await this.vendorRepo.findMany(params);
   }
 
   /**
