@@ -455,7 +455,7 @@ export function addDevelopmentErrorDetails(
     return {
       ...response,
       details: {
-        ...(response.details && typeof response.details === 'object' ? response.details : {}),
+        ...(response.details && typeof response.details === 'object' && response.details !== null ? response.details as Record<string, unknown> : {}),
         stack: error.stack,
         cause: (error as Error & { cause?: unknown }).cause,
       },
