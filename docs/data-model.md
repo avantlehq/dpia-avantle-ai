@@ -3,7 +3,8 @@
 ## Database Schema (Supabase PostgreSQL)
 
 ### 🎯 **Microservices Data Architecture** 
-**Current (v3.21.150)**: All tables in single dpia.avantle.ai database with Context module fully implemented  
+**Current (v3.21.150)**: All tables in single dpia.avantle.ai database with **Context module FULLY OPERATIONAL**  
+**Status**: ✅ Context database setup complete with working API endpoints  
 **Future**: Separated per service domain
 
 **Database Separation Strategy:**
@@ -102,6 +103,90 @@ form_sections (
   UNIQUE(assessment_type, section_id)
 )
 ```
+
+### Context Module Tables (✅ OPERATIONAL)
+
+#### Systems Table
+```sql
+systems (
+  id: uuid PRIMARY KEY,
+  tenant_id: uuid NOT NULL,
+  workspace_id: uuid NOT NULL,
+  name: text NOT NULL,
+  description: text,
+  system_type: text,
+  status: text DEFAULT 'active',
+  created_at: timestamptz DEFAULT now(),
+  updated_at: timestamptz DEFAULT now(),
+  created_by: text,
+  updated_by: text
+)
+```
+
+#### Vendors Table
+```sql
+vendors (
+  id: uuid PRIMARY KEY,
+  tenant_id: uuid NOT NULL,
+  workspace_id: uuid NOT NULL,
+  name: text NOT NULL,
+  description: text,
+  vendor_type: text,
+  status: text DEFAULT 'active',
+  created_at: timestamptz DEFAULT now(),
+  updated_at: timestamptz DEFAULT now(),
+  created_by: text,
+  updated_by: text
+)
+```
+
+#### Physical Locations Table
+```sql
+physical_locations (
+  id: uuid PRIMARY KEY,
+  tenant_id: uuid NOT NULL,
+  workspace_id: uuid NOT NULL,
+  name: text NOT NULL,
+  address: text,
+  jurisdiction_id: uuid,
+  status: text DEFAULT 'active',
+  created_at: timestamptz DEFAULT now(),
+  updated_at: timestamptz DEFAULT now(),
+  created_by: text,
+  updated_by: text
+)
+```
+
+#### Processing Activities Table
+```sql
+processing_activities (
+  id: uuid PRIMARY KEY,
+  tenant_id: uuid NOT NULL,
+  workspace_id: uuid NOT NULL,
+  name: text NOT NULL,
+  purpose: text,
+  lawful_basis: text,
+  status: text DEFAULT 'active',
+  created_at: timestamptz DEFAULT now(),
+  updated_at: timestamptz DEFAULT now(),
+  created_by: text,
+  updated_by: text
+)
+```
+
+**Context API Endpoints:**
+- `GET /api/v1/context/systems` - Returns all systems (✅ Working)
+- `GET /api/v1/context/vendors` - Returns all vendors (✅ Working)  
+- `GET /api/v1/context/locations` - Returns all physical locations (✅ Working)
+- `GET /api/v1/context/processing-activities` - Returns all processing activities
+- `GET /api/v1/context/data-categories` - Returns all data categories
+- `GET /api/v1/context/jurisdictions` - Returns all jurisdictions
+
+**Test Data Status:**
+- ✅ 3 Systems (CRM, HR Management, Analytics Platform)
+- ✅ 2 Vendors (Microsoft Corporation, Salesforce Inc.)
+- ✅ 2 Physical Locations (Bratislava HQ, London Office)
+- ✅ 3 Jurisdictions (Slovakia, United Kingdom, European Union)
 
 ## Data Relationships
 
