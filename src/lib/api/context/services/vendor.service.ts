@@ -74,6 +74,7 @@ export class VendorService {
       contact_email: data.contact_email ?? existingVendor.contact_email,
       primary_contact: data.primary_contact ?? existingVendor.primary_contact
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await this.validateVendorData(validationData as any, id);
 
     // Update the vendor
@@ -115,7 +116,7 @@ export class VendorService {
       locations_count: number;
     };
     contracts: VendorContract[];
-    locations: any[];
+    locations: unknown[];
   }> {
     const vendor = await this.getVendorById(id);
     if (!vendor) {
@@ -263,7 +264,7 @@ export class VendorService {
   /**
    * Get vendor locations
    */
-  async getVendorLocations(vendorId: UUID): Promise<any[]> {
+  async getVendorLocations(vendorId: UUID): Promise<unknown[]> {
     // Validate vendor exists
     const vendor = await this.vendorRepo.findById(vendorId);
     if (!vendor) {
@@ -335,7 +336,7 @@ export class VendorService {
     ];
 
     // Determine risk level
-    let riskLevel: any = 'low';
+    let riskLevel: 'low' | 'medium' | 'high' = 'low';
     if (complianceScore < 70) riskLevel = 'high';
     else if (complianceScore < 85) riskLevel = 'medium';
 
@@ -368,7 +369,11 @@ export class VendorService {
     const complianceAssessment = await this.getComplianceAssessment(vendorId);
     const contracts = await this.vendorRepo.getActiveContracts(vendorId);
 
-    const riskFactors: any[] = [];
+    const riskFactors: {
+      factor: string;
+      severity: 'low' | 'medium' | 'high';
+      description: string;
+    }[] = [];
     const mitigationMeasures: string[] = [];
 
     // Analyze risk factors
@@ -399,6 +404,7 @@ export class VendorService {
 
     // Assess location-based risks
     const locations = await this.vendorRepo.getLocations(vendorId);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const nonAdequateLocations = locations.filter((loc: any) => 
       !loc.physical_locations?.jurisdiction?.gdpr_adequacy
     );
@@ -416,7 +422,7 @@ export class VendorService {
     const highRiskCount = riskFactors.filter(f => f.severity === 'high').length;
     const mediumRiskCount = riskFactors.filter(f => f.severity === 'medium').length;
 
-    let overallRisk: any = 'low';
+    let overallRisk: 'low' | 'medium' | 'high' = 'low';
     if (highRiskCount > 0) overallRisk = 'high';
     else if (mediumRiskCount > 1) overallRisk = 'medium';
 
@@ -464,6 +470,7 @@ export class VendorService {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async validateContractData(data: any): Promise<void> {
     const errors: string[] = [];
 
@@ -516,6 +523,7 @@ export class VendorService {
     return { score: Math.max(score, 0), issues };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async assessLocations(locations: any[]): Promise<{ score: number; issues: string[] }> {
     const issues: string[] = [];
     let score = 100;

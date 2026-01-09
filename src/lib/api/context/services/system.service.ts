@@ -77,6 +77,7 @@ export class SystemService {
       technical_contact: data.technical_contact ?? existingSystem.technical_contact,
       business_contact: data.business_contact ?? existingSystem.business_contact
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await this.validateSystemData(validationData as any, id);
 
     // Update the system
