@@ -246,7 +246,7 @@ export class ProcessingActivityService {
   /**
    * Get data categories for processing activity
    */
-  async getActivityDataCategories(processingActivityId: UUID): Promise<any[]> {
+  async getActivityDataCategories(processingActivityId: UUID): Promise<unknown[]> {
     // Validate activity exists
     const activity = await this.processingActivityRepo.findById(processingActivityId);
     if (!activity) {
@@ -315,7 +315,7 @@ export class ProcessingActivityService {
   /**
    * Get vendors for processing activity
    */
-  async getActivityVendors(processingActivityId: UUID): Promise<any[]> {
+  async getActivityVendors(processingActivityId: UUID): Promise<unknown[]> {
     // Validate activity exists
     const activity = await this.processingActivityRepo.findById(processingActivityId);
     if (!activity) {
@@ -353,7 +353,7 @@ export class ProcessingActivityService {
   /**
    * Get retention policies for processing activity
    */
-  async getActivityRetentionPolicies(processingActivityId: UUID): Promise<any[]> {
+  async getActivityRetentionPolicies(processingActivityId: UUID): Promise<unknown[]> {
     // Validate activity exists
     const activity = await this.processingActivityRepo.findById(processingActivityId);
     if (!activity) {
@@ -661,7 +661,7 @@ export class ProcessingActivityService {
     return date instanceof Date && !isNaN(date.getTime());
   }
 
-  private isReviewOverdue(reviewDate?: string | null, lastReviewDate?: string | null): boolean {
+  private isReviewOverdue(reviewDate?: string | null, _lastReviewDate?: string | null): boolean {
     if (!reviewDate) return false;
     
     const review = new Date(reviewDate);

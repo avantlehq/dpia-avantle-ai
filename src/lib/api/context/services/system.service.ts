@@ -121,7 +121,7 @@ export class SystemService {
       locations_count: number;
     };
     endpoints: SystemEndpoint[];
-    locations: any[];
+    locations: unknown[];
   }> {
     const system = await this.getSystemById(id);
     if (!system) {
@@ -220,6 +220,7 @@ export class SystemService {
    * Get endpoints by type
    */
   async getEndpointsByType(systemId: UUID, endpointType: string): Promise<SystemEndpoint[]> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return await this.systemRepo.getEndpointsByType(systemId, endpointType as any);
   }
 
@@ -254,7 +255,7 @@ export class SystemService {
   /**
    * Get system locations
    */
-  async getSystemLocations(systemId: UUID): Promise<any[]> {
+  async getSystemLocations(systemId: UUID): Promise<unknown[]> {
     // Validate system exists
     const system = await this.systemRepo.findById(systemId);
     if (!system) {
@@ -374,7 +375,7 @@ export class SystemService {
     ];
 
     // Determine risk level
-    let riskLevel: any = 'low';
+    let riskLevel: 'low' | 'medium' | 'high' = 'low';
     if (complianceScore < 70) riskLevel = 'high';
     else if (complianceScore < 85) riskLevel = 'medium';
 
@@ -430,7 +431,11 @@ export class SystemService {
     let totalEndpoints = 0;
     let encryptedEndpoints = 0;
 
-    const enrichedSystems: any[] = [];
+    const enrichedSystems: (System & { 
+      endpoint_count: number; 
+      security_score: number;
+      compliance_status: 'compliant' | 'needs_attention' | 'non_compliant';
+    })[] = [];
 
     // Process each system
     for (const system of systems) {
@@ -464,7 +469,7 @@ export class SystemService {
       encryptedEndpoints += encryptedCount;
 
       // Determine compliance status
-      let complianceStatus: any = 'compliant';
+      let complianceStatus: 'compliant' | 'needs_attention' | 'non_compliant' = 'compliant';
       if (securityOverview.security_score < 70) complianceStatus = 'non_compliant';
       else if (securityOverview.security_score < 85) complianceStatus = 'needs_attention';
 
@@ -520,6 +525,7 @@ export class SystemService {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async validateEndpointData(data: any): Promise<void> {
     const errors: string[] = [];
 
@@ -542,6 +548,7 @@ export class SystemService {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private assessSystemSecurity(metrics: any): {
     level: 'excellent' | 'good' | 'fair' | 'poor';
     issues: string[];
@@ -565,7 +572,7 @@ export class SystemService {
       recommendations.push('Implement authentication for all endpoints');
     }
 
-    let level: any = 'excellent';
+    let level: 'excellent' | 'good' | 'fair' | 'poor' = 'excellent';
     if (metrics.security_score < 70) level = 'poor';
     else if (metrics.security_score < 80) level = 'fair';
     else if (metrics.security_score < 90) level = 'good';
@@ -573,6 +580,7 @@ export class SystemService {
     return { level, issues, recommendations };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private assessSystemSecurityCompliance(securityOverview: any): { score: number; issues: string[] } {
     const issues: string[] = [];
     const score = securityOverview.security_score;
@@ -584,6 +592,7 @@ export class SystemService {
     return { score: Math.max(score, 0), issues };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private async assessDataLocationCompliance(locations: any[]): Promise<{ score: number; issues: string[] }> {
     const issues: string[] = [];
     let score = 100;
@@ -605,6 +614,7 @@ export class SystemService {
     return { score: Math.max(score, 0), issues };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private assessDocumentationCompliance(system: System, usage: any): { score: number; issues: string[] } {
     const issues: string[] = [];
     let score = 100;
