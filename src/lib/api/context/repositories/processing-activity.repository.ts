@@ -255,7 +255,6 @@ export class ProcessingActivityRepository extends BaseRepository<
   /**
    * Get systems for processing activity
    */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async getSystems(processingActivityId: UUID): Promise<unknown[]> {
     const { data, error } = await this.client
       .from('processing_systems')
