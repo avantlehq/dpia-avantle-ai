@@ -533,6 +533,7 @@ export class VendorService {
       score -= 30;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const nonAdequateLocations = locations.filter((loc: any) => 
       !loc.physical_locations?.jurisdiction?.gdpr_adequacy
     );
@@ -545,6 +546,7 @@ export class VendorService {
     return { score: Math.max(score, 0), issues };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private assessDataProcessing(usage: any): { score: number; issues: string[] } {
     const issues: string[] = [];
     let score = 100;

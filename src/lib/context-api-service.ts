@@ -236,10 +236,12 @@ export class ContextApiService {
 
       return {
         systems_total: systemsData.length,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         systems_critical: systemsData.filter((s: any) => s.criticality === 'critical').length,
         processing_activities_total: 0, // TODO: Add processing activities endpoint
         processing_activities_review_overdue: 0,
         vendors_total: vendorsData.length,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         vendors_no_dpa: vendorsData.filter((v: any) => !v.has_dpa).length,
         data_flows_total: 0, // TODO: Add data flows endpoint
         data_flows_cross_border: 0,

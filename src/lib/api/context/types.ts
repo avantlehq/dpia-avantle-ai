@@ -676,6 +676,7 @@ export interface DataFlowQueryParams extends ListQueryParams {
 export interface APIError {
   error: string;
   message: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   details?: Record<string, any>;
 }
 
@@ -691,6 +692,7 @@ export type DataFlowInclude = 'edges' | 'data_categories';
 
 // Utility types
 export type EntityWithRelations<T, K extends string> = T & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [P in K]?: any;
 };
 

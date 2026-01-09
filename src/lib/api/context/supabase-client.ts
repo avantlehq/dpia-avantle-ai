@@ -5,9 +5,7 @@
  * and proper authentication handling. Integrates with existing DPIA platform.
  */
 
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { createClient } from '@supabase/supabase-js';
-import { cookies } from 'next/headers';
 import type { Database } from './database.types';
 
 // Environment variables
@@ -69,7 +67,7 @@ export const setAuthToken = (client: SupabaseClient, token: string) => {
 };
 
 // Helper to create client with context claims
-export const createContextClient = (contextClaims: {
+export const createContextClient = (_contextClaims: {
   tenant_id: string;
   workspace_id: string;
   sub: string;
@@ -87,7 +85,7 @@ export const createContextClient = (contextClaims: {
 // Health check function
 export const checkConnection = async () => {
   try {
-    const { data, error } = await supabase.from('jurisdictions').select('id').limit(1);
+    const { error } = await supabase.from('jurisdictions').select('id').limit(1);
     if (error) throw error;
     return { healthy: true, message: 'Connection successful' };
   } catch (error) {
