@@ -256,7 +256,7 @@ export class ProcessingActivityRepository extends BaseRepository<
    * Get systems for processing activity
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async getSystems(processingActivityId: UUID): Promise<any[]> {
+  async getSystems(processingActivityId: UUID): Promise<unknown[]> {
     const { data, error } = await this.client
       .from('processing_systems')
       .select(`
@@ -331,7 +331,7 @@ export class ProcessingActivityRepository extends BaseRepository<
   /**
    * Get data categories for processing activity
    */
-  async getDataCategories(processingActivityId: UUID): Promise<any[]> {
+  async getDataCategories(processingActivityId: UUID): Promise<unknown[]> {
     const { data, error } = await this.client
       .from('processing_data_categories')
       .select(`
@@ -394,7 +394,7 @@ export class ProcessingActivityRepository extends BaseRepository<
     vendorRole: string,
     contractRequired?: boolean
   ): Promise<void> {
-    const updateData: any = { vendor_role: vendorRole };
+    const updateData: Record<string, unknown> = { vendor_role: vendorRole };
     if (typeof contractRequired === 'boolean') {
       updateData.contract_required = contractRequired;
     }
@@ -413,7 +413,7 @@ export class ProcessingActivityRepository extends BaseRepository<
   /**
    * Get vendors for processing activity
    */
-  async getVendors(processingActivityId: UUID): Promise<any[]> {
+  async getVendors(processingActivityId: UUID): Promise<unknown[]> {
     const { data, error } = await this.client
       .from('processing_vendors')
       .select(`
@@ -470,7 +470,7 @@ export class ProcessingActivityRepository extends BaseRepository<
   /**
    * Get retention policies for processing activity
    */
-  async getRetentionPolicies(processingActivityId: UUID): Promise<any[]> {
+  async getRetentionPolicies(processingActivityId: UUID): Promise<unknown[]> {
     const { data, error } = await this.client
       .from('processing_retention')
       .select(`
@@ -523,12 +523,14 @@ export class ProcessingActivityRepository extends BaseRepository<
       with_profiling: 0,
     };
 
-    activities.forEach((activity: any) => {
+    activities.forEach((activity: Record<string, unknown>) => {
       // Count by lawful basis
-      stats.by_lawful_basis[activity.lawful_basis] = (stats.by_lawful_basis[activity.lawful_basis] || 0) + 1;
+      const lawfulBasis = activity.lawful_basis as string;
+      stats.by_lawful_basis[lawfulBasis] = (stats.by_lawful_basis[lawfulBasis] || 0) + 1;
 
       // Count by status
-      stats.by_status[activity.status] = (stats.by_status[activity.status] || 0) + 1;
+      const status = activity.status as string;
+      stats.by_status[status] = (stats.by_status[status] || 0) + 1;
 
       // Count DPO reviews
       if (activity.dpo_review_required) {
@@ -618,7 +620,7 @@ export class ProcessingActivityRepository extends BaseRepository<
         .in('system_id', filters.systems);
 
       if (processingSystems?.length) {
-        const activityIds = [...new Set(processingSystems.map((ps: any) => ps.processing_activity_id))];
+        const activityIds = [...new Set(processingSystems.map((ps: Record<string, unknown>) => ps.processing_activity_id as string))];
         query = query.in('id', activityIds);
       }
     }
@@ -630,7 +632,7 @@ export class ProcessingActivityRepository extends BaseRepository<
         .in('data_category_id', filters.data_categories);
 
       if (processingDataCategories?.length) {
-        const activityIds = [...new Set(processingDataCategories.map((pdc: any) => pdc.processing_activity_id))];
+        const activityIds = [...new Set(processingDataCategories.map((pdc: Record<string, unknown>) => pdc.processing_activity_id as string))];
         query = query.in('id', activityIds);
       }
     }
@@ -642,7 +644,7 @@ export class ProcessingActivityRepository extends BaseRepository<
         .in('vendor_id', filters.vendors);
 
       if (processingVendors?.length) {
-        const activityIds = [...new Set(processingVendors.map((pv: any) => pv.processing_activity_id))];
+        const activityIds = [...new Set(processingVendors.map((pv: Record<string, unknown>) => pv.processing_activity_id as string))];
         query = query.in('id', activityIds);
       }
     }

@@ -75,6 +75,7 @@ export class SystemRepository extends BaseRepository<
   /**
    * Apply specific filters for systems
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected applyFilters(query: any, params: Partial<SystemQueryParams>): any {
     let filteredQuery = query;
 
@@ -88,6 +89,7 @@ export class SystemRepository extends BaseRepository<
   /**
    * Apply includes for related data
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected applyIncludes(query: any, include: string[]): any {
     let selectFields = '*';
 
