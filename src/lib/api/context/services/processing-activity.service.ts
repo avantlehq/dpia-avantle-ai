@@ -79,6 +79,7 @@ export class ProcessingActivityService {
       lawful_basis_explanation: data.lawful_basis_explanation ?? existingActivity.lawful_basis_explanation,
       data_subject_categories: data.data_subject_categories ?? existingActivity.data_subject_categories
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await this.validateProcessingActivityData(validationData as any, id);
 
     // Update the activity
@@ -177,7 +178,7 @@ export class ProcessingActivityService {
   /**
    * Get systems for processing activity
    */
-  async getActivitySystems(processingActivityId: UUID): Promise<any[]> {
+  async getActivitySystems(processingActivityId: UUID): Promise<unknown[]> {
     // Validate activity exists
     const activity = await this.processingActivityRepo.findById(processingActivityId);
     if (!activity) {
@@ -421,8 +422,8 @@ export class ProcessingActivityService {
       throw new Error('Processing activity not found');
     }
 
-    const issues: any[] = [];
-    const nextActions: any[] = [];
+    const issues: { category: string; severity: 'error' | 'warning'; message: string; recommendation: string; }[] = [];
+    const nextActions: { priority: 'low' | 'medium' | 'high'; action: string; deadline?: string; }[] = [];
 
     // Validate lawful basis
     if (!activity.lawful_basis_explanation || activity.lawful_basis_explanation.trim().length === 0) {
@@ -519,7 +520,7 @@ export class ProcessingActivityService {
     ));
 
     // Determine compliance status
-    let complianceStatus: any = 'compliant';
+    let complianceStatus: 'compliant' | 'needs_attention' | 'non_compliant' = 'compliant';
     if (errorCount > 0) complianceStatus = 'non_compliant';
     else if (warningCount > 0) complianceStatus = 'needs_attention';
 

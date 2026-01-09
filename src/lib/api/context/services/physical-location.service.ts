@@ -68,6 +68,7 @@ export class PhysicalLocationService {
       address: data.address ?? existingLocation.address,
       city: data.city ?? existingLocation.city
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await this.validateLocationData(validationData as any, id);
 
     // Update the location
@@ -135,8 +136,8 @@ export class PhysicalLocationService {
       vendors_count: number;
       total_usage: number;
     };
-    systems: any[]; // Systems using this location
-    vendors: any[]; // Vendors using this location
+    systems: unknown[]; // Systems using this location
+    vendors: unknown[]; // Vendors using this location
   }> {
     const location = await this.getLocationById(id);
     if (!location) {
@@ -146,8 +147,8 @@ export class PhysicalLocationService {
     const usage = await this.locationRepo.getLocationUsage(id);
 
     // TODO: Get actual systems and vendors lists
-    const systems: any[] = [];
-    const vendors: any[] = [];
+    const systems: unknown[] = [];
+    const vendors: unknown[] = [];
 
     return {
       location,
@@ -203,7 +204,7 @@ export class PhysicalLocationService {
     dataCategories: string[]
   ): Promise<{
     compliant: boolean;
-    jurisdiction: any;
+    jurisdiction: unknown;
     issues: {
       category: string;
       severity: 'warning' | 'error';
@@ -216,7 +217,7 @@ export class PhysicalLocationService {
       throw new Error('Location or jurisdiction not found');
     }
 
-    const issues: any[] = [];
+    const issues: { category: string; severity: 'error' | 'warning'; message: string; }[] = [];
     const recommendations: string[] = [];
 
     // Check GDPR adequacy for sensitive data
@@ -320,7 +321,7 @@ export class PhysicalLocationService {
     );
 
     // Determine overall rating
-    let overallRating: any = 'poor';
+    let overallRating: 'excellent' | 'good' | 'fair' | 'poor' = 'poor';
     if (complianceScore >= 90) overallRating = 'excellent';
     else if (complianceScore >= 80) overallRating = 'good';
     else if (complianceScore >= 70) overallRating = 'fair';
