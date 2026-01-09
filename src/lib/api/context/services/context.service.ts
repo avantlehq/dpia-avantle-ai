@@ -159,7 +159,12 @@ export class ContextService {
       entity_id?: string;
     }[];
   }> {
-    const issues: any[] = [];
+    const issues: {
+      type: 'warning' | 'error';
+      category: string;
+      message: string;
+      entity_id?: string;
+    }[] = [];
 
     try {
       // Check for orphaned relationships
@@ -212,7 +217,12 @@ export class ContextService {
   }> {
     try {
       const processingStats = await this.processingActivityRepo.getStatistics();
-      const recommendations: any[] = [];
+      const recommendations: {
+        priority: 'high' | 'medium' | 'low';
+        category: string;
+        message: string;
+        action_required: string;
+      }[] = [];
 
       // Check for high priority compliance issues
       if (processingStats.overdue_reviews > 0) {
@@ -259,42 +269,55 @@ export class ContextService {
 
   // Private helper methods
 
-  private async calculateComplianceScore(stats: any): Promise<number> {
+  private async calculateComplianceScore(stats: Record<string, unknown>): Promise<number> {
     let score = 100;
 
     // Deduct points for overdue reviews
-    if (stats.overdue_reviews > 0) {
-      score -= Math.min(stats.overdue_reviews * 5, 30);
+    const overdueReviews = Number(stats.overdue_reviews) || 0;
+    if (overdueReviews > 0) {
+      score -= Math.min(overdueReviews * 5, 30);
     }
 
     // Deduct points for activities without DPO review when required
-    if (stats.requiring_dpo_review > 0) {
-      score -= Math.min(stats.requiring_dpo_review * 2, 20);
+    const requiringDpoReview = Number(stats.requiring_dpo_review) || 0;
+    if (requiringDpoReview > 0) {
+      score -= Math.min(requiringDpoReview * 2, 20);
     }
 
     // Deduct points for special category processing without proper basis
-    if (stats.with_special_categories > 0) {
+    const withSpecialCategories = Number(stats.with_special_categories) || 0;
+    if (withSpecialCategories > 0) {
       // TODO: Check if special categories have proper legal basis
-      score -= Math.min(stats.with_special_categories * 3, 25);
+      score -= Math.min(withSpecialCategories * 3, 25);
     }
 
     return Math.max(score, 0);
   }
 
-  private async checkOrphanedRelationships(issues: any[]): Promise<void> {
+  private async checkOrphanedRelationships(_issues: {
+    type: 'warning' | 'error';
+    category: string;
+    message: string;
+    entity_id?: string;
+  }[]): Promise<void> {
     // Check for processing activities referencing non-existent entities
     // Implementation would involve complex queries across tables
     // For now, placeholder for future implementation
   }
 
-  private async checkMissingRelationships(issues: any[]): Promise<void> {
+  private async checkMissingRelationships(_issues: {
+    type: 'warning' | 'error';
+    category: string;
+    message: string;
+    entity_id?: string;
+  }[]): Promise<void> {
     // Check for processing activities without required relationships
     // e.g., activities without data categories, systems, or lawful basis
     
     const activitiesWithoutSystems = await this.processingActivityRepo.findMany({});
     
-    activitiesWithoutSystems.data.forEach(activity => {
-      issues.push({
+    activitiesWithoutSystems.data.forEach((activity: any) => {
+      _issues.push({
         type: 'warning',
         category: 'processing_activities',
         message: `Processing activity "${activity.name}" has no associated systems`,
@@ -303,7 +326,12 @@ export class ContextService {
     });
   }
 
-  private async checkDataConsistency(issues: any[]): Promise<void> {
+  private async checkDataConsistency(_issues: {
+    type: 'warning' | 'error';
+    category: string;
+    message: string;
+    entity_id?: string;
+  }[]): Promise<void> {
     // Check for data consistency issues
     // e.g., special category data without proper legal basis
 
@@ -313,7 +341,7 @@ export class ContextService {
 
     for (const activity of specialCategoryActivities) {
       if (!activity.special_category_basis) {
-        issues.push({
+        _issues.push({
           type: 'error',
           category: 'data_consistency',
           message: `Processing activity "${activity.name}" processes special category data but lacks proper legal basis`,
@@ -334,11 +362,11 @@ export class ContextService {
       version: string;
     };
     data: {
-      locations: any[];
-      vendors: any[];
-      systems: any[];
-      data_categories: any[];
-      processing_activities: any[];
+      locations: unknown[];
+      vendors: unknown[];
+      systems: unknown[];
+      data_categories: unknown[];
+      processing_activities: unknown[];
     };
   }> {
     try {
