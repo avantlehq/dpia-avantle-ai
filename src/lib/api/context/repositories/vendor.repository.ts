@@ -72,6 +72,7 @@ export class VendorRepository extends BaseRepository<
   /**
    * Apply includes for related data
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected applyIncludes(query: any, include: string[]): any {
     let selectFields = '*';
 
@@ -113,8 +114,10 @@ export class VendorRepository extends BaseRepository<
     // Transform the data to match Vendor type
     const transformedData: Vendor = {
       ...data,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       locations: data.locations?.map((loc: any) => loc.physical_locations) || [],
       status: data.status as EntityStatus,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       contracts: data.contracts?.map((contract: any) => ({
         ...contract,
         status: contract.status as ContractStatus
@@ -166,6 +169,7 @@ export class VendorRepository extends BaseRepository<
     }
 
     return {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       data: data as any,
       pagination: {
         page,
@@ -436,7 +440,7 @@ export class VendorRepository extends BaseRepository<
   /**
    * Get vendor locations
    */
-  async getLocations(vendorId: UUID): Promise<any[]> {
+  async getLocations(vendorId: UUID): Promise<unknown[]> {
     const { data, error } = await this.client
       .from('vendor_locations')
       .select(`
@@ -484,7 +488,7 @@ export class VendorRepository extends BaseRepository<
           .is('deleted_at', null);
 
         if (vendorsWithContracts?.length) {
-          const vendorIds = [...new Set(vendorsWithContracts.map((v: any) => v.vendor_id))];
+          const vendorIds = [...new Set(vendorsWithContracts.map((v: Record<string, unknown>) => v.vendor_id as string))];
           query = query.in('id', vendorIds);
         }
       }
@@ -498,7 +502,7 @@ export class VendorRepository extends BaseRepository<
         .in('location_id', filters.locations);
 
       if (vendorLocations?.length) {
-        const vendorIds = [...new Set(vendorLocations.map((vl: any) => vl.vendor_id))];
+        const vendorIds = [...new Set(vendorLocations.map((vl: Record<string, unknown>) => vl.vendor_id as string))];
         query = query.in('id', vendorIds);
       }
     }

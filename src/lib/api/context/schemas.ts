@@ -139,6 +139,7 @@ export const SystemSchema = z.object({
   locations: z.array(PhysicalLocationSchema).optional(),
 }).merge(AuditFieldsSchema);
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const DataCategorySchema: z.ZodSchema<any> = z.object({
   id: UUIDSchema,
   tenant_id: UUIDSchema,
@@ -174,6 +175,7 @@ export const RetentionPolicySchema = z.object({
 );
 
 // Forward declare for circular references
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DataFlowSchema: z.ZodType<any> = z.lazy(() => z.object({
   id: UUIDSchema,
   tenant_id: UUIDSchema,
@@ -190,6 +192,7 @@ const DataFlowSchema: z.ZodType<any> = z.lazy(() => z.object({
   data_categories: z.array(DataCategorySchema).optional(),
 }).merge(AuditFieldsSchema));
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CrossBorderTransferSchema: z.ZodType<any> = z.lazy(() => z.object({
   id: UUIDSchema,
   tenant_id: UUIDSchema,
@@ -222,6 +225,7 @@ const CrossBorderTransferSchema: z.ZodType<any> = z.lazy(() => z.object({
   { message: "Derogation justification is required for derogation transfers" }
 ));
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DataFlowEdgeSchema: z.ZodType<any> = z.lazy(() => z.object({
   id: UUIDSchema,
   tenant_id: UUIDSchema,

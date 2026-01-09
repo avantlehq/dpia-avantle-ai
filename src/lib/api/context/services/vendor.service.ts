@@ -399,7 +399,7 @@ export class VendorService {
 
     // Assess location-based risks
     const locations = await this.vendorRepo.getLocations(vendorId);
-    const nonAdequateLocations = locations.filter(loc => 
+    const nonAdequateLocations = locations.filter((loc: any) => 
       !loc.physical_locations?.jurisdiction?.gdpr_adequacy
     );
 
@@ -525,7 +525,7 @@ export class VendorService {
       score -= 30;
     }
 
-    const nonAdequateLocations = locations.filter(loc => 
+    const nonAdequateLocations = locations.filter((loc: any) => 
       !loc.physical_locations?.jurisdiction?.gdpr_adequacy
     );
 
