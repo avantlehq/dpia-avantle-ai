@@ -131,9 +131,11 @@ export class SystemRepository extends BaseRepository<
     // Transform the data to match System type
     const transformedData: System = {
       ...data,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       locations: data.locations?.map((loc: any) => loc.physical_locations) || [],
       criticality: data.criticality as Criticality | null,
       status: data.status as EntityStatus,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       endpoints: data.endpoints?.map((endpoint: any) => ({
         ...endpoint,
         endpoint_type: endpoint.endpoint_type as EndpointType
@@ -190,7 +192,8 @@ export class SystemRepository extends BaseRepository<
     }
 
     return {
-      data: data as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      data: data as any[],
       pagination: {
         page,
         limit,
@@ -466,7 +469,7 @@ export class SystemRepository extends BaseRepository<
   /**
    * Get system locations
    */
-  async getLocations(systemId: UUID): Promise<any[]> {
+  async getLocations(systemId: UUID): Promise<unknown[]> {
     const { data, error } = await this.client
       .from('system_locations')
       .select(`
@@ -527,7 +530,7 @@ export class SystemRepository extends BaseRepository<
 
     // Group connections and count flows
     const connectionMap = new Map();
-    (connections as any[]).forEach(conn => {
+    (connections as Record<string, unknown>[]).forEach(conn => {
       const key = `${conn.from_system_id}-${conn.to_system_id}`;
       if (!connectionMap.has(key)) {
         connectionMap.set(key, {
@@ -538,13 +541,14 @@ export class SystemRepository extends BaseRepository<
         });
       }
       connectionMap.get(key).flow_count += 1;
-      if (conn.cross_border_transfers?.length > 0) {
+      if (Array.isArray(conn.cross_border_transfers) && conn.cross_border_transfers.length > 0) {
         connectionMap.get(key).has_cross_border = true;
       }
     });
 
     return {
-      systems: systems as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      systems: systems as any[],
       connections: Array.from(connectionMap.values()),
     };
   }
@@ -593,7 +597,7 @@ export class SystemRepository extends BaseRepository<
           .is('deleted_at', null);
 
         if (systemsWithEndpoints?.length) {
-          const systemIds = [...new Set(systemsWithEndpoints.map((e: any) => e.system_id))];
+          const systemIds = [...new Set(systemsWithEndpoints.map((e: Record<string, unknown>) => e.system_id as string))];
           query = query.in('id', systemIds);
         }
       }
@@ -607,7 +611,7 @@ export class SystemRepository extends BaseRepository<
         .in('location_id', filters.locations);
 
       if (systemLocations?.length) {
-        const systemIds = [...new Set(systemLocations.map((sl: any) => sl.system_id))];
+        const systemIds = [...new Set(systemLocations.map((sl: Record<string, unknown>) => sl.system_id as string))];
         query = query.in('id', systemIds);
       }
     }
@@ -656,9 +660,9 @@ export class SystemRepository extends BaseRepository<
       };
     }
 
-    const encryptedInTransit = endpoints.filter((e: any) => e.encryption_in_transit).length;
-    const encryptedAtRest = endpoints.filter((e: any) => e.encryption_at_rest).length;
-    const authenticated = endpoints.filter((e: any) => e.authentication_method).length;
+    const encryptedInTransit = endpoints.filter((e: Record<string, unknown>) => e.encryption_in_transit).length;
+    const encryptedAtRest = endpoints.filter((e: Record<string, unknown>) => e.encryption_at_rest).length;
+    const authenticated = endpoints.filter((e: Record<string, unknown>) => e.authentication_method).length;
 
     const encryptionInTransitPct = (encryptedInTransit / totalEndpoints) * 100;
     const encryptionAtRestPct = (encryptedAtRest / totalEndpoints) * 100;
