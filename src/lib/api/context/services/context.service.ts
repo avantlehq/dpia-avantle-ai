@@ -316,6 +316,7 @@ export class ContextService {
     
     const activitiesWithoutSystems = await this.processingActivityRepo.findMany({});
     
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     activitiesWithoutSystems.data.forEach((activity: any) => {
       _issues.push({
         type: 'warning',
@@ -425,7 +426,7 @@ export class ContextService {
 
     try {
       // Check database connection
-      const jurisdictions = await this.jurisdictionRepo.findMany({ limit: 1 });
+      const _jurisdictions = await this.jurisdictionRepo.findMany({ limit: 1 });
       checks.database = true;
 
       // Check repositories

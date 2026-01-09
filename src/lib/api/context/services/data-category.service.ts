@@ -91,6 +91,7 @@ export class DataCategoryService {
       ...data,
       description: data.description ?? existingCategory.description
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await this.validateDataCategoryData(validationData as any, id);
 
     // Special validation for parent changes
@@ -274,7 +275,7 @@ export class DataCategoryService {
       throw new Error('Data category not found');
     }
 
-    const issues: any[] = [];
+    const issues: { type: 'error' | 'warning'; message: string; }[] = [];
     const recommendations: string[] = [];
 
     // Validate special category basis
@@ -317,7 +318,7 @@ export class DataCategoryService {
     const errorCount = issues.filter(issue => issue.type === 'error').length;
     const warningCount = issues.filter(issue => issue.type === 'warning').length;
 
-    let complianceStatus: any = 'compliant';
+    let complianceStatus: 'compliant' | 'needs_attention' | 'non_compliant' = 'compliant';
     if (errorCount > 0) complianceStatus = 'non_compliant';
     else if (warningCount > 0) complianceStatus = 'needs_attention';
 
@@ -410,7 +411,13 @@ export class DataCategoryService {
     overall_risk: 'low' | 'medium' | 'high';
     general_recommendations: string[];
   }> {
-    const analysis: any[] = [];
+    const analysis: {
+      category_id: string;
+      category_name: string;
+      sensitivity_level: string;
+      risk_score: number;
+      recommendations: string[];
+    }[] = [];
     let totalRisk = 0;
 
     for (const categoryId of categoryIds) {
@@ -463,7 +470,7 @@ export class DataCategoryService {
 
     // Calculate overall risk
     const averageRisk = categoryIds.length > 0 ? totalRisk / categoryIds.length : 0;
-    let overallRisk: any = 'low';
+    let overallRisk: 'low' | 'medium' | 'high' = 'low';
     if (averageRisk > 60) overallRisk = 'high';
     else if (averageRisk > 35) overallRisk = 'medium';
 

@@ -211,8 +211,8 @@ export class JurisdictionService {
     const toEuEea = toJurisdiction.gdpr_adequacy;
 
     const transferAllowed = true;
-    let transferMechanism: any = 'adequacy_decision';
-    let riskLevel: any = 'low';
+    let transferMechanism: 'adequacy_decision' | 'standard_contractual_clauses' | 'binding_corporate_rules' | 'derogation' | 'prohibited' = 'adequacy_decision';
+    let riskLevel: 'low' | 'medium' | 'high' = 'low';
     let safeguardsRequired = false;
     let additionalMeasures: string[] = [];
 
@@ -281,7 +281,7 @@ export class JurisdictionService {
 
     // Basic guidance based on GDPR adequacy status
     const keyRequirements: string[] = [];
-    const resources: any[] = [];
+    const resources: { title: string; description: string; url?: string; }[] = [];
 
     if (jurisdiction.gdpr_adequacy) {
       keyRequirements.push(
