@@ -49,9 +49,10 @@ export default function SystemsPage() {
         const { contextApiService } = await import('@/lib/context-api-service')
         const response = await contextApiService.getSystems()
         setSystems(response.data || [])
-        setIsLoading(false)
       } catch (error) {
         console.error('Failed to fetch systems:', error)
+        setSystems([])
+      } finally {
         setIsLoading(false)
       }
     }

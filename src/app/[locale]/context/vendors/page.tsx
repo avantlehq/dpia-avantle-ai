@@ -75,9 +75,10 @@ export default function VendorsPage() {
         const { contextApiService } = await import('@/lib/context-api-service')
         const response = await contextApiService.getVendors()
         setVendors(response.data || [])
-        setIsLoading(false)
       } catch (error) {
         console.error('Failed to fetch vendors:', error)
+        setVendors([])
+      } finally {
         setIsLoading(false)
       }
     }

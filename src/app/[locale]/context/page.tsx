@@ -40,9 +40,10 @@ export default function ContextOverviewPage() {
       try {
         const contextStats = await contextApiService.getContextStats()
         setStats(contextStats)
-        setIsLoading(false)
       } catch (error) {
         console.error('Failed to fetch context stats:', error)
+        setStats(null)
+      } finally {
         setIsLoading(false)
       }
     }

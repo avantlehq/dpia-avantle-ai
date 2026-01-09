@@ -95,9 +95,10 @@ export default function LocationsPage() {
         const { contextApiService } = await import('@/lib/context-api-service')
         const response = await contextApiService.getLocations()
         setLocations(response.data || [])
-        setIsLoading(false)
       } catch (error) {
         console.error('Failed to fetch locations:', error)
+        setLocations([])
+      } finally {
         setIsLoading(false)
       }
     }
