@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useSidebarContext } from '@/contexts/SidebarContext'
-import { getActiveModule, getModuleConfig } from '@/lib/state/modules'
 import { cn } from '@/lib/utils'
 
 interface SidebarHeaderProps {
