@@ -122,17 +122,20 @@ export default async function PlatformDashboard({ params }: Props) {
               </span>
             </div>
 
-            {/* Compliance Score */}
-            <div 
-              className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+            {/* Compliance Score - Clickable with methodology link */}
+            <a
+              href={`/${locale}/trust-center/governance`}
+              className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
                 paddingRight: '16px',
                 backgroundColor: 'transparent',
                 borderLeft: '3px solid #3b82f6',
-                gap: '8px'
+                gap: '8px',
+                textDecoration: 'none'
               }}
+              title="Click to view compliance score calculation methodology"
             >
               <span 
                 style={{ 
@@ -152,7 +155,16 @@ export default async function PlatformDashboard({ params }: Props) {
               >
                 92%
               </span>
-            </div>
+              <span 
+                style={{ 
+                  fontSize: '12px',
+                  color: '#3b82f6',
+                  fontWeight: '400'
+                }}
+              >
+                ⓘ
+              </span>
+            </a>
           </div>
         </div>
         

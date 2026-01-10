@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.177" as const
-export const VERSION_NAME = "🏠 UNIFIED PLATFORM OVERVIEW: Single Source Management Dashboard" as const
+export const VERSION = "3.21.178" as const
+export const VERSION_NAME = "📊 COMPLIANCE METHODOLOGY: Transparent Score Calculation Center" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.178": {
+    date: "2026-01-10",
+    name: "📊 COMPLIANCE METHODOLOGY: Transparent Score Calculation Center",
+    features: [
+      "TRANSPARENT CALCULATION: Trust Center Governance now shows detailed 92% compliance score methodology",
+      "WEIGHTED FORMULA: Context (25%) + Privacy (30%) + Risk (20%) + Controls (15%) + Training (10%) = 92%",
+      "COMPONENT BREAKDOWN: Detailed metrics for each module with actual vs target ratios and sub-component tracking",
+      "CLICKABLE DASHBOARD LINK: Compliance Score on Dashboard now links to methodology page with info icon",
+      "COMING SOON TRANSPARENCY: Clear identification of missing data sources (LIA, TIA, automated risk scoring)",
+      "PERFECT INFORMATION ARCHITECTURE: Dashboard shows result (92%), Governance shows calculation method",
+      "AUDIT READY: Comprehensive compliance calculation documentation for external stakeholders and auditors",
+      "MANAGEMENT INSIGHTS: Module-specific scores help identify areas for improvement and investment priorities",
+      "FUTURE-PROOF DESIGN: Framework ready for real-time data integration when missing modules implemented"
+    ]
+  },
   "3.21.177": {
     date: "2026-01-10",
     name: "🏠 UNIFIED PLATFORM OVERVIEW: Single Source Management Dashboard",
