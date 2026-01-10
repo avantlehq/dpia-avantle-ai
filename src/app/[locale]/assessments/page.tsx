@@ -27,7 +27,7 @@ export default async function AssessmentsPage({ params }: Props) {
       <PageHeader
         title="DPIA Assessments" 
         description="Create and manage Data Protection Impact Assessments"
-        actions={
+        action={
           <Link href={`/${locale}/assessments/new`}>
             <Button className="gap-2">
               <Plus className="h-4 w-4" />
