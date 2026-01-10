@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.172" as const
-export const VERSION_NAME = "🧹 PLATFORM CLEANUP: All Module Overview Redundant Blocks Removed" as const
+export const VERSION = "3.21.173" as const
+export const VERSION_NAME = "🏠 PLATFORM DASHBOARD: Central Navigation Hub Implemented" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.173": {
+    date: "2026-01-10",
+    name: "🏠 PLATFORM DASHBOARD: Central Navigation Hub Implemented",
+    features: [
+      "CENTRAL DASHBOARD CREATED: New /[locale]/dashboard route serves as platform landing page",
+      "MODULE NAVIGATION CARDS: 6 module cards with icons, descriptions, metrics, and navigation links",
+      "HOME NAVIGATION FIXED: HOME button in sidebar now always points to central dashboard (not current module)",
+      "EXECUTIVE OVERVIEW: Platform-wide status view with quick access to all modules", 
+      "MINIMALIST APPROACH: Static module cards without API complexity, focusing on navigation hub functionality",
+      "RESPONSIVE GRID LAYOUT: 1 column mobile, 2 tablet, 3 desktop for optimal viewing across devices",
+      "CONSISTENT DESIGN: Uses existing design tokens, colors, and component patterns",
+      "NAVIGATION HIERARCHY: Clear flow from Dashboard → Module Overview → Module Details"
+    ]
+  },
   "3.21.172": {
     date: "2026-01-10",
     name: "🧹 PLATFORM CLEANUP: All Module Overview Redundant Blocks Removed",

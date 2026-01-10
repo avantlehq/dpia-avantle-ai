@@ -23,12 +23,10 @@ export const SidebarHeader = memo(function SidebarHeader({ className }: SidebarH
     isDesktop 
   } = useSidebarContext()
 
-  // Get current module for navigation
-  const activeModuleId = getActiveModule(pathname)
-  const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
-  
-  // Navigate to module overview (first item which is usually overview)
-  const homeHref = moduleConfig?.items[0]?.href || '/privacy'
+  // Extract locale from pathname and navigate to central dashboard
+  const pathSegments = pathname.split('/').filter(Boolean)
+  const locale = pathSegments[0] || 'en'
+  const homeHref = `/${locale}/dashboard`
 
   // Close button handler
   const handleClose = useCallback(() => {
