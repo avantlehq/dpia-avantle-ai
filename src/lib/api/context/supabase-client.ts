@@ -39,6 +39,7 @@ export const supabase = (() => {
   } catch (error) {
     console.warn('Failed to create Supabase client during build:', error);
     // Return a mock client for build time
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return null as any;
   }
 })();
