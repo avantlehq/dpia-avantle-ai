@@ -1,9 +1,7 @@
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { 
-  Target
-} from 'lucide-react'
+// No unused icons needed
 import Link from 'next/link'
 import { AssessmentsTable } from '@/components/assessments/assessments-table'
 

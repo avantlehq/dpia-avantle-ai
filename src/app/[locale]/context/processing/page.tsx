@@ -6,10 +6,8 @@ import {
   Search,
   Edit,
   Trash2,
-  CheckCircle,
   AlertTriangle,
   Calendar,
-  Users,
   Scale,
   FileText
 } from 'lucide-react'

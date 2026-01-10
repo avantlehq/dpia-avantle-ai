@@ -1,20 +1,15 @@
-'use client'
-
 import React from 'react'
 import Link from 'next/link'
 import { 
   ArrowLeft,
   Database,
-  Users,
   MapPin,
   Network,
   FileText,
   CheckCircle,
   AlertTriangle,
   Shield,
-  Globe,
   Building,
-  Scale,
   Target,
   Workflow
 } from 'lucide-react'
@@ -26,8 +21,12 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
-export default async function ContextModuleHelpPage({ params }: Props) {
-  const { locale } = await params
+export default function ContextModuleHelpPage({ params }: Props) {
+  const [locale, setLocale] = React.useState('en')
+  
+  React.useEffect(() => {
+    params.then(({ locale }) => setLocale(locale))
+  }, [params])
   
   const contextPages = [
     {

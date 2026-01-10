@@ -7,18 +7,15 @@ import {
   Mail, 
   MessageCircle, 
   BookOpen,
-  Video,
   Shield,
   Code,
   ArrowLeft,
   Database,
-  Scale,
   AlertTriangle,
   Settings,
   GraduationCap,
   FileText,
   Bookmark,
-  Play,
   Zap
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
