@@ -91,7 +91,7 @@ export default function VendorsPage() {
       vendor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       vendor.description?.toLowerCase().includes(searchQuery.toLowerCase())
     
-    const matchesRole = !selectedRole || vendor.vendor_role === selectedRole
+    const matchesRole = !selectedRole || selectedRole === 'all' || vendor.vendor_role === selectedRole
     
     return matchesSearch && matchesRole
   })
@@ -156,7 +156,7 @@ export default function VendorsPage() {
                 <SelectValue placeholder="Filter by role" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Roles</SelectItem>
+                <SelectItem value="all">All Roles</SelectItem>
                 <SelectItem value="processor">Processor</SelectItem>
                 <SelectItem value="joint_controller">Joint Controller</SelectItem>
                 <SelectItem value="recipient">Recipient</SelectItem>

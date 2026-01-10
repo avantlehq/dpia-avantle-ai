@@ -111,8 +111,8 @@ export default function LocationsPage() {
       location.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       location.country_code.toLowerCase().includes(searchQuery.toLowerCase())
     
-    const matchesJurisdiction = !selectedJurisdiction || location.jurisdiction_type === selectedJurisdiction
-    const matchesAdequacy = !selectedAdequacy || location.adequacy_status === selectedAdequacy
+    const matchesJurisdiction = !selectedJurisdiction || selectedJurisdiction === 'all' || location.jurisdiction_type === selectedJurisdiction
+    const matchesAdequacy = !selectedAdequacy || selectedAdequacy === 'all' || location.adequacy_status === selectedAdequacy
     
     return matchesSearch && matchesJurisdiction && matchesAdequacy
   })
@@ -174,7 +174,7 @@ export default function LocationsPage() {
                 <SelectValue placeholder="Filter by jurisdiction" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Jurisdictions</SelectItem>
+                <SelectItem value="all">All Jurisdictions</SelectItem>
                 <SelectItem value="eu_member_state">EU Member State</SelectItem>
                 <SelectItem value="eea_country">EEA Country</SelectItem>
                 <SelectItem value="third_country">Third Country</SelectItem>
@@ -187,7 +187,7 @@ export default function LocationsPage() {
                 <SelectValue placeholder="Filter by adequacy" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Adequacy Status</SelectItem>
+                <SelectItem value="all">All Adequacy Status</SelectItem>
                 <SelectItem value="adequate">Adequate</SelectItem>
                 <SelectItem value="not_adequate">Not Adequate</SelectItem>
                 <SelectItem value="partial">Partial</SelectItem>

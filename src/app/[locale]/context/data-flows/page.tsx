@@ -105,7 +105,7 @@ export default function DataFlowsPage() {
       flow.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       flow.description?.toLowerCase().includes(searchQuery.toLowerCase())
     
-    const matchesDirection = !selectedDirection || flow.flow_direction === selectedDirection
+    const matchesDirection = !selectedDirection || selectedDirection === 'all' || flow.flow_direction === selectedDirection
     
     return matchesSearch && matchesDirection
   })
@@ -163,7 +163,7 @@ export default function DataFlowsPage() {
                 <SelectValue placeholder="Filter by direction" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Directions</SelectItem>
+                <SelectItem value="all">All Directions</SelectItem>
                 <SelectItem value="inbound">Inbound</SelectItem>
                 <SelectItem value="outbound">Outbound</SelectItem>
                 <SelectItem value="bidirectional">Bidirectional</SelectItem>

@@ -96,7 +96,7 @@ export default function ProcessingPage() {
       activity.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       activity.purpose.toLowerCase().includes(searchQuery.toLowerCase())
     
-    const matchesBasis = !selectedBasis || activity.lawful_basis === selectedBasis
+    const matchesBasis = !selectedBasis || selectedBasis === 'all' || activity.lawful_basis === selectedBasis
     
     return matchesSearch && matchesBasis
   })
@@ -153,7 +153,7 @@ export default function ProcessingPage() {
                 <SelectValue placeholder="Filter by lawful basis" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Lawful Basis</SelectItem>
+                <SelectItem value="all">All Lawful Basis</SelectItem>
                 <SelectItem value="consent">Consent</SelectItem>
                 <SelectItem value="contract">Contract</SelectItem>
                 <SelectItem value="legal_obligation">Legal obligation</SelectItem>

@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.164" as const
-export const VERSION_NAME = "🔧 BUILD FIX: React Compiler ESLint Error Resolved" as const
+export const VERSION = "3.21.165" as const
+export const VERSION_NAME = "🔧 SELECT COMPONENT FIX: All Context Select.Item Empty Values Resolved" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.165": {
+    date: "2026-01-10",
+    name: "🔧 SELECT COMPONENT FIX: All Context Select.Item Empty Values Resolved",
+    features: [
+      "RADIX UI SELECT COMPLIANCE: Fixed all Select.Item empty value props across Context module pages",
+      "BROWSER CONSOLE ERRORS RESOLVED: Fixed 'A <Select.Item /> must have a value prop that is not an empty string' errors",
+      "CONTEXT MODULE COMPLETE FIX: Updated Processing Activities, Vendors, Data Flows, and Locations pages",
+      "FILTER LOGIC UPDATES: Updated all filter logic to handle 'all' value correctly for show all options",
+      "PRODUCTION BUILD VERIFIED: All Context pages now load without browser console errors",
+      "USER EXPERIENCE IMPROVED: All Context filter dropdowns work properly without JavaScript errors"
+    ]
+  },
   "3.21.164": {
     date: "2026-01-10",
     name: "🔧 BUILD FIX: React Compiler ESLint Error Resolved",
