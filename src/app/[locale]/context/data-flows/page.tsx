@@ -7,11 +7,10 @@ import {
   Search,
   Edit,
   Trash2,
-  GitBranch,
   Globe,
   AlertTriangle,
-  Database,
-  Network
+  Network,
+  Shield
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -118,7 +117,7 @@ export default function DataFlowsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-foreground">Data Flows</h1>
@@ -137,95 +136,198 @@ export default function DataFlowsPage() {
         </Button>
       </div>
 
-      {/* Filters & Stats */}
-      <Card>
+      {/* Data Flows Status Overview - matching assessments pills */}
+      <div className="space-y-5">
+        <h2 className="text-lg font-medium text-foreground">
+          Data Flows Overview
+        </h2>
+        
+        {/* Status Pills Group - matching assessments style */}
+        <div className="flex flex-wrap" style={{ gap: '12px' }}>
+          {/* Active Flows Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #22c55e',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Active Flows
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {dataFlows.filter(f => f.status === 'active').length}
+            </span>
+          </div>
+
+          {/* Cross-Border Transfers Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #f59e0b',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Cross-Border Transfers
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {dataFlows.filter(f => f.cross_border_transfer).length}
+            </span>
+          </div>
+
+          {/* Critical Flows Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #ef4444',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Critical Flows
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {dataFlows.filter(f => f.criticality === 'critical').length}
+            </span>
+          </div>
+
+          {/* Encrypted Flows Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #3b82f6',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Encrypted Flows
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {dataFlows.filter(f => f.encryption_in_transit).length}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Filters - streamlined without card wrapper */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search data flows..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        
+        <Select value={selectedDirection} onValueChange={setSelectedDirection}>
+          <SelectTrigger className="w-48">
+            <SelectValue placeholder="Filter by direction" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Directions</SelectItem>
+            <SelectItem value="inbound">Inbound</SelectItem>
+            <SelectItem value="outbound">Outbound</SelectItem>
+            <SelectItem value="bidirectional">Bidirectional</SelectItem>
+            <SelectItem value="internal">Internal</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Increased Spacing Before Data Flows */}
+      <div className="mt-12"></div>
+
+      {/* Data Flows Table - matching assessments structure */}
+      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <GitBranch className="h-5 w-5" />
-            Flow Mapping
+          <CardTitle className="flex items-center justify-between">
+            Data Flows ({filteredDataFlows.length})
           </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search data flows..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            
-            <Select value={selectedDirection} onValueChange={setSelectedDirection}>
-              <SelectTrigger className="w-48">
-                <SelectValue placeholder="Filter by direction" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Directions</SelectItem>
-                <SelectItem value="inbound">Inbound</SelectItem>
-                <SelectItem value="outbound">Outbound</SelectItem>
-                <SelectItem value="bidirectional">Bidirectional</SelectItem>
-                <SelectItem value="internal">Internal</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="flex flex-wrap gap-6">
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Total: <span className="font-medium text-foreground">{dataFlows.length}</span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-green-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Active: <span className="font-medium text-foreground">
-                  {dataFlows.filter(f => f.status === 'active').length}
-                </span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-red-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Cross-Border: <span className="font-medium text-foreground">
-                  {dataFlows.filter(f => f.cross_border_transfer).length}
-                </span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-amber-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Critical: <span className="font-medium text-foreground">
-                  {dataFlows.filter(f => f.criticality === 'critical').length}
-                </span>
-              </span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Data Flows List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Data Flows ({filteredDataFlows.length})</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
-            <div className="flex items-center justify-center py-8">
-              <div className="text-muted-foreground">Loading data flows...</div>
+            <div className="flex items-center justify-center py-12">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <p className="text-muted-foreground">Loading data flows...</p>
+              </div>
             </div>
           ) : filteredDataFlows.length === 0 ? (
-            <div className="text-center py-8">
+            <div className="text-center py-12">
               <Network className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">No data flows found</h3>
-              <p className="text-muted-foreground mb-6">
+              <h3 className="text-lg font-medium text-foreground mb-2">
+                {searchQuery || selectedDirection ? 'No data flows found' : 'Ready to map data flows'}
+              </h3>
+              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery || selectedDirection
                   ? 'Try adjusting your filters or search query.'
-                  : 'Start mapping data flows between your systems and vendors.'
+                  : 'Start mapping data flows between your systems and vendors for better data governance.'
                 }
               </p>
               <Button variant="primary" className="gap-2">
@@ -235,96 +337,117 @@ export default function DataFlowsPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {filteredDataFlows.map((flow) => {
-                const endpoints = getFlowEndpoints(flow)
-                return (
-                  <div key={flow.id} className="border rounded-lg p-5 space-y-4">
-                    <div className="flex items-start justify-between">
-                      <div className="space-y-2 flex-1">
-                        <div className="flex items-center gap-3 flex-wrap">
-                          <h3 className="font-medium text-foreground text-lg">{flow.name}</h3>
-                          <Badge className={getFlowDirectionColor(flow.flow_direction)}>
-                            <ArrowRight className="h-3 w-3 mr-1" />
-                            {flowDirectionLabels[flow.flow_direction]}
-                          </Badge>
-                          {flow.criticality && (
-                            <Badge className={getCriticalityColor(flow.criticality)}>
-                              {flow.criticality}
+              {/* Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Name
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Direction
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        From → To
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Criticality
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Security
+                      </th>
+                      <th className="text-right py-3 px-4 font-medium text-muted-foreground">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredDataFlows.map((flow) => {
+                      const endpoints = getFlowEndpoints(flow)
+                      return (
+                        <tr key={flow.id} className="border-b border-border hover:bg-muted/50">
+                          <td className="py-3 px-4">
+                            <div className="space-y-1">
+                              <div className="font-medium text-foreground">{flow.name}</div>
+                              {flow.description && (
+                                <div className="text-sm text-muted-foreground">{flow.description}</div>
+                              )}
+                              {flow.purpose && (
+                                <div className="text-xs text-muted-foreground">Purpose: {flow.purpose}</div>
+                              )}
+                            </div>
+                          </td>
+                          <td className="py-3 px-4">
+                            <Badge className={getFlowDirectionColor(flow.flow_direction)}>
+                              <ArrowRight className="h-3 w-3 mr-1" />
+                              {flowDirectionLabels[flow.flow_direction]}
                             </Badge>
-                          )}
-                          {flow.cross_border_transfer && (
-                            <Badge variant="outline" className="text-red-600 border-red-600">
-                              <Globe className="h-3 w-3 mr-1" />
-                              Cross-Border
-                            </Badge>
-                          )}
-                          {!flow.encryption_in_transit && (
-                            <Badge variant="destructive">
-                              <AlertTriangle className="h-3 w-3 mr-1" />
-                              Unencrypted
-                            </Badge>
-                          )}
-                        </div>
-                        
-                        {/* Flow Path Visualization */}
-                        <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
-                          <div className="flex items-center gap-2">
-                            <Database className="h-4 w-4 text-muted-foreground" />
-                            <span className="font-medium text-sm">{endpoints.from}</span>
-                          </div>
-                          <ArrowRight className="h-4 w-4 text-muted-foreground" />
-                          <div className="flex items-center gap-2">
-                            <Database className="h-4 w-4 text-muted-foreground" />
-                            <span className="font-medium text-sm">{endpoints.to}</span>
-                          </div>
-                        </div>
-                        
-                        {flow.purpose && (
-                          <p className="text-sm text-foreground font-medium">{flow.purpose}</p>
-                        )}
-                        {flow.description && (
-                          <p className="text-sm text-muted-foreground">{flow.description}</p>
-                        )}
-                      </div>
-                      <div className="flex items-center gap-2 ml-4">
-                        <Button variant="ghost" size="sm">
-                          <Edit className="h-4 w-4" />
-                        </Button>
-                        <Button variant="ghost" size="sm">
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                      {flow.frequency && (
-                        <div>
-                          <span className="text-muted-foreground">Frequency:</span>
-                          <p className="text-foreground font-medium">{flow.frequency}</p>
-                        </div>
-                      )}
-                      {flow.volume_estimate && (
-                        <div>
-                          <span className="text-muted-foreground">Volume:</span>
-                          <p className="text-foreground font-medium">{flow.volume_estimate}</p>
-                        </div>
-                      )}
-                      <div>
-                        <span className="text-muted-foreground">Encryption:</span>
-                        <p className="text-foreground font-medium">
-                          {flow.encryption_in_transit ? 'Yes' : 'No'}
-                        </p>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground">Cross-Border:</span>
-                        <p className="text-foreground font-medium">
-                          {flow.cross_border_transfer ? 'Yes' : 'No'}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )
-              })}
+                          </td>
+                          <td className="py-3 px-4">
+                            <div className="flex items-center gap-2 text-sm">
+                              <span className="text-foreground font-medium">{endpoints.from}</span>
+                              <ArrowRight className="h-3 w-3 text-muted-foreground" />
+                              <span className="text-foreground font-medium">{endpoints.to}</span>
+                            </div>
+                          </td>
+                          <td className="py-3 px-4">
+                            {flow.criticality ? (
+                              <Badge className={getCriticalityColor(flow.criticality)}>
+                                {flow.criticality}
+                              </Badge>
+                            ) : (
+                              <span className="text-muted-foreground">-</span>
+                            )}
+                          </td>
+                          <td className="py-3 px-4">
+                            <div className="flex flex-col gap-1">
+                              {flow.encryption_in_transit ? (
+                                <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-xs">
+                                  <Shield className="h-3 w-3 mr-1" />
+                                  Encrypted
+                                </Badge>
+                              ) : (
+                                <Badge variant="destructive" className="text-xs">
+                                  <AlertTriangle className="h-3 w-3 mr-1" />
+                                  Unencrypted
+                                </Badge>
+                              )}
+                              {flow.cross_border_transfer && (
+                                <Badge variant="outline" className="text-amber-600 border-amber-600 text-xs">
+                                  <Globe className="h-3 w-3 mr-1" />
+                                  Cross-Border
+                                </Badge>
+                              )}
+                            </div>
+                          </td>
+                          <td className="py-3 px-4 text-right">
+                            <div className="flex items-center justify-end gap-2">
+                              <Button variant="ghost" size="sm">
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                              <Button variant="ghost" size="sm">
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+              
+              {/* Table Footer */}
+              <div className="flex items-center justify-between pt-4 border-t border-border">
+                <p className="text-sm text-muted-foreground">
+                  Showing {filteredDataFlows.length} data flows
+                </p>
+                <Button variant="outline" size="sm" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add New
+                </Button>
+              </div>
             </div>
           )}
         </CardContent>

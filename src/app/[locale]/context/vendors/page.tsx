@@ -7,7 +7,6 @@ import {
   Search,
   Edit,
   Trash2,
-  Building,
   Mail,
   ExternalLink,
   FileText,
@@ -111,7 +110,7 @@ export default function VendorsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-foreground">Vendors & Processors</h1>
@@ -130,95 +129,198 @@ export default function VendorsPage() {
         </Button>
       </div>
 
-      {/* Filters & Stats */}
-      <Card>
+      {/* Vendors Status Overview - matching assessments pills */}
+      <div className="space-y-5">
+        <h2 className="text-lg font-medium text-foreground">
+          Vendors Overview
+        </h2>
+        
+        {/* Status Pills Group - matching assessments style */}
+        <div className="flex flex-wrap" style={{ gap: '12px' }}>
+          {/* Active Vendors Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #22c55e',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Active Vendors
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {vendors.filter(v => v.status === 'active').length}
+            </span>
+          </div>
+
+          {/* Missing DPAs Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #ef4444',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Missing DPAs
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {vendors.filter(v => !v.has_dpa).length}
+            </span>
+          </div>
+
+          {/* DPA Expiring Soon Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #f59e0b',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              DPA Expiring Soon
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {vendors.filter(v => isDpaExpiringSoon(v.dpa_expires)).length}
+            </span>
+          </div>
+
+          {/* Inactive Vendors Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #9ca3af',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Inactive Vendors
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {vendors.filter(v => v.status === 'inactive').length}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Filters - streamlined without card wrapper */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search vendors..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        
+        <Select value={selectedRole} onValueChange={setSelectedRole}>
+          <SelectTrigger className="w-52">
+            <SelectValue placeholder="Filter by role" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Roles</SelectItem>
+            <SelectItem value="processor">Processor</SelectItem>
+            <SelectItem value="joint_controller">Joint Controller</SelectItem>
+            <SelectItem value="recipient">Recipient</SelectItem>
+            <SelectItem value="sub_processor">Sub-processor</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Increased Spacing Before Vendors */}
+      <div className="mt-12"></div>
+
+      {/* Vendors Table - matching assessments structure */}
+      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Building className="h-5 w-5" />
-            Vendor Registry
+          <CardTitle className="flex items-center justify-between">
+            Vendors & Processors ({filteredVendors.length})
           </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search vendors..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            
-            <Select value={selectedRole} onValueChange={setSelectedRole}>
-              <SelectTrigger className="w-52">
-                <SelectValue placeholder="Filter by role" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Roles</SelectItem>
-                <SelectItem value="processor">Processor</SelectItem>
-                <SelectItem value="joint_controller">Joint Controller</SelectItem>
-                <SelectItem value="recipient">Recipient</SelectItem>
-                <SelectItem value="sub_processor">Sub-processor</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="flex flex-wrap gap-6">
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Total: <span className="font-medium text-foreground">{vendors.length}</span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-green-500"></div>
-              <span className="text-sm text-muted-foreground">
-                With DPA: <span className="font-medium text-foreground">
-                  {vendors.filter(v => v.has_dpa).length}
-                </span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-amber-500"></div>
-              <span className="text-sm text-muted-foreground">
-                DPA Expiring Soon: <span className="font-medium text-foreground">
-                  {vendors.filter(v => isDpaExpiringSoon(v.dpa_expires)).length}
-                </span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-red-500"></div>
-              <span className="text-sm text-muted-foreground">
-                No DPA: <span className="font-medium text-foreground">
-                  {vendors.filter(v => !v.has_dpa).length}
-                </span>
-              </span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Vendors List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Vendors ({filteredVendors.length})</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
-            <div className="flex items-center justify-center py-8">
-              <div className="text-muted-foreground">Loading vendors...</div>
+            <div className="flex items-center justify-center py-12">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <p className="text-muted-foreground">Loading vendors...</p>
+              </div>
             </div>
           ) : filteredVendors.length === 0 ? (
-            <div className="text-center py-8">
+            <div className="text-center py-12">
               <Users className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">No vendors found</h3>
-              <p className="text-muted-foreground mb-6">
+              <h3 className="text-lg font-medium text-foreground mb-2">
+                {searchQuery || selectedRole ? 'No vendors found' : 'Ready to manage vendors'}
+              </h3>
+              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery || selectedRole
                   ? 'Try adjusting your filters or search query.'
-                  : 'Start by adding your first vendor or data processor.'
+                  : 'Start by adding your first vendor or data processor to track DPA agreements.'
                 }
               </p>
               <Button variant="primary" className="gap-2">
@@ -228,114 +330,131 @@ export default function VendorsPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {filteredVendors.map((vendor) => (
-                <div key={vendor.id} className="border rounded-lg p-5 space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-2 flex-1">
-                      <div className="flex items-center gap-3 flex-wrap">
-                        <h3 className="font-medium text-foreground text-lg">{vendor.name}</h3>
-                        <Badge className={getVendorRoleColor(vendor.vendor_role)}>
-                          <Users className="h-3 w-3 mr-1" />
-                          {vendorRoleLabels[vendor.vendor_role]}
-                        </Badge>
-                        {vendor.has_dpa ? (
-                          isDpaExpired(vendor.dpa_expires) ? (
+              {/* Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Name
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Role
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        DPA Status
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Location
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Contact
+                      </th>
+                      <th className="text-right py-3 px-4 font-medium text-muted-foreground">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredVendors.map((vendor) => (
+                      <tr key={vendor.id} className="border-b border-border hover:bg-muted/50">
+                        <td className="py-3 px-4">
+                          <div className="space-y-1">
+                            <div className="font-medium text-foreground">{vendor.name}</div>
+                            {vendor.description && (
+                              <div className="text-sm text-muted-foreground">{vendor.description}</div>
+                            )}
+                            {vendor.website && (
+                              <a 
+                                href={vendor.website} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1"
+                              >
+                                <ExternalLink className="h-3 w-3" />
+                                Website
+                              </a>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge className={getVendorRoleColor(vendor.vendor_role)}>
+                            <Users className="h-3 w-3 mr-1" />
+                            {vendorRoleLabels[vendor.vendor_role]}
+                          </Badge>
+                        </td>
+                        <td className="py-3 px-4">
+                          {vendor.has_dpa ? (
+                            isDpaExpired(vendor.dpa_expires) ? (
+                              <Badge variant="destructive">
+                                <AlertTriangle className="h-3 w-3 mr-1" />
+                                DPA Expired
+                              </Badge>
+                            ) : isDpaExpiringSoon(vendor.dpa_expires) ? (
+                              <Badge variant="outline" className="text-amber-600 border-amber-600">
+                                <AlertTriangle className="h-3 w-3 mr-1" />
+                                Expiring Soon
+                              </Badge>
+                            ) : (
+                              <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                <FileText className="h-3 w-3 mr-1" />
+                                Active
+                              </Badge>
+                            )
+                          ) : (
                             <Badge variant="destructive">
                               <AlertTriangle className="h-3 w-3 mr-1" />
-                              DPA Expired
+                              Missing
                             </Badge>
-                          ) : isDpaExpiringSoon(vendor.dpa_expires) ? (
-                            <Badge variant="outline" className="text-amber-600 border-amber-600">
-                              <AlertTriangle className="h-3 w-3 mr-1" />
-                              DPA Expiring Soon
-                            </Badge>
-                          ) : (
-                            <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                              <FileText className="h-3 w-3 mr-1" />
-                              DPA Active
-                            </Badge>
-                          )
-                        ) : (
-                          <Badge variant="destructive">
-                            <AlertTriangle className="h-3 w-3 mr-1" />
-                            No DPA
-                          </Badge>
-                        )}
-                      </div>
-                      {vendor.description && (
-                        <p className="text-sm text-muted-foreground">{vendor.description}</p>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2 ml-4">
-                      <Button variant="ghost" size="sm">
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-                    {vendor.contact_email && (
-                      <div>
-                        <span className="text-muted-foreground flex items-center gap-1 mb-1">
-                          <Mail className="h-3 w-3" />
-                          Contact:
-                        </span>
-                        <p className="text-foreground">{vendor.contact_email}</p>
-                      </div>
-                    )}
-                    {vendor.primary_contact && (
-                      <div>
-                        <span className="text-muted-foreground flex items-center gap-1 mb-1">
-                          <Users className="h-3 w-3" />
-                          Primary Contact:
-                        </span>
-                        <p className="text-foreground">{vendor.primary_contact}</p>
-                      </div>
-                    )}
-                    {vendor.location && (
-                      <div>
-                        <span className="text-muted-foreground flex items-center gap-1 mb-1">
-                          <Building className="h-3 w-3" />
-                          Location:
-                        </span>
-                        <p className="text-foreground">{vendor.location}</p>
-                      </div>
-                    )}
-                    {vendor.dpa_expires && (
-                      <div>
-                        <span className="text-muted-foreground flex items-center gap-1 mb-1">
-                          <FileText className="h-3 w-3" />
-                          DPA Expires:
-                        </span>
-                        <p className={`text-foreground ${
-                          isDpaExpired(vendor.dpa_expires) || isDpaExpiringSoon(vendor.dpa_expires)
-                            ? 'text-red-600 font-medium' 
-                            : ''
-                        }`}>
-                          {new Date(vendor.dpa_expires).toLocaleDateString()}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                  
-                  {vendor.website && (
-                    <div className="pt-2 border-t">
-                      <a 
-                        href={vendor.website} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-sm text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1"
-                      >
-                        <ExternalLink className="h-3 w-3" />
-                        {vendor.website}
-                      </a>
-                    </div>
-                  )}
-                </div>
-              ))}
+                          )}
+                        </td>
+                        <td className="py-3 px-4 text-muted-foreground">
+                          {vendor.location || '-'}
+                        </td>
+                        <td className="py-3 px-4">
+                          <div className="space-y-1">
+                            {vendor.contact_email && (
+                              <div className="text-sm text-foreground">
+                                <Mail className="h-3 w-3 inline mr-1" />
+                                {vendor.contact_email}
+                              </div>
+                            )}
+                            {vendor.primary_contact && (
+                              <div className="text-sm text-muted-foreground">
+                                {vendor.primary_contact}
+                              </div>
+                            )}
+                            {!vendor.contact_email && !vendor.primary_contact && (
+                              <span className="text-muted-foreground">-</span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4 text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <Button variant="ghost" size="sm">
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              
+              {/* Table Footer */}
+              <div className="flex items-center justify-between pt-4 border-t border-border">
+                <p className="text-sm text-muted-foreground">
+                  Showing {filteredVendors.length} vendors
+                </p>
+                <Button variant="outline" size="sm" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add New
+                </Button>
+              </div>
             </div>
           )}
         </CardContent>

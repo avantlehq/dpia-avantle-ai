@@ -129,7 +129,7 @@ export default function LocationsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-foreground">Locations & Jurisdictions</h1>
@@ -148,108 +148,212 @@ export default function LocationsPage() {
         </Button>
       </div>
 
-      {/* Filters & Stats */}
-      <Card>
+      {/* Locations Status Overview - matching assessments pills */}
+      <div className="space-y-5">
+        <h2 className="text-lg font-medium text-foreground">
+          Locations Overview
+        </h2>
+        
+        {/* Status Pills Group - matching assessments style */}
+        <div className="flex flex-wrap" style={{ gap: '12px' }}>
+          {/* Adequate Countries Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #22c55e',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Adequate Countries
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {locations.filter(l => l.adequacy_status === 'adequate').length}
+            </span>
+          </div>
+
+          {/* Third Countries Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #f59e0b',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Third Countries
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {locations.filter(l => l.jurisdiction_type === 'third_country').length}
+            </span>
+          </div>
+
+          {/* Missing Safeguards Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #ef4444',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Missing Safeguards
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {locations.filter(l => l.safeguards_required && !l.safeguards_description).length}
+            </span>
+          </div>
+
+          {/* Under Review Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #9ca3af',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Under Review
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {locations.filter(l => l.adequacy_status === 'under_review').length}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Filters - streamlined without card wrapper */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search locations..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        
+        <Select value={selectedJurisdiction} onValueChange={setSelectedJurisdiction}>
+          <SelectTrigger className="w-52">
+            <SelectValue placeholder="Filter by jurisdiction" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Jurisdictions</SelectItem>
+            <SelectItem value="eu_member_state">EU Member State</SelectItem>
+            <SelectItem value="eea_country">EEA Country</SelectItem>
+            <SelectItem value="third_country">Third Country</SelectItem>
+            <SelectItem value="international">International</SelectItem>
+          </SelectContent>
+        </Select>
+
+        <Select value={selectedAdequacy} onValueChange={setSelectedAdequacy}>
+          <SelectTrigger className="w-52">
+            <SelectValue placeholder="Filter by adequacy" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Adequacy Status</SelectItem>
+            <SelectItem value="adequate">Adequate</SelectItem>
+            <SelectItem value="not_adequate">Not Adequate</SelectItem>
+            <SelectItem value="partial">Partial</SelectItem>
+            <SelectItem value="under_review">Under Review</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Increased Spacing Before Locations */}
+      <div className="mt-12"></div>
+
+      {/* Locations Table - matching assessments structure */}
+      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <MapPin className="h-5 w-5" />
-            Jurisdiction Registry
+          <CardTitle className="flex items-center justify-between">
+            Locations & Jurisdictions ({filteredLocations.length})
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
-          {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search locations..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            
-            <Select value={selectedJurisdiction} onValueChange={setSelectedJurisdiction}>
-              <SelectTrigger className="w-52">
-                <SelectValue placeholder="Filter by jurisdiction" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Jurisdictions</SelectItem>
-                <SelectItem value="eu_member_state">EU Member State</SelectItem>
-                <SelectItem value="eea_country">EEA Country</SelectItem>
-                <SelectItem value="third_country">Third Country</SelectItem>
-                <SelectItem value="international">International</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Select value={selectedAdequacy} onValueChange={setSelectedAdequacy}>
-              <SelectTrigger className="w-52">
-                <SelectValue placeholder="Filter by adequacy" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Adequacy Status</SelectItem>
-                <SelectItem value="adequate">Adequate</SelectItem>
-                <SelectItem value="not_adequate">Not Adequate</SelectItem>
-                <SelectItem value="partial">Partial</SelectItem>
-                <SelectItem value="under_review">Under Review</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="flex flex-wrap gap-6">
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Total: <span className="font-medium text-foreground">{locations.length}</span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-green-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Adequate: <span className="font-medium text-foreground">
-                  {locations.filter(l => l.adequacy_status === 'adequate').length}
-                </span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-red-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Safeguards Required: <span className="font-medium text-foreground">
-                  {locations.filter(l => l.safeguards_required).length}
-                </span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-amber-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Data Localization: <span className="font-medium text-foreground">
-                  {locations.filter(l => l.data_localization_requirements).length}
-                </span>
-              </span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Locations List */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Locations ({filteredLocations.length})</CardTitle>
-        </CardHeader>
         <CardContent>
+
           {isLoading ? (
-            <div className="flex items-center justify-center py-8">
-              <div className="text-muted-foreground">Loading locations...</div>
+            <div className="flex items-center justify-center py-12">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <p className="text-muted-foreground">Loading locations...</p>
+              </div>
             </div>
           ) : filteredLocations.length === 0 ? (
-            <div className="text-center py-8">
+            <div className="text-center py-12">
               <MapPin className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">No locations found</h3>
-              <p className="text-muted-foreground mb-6">
+              <h3 className="text-lg font-medium text-foreground mb-2">
+                {searchQuery || selectedJurisdiction || selectedAdequacy ? 'No locations found' : 'Ready to manage jurisdictions'}
+              </h3>
+              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery || selectedJurisdiction || selectedAdequacy
                   ? 'Try adjusting your filters or search query.'
-                  : 'Start by adding your first processing location or jurisdiction.'
+                  : 'Start by adding your first processing location or jurisdiction for GDPR compliance tracking.'
                 }
               </p>
               <Button variant="primary" className="gap-2">
@@ -259,97 +363,99 @@ export default function LocationsPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {filteredLocations.map((location) => (
-                <div key={location.id} className="border rounded-lg p-5 space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-2 flex-1">
-                      <div className="flex items-center gap-3 flex-wrap">
-                        <div className="flex items-center gap-2">
-                          <Flag className="h-4 w-4 text-muted-foreground" />
-                          <h3 className="font-medium text-foreground text-lg">{location.name}</h3>
-                          <span className="text-sm text-muted-foreground font-mono">({location.country_code})</span>
-                        </div>
-                        
-                        <Badge className={getJurisdictionTypeColor(location.jurisdiction_type)}>
-                          <Globe className="h-3 w-3 mr-1" />
-                          {jurisdictionTypeLabels[location.jurisdiction_type]}
-                        </Badge>
-                        
-                        <Badge className={getAdequacyStatusColor(location.adequacy_status)}>
-                          {getAdequacyIcon(location.adequacy_status)}
-                          {adequacyStatusLabels[location.adequacy_status]}
-                        </Badge>
-                        
-                        {location.safeguards_required && (
-                          <Badge variant="outline" className="text-orange-600 border-orange-600">
-                            <Shield className="h-3 w-3 mr-1" />
-                            Safeguards Required
+              {/* Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Location
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Jurisdiction Type
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Adequacy Status
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Safeguards
+                      </th>
+                      <th className="text-right py-3 px-4 font-medium text-muted-foreground">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredLocations.map((location) => (
+                      <tr key={location.id} className="border-b border-border hover:bg-muted/50">
+                        <td className="py-3 px-4">
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-2">
+                              <Flag className="h-4 w-4 text-muted-foreground" />
+                              <div className="font-medium text-foreground">{location.name}</div>
+                              <span className="text-sm text-muted-foreground font-mono">({location.country_code})</span>
+                            </div>
+                            {location.notes && (
+                              <div className="text-sm text-muted-foreground">{location.notes}</div>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge className={getJurisdictionTypeColor(location.jurisdiction_type)}>
+                            <Globe className="h-3 w-3 mr-1" />
+                            {jurisdictionTypeLabels[location.jurisdiction_type]}
                           </Badge>
-                        )}
-                        
-                        {location.data_localization_requirements && (
-                          <Badge variant="outline" className="text-red-600 border-red-600">
-                            <AlertTriangle className="h-3 w-3 mr-1" />
-                            Data Localization
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge className={getAdequacyStatusColor(location.adequacy_status)}>
+                            {getAdequacyIcon(location.adequacy_status)}
+                            {adequacyStatusLabels[location.adequacy_status]}
                           </Badge>
-                        )}
-                      </div>
-                      
-                      {location.notes && (
-                        <p className="text-sm text-muted-foreground">{location.notes}</p>
-                      )}
-                    </div>
-                    
-                    <div className="flex items-center gap-2 ml-4">
-                      <Button variant="ghost" size="sm">
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-                    {location.adequacy_decision_date && (
-                      <div>
-                        <span className="text-muted-foreground flex items-center gap-1 mb-1">
-                          <CheckCircle className="h-3 w-3" />
-                          Adequacy Decision:
-                        </span>
-                        <p className="text-foreground font-medium">
-                          {new Date(location.adequacy_decision_date).toLocaleDateString()}
-                        </p>
-                        {location.adequacy_decision_reference && (
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {location.adequacy_decision_reference}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                    
-                    {location.safeguards_required && location.safeguards_description && (
-                      <div>
-                        <span className="text-muted-foreground flex items-center gap-1 mb-1">
-                          <Shield className="h-3 w-3" />
-                          Required Safeguards:
-                        </span>
-                        <p className="text-foreground text-xs">{location.safeguards_description}</p>
-                      </div>
-                    )}
-                    
-                    <div>
-                      <span className="text-muted-foreground flex items-center gap-1 mb-1">
-                        <Globe className="h-3 w-3" />
-                        Data Localization:
-                      </span>
-                      <p className="text-foreground">
-                        {location.data_localization_requirements ? 'Required' : 'Not Required'}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+                        </td>
+                        <td className="py-3 px-4">
+                          <div className="flex flex-col gap-1">
+                            {location.safeguards_required ? (
+                              <Badge variant="outline" className="text-orange-600 border-orange-600 text-xs">
+                                <Shield className="h-3 w-3 mr-1" />
+                                Required
+                              </Badge>
+                            ) : (
+                              <span className="text-muted-foreground text-sm">Not Required</span>
+                            )}
+                            {location.data_localization_requirements && (
+                              <Badge variant="outline" className="text-red-600 border-red-600 text-xs">
+                                <AlertTriangle className="h-3 w-3 mr-1" />
+                                Data Localization
+                              </Badge>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4 text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <Button variant="ghost" size="sm">
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              
+              {/* Table Footer */}
+              <div className="flex items-center justify-between pt-4 border-t border-border">
+                <p className="text-sm text-muted-foreground">
+                  Showing {filteredLocations.length} locations
+                </p>
+                <Button variant="outline" size="sm" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add New
+                </Button>
+              </div>
             </div>
           )}
         </CardContent>
