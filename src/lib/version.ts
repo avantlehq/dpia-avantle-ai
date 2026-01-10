@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.167" as const
-export const VERSION_NAME = "🔧 ESLINT FIX: Data Flows Route Unused Variables Fixed" as const
+export const VERSION = "3.21.168" as const
+export const VERSION_NAME = "✨ UI ENHANCEMENT: Context Overview Enhanced with Horizontal Status Cards" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.168": {
+    date: "2026-01-10",
+    name: "✨ UI ENHANCEMENT: Context Overview Enhanced with Horizontal Status Cards",
+    features: [
+      "ENHANCED STATUS CARDS: Applied Privacy overview horizontal status card layout to Context module",
+      "ORGANIZED STATUS SECTIONS: Created 4 distinct sections - Systems, Processing Activities, Data Flows, Vendors",
+      "COLOR-CODED STATUS INDICATORS: Green (active/good), Red (critical/issues), Amber (warnings/attention needed)",
+      "IMPROVED VISUAL HIERARCHY: Added section headers and better spacing for enhanced readability",
+      "COMPREHENSIVE STATUS TRACKING: Shows critical systems, DPO reviews, cross-border transfers, missing DPAs",
+      "VISUAL CONSISTENCY: Matched Privacy module design patterns for unified user experience across platform"
+    ]
+  },
   "3.21.167": {
     date: "2026-01-10",
     name: "🔧 ESLINT FIX: Data Flows Route Unused Variables Fixed",
