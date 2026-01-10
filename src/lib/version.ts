@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.179" as const
-export const VERSION_NAME = "🏠 PLATFORM HOMEPAGE: Dashboard as Default Landing Page" as const
+export const VERSION = "3.21.180" as const
+export const VERSION_NAME = "🔧 DPIA ASSESSMENTS LINK: Fixed Navigation to Assessments Page" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.180": {
+    date: "2026-01-10",
+    name: "🔧 DPIA ASSESSMENTS LINK: Fixed Navigation to Assessments Page",
+    features: [
+      "DPIA ASSESSMENTS FIX: Privacy module 'DPIA Assessments' now correctly links to /assessments page",
+      "NAVIGATION SEPARATION: Clear distinction between Platform Dashboard (compliance overview) and Assessments (DPIA list)",
+      "USER EXPERIENCE RESTORED: Users can now access dedicated DPIA assessments list from Privacy sidebar",
+      "FUNCTIONAL CLARITY: Dashboard shows platform-wide status, Assessments shows DPIA-specific management",
+      "WORKFLOW CONSISTENCY: Maintains familiar pattern where module items link to specific functionality pages",
+      "ASSESSMENT MANAGEMENT: Direct access to assessment list with creation and status management capabilities"
+    ]
+  },
   "3.21.179": {
     date: "2026-01-10",
     name: "🏠 PLATFORM HOMEPAGE: Dashboard as Default Landing Page",

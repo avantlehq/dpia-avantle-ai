@@ -144,7 +144,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
       { 
         id: 'dpia-assessments',
         name: 'DPIA Assessments', 
-        href: getLocaleHref('/dashboard'), // Points to dashboard with existing assessments
+        href: getLocaleHref('/assessments'), // Dedicated DPIA assessments list page
         icon: Target,
         description: 'Data Protection Impact Assessments'
       },
