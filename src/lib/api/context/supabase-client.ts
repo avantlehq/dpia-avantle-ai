@@ -9,12 +9,13 @@ import { createClient } from '@supabase/supabase-js';
 import type { Database } from './database.types';
 
 // Environment variables
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-anon-key';
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || 'placeholder-service-key';
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables');
+// Warn in development if using placeholder values
+if ((supabaseUrl.includes('placeholder') || supabaseAnonKey.includes('placeholder')) && process.env.NODE_ENV !== 'production') {
+  console.warn('Using placeholder Supabase environment variables');
 }
 
 // Client-side Supabase client (with RLS)
