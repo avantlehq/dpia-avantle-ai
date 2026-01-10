@@ -19,34 +19,49 @@ if ((supabaseUrl.includes('placeholder') || supabaseAnonKey.includes('placeholde
 }
 
 // Client-side Supabase client (with RLS)
-export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    autoRefreshToken: true,
-    persistSession: true,
-    detectSessionInUrl: true,
-  },
-  db: {
-    schema: 'public',
-  },
-  global: {
-    headers: {
-      'X-Client-Info': 'dpia-avantle-ai',
-    },
-  },
-});
-
-// Server-side Supabase client with service role (bypasses RLS)
-export const supabaseAdmin = supabaseServiceKey
-  ? createClient<Database>(supabaseUrl, supabaseServiceKey, {
+export const supabase = (() => {
+  try {
+    return createClient<Database>(supabaseUrl, supabaseAnonKey, {
       auth: {
-        autoRefreshToken: false,
-        persistSession: false,
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true,
       },
       db: {
         schema: 'public',
       },
-    })
-  : null;
+      global: {
+        headers: {
+          'X-Client-Info': 'dpia-avantle-ai',
+        },
+      },
+    });
+  } catch (error) {
+    console.warn('Failed to create Supabase client during build:', error);
+    // Return a mock client for build time
+    return null as any;
+  }
+})();
+
+// Server-side Supabase client with service role (bypasses RLS)
+export const supabaseAdmin = (() => {
+  try {
+    return supabaseServiceKey
+      ? createClient<Database>(supabaseUrl, supabaseServiceKey, {
+          auth: {
+            autoRefreshToken: false,
+            persistSession: false,
+          },
+          db: {
+            schema: 'public',
+          },
+        })
+      : null;
+  } catch (error) {
+    console.warn('Failed to create Supabase admin client during build:', error);
+    return null;
+  }
+})();
 
 // Type-safe client for RLS-enabled operations
 export type SupabaseClient = typeof supabase;
