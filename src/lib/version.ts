@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.161" as const
-export const VERSION_NAME = "💫 ABSOLUTE FINAL Victory: Complete Build Success with Zero Errors" as const
+export const VERSION = "3.21.162" as const
+export const VERSION_NAME = "🔧 BROWSER BUG FIX: Select.Item Empty Value Error Resolved" as const
 export const BUILD_DATE = "2026-01-09"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.162": {
+    date: "2026-01-09", 
+    name: "🔧 BROWSER BUG FIX: Select.Item Empty Value Error Resolved",
+    features: [
+      "BROWSER CONSOLE ERROR FIX: Fixed Radix UI Select.Item empty value error in Context/Systems page",
+      "SELECT COMPONENT COMPLIANCE: Changed SelectItem value from empty string to 'all' for 'All Criticality' option",
+      "FILTER LOGIC UPDATE: Updated criticality filter logic to handle 'all' value correctly (shows all systems)",
+      "RADIX UI COMPATIBILITY: Resolved 'A <Select.Item /> must have a value prop that is not an empty string' error",
+      "USER EXPERIENCE: Context Systems page now loads without console errors when clicking on Systems in sidebar",
+      "PRODUCTION BUILD SUCCESS: Verified build compilation success with Select component fix"
+    ]
+  },
   "3.21.161": {
     date: "2026-01-09", 
     name: "💫 ABSOLUTE FINAL Victory: Complete Build Success with Zero Errors",

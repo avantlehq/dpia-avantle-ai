@@ -65,7 +65,7 @@ export default function SystemsPage() {
       system.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       system.description?.toLowerCase().includes(searchQuery.toLowerCase())
     
-    const matchesCriticality = !selectedCriticality || 
+    const matchesCriticality = !selectedCriticality || selectedCriticality === 'all' ||
       system.criticality === selectedCriticality
     
     return matchesSearch && matchesCriticality
@@ -130,7 +130,7 @@ export default function SystemsPage() {
                 <SelectValue placeholder="Filter by criticality" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All Criticality</SelectItem>
+                <SelectItem value="all">All Criticality</SelectItem>
                 <SelectItem value="low">Low</SelectItem>
                 <SelectItem value="medium">Medium</SelectItem>
                 <SelectItem value="high">High</SelectItem>
