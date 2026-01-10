@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.174" as const
-export const VERSION_NAME = "🎨 DASHBOARD VISUAL CONSISTENCY: Complete Context Pattern Match" as const
+export const VERSION = "3.21.175" as const
+export const VERSION_NAME = "🧹 DASHBOARD CLEANUP: Removed Redundant Module Navigation" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.175": {
+    date: "2026-01-10",
+    name: "🧹 DASHBOARD CLEANUP: Removed Redundant Module Navigation",
+    features: [
+      "REDUNDANT NAVIGATION REMOVED: Eliminated module navigation cards section that duplicated topbar/sidebar navigation",
+      "STREAMLINED DASHBOARD: Now focuses on actionable status overview instead of navigation redundancy",
+      "COGNITIVE LOAD REDUCED: Users no longer see module names repeated 3 times (topbar → sidebar → dashboard)",
+      "CLEANER UX PATTERN: Dashboard emphasizes what needs attention rather than how to navigate",
+      "FASTER LOAD: Removed 6 large module cards and associated data/icons reducing component complexity",
+      "SIMPLIFIED STRUCTURE: Dashboard now has clear hierarchy - Header CTAs → Platform Status → Platform Summary",
+      "BETTER FOCUS: Users directed to actionable status cards and quick start actions instead of navigation",
+      "REMOVED UNUSED CODE: Cleaned up moduleCards array and unused Lucide icons (Database, Shield, etc.)",
+      "PRODUCTION READY: Build passes successfully with cleaner, more focused dashboard experience"
+    ]
+  },
   "3.21.174": {
     date: "2026-01-10",
     name: "🎨 DASHBOARD VISUAL CONSISTENCY: Complete Context Pattern Match",
