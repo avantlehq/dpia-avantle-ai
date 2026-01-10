@@ -16,7 +16,7 @@ import { handleApiError } from '@/lib/api/context/middleware/error-handler';
  */
 export async function GET(request: NextRequest) {
   try {
-    return await withOptionalAuth(async (context) => {
+    return await withOptionalAuth(async (_context) => {
       // Mock data flows - in a real implementation, this would fetch from database
       const mockDataFlows = [
         {
@@ -120,7 +120,7 @@ export async function GET(request: NextRequest) {
  */
 export async function POST(request: NextRequest) {
   try {
-    return await withOptionalAuth(async (context) => {
+    return await withOptionalAuth(async (_context) => {
       // Placeholder for creating data flows
       return NextResponse.json({
         success: false,

@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.166" as const
-export const VERSION_NAME = "🔧 API ENDPOINT FIX: Data Flows API Endpoint Created" as const
+export const VERSION = "3.21.167" as const
+export const VERSION_NAME = "🔧 ESLINT FIX: Data Flows Route Unused Variables Fixed" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.167": {
+    date: "2026-01-10",
+    name: "🔧 ESLINT FIX: Data Flows Route Unused Variables Fixed",
+    features: [
+      "ESLINT COMPLIANCE RESTORED: Fixed unused variable warnings in data-flows route.ts",
+      "UNUSED PARAMETERS FIXED: Prefixed context parameters with underscore (_context) in GET and POST handlers",
+      "CI/CD PIPELINE FIXED: Resolved ESLint warnings that were causing build process to fail",
+      "CODE QUALITY MAINTAINED: Zero ESLint errors or warnings across entire codebase",
+      "PRODUCTION BUILD STABLE: All TypeScript and ESLint checks now pass successfully"
+    ]
+  },
   "3.21.166": {
     date: "2026-01-10",
     name: "🔧 API ENDPOINT FIX: Data Flows API Endpoint Created",
