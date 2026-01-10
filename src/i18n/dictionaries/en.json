@@ -162,6 +162,192 @@
       "updatedRecently": "Updated Recently",
       "translationsAvailable": "Translations Available",
       "supportArticles": "Support Articles"
+    },
+    "contextGuide": {
+      "title": "Context Module Guide",
+      "backToHelp": "Back to Help",
+      "description": "The Context module provides comprehensive data mapping and infrastructure management for GDPR compliance. It helps you understand where your data lives, how it flows, and who has access to it across your entire organization.",
+      "purpose": "Context Module Purpose",
+      "purposeDescription": "Context represents 25% of your compliance score and serves as the foundation for all other privacy assessments. It provides the essential infrastructure mapping required for GDPR Article 30 compliance and data protection impact assessments.",
+      "keyBenefits": "Key Benefits:",
+      "benefits": {
+        "visibility": "Complete data infrastructure visibility",
+        "compliance": "GDPR Article 30 ROPA compliance",
+        "foundation": "Risk assessment foundation",
+        "management": "Vendor relationship management",
+        "tracking": "Cross-border transfer tracking"
+      },
+      "complianceFramework": "Compliance Framework:",
+      "framework": {
+        "dataMapping": "Data mapping requirements (Art. 30)",
+        "transfers": "International transfer rules (Ch. V)",
+        "agreements": "Processor agreements (Art. 28)",
+        "adequacy": "Adequacy decision tracking",
+        "lawful": "Lawful basis documentation"
+      },
+      "modulePages": "Context Module Pages",
+      "pages": {
+        "systems": {
+          "title": "IT Systems",
+          "description": "Track IT infrastructure, data processing systems, and technical components",
+          "features": {
+            "status": "Active/Inactive status tracking",
+            "criticality": "Criticality assessment",
+            "ownership": "Owner assignment",
+            "contacts": "Technical contacts"
+          }
+        },
+        "processing": {
+          "title": "Processing Activities",
+          "description": "GDPR Article 30 Record of Processing Activities (ROPA) management",
+          "features": {
+            "lawful": "Lawful basis documentation",
+            "dpo": "DPO review tracking",
+            "review": "Review date monitoring",
+            "purpose": "Purpose specification"
+          }
+        },
+        "vendors": {
+          "title": "Vendors & Processors",
+          "description": "Third-party processor management and DPA tracking",
+          "features": {
+            "role": "Processor role classification",
+            "expiration": "DPA expiration tracking",
+            "contacts": "Contact management",
+            "location": "Location tracking"
+          }
+        },
+        "dataFlows": {
+          "title": "Data Flows",
+          "description": "Map data movement across systems, vendors, and jurisdictions",
+          "features": {
+            "direction": "Flow direction tracking",
+            "crossBorder": "Cross-border identification",
+            "encryption": "Encryption monitoring",
+            "criticality": "Criticality assessment"
+          }
+        },
+        "locations": {
+          "title": "Locations & Jurisdictions",
+          "description": "Geographic data processing locations and adequacy decisions",
+          "features": {
+            "adequacy": "Adequacy status tracking",
+            "safeguards": "Safeguards requirements",
+            "localization": "Data localization rules",
+            "classification": "EU/Third country classification"
+          }
+        }
+      },
+      "openPage": "Open Page",
+      "keyFeatures": "Key Features:",
+      "statusTracking": "Status Tracking System",
+      "statusDescription": "All Context module pages use consistent status indicators for quick overview and risk assessment.",
+      "universalPills": "Universal Status Pills",
+      "statusTypes": {
+        "active": {
+          "label": "Active",
+          "description": "Currently operational and processing data"
+        },
+        "critical": {
+          "label": "Critical",
+          "description": "High-risk items requiring immediate attention"
+        },
+        "review": {
+          "label": "Review Required",
+          "description": "Items needing review or DPO assessment"
+        },
+        "inactive": {
+          "label": "Inactive",
+          "description": "Not currently in use or decommissioned"
+        }
+      },
+      "workflow": "Implementation Workflow",
+      "steps": {
+        "step1": {
+          "title": "Start with IT Systems",
+          "description": "Begin by cataloging all IT systems that process personal data. This forms the foundation for all other mappings.",
+          "tasks": {
+            "add": "Add all applications, databases, and services",
+            "classify": "Classify criticality levels (low, medium, high, critical)",
+            "assign": "Assign system owners and technical contacts",
+            "document": "Document system purposes and descriptions"
+          }
+        },
+        "step2": {
+          "title": "Document Processing Activities",
+          "description": "Create your GDPR Article 30 Record of Processing Activities (ROPA) by linking business processes to systems.",
+          "tasks": {
+            "define": "Define processing purposes and lawful basis",
+            "specify": "Specify data subject categories",
+            "set": "Set review dates and DPO requirements",
+            "link": "Link to relevant IT systems"
+          }
+        },
+        "step3": {
+          "title": "Register Vendors & Processors",
+          "description": "Maintain a registry of all third-party processors and vendors with access to personal data.",
+          "tasks": {
+            "classify": "Classify vendor roles (processor, joint controller, etc.)",
+            "track": "Track DPA agreements and expiration dates",
+            "monitor": "Monitor vendor locations and contact details",
+            "document": "Document data processing agreements"
+          }
+        },
+        "step4": {
+          "title": "Map Data Flows",
+          "description": "Track how personal data moves between systems, vendors, and jurisdictions.",
+          "tasks": {
+            "document": "Document data flow directions and endpoints",
+            "identify": "Identify cross-border transfers",
+            "verify": "Verify encryption in transit",
+            "assess": "Assess flow criticality and volume"
+          }
+        },
+        "step5": {
+          "title": "Define Locations & Jurisdictions",
+          "description": "Establish geographic context for data processing locations and adequacy decisions.",
+          "tasks": {
+            "classify": "Classify EU/EEA vs. third countries",
+            "track": "Track adequacy decision status",
+            "document": "Document required safeguards",
+            "monitor": "Monitor data localization requirements"
+          }
+        }
+      },
+      "bestPractices": "Best Practices",
+      "dataQuality": "Data Quality:",
+      "qualityTips": {
+        "current": "Keep information current and accurate",
+        "review": "Set regular review cycles for all data",
+        "validate": "Validate cross-references between modules",
+        "naming": "Use consistent naming conventions"
+      },
+      "compliance": "Compliance:",
+      "complianceTips": {
+        "ropa": "Maintain complete ROPA documentation",
+        "dpa": "Monitor DPA expiration dates",
+        "adequacy": "Track adequacy decision changes",
+        "transfers": "Document all international transfers"
+      },
+      "commonIssues": "Common Issues & Solutions",
+      "missingDpa": {
+        "title": "Missing DPA Agreements",
+        "solution": "Solution: Review vendor list regularly, prioritize processors with access to sensitive data, establish DPA templates for common vendor types."
+      },
+      "incompleteMapping": {
+        "title": "Incomplete Data Flow Mapping",
+        "solution": "Solution: Start with high-risk/high-volume flows first, involve IT teams in discovery, use network diagrams and existing documentation as reference."
+      },
+      "outdatedActivities": {
+        "title": "Outdated Processing Activities",
+        "solution": "Solution: Set quarterly review schedules, involve data protection officers in reviews, link business process changes to ROPA updates."
+      },
+      "quickAccess": "Quick Access",
+      "quickLinks": {
+        "overview": "Context Overview",
+        "systems": "IT Systems",
+        "processing": "Processing Activities"
+      }
     }
   },
   "footer": {

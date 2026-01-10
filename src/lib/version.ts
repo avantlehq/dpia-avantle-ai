@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.188" as const
-export const VERSION_NAME = "🔧 BUILD FIX: Button Variant Error Resolved - Help System Ready" as const
+export const VERSION = "3.24.189" as const
+export const VERSION_NAME = "🌐 BILINGUAL FIX: Context Help Page with Slovak/English Support" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.189": {
+    date: "2026-01-10",
+    name: "🌐 BILINGUAL FIX: Context Help Page with Slovak/English Support",
+    features: [
+      "BILINGUAL CONTEXT HELP: Complete Slovak and English translations for Context help page",
+      "TRANSLATION SYSTEM INTEGRATION: Updated Context help page to use useTranslations hook",
+      "COMPREHENSIVE SLOVAK CONTENT: Added 100+ Slovak translation keys for Context guide",
+      "URL FIX RESOLVED: https://dpia.avantle.ai/sk/help/context now works with proper Slovak content",
+      "PROFESSIONAL LOCALIZATION: GDPR terminology correctly translated for Slovak legal compliance",
+      "HELP SYSTEM COMPLETE: Both main help system and Context guide now fully bilingual"
+    ]
+  },
   "3.24.188": {
     date: "2026-01-10",
     name: "🔧 BUILD FIX: Button Variant Error Resolved - Help System Ready",

@@ -162,6 +162,192 @@
       "updatedRecently": "Nedávno aktualizované",
       "translationsAvailable": "Dostupné preklady",
       "supportArticles": "Články podpory"
+    },
+    "contextGuide": {
+      "title": "Context Modul Príručka",
+      "backToHelp": "Späť na pomoc",
+      "description": "Context modul poskytuje komplexné mapovanie údajov a správu infraštruktúry pre súlad s GDPR. Pomáha vám pochopiť, kde sa vaše údaje nachádzajú, ako tečú a kto k nim má prístup v celej vašej organizácii.",
+      "purpose": "Účel Context Modulu",
+      "purposeDescription": "Context predstavuje 25% vašho skóre súladu a slúži ako základ pre všetky ostatné hodnotenia súkromia. Poskytuje základné mapovanie infraštruktúry potrebné pre súlad s článkom 30 GDPR a hodnotenie vplyvu na ochranu údajov.",
+      "keyBenefits": "Kľúčové výhody:",
+      "benefits": {
+        "visibility": "Úplná viditeľnosť dátovej infraštruktúry",
+        "compliance": "Súlad s článkom 30 GDPR ROPA",
+        "foundation": "Základ pre hodnotenie rizík",
+        "management": "Správa vzťahov s dodávateľmi",
+        "tracking": "Sledovanie cezhraničných prenosov"
+      },
+      "complianceFramework": "Súladový rámec:",
+      "framework": {
+        "dataMapping": "Požiadavky na mapovanie údajov (čl. 30)",
+        "transfers": "Pravidlá medzinárodných prenosov (kap. V)",
+        "agreements": "Zmluvy so spracovateľmi (čl. 28)",
+        "adequacy": "Sledovanie rozhodnutí o primeranosti",
+        "lawful": "Dokumentácia zákonných základov"
+      },
+      "modulePages": "Stránky Context Modulu",
+      "pages": {
+        "systems": {
+          "title": "IT Systémy",
+          "description": "Sledovanie IT infraštruktúry, systémov na spracovanie údajov a technických komponentov",
+          "features": {
+            "status": "Sledovanie stavu aktívny/neaktívny",
+            "criticality": "Hodnotenie kritickosti",
+            "ownership": "Priradenie vlastníkov systémov",
+            "contacts": "Technické kontakty"
+          }
+        },
+        "processing": {
+          "title": "Spracovateľské činnosti",
+          "description": "Správa záznamu spracovateľských činností (ROPA) podľa článku 30 GDPR",
+          "features": {
+            "lawful": "Dokumentácia zákonných základov",
+            "dpo": "Sledovanie kontroly DPO",
+            "review": "Monitorovanie dátumov kontroly",
+            "purpose": "Špecifikácia účelov"
+          }
+        },
+        "vendors": {
+          "title": "Dodávatelia a spracovávatelia",
+          "description": "Správa tretích strán a sledovanie zmlúv DPA",
+          "features": {
+            "role": "Klasifikácia roly spracovateľa",
+            "expiration": "Sledovanie exspirácie DPA",
+            "contacts": "Správa kontaktov",
+            "location": "Sledovanie lokácie"
+          }
+        },
+        "dataFlows": {
+          "title": "Dátové toky",
+          "description": "Mapovanie pohybu údajov medzi systémami, dodávateľmi a jurisdikciami",
+          "features": {
+            "direction": "Sledovanie smeru toku",
+            "crossBorder": "Identifikácia cezhraničných",
+            "encryption": "Monitorovanie šifrovania",
+            "criticality": "Hodnotenie kritickosti"
+          }
+        },
+        "locations": {
+          "title": "Lokácie a jurisdikcie",
+          "description": "Geografické lokácie spracovania údajov a rozhodnutia o primeranosti",
+          "features": {
+            "adequacy": "Sledovanie stavu primeranosti",
+            "safeguards": "Požiadavky na záruky",
+            "localization": "Pravidlá lokalizácie údajov",
+            "classification": "Klasifikácia EÚ/tretie krajiny"
+          }
+        }
+      },
+      "openPage": "Otvoriť stránku",
+      "keyFeatures": "Kľúčové funkcie:",
+      "statusTracking": "Systém sledovania stavu",
+      "statusDescription": "Všetky stránky Context modulu používajú konzistentné indikátory stavu pre rýchly prehľad a hodnotenie rizík.",
+      "universalPills": "Univerzálne stavové indikátory",
+      "statusTypes": {
+        "active": {
+          "label": "Aktívny",
+          "description": "Momentálne operačný a spracováva údaje"
+        },
+        "critical": {
+          "label": "Kritický",
+          "description": "Vysokorizikové položky vyžadujúce okamžitú pozornosť"
+        },
+        "review": {
+          "label": "Vyžaduje kontrolu",
+          "description": "Položky potrebujúce kontrolu alebo hodnotenie DPO"
+        },
+        "inactive": {
+          "label": "Neaktívny",
+          "description": "Momentálne sa nepoužíva alebo je vyradený"
+        }
+      },
+      "workflow": "Implementačný pracovný postup",
+      "steps": {
+        "step1": {
+          "title": "Začnite s IT systémami",
+          "description": "Začnite katalogizáciou všetkých IT systémov, ktoré spracovávajú osobné údaje. To tvorí základ pre všetky ostatné mapovania.",
+          "tasks": {
+            "add": "Pridajte všetky aplikácie, databázy a služby",
+            "classify": "Klasifikujte úrovne kritickosti (nízka, stredná, vysoká, kritická)",
+            "assign": "Priraďte vlastníkov systémov a technické kontakty",
+            "document": "Dokumentujte účely a opisy systémov"
+          }
+        },
+        "step2": {
+          "title": "Dokumentujte spracovateľské činnosti",
+          "description": "Vytvorte svoj záznam spracovateľských činností (ROPA) podľa článku 30 GDPR prepojením obchodných procesov so systémami.",
+          "tasks": {
+            "define": "Definujte účely spracovania a zákonný základ",
+            "specify": "Špecifikujte kategórie dotknutých osôb",
+            "set": "Nastavte dátumy kontroly a požiadavky DPO",
+            "link": "Prepojte s relevantnými IT systémami"
+          }
+        },
+        "step3": {
+          "title": "Registrujte dodávateľov a spracovateľov",
+          "description": "Udržiavajte register všetkých tretích strán a dodávateľov s prístupom k osobným údajom.",
+          "tasks": {
+            "classify": "Klasifikujte role dodávateľov (spracovateľ, spoločný prevádzkovateľ, atď.)",
+            "track": "Sledujte zmluvy DPA a dátumy exspirácie",
+            "monitor": "Monitorujte lokácie dodávateľov a kontaktné údaje",
+            "document": "Dokumentujte zmluvy o spracovaní údajov"
+          }
+        },
+        "step4": {
+          "title": "Mapujte dátové toky",
+          "description": "Sledujte, ako sa osobné údaje pohybujú medzi systémami, dodávateľmi a jurisdikciami.",
+          "tasks": {
+            "document": "Dokumentujte smery a koncové body dátových tokov",
+            "identify": "Identifikujte cezhraničné prenosy",
+            "verify": "Overte šifrovanie pri prenose",
+            "assess": "Vyhodnoťte kritickosť a objem toku"
+          }
+        },
+        "step5": {
+          "title": "Definujte lokácie a jurisdikcie",
+          "description": "Ustanovte geografický kontext pre lokácie spracovania údajov a rozhodnutia o primeranosti.",
+          "tasks": {
+            "classify": "Klasifikujte EÚ/EHP vs. tretie krajiny",
+            "track": "Sledujte stav rozhodnutí o primeranosti",
+            "document": "Dokumentujte požadované záruky",
+            "monitor": "Monitorujte požiadavky na lokalizáciu údajov"
+          }
+        }
+      },
+      "bestPractices": "Najlepšie praktiky",
+      "dataQuality": "Kvalita údajov:",
+      "qualityTips": {
+        "current": "Udržiavajte informácie aktuálne a presné",
+        "review": "Nastavte pravidelné cykly kontroly pre všetky údaje",
+        "validate": "Validujte krížové odkazy medzi modulmi",
+        "naming": "Používajte konzistentné konvencie pomenovania"
+      },
+      "compliance": "Súlad:",
+      "complianceTips": {
+        "ropa": "Udržiavajte úplnú dokumentáciu ROPA",
+        "dpa": "Monitorujte dátumy exspirácie DPA",
+        "adequacy": "Sledujte zmeny rozhodnutí o primeranosti",
+        "transfers": "Dokumentujte všetky medzinárodné prenosy"
+      },
+      "commonIssues": "Bežné problémy a riešenia",
+      "missingDpa": {
+        "title": "Chýbajúce zmluvy DPA",
+        "solution": "Riešenie: Pravidelne kontrolujte zoznam dodávateľov, prioritizujte spracovateľov s prístupom k citlivým údajom, vytvorte šablóny DPA pre bežné typy dodávateľov."
+      },
+      "incompleteMapping": {
+        "title": "Neúplné mapovanie dátových tokov",
+        "solution": "Riešenie: Začnite najprv s vysoko rizikovými/objemovými tokmi, zapojte IT tímy do objavovania, použite sieťové diagramy a existujúcu dokumentáciu ako referenciu."
+      },
+      "outdatedActivities": {
+        "title": "Zastarané spracovateľské činnosti",
+        "solution": "Riešenie: Nastavte štvrťročné plány kontroly, zapojte úradníkov ochrany údajov do kontrol, prepojte zmeny obchodných procesov s aktualizáciami ROPA."
+      },
+      "quickAccess": "Rýchly prístup",
+      "quickLinks": {
+        "overview": "Context Prehľad",
+        "systems": "IT Systémy",
+        "processing": "Spracovateľské činnosti"
+      }
     }
   },
   "footer": {
