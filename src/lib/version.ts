@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.176" as const
-export const VERSION_NAME = "🎯 MINIMALISTIC DASHBOARD: Pure Status Monitoring Focus" as const
+export const VERSION = "3.21.177" as const
+export const VERSION_NAME = "🏠 UNIFIED PLATFORM OVERVIEW: Single Source Management Dashboard" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.177": {
+    date: "2026-01-10",
+    name: "🏠 UNIFIED PLATFORM OVERVIEW: Single Source Management Dashboard",
+    features: [
+      "UNIFIED DASHBOARD: Merged Trust Center compliance metrics into main Dashboard - single platform overview",
+      "MANAGEMENT FOCUS: Dashboard now serves as comprehensive compliance dashboard for management with score visibility",
+      "ZERO REDUNDANCY: Eliminated duplicate compliance metrics between Dashboard and Trust Center Governance",
+      "COMPLIANCE & AUDIT SECTION: Added Audit Reports (8), Certifications (3), DPIA Active (12), Last Updated metrics",
+      "TRUST CENTER STREAMLINED: Refocused Trust Center on audit packages only, removed duplicate status cards",
+      "SINGLE SOURCE OF TRUTH: Dashboard as definitive HOME destination with operational + compliance monitoring",
+      "CLEAR SEPARATION: Dashboard = Management Overview, Trust Center = External Audit Documentation",
+      "INFORMATION ARCHITECTURE: Resolved confusion between multiple overview pages into single authoritative dashboard",
+      "MANAGEMENT VISIBILITY: Compliance Score (92%) prominently featured for executive oversight and decision making"
+    ]
+  },
   "3.21.176": {
     date: "2026-01-10",
     name: "🎯 MINIMALISTIC DASHBOARD: Pure Status Monitoring Focus",

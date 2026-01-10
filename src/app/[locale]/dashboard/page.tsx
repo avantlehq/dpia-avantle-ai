@@ -156,11 +156,11 @@ export default async function PlatformDashboard({ params }: Props) {
           </div>
         </div>
         
-        {/* Status Cards - Row 2: Module Summary */}
+        {/* Status Cards - Row 2: Compliance & Audit Metrics */}
         <div>
-          <h3 className="text-sm font-medium text-muted-foreground mb-3">Module Summary</h3>
+          <h3 className="text-sm font-medium text-muted-foreground mb-3">Compliance & Audit</h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
-            {/* Context Status */}
+            {/* Audit Reports */}
             <div 
               className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
@@ -168,7 +168,7 @@ export default async function PlatformDashboard({ params }: Props) {
                 paddingLeft: '12px',
                 paddingRight: '16px',
                 backgroundColor: 'transparent',
-                borderLeft: '3px solid #22c55e',
+                borderLeft: '3px solid #3b82f6',
                 gap: '8px'
               }}
             >
@@ -179,7 +179,7 @@ export default async function PlatformDashboard({ params }: Props) {
                   fontWeight: '500'
                 }}
               >
-                Context Ready
+                Audit Reports
               </span>
               <span 
                 style={{ 
@@ -188,11 +188,11 @@ export default async function PlatformDashboard({ params }: Props) {
                   fontWeight: '600'
                 }}
               >
-                ✓
+                8
               </span>
             </div>
 
-            {/* Privacy Assessments */}
+            {/* Certifications */}
             <div 
               className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
@@ -200,7 +200,39 @@ export default async function PlatformDashboard({ params }: Props) {
                 paddingLeft: '12px',
                 paddingRight: '16px',
                 backgroundColor: 'transparent',
-                borderLeft: '3px solid #3b82f6',
+                borderLeft: '3px solid #8b5cf6',
+                gap: '8px'
+              }}
+            >
+              <span 
+                style={{ 
+                  fontSize: '14px',
+                  color: '#9ca3af',
+                  fontWeight: '500'
+                }}
+              >
+                Certifications
+              </span>
+              <span 
+                style={{ 
+                  fontSize: '16px',
+                  color: 'var(--text-primary)',
+                  fontWeight: '600'
+                }}
+              >
+                3
+              </span>
+            </div>
+
+            {/* DPIA Active */}
+            <div 
+              className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+              style={{ 
+                height: '38px',
+                paddingLeft: '12px',
+                paddingRight: '16px',
+                backgroundColor: 'transparent',
+                borderLeft: '3px solid #22c55e',
                 gap: '8px'
               }}
             >
@@ -224,39 +256,7 @@ export default async function PlatformDashboard({ params }: Props) {
               </span>
             </div>
 
-            {/* Risk Items */}
-            <div 
-              className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
-              style={{ 
-                height: '38px',
-                paddingLeft: '12px',
-                paddingRight: '16px',
-                backgroundColor: 'transparent',
-                borderLeft: '3px solid #ef4444',
-                gap: '8px'
-              }}
-            >
-              <span 
-                style={{ 
-                  fontSize: '14px',
-                  color: '#9ca3af',
-                  fontWeight: '500'
-                }}
-              >
-                High Risks
-              </span>
-              <span 
-                style={{ 
-                  fontSize: '16px',
-                  color: 'var(--text-primary)',
-                  fontWeight: '600'
-                }}
-              >
-                3
-              </span>
-            </div>
-
-            {/* Training Progress */}
+            {/* Last Updated */}
             <div 
               className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
@@ -275,7 +275,7 @@ export default async function PlatformDashboard({ params }: Props) {
                   fontWeight: '500'
                 }}
               >
-                Training
+                Last Updated
               </span>
               <span 
                 style={{ 
@@ -284,7 +284,7 @@ export default async function PlatformDashboard({ params }: Props) {
                   fontWeight: '600'
                 }}
               >
-                87%
+                Jan 2026
               </span>
             </div>
           </div>
