@@ -1,11 +1,4 @@
 import React from 'react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import { 
-  Target, 
-  CheckCircle
-} from 'lucide-react'
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -17,36 +10,12 @@ export default async function PlatformDashboard({ params }: Props) {
 
   return (
     <div className="space-y-6">
-      {/* Header with CTAs - matching Context style */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground">Platform Dashboard</h1>
-          <p className="text-muted-foreground">
-            Executive overview of your privacy compliance platform
-          </p>
-        </div>
-        <div className="flex items-center" style={{ gap: '32px' }}>
-          {/* Secondary CTA - Quick Start */}
-          <Link href={`/${locale}/precheck`}>
-            <Button 
-              variant="secondary" 
-              size="md"
-              title="Quick GDPR pre-assessment to get started"
-            >
-              Quick Start
-            </Button>
-          </Link>
-          
-          {/* Primary CTA - New Assessment */}
-          <Link href={`/${locale}/assessments/new`}>
-            <Button 
-              variant="primary" 
-              size="md"
-            >
-              New Assessment
-            </Button>
-          </Link>
-        </div>
+      {/* Header - Status Monitoring Focus */}
+      <div>
+        <h1 className="text-2xl font-semibold text-foreground">Platform Dashboard</h1>
+        <p className="text-muted-foreground">
+          Monitor your privacy compliance status and identify priority areas
+        </p>
       </div>
 
       {/* Platform Status Overview - Primary content section matching Context module */}
@@ -323,33 +292,6 @@ export default async function PlatformDashboard({ params }: Props) {
       </div>
 
 
-      {/* Platform Summary - Tertiary content matching Context pattern */}
-      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            Platform Overview
-            <Link href={`/${locale}/privacy`}>
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-2"
-              >
-                <Target className="h-4 w-4" />
-                Get Started
-              </Button>
-            </Link>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="text-center py-8">
-            <CheckCircle className="h-12 w-12 mx-auto text-green-500 mb-3" />
-            <h3 className="text-base font-medium text-foreground mb-2">Platform Active</h3>
-            <p className="text-muted-foreground text-sm max-w-sm mx-auto">
-              Your privacy compliance platform is operational. Use the status cards above to identify priority areas.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }
