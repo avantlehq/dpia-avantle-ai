@@ -2,7 +2,7 @@
 
 ## Design Token System
 
-Complete CSS variable system for consistent theming across dark/light modes.
+Complete CSS variable system for consistent theming across dark/light modes. Enhanced in v3.21.169 with standardized module overview patterns.
 
 ### Brand Colors
 ```css
@@ -220,6 +220,25 @@ const getValidationState = (hasError: boolean, hasValue: boolean) => {
 
 ### Single CTA Rule
 One primary button per screen. Secondary actions use outline/ghost variants.
+
+### Module Overview Pattern (v3.21.169)
+Standardized layout structure for all module overview pages:
+1. **Header Section**: Module title + primary/secondary CTAs with 32px gap
+2. **Status Cards Section**: Horizontal status cards with navigation integration
+3. **Quick Actions Section**: Button grid for common module actions
+4. **Foundation Components**: Simplified bottom content area
+
+### Status Card Standards
+- **Clickable Navigation**: All status cards link to relevant sidebar positions
+- **Color Coding**: Green (active/good), Red (critical/issues), Amber (warnings)
+- **Hover Effects**: `hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors`
+- **Consistent Dimensions**: 38px height, 12px left padding, 16px right padding
+- **Border Indicators**: 3px left border with semantic colors
+
+### Quick Actions Pattern
+- **Consistent Spacing**: 12px gaps using `style={{ gap: '12px' }}`
+- **Button Variants**: All outline variant with icons for visual clarity
+- **Navigation Integration**: Direct links to corresponding module sections
 
 ### Color Hierarchy
 - Primary blue for main actions

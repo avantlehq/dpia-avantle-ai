@@ -2,6 +2,8 @@
 
 Welcome to the Avantle Privacy Platform developer documentation. This directory contains comprehensive technical documentation for developers working on the DPIA platform.
 
+**Latest Update (v3.21.169)**: Enhanced module overview patterns and Context UX restructuring.
+
 ## 📁 Documentation Structure
 
 ### Core Documentation
