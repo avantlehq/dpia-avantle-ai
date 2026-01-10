@@ -107,6 +107,63 @@
     "english": "English",
     "slovak": "Slovenčina"
   },
+  "help": {
+    "title": "Help Center",
+    "description": "Comprehensive guides, documentation, and support for the Avantle Privacy Platform",
+    "backToDashboard": "Back to Dashboard",
+    "comingSoon": "Coming Soon",
+    "categories": {
+      "compliance": "GDPR Compliance",
+      "modules": "Module Guides",
+      "glossary": "Glossary",
+      "gettingStarted": "Getting Started",
+      "troubleshooting": "Support",
+      "api": "Developer Resources"
+    },
+    "features": {
+      "userGuide": "User Guides",
+      "faq": "FAQ",
+      "support": "Technical Support",
+      "legal": "Legal & Compliance",
+      "api": "API Documentation",
+      "videos": "Video Tutorials"
+    },
+    "modules": {
+      "context": "Context Module",
+      "privacy": "Privacy Module",
+      "risk": "Risk Module",
+      "controls": "Controls Module",
+      "training": "Training Module",
+      "trustCenter": "Trust Center"
+    },
+    "compliance": {
+      "title": "GDPR Compliance Hub",
+      "description": "Essential legal frameworks, principles, and implementation guidelines",
+      "gdprOverview": "GDPR Overview",
+      "legislation": "EU Legislation",
+      "privacyByDesign": "Privacy by Design",
+      "adequacyDecisions": "Adequacy Decisions"
+    },
+    "glossary": {
+      "title": "GDPR Glossary",
+      "description": "Essential privacy and data protection terminology"
+    },
+    "gettingStarted": {
+      "title": "Getting Started",
+      "description": "Platform onboarding and first-time setup guide"
+    },
+    "contact": {
+      "title": "Contact Support",
+      "email": "For technical support, email us at:",
+      "response": "We typically respond within 24 hours during business days."
+    },
+    "status": {
+      "availableGuides": "Available Guides",
+      "updatedRecently": "Updated Recently",
+      "translationsAvailable": "Translations Available",
+      "supportArticles": "Support Articles"
+    }
+  },
   "footer": {
     "platform": "Privacy Platform",
     "version": "Version",

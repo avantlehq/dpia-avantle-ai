@@ -107,6 +107,63 @@
     "english": "English",
     "slovak": "Slovenčina"
   },
+  "help": {
+    "title": "Centrum pomoci",
+    "description": "Komplexné príručky, dokumentácia a podpora pre Avantle Privacy Platform",
+    "backToDashboard": "Späť na dashboard",
+    "comingSoon": "Pripravuje sa",
+    "categories": {
+      "compliance": "GDPR Súlad",
+      "modules": "Moduly - Príručky",
+      "glossary": "Slovník",
+      "gettingStarted": "Začíname",
+      "troubleshooting": "Podpora",
+      "api": "Vývojárske zdroje"
+    },
+    "features": {
+      "userGuide": "Používateľské príručky",
+      "faq": "Časté otázky",
+      "support": "Technická podpora",
+      "legal": "Právne & Súlad",
+      "api": "API dokumentácia",
+      "videos": "Video návody"
+    },
+    "modules": {
+      "context": "Context modul",
+      "privacy": "Privacy modul",
+      "risk": "Risk modul",
+      "controls": "Controls modul",
+      "training": "Training modul",
+      "trustCenter": "Trust Center"
+    },
+    "compliance": {
+      "title": "GDPR Súlad Hub",
+      "description": "Základné právne rámce, princípy a implementačné pokyny",
+      "gdprOverview": "GDPR prehľad",
+      "legislation": "EÚ legislatíva",
+      "privacyByDesign": "Privacy by Design",
+      "adequacyDecisions": "Rozhodnutia o primeranosti"
+    },
+    "glossary": {
+      "title": "GDPR Slovník",
+      "description": "Základná terminológia ochrany súkromia a údajov"
+    },
+    "gettingStarted": {
+      "title": "Začíname",
+      "description": "Sprievodca zavádzaním platformy a prvotným nastavením"
+    },
+    "contact": {
+      "title": "Kontaktovať podporu",
+      "email": "Pre technickú podporu nás kontaktujte na:",
+      "response": "Zvyčajne odpovedáme do 24 hodín počas pracovných dní."
+    },
+    "status": {
+      "availableGuides": "Dostupné príručky",
+      "updatedRecently": "Nedávno aktualizované",
+      "translationsAvailable": "Dostupné preklady",
+      "supportArticles": "Články podpory"
+    }
+  },
   "footer": {
     "platform": "Platforma ochrany údajov",
     "version": "Verzia",

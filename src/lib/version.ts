@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.186" as const
-export const VERSION_NAME = "📚 CONTEXT MODULE HELP: Comprehensive User Guide and Documentation" as const
+export const VERSION = "3.24.187" as const
+export const VERSION_NAME = "📚 HELP SYSTEM COMPLETE: Restructured Module Guides with Bilingual Support" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.187": {
+    date: "2026-01-10",
+    name: "📚 HELP SYSTEM COMPLETE: Restructured Module Guides with Bilingual Support",
+    features: [
+      "HELP SYSTEM RESTRUCTURED: Complete visual redesign matching Context module pattern with status pills",
+      "MODULE GUIDES PAGE: New /help/modules comprehensive overview with availability indicators and feature lists",
+      "BILINGUAL SUPPORT: Full Slovak and English translations through proper i18n integration",
+      "VISUAL CONSISTENCY: Status pill system (height: 38px, borderLeft: 3px solid) matching platform patterns",
+      "MODULE INFORMATION: Detailed descriptions, features, and availability status for all 6 platform modules",
+      "HELP CATEGORIES: Compliance, Glossary, Getting Started, Troubleshooting, API docs with coming soon indicators",
+      "QUICK NAVIGATION: Context guide available now, other modules marked as 'Coming Soon' with expected dates",
+      "PROFESSIONAL DESIGN: Card-based layout with hover effects, proper spacing, and design token compliance",
+      "FUTURE-READY STRUCTURE: Framework prepared for expansion with additional help content and documentation"
+    ]
+  },
   "3.21.181": {
     date: "2026-01-10",
     name: "🔄 PAGE RESTRUCTURE: Privacy Overview + DPIA Assessments Separation",
