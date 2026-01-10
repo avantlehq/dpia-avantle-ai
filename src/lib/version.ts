@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.173" as const
-export const VERSION_NAME = "🏠 PLATFORM DASHBOARD: Central Navigation Hub Implemented" as const
+export const VERSION = "3.21.174" as const
+export const VERSION_NAME = "🎨 DASHBOARD VISUAL CONSISTENCY: Complete Context Pattern Match" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.174": {
+    date: "2026-01-10",
+    name: "🎨 DASHBOARD VISUAL CONSISTENCY: Complete Context Pattern Match",
+    features: [
+      "VISUAL CONSISTENCY ACHIEVED: Dashboard now perfectly matches Context module overview design pattern",
+      "HEADER CTAs ADDED: Quick Start and New Assessment buttons with 32px gap matching Context header layout",
+      "PLATFORM STATUS CARDS: Primary content section with horizontal status cards matching Context pattern",
+      "STATUS ORGANIZATION: Two-tier status structure - Overall Health + Module Summary with proper grouping",
+      "SECONDARY POSITIONING: Module navigation cards moved to secondary position after status cards",
+      "TYPOGRAPHY MATCH: Exact text hierarchy matching Context overview (text-lg, text-sm, font-medium)",
+      "SPACING CONSISTENCY: Identical spacing patterns (space-y-5, space-y-6, gap: 12px) across both pages",
+      "DESIGN TOKEN COMPLIANCE: All components use same design tokens and color schemes as Context module",
+      "USER EXPERIENCE: Seamless visual experience when navigating between Dashboard and Context overview"
+    ]
+  },
   "3.21.173": {
     date: "2026-01-10",
     name: "🏠 PLATFORM DASHBOARD: Central Navigation Hub Implemented",
