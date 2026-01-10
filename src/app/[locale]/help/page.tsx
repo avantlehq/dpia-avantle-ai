@@ -10,7 +10,8 @@ import {
   Video,
   Shield,
   Code,
-  ArrowLeft
+  ArrowLeft,
+  Database
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -25,7 +26,9 @@ export default function HelpPage() {
     {
       icon: <BookOpen className="h-5 w-5 text-blue-500" />,
       title: t('features.userGuide'),
-      description: 'Step-by-step guides for all platform features'
+      description: 'Step-by-step guides for all platform features',
+      link: '/help/context',
+      available: true
     },
     {
       icon: <MessageCircle className="h-5 w-5 text-green-500" />,
@@ -108,9 +111,18 @@ export default function HelpPage() {
               <p className="text-[--text-secondary] text-sm mb-4">
                 {feature.description}
               </p>
-              <div className="text-xs text-[--text-muted] bg-[--surface-2] px-2 py-1 rounded">
-                {t('comingSoon')}
-              </div>
+              {feature.available && feature.link ? (
+                <Link href={`/${locale}${feature.link}`}>
+                  <Button variant="outline" size="sm" className="w-full">
+                    <Database className="h-4 w-4 mr-2" />
+                    Context Module Guide
+                  </Button>
+                </Link>
+              ) : (
+                <div className="text-xs text-[--text-muted] bg-[--surface-2] px-2 py-1 rounded">
+                  {t('comingSoon')}
+                </div>
+              )}
             </CardContent>
           </Card>
         ))}
