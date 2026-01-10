@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react'
 import { 
-  Database,
   Plus,
   Search,
   Edit,
@@ -83,7 +82,7 @@ export default function SystemsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
+      {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-foreground">IT Systems</h1>
@@ -102,89 +101,200 @@ export default function SystemsPage() {
         </Button>
       </div>
 
-      {/* Filters & Stats */}
-      <Card>
+      {/* Systems Status Overview - matching assessments pills */}
+      <div className="space-y-5">
+        <h2 className="text-lg font-medium text-foreground">
+          Systems Overview
+        </h2>
+        
+        {/* Status Pills Group - matching assessments style */}
+        <div className="flex flex-wrap" style={{ gap: '12px' }}>
+          {/* Active Systems Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #22c55e',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Active Systems
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {systems.filter(s => s.status === 'active').length}
+            </span>
+          </div>
+
+          {/* Critical Systems Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #ef4444',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Critical Systems
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {systems.filter(s => s.criticality === 'critical').length}
+            </span>
+          </div>
+
+          {/* Needing Review Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #f59e0b',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Needing Review
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {systems.filter(s => s.criticality === 'high').length}
+            </span>
+          </div>
+
+          {/* Inactive Systems Pill */}
+          <div 
+            className="inline-flex items-center rounded-lg"
+            style={{ 
+              height: '38px',
+              paddingLeft: '12px',
+              paddingRight: '16px',
+              backgroundColor: 'transparent',
+              borderLeft: '3px solid #9ca3af',
+              gap: '8px'
+            }}
+          >
+            <span 
+              style={{ 
+                fontSize: '14px',
+                color: '#9ca3af',
+                fontWeight: '500'
+              }}
+            >
+              Inactive Systems
+            </span>
+            <span 
+              style={{ 
+                fontSize: '16px',
+                color: 'var(--text-primary)',
+                fontWeight: '600'
+              }}
+            >
+              {systems.filter(s => s.status === 'inactive').length}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Filters - streamlined without card wrapper */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        {/* Search */}
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Search systems..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        
+        {/* Criticality Filter */}
+        <Select value={selectedCriticality} onValueChange={setSelectedCriticality}>
+          <SelectTrigger className="w-48">
+            <SelectValue placeholder="Filter by criticality" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Criticality</SelectItem>
+            <SelectItem value="low">Low</SelectItem>
+            <SelectItem value="medium">Medium</SelectItem>
+            <SelectItem value="high">High</SelectItem>
+            <SelectItem value="critical">Critical</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* Increased Spacing Before Systems */}
+      <div className="mt-12"></div>
+
+      {/* Systems Table - matching assessments structure */}
+      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Database className="h-5 w-5" />
-            System Inventory
+          <CardTitle className="flex items-center justify-between">
+            IT Systems ({filteredSystems.length})
           </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {/* Filters Row */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            {/* Search */}
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search systems..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            
-            {/* Criticality Filter */}
-            <Select value={selectedCriticality} onValueChange={setSelectedCriticality}>
-              <SelectTrigger className="w-48">
-                <SelectValue placeholder="Filter by criticality" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Criticality</SelectItem>
-                <SelectItem value="low">Low</SelectItem>
-                <SelectItem value="medium">Medium</SelectItem>
-                <SelectItem value="high">High</SelectItem>
-                <SelectItem value="critical">Critical</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="flex flex-wrap gap-4">
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-blue-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Total: <span className="font-medium text-foreground">{systems.length}</span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-green-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Active: <span className="font-medium text-foreground">
-                  {systems.filter(s => s.status === 'active').length}
-                </span>
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-red-500"></div>
-              <span className="text-sm text-muted-foreground">
-                Critical: <span className="font-medium text-foreground">
-                  {systems.filter(s => s.criticality === 'critical').length}
-                </span>
-              </span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Systems Table */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Systems ({filteredSystems.length})</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (
-            <div className="flex items-center justify-center py-8">
-              <div className="text-muted-foreground">Loading systems...</div>
+            <div className="flex items-center justify-center py-12">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <p className="text-muted-foreground">Loading systems...</p>
+              </div>
             </div>
           ) : filteredSystems.length === 0 ? (
-            <div className="text-center py-8">
+            <div className="text-center py-12">
               <Server className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-              <h3 className="text-lg font-medium text-foreground mb-2">No systems found</h3>
-              <p className="text-muted-foreground mb-6">
+              <h3 className="text-lg font-medium text-foreground mb-2">
+                {searchQuery || selectedCriticality ? 'No systems found' : 'Ready to manage IT systems'}
+              </h3>
+              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery || selectedCriticality 
                   ? 'Try adjusting your filters or search query.'
-                  : 'Get started by adding your first IT system.'
+                  : 'Start by adding your first IT system to track and manage data processing infrastructure.'
                 }
               </p>
               <Button variant="primary" className="gap-2">
@@ -194,57 +304,94 @@ export default function SystemsPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {filteredSystems.map((system) => (
-                <div key={system.id} className="border rounded-lg p-4 space-y-3">
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-medium text-foreground">{system.name}</h3>
-                        {system.criticality && (
-                          <Badge className={getCriticalityColor(system.criticality)}>
-                            {system.criticality}
+              {/* Table */}
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Name
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Type
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Status
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Criticality
+                      </th>
+                      <th className="text-left py-3 px-4 font-medium text-muted-foreground">
+                        Owner
+                      </th>
+                      <th className="text-right py-3 px-4 font-medium text-muted-foreground">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredSystems.map((system) => (
+                      <tr key={system.id} className="border-b border-border hover:bg-muted/50">
+                        <td className="py-3 px-4">
+                          <div className="space-y-1">
+                            <div className="font-medium text-foreground">{system.name}</div>
+                            {system.description && (
+                              <div className="text-sm text-muted-foreground">{system.description}</div>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4 text-muted-foreground">
+                          {system.system_type || '-'}
+                        </td>
+                        <td className="py-3 px-4">
+                          <Badge 
+                            variant={system.status === 'active' ? 'default' : 'outline'}
+                            className={system.status === 'active' 
+                              ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'
+                              : 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-200'
+                            }
+                          >
+                            {system.status}
                           </Badge>
-                        )}
-                        <Badge variant="outline">
-                          {system.status}
-                        </Badge>
-                      </div>
-                      {system.description && (
-                        <p className="text-sm text-muted-foreground">{system.description}</p>
-                      )}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="sm">
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button variant="ghost" size="sm">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                    {system.system_type && (
-                      <div>
-                        <span className="text-muted-foreground">Type:</span>
-                        <span className="ml-2 text-foreground">{system.system_type}</span>
-                      </div>
-                    )}
-                    {system.owner_team && (
-                      <div>
-                        <span className="text-muted-foreground">Owner:</span>
-                        <span className="ml-2 text-foreground">{system.owner_team}</span>
-                      </div>
-                    )}
-                    {system.technical_contact && (
-                      <div>
-                        <span className="text-muted-foreground">Contact:</span>
-                        <span className="ml-2 text-foreground">{system.technical_contact}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+                        </td>
+                        <td className="py-3 px-4">
+                          {system.criticality ? (
+                            <Badge className={getCriticalityColor(system.criticality)}>
+                              {system.criticality}
+                            </Badge>
+                          ) : (
+                            <span className="text-muted-foreground">-</span>
+                          )}
+                        </td>
+                        <td className="py-3 px-4 text-muted-foreground">
+                          {system.owner_team || '-'}
+                        </td>
+                        <td className="py-3 px-4 text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <Button variant="ghost" size="sm">
+                              <Edit className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              
+              {/* Table Footer */}
+              <div className="flex items-center justify-between pt-4 border-t border-border">
+                <p className="text-sm text-muted-foreground">
+                  Showing {filteredSystems.length} systems
+                </p>
+                <Button variant="outline" size="sm" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add New
+                </Button>
+              </div>
             </div>
           )}
         </CardContent>
