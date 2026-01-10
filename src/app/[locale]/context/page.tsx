@@ -525,37 +525,6 @@ export default function ContextOverviewPage() {
         </div>
       </div>
 
-      {/* Increased Spacing Before Components */}
-      <div className="mt-12"></div>
-
-      {/* Foundation Data Summary - Simplified */}
-      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            Foundation Data Components
-            <Link href={`/${locale}/context/systems`}>
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-2"
-              >
-                <Database className="h-4 w-4" />
-                View All
-              </Button>
-            </Link>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="text-center py-8">
-            <Database className="h-12 w-12 mx-auto text-muted-foreground/50 mb-3" />
-            <h3 className="text-base font-medium text-foreground mb-2">Context Foundation</h3>
-            <p className="text-muted-foreground text-sm max-w-sm mx-auto">
-              Your foundational data context enables comprehensive privacy assessments and compliance tracking.
-            </p>
-          </div>
-        </CardContent>
-      </Card>
-
     </div>
   )
 }

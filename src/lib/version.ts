@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.170" as const
-export const VERSION_NAME = "🔧 ROUTE FIX: Privacy Module Navigation 404 Error Resolved" as const
+export const VERSION = "3.21.171" as const
+export const VERSION_NAME = "🧹 UX CLEANUP: Context Overview Foundation Block Removed" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.171": {
+    date: "2026-01-10",
+    name: "🧹 UX CLEANUP: Context Overview Foundation Block Removed",
+    features: [
+      "REDUNDANT BLOCK REMOVED: Eliminated 'Foundation Data Components' block from Context overview bottom",
+      "CLEANER INTERFACE: Reduced visual noise and cognitive load with streamlined layout",
+      "NAVIGATION SIMPLIFIED: Removed duplicate navigation (View All → Systems already covered in Quick Actions)",
+      "PATTERN CONSISTENCY: Context overview now follows clean, focused module pattern without unnecessary elements",
+      "IMPROVED UX: Users get direct access to actionable items without generic explanatory content",
+      "SCREEN SPACE OPTIMIZED: More focused layout that emphasizes status cards and Quick Actions"
+    ]
+  },
   "3.21.170": {
     date: "2026-01-10",
     name: "🔧 ROUTE FIX: Privacy Module Navigation 404 Error Resolved",
