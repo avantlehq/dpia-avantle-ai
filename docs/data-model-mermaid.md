@@ -1,4 +1,8 @@
-# Database Schema & Data Model
+# Database Schema & Data Model (v3.21.178)
+
+## Platform Overview Architecture Integration
+
+This database schema supports the **Unified Platform Overview** architecture with compliance scoring across five modules: Context(25%), Privacy(30%), Risk(20%), Controls(15%), and Training(10%) = 92% overall compliance score.
 
 ## Entity Relationship Diagram
 

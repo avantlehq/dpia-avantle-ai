@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.178" as const
-export const VERSION_NAME = "📊 COMPLIANCE METHODOLOGY: Transparent Score Calculation Center" as const
+export const VERSION = "3.21.179" as const
+export const VERSION_NAME = "🏠 PLATFORM HOMEPAGE: Dashboard as Default Landing Page" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.179": {
+    date: "2026-01-10",
+    name: "🏠 PLATFORM HOMEPAGE: Dashboard as Default Landing Page",
+    features: [
+      "HOMEPAGE REDIRECT: dpia.avantle.ai now redirects to Platform Dashboard (/dashboard) instead of Privacy module",
+      "SLOVAK HOMEPAGE: Slovak users get redirected to /sk/dashboard as their default landing page",
+      "ENGLISH HOMEPAGE: English users get redirected to /en/dashboard for consistent experience",
+      "UNIFIED ENTRY POINT: Single point of entry to platform with compliance overview as first impression",
+      "LOCALE DETECTION: Browser language detection determines Slovak vs English dashboard destination",
+      "PLATFORM OVERVIEW FIRST: Users see unified compliance status before navigating to specific modules",
+      "MANAGEMENT FOCUS: Homepage emphasizes platform oversight and compliance monitoring as primary use case",
+      "BUSINESS ALIGNMENT: Entry point aligns with management dashboard philosophy established in unified architecture",
+      "CONSISTENT UX: All platform entry points lead to single source of truth dashboard for compliance visibility"
+    ]
+  },
   "3.21.178": {
     date: "2026-01-10",
     name: "📊 COMPLIANCE METHODOLOGY: Transparent Score Calculation Center",

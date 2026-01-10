@@ -10,6 +10,6 @@ export default async function Home() {
   const prefersSlovak = acceptLanguage?.includes('sk') || acceptLanguage?.includes('SK')
   const locale = prefersSlovak ? 'sk' : 'en'
   
-  // Redirect to Privacy Overview with detected locale
-  redirect(`/${locale}/privacy`)
+  // Redirect to Platform Dashboard with detected locale
+  redirect(`/${locale}/dashboard`)
 }

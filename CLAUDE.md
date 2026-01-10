@@ -31,16 +31,17 @@ dpia table ako root            // nie je škálovateľné
 
 **DPIA Suite** - European platform for automated GDPR Data Protection Impact Assessments with complete workflow.
 
-**Current Status: VERSION 3.21.169 - Context Module UX Enhancement COMPLETE**
+**Current Status: VERSION 3.21.178 - Compliance Methodology Transparency COMPLETE**
 
 ### Latest Achievements (January 10, 2026)
-- ✅ **CONTEXT OVERVIEW UX RESTRUCTURED**: Complete restructuring to match Privacy module pattern with prominent status cards
-- ✅ **CLICKABLE STATUS NAVIGATION**: All status cards now navigate directly to corresponding sidebar positions for enhanced UX
-- ✅ **QUICK ACTIONS INTEGRATION**: Added dedicated Quick Actions section with buttons for all Context sub-modules
-- ✅ **MODULE PATTERN COMPLIANCE**: Context overview now follows standardized layout pattern used across all modules
-- ✅ **REDUNDANCY ELIMINATION**: Removed duplicate statistics grid cards, streamlined layout for better user flow
-- ✅ **NAVIGATION ENHANCEMENT**: Status cards include hover effects and direct navigation to relevant sections
-- ✅ **VISUAL CONSISTENCY**: Achieved unified user experience across Privacy, Context, and other module overview pages
+- ✅ **UNIFIED PLATFORM OVERVIEW**: Single Platform Dashboard serves as HOME with comprehensive management visibility
+- ✅ **COMPLIANCE METHODOLOGY CENTER**: Trust Center Governance provides transparent 92% score calculation breakdown
+- ✅ **PERFECT INFORMATION ARCHITECTURE**: Dashboard shows result, Governance shows methodology - zero redundancy
+- ✅ **CLICKABLE COMPLIANCE SCORE**: Dashboard 92% links to detailed calculation with weighted formula documentation
+- ✅ **WEIGHTED SCORING FRAMEWORK**: Context(25%) + Privacy(30%) + Risk(20%) + Controls(15%) + Training(10%) = 92%
+- ✅ **COMING SOON TRANSPARENCY**: Clear identification of missing data sources (LIA, TIA, automated risk scoring)
+- ✅ **MINIMALISTIC DASHBOARD**: Removed CTAs, module navigation - pure status monitoring focus
+- ✅ **AUDIT-READY DOCUMENTATION**: Comprehensive compliance calculation methodology for external stakeholders
 
 ### Previous Achievements (January 7, 2026)
 - ✅ **CONTEXT MODULE DATABASE SETUP COMPLETE**: Successfully applied all 9 database migrations creating Context tables (systems, vendors, locations, etc.)
@@ -93,6 +94,51 @@ dpia table ako root            // nie je škálovateľné
 - Documentation: Comprehensive /docs/ system for developer onboarding
 - Security: CVE-2025-55182 & CVE-2025-66478 patched, enterprise-grade
 
+## 🏠 **UNIFIED PLATFORM OVERVIEW ARCHITECTURE (v3.21.177-178)**
+
+### **Single Source Management Dashboard**
+**Perfect Information Architecture - Zero Redundancy Design**
+
+**Platform Dashboard** (`/dashboard`) - **HOME Destination**
+- **PRIMARY PURPOSE**: Management compliance overview + operational monitoring
+- **COMPLIANCE SCORE**: 92% prominently displayed with clickable methodology link
+- **STATUS MONITORING**: Overall Health + Compliance & Audit metrics in horizontal pill format
+- **MINIMALISTIC FOCUS**: Pure status monitoring - no CTAs, no module navigation cards
+- **TARGET AUDIENCE**: Management, executives, internal operational teams
+
+**Trust Center Governance** (`/trust-center/governance`) - **Methodology Center**
+- **PRIMARY PURPOSE**: Transparent compliance score calculation documentation
+- **WEIGHTED FORMULA**: Context(25%) + Privacy(30%) + Risk(20%) + Controls(15%) + Training(10%) = 92%
+- **COMPONENT BREAKDOWN**: Detailed metrics for each module with actual/target ratios
+- **COMING SOON TRANSPARENCY**: Clear identification of missing data sources
+- **TARGET AUDIENCE**: Auditors, compliance officers, external stakeholders
+
+### **Information Architecture Principles**
+```
+DASHBOARD (Shows WHAT):        GOVERNANCE (Shows HOW):
+├─ Compliance Score: 92% ⓘ    ├─ Weighted calculation formula
+├─ Critical Items: 3           ├─ Context Data Quality: 95%
+├─ Reviews Needed: 8          ├─ Privacy Assessments: 88%
+└─ Audit Reports: 8           ├─ Risk Management: 90%
+                              ├─ Controls Implementation: 94%
+                              └─ Training Completion: 87%
+```
+
+### **Trust Center Streamlining**
+**Trust Center Overview** (`/trust-center`) - **Audit Package Focus**
+- **REFOCUSED PURPOSE**: External audit documentation and packages only
+- **REDUNDANCY REMOVED**: All compliance metrics moved to Dashboard
+- **CLEAR MESSAGING**: Links users to Dashboard for compliance metrics
+- **EXTERNAL FOCUS**: Stakeholder-facing compliance documentation
+
+### **Navigation Hierarchy**
+```
+HOME → Platform Dashboard (management overview)
+├── Module Overviews (Context, Privacy, Risk, etc.)
+├── Module Details (systems, assessments, controls)
+└── Trust Center (audit packages + methodology)
+```
+
 ## Enterprise Navigation Architecture
 
 ### Topbar Design Principles
@@ -102,9 +148,9 @@ dpia table ako root            // nie je škálovateľné
 - **Context-Aware Home**: Brand logo routes to appropriate module overview
 - **Version Display**: "Privacy Platform X.X.X" visible for user reference
 
-### Navigation Structure (v3.21.169)
+### Navigation Structure (v3.21.178)
 ```
-Privacy Platform 3.21.169    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
+Privacy Platform 3.21.178    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
 ```
 
 **Left**: Brand + Version (context-aware routing)  
@@ -127,11 +173,12 @@ Privacy Platform 3.21.169    Context · Privacy · Risk · Controls · Training 
 - **SidebarLink**: Individual navigation items with active state highlighting
 - **useSidebarToggle**: Enhanced hook with focus management and keyboard support
 
-### Routing Logic
-- **Privacy Overview** (`/privacy`) → General privacy stats, compliance overview, quick actions
-- **DPIA Assessments** (`/dashboard`) → Dashboard with existing assessments, "New Assessment" CTA
-- **DPIA Builder** (`/assessments/new`) → Launched from Dashboard for assessment creation
-- **HOME Navigation**: SidebarHeader HOME link routes to current module overview page
+### Routing Logic (Updated v3.21.178)
+- **Platform Dashboard** (`/dashboard`) → **HOME destination** with management compliance overview
+- **Trust Center Governance** (`/trust-center/governance`) → Compliance score methodology and calculation center
+- **Module Overviews** (`/privacy`, `/context`, `/risk`, etc.) → Module-specific operational status
+- **DPIA Builder** (`/assessments/new`) → Assessment creation workflow
+- **HOME Navigation**: SidebarHeader HOME link always routes to `/dashboard` (unified platform overview)
 
 ## Enhanced Design Token System (v3.21.119)
 

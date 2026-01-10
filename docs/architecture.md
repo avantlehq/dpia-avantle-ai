@@ -5,7 +5,7 @@
 Avantle Privacy Platform is a microservices-based privacy compliance suite, currently implemented as unified Next.js 16 application with planned evolution to standalone products.
 
 ### 🎯 **Microservices Evolution Strategy**
-**Current**: Monolithic dpia.avantle.ai with all modules ✅ **Context Module UX Enhanced (v3.21.169)**  
+**Current**: Monolithic dpia.avantle.ai with all modules ✅ **Unified Platform Overview Complete (v3.21.178)**  
 **Future**: Distributed microservices architecture
 
 **🏗️ Target Architecture:**
@@ -32,6 +32,56 @@ Backend API Services:
 - **Internationalization**: next-intl (Slovak/English)
 - **Theme**: next-themes (Dark/Light mode)
 - **Deployment**: Vercel with automated CI/CD per service
+
+## 🏠 **Platform Overview Architecture (v3.21.177-178)**
+
+### **Single Source Management Dashboard**
+The platform implements a unified information architecture that eliminates redundancy while serving multiple audiences.
+
+**🎯 Information Architecture Principles:**
+```
+Dashboard (Shows WHAT) ↔ Governance (Shows HOW)
+├─ Compliance Score: 92% ⓘ    ├─ Weighted calculation formula  
+├─ Critical Items: 3           ├─ Component breakdowns
+├─ Reviews Needed: 8          ├─ Missing data identification
+└─ Audit Reports: 8           └─ Improvement recommendations
+```
+
+### **Core Components**
+
+**Platform Dashboard** (`/dashboard`) - **HOME Destination**
+- **Purpose**: Executive management overview with operational monitoring
+- **Key Features**:
+  - Compliance Score (92%) with clickable methodology link
+  - Overall Health metrics (Active Modules, Critical Items, Reviews Needed)
+  - Compliance & Audit metrics (Audit Reports, Certifications, DPIA Active)
+- **Design**: Minimalistic status monitoring - no CTAs, pure information focus
+- **Target Audience**: Management, executives, internal operational teams
+
+**Trust Center Governance** (`/trust-center/governance`) - **Methodology Center**
+- **Purpose**: Transparent compliance score calculation documentation
+- **Key Features**:
+  - Weighted scoring formula: Context(25%) + Privacy(30%) + Risk(20%) + Controls(15%) + Training(10%)
+  - Module-specific breakdowns with actual vs target metrics
+  - Coming Soon transparency for missing data sources
+  - Component scores: Context(95%), Privacy(88%), Risk(90%), Controls(94%), Training(87%)
+- **Design**: Comprehensive calculation breakdown with audit-ready documentation
+- **Target Audience**: Auditors, compliance officers, external stakeholders
+
+**Trust Center Overview** (`/trust-center`) - **Streamlined Audit Focus**
+- **Purpose**: External audit documentation and packages only
+- **Key Change**: Removed duplicate compliance metrics (moved to Dashboard)
+- **Clear Messaging**: Directs users to Dashboard for compliance overview
+- **External Focus**: Stakeholder-facing compliance documentation
+
+### **Navigation Hierarchy**
+```
+HOME → Platform Dashboard (unified management overview)
+├── Module Overviews (Context, Privacy, Risk, Controls, Training, Trust Center)
+├── Module Details (systems, assessments, controls, etc.)
+├── Trust Center → Audit Packages + Methodology
+└── Trust Center → Governance (compliance calculation center)
+```
 
 ## Application Architecture
 
@@ -65,11 +115,13 @@ dpia.avantle.ai (Unified Privacy Platform) - Production Ready v3.21.150
 └── Trust Center     🔄 # Governance and audit trails → Remains in dpia.avantle.ai
 ```
 
-**Current Implementation Status (v3.21.169):**
-- ✅ **Context Module**: Complete UX restructuring with clickable status navigation and Quick Actions integration
-- ✅ **Privacy Module**: Complete DPIA workflow with standardized overview layout pattern
-- ✅ **Context Module**: Full database integration with working API endpoints (systems, vendors, locations)
-- ✅ **Module Pattern Compliance**: All overview pages follow standardized layout with status cards and navigation
+**Current Implementation Status (v3.21.178):**
+- ✅ **Unified Platform Overview**: Single source management dashboard with zero redundancy architecture
+- ✅ **Compliance Methodology Center**: Transparent 92% score calculation with weighted formula documentation
+- ✅ **Context Module**: Complete database integration with working API endpoints (systems, vendors, locations)
+- ✅ **Privacy Module**: Complete DPIA workflow with assessment creation and management
+- ✅ **Trust Center Streamlining**: Refocused on audit packages, removed duplicate compliance metrics
+- ✅ **Information Architecture**: Perfect separation between Dashboard (results) and Governance (methodology)
 - 🔄 **Other Modules**: UI implemented, backend APIs planned for future microservices
 
 ### 📡 **API Integration Pattern (Future)**

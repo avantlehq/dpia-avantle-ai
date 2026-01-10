@@ -2,7 +2,7 @@
 
 ## Design Token System
 
-Complete CSS variable system for consistent theming across dark/light modes. Enhanced in v3.21.169 with standardized module overview patterns.
+Complete CSS variable system for consistent theming across dark/light modes. Enhanced in v3.21.178 with compliance methodology patterns and unified platform overview design.
 
 ### Brand Colors
 ```css
@@ -251,3 +251,106 @@ Standardized layout structure for all module overview pages:
 
 ### Theme Compatibility
 All components must work in dark/light themes using CSS variables.
+
+## 📊 **Compliance Methodology Patterns (v3.21.178)**
+
+### **Platform Overview Design Pattern**
+Unified information architecture for compliance visibility across multiple audience types.
+
+### **Dashboard Status Cards**
+**Purpose**: Executive management overview with quick compliance visibility
+
+```css
+/* Clickable Compliance Score Pattern */
+.compliance-score-card {
+  height: 38px;
+  padding-left: 12px;
+  padding-right: 16px;
+  border-left: 3px solid var(--status-info);
+  gap: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.compliance-score-card:hover {
+  background-color: var(--surface-1);
+}
+```
+
+**Key Features**:
+- **Clickable with Info Icon**: `92% ⓘ` pattern links to methodology
+- **Semantic Border Colors**: Blue for compliance, red for critical, amber for warnings
+- **Hover States**: Subtle surface background on interaction
+- **Typography Hierarchy**: 14px muted labels, 16px bold values
+
+### **Governance Methodology Cards**
+**Purpose**: Detailed compliance calculation documentation for auditors
+
+```css
+/* Component Breakdown Cards */
+.methodology-card {
+  border-left: 4px solid var(--status-success);
+  padding: 16px;
+  background: var(--surface-1);
+}
+
+.methodology-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.component-score {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--status-success);
+}
+
+.metric-breakdown {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+```
+
+**Key Features**:
+- **Left Border Indicators**: 4px colored borders for module identification
+- **Component Scores**: Large, bold percentage displays (Context: 95%, Privacy: 88%)
+- **Metric Breakdowns**: Actual vs target ratios (24/25 systems, 12/14 DPIA)
+- **Coming Soon States**: Orange text for missing implementations
+- **Weight Indicators**: Small text showing formula contribution percentages
+
+### **Information Hierarchy Pattern**
+```
+Dashboard (What) ↔ Governance (How)
+├─ Compliance Score: 92% ⓘ → ├─ Weighted Formula Display
+├─ Critical Items: 3         → ├─ Component Breakdowns  
+├─ Reviews Needed: 8         → ├─ Missing Data Sources
+└─ Audit Reports: 8          → └─ Improvement Areas
+```
+
+### **Color Coding Standards**
+- **Green Borders**: High performance modules (Context: 95%, Controls: 94%)
+- **Blue Borders**: Good performance (Privacy: 88%, info states)
+- **Amber Borders**: Moderate performance (Training: 87%, warnings)
+- **Red Borders**: Critical attention needed (high risks, overdue items)
+- **Orange Text**: "Coming Soon" features and missing data sources
+
+### **Typography Patterns**
+```css
+/* Methodology Page Headers */
+.methodology-title { font-size: 24px; font-weight: 600; }
+.section-header { font-size: 18px; font-weight: 500; }
+.component-title { font-size: 16px; font-weight: 500; }
+.metric-label { font-size: 14px; color: var(--text-muted); }
+.metric-value { font-size: 16px; font-weight: 600; }
+.weight-indicator { font-size: 12px; color: var(--text-muted); }
+```
+
+### **Interactive Elements**
+- **Clickable Score Cards**: Dashboard compliance score links to methodology
+- **Hover States**: Subtle surface background changes on interaction
+- **Info Icons**: Small `ⓘ` indicators for additional information
+- **Back Navigation**: Clear return links to main dashboard
