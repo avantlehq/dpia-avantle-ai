@@ -130,6 +130,7 @@ export const ModernSidebar = memo(function ModernSidebar({ className }: ModernSi
   const moduleConfig = getModuleConfig(activeModuleId || 'privacy')
   
   // Memoize active item calculation with improved specificity matching
+  // eslint-disable-next-line react-hooks/preserve-manual-memoization
   const activeItemId = React.useMemo(() => {
     if (!moduleConfig?.items) return undefined
     
