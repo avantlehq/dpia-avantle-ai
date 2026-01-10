@@ -175,58 +175,6 @@ export default function RiskOverviewPage() {
         </div>
       </div>
 
-      {/* Increased Spacing Before Risk Management */}
-      <div className="mt-12"></div>
-
-      {/* Risk Management Table - matching dashboard style */}
-      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            Risk Management
-            <Link href="/risk/privacy-risks">
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-2"
-              >
-                <Plus className="h-4 w-4" />
-                Add Risk
-              </Button>
-            </Link>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="text-center py-12">
-            <AlertTriangle className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">Risk assessment ready</h3>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Identify, assess, and manage privacy risks across your data processing activities.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
-              {/* Secondary CTA - Risk Register */}
-              <Link href="/risk/register">
-                <Button 
-                  variant="secondary" 
-                  size="md"
-                  title="View risk register and documentation"
-                >
-                  Risk Register
-                </Button>
-              </Link>
-              
-              {/* Primary CTA - Assess Risk */}
-              <Link href="/risk/privacy-risks">
-                <Button 
-                  variant="primary" 
-                  size="lg"
-                >
-                  Assess Risk
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }

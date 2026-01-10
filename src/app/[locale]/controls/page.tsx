@@ -175,58 +175,6 @@ export default function ControlsOverviewPage() {
         </div>
       </div>
 
-      {/* Increased Spacing Before Controls */}
-      <div className="mt-12"></div>
-
-      {/* Controls Management Table - matching dashboard style */}
-      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            Technical & Organizational Measures
-            <Link href="/controls/toms">
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-2"
-              >
-                <Plus className="h-4 w-4" />
-                Add TOM
-              </Button>
-            </Link>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="text-center py-12">
-            <Shield className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">Security controls ready</h3>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Implement and manage technical and organizational measures to protect personal data.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
-              {/* Secondary CTA - View TOMs */}
-              <Link href="/controls/toms">
-                <Button 
-                  variant="secondary" 
-                  size="md"
-                  title="View technical and organizational measures"
-                >
-                  View TOMs
-                </Button>
-              </Link>
-              
-              {/* Primary CTA - Add Control */}
-              <Link href="/controls/toms">
-                <Button 
-                  variant="primary" 
-                  size="lg"
-                >
-                  Add Control
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }

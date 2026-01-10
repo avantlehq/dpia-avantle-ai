@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.171" as const
-export const VERSION_NAME = "🧹 UX CLEANUP: Context Overview Foundation Block Removed" as const
+export const VERSION = "3.21.172" as const
+export const VERSION_NAME = "🧹 PLATFORM CLEANUP: All Module Overview Redundant Blocks Removed" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.172": {
+    date: "2026-01-10",
+    name: "🧹 PLATFORM CLEANUP: All Module Overview Redundant Blocks Removed",
+    features: [
+      "COMPREHENSIVE MODULE CLEANUP: Removed redundant bottom blocks from all 5 module overview pages",
+      "RISK MODULE STREAMLINED: Eliminated duplicate 'Risk Management' block with redundant CTA buttons",
+      "CONTROLS MODULE CLEANED: Removed unnecessary 'Technical & Organizational Measures' bottom section",
+      "TRAINING MODULE OPTIMIZED: Eliminated redundant 'Training Programs' block with duplicate navigation",
+      "TRUST CENTER SIMPLIFIED: Removed 'Audit Packages & Compliance Reports' redundant bottom block",
+      "UNIFIED UX PATTERN: All modules now follow clean, consistent overview layout structure",
+      "NAVIGATION EFFICIENCY: Removed duplicate CTAs that were already available in header sections",
+      "COGNITIVE LOAD REDUCED: Streamlined interface focuses user attention on status cards and primary actions"
+    ]
+  },
   "3.21.171": {
     date: "2026-01-10",
     name: "🧹 UX CLEANUP: Context Overview Foundation Block Removed",

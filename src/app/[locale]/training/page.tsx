@@ -175,58 +175,6 @@ export default function TrainingOverviewPage() {
         </div>
       </div>
 
-      {/* Increased Spacing Before Training */}
-      <div className="mt-12"></div>
-
-      {/* Training Management Table - matching dashboard style */}
-      <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            Training Programs
-            <Link href="/training">
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-2"
-              >
-                <Plus className="h-4 w-4" />
-                Add Course
-              </Button>
-            </Link>
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="text-center py-12">
-            <GraduationCap className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">Training programs ready</h3>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Create and manage privacy awareness training programs for your organization.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
-              {/* Secondary CTA - View Programs */}
-              <Link href="/training">
-                <Button 
-                  variant="secondary" 
-                  size="md"
-                  title="View training programs and materials"
-                >
-                  View Programs
-                </Button>
-              </Link>
-              
-              {/* Primary CTA - Create Course */}
-              <Link href="/training">
-                <Button 
-                  variant="primary" 
-                  size="lg"
-                >
-                  Create Course
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }
