@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.169" as const
-export const VERSION_NAME = "🎯 UX ENHANCEMENT: Context Overview Structure Matching Privacy Module Pattern" as const
+export const VERSION = "3.21.170" as const
+export const VERSION_NAME = "🔧 ROUTE FIX: Privacy Module Navigation 404 Error Resolved" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.170": {
+    date: "2026-01-10",
+    name: "🔧 ROUTE FIX: Privacy Module Navigation 404 Error Resolved",
+    features: [
+      "PRIVACY NAVIGATION FIXED: Created missing locale-aware assessments routes to resolve 404 errors",
+      "ASSESSMENTS PAGES CREATED: Added /[locale]/assessments/page.tsx and /[locale]/assessments/new/page.tsx",
+      "LOCALE-AWARE ROUTING: Fixed broken links from Privacy overview to New Assessment creation",
+      "NAVIGATION CONSISTENCY: All assessment navigation now properly uses /${locale}/assessments structure", 
+      "USER EXPERIENCE RESTORED: Privacy module New Assessment button now works without 404 errors",
+      "BILINGUAL SUPPORT: Assessment pages work correctly in both Slovak and English locales"
+    ]
+  },
   "3.21.169": {
     date: "2026-01-10",
     name: "🎯 UX ENHANCEMENT: Context Overview Structure Matching Privacy Module Pattern",
