@@ -5,6 +5,7 @@ import {
   Target
 } from 'lucide-react'
 import Link from 'next/link'
+import { AssessmentsTable } from '@/components/assessments/assessments-table'
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -196,7 +197,7 @@ export default async function AssessmentsPage({ params }: Props) {
       {/* Increased Spacing Before Assessments */}
       <div className="mt-12"></div>
 
-      {/* DPIA Assessments Table - matching dashboard style */}
+      {/* DPIA Assessments Table - Dynamic data */}
       <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
@@ -204,43 +205,7 @@ export default async function AssessmentsPage({ params }: Props) {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-12">
-            <Target className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">
-              {locale === 'sk' ? 'Pripravené na hodnotenie vplyvu na súkromie' : 'Ready to assess privacy impact'}
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              {locale === 'sk' 
-                ? 'Začnite kontrolou na určenie, či potrebujete úplnú DPIA, alebo vytvorte komplexné hodnotenie priamo.'
-                : 'Start with a pre-check to determine if you need a full DPIA, or create a comprehensive assessment directly.'
-              }
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
-              {/* Secondary CTA - Start Pre-check */}
-              <Link href={`/${locale}/precheck`}>
-                <Button 
-                  variant="secondary" 
-                  size="md"
-                  title={locale === 'sk' 
-                    ? 'Rýchle pred-hodnotenie na kontrolu, či je potrebná úplná DPIA'
-                    : 'Quick pre-assessment to check if full DPIA is required'
-                  }
-                >
-                  {locale === 'sk' ? 'Začať kontrolu' : 'Start Pre-check'}
-                </Button>
-              </Link>
-              
-              {/* Primary CTA - New Assessment */}
-              <Link href={`/${locale}/assessments/new`}>
-                <Button 
-                  variant="primary" 
-                  size="lg"
-                >
-                  {locale === 'sk' ? 'Nové DPIA' : 'New DPIA'}
-                </Button>
-              </Link>
-            </div>
-          </div>
+          <AssessmentsTable locale={locale} />
         </CardContent>
       </Card>
     </div>

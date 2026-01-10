@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.182" as const
-export const VERSION_NAME = "🔧 BUILD FIX: Context Module Environment Variables" as const
+export const VERSION = "3.21.183" as const
+export const VERSION_NAME = "📋 ASSESSMENTS TABLE: Restored Dynamic DPIA List with Actions" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
