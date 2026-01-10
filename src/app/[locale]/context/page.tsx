@@ -85,166 +85,7 @@ export default function ContextOverviewPage() {
         </div>
       </div>
 
-      {/* Context Statistics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Systems Overview */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">IT Systems</CardTitle>
-            <Database className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-foreground">
-              {isLoading ? '...' : stats?.systems_total || 0}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              {isLoading ? '...' : stats?.systems_critical || 0} critical systems
-            </p>
-            <Link href={`/${locale}/context/systems`}>
-              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
-                View systems →
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-        {/* Processing Activities */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Processing Activities</CardTitle>
-            <Activity className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-foreground">
-              {isLoading ? '...' : stats?.processing_activities_total || 0}
-            </div>
-            <p className="text-xs text-muted-foreground flex items-center gap-1">
-              {!isLoading && stats?.processing_activities_review_overdue && stats.processing_activities_review_overdue > 0 ? (
-                <>
-                  <AlertTriangle className="h-3 w-3 text-red-500" />
-                  {stats.processing_activities_review_overdue} overdue reviews
-                </>
-              ) : (
-                'ROPA compliance tracking'
-              )}
-            </p>
-            <Link href={`/${locale}/context/processing`}>
-              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
-                View activities →
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-        {/* Vendors & Processors */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Vendors & Processors</CardTitle>
-            <Building className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-foreground">
-              {isLoading ? '...' : stats?.vendors_total || 0}
-            </div>
-            <p className="text-xs text-muted-foreground flex items-center gap-1">
-              {!isLoading && stats?.vendors_no_dpa && stats.vendors_no_dpa > 0 ? (
-                <>
-                  <AlertTriangle className="h-3 w-3 text-red-500" />
-                  {stats.vendors_no_dpa} missing DPA
-                </>
-              ) : (
-                'DPA compliance tracking'
-              )}
-            </p>
-            <Link href={`/${locale}/context/vendors`}>
-              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
-                View vendors →
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-        {/* Data Flows */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Data Flows</CardTitle>
-            <GitBranch className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-foreground">
-              {isLoading ? '...' : stats?.data_flows_total || 0}
-            </div>
-            <p className="text-xs text-muted-foreground">
-              {isLoading ? '...' : stats?.data_flows_cross_border || 0} cross-border transfers
-            </p>
-            <Link href={`/${locale}/context/data-flows`}>
-              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
-                View flows →
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-        {/* Locations */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Locations & Jurisdictions</CardTitle>
-            <MapPin className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-foreground">
-              {isLoading ? '...' : stats?.locations_total || 0}
-            </div>
-            <p className="text-xs text-muted-foreground flex items-center gap-1">
-              {!isLoading && stats?.locations_not_adequate && stats.locations_not_adequate > 0 ? (
-                <>
-                  <AlertTriangle className="h-3 w-3 text-red-500" />
-                  {stats.locations_not_adequate} without adequacy
-                </>
-              ) : (
-                'Adequacy decision tracking'
-              )}
-            </p>
-            <Link href={`/${locale}/context/locations`}>
-              <Button variant="ghost" size="sm" className="mt-2 p-0 h-auto text-blue-600 hover:text-blue-800">
-                View locations →
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-        {/* Quick Actions Card */}
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Quick Actions</CardTitle>
-            <Plus className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-2">
-              <Link href={`/${locale}/context/systems`}>
-                <Button variant="outline" size="sm" className="w-full justify-start">
-                  <Database className="h-4 w-4 mr-2" />
-                  Add System
-                </Button>
-              </Link>
-              <Link href={`/${locale}/context/processing`}>
-                <Button variant="outline" size="sm" className="w-full justify-start">
-                  <Activity className="h-4 w-4 mr-2" />
-                  Add Processing
-                </Button>
-              </Link>
-              <Link href={`/${locale}/context/vendors`}>
-                <Button variant="outline" size="sm" className="w-full justify-start">
-                  <Users className="h-4 w-4 mr-2" />
-                  Add Vendor
-                </Button>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Context Status Overview - Enhanced horizontal status cards layout */}
+      {/* Context Status Overview - Primary content section matching other modules */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">Context Status Overview</h2>
         
@@ -253,8 +94,7 @@ export default function ContextOverviewPage() {
           <h3 className="text-sm font-medium text-muted-foreground mb-3">IT Systems</h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
             {/* Active Systems */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/systems`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -282,11 +122,10 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : stats?.systems_total || 0}
               </span>
-            </div>
+            </Link>
 
             {/* Critical Systems */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/systems`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -314,11 +153,10 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : stats?.systems_critical || 0}
               </span>
-            </div>
+            </Link>
 
             {/* Systems Needing Review */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/systems`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -346,7 +184,7 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : Math.floor((stats?.systems_total || 0) * 0.1) || 0}
               </span>
-            </div>
+            </Link>
           </div>
         </div>
 
@@ -355,8 +193,7 @@ export default function ContextOverviewPage() {
           <h3 className="text-sm font-medium text-muted-foreground mb-3">Processing Activities (ROPA)</h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
             {/* Active Activities */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/processing`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -384,11 +221,10 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : stats?.processing_activities_total || 0}
               </span>
-            </div>
+            </Link>
 
             {/* DPO Review Required */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/processing`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -416,11 +252,10 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : Math.floor((stats?.processing_activities_total || 0) * 0.4) || 0}
               </span>
-            </div>
+            </Link>
 
             {/* Review Overdue */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/processing`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -448,7 +283,7 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : stats?.processing_activities_review_overdue || 0}
               </span>
-            </div>
+            </Link>
           </div>
         </div>
 
@@ -457,8 +292,7 @@ export default function ContextOverviewPage() {
           <h3 className="text-sm font-medium text-muted-foreground mb-3">Data Flows</h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
             {/* Active Flows */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/data-flows`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -486,11 +320,10 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : stats?.data_flows_total || 0}
               </span>
-            </div>
+            </Link>
 
             {/* Cross-Border Transfers */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/data-flows`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -518,11 +351,10 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : stats?.data_flows_cross_border || 0}
               </span>
-            </div>
+            </Link>
 
             {/* High Criticality */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/data-flows`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -550,7 +382,7 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : Math.floor((stats?.data_flows_total || 0) * 0.3) || 0}
               </span>
-            </div>
+            </Link>
           </div>
         </div>
 
@@ -559,8 +391,7 @@ export default function ContextOverviewPage() {
           <h3 className="text-sm font-medium text-muted-foreground mb-3">Vendors & Processors</h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
             {/* Active Vendors */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/vendors`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -588,11 +419,10 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : stats?.vendors_total || 0}
               </span>
-            </div>
+            </Link>
 
             {/* Missing DPA */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/vendors`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -620,11 +450,10 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : stats?.vendors_no_dpa || 0}
               </span>
-            </div>
+            </Link>
 
             {/* DPA Expiring Soon */}
-            <div 
-              className="inline-flex items-center rounded-lg"
+            <Link href={`/${locale}/context/vendors`} className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
               style={{ 
                 height: '38px',
                 paddingLeft: '12px',
@@ -652,60 +481,80 @@ export default function ContextOverviewPage() {
               >
                 {isLoading ? '...' : Math.floor((stats?.vendors_total || 0) * 0.15) || 0}
               </span>
-            </div>
+            </Link>
           </div>
+        </div>
+      </div>
+
+      {/* Quick Actions Section - matching other modules pattern */}
+      <div className="space-y-5">
+        <h2 className="text-lg font-medium text-foreground">Quick Actions</h2>
+        
+        <div className="flex flex-wrap" style={{ gap: '12px' }}>
+          <Link href={`/${locale}/context/systems`}>
+            <Button variant="outline" size="md" className="gap-2">
+              <Database className="h-4 w-4" />
+              Manage Systems
+            </Button>
+          </Link>
+          
+          <Link href={`/${locale}/context/processing`}>
+            <Button variant="outline" size="md" className="gap-2">
+              <Activity className="h-4 w-4" />
+              View Processing Activities
+            </Button>
+          </Link>
+          
+          <Link href={`/${locale}/context/data-flows`}>
+            <Button variant="outline" size="md" className="gap-2">
+              <GitBranch className="h-4 w-4" />
+              Monitor Data Flows
+            </Button>
+          </Link>
+          
+          <Link href={`/${locale}/context/vendors`}>
+            <Button variant="outline" size="md" className="gap-2">
+              <Users className="h-4 w-4" />
+              Review Vendors
+            </Button>
+          </Link>
+          
+          <Link href={`/${locale}/context/locations`}>
+            <Button variant="outline" size="md" className="gap-2">
+              <MapPin className="h-4 w-4" />
+              Check Locations
+            </Button>
+          </Link>
         </div>
       </div>
 
       {/* Increased Spacing Before Components */}
       <div className="mt-12"></div>
 
-      {/* Foundation Components Table - matching dashboard style */}
+      {/* Foundation Data Summary - Simplified */}
       <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            Foundation Components
+            Foundation Data Components
             <Link href={`/${locale}/context/systems`}>
               <Button
                 variant="outline"
                 size="sm"
                 className="gap-2"
               >
-                <Plus className="h-4 w-4" />
-                Add Component
+                <Database className="h-4 w-4" />
+                View All
               </Button>
             </Link>
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-12">
-            <Database className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
-            <h3 className="text-lg font-medium text-foreground mb-2">Foundation Ready</h3>
-            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-              Set up your foundational data context to enable comprehensive privacy assessments and compliance tracking.
+          <div className="text-center py-8">
+            <Database className="h-12 w-12 mx-auto text-muted-foreground/50 mb-3" />
+            <h3 className="text-base font-medium text-foreground mb-2">Context Foundation</h3>
+            <p className="text-muted-foreground text-sm max-w-sm mx-auto">
+              Your foundational data context enables comprehensive privacy assessments and compliance tracking.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center" style={{ gap: '32px' }}>
-              {/* Secondary CTA - Manage Systems */}
-              <Link href={`/${locale}/context/systems`}>
-                <Button 
-                  variant="secondary" 
-                  size="md"
-                  title="IT systems and infrastructure"
-                >
-                  Manage Systems
-                </Button>
-              </Link>
-              
-              {/* Primary CTA - View Processing */}
-              <Link href={`/${locale}/context/processing`}>
-                <Button 
-                  variant="primary" 
-                  size="lg"
-                >
-                  View Processing
-                </Button>
-              </Link>
-            </div>
           </div>
         </CardContent>
       </Card>
