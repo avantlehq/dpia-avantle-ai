@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.168" as const
-export const VERSION_NAME = "✨ UI ENHANCEMENT: Context Overview Enhanced with Horizontal Status Cards" as const
+export const VERSION = "3.21.169" as const
+export const VERSION_NAME = "🎯 UX ENHANCEMENT: Context Overview Structure Matching Privacy Module Pattern" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.169": {
+    date: "2026-01-10",
+    name: "🎯 UX ENHANCEMENT: Context Overview Structure Matching Privacy Module Pattern",
+    features: [
+      "CONTEXT STRUCTURE RESTRUCTURED: Complete restructuring to match standard module overview pattern from Privacy module",
+      "CLICKABLE STATUS CARDS: All status cards now navigate to corresponding sidebar positions for direct access",
+      "QUICK ACTIONS SECTION: Added dedicated section with buttons for Manage Systems, Processing Activities, Data Flows, etc",
+      "REMOVED REDUNDANT GRID: Eliminated duplicate statistics grid cards that were redundant with horizontal status cards",
+      "MODULE PATTERN COMPLIANCE: Context overview now follows same layout pattern as Privacy and other modules",
+      "NAVIGATION INTEGRATION: Status cards include hover effects and direct navigation to relevant sidebar sections",
+      "STREAMLINED LAYOUT: Moved Context Status Overview to prominent position after header for better visibility"
+    ]
+  },
   "3.21.168": {
     date: "2026-01-10",
     name: "✨ UI ENHANCEMENT: Context Overview Enhanced with Horizontal Status Cards",
