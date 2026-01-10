@@ -273,7 +273,7 @@ export default function ModulesHelpPage() {
                         </Button>
                       </Link>
                       <Link href={`/${locale}${guide.moduleUrl}`} className="flex-1">
-                        <Button variant="default" size="sm" className="w-full">
+                        <Button variant="primary" size="sm" className="w-full">
                           {guide.icon}
                           <span className="ml-2">Open Module</span>
                         </Button>
