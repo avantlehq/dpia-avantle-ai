@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.189" as const
-export const VERSION_NAME = "🌐 BILINGUAL FIX: Context Help Page with Slovak/English Support" as const
+export const VERSION = "3.24.190" as const
+export const VERSION_NAME = "🎆 PROFESSIONAL HELP UX: SaaS Support Center with Bilingual Support" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.190": {
+    date: "2026-01-10",
+    name: "🎆 PROFESSIONAL HELP UX: SaaS Support Center with Bilingual Support",
+    features: [
+      "PROFESSIONAL SAAS UX: Complete redesign following modern support center patterns",
+      "3-SECTION ARCHITECTURE: Getting Started, Product Documentation, Support & Troubleshooting",
+      "CATEGORY CARD COMPONENT: Reusable CategoryCard with status badges and disabled states",
+      "CONTACT SUPPORT CTA: Primary action button in header (disabled until implemented)",
+      "COMPACT METRICS: Summary row with guides available, articles count, and language support",
+      "VISUAL NOISE REDUCTION: Less borders, more spacing, professional card-based layout",
+      "BILINGUAL EXCELLENCE: Full Slovak and English support with human-readable labels",
+      "NO RAW I18N KEYS: All user-facing text properly translated and localized",
+      "SCANNABLE DESIGN: Cards optimized for 3-second scanning with clear status indicators",
+      "RESPONSIVE LAYOUT: 2-column desktop, 1-column mobile grid with proper spacing"
+    ]
+  },
   "3.24.189": {
     date: "2026-01-10",
     name: "🌐 BILINGUAL FIX: Context Help Page with Slovak/English Support",

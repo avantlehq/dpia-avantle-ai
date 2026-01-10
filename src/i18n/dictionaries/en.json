@@ -108,17 +108,49 @@
     "slovak": "Slovenčina"
   },
   "help": {
-    "title": "Help Center",
-    "description": "Comprehensive guides, documentation, and support for the Avantle Privacy Platform",
-    "backToDashboard": "Back to Dashboard",
+    "title": "Help & Support", 
+    "description": "Documentation, guides and support resources for Avantle Privacy Platform",
+    "backToDashboard": "← Back to Dashboard",
+    "contactSupport": "Contact Support",
     "comingSoon": "Coming Soon",
-    "categories": {
-      "compliance": "GDPR Compliance",
-      "modules": "Module Guides",
-      "glossary": "Glossary",
+    "available": "Available",
+    "inPreparation": "In preparation",
+    "browseGuides": "Browse guides",
+    "sectionBeingPrepared": "This section is being prepared.",
+    "helpSystemOverview": "Help System Overview",
+    "guidesAvailable": "Guides available",
+    "articles": "Articles", 
+    "languages": "Languages",
+    "sections": {
       "gettingStarted": "Getting Started",
-      "troubleshooting": "Support",
-      "api": "Developer Resources"
+      "documentation": "Product Documentation", 
+      "support": "Support & Troubleshooting"
+    },
+    "categories": {
+      "gettingStarted": {
+        "title": "Getting Started",
+        "description": "Platform onboarding and first-time setup guide"
+      },
+      "compliance": {
+        "title": "Compliance & GDPR", 
+        "description": "Legal frameworks and regulatory compliance guides"
+      },
+      "modules": {
+        "title": "Module Guides",
+        "description": "Implementation guides for each platform module"
+      },
+      "glossary": {
+        "title": "Glossary",
+        "description": "Key terms and definitions"
+      },
+      "troubleshooting": {
+        "title": "Troubleshooting",
+        "description": "Technical support and common issues"
+      },
+      "api": {
+        "title": "API & Integrations",
+        "description": "Developer documentation and integration guides"
+      }
     },
     "features": {
       "userGuide": "User Guides",

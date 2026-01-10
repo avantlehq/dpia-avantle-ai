@@ -108,17 +108,49 @@
     "slovak": "Slovenčina"
   },
   "help": {
-    "title": "Centrum pomoci",
-    "description": "Komplexné príručky, dokumentácia a podpora pre Avantle Privacy Platform",
-    "backToDashboard": "Späť na dashboard",
+    "title": "Pomoc a podpora",
+    "description": "Dokumentácia, príručky a podporné zdroje pre Avantle Privacy Platform", 
+    "backToDashboard": "← Späť na dashboard",
+    "contactSupport": "Kontaktovať podporu",
     "comingSoon": "Pripravuje sa",
-    "categories": {
-      "compliance": "GDPR Súlad",
-      "modules": "Moduly - Príručky",
-      "glossary": "Slovník",
+    "available": "Dostupné",
+    "inPreparation": "V príprave",
+    "browseGuides": "Prehliadať príručky",
+    "sectionBeingPrepared": "Táto sekcia sa pripravuje.",
+    "helpSystemOverview": "Prehľad systému pomoci",
+    "guidesAvailable": "Dostupné príručky",
+    "articles": "Články",
+    "languages": "Jazyky",
+    "sections": {
       "gettingStarted": "Začíname",
-      "troubleshooting": "Podpora",
-      "api": "Vývojárske zdroje"
+      "documentation": "Produktová dokumentácia",
+      "support": "Podpora a riešenie problémov"
+    },
+    "categories": {
+      "gettingStarted": {
+        "title": "Začíname",
+        "description": "Sprievodca zavádzaním platformy a prvotným nastavením"
+      },
+      "compliance": {
+        "title": "Súlad a GDPR",
+        "description": "Právne rámce a príručky regulačného súladu"
+      },
+      "modules": {
+        "title": "Moduly - Príručky", 
+        "description": "Implementačné príručky pre každý modul platformy"
+      },
+      "glossary": {
+        "title": "Slovník",
+        "description": "Kľúčové termíny a definície"
+      },
+      "troubleshooting": {
+        "title": "Riešenie problémov",
+        "description": "Technická podpora a bežné problémy"
+      },
+      "api": {
+        "title": "API a integrácie",
+        "description": "Vývojárska dokumentácia a príručky integrácie"
+      }
     },
     "features": {
       "userGuide": "Používateľské príručky",

@@ -4,438 +4,209 @@ import React from 'react'
 import Link from 'next/link'
 import { 
   HelpCircle, 
-  Mail, 
-  MessageCircle, 
+  Mail,
+  ArrowLeft,
   BookOpen,
   Shield,
-  Code,
-  ArrowLeft,
   Database,
   AlertTriangle,
-  Settings,
-  GraduationCap,
-  FileText,
-  Bookmark,
-  Zap
+  Code2,
+  Play
 } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { useTranslations } from '@/hooks/useTranslations'
 import { useClientLocale } from '@/hooks/useClientLocale'
+import { CategoryCard } from '@/components/help/CategoryCard'
 
 export default function HelpPage() {
   const { t } = useTranslations('help')
   const { locale } = useClientLocale()
   
-  // Help categories with status and routing
-  const helpCategories = [
+  // Category definitions organized by sections
+  const gettingStartedCategories = [
+    {
+      id: 'gettingStarted',
+      icon: <Play className="h-6 w-6 text-blue-500" />,
+      title: t('categories.gettingStarted.title'),
+      description: t('categories.gettingStarted.description'),
+      url: '/help/getting-started',
+      available: false
+    }
+  ]
+
+  const documentationCategories = [
     {
       id: 'compliance',
-      icon: <Shield className="h-5 w-5 text-green-500" />,
-      title: t('categories.compliance'),
-      description: t('compliance.description'),
+      icon: <Shield className="h-6 w-6 text-green-500" />,
+      title: t('categories.compliance.title'),
+      description: t('categories.compliance.description'),
       url: '/help/compliance',
-      available: false,
-      color: 'green'
+      available: false
     },
     {
       id: 'modules',
-      icon: <Database className="h-5 w-5 text-blue-500" />,
-      title: t('categories.modules'),
-      description: 'Module-specific implementation guides and workflows',
+      icon: <Database className="h-6 w-6 text-blue-500" />,
+      title: t('categories.modules.title'),
+      description: t('categories.modules.description'),
       url: '/help/modules',
-      available: true,
-      color: 'blue'
-    },
-    {
-      id: 'glossary', 
-      icon: <BookOpen className="h-5 w-5 text-purple-500" />,
-      title: t('categories.glossary'),
-      description: t('glossary.description'),
-      url: '/help/glossary',
-      available: false,
-      color: 'purple'
-    },
-    {
-      id: 'gettingStarted',
-      icon: <Zap className="h-5 w-5 text-orange-500" />,
-      title: t('categories.gettingStarted'),
-      description: t('gettingStarted.description'),
-      url: '/help/getting-started',
-      available: false,
-      color: 'orange'
-    },
-    {
-      id: 'troubleshooting',
-      icon: <MessageCircle className="h-5 w-5 text-cyan-500" />,
-      title: t('categories.troubleshooting'),
-      description: 'Technical support and troubleshooting guides',
-      url: '/help/troubleshooting',
-      available: false,
-      color: 'cyan'
-    },
-    {
-      id: 'api',
-      icon: <Code className="h-5 w-5 text-red-500" />,
-      title: t('categories.api'),
-      description: 'API integration and developer documentation',
-      url: '/help/api',
-      available: false,
-      color: 'red'
-    }
-  ]
-
-  const moduleGuides = [
-    {
-      module: 'context',
-      icon: <Database className="h-5 w-5 text-blue-500" />,
-      title: t('modules.context'),
-      description: 'Data mapping, infrastructure tracking, and GDPR Article 30 compliance',
-      url: '/help/context',
       available: true
     },
     {
-      module: 'privacy',
-      icon: <Shield className="h-5 w-5 text-green-500" />,
-      title: t('modules.privacy'),
-      description: 'DPIA workflows, LIA/TIA processes, and privacy assessments',
-      url: '/help/privacy',
-      available: false
-    },
-    {
-      module: 'risk',
-      icon: <AlertTriangle className="h-5 w-5 text-orange-500" />,
-      title: t('modules.risk'),
-      description: 'Risk assessment methodology and threat modeling',
-      url: '/help/risk',
-      available: false
-    },
-    {
-      module: 'controls',
-      icon: <Settings className="h-5 w-5 text-purple-500" />,
-      title: t('modules.controls'),
-      description: 'Security controls implementation and compliance mapping',
-      url: '/help/controls',
-      available: false
-    },
-    {
-      module: 'training',
-      icon: <GraduationCap className="h-5 w-5 text-cyan-500" />,
-      title: t('modules.training'),
-      description: 'Privacy awareness training and certification programs',
-      url: '/help/training',
-      available: false
-    },
-    {
-      module: 'trustCenter',
-      icon: <FileText className="h-5 w-5 text-indigo-500" />,
-      title: t('modules.trustCenter'),
-      description: 'Audit packages and stakeholder compliance reporting',
-      url: '/help/trust-center',
+      id: 'glossary',
+      icon: <BookOpen className="h-6 w-6 text-purple-500" />,
+      title: t('categories.glossary.title'),
+      description: t('categories.glossary.description'),
+      url: '/help/glossary',
       available: false
     }
   ]
 
+  const supportCategories = [
+    {
+      id: 'troubleshooting',
+      icon: <AlertTriangle className="h-6 w-6 text-orange-500" />,
+      title: t('categories.troubleshooting.title'),
+      description: t('categories.troubleshooting.description'),
+      url: '/help/troubleshooting',
+      available: false
+    },
+    {
+      id: 'api',
+      icon: <Code2 className="h-6 w-6 text-red-500" />,
+      title: t('categories.api.title'),
+      description: t('categories.api.description'),
+      url: '/help/api',
+      available: false
+    }
+  ]
+
+  // Calculate metrics
+  const totalCategories = gettingStartedCategories.length + documentationCategories.length + supportCategories.length
+  const availableGuides = [...gettingStartedCategories, ...documentationCategories, ...supportCategories]
+    .filter(cat => cat.available).length
+
   return (
-    <div className="space-y-6">
-      {/* Header - matching module pattern */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold text-foreground flex items-center gap-3">
-            <HelpCircle className="h-7 w-7 text-blue-500" />
+    <div className="space-y-8">
+      {/* Header with Primary Action */}
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="space-y-1">
+          <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
+            <HelpCircle className="h-8 w-8 text-blue-500" />
             {t('title')}
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-lg text-muted-foreground max-w-2xl">
             {t('description')}
           </p>
         </div>
         
-        <Link href={`/${locale}/dashboard`}>
-          <Button variant="outline" className="gap-2">
-            <ArrowLeft className="h-4 w-4" />
-            {t('backToDashboard')}
+        <div className="flex items-center gap-3">
+          <Link href={`/${locale}/dashboard`}>
+            <Button variant="ghost" size="sm" className="gap-2">
+              <ArrowLeft className="h-4 w-4" />
+              {t('backToDashboard')}
+            </Button>
+          </Link>
+          
+          <Button 
+            disabled 
+            variant="primary" 
+            size="md"
+            className="gap-2 opacity-60 cursor-not-allowed"
+            title={t('sectionBeingPrepared')}
+          >
+            <Mail className="h-4 w-4" />
+            {t('contactSupport')}
           </Button>
-        </Link>
+        </div>
       </div>
 
-      {/* Help System Status Overview - matching assessments pills */}
-      <div className="space-y-5">
+      {/* Compact Help System Overview */}
+      <div className="space-y-4">
         <h2 className="text-lg font-medium text-foreground">
-          Help System Overview
+          {t('helpSystemOverview')}
         </h2>
         
-        {/* Status Pills Group - matching module style */}
-        <div className="flex flex-wrap" style={{ gap: '12px' }}>
-          {/* Available Guides Pill */}
-          <div 
-            className="inline-flex items-center rounded-lg"
-            style={{ 
-              height: '38px',
-              paddingLeft: '12px',
-              paddingRight: '16px',
-              backgroundColor: 'transparent',
-              borderLeft: '3px solid #22c55e',
-              gap: '8px'
-            }}
-          >
-            <span 
-              style={{ 
-                fontSize: '14px',
-                color: '#9ca3af',
-                fontWeight: '500'
-              }}
-            >
-              {t('status.availableGuides')}
+        <div className="flex flex-wrap gap-4">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
+            <span className="text-sm font-medium text-muted-foreground">
+              {t('guidesAvailable')}:
             </span>
-            <span 
-              style={{ 
-                fontSize: '16px',
-                color: 'var(--text-primary)',
-                fontWeight: '600'
-              }}
-            >
-              {helpCategories.filter(cat => cat.available).length + moduleGuides.filter(mod => mod.available).length}
+            <span className="text-base font-semibold text-foreground">
+              {availableGuides}
             </span>
           </div>
-
-          {/* Translations Available Pill */}
-          <div 
-            className="inline-flex items-center rounded-lg"
-            style={{ 
-              height: '38px',
-              paddingLeft: '12px',
-              paddingRight: '16px',
-              backgroundColor: 'transparent',
-              borderLeft: '3px solid #3b82f6',
-              gap: '8px'
-            }}
-          >
-            <span 
-              style={{ 
-                fontSize: '14px',
-                color: '#9ca3af',
-                fontWeight: '500'
-              }}
-            >
-              {t('status.translationsAvailable')}
+          
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
+            <span className="text-sm font-medium text-muted-foreground">
+              {t('articles')}:
             </span>
-            <span 
-              style={{ 
-                fontSize: '16px',
-                color: 'var(--text-primary)',
-                fontWeight: '600'
-              }}
-            >
-              2
-            </span>
-          </div>
-
-          {/* Coming Soon Pill */}
-          <div 
-            className="inline-flex items-center rounded-lg"
-            style={{ 
-              height: '38px',
-              paddingLeft: '12px',
-              paddingRight: '16px',
-              backgroundColor: 'transparent',
-              borderLeft: '3px solid #f59e0b',
-              gap: '8px'
-            }}
-          >
-            <span 
-              style={{ 
-                fontSize: '14px',
-                color: '#9ca3af',
-                fontWeight: '500'
-              }}
-            >
-              {t('comingSoon')}
-            </span>
-            <span 
-              style={{ 
-                fontSize: '16px',
-                color: 'var(--text-primary)',
-                fontWeight: '600'
-              }}
-            >
-              {helpCategories.filter(cat => !cat.available).length + moduleGuides.filter(mod => !mod.available).length}
-            </span>
-          </div>
-
-          {/* Support Articles Pill */}
-          <div 
-            className="inline-flex items-center rounded-lg"
-            style={{ 
-              height: '38px',
-              paddingLeft: '12px',
-              paddingRight: '16px',
-              backgroundColor: 'transparent',
-              borderLeft: '3px solid #9ca3af',
-              gap: '8px'
-            }}
-          >
-            <span 
-              style={{ 
-                fontSize: '14px',
-                color: '#9ca3af',
-                fontWeight: '500'
-              }}
-            >
-              {t('status.supportArticles')}
-            </span>
-            <span 
-              style={{ 
-                fontSize: '16px',
-                color: 'var(--text-primary)',
-                fontWeight: '600'
-              }}
-            >
+            <span className="text-base font-semibold text-foreground">
               12
             </span>
           </div>
+          
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
+            <span className="text-sm font-medium text-muted-foreground">
+              {t('languages')}:
+            </span>
+            <span className="text-base font-semibold text-foreground">
+              2
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Increased Spacing Before Categories */}
-      <div className="mt-12"></div>
-
-      {/* Help Categories - Main Grid */}
-      <div>
-        <h2 className="text-xl font-semibold text-foreground mb-6">Help Categories</h2>
+      {/* Getting Started Section */}
+      <div className="space-y-6">
+        <h2 className="text-xl font-semibold text-foreground">
+          {t('sections.gettingStarted')}
+        </h2>
         
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {helpCategories.map((category) => (
-            <Card key={category.id} className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center gap-3 text-foreground">
-                  {category.icon}
-                  {category.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {category.description}
-                </p>
-                {category.available ? (
-                  <Link href={`/${locale}${category.url}`}>
-                    <Button variant="outline" size="sm" className="w-full">
-                      <BookOpen className="h-4 w-4 mr-2" />
-                      Browse Guide
-                    </Button>
-                  </Link>
-                ) : (
-                  <div className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded text-center">
-                    {t('comingSoon')}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+        <div className="grid gap-6 md:grid-cols-2">
+          {gettingStartedCategories.map((category) => (
+            <CategoryCard
+              key={category.id}
+              {...category}
+              locale={locale}
+            />
           ))}
         </div>
       </div>
 
-      {/* Module Guides - Available Now */}
-      <div>
-        <h2 className="text-xl font-semibold text-foreground mb-6">Module Guides</h2>
+      {/* Product Documentation Section */}
+      <div className="space-y-6">
+        <h2 className="text-xl font-semibold text-foreground">
+          {t('sections.documentation')}
+        </h2>
         
-        <div className="grid gap-4 md:grid-cols-2">
-          {moduleGuides.map((guide) => (
-            <Card key={guide.module} className="hover:shadow-md transition-shadow">
-              <CardHeader className="pb-3">
-                <CardTitle className="flex items-center justify-between">
-                  <div className="flex items-center gap-3 text-foreground">
-                    {guide.icon}
-                    {guide.title}
-                  </div>
-                  {guide.available && (
-                    <div className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
-                      Available
-                    </div>
-                  )}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {guide.description}
-                </p>
-                {guide.available ? (
-                  <Link href={`/${locale}${guide.url}`}>
-                    <Button variant="outline" size="sm" className="w-full">
-                      {guide.icon}
-                      <span className="ml-2">Open Guide</span>
-                    </Button>
-                  </Link>
-                ) : (
-                  <div className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded text-center">
-                    {t('comingSoon')}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
+        <div className="grid gap-6 md:grid-cols-2">
+          {documentationCategories.map((category) => (
+            <CategoryCard
+              key={category.id}
+              {...category}
+              locale={locale}
+            />
           ))}
         </div>
       </div>
 
-      {/* Quick Access Section */}
-      <Card className="border-blue-200 bg-blue-50/50 dark:bg-blue-950/20 dark:border-blue-800">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-3 text-foreground">
-            <Bookmark className="h-5 w-5 text-blue-500" />
-            Quick Access
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid md:grid-cols-3 gap-4">
-            <Link href={`/${locale}/context`} className="block">
-              <Button variant="outline" className="w-full justify-start">
-                <Database className="h-4 w-4 mr-2" />
-                Context Overview
-              </Button>
-            </Link>
-            <Link href={`/${locale}/help/context`} className="block">
-              <Button variant="outline" className="w-full justify-start">
-                <BookOpen className="h-4 w-4 mr-2" />
-                Context Guide
-              </Button>
-            </Link>
-            <Link href={`/${locale}/dashboard`} className="block">
-              <Button variant="outline" className="w-full justify-start">
-                <Shield className="h-4 w-4 mr-2" />
-                Platform Dashboard
-              </Button>
-            </Link>
-          </div>
-        </CardContent>
-      </Card>
+      {/* Support & Troubleshooting Section */}
+      <div className="space-y-6">
+        <h2 className="text-xl font-semibold text-foreground">
+          {t('sections.support')}
+        </h2>
+        
+        <div className="grid gap-6 md:grid-cols-2">
+          {supportCategories.map((category) => (
+            <CategoryCard
+              key={category.id}
+              {...category}
+              locale={locale}
+            />
+          ))}
+        </div>
+      </div>
 
-      {/* Contact Section - Enhanced */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-3 text-foreground">
-            <Mail className="h-5 w-5 text-blue-500" />
-            {t('contact.title')}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            <p className="text-muted-foreground">
-              {t('contact.email')} <span className="text-blue-500 font-medium">support@avantle.ai</span>
-            </p>
-            <p className="text-muted-foreground text-sm">
-              {t('contact.response')}
-            </p>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={() => window.location.href = 'mailto:support@avantle.ai'}
-              className="mt-3"
-            >
-              <Mail className="h-4 w-4 mr-2" />
-              Send Email
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   )
 }
