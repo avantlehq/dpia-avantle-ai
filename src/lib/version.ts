@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.21.165" as const
-export const VERSION_NAME = "🔧 SELECT COMPONENT FIX: All Context Select.Item Empty Values Resolved" as const
+export const VERSION = "3.21.166" as const
+export const VERSION_NAME = "🔧 API ENDPOINT FIX: Data Flows API Endpoint Created" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.21.166": {
+    date: "2026-01-10",
+    name: "🔧 API ENDPOINT FIX: Data Flows API Endpoint Created",
+    features: [
+      "MISSING API ENDPOINT CREATED: Created /api/v1/context/data-flows API endpoint to resolve 404 error",
+      "DATA FLOWS PAGE FUNCTIONAL: Context Data Flows page now loads without API errors",
+      "MOCK DATA INTEGRATION: Implemented proper mock data response matching frontend expectations",
+      "API ROUTE STRUCTURE: Following established pattern with withOptionalAuth and error handling",
+      "PRODUCTION BUILD VERIFIED: New endpoint included in build routes and compiles successfully",
+      "USER EXPERIENCE RESTORED: Data Flows page now displays mock data instead of throwing 404 errors"
+    ]
+  },
   "3.21.165": {
     date: "2026-01-10",
     name: "🔧 SELECT COMPONENT FIX: All Context Select.Item Empty Values Resolved",
