@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.198" as const
-export const VERSION_NAME = "🔧 TYPESCRIPT FIX: Any Types & Enum Schema Resolved" as const
-export const BUILD_DATE = "2026-01-10"
+export const VERSION = "3.24.199" as const
+export const VERSION_NAME = "📁 CONTEXT DATA FLOWS: Complete GDPR Flow Management CRUD" as const
+export const BUILD_DATE = "2026-01-11"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,24 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.199": {
+    date: "2026-01-11",
+    name: "📁 CONTEXT DATA FLOWS: Complete GDPR Flow Management CRUD",
+    features: [
+      "DATA FLOWS PAGE IMPLEMENTED: Fixed non-functioning buttons with complete CRUD modal functionality",
+      "DATA FLOW MODAL COMPONENT: Comprehensive form for creating/editing data flows with GDPR compliance fields",
+      "FLOW DIRECTION & ENDPOINTS: Support for inbound/outbound/bidirectional/internal flows with system/vendor mapping",
+      "SECURITY & COMPLIANCE: Encryption in transit and cross-border transfer tracking with visual indicators",
+      "VOLUME & FREQUENCY TRACKING: Data volume estimates and transfer frequency monitoring for capacity planning",
+      "CRITICALITY ASSESSMENT: Flow criticality levels (low/medium/high/critical) for priority management",
+      "DELETE CONFIRMATION DIALOG: GDPR-specific warnings about data lineage impact and compliance requirements",
+      "COMPREHENSIVE CRUD OPERATIONS: Create, Read, Update, Delete all functional for data flow lifecycle management",
+      "API INTEGRATION: Connected to existing Context API endpoints (/api/v1/context/data-flows)",
+      "VISUAL FLOW MAPPING: Color-coded direction badges, security status indicators, and cross-border transfer warnings",
+      "LOADING STATES: Professional skeleton loading and error handling for all data flow operations",
+      "MODAL STATE MANAGEMENT: Proper open/close handling with form reset and success callbacks"
+    ]
+  },
   "3.24.198": {
     date: "2026-01-11",
     name: "🔧 TYPESCRIPT FIX: Any Types & Enum Schema Resolved",
