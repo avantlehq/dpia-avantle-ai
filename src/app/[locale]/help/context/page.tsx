@@ -25,7 +25,7 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
-export default function ContextModuleHelpPage({ params }: Props) {
+export default function ContextModuleHelpPage({ params: _params }: Props) {
   const { locale } = useClientLocale()
   const { t } = useTranslations('help.contextGuide')
   

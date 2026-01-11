@@ -81,7 +81,7 @@ export default function HelpPage() {
   ]
 
   // Calculate metrics
-  const totalCategories = gettingStartedCategories.length + documentationCategories.length + supportCategories.length
+  const _totalCategories = gettingStartedCategories.length + documentationCategories.length + supportCategories.length
   const availableGuides = [...gettingStartedCategories, ...documentationCategories, ...supportCategories]
     .filter(cat => cat.available).length
 

@@ -8,7 +8,6 @@ import {
   Trash2,
   Folder,
   Shield,
-  AlertTriangle,
   CheckCircle
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'

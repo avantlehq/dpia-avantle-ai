@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -61,7 +60,7 @@ export function DeleteProcessingActivityDialog({
         <AlertDialogHeader>
           <AlertDialogTitle>Delete Processing Activity</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete <strong>"{activityName}"</strong>? 
+            Are you sure you want to delete <strong>&ldquo;{activityName}&rdquo;</strong>? 
             This action cannot be undone and will remove all associated ROPA data.
           </AlertDialogDescription>
         </AlertDialogHeader>

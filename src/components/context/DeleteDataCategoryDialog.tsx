@@ -3,7 +3,6 @@
 import React, { useState } from 'react'
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -61,7 +60,7 @@ export function DeleteDataCategoryDialog({
         <AlertDialogHeader>
           <AlertDialogTitle>Delete Data Category</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete <strong>"{categoryName}"</strong>? 
+            Are you sure you want to delete <strong>&ldquo;{categoryName}&rdquo;</strong>? 
             This action cannot be undone and may impact:
             <br />
             <br />

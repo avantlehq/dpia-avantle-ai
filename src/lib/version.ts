@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.193" as const
-export const VERSION_NAME = "📁 CONTEXT DATA CATEGORIES: Complete GDPR Classification System" as const
+export const VERSION = "3.24.194" as const
+export const VERSION_NAME = "🔧 BUILD FIX: ESLint Errors Resolved - Production Ready" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.194": {
+    date: "2026-01-11",
+    name: "🔧 BUILD FIX: ESLint Errors Resolved - Production Ready",
+    features: [
+      "ESLINT ERRORS FIXED: Removed unused AlertDialogAction imports from all delete dialog components",
+      "QUOTE ESCAPING FIXED: Replaced straight quotes with proper HTML entities (&ldquo;/&rdquo;) in dialog descriptions",
+      "UNUSED VARIABLES FIXED: Prefixed unused variables with underscore (_totalCategories, _params) to satisfy ESLint rules",
+      "UNUSED IMPORTS CLEANED: Removed unused AlertTriangle import from data-categories page",
+      "BUILD PIPELINE RESTORED: All TypeScript compilation and ESLint errors resolved for successful CI/CD deployment",
+      "PRODUCTION READY: Clean build with zero errors and warnings across entire codebase"
+    ]
+  },
   "3.24.193": {
     date: "2026-01-11",
     name: "📁 CONTEXT DATA CATEGORIES: Complete GDPR Classification System",
