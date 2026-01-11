@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.196" as const
-export const VERSION_NAME = "🔧 API FIX: Missing getDataCategories Method Added" as const
+export const VERSION = "3.24.197" as const
+export const VERSION_NAME = "🔧 CONSOLE FIX: Dialog & Select Browser Errors Resolved" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.197": {
+    date: "2026-01-11",
+    name: "🔧 CONSOLE FIX: Dialog & Select Browser Errors Resolved",
+    features: [
+      "DIALOG DESCRIPTION FIXED: Added missing DialogDescription to all modal components to resolve React accessibility warnings",
+      "SELECT EMPTY VALUE FIXED: Replaced empty string values with 'none' in Select.Item components to resolve React Select errors",
+      "FORM DATA CLEANUP: Added proper handling for 'none' values in form submission logic for parent categories and special basis",
+      "ACCESSIBILITY IMPROVED: All dialog components now have proper descriptions for screen readers and accessibility compliance",
+      "CONSOLE ERRORS ELIMINATED: Resolved browser console warnings for missing props and invalid Select.Item values",
+      "USER EXPERIENCE ENHANCED: Modal components now provide clear descriptions and work without React errors"
+    ]
+  },
   "3.24.196": {
     date: "2026-01-11",
     name: "🔧 API FIX: Missing getDataCategories Method Added",

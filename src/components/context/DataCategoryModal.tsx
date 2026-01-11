@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from '@/components/ui/dialog'
 import {
   Form,
@@ -165,8 +166,8 @@ export function DataCategoryModal({
         delete submitData.special_category_basis
       }
       
-      // Remove parent_id if empty
-      if (!submitData.parent_id) {
+      // Remove parent_id if empty or "none"
+      if (!submitData.parent_id || submitData.parent_id === 'none') {
         delete submitData.parent_id
       }
 
@@ -206,6 +207,11 @@ export function DataCategoryModal({
           <DialogTitle>
             {isEditing ? 'Edit Data Category' : 'Add New Data Category'}
           </DialogTitle>
+          <DialogDescription>
+            {isEditing 
+              ? 'Update the data category information below.' 
+              : 'Create a new data category for GDPR classification and compliance tracking.'}
+          </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
@@ -356,7 +362,7 @@ export function DataCategoryModal({
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="">No parent (top-level category)</SelectItem>
+                          <SelectItem value="none">No parent (top-level category)</SelectItem>
                           {parentCategories.map((category) => (
                             <SelectItem key={category.id} value={category.id}>
                               {category.name}

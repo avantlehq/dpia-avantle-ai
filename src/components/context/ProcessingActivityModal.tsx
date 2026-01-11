@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from '@/components/ui/dialog'
 import {
   Form,
@@ -132,6 +133,12 @@ export function ProcessingActivityModal({
   const onSubmit = async (data: ProcessingActivityFormData) => {
     setIsSubmitting(true)
     try {
+      // Clean up data - remove special_category_basis if "none"
+      const submitData = { ...data }
+      if (submitData.special_category_basis === 'none') {
+        delete submitData.special_category_basis
+      }
+
       const url = activityId 
         ? `/api/v1/context/processing-activities/${activityId}`
         : '/api/v1/context/processing-activities'
@@ -141,7 +148,7 @@ export function ProcessingActivityModal({
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(submitData),
       })
 
       if (!response.ok) {
@@ -168,6 +175,11 @@ export function ProcessingActivityModal({
           <DialogTitle>
             {isEditing ? 'Edit Processing Activity' : 'Add New Processing Activity'}
           </DialogTitle>
+          <DialogDescription>
+            {isEditing 
+              ? 'Update the processing activity information below.' 
+              : 'Create a new processing activity for GDPR Article 30 Record of Processing Activities (ROPA) compliance.'}
+          </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
@@ -287,7 +299,7 @@ export function ProcessingActivityModal({
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="">None</SelectItem>
+                        <SelectItem value="none">None</SelectItem>
                         {specialCategoryBasisOptions.map((option) => (
                           <SelectItem key={option.value} value={option.value}>
                             {option.label}

@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from '@/components/ui/dialog'
 import {
   Form,
@@ -133,6 +134,11 @@ export function SystemModal({
           <DialogTitle>
             {isEditing ? 'Edit IT System' : 'Add New IT System'}
           </DialogTitle>
+          <DialogDescription>
+            {isEditing 
+              ? 'Update the IT system information below.' 
+              : 'Add a new IT system for data processing tracking and compliance management.'}
+          </DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
