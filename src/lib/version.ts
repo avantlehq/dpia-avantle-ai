@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.190" as const
-export const VERSION_NAME = "🎆 PROFESSIONAL HELP UX: SaaS Support Center with Bilingual Support" as const
+export const VERSION = "3.24.191" as const
+export const VERSION_NAME = "🔧 CONTEXT SYSTEMS FIX: Complete CRUD Functionality with Modals" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.191": {
+    date: "2026-01-10",
+    name: "🔧 CONTEXT SYSTEMS FIX: Complete CRUD Functionality with Modals",
+    features: [
+      "BROKEN BUTTONS FIXED: Add System, Edit, and Delete buttons now work properly",
+      "SYSTEM MODAL COMPONENT: Complete form for creating/editing systems with validation",
+      "DELETE CONFIRMATION DIALOG: Safety confirmation for system deletion with proper messaging",
+      "FULL CRUD OPERATIONS: Create, Read, Update, Delete all functional with API integration",
+      "FORM VALIDATION: React Hook Form with Zod schema for data validation",
+      "LOADING STATES: Proper loading indicators for all async operations",
+      "ERROR HANDLING: Toast notifications for success/error feedback",
+      "MODAL STATE MANAGEMENT: Proper open/close handling with form reset",
+      "API INTEGRATION: Connected to existing Context API endpoints (/api/v1/context/systems)",
+      "USER EXPERIENCE FIX: Resolved non-functional interface that was frustrating users"
+    ]
+  },
   "3.24.190": {
     date: "2026-01-10",
     name: "🎆 PROFESSIONAL HELP UX: SaaS Support Center with Bilingual Support",
