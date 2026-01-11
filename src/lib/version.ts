@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.192" as const
-export const VERSION_NAME = "🔧 CONTEXT PROCESSING FIX: Complete ROPA CRUD Functionality" as const
+export const VERSION = "3.24.193" as const
+export const VERSION_NAME = "📁 CONTEXT DATA CATEGORIES: Complete GDPR Classification System" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,27 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.193": {
+    date: "2026-01-11",
+    name: "📁 CONTEXT DATA CATEGORIES: Complete GDPR Classification System",
+    features: [
+      "DATA CATEGORIES PAGE IMPLEMENTED: Replaced 'Coming Soon' placeholder with full GDPR classification management",
+      "GDPR COMPLIANCE MODAL: Complete form for creating/editing data categories with Article 6 & 9 compliance fields",
+      "SPECIAL CATEGORY SUPPORT: Article 9 special category data with required legal basis validation",
+      "DATA SENSITIVITY CLASSIFICATION: Public, Internal, Confidential, Restricted sensitivity levels with visual indicators",
+      "NESTED CATEGORY HIERARCHY: Support for parent/child category relationships with visual tree indicators",
+      "STANDARD vs CUSTOM CATEGORIES: GDPR standard categories vs custom business categories with identification",
+      "COMPREHENSIVE CRUD OPERATIONS: Create, Read, Update, Delete all functional for data classification workflow",
+      "STATUS PILLS OVERVIEW: Active Categories, Special Categories, High Sensitivity, Nested Categories metrics",
+      "ADVANCED FILTERING: Search by name/description, filter by category type and sensitivity level",
+      "DELETE CONFIRMATION DIALOG: GDPR-specific warnings about data lineage and compliance impact",
+      "LOADING STATES: Professional skeleton loading for table and form operations",
+      "ERROR HANDLING: Toast notifications with GDPR compliance context and proper error messaging",
+      "MODAL STATE MANAGEMENT: Proper open/close handling with form reset for data categories",
+      "API INTEGRATION: Connected to existing Context API endpoints (/api/v1/context/data-categories)",
+      "VISUAL CLASSIFICATION: Color-coded badges for category types and sensitivity levels with shield icons for special categories"
+    ]
+  },
   "3.24.192": {
     date: "2026-01-11",
     name: "🔧 CONTEXT PROCESSING FIX: Complete ROPA CRUD Functionality",
