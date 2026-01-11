@@ -60,7 +60,7 @@ export function DeleteSystemDialog({
         <AlertDialogHeader>
           <AlertDialogTitle>Delete IT System</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete <strong>"{systemName}"</strong>? 
+            Are you sure you want to delete <strong>&ldquo;{systemName}&rdquo;</strong>? 
             This action cannot be undone and will remove all associated data.
           </AlertDialogDescription>
         </AlertDialogHeader>
