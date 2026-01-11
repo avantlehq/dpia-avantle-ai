@@ -22,6 +22,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { ProcessingActivityModal } from '@/components/context/ProcessingActivityModal'
+import { DeleteProcessingActivityDialog } from '@/components/context/DeleteProcessingActivityDialog'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -72,20 +74,26 @@ export default function ProcessingPage() {
   const [selectedBasis, setSelectedBasis] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   
+  // Modal states
+  const [isActivityModalOpen, setIsActivityModalOpen] = useState(false)
+  const [editingActivity, setEditingActivity] = useState<ProcessingActivity | null>(null)
+  const [deleteActivity, setDeleteActivity] = useState<{ id: string; name: string } | null>(null)
+  
   // Fetch processing activities from API
-  useEffect(() => {
-    const fetchProcessingActivities = async () => {
-      try {
-        const { contextApiService } = await import('@/lib/context-api-service')
-        const response = await contextApiService.getProcessingActivities()
-        setActivities(response.data || [])
-        setIsLoading(false)
-      } catch (error) {
-        console.error('Failed to fetch processing activities:', error)
-        setIsLoading(false)
-      }
+  const fetchProcessingActivities = async () => {
+    try {
+      const { contextApiService } = await import('@/lib/context-api-service')
+      const response = await contextApiService.getProcessingActivities()
+      setActivities(response.data || [])
+    } catch (error) {
+      console.error('Failed to fetch processing activities:', error)
+      setActivities([])
+    } finally {
+      setIsLoading(false)
     }
+  }
 
+  useEffect(() => {
     fetchProcessingActivities()
   }, [])
 
@@ -104,6 +112,33 @@ export default function ProcessingPage() {
     return new Date(reviewDate) < new Date()
   }
 
+  const handleAddActivity = () => {
+    setEditingActivity(null)
+    setIsActivityModalOpen(true)
+  }
+
+  const handleEditActivity = (activity: ProcessingActivity) => {
+    setEditingActivity(activity)
+    setIsActivityModalOpen(true)
+  }
+
+  const handleDeleteActivity = (activity: ProcessingActivity) => {
+    setDeleteActivity({ id: activity.id, name: activity.name })
+  }
+
+  const handleModalSuccess = () => {
+    fetchProcessingActivities() // Refresh the list
+  }
+
+  const handleCloseActivityModal = () => {
+    setIsActivityModalOpen(false)
+    setEditingActivity(null)
+  }
+
+  const handleCloseDeleteDialog = () => {
+    setDeleteActivity(null)
+  }
+
   return (
     <div className="space-y-6">
       {/* Header - matching assessments style */}
@@ -119,6 +154,7 @@ export default function ProcessingPage() {
           variant="primary" 
           size="md"
           className="gap-2"
+          onClick={handleAddActivity}
         >
           <Plus className="h-4 w-4" />
           Add Processing Activity
@@ -321,7 +357,7 @@ export default function ProcessingPage() {
                   : 'Start building your Record of Processing Activities (ROPA) for GDPR Article 30 compliance.'
                 }
               </p>
-              <Button variant="primary" className="gap-2">
+              <Button variant="primary" className="gap-2" onClick={handleAddActivity}>
                 <Plus className="h-4 w-4" />
                 Add First Activity
               </Button>
@@ -407,10 +443,20 @@ export default function ProcessingPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Button variant="ghost" size="sm">
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => handleEditActivity(activity)}
+                              title="Edit activity"
+                            >
                               <Edit className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="sm">
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={() => handleDeleteActivity(activity)}
+                              title="Delete activity"
+                            >
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
@@ -426,7 +472,7 @@ export default function ProcessingPage() {
                 <p className="text-sm text-muted-foreground">
                   Showing {filteredActivities.length} processing activities
                 </p>
-                <Button variant="outline" size="sm" className="gap-2">
+                <Button variant="outline" size="sm" className="gap-2" onClick={handleAddActivity}>
                   <Plus className="h-4 w-4" />
                   Add New
                 </Button>
@@ -435,6 +481,25 @@ export default function ProcessingPage() {
           )}
         </CardContent>
       </Card>
+
+      {/* Modals */}
+      <ProcessingActivityModal
+        isOpen={isActivityModalOpen}
+        onClose={handleCloseActivityModal}
+        onSuccess={handleModalSuccess}
+        activityId={editingActivity?.id}
+        initialData={editingActivity || undefined}
+      />
+
+      {deleteActivity && (
+        <DeleteProcessingActivityDialog
+          isOpen={Boolean(deleteActivity)}
+          onClose={handleCloseDeleteDialog}
+          onSuccess={handleModalSuccess}
+          activityId={deleteActivity.id}
+          activityName={deleteActivity.name}
+        />
+      )}
     </div>
   )
 }
