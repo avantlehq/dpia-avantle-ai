@@ -354,3 +354,84 @@ Dashboard (What) ↔ Governance (How)
 - **Hover States**: Subtle surface background changes on interaction
 - **Info Icons**: Small `ⓘ` indicators for additional information
 - **Back Navigation**: Clear return links to main dashboard
+
+## Modal Components (v3.24.199)
+
+### **CRUD Modal System**
+Professional modal components for Context module data management with comprehensive GDPR compliance features.
+
+#### **DataFlowModal Component**
+```typescript
+interface DataFlowModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSuccess: () => void;
+  flowId?: string;
+  initialData?: Partial<DataFlowFormData>;
+}
+```
+
+**Features:**
+- **Flow Configuration**: Direction (inbound/outbound/bidirectional/internal), criticality levels
+- **Endpoint Mapping**: System/vendor source and destination selection with reference validation
+- **Security Compliance**: Encryption in transit and cross-border transfer tracking
+- **Volume & Frequency**: Data volume estimates and transfer frequency monitoring
+- **GDPR Fields**: Purpose documentation, business justification, compliance validation
+
+#### **DataCategoryModal Component**
+```typescript
+interface DataCategoryModalProps {
+  isOpen: boolean;
+  onClose: () => void; 
+  onSuccess: () => void;
+  categoryId?: string;
+  initialData?: Partial<DataCategoryFormData>;
+}
+```
+
+**Features:**
+- **GDPR Classification**: Article 6 (personal) vs Article 9 (special category) data
+- **Legal Basis**: Required special category legal basis under Article 9 GDPR
+- **Sensitivity Levels**: Public, Internal, Confidential, Restricted classification
+- **Hierarchy Support**: Parent/child category relationships with visual indicators
+- **Standard vs Custom**: GDPR standard categories vs business-specific categories
+
+#### **SystemModal Component**
+```typescript
+interface SystemModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSuccess: () => void; 
+  systemId?: string;
+  initialData?: Partial<SystemFormData>;
+}
+```
+
+**Features:**
+- **System Types**: Database, Application, API, Storage, Analytics, CRM, ERP
+- **Criticality Assessment**: Low, Medium, High, Critical classification
+- **Ownership Tracking**: Owner team and technical contact information
+- **Status Management**: Active/Inactive status with lifecycle tracking
+
+#### **Delete Confirmation Dialogs**
+**Pattern**: All delete operations include GDPR-specific impact warnings:
+- **Data Lineage Impact**: Explanation of compliance documentation effects  
+- **Audit Trail Preservation**: Requirements for maintaining historical records
+- **Cross-Reference Warnings**: Impact on related systems, flows, and assessments
+- **Regulatory Compliance**: ROPA, DPIA, and cross-border transfer documentation
+
+### **Modal Design Patterns**
+```css
+/* Modal Structure */
+.modal-content { max-width: 768px; max-height: 90vh; overflow-y: auto; }
+.modal-section { margin-bottom: 24px; }
+.modal-header { font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-switch { display: flex; justify-content: space-between; padding: 16px; }
+```
+
+**Visual Hierarchy:**
+- **Section Headers**: Clear separation between form sections (Basic Info, Configuration, Security)
+- **Field Grouping**: Related fields grouped with consistent spacing
+- **Required Indicators**: Asterisk (*) for required fields with proper validation
+- **Help Text**: Descriptive text below complex fields for user guidance
