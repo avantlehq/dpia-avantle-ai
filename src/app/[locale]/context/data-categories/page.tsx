@@ -420,7 +420,7 @@ export default function DataCategoriesPage() {
                               {category.parent_id && <span className="text-muted-foreground">└</span>}
                               {category.name}
                               {category.category_type === 'special' && (
-                                <Shield className="h-3 w-3 text-red-500" title="Special Category Data" />
+                                <Shield className="h-3 w-3 text-red-500" />
                               )}
                             </div>
                             {category.description && (
@@ -443,7 +443,7 @@ export default function DataCategoriesPage() {
                         </td>
                         <td className="py-3 px-4">
                           {category.is_standard ? (
-                            <CheckCircle className="h-4 w-4 text-green-500" title="Standard GDPR Category" />
+                            <CheckCircle className="h-4 w-4 text-green-500" />
                           ) : (
                             <span className="text-muted-foreground text-sm">Custom</span>
                           )}

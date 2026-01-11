@@ -124,8 +124,8 @@ export function DataCategoryModal({
         const response = await contextApiService.getDataCategories()
         setParentCategories(
           (response.data || [])
-            .filter(cat => cat.id !== categoryId) // Exclude self from parent options
-            .map(cat => ({ id: cat.id, name: cat.name }))
+            .filter((cat: any) => cat.id !== categoryId) // Exclude self from parent options
+            .map((cat: any) => ({ id: cat.id, name: cat.name }))
         )
       } catch (error) {
         console.error('Failed to fetch parent categories:', error)

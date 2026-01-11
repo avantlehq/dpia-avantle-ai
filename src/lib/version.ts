@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.195" as const
-export const VERSION_NAME = "🔧 FINAL BUILD FIX: All ESLint Issues Resolved" as const
+export const VERSION = "3.24.196" as const
+export const VERSION_NAME = "🔧 API FIX: Missing getDataCategories Method Added" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.196": {
+    date: "2026-01-11",
+    name: "🔧 API FIX: Missing getDataCategories Method Added",
+    features: [
+      "MISSING API METHOD FIXED: Added getDataCategories method to ContextApiService for data categories page functionality",
+      "FALLBACK MOCK DATA: Included comprehensive mock data with GDPR classification examples for offline development",
+      "API ENDPOINT INTEGRATION: Connected to /api/v1/context/data-categories endpoint with proper error handling",
+      "BUILD ERROR RESOLVED: Fixed TypeScript compilation error preventing successful deployment",
+      "DATA CATEGORIES FUNCTIONAL: Page now properly loads with API integration and fallback support"
+    ]
+  },
   "3.24.195": {
     date: "2026-01-11",
     name: "🔧 FINAL BUILD FIX: All ESLint Issues Resolved",

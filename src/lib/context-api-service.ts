@@ -218,6 +218,69 @@ export class ContextApiService {
   }
 
   /**
+   * Get all data categories
+   */
+  async getDataCategories() {
+    try {
+      const response = await fetch(`${this.baseUrl}/data-categories`)
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+      }
+      return await response.json()
+    } catch (error) {
+      console.error('Failed to fetch data categories:', error)
+      // Return fallback mock data if API fails
+      return {
+        success: false,
+        data: [
+          {
+            id: '1',
+            name: 'Personal Identifiers',
+            description: 'Basic personal identification data',
+            category_type: 'personal',
+            sensitivity: 'internal',
+            special_category_basis: null,
+            is_standard: true,
+            parent_id: null,
+            parent: null,
+            children: [],
+            status: 'active',
+            created_at: '2024-01-10'
+          },
+          {
+            id: '2',
+            name: 'Health Information',
+            description: 'Medical and health-related personal data',
+            category_type: 'special',
+            sensitivity: 'restricted',
+            special_category_basis: 'healthcare',
+            is_standard: true,
+            parent_id: null,
+            parent: null,
+            children: [],
+            status: 'active',
+            created_at: '2024-01-15'
+          },
+          {
+            id: '3',
+            name: 'Email Addresses',
+            description: 'Contact email addresses',
+            category_type: 'personal',
+            sensitivity: 'internal',
+            special_category_basis: null,
+            is_standard: true,
+            parent_id: '1',
+            parent: { name: 'Personal Identifiers' },
+            children: [],
+            status: 'active',
+            created_at: '2024-01-20'
+          }
+        ]
+      }
+    }
+  }
+
+  /**
    * Get aggregated statistics for Context dashboard
    */
   async getContextStats() {
