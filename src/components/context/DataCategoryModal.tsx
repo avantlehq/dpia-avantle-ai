@@ -38,7 +38,7 @@ const dataCategorySchema = z.object({
   description: z.string().max(1000, 'Description too long').optional(),
   category_type: z.enum(['personal', 'special', 'criminal', 'anonymous']),
   sensitivity: z.enum(['public', 'internal', 'confidential', 'restricted']),
-  special_category_basis: z.enum(['explicit_consent', 'employment', 'vital_interests', 'public_interest', 'healthcare', 'research', 'legal_claims']).optional(),
+  special_category_basis: z.enum(['none', 'explicit_consent', 'employment', 'vital_interests', 'public_interest', 'healthcare', 'research', 'legal_claims']).optional(),
   is_standard: z.boolean(),
   parent_id: z.string().optional(),
 }).refine(
@@ -123,10 +123,17 @@ export function DataCategoryModal({
       try {
         const { contextApiService } = await import('@/lib/context-api-service')
         const response = await contextApiService.getDataCategories()
+        
+        // Define proper type for category data
+        interface CategoryData {
+          id: string
+          name: string
+        }
+        
         setParentCategories(
           (response.data || [])
-            .filter((cat: any) => cat.id !== categoryId) // Exclude self from parent options
-            .map((cat: any) => ({ id: cat.id, name: cat.name }))
+            .filter((cat: CategoryData) => cat.id !== categoryId) // Exclude self from parent options
+            .map((cat: CategoryData) => ({ id: cat.id, name: cat.name }))
         )
       } catch (error) {
         console.error('Failed to fetch parent categories:', error)

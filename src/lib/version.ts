@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.197" as const
-export const VERSION_NAME = "🔧 CONSOLE FIX: Dialog & Select Browser Errors Resolved" as const
+export const VERSION = "3.24.198" as const
+export const VERSION_NAME = "🔧 TYPESCRIPT FIX: Any Types & Enum Schema Resolved" as const
 export const BUILD_DATE = "2026-01-10"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.198": {
+    date: "2026-01-11",
+    name: "🔧 TYPESCRIPT FIX: Any Types & Enum Schema Resolved",
+    features: [
+      "TYPESCRIPT ANY TYPES FIXED: Replaced 'any' types with proper CategoryData interface in DataCategoryModal",
+      "ENUM SCHEMA UPDATED: Added 'none' as valid value in special_category_basis enum for both modal components",
+      "BUILD PIPELINE RESTORED: All TypeScript compilation errors resolved for successful CI/CD deployment",
+      "TYPE SAFETY IMPROVED: Proper interface definitions for category data with id and name properties",
+      "FORM VALIDATION ENHANCED: Zod schemas now properly handle 'none' values for optional fields",
+      "PRODUCTION READY: Clean build with zero TypeScript errors and warnings"
+    ]
+  },
   "3.24.197": {
     date: "2026-01-11",
     name: "🔧 CONSOLE FIX: Dialog & Select Browser Errors Resolved",

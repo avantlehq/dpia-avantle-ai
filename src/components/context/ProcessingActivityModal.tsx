@@ -40,7 +40,7 @@ const processingActivitySchema = z.object({
   lawful_basis: z.enum(['consent', 'contract', 'legal_obligation', 'vital_interests', 'public_task', 'legitimate_interests']),
   lawful_basis_explanation: z.string().max(1000, 'Explanation too long').optional(),
   data_subject_categories: z.string().max(500, 'Categories description too long').optional(),
-  special_category_basis: z.enum(['explicit_consent', 'employment', 'vital_interests', 'public_interest', 'healthcare', 'research', 'legal_claims']).optional(),
+  special_category_basis: z.enum(['none', 'explicit_consent', 'employment', 'vital_interests', 'public_interest', 'healthcare', 'research', 'legal_claims']).optional(),
   automated_decision_making: z.boolean(),
   profiling: z.boolean(),
   data_source: z.string().max(500, 'Data source description too long').optional(),
