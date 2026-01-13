@@ -23,15 +23,17 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.24.199 - Context Module CRUD Implementation COMPLETE**
+**Current Version: 3.24.202 - Context Module Complete + Route Fixes**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
-- **Context Module CRUD**: Complete CRUD operations for Systems, Data Categories, Data Flows with professional modal system
+- **Context Module CRUD**: Complete CRUD operations for ALL 6 sub-modules (Systems, Vendors, Locations, Data Categories, Data Flows, Processing Activities)
+- **Vendor Management**: DPA tracking, jurisdiction monitoring, vendor role classification (Processor, Joint Controller, Recipient, Sub-processor)
+- **Location Management**: GDPR adequacy decisions, transfer safeguards (SCCs, BCRs), data localization requirements
 - **Data Flow Mapping**: GDPR compliance tracking, encryption monitoring, cross-border transfer detection
 - **GDPR Compliance**: Article 6 & 9 data classification, ROPA management, adequacy decisions
 - **Context API Endpoints**: All functional - `/api/v1/context/{systems,vendors,locations,data-flows,data-categories,processing-activities}`
-- **DPIA Workflow**: Pre-check (8 questions) + Builder (4 sections) + PDF export
+- **DPIA Workflow**: Pre-check (8 questions) + Builder (4 sections) + PDF export with localized assessment routes
 - **Platform Dashboard**: Unified compliance overview with 92% score calculation methodology
 
 ### **Technical Stack**
@@ -58,16 +60,24 @@ Dashboard (Shows WHAT) ↔ Governance (Shows HOW)
 
 ### **Navigation Structure**
 ```
-Privacy Platform 3.24.199    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
+Privacy Platform 3.24.202    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
 ```
 
 **Module Overview:**
-- **Context Module** ✅ - Data inventory, systems, flows, vendors (complete CRUD)
-- **Privacy Module** ✅ - DPIA, LIA, TIA assessments (DPIA complete)
+- **Context Module** ✅ - Data inventory, systems, flows, vendors, locations (complete CRUD with modals)
+- **Privacy Module** ✅ - DPIA, LIA, TIA assessments (DPIA complete with multi-page workflow)
 - **Risk Module** 🔄 - Risk management and scoring (UI complete)
 - **Controls Module** 🔄 - Security controls and measures (UI complete)
 - **Training Module** 🔄 - Staff training and awareness (UI complete)
 - **Trust Center** ✅ - Governance and audit documentation
+
+### **⚠️ Planned Refactoring (Next Phase)**
+**Context Module: Modal → Multi-page Workflow**
+- Current: Modal-based CRUD (overlays) for Systems, Vendors, Locations, Data Categories, Data Flows, Processing Activities
+- Planned: Multi-page workflow similar to `/assessments/new` pattern
+- Reason: Better scalability for complex forms, deep linking, mobile UX, browser navigation
+- Estimate: 8-10 hours implementation
+- Priority: High - improves UX consistency across platform
 
 ## 🎯 **MICROSERVICES STRATEGY**
 
@@ -99,11 +109,16 @@ Backend API Services:
 - **Typography Scale**: Professional hierarchy (3xl to xs) with line heights
 - **Component Tokens**: Border-radius, shadows, transitions, z-index
 
-### **Professional Modal System**
+### **Professional Modal System (Current - Planned for Refactoring)**
+- **SystemModal**: System types, criticality, ownership tracking with comprehensive validation
+- **VendorModal**: Vendor roles, DPA tracking, contact management, jurisdiction monitoring
+- **LocationModal**: GDPR adequacy decisions, transfer safeguards, data localization requirements
 - **DataFlowModal**: Flow direction, endpoints, encryption, cross-border tracking
 - **DataCategoryModal**: GDPR Article 6 & 9 classification with legal basis validation
-- **SystemModal**: System types, criticality, ownership tracking
-- **Delete Dialogs**: GDPR-specific warnings about data lineage impact
+- **ProcessingActivityModal**: ROPA compliance, lawful basis, special category processing
+- **Delete Dialogs**: GDPR-specific warnings about data lineage impact and compliance records
+
+**Note**: All modals currently use overlay pattern. Planned migration to multi-page workflow for better UX scalability.
 
 ### **Form Control Rules**
 - **2 options**: Segmented control (Yes/No)
@@ -114,13 +129,16 @@ Backend API Services:
 
 ## Database Architecture
 
-### **Context Module Tables (✅ COMPLETE CRUD)**
-- **Systems**: IT systems with criticality tracking and ownership
-- **Data Categories**: GDPR Article 6 & 9 classification with hierarchy support
-- **Data Flows**: Flow mapping with encryption and cross-border monitoring
-- **Vendors**: Third-party processors with DPA compliance tracking
-- **Processing Activities**: ROPA compliance with Article 30 requirements
-- **Locations**: Physical locations with jurisdiction adequacy decisions
+### **Context Module Tables (✅ ALL 6 MODULES - COMPLETE CRUD)**
+- **Systems** ✅ - IT systems with criticality levels, ownership, and compliance status tracking
+- **Vendors** ✅ - Third-party processors with DPA tracking, expiration monitoring, vendor role classification
+- **Locations** ✅ - Jurisdictions with GDPR adequacy decisions, transfer safeguards (SCCs/BCRs), data localization flags
+- **Data Categories** ✅ - GDPR Article 6 & 9 classification with legal basis validation and parent/child hierarchy
+- **Data Flows** ✅ - Flow mapping with direction tracking, encryption monitoring, cross-border transfer detection
+- **Processing Activities** ✅ - ROPA compliance with Article 30 requirements, lawful basis, DPO review flags
+
+**Implementation Pattern**: Modal-based CRUD (Create/Edit via overlay, Delete via confirmation dialog)
+**Planned Migration**: Multi-page workflow for improved UX scalability and mobile experience
 
 **Security**: Multi-tenant RLS isolation, service role authentication
 **Storage**: Supabase Storage for PDF/DOCX exports
@@ -154,6 +172,36 @@ git add . && git commit -m "message" && git push origin main
   - `data-model.md` - Database schema, entity relationships
 
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
+
+## Recent Changes (Last Session)
+
+### **v3.24.202 - 2026-01-13**
+**Route Fix: Localized Assessment Page**
+- Fixed 404 errors in browser console for `/[locale]/assessment?id=...` routes
+- Created localized assessment detail page with Slovak/English support
+- Assessment table links now properly navigate to locale-aware routes
+
+### **v3.24.201 - 2026-01-13**
+**Context Locations: Complete CRUD**
+- LocationModal with jurisdiction classification (EU Member State, EEA, Third Country, International)
+- GDPR adequacy decision tracking with decision dates and references
+- Transfer safeguards monitoring (SCCs, BCRs) with description fields
+- Data localization requirements flag for jurisdictions with localization laws
+- DeleteLocationDialog with GDPR-specific warnings
+
+### **v3.24.200 - 2026-01-13**
+**Context Vendors: Complete CRUD**
+- VendorModal with vendor role classification (Processor, Joint Controller, Recipient, Sub-processor)
+- DPA tracking with expiration dates and compliance monitoring
+- Contact management (primary contact, email, website)
+- Jurisdiction/location tracking for cross-border transfer compliance
+- DeleteVendorDialog with warnings about DPA agreements and compliance records
+
+### **Known Issues & Technical Debt**
+- **Modal UX Limitations**: Context module uses modal overlays which can be claustrophobic on mobile
+- **No Deep Linking**: Cannot share direct links to "edit system XYZ" (modals don't have URLs)
+- **Browser Back Button**: Doesn't work for closing modals (non-standard navigation)
+- **Planned Migration**: Refactor Context CRUD from modals to multi-page workflow (~8-10 hours)
 
 ## Communication Style
 
