@@ -1,0 +1,85 @@
+'use client'
+
+import { useSearchParams } from 'next/navigation'
+import { ArrowLeft } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { useMemo, Suspense } from 'react'
+import { DPIAWizard } from '@/components/assessment/dpia-wizard'
+
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+function AssessmentContent({ locale }: { locale: string }) {
+  const searchParams = useSearchParams()
+
+  const assessmentId = useMemo(() => {
+    const id = searchParams.get('id')
+    console.log('🚀 Assessment page LOADED with ID from params:', id)
+    return id
+  }, [searchParams])
+
+  if (!assessmentId) {
+    return (
+      <div className="min-h-screen bg-background p-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold mb-4">
+            {locale === 'sk' ? 'ID hodnotenia nenájdené' : 'No Assessment ID Found'}
+          </h1>
+          <p className="mb-4">
+            {locale === 'sk'
+              ? 'Táto stránka vyžaduje parameter ID hodnotenia.'
+              : 'This page requires an assessment ID parameter.'}
+          </p>
+          <div className="bg-muted p-4 rounded-lg">
+            <p><strong>{locale === 'sk' ? 'Očakávaný formát URL:' : 'Expected URL format:'}</strong> /{locale}/assessment?id=assessment-xxxxx</p>
+            <p><strong>{locale === 'sk' ? 'Aktuálne URL parametre:' : 'Current URL params:'}</strong> {searchParams.toString() || 'none'}</p>
+          </div>
+          <div className="mt-4">
+            <Link href={`/${locale}/dashboard`}>
+              <Button
+                variant="outline"
+                className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl border border-blue-500 hover:border-blue-400 transform hover:scale-102 transition-all duration-300 px-8 py-4 font-semibold rounded-lg cursor-pointer"
+                style={{
+                  backgroundColor: '#2563eb',
+                  borderColor: '#3b82f6',
+                  borderRadius: '8px',
+                  color: 'var(--text-primary)',
+                  fontSize: '18px',
+                  fontWeight: '600'
+                }}
+              >
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                {locale === 'sk' ? 'Späť na Dashboard' : 'Back to Dashboard'}
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <DPIAWizard assessmentId={assessmentId} />
+  )
+}
+
+export default async function AssessmentPage({ params }: Props) {
+  const { locale } = await params;
+
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-background p-8">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-3xl font-bold mb-4">
+            {locale === 'sk' ? 'Načítavam hodnotenie...' : 'Loading Assessment...'}
+          </h1>
+          <p>{locale === 'sk' ? 'Získavam detaily hodnotenia...' : 'Getting assessment details...'}</p>
+        </div>
+      </div>
+    }>
+      <AssessmentContent locale={locale} />
+    </Suspense>
+  )
+}

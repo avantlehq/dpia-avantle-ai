@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.201" as const
-export const VERSION_NAME = "📁 CONTEXT LOCATIONS: Complete Jurisdiction & Adequacy Management CRUD" as const
+export const VERSION = "3.24.202" as const
+export const VERSION_NAME = "🔧 ROUTE FIX: Localized Assessment Page - 404 Errors Resolved" as const
 export const BUILD_DATE = "2026-01-13"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.202": {
+    date: "2026-01-13",
+    name: "🔧 ROUTE FIX: Localized Assessment Page - 404 Errors Resolved",
+    features: [
+      "CRITICAL 404 FIX: Created missing [locale]/assessment route to resolve browser console errors",
+      "LOCALIZED ASSESSMENT PAGE: Added locale-aware assessment detail page with Slovak/English support",
+      "BROWSER ERRORS ELIMINATED: Fixed GET /{locale}/assessment?id=... 404 (Not Found) errors in console",
+      "ASSESSMENT TABLE LINKS: Links from assessments table now properly navigate to localized routes",
+      "BILINGUAL ERROR MESSAGES: Slovak and English translations for 'No Assessment ID Found' state",
+      "LOCALE-AWARE NAVIGATION: Back to Dashboard buttons use proper locale-prefixed routes",
+      "SUSPENSE FALLBACK: Localized loading states during assessment data fetch",
+      "USER EXPERIENCE RESTORED: Assessment detail pages now load without 404 errors or console warnings"
+    ]
+  },
   "3.24.201": {
     date: "2026-01-13",
     name: "📁 CONTEXT LOCATIONS: Complete Jurisdiction & Adequacy Management CRUD",
