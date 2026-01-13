@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.200" as const
-export const VERSION_NAME = "📁 CONTEXT VENDORS: Complete Vendor & DPA Management CRUD" as const
+export const VERSION = "3.24.201" as const
+export const VERSION_NAME = "📁 CONTEXT LOCATIONS: Complete Jurisdiction & Adequacy Management CRUD" as const
 export const BUILD_DATE = "2026-01-13"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,25 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.201": {
+    date: "2026-01-13",
+    name: "📁 CONTEXT LOCATIONS: Complete Jurisdiction & Adequacy Management CRUD",
+    features: [
+      "LOCATIONS PAGE FULLY FUNCTIONAL: Fixed non-functioning buttons with complete CRUD modal functionality",
+      "LOCATION MODAL COMPONENT: Comprehensive form for creating/editing jurisdictions with GDPR compliance fields",
+      "JURISDICTION CLASSIFICATION: Support for EU Member State, EEA Country, Third Country, International types",
+      "ADEQUACY DECISION TRACKING: Adequate, Not Adequate, Partial, Under Review status with decision dates and references",
+      "TRANSFER SAFEGUARDS: Safeguards required toggle with description field for Standard Contractual Clauses, BCRs, etc.",
+      "DATA LOCALIZATION MONITORING: Flag for jurisdictions with data localization requirements",
+      "DELETE CONFIRMATION DIALOG: GDPR-specific warnings about adequacy decisions and safeguard documentation impact",
+      "COMPREHENSIVE CRUD OPERATIONS: Create, Read, Update, Delete all functional for location lifecycle management",
+      "API INTEGRATION: Connected to existing Context API endpoints (/api/v1/context/locations)",
+      "VISUAL STATUS INDICATORS: Color-coded adequacy status badges, jurisdiction type indicators, safeguard warnings",
+      "LOADING STATES: Professional skeleton loading and error handling for all location operations",
+      "MODAL STATE MANAGEMENT: Proper open/close handling with form reset and success callbacks",
+      "FORM VALIDATION: React Hook Form with Zod schema for location data validation and type safety"
+    ]
+  },
   "3.24.200": {
     date: "2026-01-13",
     name: "📁 CONTEXT VENDORS: Complete Vendor & DPA Management CRUD",

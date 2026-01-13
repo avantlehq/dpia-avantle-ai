@@ -17,13 +17,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { LocationModal } from '@/components/context/LocationModal'
+import { DeleteLocationDialog } from '@/components/context/DeleteLocationDialog'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -87,22 +89,27 @@ export default function LocationsPage() {
   const [selectedJurisdiction, setSelectedJurisdiction] = useState('')
   const [selectedAdequacy, setSelectedAdequacy] = useState('')
   const [isLoading, setIsLoading] = useState(true)
-  
-  // Fetch locations from API
-  useEffect(() => {
-    const fetchLocations = async () => {
-      try {
-        const { contextApiService } = await import('@/lib/context-api-service')
-        const response = await contextApiService.getLocations()
-        setLocations(response.data || [])
-      } catch (error) {
-        console.error('Failed to fetch locations:', error)
-        setLocations([])
-      } finally {
-        setIsLoading(false)
-      }
-    }
 
+  // Modal states
+  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false)
+  const [editingLocation, setEditingLocation] = useState<Location | null>(null)
+  const [deleteLocation, setDeleteLocation] = useState<{ id: string; name: string } | null>(null)
+
+  // Fetch locations from API
+  const fetchLocations = async () => {
+    try {
+      const { contextApiService } = await import('@/lib/context-api-service')
+      const response = await contextApiService.getLocations()
+      setLocations(response.data || [])
+    } catch (error) {
+      console.error('Failed to fetch locations:', error)
+      setLocations([])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
     fetchLocations()
   }, [])
 
@@ -127,6 +134,33 @@ export default function LocationsPage() {
     }
   }
 
+  const handleAddLocation = () => {
+    setEditingLocation(null)
+    setIsLocationModalOpen(true)
+  }
+
+  const handleEditLocation = (location: Location) => {
+    setEditingLocation(location)
+    setIsLocationModalOpen(true)
+  }
+
+  const handleDeleteLocation = (location: Location) => {
+    setDeleteLocation({ id: location.id, name: location.name })
+  }
+
+  const handleModalSuccess = () => {
+    fetchLocations() // Refresh the list
+  }
+
+  const handleCloseLocationModal = () => {
+    setIsLocationModalOpen(false)
+    setEditingLocation(null)
+  }
+
+  const handleCloseDeleteDialog = () => {
+    setDeleteLocation(null)
+  }
+
   return (
     <div className="space-y-6">
       {/* Header - matching assessments style */}
@@ -138,10 +172,11 @@ export default function LocationsPage() {
           </p>
         </div>
         
-        <Button 
-          variant="primary" 
+        <Button
+          variant="primary"
           size="md"
           className="gap-2"
+          onClick={handleAddLocation}
         >
           <Plus className="h-4 w-4" />
           Add Location
@@ -356,7 +391,7 @@ export default function LocationsPage() {
                   : 'Start by adding your first processing location or jurisdiction for GDPR compliance tracking.'
                 }
               </p>
-              <Button variant="primary" className="gap-2">
+              <Button variant="primary" className="gap-2" onClick={handleAddLocation}>
                 <Plus className="h-4 w-4" />
                 Add First Location
               </Button>
@@ -432,10 +467,20 @@ export default function LocationsPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Button variant="ghost" size="sm">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleEditLocation(location)}
+                              title="Edit location"
+                            >
                               <Edit className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="sm">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleDeleteLocation(location)}
+                              title="Delete location"
+                            >
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
@@ -451,7 +496,7 @@ export default function LocationsPage() {
                 <p className="text-sm text-muted-foreground">
                   Showing {filteredLocations.length} locations
                 </p>
-                <Button variant="outline" size="sm" className="gap-2">
+                <Button variant="outline" size="sm" className="gap-2" onClick={handleAddLocation}>
                   <Plus className="h-4 w-4" />
                   Add New
                 </Button>
@@ -460,6 +505,25 @@ export default function LocationsPage() {
           )}
         </CardContent>
       </Card>
+
+      {/* Modals */}
+      <LocationModal
+        isOpen={isLocationModalOpen}
+        onClose={handleCloseLocationModal}
+        onSuccess={handleModalSuccess}
+        locationId={editingLocation?.id}
+        initialData={editingLocation || undefined}
+      />
+
+      {deleteLocation && (
+        <DeleteLocationDialog
+          isOpen={Boolean(deleteLocation)}
+          onClose={handleCloseDeleteDialog}
+          onSuccess={handleModalSuccess}
+          locationId={deleteLocation.id}
+          locationName={deleteLocation.name}
+        />
+      )}
     </div>
   )
 }
