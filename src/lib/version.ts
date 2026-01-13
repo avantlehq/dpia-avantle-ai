@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.199" as const
-export const VERSION_NAME = "📁 CONTEXT DATA FLOWS: Complete GDPR Flow Management CRUD" as const
-export const BUILD_DATE = "2026-01-11"
+export const VERSION = "3.24.200" as const
+export const VERSION_NAME = "📁 CONTEXT VENDORS: Complete Vendor & DPA Management CRUD" as const
+export const BUILD_DATE = "2026-01-13"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,25 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.24.200": {
+    date: "2026-01-13",
+    name: "📁 CONTEXT VENDORS: Complete Vendor & DPA Management CRUD",
+    features: [
+      "VENDORS PAGE FULLY FUNCTIONAL: Fixed non-functioning buttons with complete CRUD modal functionality",
+      "VENDOR MODAL COMPONENT: Comprehensive form for creating/editing vendors with GDPR compliance fields",
+      "VENDOR ROLES & CLASSIFICATION: Support for Processor, Joint Controller, Recipient, Sub-processor roles",
+      "DPA TRACKING: Data Processing Agreement management with expiration dates and compliance monitoring",
+      "CONTACT MANAGEMENT: Primary contact, email, and website tracking for vendor communication",
+      "JURISDICTION TRACKING: Location/jurisdiction fields for cross-border transfer compliance",
+      "DELETE CONFIRMATION DIALOG: GDPR-specific warnings about DPA agreements and compliance records impact",
+      "COMPREHENSIVE CRUD OPERATIONS: Create, Read, Update, Delete all functional for vendor lifecycle management",
+      "API INTEGRATION: Connected to existing Context API endpoints (/api/v1/context/vendors)",
+      "VISUAL STATUS INDICATORS: Color-coded DPA status badges, expiration warnings, and missing DPA alerts",
+      "LOADING STATES: Professional skeleton loading and error handling for all vendor operations",
+      "MODAL STATE MANAGEMENT: Proper open/close handling with form reset and success callbacks",
+      "FORM VALIDATION: React Hook Form with Zod schema for vendor data validation and type safety"
+    ]
+  },
   "3.24.199": {
     date: "2026-01-11",
     name: "📁 CONTEXT DATA FLOWS: Complete GDPR Flow Management CRUD",

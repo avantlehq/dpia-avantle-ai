@@ -16,13 +16,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { VendorModal } from '@/components/context/VendorModal'
+import { DeleteVendorDialog } from '@/components/context/DeleteVendorDialog'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -66,22 +68,27 @@ export default function VendorsPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedRole, setSelectedRole] = useState('')
   const [isLoading, setIsLoading] = useState(true)
-  
-  // Fetch vendors from API
-  useEffect(() => {
-    const fetchVendors = async () => {
-      try {
-        const { contextApiService } = await import('@/lib/context-api-service')
-        const response = await contextApiService.getVendors()
-        setVendors(response.data || [])
-      } catch (error) {
-        console.error('Failed to fetch vendors:', error)
-        setVendors([])
-      } finally {
-        setIsLoading(false)
-      }
-    }
 
+  // Modal states
+  const [isVendorModalOpen, setIsVendorModalOpen] = useState(false)
+  const [editingVendor, setEditingVendor] = useState<Vendor | null>(null)
+  const [deleteVendor, setDeleteVendor] = useState<{ id: string; name: string } | null>(null)
+
+  // Fetch vendors from API
+  const fetchVendors = async () => {
+    try {
+      const { contextApiService } = await import('@/lib/context-api-service')
+      const response = await contextApiService.getVendors()
+      setVendors(response.data || [])
+    } catch (error) {
+      console.error('Failed to fetch vendors:', error)
+      setVendors([])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
     fetchVendors()
   }, [])
 
@@ -108,6 +115,33 @@ export default function VendorsPage() {
     return new Date(dpaExpires) < new Date()
   }
 
+  const handleAddVendor = () => {
+    setEditingVendor(null)
+    setIsVendorModalOpen(true)
+  }
+
+  const handleEditVendor = (vendor: Vendor) => {
+    setEditingVendor(vendor)
+    setIsVendorModalOpen(true)
+  }
+
+  const handleDeleteVendor = (vendor: Vendor) => {
+    setDeleteVendor({ id: vendor.id, name: vendor.name })
+  }
+
+  const handleModalSuccess = () => {
+    fetchVendors() // Refresh the list
+  }
+
+  const handleCloseVendorModal = () => {
+    setIsVendorModalOpen(false)
+    setEditingVendor(null)
+  }
+
+  const handleCloseDeleteDialog = () => {
+    setDeleteVendor(null)
+  }
+
   return (
     <div className="space-y-6">
       {/* Header - matching assessments style */}
@@ -119,10 +153,11 @@ export default function VendorsPage() {
           </p>
         </div>
         
-        <Button 
-          variant="primary" 
+        <Button
+          variant="primary"
           size="md"
           className="gap-2"
+          onClick={handleAddVendor}
         >
           <Plus className="h-4 w-4" />
           Add Vendor
@@ -323,7 +358,7 @@ export default function VendorsPage() {
                   : 'Start by adding your first vendor or data processor to track DPA agreements.'
                 }
               </p>
-              <Button variant="primary" className="gap-2">
+              <Button variant="primary" className="gap-2" onClick={handleAddVendor}>
                 <Plus className="h-4 w-4" />
                 Add First Vendor
               </Button>
@@ -431,10 +466,20 @@ export default function VendorsPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Button variant="ghost" size="sm">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleEditVendor(vendor)}
+                              title="Edit vendor"
+                            >
                               <Edit className="h-4 w-4" />
                             </Button>
-                            <Button variant="ghost" size="sm">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleDeleteVendor(vendor)}
+                              title="Delete vendor"
+                            >
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </div>
@@ -450,7 +495,7 @@ export default function VendorsPage() {
                 <p className="text-sm text-muted-foreground">
                   Showing {filteredVendors.length} vendors
                 </p>
-                <Button variant="outline" size="sm" className="gap-2">
+                <Button variant="outline" size="sm" className="gap-2" onClick={handleAddVendor}>
                   <Plus className="h-4 w-4" />
                   Add New
                 </Button>
@@ -459,6 +504,25 @@ export default function VendorsPage() {
           )}
         </CardContent>
       </Card>
+
+      {/* Modals */}
+      <VendorModal
+        isOpen={isVendorModalOpen}
+        onClose={handleCloseVendorModal}
+        onSuccess={handleModalSuccess}
+        vendorId={editingVendor?.id}
+        initialData={editingVendor || undefined}
+      />
+
+      {deleteVendor && (
+        <DeleteVendorDialog
+          isOpen={Boolean(deleteVendor)}
+          onClose={handleCloseDeleteDialog}
+          onSuccess={handleModalSuccess}
+          vendorId={deleteVendor.id}
+          vendorName={deleteVendor.name}
+        />
+      )}
     </div>
   )
 }
