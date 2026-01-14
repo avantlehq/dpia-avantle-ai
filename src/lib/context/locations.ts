@@ -41,7 +41,7 @@ export interface CreateLocationData {
   notes?: string
 }
 
-export interface UpdateLocationData extends Partial<CreateLocationData> {}
+export type UpdateLocationData = Partial<CreateLocationData>
 
 export interface LocationsListResponse {
   data: Location[]

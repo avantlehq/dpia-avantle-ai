@@ -16,7 +16,7 @@ export default function DataCategoryNotFound() {
           Data Category Not Found
         </h1>
         <p className="text-muted-foreground mb-6">
-          The data category you're looking for doesn't exist or has been deleted.
+          The data category you&apos;re looking for doesn&apos;t exist or has been deleted.
         </p>
         <Link href="/en/context/data-categories">
           <Button variant="outline">

@@ -34,7 +34,7 @@ export interface CreateSystemData {
   technical_contact?: string
 }
 
-export interface UpdateSystemData extends Partial<CreateSystemData> {}
+export type UpdateSystemData = Partial<CreateSystemData>
 
 export interface SystemsListResponse {
   data: System[]

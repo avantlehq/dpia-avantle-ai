@@ -34,7 +34,7 @@ export interface CreateDataCategoryData {
   parent_id?: string
 }
 
-export interface UpdateDataCategoryData extends Partial<CreateDataCategoryData> {}
+export type UpdateDataCategoryData = Partial<CreateDataCategoryData>
 
 export interface DataCategoriesListResponse {
   data: DataCategory[]

@@ -16,7 +16,7 @@ export default function LocationNotFound() {
           Location Not Found
         </h1>
         <p className="text-muted-foreground mb-6">
-          The location you're looking for doesn't exist or has been deleted.
+          The location you&apos;re looking for doesn&apos;t exist or has been deleted.
         </p>
         <Link href="/en/context/locations">
           <Button variant="outline">

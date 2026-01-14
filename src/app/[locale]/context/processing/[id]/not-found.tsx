@@ -15,7 +15,7 @@ export default function ProcessingActivityNotFound() {
         <FileQuestion className="h-16 w-16 mx-auto text-muted-foreground opacity-50" />
         <h1 className="text-2xl font-semibold">Processing Activity Not Found</h1>
         <p className="text-muted-foreground max-w-md mx-auto">
-          The processing activity you're looking for doesn't exist or has been removed.
+          The processing activity you&apos;re looking for doesn&apos;t exist or has been removed.
         </p>
         <div className="pt-4">
           <Link href="/context/processing">

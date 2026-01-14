@@ -47,7 +47,7 @@ export interface CreateDataFlowData {
   cross_border_transfer: boolean
 }
 
-export interface UpdateDataFlowData extends Partial<CreateDataFlowData> {}
+export type UpdateDataFlowData = Partial<CreateDataFlowData>
 
 export interface DataFlowsListResponse {
   data: DataFlow[]

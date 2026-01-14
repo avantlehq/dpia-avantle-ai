@@ -39,7 +39,7 @@ export interface CreateVendorData {
   location?: string
 }
 
-export interface UpdateVendorData extends Partial<CreateVendorData> {}
+export type UpdateVendorData = Partial<CreateVendorData>
 
 export interface VendorsListResponse {
   data: Vendor[]

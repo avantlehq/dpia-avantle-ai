@@ -1,17 +1,15 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useParams } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useMemo, Suspense } from 'react'
 import { DPIAWizard } from '@/components/assessment/dpia-wizard'
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-function AssessmentContent({ locale }: { locale: string }) {
+function AssessmentContent() {
+  const params = useParams()
+  const locale = params.locale as string
   const searchParams = useSearchParams()
 
   const assessmentId = useMemo(() => {
@@ -65,21 +63,17 @@ function AssessmentContent({ locale }: { locale: string }) {
   )
 }
 
-export default async function AssessmentPage({ params }: Props) {
-  const { locale } = await params;
-
+export default function AssessmentPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-background p-8">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold mb-4">
-            {locale === 'sk' ? 'Načítavam hodnotenie...' : 'Loading Assessment...'}
-          </h1>
-          <p>{locale === 'sk' ? 'Získavam detaily hodnotenia...' : 'Getting assessment details...'}</p>
+          <h1 className="text-3xl font-bold mb-4">Loading Assessment...</h1>
+          <p>Getting assessment details...</p>
         </div>
       </div>
     }>
-      <AssessmentContent locale={locale} />
+      <AssessmentContent />
     </Suspense>
   )
 }

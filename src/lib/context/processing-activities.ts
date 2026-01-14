@@ -44,7 +44,7 @@ export interface CreateProcessingActivityData {
   review_date?: string
 }
 
-export interface UpdateProcessingActivityData extends Partial<CreateProcessingActivityData> {}
+export type UpdateProcessingActivityData = Partial<CreateProcessingActivityData>
 
 export interface ProcessingActivitiesListResponse {
   data: ProcessingActivity[]
