@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { 
+import Link from 'next/link'
+import {
   Plus,
   Search,
   Edit,
@@ -12,15 +13,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { SystemModal } from '@/components/context/SystemModal'
 import { DeleteSystemDialog } from '@/components/context/DeleteSystemDialog'
+import { useParams } from 'next/navigation'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -38,14 +39,14 @@ type System = {
 }
 
 export default function SystemsPage() {
+  const params = useParams()
+  const locale = params.locale as string
   const [systems, setSystems] = useState<System[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCriticality, setSelectedCriticality] = useState('')
   const [isLoading, setIsLoading] = useState(true)
-  
-  // Modal states
-  const [isSystemModalOpen, setIsSystemModalOpen] = useState(false)
-  const [editingSystem, setEditingSystem] = useState<System | null>(null)
+
+  // Delete dialog state only (modal-to-page refactoring complete)
   const [deleteSystem, setDeleteSystem] = useState<{ id: string; name: string } | null>(null)
   
   // Fetch systems from API
@@ -87,27 +88,12 @@ export default function SystemsPage() {
     }
   }
 
-  const handleAddSystem = () => {
-    setEditingSystem(null)
-    setIsSystemModalOpen(true)
-  }
-
-  const handleEditSystem = (system: System) => {
-    setEditingSystem(system)
-    setIsSystemModalOpen(true)
-  }
-
   const handleDeleteSystem = (system: System) => {
     setDeleteSystem({ id: system.id, name: system.name })
   }
 
-  const handleModalSuccess = () => {
+  const handleDeleteSuccess = () => {
     fetchSystems() // Refresh the list
-  }
-
-  const handleCloseSystemModal = () => {
-    setIsSystemModalOpen(false)
-    setEditingSystem(null)
   }
 
   const handleCloseDeleteDialog = () => {
@@ -124,16 +110,17 @@ export default function SystemsPage() {
             Manage IT systems and infrastructure components for data processing
           </p>
         </div>
-        
-        <Button 
-          variant="primary" 
-          size="md"
-          className="gap-2"
-          onClick={handleAddSystem}
-        >
-          <Plus className="h-4 w-4" />
-          Add System
-        </Button>
+
+        <Link href={`/${locale}/context/systems/new`}>
+          <Button
+            variant="primary"
+            size="md"
+            className="gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Add System
+          </Button>
+        </Link>
       </div>
 
       {/* Systems Status Overview - matching assessments pills */}
@@ -327,15 +314,17 @@ export default function SystemsPage() {
                 {searchQuery || selectedCriticality ? 'No systems found' : 'Ready to manage IT systems'}
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                {searchQuery || selectedCriticality 
+                {searchQuery || selectedCriticality
                   ? 'Try adjusting your filters or search query.'
                   : 'Start by adding your first IT system to track and manage data processing infrastructure.'
                 }
               </p>
-              <Button variant="primary" className="gap-2" onClick={handleAddSystem}>
-                <Plus className="h-4 w-4" />
-                Add First System
-              </Button>
+              <Link href={`/${locale}/context/systems/new`}>
+                <Button variant="primary" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add First System
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="space-y-4">
@@ -403,16 +392,17 @@ export default function SystemsPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => handleEditSystem(system)}
-                              title="Edit system"
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button 
-                              variant="ghost" 
+                            <Link href={`/${locale}/context/systems/${system.id}`}>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                title="Edit system"
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                            </Link>
+                            <Button
+                              variant="ghost"
                               size="sm"
                               onClick={() => handleDeleteSystem(system)}
                               title="Delete system"
@@ -432,30 +422,24 @@ export default function SystemsPage() {
                 <p className="text-sm text-muted-foreground">
                   Showing {filteredSystems.length} systems
                 </p>
-                <Button variant="outline" size="sm" className="gap-2" onClick={handleAddSystem}>
-                  <Plus className="h-4 w-4" />
-                  Add New
-                </Button>
+                <Link href={`/${locale}/context/systems/new`}>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <Plus className="h-4 w-4" />
+                    Add New
+                  </Button>
+                </Link>
               </div>
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Modals */}
-      <SystemModal
-        isOpen={isSystemModalOpen}
-        onClose={handleCloseSystemModal}
-        onSuccess={handleModalSuccess}
-        systemId={editingSystem?.id}
-        initialData={editingSystem || undefined}
-      />
-
+      {/* Delete Dialog (lightweight modal for confirmations is acceptable) */}
       {deleteSystem && (
         <DeleteSystemDialog
           isOpen={Boolean(deleteSystem)}
           onClose={handleCloseDeleteDialog}
-          onSuccess={handleModalSuccess}
+          onSuccess={handleDeleteSuccess}
           systemId={deleteSystem.id}
           systemName={deleteSystem.name}
         />

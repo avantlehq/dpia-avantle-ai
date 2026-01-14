@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { 
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import {
   ArrowRight,
   Plus,
   Search,
@@ -16,14 +18,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { DataFlowModal } from '@/components/context/DataFlowModal'
 import { DeleteDataFlowDialog } from '@/components/context/DeleteDataFlowDialog'
 
 // Force dynamic rendering to avoid SSR issues
@@ -79,14 +80,14 @@ const getCriticalityColor = (criticality?: Criticality) => {
 }
 
 export default function DataFlowsPage() {
+  const params = useParams()
+  const locale = params?.locale as string || 'en'
   const [dataFlows, setDataFlows] = useState<DataFlow[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedDirection, setSelectedDirection] = useState('')
   const [isLoading, setIsLoading] = useState(true)
-  
-  // Modal states
-  const [isFlowModalOpen, setIsFlowModalOpen] = useState(false)
-  const [editingFlow, setEditingFlow] = useState<DataFlow | null>(null)
+
+  // Delete dialog states only
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
   const [flowToDelete, setFlowToDelete] = useState<{id: string; name: string} | null>(null)
   
@@ -108,29 +109,10 @@ export default function DataFlowsPage() {
     fetchDataFlows()
   }, [])
 
-  // Modal handlers
-  const handleAddFlow = () => {
-    setEditingFlow(null)
-    setIsFlowModalOpen(true)
-  }
-
-  const handleEditFlow = (flow: DataFlow) => {
-    setEditingFlow(flow)
-    setIsFlowModalOpen(true)
-  }
-
-  const handleDeleteFlow = (flow: DataFlow) => {
+  // Delete handlers only
+  const handleDelete = (flow: DataFlow) => {
     setFlowToDelete({ id: flow.id, name: flow.name })
     setIsDeleteDialogOpen(true)
-  }
-
-  const handleModalClose = () => {
-    setIsFlowModalOpen(false)
-    setEditingFlow(null)
-  }
-
-  const handleModalSuccess = () => {
-    fetchDataFlows()
   }
 
   const handleDeleteDialogClose = () => {
@@ -140,6 +122,7 @@ export default function DataFlowsPage() {
 
   const handleDeleteSuccess = () => {
     fetchDataFlows()
+    handleDeleteDialogClose()
   }
 
   const filteredDataFlows = dataFlows.filter(flow => {
@@ -169,15 +152,16 @@ export default function DataFlowsPage() {
           </p>
         </div>
         
-        <Button 
-          variant="primary" 
-          size="md"
-          className="gap-2"
-          onClick={handleAddFlow}
-        >
-          <Plus className="h-4 w-4" />
-          Add Data Flow
-        </Button>
+        <Link href={`/${locale}/context/data-flows/new`}>
+          <Button
+            variant="primary"
+            size="md"
+            className="gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Add Data Flow
+          </Button>
+        </Link>
       </div>
 
       {/* Data Flows Status Overview - matching assessments pills */}
@@ -374,10 +358,12 @@ export default function DataFlowsPage() {
                   : 'Start mapping data flows between your systems and vendors for better data governance.'
                 }
               </p>
-              <Button variant="primary" className="gap-2" onClick={handleAddFlow}>
-                <Plus className="h-4 w-4" />
-                Create First Flow
-              </Button>
+              <Link href={`/${locale}/context/data-flows/new`}>
+                <Button variant="primary" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Create First Flow
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="space-y-4">
@@ -467,17 +453,18 @@ export default function DataFlowsPage() {
                           </td>
                           <td className="py-3 px-4 text-right">
                             <div className="flex items-center justify-end gap-2">
-                              <Button 
-                                variant="ghost" 
+                              <Link href={`/${locale}/context/data-flows/${flow.id}`}>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                >
+                                  <Edit className="h-4 w-4" />
+                                </Button>
+                              </Link>
+                              <Button
+                                variant="ghost"
                                 size="sm"
-                                onClick={() => handleEditFlow(flow)}
-                              >
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                              <Button 
-                                variant="ghost" 
-                                size="sm"
-                                onClick={() => handleDeleteFlow(flow)}
+                                onClick={() => handleDelete(flow)}
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
@@ -495,25 +482,19 @@ export default function DataFlowsPage() {
                 <p className="text-sm text-muted-foreground">
                   Showing {filteredDataFlows.length} data flows
                 </p>
-                <Button variant="outline" size="sm" className="gap-2" onClick={handleAddFlow}>
-                  <Plus className="h-4 w-4" />
-                  Add New
-                </Button>
+                <Link href={`/${locale}/context/data-flows/new`}>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <Plus className="h-4 w-4" />
+                    Add New
+                  </Button>
+                </Link>
               </div>
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Modals */}
-      <DataFlowModal
-        isOpen={isFlowModalOpen}
-        onClose={handleModalClose}
-        onSuccess={handleModalSuccess}
-        flowId={editingFlow?.id}
-        initialData={editingFlow || undefined}
-      />
-
+      {/* Delete Dialog */}
       <DeleteDataFlowDialog
         isOpen={isDeleteDialogOpen}
         onClose={handleDeleteDialogClose}

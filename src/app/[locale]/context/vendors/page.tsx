@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { 
+import Link from 'next/link'
+import {
   Users,
   Plus,
   Search,
@@ -23,8 +24,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { VendorModal } from '@/components/context/VendorModal'
 import { DeleteVendorDialog } from '@/components/context/DeleteVendorDialog'
+import { useParams } from 'next/navigation'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -64,14 +65,14 @@ const getVendorRoleColor = (role: VendorRole) => {
 }
 
 export default function VendorsPage() {
+  const params = useParams()
+  const locale = params.locale as string
   const [vendors, setVendors] = useState<Vendor[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedRole, setSelectedRole] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
-  // Modal states
-  const [isVendorModalOpen, setIsVendorModalOpen] = useState(false)
-  const [editingVendor, setEditingVendor] = useState<Vendor | null>(null)
+  // Delete dialog state only (modal-to-page refactoring complete)
   const [deleteVendor, setDeleteVendor] = useState<{ id: string; name: string } | null>(null)
 
   // Fetch vendors from API
@@ -115,27 +116,12 @@ export default function VendorsPage() {
     return new Date(dpaExpires) < new Date()
   }
 
-  const handleAddVendor = () => {
-    setEditingVendor(null)
-    setIsVendorModalOpen(true)
-  }
-
-  const handleEditVendor = (vendor: Vendor) => {
-    setEditingVendor(vendor)
-    setIsVendorModalOpen(true)
-  }
-
   const handleDeleteVendor = (vendor: Vendor) => {
     setDeleteVendor({ id: vendor.id, name: vendor.name })
   }
 
-  const handleModalSuccess = () => {
+  const handleDeleteSuccess = () => {
     fetchVendors() // Refresh the list
-  }
-
-  const handleCloseVendorModal = () => {
-    setIsVendorModalOpen(false)
-    setEditingVendor(null)
   }
 
   const handleCloseDeleteDialog = () => {
@@ -153,15 +139,16 @@ export default function VendorsPage() {
           </p>
         </div>
         
-        <Button
-          variant="primary"
-          size="md"
-          className="gap-2"
-          onClick={handleAddVendor}
-        >
-          <Plus className="h-4 w-4" />
-          Add Vendor
-        </Button>
+        <Link href={`/${locale}/context/vendors/new`}>
+          <Button
+            variant="primary"
+            size="md"
+            className="gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Add Vendor
+          </Button>
+        </Link>
       </div>
 
       {/* Vendors Status Overview - matching assessments pills */}
@@ -358,10 +345,12 @@ export default function VendorsPage() {
                   : 'Start by adding your first vendor or data processor to track DPA agreements.'
                 }
               </p>
-              <Button variant="primary" className="gap-2" onClick={handleAddVendor}>
-                <Plus className="h-4 w-4" />
-                Add First Vendor
-              </Button>
+              <Link href={`/${locale}/context/vendors/new`}>
+                <Button variant="primary" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add First Vendor
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="space-y-4">
@@ -466,14 +455,15 @@ export default function VendorsPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleEditVendor(vendor)}
-                              title="Edit vendor"
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
+                            <Link href={`/${locale}/context/vendors/${vendor.id}`}>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                title="Edit vendor"
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                            </Link>
                             <Button
                               variant="ghost"
                               size="sm"
@@ -495,30 +485,24 @@ export default function VendorsPage() {
                 <p className="text-sm text-muted-foreground">
                   Showing {filteredVendors.length} vendors
                 </p>
-                <Button variant="outline" size="sm" className="gap-2" onClick={handleAddVendor}>
-                  <Plus className="h-4 w-4" />
-                  Add New
-                </Button>
+                <Link href={`/${locale}/context/vendors/new`}>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <Plus className="h-4 w-4" />
+                    Add New
+                  </Button>
+                </Link>
               </div>
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Modals */}
-      <VendorModal
-        isOpen={isVendorModalOpen}
-        onClose={handleCloseVendorModal}
-        onSuccess={handleModalSuccess}
-        vendorId={editingVendor?.id}
-        initialData={editingVendor || undefined}
-      />
-
+      {/* Delete Dialog (lightweight modal for confirmations is acceptable) */}
       {deleteVendor && (
         <DeleteVendorDialog
           isOpen={Boolean(deleteVendor)}
           onClose={handleCloseDeleteDialog}
-          onSuccess={handleModalSuccess}
+          onSuccess={handleDeleteSuccess}
           vendorId={deleteVendor.id}
           vendorName={deleteVendor.name}
         />

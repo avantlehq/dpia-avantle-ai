@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { 
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import {
   Plus,
   Search,
   Edit,
@@ -14,14 +16,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { DataCategoryModal } from '@/components/context/DataCategoryModal'
 import { DeleteDataCategoryDialog } from '@/components/context/DeleteDataCategoryDialog'
 
 // Force dynamic rendering to avoid SSR issues
@@ -77,15 +78,15 @@ const getSensitivityColor = (sensitivity: DataCategory['sensitivity']) => {
 }
 
 export default function DataCategoriesPage() {
+  const params = useParams()
+  const locale = params.locale as string
   const [categories, setCategories] = useState<DataCategory[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedType, setSelectedType] = useState('')
   const [selectedSensitivity, setSelectedSensitivity] = useState('')
   const [isLoading, setIsLoading] = useState(true)
-  
-  // Modal states
-  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false)
-  const [editingCategory, setEditingCategory] = useState<DataCategory | null>(null)
+
+  // Delete dialog state
   const [deleteCategory, setDeleteCategory] = useState<{ id: string; name: string } | null>(null)
   
   // Fetch data categories from API
@@ -120,27 +121,12 @@ export default function DataCategoriesPage() {
     return matchesSearch && matchesType && matchesSensitivity
   })
 
-  const handleAddCategory = () => {
-    setEditingCategory(null)
-    setIsCategoryModalOpen(true)
-  }
-
-  const handleEditCategory = (category: DataCategory) => {
-    setEditingCategory(category)
-    setIsCategoryModalOpen(true)
-  }
-
-  const handleDeleteCategory = (category: DataCategory) => {
+  const handleDelete = (category: DataCategory) => {
     setDeleteCategory({ id: category.id, name: category.name })
   }
 
-  const handleModalSuccess = () => {
+  const handleDeleteSuccess = () => {
     fetchDataCategories() // Refresh the list
-  }
-
-  const handleCloseCategoryModal = () => {
-    setIsCategoryModalOpen(false)
-    setEditingCategory(null)
   }
 
   const handleCloseDeleteDialog = () => {
@@ -158,15 +144,16 @@ export default function DataCategoriesPage() {
           </p>
         </div>
         
-        <Button 
-          variant="primary" 
-          size="md"
-          className="gap-2"
-          onClick={handleAddCategory}
-        >
-          <Plus className="h-4 w-4" />
-          Add Data Category
-        </Button>
+        <Link href={`/${locale}/context/data-categories/new`}>
+          <Button
+            variant="primary"
+            size="md"
+            className="gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Add Data Category
+          </Button>
+        </Link>
       </div>
 
       {/* Data Categories Status Overview - matching assessments pills */}
@@ -379,10 +366,12 @@ export default function DataCategoriesPage() {
                   : 'Start building your data classification system for GDPR Article 6 & 9 compliance.'
                 }
               </p>
-              <Button variant="primary" className="gap-2" onClick={handleAddCategory}>
-                <Plus className="h-4 w-4" />
-                Add First Category
-              </Button>
+              <Link href={`/${locale}/context/data-categories/new`}>
+                <Button variant="primary" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add First Category
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="space-y-4">
@@ -450,18 +439,19 @@ export default function DataCategoriesPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Button 
-                              variant="ghost" 
+                            <Link href={`/${locale}/context/data-categories/${category.id}`}>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                title="Edit category"
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                            </Link>
+                            <Button
+                              variant="ghost"
                               size="sm"
-                              onClick={() => handleEditCategory(category)}
-                              title="Edit category"
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => handleDeleteCategory(category)}
+                              onClick={() => handleDelete(category)}
                               title="Delete category"
                             >
                               <Trash2 className="h-4 w-4" />
@@ -479,30 +469,24 @@ export default function DataCategoriesPage() {
                 <p className="text-sm text-muted-foreground">
                   Showing {filteredCategories.length} data categories
                 </p>
-                <Button variant="outline" size="sm" className="gap-2" onClick={handleAddCategory}>
-                  <Plus className="h-4 w-4" />
-                  Add New
-                </Button>
+                <Link href={`/${locale}/context/data-categories/new`}>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <Plus className="h-4 w-4" />
+                    Add New
+                  </Button>
+                </Link>
               </div>
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Modals */}
-      <DataCategoryModal
-        isOpen={isCategoryModalOpen}
-        onClose={handleCloseCategoryModal}
-        onSuccess={handleModalSuccess}
-        categoryId={editingCategory?.id}
-        initialData={editingCategory || undefined}
-      />
-
+      {/* Delete Dialog */}
       {deleteCategory && (
         <DeleteDataCategoryDialog
           isOpen={Boolean(deleteCategory)}
           onClose={handleCloseDeleteDialog}
-          onSuccess={handleModalSuccess}
+          onSuccess={handleDeleteSuccess}
           categoryId={deleteCategory.id}
           categoryName={deleteCategory.name}
         />

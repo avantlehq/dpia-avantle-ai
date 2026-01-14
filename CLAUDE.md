@@ -23,15 +23,17 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.24.202 - Context Module Complete + Route Fixes**
+**Current Version: 3.25.0 - Context Refactor: Modal → Multi-page Workflow**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
-- **Context Module CRUD**: Complete CRUD operations for ALL 6 sub-modules (Systems, Vendors, Locations, Data Categories, Data Flows, Processing Activities)
-- **Vendor Management**: DPA tracking, jurisdiction monitoring, vendor role classification (Processor, Joint Controller, Recipient, Sub-processor)
-- **Location Management**: GDPR adequacy decisions, transfer safeguards (SCCs, BCRs), data localization requirements
-- **Data Flow Mapping**: GDPR compliance tracking, encryption monitoring, cross-border transfer detection
-- **GDPR Compliance**: Article 6 & 9 data classification, ROPA management, adequacy decisions
+- **Context Module Multi-page Workflow**: Complete refactor from modal overlays to full-page forms with deep linking, browser navigation, and improved mobile UX
+- **Systems Management**: Multi-page CRUD (/systems/new, /systems/[id]) with criticality tracking and ownership management
+- **Vendor Management**: Multi-page CRUD (/vendors/new, /vendors/[id]) with DPA tracking, jurisdiction monitoring, vendor role classification
+- **Location Management**: Multi-page CRUD (/locations/new, /locations/[id]) with GDPR adequacy decisions, transfer safeguards (SCCs, BCRs)
+- **Data Category Management**: Multi-page CRUD (/data-categories/new, /data-categories/[id]) with Article 6 & 9 classification, parent/child hierarchy
+- **Data Flow Mapping**: Multi-page CRUD (/data-flows/new, /data-flows/[id]) with encryption monitoring, cross-border transfer detection
+- **Processing Activities**: Multi-page CRUD (/processing/new, /processing/[id]) with ROPA compliance, lawful basis tracking, DPO review flags
 - **Context API Endpoints**: All functional - `/api/v1/context/{systems,vendors,locations,data-flows,data-categories,processing-activities}`
 - **DPIA Workflow**: Pre-check (8 questions) + Builder (4 sections) + PDF export with localized assessment routes
 - **Platform Dashboard**: Unified compliance overview with 92% score calculation methodology
@@ -64,20 +66,26 @@ Privacy Platform 3.24.202    Context · Privacy · Risk · Controls · Training 
 ```
 
 **Module Overview:**
-- **Context Module** ✅ - Data inventory, systems, flows, vendors, locations (complete CRUD with modals)
+- **Context Module** ✅ - Data inventory, systems, flows, vendors, locations (complete CRUD with multi-page workflow)
 - **Privacy Module** ✅ - DPIA, LIA, TIA assessments (DPIA complete with multi-page workflow)
 - **Risk Module** 🔄 - Risk management and scoring (UI complete)
 - **Controls Module** 🔄 - Security controls and measures (UI complete)
 - **Training Module** 🔄 - Staff training and awareness (UI complete)
 - **Trust Center** ✅ - Governance and audit documentation
 
-### **⚠️ Planned Refactoring (Next Phase)**
+### **✅ Completed Refactoring (v3.25.0)**
 **Context Module: Modal → Multi-page Workflow**
-- Current: Modal-based CRUD (overlays) for Systems, Vendors, Locations, Data Categories, Data Flows, Processing Activities
-- Planned: Multi-page workflow similar to `/assessments/new` pattern
-- Reason: Better scalability for complex forms, deep linking, mobile UX, browser navigation
-- Estimate: 8-10 hours implementation
-- Priority: High - improves UX consistency across platform
+- Status: ✅ COMPLETE - All 6 sub-modules migrated
+- Implementation: Multi-page workflow with /new and /[id] routes for all Context modules
+- Benefits Achieved:
+  - Deep linking support (shareable URLs to specific edit forms)
+  - Browser back button works correctly
+  - Improved mobile UX (full-page forms vs modal overlays)
+  - Consistent UX pattern across entire platform
+  - Better SEO and accessibility
+- Architecture: Client wrapper library (src/lib/context/), shared ContextFormShell component
+- Bilingual Support: Slovak/English throughout all forms
+- Delete Operations: Retained lightweight modal confirmations (UX best practice)
 
 ## 🎯 **MICROSERVICES STRATEGY**
 
@@ -109,16 +117,16 @@ Backend API Services:
 - **Typography Scale**: Professional hierarchy (3xl to xs) with line heights
 - **Component Tokens**: Border-radius, shadows, transitions, z-index
 
-### **Professional Modal System (Current - Planned for Refactoring)**
-- **SystemModal**: System types, criticality, ownership tracking with comprehensive validation
-- **VendorModal**: Vendor roles, DPA tracking, contact management, jurisdiction monitoring
-- **LocationModal**: GDPR adequacy decisions, transfer safeguards, data localization requirements
-- **DataFlowModal**: Flow direction, endpoints, encryption, cross-border tracking
-- **DataCategoryModal**: GDPR Article 6 & 9 classification with legal basis validation
-- **ProcessingActivityModal**: ROPA compliance, lawful basis, special category processing
-- **Delete Dialogs**: GDPR-specific warnings about data lineage impact and compliance records
+### **Multi-page Form System (v3.25.0 - COMPLETE)**
+- **SystemForm**: System types, criticality, ownership tracking with comprehensive validation (/systems/new, /systems/[id])
+- **VendorForm**: Vendor roles, DPA tracking, contact management, jurisdiction monitoring (/vendors/new, /vendors/[id])
+- **LocationForm**: GDPR adequacy decisions, transfer safeguards, data localization requirements (/locations/new, /locations/[id])
+- **DataFlowForm**: Flow direction, endpoints, encryption, cross-border tracking (/data-flows/new, /data-flows/[id])
+- **DataCategoryForm**: GDPR Article 6 & 9 classification with legal basis validation (/data-categories/new, /data-categories/[id])
+- **ProcessingActivityForm**: ROPA compliance, lawful basis, special category processing (/processing/new, /processing/[id])
+- **Delete Dialogs**: GDPR-specific warnings about data lineage impact and compliance records (lightweight modals retained)
 
-**Note**: All modals currently use overlay pattern. Planned migration to multi-page workflow for better UX scalability.
+**Architecture**: All forms use ContextFormShell component for consistent layout, import from src/lib/context/ wrapper library, support full i18n.
 
 ### **Form Control Rules**
 - **2 options**: Segmented control (Yes/No)
@@ -137,11 +145,12 @@ Backend API Services:
 - **Data Flows** ✅ - Flow mapping with direction tracking, encryption monitoring, cross-border transfer detection
 - **Processing Activities** ✅ - ROPA compliance with Article 30 requirements, lawful basis, DPO review flags
 
-**Implementation Pattern**: Modal-based CRUD (Create/Edit via overlay, Delete via confirmation dialog)
-**Planned Migration**: Multi-page workflow for improved UX scalability and mobile experience
+**Implementation Pattern**: Multi-page workflow (Create/Edit via full pages with routes, Delete via lightweight confirmation modals)
+**Migration Complete**: v3.25.0 - All 6 modules now use multi-page pattern for improved UX, SEO, and accessibility
 
 **Security**: Multi-tenant RLS isolation, service role authentication
 **Storage**: Supabase Storage for PDF/DOCX exports
+**Client Library**: src/lib/context/ - Type-safe fetch wrappers for all Context API endpoints
 
 ## Development Workflow
 
@@ -175,33 +184,33 @@ git add . && git commit -m "message" && git push origin main
 
 ## Recent Changes (Last Session)
 
-### **v3.24.202 - 2026-01-13**
-**Route Fix: Localized Assessment Page**
-- Fixed 404 errors in browser console for `/[locale]/assessment?id=...` routes
-- Created localized assessment detail page with Slovak/English support
-- Assessment table links now properly navigate to locale-aware routes
+### **v3.25.0 - 2026-01-14**
+**🏗️ CONTEXT REFACTOR: Modal → Multi-page Workflow Complete**
+- **ARCHITECTURE TRANSFORMATION**: Migrated all 6 Context sub-modules from modal overlays to multi-page workflow
+- **DEEP LINKING**: Share direct URLs (e.g., /en/context/systems/abc-123) - resolves previous limitation
+- **BROWSER NAVIGATION**: Back button works correctly - resolves previous technical debt
+- **MOBILE UX**: Full-page forms provide superior experience vs modal overlays
+- **CLIENT LIBRARY**: Created src/lib/context/ with type-safe fetch wrappers (systems.ts, vendors.ts, locations.ts, data-categories.ts, data-flows.ts, processing-activities.ts)
+- **SHARED SHELL**: ContextFormShell component for consistent form layout across all modules
+- **BILINGUAL FORMS**: Slovak/English support in all Context forms with locale-aware routes
+- **ROUTE STRUCTURE**: Consistent /[module]/new and /[module]/[id] pattern for all 6 modules
+- **404 HANDLING**: Custom not-found.tsx pages for each module with proper error messaging
+- **DELETE DIALOGS**: Retained lightweight modal confirmations (UX best practice for destructive actions)
+- **BUILD SUCCESS**: Zero TypeScript errors, all routes generated correctly
+- **TECHNICAL DEBT RESOLVED**: Eliminated all known modal UX limitations from v3.24.x
 
-### **v3.24.201 - 2026-01-13**
-**Context Locations: Complete CRUD**
-- LocationModal with jurisdiction classification (EU Member State, EEA, Third Country, International)
-- GDPR adequacy decision tracking with decision dates and references
-- Transfer safeguards monitoring (SCCs, BCRs) with description fields
-- Data localization requirements flag for jurisdictions with localization laws
-- DeleteLocationDialog with GDPR-specific warnings
-
-### **v3.24.200 - 2026-01-13**
-**Context Vendors: Complete CRUD**
-- VendorModal with vendor role classification (Processor, Joint Controller, Recipient, Sub-processor)
-- DPA tracking with expiration dates and compliance monitoring
-- Contact management (primary contact, email, website)
-- Jurisdiction/location tracking for cross-border transfer compliance
-- DeleteVendorDialog with warnings about DPA agreements and compliance records
+**Modules Migrated**:
+1. ✅ Systems - SystemForm with /systems/new, /systems/[id]
+2. ✅ Vendors - VendorForm with /vendors/new, /vendors/[id]
+3. ✅ Locations - LocationForm with /locations/new, /locations/[id]
+4. ✅ Data Categories - DataCategoryForm with /data-categories/new, /data-categories/[id]
+5. ✅ Data Flows - DataFlowForm with /data-flows/new, /data-flows/[id]
+6. ✅ Processing Activities - ProcessingActivityForm with /processing/new, /processing/[id]
 
 ### **Known Issues & Technical Debt**
-- **Modal UX Limitations**: Context module uses modal overlays which can be claustrophobic on mobile
-- **No Deep Linking**: Cannot share direct links to "edit system XYZ" (modals don't have URLs)
-- **Browser Back Button**: Doesn't work for closing modals (non-standard navigation)
-- **Planned Migration**: Refactor Context CRUD from modals to multi-page workflow (~8-10 hours)
+- ~~Modal UX Limitations~~ ✅ RESOLVED in v3.25.0 - Multi-page workflow implemented
+- ~~No Deep Linking~~ ✅ RESOLVED in v3.25.0 - All routes support direct URLs
+- ~~Browser Back Button~~ ✅ RESOLVED in v3.25.0 - Standard browser navigation works correctly
 
 ## Communication Style
 

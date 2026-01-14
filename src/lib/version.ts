@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.24.202" as const
-export const VERSION_NAME = "🔧 ROUTE FIX: Localized Assessment Page - 404 Errors Resolved" as const
-export const BUILD_DATE = "2026-01-13"
+export const VERSION = "3.25.0" as const
+export const VERSION_NAME = "🏗️ CONTEXT REFACTOR: Modal → Multi-page Workflow Complete" as const
+export const BUILD_DATE = "2026-01-14"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,30 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.0": {
+    date: "2026-01-14",
+    name: "🏗️ CONTEXT REFACTOR: Modal → Multi-page Workflow Complete",
+    features: [
+      "CONTEXT MODULE ARCHITECTURE REFACTOR: Complete migration from modal overlays to multi-page workflow for all 6 Context sub-modules",
+      "DEEP LINKING SUPPORT: Share direct URLs to edit forms (e.g., /en/context/systems/abc-123)",
+      "BROWSER NAVIGATION FIXED: Back button works correctly, no more trapped modal states",
+      "MOBILE UX IMPROVED: Full-page forms provide better experience than modal overlays",
+      "CLIENT WRAPPER LIBRARY: New src/lib/context/ with type-safe fetch functions for all modules",
+      "SHARED FORM SHELL: ContextFormShell component for consistent layout across all Context forms",
+      "SYSTEMS MODULE: SystemForm with /systems/new and /systems/[id] routes",
+      "VENDORS MODULE: VendorForm with /vendors/new and /vendors/[id] routes + DPA tracking",
+      "LOCATIONS MODULE: LocationForm with /locations/new and /locations/[id] routes + GDPR adequacy fields",
+      "DATA CATEGORIES MODULE: DataCategoryForm with /data-categories/new and /data-categories/[id] routes + Article 6/9 classification",
+      "DATA FLOWS MODULE: DataFlowForm with /data-flows/new and /data-flows/[id] routes + encryption monitoring",
+      "PROCESSING ACTIVITIES MODULE: ProcessingActivityForm with /processing/new and /processing/[id] routes + ROPA compliance",
+      "BILINGUAL FORMS: All forms support Slovak/English with locale-aware routes",
+      "CACHE INVALIDATION: Proper router.refresh() after mutations to prevent stale data",
+      "404 HANDLING: Custom not-found.tsx pages for each module with proper error messaging",
+      "DELETE DIALOGS RETAINED: Lightweight modal confirmations remain for delete operations (UX best practice)",
+      "CONSISTENT PATTERN: All 6 modules follow identical route structure for maintainability",
+      "ZERO BUILD ERRORS: TypeScript compilation successful with full type safety"
+    ]
+  },
   "3.24.202": {
     date: "2026-01-13",
     name: "🔧 ROUTE FIX: Localized Assessment Page - 404 Errors Resolved",

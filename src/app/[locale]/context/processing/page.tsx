@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { 
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import {
   Plus,
   Search,
   Edit,
@@ -15,14 +17,13 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { 
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { ProcessingActivityModal } from '@/components/context/ProcessingActivityModal'
 import { DeleteProcessingActivityDialog } from '@/components/context/DeleteProcessingActivityDialog'
 
 // Force dynamic rendering to avoid SSR issues
@@ -69,14 +70,15 @@ const getLawfulBasisColor = (basis: LawfulBasis) => {
 }
 
 export default function ProcessingPage() {
+  const params = useParams()
+  const locale = params?.locale as string || 'en'
+
   const [activities, setActivities] = useState<ProcessingActivity[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedBasis, setSelectedBasis] = useState('')
   const [isLoading, setIsLoading] = useState(true)
-  
-  // Modal states
-  const [isActivityModalOpen, setIsActivityModalOpen] = useState(false)
-  const [editingActivity, setEditingActivity] = useState<ProcessingActivity | null>(null)
+
+  // Delete dialog state only
   const [deleteActivity, setDeleteActivity] = useState<{ id: string; name: string } | null>(null)
   
   // Fetch processing activities from API
@@ -112,27 +114,12 @@ export default function ProcessingPage() {
     return new Date(reviewDate) < new Date()
   }
 
-  const handleAddActivity = () => {
-    setEditingActivity(null)
-    setIsActivityModalOpen(true)
-  }
-
-  const handleEditActivity = (activity: ProcessingActivity) => {
-    setEditingActivity(activity)
-    setIsActivityModalOpen(true)
-  }
-
-  const handleDeleteActivity = (activity: ProcessingActivity) => {
+  const handleDelete = (activity: ProcessingActivity) => {
     setDeleteActivity({ id: activity.id, name: activity.name })
   }
 
-  const handleModalSuccess = () => {
+  const handleDeleteSuccess = () => {
     fetchProcessingActivities() // Refresh the list
-  }
-
-  const handleCloseActivityModal = () => {
-    setIsActivityModalOpen(false)
-    setEditingActivity(null)
   }
 
   const handleCloseDeleteDialog = () => {
@@ -150,15 +137,16 @@ export default function ProcessingPage() {
           </p>
         </div>
         
-        <Button 
-          variant="primary" 
-          size="md"
-          className="gap-2"
-          onClick={handleAddActivity}
-        >
-          <Plus className="h-4 w-4" />
-          Add Processing Activity
-        </Button>
+        <Link href={`/${locale}/context/processing/new`}>
+          <Button
+            variant="primary"
+            size="md"
+            className="gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Add Processing Activity
+          </Button>
+        </Link>
       </div>
 
       {/* Processing Activities Status Overview - matching assessments pills */}
@@ -357,10 +345,12 @@ export default function ProcessingPage() {
                   : 'Start building your Record of Processing Activities (ROPA) for GDPR Article 30 compliance.'
                 }
               </p>
-              <Button variant="primary" className="gap-2" onClick={handleAddActivity}>
-                <Plus className="h-4 w-4" />
-                Add First Activity
-              </Button>
+              <Link href={`/${locale}/context/processing/new`}>
+                <Button variant="primary" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add First Activity
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="space-y-4">
@@ -443,18 +433,19 @@ export default function ProcessingPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Button 
-                              variant="ghost" 
+                            <Link href={`/${locale}/context/processing/${activity.id}`}>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                title="Edit activity"
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                            </Link>
+                            <Button
+                              variant="ghost"
                               size="sm"
-                              onClick={() => handleEditActivity(activity)}
-                              title="Edit activity"
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => handleDeleteActivity(activity)}
+                              onClick={() => handleDelete(activity)}
                               title="Delete activity"
                             >
                               <Trash2 className="h-4 w-4" />
@@ -472,30 +463,24 @@ export default function ProcessingPage() {
                 <p className="text-sm text-muted-foreground">
                   Showing {filteredActivities.length} processing activities
                 </p>
-                <Button variant="outline" size="sm" className="gap-2" onClick={handleAddActivity}>
-                  <Plus className="h-4 w-4" />
-                  Add New
-                </Button>
+                <Link href={`/${locale}/context/processing/new`}>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <Plus className="h-4 w-4" />
+                    Add New
+                  </Button>
+                </Link>
               </div>
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Modals */}
-      <ProcessingActivityModal
-        isOpen={isActivityModalOpen}
-        onClose={handleCloseActivityModal}
-        onSuccess={handleModalSuccess}
-        activityId={editingActivity?.id}
-        initialData={editingActivity || undefined}
-      />
-
+      {/* Delete Dialog */}
       {deleteActivity && (
         <DeleteProcessingActivityDialog
           isOpen={Boolean(deleteActivity)}
           onClose={handleCloseDeleteDialog}
-          onSuccess={handleModalSuccess}
+          onSuccess={handleDeleteSuccess}
           activityId={deleteActivity.id}
           activityName={deleteActivity.name}
         />

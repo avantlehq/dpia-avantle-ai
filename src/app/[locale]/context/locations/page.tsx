@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
-import { 
+import Link from 'next/link'
+import { useParams } from 'next/navigation'
+import {
   MapPin,
   Plus,
   Search,
@@ -24,7 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { LocationModal } from '@/components/context/LocationModal'
 import { DeleteLocationDialog } from '@/components/context/DeleteLocationDialog'
 
 // Force dynamic rendering to avoid SSR issues
@@ -84,15 +85,16 @@ const getAdequacyStatusColor = (status: AdequacyStatus) => {
 }
 
 export default function LocationsPage() {
+  const params = useParams()
+  const locale = params?.locale as string || 'en'
+
   const [locations, setLocations] = useState<Location[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedJurisdiction, setSelectedJurisdiction] = useState('')
   const [selectedAdequacy, setSelectedAdequacy] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
-  // Modal states
-  const [isLocationModalOpen, setIsLocationModalOpen] = useState(false)
-  const [editingLocation, setEditingLocation] = useState<Location | null>(null)
+  // Delete dialog state
   const [deleteLocation, setDeleteLocation] = useState<{ id: string; name: string } | null>(null)
 
   // Fetch locations from API
@@ -134,27 +136,12 @@ export default function LocationsPage() {
     }
   }
 
-  const handleAddLocation = () => {
-    setEditingLocation(null)
-    setIsLocationModalOpen(true)
-  }
-
-  const handleEditLocation = (location: Location) => {
-    setEditingLocation(location)
-    setIsLocationModalOpen(true)
-  }
-
   const handleDeleteLocation = (location: Location) => {
     setDeleteLocation({ id: location.id, name: location.name })
   }
 
-  const handleModalSuccess = () => {
+  const handleDeleteSuccess = () => {
     fetchLocations() // Refresh the list
-  }
-
-  const handleCloseLocationModal = () => {
-    setIsLocationModalOpen(false)
-    setEditingLocation(null)
   }
 
   const handleCloseDeleteDialog = () => {
@@ -172,15 +159,16 @@ export default function LocationsPage() {
           </p>
         </div>
         
-        <Button
-          variant="primary"
-          size="md"
-          className="gap-2"
-          onClick={handleAddLocation}
-        >
-          <Plus className="h-4 w-4" />
-          Add Location
-        </Button>
+        <Link href={`/${locale}/context/locations/new`}>
+          <Button
+            variant="primary"
+            size="md"
+            className="gap-2"
+          >
+            <Plus className="h-4 w-4" />
+            Add Location
+          </Button>
+        </Link>
       </div>
 
       {/* Locations Status Overview - matching assessments pills */}
@@ -391,10 +379,12 @@ export default function LocationsPage() {
                   : 'Start by adding your first processing location or jurisdiction for GDPR compliance tracking.'
                 }
               </p>
-              <Button variant="primary" className="gap-2" onClick={handleAddLocation}>
-                <Plus className="h-4 w-4" />
-                Add First Location
-              </Button>
+              <Link href={`/${locale}/context/locations/new`}>
+                <Button variant="primary" className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add First Location
+                </Button>
+              </Link>
             </div>
           ) : (
             <div className="space-y-4">
@@ -467,14 +457,15 @@ export default function LocationsPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleEditLocation(location)}
-                              title="Edit location"
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
+                            <Link href={`/${locale}/context/locations/${location.id}`}>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                title="Edit location"
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                            </Link>
                             <Button
                               variant="ghost"
                               size="sm"
@@ -496,30 +487,24 @@ export default function LocationsPage() {
                 <p className="text-sm text-muted-foreground">
                   Showing {filteredLocations.length} locations
                 </p>
-                <Button variant="outline" size="sm" className="gap-2" onClick={handleAddLocation}>
-                  <Plus className="h-4 w-4" />
-                  Add New
-                </Button>
+                <Link href={`/${locale}/context/locations/new`}>
+                  <Button variant="outline" size="sm" className="gap-2">
+                    <Plus className="h-4 w-4" />
+                    Add New
+                  </Button>
+                </Link>
               </div>
             </div>
           )}
         </CardContent>
       </Card>
 
-      {/* Modals */}
-      <LocationModal
-        isOpen={isLocationModalOpen}
-        onClose={handleCloseLocationModal}
-        onSuccess={handleModalSuccess}
-        locationId={editingLocation?.id}
-        initialData={editingLocation || undefined}
-      />
-
+      {/* Delete Dialog */}
       {deleteLocation && (
         <DeleteLocationDialog
           isOpen={Boolean(deleteLocation)}
           onClose={handleCloseDeleteDialog}
-          onSuccess={handleModalSuccess}
+          onSuccess={handleDeleteSuccess}
           locationId={deleteLocation.id}
           locationName={deleteLocation.name}
         />
