@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.0" as const
-export const VERSION_NAME = "🏗️ CONTEXT REFACTOR: Modal → Multi-page Workflow Complete" as const
+export const VERSION = "3.25.1" as const
+export const VERSION_NAME = "🔧 Build Fixes: TypeScript & ESLint Compliance" as const
 export const BUILD_DATE = "2026-01-14"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.1": {
+    date: "2026-01-14",
+    name: "🔧 Build Fixes: TypeScript & ESLint Compliance",
+    features: [
+      "TYPESCRIPT FIXES: Replaced 6 empty interface extends with type aliases to resolve 'interface declaring no members' errors",
+      "ESLINT FIXES: Escaped apostrophes in 10 not-found.tsx files with proper HTML entities (&apos;)",
+      "REACT ERROR FIX: Removed async modifier from client component in assessment page (no-async-client-component)",
+      "CLIENT LIBRARY: Updated all Context module type definitions (systems, vendors, locations, data-categories, data-flows, processing-activities)",
+      "NOT-FOUND PAGES: Fixed apostrophe escaping in error messages across all Context module 404 pages",
+      "ASSESSMENT PAGE: Refactored to use useParams() hook instead of async params prop",
+      "BUILD STATUS: ✓ Compiled successfully with zero TypeScript errors and ESLint warnings",
+      "GITIGNORE: Added tmpclaude-* pattern to prevent temp file tracking",
+      "CODE QUALITY: Production build passes all linting and type checking requirements"
+    ]
+  },
   "3.25.0": {
     date: "2026-01-14",
     name: "🏗️ CONTEXT REFACTOR: Modal → Multi-page Workflow Complete",

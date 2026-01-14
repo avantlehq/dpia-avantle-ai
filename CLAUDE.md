@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.25.0 - Context Refactor: Modal → Multi-page Workflow**
+**Current Version: 3.25.1 - Build Fixes & Production Ready**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -183,6 +183,18 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.25.1 - 2026-01-14**
+**🔧 Build Fixes: TypeScript & ESLint Compliance**
+- **TYPESCRIPT FIXES**: Resolved 6 'interface declaring no members' errors by replacing empty interface extends with type aliases
+- **ESLINT FIXES**: Escaped apostrophes in 10 not-found.tsx files across all Context modules
+- **REACT ERROR FIX**: Removed async modifier from client component in assessment page (no-async-client-component)
+- **CLIENT LIBRARY UPDATES**: Fixed type definitions in systems.ts, vendors.ts, locations.ts, data-categories.ts, data-flows.ts, processing-activities.ts
+- **404 PAGE UPDATES**: Proper HTML entity escaping (&apos;) in error messages
+- **ASSESSMENT PAGE REFACTOR**: Migrated from async params prop to useParams() hook
+- **BUILD STATUS**: ✓ Compiled successfully with zero TypeScript errors and ESLint warnings
+- **GITIGNORE**: Added tmpclaude-* pattern to prevent temp file tracking in git
+- **PRODUCTION READY**: All code quality checks passing, deployment successful
 
 ### **v3.25.0 - 2026-01-14**
 **🏗️ CONTEXT REFACTOR: Modal → Multi-page Workflow Complete**
