@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.1" as const
-export const VERSION_NAME = "🔧 Build Fixes: TypeScript & ESLint Compliance" as const
-export const BUILD_DATE = "2026-01-14"
+export const VERSION = "3.25.2" as const
+export const VERSION_NAME = "🔧 Context Routes Fix: Async Params & RLS Policies" as const
+export const BUILD_DATE = "2026-01-15"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.2": {
+    date: "2026-01-15",
+    name: "🔧 Context Routes Fix: Async Params & RLS Policies",
+    features: [
+      "NEXT.JS 15+ COMPATIBILITY: Fixed all Context module routes to use async params (Promise<{ locale: string }>)",
+      "ROUTING FIX: Resolved 404 errors on /context/systems/new and all other Context module /new routes",
+      "EDIT PAGES FIX: Updated all [id] edit pages (systems, vendors, locations, data-categories, data-flows, processing) with async params",
+      "BUILD OUTPUT: Context routes now properly appear in Next.js 16 build manifest",
+      "SUPABASE MIGRATION: Added audit columns (created_by, updated_by, deleted_at) to systems table",
+      "RLS POLICIES: Fixed Row Level Security to allow service_role bypass for API operations",
+      "DATABASE SCHEMA: Systems table now compatible with BaseRepository audit requirements",
+      "API FUNCTIONALITY: POST /api/v1/context/systems now works correctly after RLS policy fixes"
+    ]
+  },
   "3.25.1": {
     date: "2026-01-14",
     name: "🔧 Build Fixes: TypeScript & ESLint Compliance",

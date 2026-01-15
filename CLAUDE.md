@@ -154,12 +154,49 @@ Backend API Services:
 
 ## Development Workflow
 
-### **Version Management (MANDATORY)**
-ALWAYS update version after every deployment:
-1. Update `src/lib/version.ts` (VERSION, VERSION_NAME, CHANGELOG)
-2. Update `package.json` version
-3. Commit with version bump message
-4. Push to trigger automatic deployment
+### **⚠️ CRITICAL: Version Management Rule (MANDATORY) ⚠️**
+
+**🚨 THIS RULE CANNOT BE SKIPPED - VERSION MUST BE UPDATED AFTER EVERY CODE CHANGE 🚨**
+
+ALWAYS update version IMMEDIATELY after completing any code changes, before commit:
+
+**Step-by-step process:**
+1. **Update `src/lib/version.ts`**:
+   - Increment VERSION (patch: 3.25.1 → 3.25.2, minor: 3.25.2 → 3.26.0, major: 3.26.0 → 4.0.0)
+   - Update VERSION_NAME with descriptive change summary
+   - Update BUILD_DATE to current date
+   - Add new CHANGELOG entry at the TOP of CHANGELOG object with detailed feature list
+
+2. **Update `package.json` version** to match VERSION from version.ts
+
+3. **Commit with version bump message**:
+   ```bash
+   git add src/lib/version.ts package.json
+   git commit -m "chore: Bump version to v3.25.2 - Context Routes Fix"
+   ```
+
+4. **Push to trigger automatic deployment**
+
+**Why this matters:**
+- Version tracking in production for debugging
+- Cache invalidation for client browsers
+- Changelog visibility for users and team
+- Deployment audit trail
+
+**Example workflow:**
+```bash
+# 1. Make code changes
+# 2. Update version.ts and package.json (DON'T FORGET!)
+# 3. Commit both version files + code changes
+git add -A
+git commit -m "fix: Context routes async params
+
+- Fix Next.js 15+ compatibility
+- Update version to 3.25.2
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>"
+git push origin main
+```
 
 ### **Commands**
 ```bash
