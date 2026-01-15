@@ -2,7 +2,7 @@
 
 Welcome to the Avantle Privacy Platform developer documentation. This directory contains comprehensive technical documentation for developers working on the DPIA platform.
 
-**Latest Update (v3.25.1)**: Context Module multi-page workflow complete. All 6 sub-modules migrated from modal overlays to full-page forms with deep linking, browser navigation, and improved mobile UX.
+**Latest Update (v3.25.2)**: Context routes fixed for Next.js 15+ async params compatibility. All /new and [id] edit pages updated. RLS policies and database schema corrected for API functionality.
 
 ## 📁 Documentation Structure
 
@@ -33,6 +33,15 @@ Welcome to the Avantle Privacy Platform developer documentation. This directory 
 4. Explore [Data Model](./data-model.md) for database interactions
 
 ## 📋 Recent Updates
+
+**Version 3.25.2** - Context Routes Fix & RLS Policies ✅
+- **Next.js 15+ Compatibility**: Fixed all Context module routes to use async params (Promise<{ locale: string }>)
+- **Routing Fix**: Resolved 404 errors on all Context /new routes (systems, vendors, locations, data-categories, data-flows, processing)
+- **Edit Pages Fix**: Updated all [id] edit pages with async params
+- **Database Schema**: Added audit columns (created_by, updated_by, deleted_at) to systems table
+- **RLS Policies**: Fixed Row Level Security to allow service_role bypass for API operations
+- **API Functionality**: POST /api/v1/context/systems now works correctly
+- **Production Tested**: System creation tested and working on production
 
 **Version 3.25.1** - Build Fixes & Production Ready ✅
 - **TypeScript Compliance**: Fixed 6 interface type errors across Context client library

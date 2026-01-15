@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.25.1 - Build Fixes & Production Ready**
+**Current Version: 3.25.2 - Context Routes Fix & RLS Policies**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -221,6 +221,20 @@ git add . && git commit -m "message" && git push origin main
 
 ## Recent Changes (Last Session)
 
+### **v3.25.2 - 2026-01-15**
+**🔧 Context Routes Fix: Async Params & RLS Policies**
+- **NEXT.JS 15+ COMPATIBILITY**: Fixed all Context module routes to use async params (Promise<{ locale: string }>)
+- **ROUTING FIX**: Resolved 404 errors on /en/context/systems/new and all other Context module /new routes
+- **ALL /NEW PAGES FIXED**: Updated systems, vendors, locations, data-categories, data-flows, processing /new pages
+- **ALL [ID] PAGES FIXED**: Updated all edit pages (systems/[id], vendors/[id], locations/[id], etc.) with async params
+- **BUILD OUTPUT**: Context routes now properly appear in Next.js 16 build manifest
+- **SUPABASE MIGRATION**: Added audit columns (created_by, updated_by, deleted_at) to systems table
+- **RLS POLICIES FIXED**: Updated Row Level Security to allow service_role bypass for API operations
+- **DATABASE SCHEMA**: Systems table now has required audit fields matching BaseRepository requirements
+- **API FUNCTIONALITY**: POST /api/v1/context/systems now works correctly - can create systems via API
+- **PRODUCTION TESTED**: System creation tested and working on https://dpia.avantle.ai/en/context/systems/new
+- **VERSION MANAGEMENT**: Strengthened version update rule in CLAUDE.md with critical warnings and step-by-step guide
+
 ### **v3.25.1 - 2026-01-14**
 **🔧 Build Fixes: TypeScript & ESLint Compliance**
 - **TYPESCRIPT FIXES**: Resolved 6 'interface declaring no members' errors by replacing empty interface extends with type aliases
@@ -260,6 +274,10 @@ git add . && git commit -m "message" && git push origin main
 - ~~Modal UX Limitations~~ ✅ RESOLVED in v3.25.0 - Multi-page workflow implemented
 - ~~No Deep Linking~~ ✅ RESOLVED in v3.25.0 - All routes support direct URLs
 - ~~Browser Back Button~~ ✅ RESOLVED in v3.25.0 - Standard browser navigation works correctly
+- ~~Context Routes 404 Errors~~ ✅ RESOLVED in v3.25.2 - Async params implementation for Next.js 15+
+- ~~Systems API 500 Errors~~ ✅ RESOLVED in v3.25.2 - RLS policies fixed for service_role, audit columns added
+
+**Current Status**: All major technical debt resolved. Platform fully functional.
 
 ## Communication Style
 
