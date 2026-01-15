@@ -9,11 +9,11 @@ import { VendorForm } from '@/components/context/VendorForm'
 import { getVendor } from '@/lib/context/vendors'
 
 type Props = {
-  params: { locale: string; id: string }
+  params: Promise<{ locale: string; id: string }>
 }
 
 export default async function EditVendorPage({ params }: Props) {
-  const { locale, id } = params
+  const { locale, id } = await params
 
   // Fetch vendor data (server-side)
   const vendor = await getVendor(id)

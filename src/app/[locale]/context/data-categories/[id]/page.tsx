@@ -9,11 +9,11 @@ import { DataCategoryForm } from '@/components/context/DataCategoryForm'
 import { getDataCategory } from '@/lib/context/data-categories'
 
 type Props = {
-  params: { locale: string; id: string }
+  params: Promise<{ locale: string; id: string }>
 }
 
 export default async function EditDataCategoryPage({ params }: Props) {
-  const { locale, id } = params
+  const { locale, id } = await params
 
   // Fetch data category (server-side)
   const category = await getDataCategory(id)

@@ -7,11 +7,11 @@
 import { DataFlowForm } from '@/components/context/DataFlowForm'
 
 type Props = {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
-export default function NewDataFlowPage({ params }: Props) {
-  const { locale } = params
+export default async function NewDataFlowPage({ params }: Props) {
+  const { locale } = await params
 
   return <DataFlowForm mode="create" locale={locale} />
 }

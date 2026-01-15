@@ -61,7 +61,8 @@
       "WebSearch",
       "Bash(del src/app/global-error.tsx)",
       "Bash(sed:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npx supabase:*)"
     ],
     "deny": [],
     "ask": [],

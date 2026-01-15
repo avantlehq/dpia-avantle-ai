@@ -12,11 +12,11 @@ import { SystemForm } from '@/components/context/SystemForm'
 import { getSystem } from '@/lib/context/systems'
 
 type Props = {
-  params: { locale: string; id: string }
+  params: Promise<{ locale: string; id: string }>
 }
 
 export default async function EditSystemPage({ params }: Props) {
-  const { locale, id } = params
+  const { locale, id } = await params
 
   // Fetch system data (server-side)
   const system = await getSystem(id)

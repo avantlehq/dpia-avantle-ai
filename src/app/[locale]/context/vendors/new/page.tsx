@@ -7,11 +7,11 @@
 import { VendorForm } from '@/components/context/VendorForm'
 
 type Props = {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
-export default function NewVendorPage({ params }: Props) {
-  const { locale } = params
+export default async function NewVendorPage({ params }: Props) {
+  const { locale } = await params
 
   return <VendorForm mode="create" locale={locale} />
 }

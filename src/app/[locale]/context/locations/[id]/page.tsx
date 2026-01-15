@@ -9,11 +9,11 @@ import { LocationForm } from '@/components/context/LocationForm'
 import { getLocation } from '@/lib/context/locations'
 
 type Props = {
-  params: { locale: string; id: string }
+  params: Promise<{ locale: string; id: string }>
 }
 
 export default async function EditLocationPage({ params }: Props) {
-  const { locale, id } = params
+  const { locale, id } = await params
 
   // Fetch location data (server-side)
   const location = await getLocation(id)

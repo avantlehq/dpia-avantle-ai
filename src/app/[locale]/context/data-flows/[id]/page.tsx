@@ -9,11 +9,11 @@ import { DataFlowForm } from '@/components/context/DataFlowForm'
 import { getDataFlow } from '@/lib/context/data-flows'
 
 type Props = {
-  params: { locale: string; id: string }
+  params: Promise<{ locale: string; id: string }>
 }
 
 export default async function EditDataFlowPage({ params }: Props) {
-  const { locale, id } = params
+  const { locale, id } = await params
 
   // Fetch data flow data (server-side)
   const flow = await getDataFlow(id)

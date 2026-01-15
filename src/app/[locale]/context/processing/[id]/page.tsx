@@ -9,11 +9,11 @@ import { ProcessingActivityForm } from '@/components/context/ProcessingActivityF
 import { getProcessingActivity } from '@/lib/context/processing-activities'
 
 type Props = {
-  params: { locale: string; id: string }
+  params: Promise<{ locale: string; id: string }>
 }
 
 export default async function EditProcessingActivityPage({ params }: Props) {
-  const { locale, id } = params
+  const { locale, id } = await params
 
   // Fetch processing activity data (server-side)
   const activity = await getProcessingActivity(id)

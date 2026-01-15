@@ -7,11 +7,11 @@
 import { ProcessingActivityForm } from '@/components/context/ProcessingActivityForm'
 
 type Props = {
-  params: { locale: string }
+  params: Promise<{ locale: string }>
 }
 
 export default async function NewProcessingActivityPage({ params }: Props) {
-  const { locale } = params
+  const { locale } = await params
 
   return <ProcessingActivityForm mode="create" locale={locale} />
 }
