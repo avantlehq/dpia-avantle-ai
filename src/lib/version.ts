@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.46" as const
-export const VERSION_NAME = "✨ Location Fields Restored: description/address/city" as const
+export const VERSION = "3.25.47" as const
+export const VERSION_NAME = "✨ Data Categories: parent_id/special_category_basis Save Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.47": {
+    date: "2026-01-17",
+    name: "✨ Data Categories: parent_id/special_category_basis Save Fix",
+    features: [
+      "Updated prepareCreateData() to allow parent_id and special_category_basis",
+      "Updated prepareUpdateData() to allow parent_id and special_category_basis",
+      "Removed outdated comments about missing columns"
+    ],
+    fixes: [
+      "Data category edit form dropdowns now pre-select correctly",
+      "Parent category selection persists after update",
+      "Special category basis (Article 9) selection persists after update",
+      "All enum dropdowns (category type, sensitivity) persist after update"
+    ],
+    note: "After migration, data category forms now properly save and display all fields including hierarchical relationships"
+  },
   "3.25.46": {
     date: "2026-01-17",
     name: "✨ Location Fields Restored: description/address/city",

@@ -116,7 +116,6 @@ export class DataCategoryRepository extends BaseRepository<
 
   /**
    * Override prepareCreateData - handle potential schema mismatches
-   * Note: Filter out invalid enum value "employment" for special_category_basis
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareCreateData(data: CreateDataCategoryRequest): any {
@@ -125,11 +124,12 @@ export class DataCategoryRepository extends BaseRepository<
       description: data.description,
       category_type: data.category_type,
       sensitivity: data.sensitivity,
+      special_category_basis: data.special_category_basis,
+      parent_id: data.parent_id,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
-      // Note: special_category_basis column doesn't exist in production
-      // Note: parent_id column doesn't exist in production
       // Note: is_standard and status have database defaults
+      // Note: created_by, updated_by will be handled by database triggers
     };
 
     return Object.fromEntries(
@@ -147,9 +147,10 @@ export class DataCategoryRepository extends BaseRepository<
       description: data.description,
       category_type: data.category_type,
       sensitivity: data.sensitivity,
-      // Note: special_category_basis column doesn't exist in production
-      // Note: parent_id column doesn't exist in production
+      special_category_basis: data.special_category_basis,
+      parent_id: data.parent_id,
       // Note: is_standard and status are not in UpdateDataCategoryRequest type
+      // Note: updated_by will be handled by database triggers
     };
 
     return Object.fromEntries(
