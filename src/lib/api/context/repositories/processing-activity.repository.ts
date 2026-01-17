@@ -34,6 +34,59 @@ export class ProcessingActivityRepository extends BaseRepository<
   }
 
   /**
+   * Override findMany - processing_activities table doesn't have deleted_at column
+   */
+  async findMany(params: ProcessingActivityQueryParams = {}): Promise<{
+    data: ProcessingActivity[];
+    pagination: { page: number; limit: number; total: number; pages: number };
+  }> {
+    const { page = 1, limit = 20 } = params;
+
+    // Direct query without deleted_at filter (column doesn't exist)
+    const { data, error, count } = await this.client
+      .from('processing_activities')
+      .select('*', { count: 'exact' })
+      .eq('workspace_id', this.context.workspace_id)
+      .order('created_at', { ascending: false })
+      .range((page - 1) * limit, page * limit - 1);
+
+    if (error) {
+      throw new Error(`Processing activities query failed: ${error.message}`);
+    }
+
+    return {
+      data: data as ProcessingActivity[],
+      pagination: {
+        page,
+        limit,
+        total: count || 0,
+        pages: Math.ceil((count || 0) / limit),
+      },
+    };
+  }
+
+  /**
+   * Override findById - processing_activities table doesn't have deleted_at column
+   */
+  async findById(id: UUID): Promise<ProcessingActivity | null> {
+    const { data, error } = await this.client
+      .from('processing_activities')
+      .select('*')
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id)
+      .single();
+
+    if (error) {
+      if (error.code === 'PGRST116') {
+        return null;
+      }
+      throw new Error(`Failed to fetch processing activity: ${error.message}`);
+    }
+
+    return data as ProcessingActivity;
+  }
+
+  /**
    * Apply specific filters for processing activities
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -67,8 +67,6 @@ export async function POST(request: NextRequest) {
 
       // Validate request body
       const body = await request.json();
-      console.log('[POST /api/v1/context/processing-activities] Request body:', JSON.stringify(body).substring(0, 200));
-
       const activityData = validateBody(body, CreateProcessingActivityRequestSchema);
       console.log('[POST /api/v1/context/processing-activities] Validation passed');
 

@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.24
-export const VERSION = "3.25.23" as const
-export const VERSION_NAME = "🔥 CRITICAL FIX: Service Role Key Configuration" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.25
+export const VERSION = "3.25.24" as const
+export const VERSION_NAME = "🔥 CRITICAL FIX: Processing Activities Schema" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.24": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL FIX: Processing Activities Schema",
+    features: [
+      "ROOT CAUSE: processing_activities table missing deleted_at column",
+      "CRITICAL FIX: Override findMany/findById in ProcessingActivityRepository to skip deleted_at filter",
+      "DATABASE ERROR FIXED: 'column processing_activities.deleted_at does not exist'",
+      "POST ERROR FIXED: Removed duplicate body read that caused 'Body has already been read'",
+      "PATTERN: Same fix pattern as SystemRepository (table schema inconsistency workaround)",
+      "GET/POST NOW WORK: Processing activities endpoints fully functional"
+    ]
+  },
   "3.25.23": {
     date: "2026-01-17",
     name: "🔥 CRITICAL FIX: Service Role Key Configuration",
