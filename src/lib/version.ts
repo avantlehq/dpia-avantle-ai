@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.9" as const
-export const VERSION_NAME = "🔧 Build Fix: Service Method Names" as const
+export const VERSION = "3.25.10" as const
+export const VERSION_NAME = "🔧 Fix: Delete Button & API Client" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.10": {
+    date: "2026-01-17",
+    name: "🔧 Fix: Delete Button & API Client",
+    features: [
+      "DELETE FIX: Added missing Supabase client to GET/PUT/DELETE endpoints in systems/[id]/route.ts",
+      "DATABASE ACCESS: All [id] route operations now have proper database client initialization",
+      "DELETE BUTTON: System delete functionality now works correctly",
+      "UPDATE BUTTON: System update functionality now works correctly",
+      "ROOT CAUSE: ContextService requires client parameter for repository access",
+      "API ENDPOINTS: GET, PUT, DELETE /api/v1/context/systems/[id] all functional"
+    ]
+  },
   "3.25.9": {
     date: "2026-01-17",
     name: "🔧 Build Fix: Service Method Names",
