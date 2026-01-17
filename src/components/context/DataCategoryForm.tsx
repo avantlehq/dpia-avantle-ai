@@ -44,7 +44,7 @@ import {
 const dataCategorySchema = z.object({
   name: z.string().min(1, 'Category name is required').max(255, 'Name too long'),
   description: z.string().max(1000, 'Description too long').optional(),
-  category_type: z.enum(['personal', 'special', 'criminal', 'anonymous']),
+  category_type: z.enum(['personal', 'special', 'criminal']), // Note: 'anonymous' removed - database enum doesn't have this value
   sensitivity: z.enum(['public', 'internal', 'confidential', 'restricted']),
   special_category_basis: z.enum(['none', 'explicit_consent', 'employment', 'vital_interests', 'public_interest', 'healthcare', 'research', 'legal_claims']).optional(),
   is_standard: z.boolean(),
@@ -76,7 +76,7 @@ const categoryTypeOptions = [
   { value: 'personal', label: 'Personal Data (Article 6)', labelSk: 'Osobné údaje (Článok 6)', description: 'Standard personal data under GDPR Article 6', descriptionSk: 'Štandardné osobné údaje podľa článku 6 GDPR' },
   { value: 'special', label: 'Special Category (Article 9)', labelSk: 'Osobitná kategória (Článok 9)', description: 'Sensitive personal data requiring explicit consent', descriptionSk: 'Citlivé osobné údaje vyžadujúce výslovný súhlas' },
   { value: 'criminal', label: 'Criminal Convictions', labelSk: 'Trestné odsúdenia', description: 'Criminal offences and convictions data', descriptionSk: 'Údaje o trestných činoch a odsúdeniach' },
-  { value: 'anonymous', label: 'Anonymous Data', labelSk: 'Anonymné údaje', description: 'Data that cannot identify individuals', descriptionSk: 'Údaje, ktoré nemôžu identifikovať jednotlivcov' },
+  // Note: 'anonymous' removed - database enum data_category_type doesn't have this value
 ]
 
 const sensitivityOptions = [

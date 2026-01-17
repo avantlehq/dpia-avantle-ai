@@ -12,7 +12,7 @@ export interface DataCategory {
   workspace_id: string
   name: string
   description?: string
-  category_type: 'personal' | 'special' | 'criminal' | 'anonymous'
+  category_type: 'personal' | 'special' | 'criminal' // Note: 'anonymous' removed - database enum doesn't have this value
   sensitivity: 'public' | 'internal' | 'confidential' | 'restricted'
   special_category_basis?: 'none' | 'explicit_consent' | 'employment' | 'vital_interests' | 'public_interest' | 'healthcare' | 'research' | 'legal_claims'
   is_standard: boolean
@@ -27,7 +27,7 @@ export interface DataCategory {
 export interface CreateDataCategoryData {
   name: string
   description?: string
-  category_type: 'personal' | 'special' | 'criminal' | 'anonymous'
+  category_type: 'personal' | 'special' | 'criminal' // Note: 'anonymous' removed - database enum doesn't have this value
   sensitivity: 'public' | 'internal' | 'confidential' | 'restricted'
   special_category_basis?: 'none' | 'explicit_consent' | 'employment' | 'vital_interests' | 'public_interest' | 'healthcare' | 'research' | 'legal_claims'
   is_standard: boolean

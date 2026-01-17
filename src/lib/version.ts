@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.43" as const
-export const VERSION_NAME = "🎯 UX Fix: Pre-select Jurisdiction in Edit Form" as const
+export const VERSION = "3.25.44" as const
+export const VERSION_NAME = "🔥 CRITICAL: Data Categories 'anonymous' Enum Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,23 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.44": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Data Categories 'anonymous' Enum Fix",
+    features: [
+      "Removed 'anonymous' from categoryTypeOptions in DataCategoryForm",
+      "Updated dataCategorySchema Zod enum to exclude 'anonymous'",
+      "Updated DataCategory interface to remove 'anonymous' type",
+      "Updated CreateDataCategoryData interface to remove 'anonymous' type"
+    ],
+    fixes: [
+      "POST /api/v1/context/data-categories - 500 Database Error",
+      "ERROR: invalid input value for enum data_category_type: 'anonymous'",
+      "Database enum data_category_type only has: personal, special, criminal",
+      "Form allowed selecting 'anonymous' but database rejected it"
+    ],
+    note: "Database enum only supports: personal, special, criminal. TypeScript types now match database schema."
+  },
   "3.25.43": {
     date: "2026-01-17",
     name: "🎯 UX Fix: Pre-select Jurisdiction in Edit Form",
