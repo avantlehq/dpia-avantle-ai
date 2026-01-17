@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.26
-export const VERSION = "3.25.25" as const
-export const VERSION_NAME = "🔧 Fix: Clone Request Body for Next.js 16" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.27
+export const VERSION = "3.25.26" as const
+export const VERSION_NAME = "🔥 CRITICAL: Processing Activity Audit Columns" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.26": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Processing Activity Audit Columns",
+    features: [
+      "ROOT CAUSE: processing_activities table missing created_by, updated_by, deleted_at columns",
+      "CRITICAL FIX: Override prepareCreateData() to skip created_by/updated_by",
+      "CRITICAL FIX: Override prepareUpdateData() to skip updated_by",
+      "CRITICAL FIX: Override delete() for hard delete (no soft delete support)",
+      "DATABASE ERROR FIXED: 'Could not find the created_by column'",
+      "CREATE NOW WORKS: Processing activities can be created successfully"
+    ]
+  },
   "3.25.25": {
     date: "2026-01-17",
     name: "🔧 Fix: Clone Request Body for Next.js 16",

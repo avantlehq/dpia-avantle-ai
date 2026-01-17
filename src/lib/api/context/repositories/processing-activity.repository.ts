@@ -94,6 +94,46 @@ export class ProcessingActivityRepository extends BaseRepository<
   }
 
   /**
+   * Override prepareCreateData - processing_activities table doesn't have created_by/updated_by columns
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected prepareCreateData(data: CreateProcessingActivityRequest): any {
+    return {
+      ...data,
+      tenant_id: this.context.tenant_id,
+      workspace_id: this.context.workspace_id,
+      // Note: processing_activities table doesn't have created_by/updated_by columns
+    };
+  }
+
+  /**
+   * Override prepareUpdateData - processing_activities table doesn't have updated_by column
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected prepareUpdateData(data: UpdateProcessingActivityRequest): any {
+    return {
+      ...data,
+      // Note: processing_activities table doesn't have updated_by column
+    };
+  }
+
+  /**
+   * Override delete - processing_activities table doesn't have deleted_at column
+   */
+  async delete(id: UUID): Promise<void> {
+    // Hard delete since table doesn't support soft delete
+    const { error } = await this.client
+      .from('processing_activities')
+      .delete()
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id);
+
+    if (error) {
+      throw new Error(`Failed to delete processing activity: ${error.message}`);
+    }
+  }
+
+  /**
    * Apply specific filters for processing activities
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
