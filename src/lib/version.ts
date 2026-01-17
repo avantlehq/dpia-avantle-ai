@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.15" as const
-export const VERSION_NAME = "🔧 Fix: Force List Refresh After Delete" as const
+export const VERSION = "3.25.16" as const
+export const VERSION_NAME = "🔧 Fix: SystemRepository Override Filter" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.16": {
+    date: "2026-01-17",
+    name: "🔧 Fix: SystemRepository Override Filter",
+    features: [
+      "CRITICAL FIX: Added .is('deleted_at', null) to SystemRepository.findMany()",
+      "CRITICAL FIX: Added .is('deleted_at', null) to SystemRepository.findByIdWithRelations()",
+      "ROOT CAUSE: SystemRepository overrides BaseRepository.findMany(), bypassing base filter",
+      "DELETE NOW WORKS: Deleted systems excluded from list query",
+      "APPLIES TO: All systems queries (list, detail with relations)",
+      "LESSON: Repository overrides must include all base filters"
+    ]
+  },
   "3.25.15": {
     date: "2026-01-17",
     name: "🔧 Fix: Force List Refresh After Delete",

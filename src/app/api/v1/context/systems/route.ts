@@ -40,6 +40,9 @@ export async function GET(request: NextRequest) {
       // Get systems
       const result = await contextService.systems.getSystems(queryParams);
 
+      console.log('[GET /api/v1/context/systems] Total systems:', result.data.length);
+      console.log('[GET /api/v1/context/systems] Systems with deleted_at:', result.data.filter((s: { deleted_at?: string }) => s.deleted_at).length);
+
       return NextResponse.json(result);
     })(request);
 
