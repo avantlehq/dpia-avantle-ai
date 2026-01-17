@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.38" as const
-export const VERSION_NAME = "🔥 CRITICAL: Vendors Delete Fix (deleted_at)" as const
+export const VERSION = "3.25.39" as const
+export const VERSION_NAME = "🔧 Locations Form Rewrite (Schema Mismatch Fix)" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,24 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.39": {
+    date: "2026-01-17",
+    name: "🔧 Locations Form Rewrite (Schema Mismatch Fix)",
+    features: [
+      "Complete LocationForm rewrite - now matches physical_locations table schema",
+      "Fixed validation error - form now sends correct fields (name, description, address, city, jurisdiction_id)",
+      "Updated Location TypeScript interfaces to match API schema",
+      "Fetch jurisdictions dropdown from /api/v1/context/jurisdictions",
+      "Removed incorrect jurisdiction fields (country_code, adequacy_status, safeguards, etc.)",
+      "Added proper form descriptions for physical locations vs jurisdictions"
+    ],
+    fixes: [
+      "POST /api/v1/context/locations - 400 validation error (schema mismatch)",
+      "LocationForm was treating physical_locations as jurisdictions table",
+      "Client library src/lib/context/locations.ts had wrong type definitions"
+    ],
+    note: "BREAKING: Location interface changed - old fields removed, new schema matches database"
+  },
   "3.25.38": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Vendors Delete Fix (deleted_at)",

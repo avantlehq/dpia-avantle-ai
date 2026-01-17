@@ -1,7 +1,7 @@
 /**
  * Context Module Client - Physical Locations
  *
- * Client-side functions for jurisdiction/location management.
+ * Client-side functions for physical location management.
  */
 
 import { contextFetch } from './client'
@@ -11,34 +11,25 @@ export interface Location {
   tenant_id: string
   workspace_id: string
   name: string
-  country_code: string
-  jurisdiction_type: 'eu_member_state' | 'eea_country' | 'third_country' | 'international'
-  adequacy_status: 'adequate' | 'not_adequate' | 'partial' | 'under_review'
-  adequacy_decision_date?: string
-  adequacy_decision_reference?: string
-  safeguards_required: boolean
-  safeguards_description?: string
-  data_localization_requirements: boolean
+  description?: string
+  address?: string
+  city?: string
+  jurisdiction_id: string
   status: 'active' | 'inactive'
-  notes?: string
   created_at: string
   updated_at: string
   created_by?: string
   updated_by?: string
+  deleted_at?: string
 }
 
 export interface CreateLocationData {
   name: string
-  country_code: string
-  jurisdiction_type: 'eu_member_state' | 'eea_country' | 'third_country' | 'international'
-  adequacy_status: 'adequate' | 'not_adequate' | 'partial' | 'under_review'
-  adequacy_decision_date?: string
-  adequacy_decision_reference?: string
-  safeguards_required: boolean
-  safeguards_description?: string
-  data_localization_requirements: boolean
-  status: 'active' | 'inactive'
-  notes?: string
+  description?: string
+  address?: string
+  city?: string
+  jurisdiction_id: string
+  status?: 'active' | 'inactive'
 }
 
 export type UpdateLocationData = Partial<CreateLocationData>

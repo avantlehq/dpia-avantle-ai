@@ -1,13 +1,13 @@
 /**
  * Location Form Component
  *
- * Shared form for creating and editing locations/jurisdictions.
+ * Shared form for creating and editing physical locations.
  * Used in both /new and /[id] routes.
  */
 
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -31,27 +31,29 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
-import { Switch } from '@/components/ui/switch'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { ContextFormShell } from './ContextFormShell'
 import { createLocation, updateLocation, type Location } from '@/lib/context/locations'
 
 const locationSchema = z.object({
-  name: z.string().min(1, 'Location name is required').max(100, 'Name too long'),
-  country_code: z.string().min(2, 'Country code is required').max(3, 'Country code too long'),
-  jurisdiction_type: z.enum(['eu_member_state', 'eea_country', 'third_country', 'international']),
-  adequacy_status: z.enum(['adequate', 'not_adequate', 'partial', 'under_review']),
-  adequacy_decision_date: z.string().optional(),
-  adequacy_decision_reference: z.string().max(200, 'Reference too long').optional(),
-  safeguards_required: z.boolean(),
-  safeguards_description: z.string().max(1000, 'Description too long').optional(),
-  data_localization_requirements: z.boolean(),
-  status: z.enum(['active', 'inactive']),
-  notes: z.string().max(500, 'Notes too long').optional(),
+  name: z.string().min(1, 'Location name is required').max(255, 'Name too long'),
+  description: z.string().max(1000, 'Description too long').optional(),
+  address: z.string().max(500, 'Address too long').optional(),
+  city: z.string().max(100, 'City too long').optional(),
+  jurisdiction_id: z.string().uuid('Please select a jurisdiction'),
+  status: z.enum(['active', 'inactive']).optional(),
 })
 
 type LocationFormData = z.infer<typeof locationSchema>
+
+interface Jurisdiction {
+  id: string
+  country_code: string
+  name_en: string
+  name_sk: string
+  gdpr_adequacy: boolean
+}
 
 interface LocationFormProps {
   mode: 'create' | 'edit'
@@ -63,26 +65,38 @@ interface LocationFormProps {
 export function LocationForm({ mode, locale, locationId, initialData }: LocationFormProps) {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [jurisdictions, setJurisdictions] = useState<Jurisdiction[]>([])
+  const [loadingJurisdictions, setLoadingJurisdictions] = useState(true)
 
   const form = useForm<LocationFormData>({
     resolver: zodResolver(locationSchema),
     defaultValues: {
       name: initialData?.name || '',
-      country_code: initialData?.country_code || '',
-      jurisdiction_type: initialData?.jurisdiction_type || 'third_country',
-      adequacy_status: initialData?.adequacy_status || 'under_review',
-      adequacy_decision_date: initialData?.adequacy_decision_date || '',
-      adequacy_decision_reference: initialData?.adequacy_decision_reference || '',
-      safeguards_required: initialData?.safeguards_required || false,
-      safeguards_description: initialData?.safeguards_description || '',
-      data_localization_requirements: initialData?.data_localization_requirements || false,
+      description: initialData?.description || '',
+      address: initialData?.address || '',
+      city: initialData?.city || '',
+      jurisdiction_id: initialData?.jurisdiction_id || '',
       status: initialData?.status || 'active',
-      notes: initialData?.notes || '',
     },
   })
 
-  const safeguardsRequired = form.watch('safeguards_required')
-  const adequacyStatus = form.watch('adequacy_status')
+  // Fetch jurisdictions on mount
+  useEffect(() => {
+    const fetchJurisdictions = async () => {
+      try {
+        const response = await fetch('/api/v1/context/jurisdictions?limit=100')
+        if (!response.ok) throw new Error('Failed to fetch jurisdictions')
+        const result = await response.json()
+        setJurisdictions(result.data || [])
+      } catch (error) {
+        console.error('Error fetching jurisdictions:', error)
+        toast.error(locale === 'sk' ? 'Nepodarilo sa načítať jurisdikcie' : 'Failed to load jurisdictions')
+      } finally {
+        setLoadingJurisdictions(false)
+      }
+    }
+    fetchJurisdictions()
+  }, [locale])
 
   const onSubmit = async (data: LocationFormData) => {
     setIsSubmitting(true)
@@ -115,8 +129,8 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
     : (locale === 'sk' ? 'Upraviť lokalitu' : 'Edit Location')
 
   const description = mode === 'create'
-    ? (locale === 'sk' ? 'Pridať novú lokalitu alebo jurisdikciu pre sledovanie súladu s GDPR a správu rozhodnutí o primeranosti.' : 'Add a new processing location or jurisdiction for GDPR compliance tracking and adequacy decision management.')
-    : (locale === 'sk' ? 'Aktualizovať informácie o lokalite alebo jurisdikcii.' : 'Update the location or jurisdiction information.')
+    ? (locale === 'sk' ? 'Pridať novú fyzickú lokalitu (kancelária, dátové centrum, zariadenie) s priradenou jurisdikciou.' : 'Add a new physical location (office, data center, facility) with assigned jurisdiction.')
+    : (locale === 'sk' ? 'Aktualizovať informácie o fyzickej lokalite.' : 'Update the physical location information.')
 
   return (
     <ContextFormShell
@@ -134,93 +148,61 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
             </h3>
 
             <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Názov lokality' : 'Location Name'} *</FormLabel>
-                      <FormControl>
-                        <Input placeholder={locale === 'sk' ? 'napr., Spojené štáty' : 'e.g., United States'} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="country_code"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Kód krajiny' : 'Country Code'} *</FormLabel>
-                      <FormControl>
-                        <Input placeholder={locale === 'sk' ? 'napr., US, SK' : 'e.g., US, SK'} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="jurisdiction_type"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Typ jurisdikcie' : 'Jurisdiction Type'} *</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="eu_member_state">{locale === 'sk' ? 'Členský štát EU' : 'EU Member State'}</SelectItem>
-                          <SelectItem value="eea_country">{locale === 'sk' ? 'Krajina EHP' : 'EEA Country'}</SelectItem>
-                          <SelectItem value="third_country">{locale === 'sk' ? 'Tretia krajina' : 'Third Country'}</SelectItem>
-                          <SelectItem value="international">{locale === 'sk' ? 'Medzinárodná' : 'International'}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="status"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Stav' : 'Status'} *</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="active">{locale === 'sk' ? 'Aktívna' : 'Active'}</SelectItem>
-                          <SelectItem value="inactive">{locale === 'sk' ? 'Neaktívna' : 'Inactive'}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{locale === 'sk' ? 'Názov lokality' : 'Location Name'} *</FormLabel>
+                    <FormControl>
+                      <Input placeholder={locale === 'sk' ? 'napr., Hlavná kancelária Bratislava' : 'e.g., Main Office Bratislava'} {...field} />
+                    </FormControl>
+                    <FormDescription>
+                      {locale === 'sk' ? 'Názov fyzickej lokality (napr., kancelárie, dátové centrum)' : 'Name of the physical location (e.g., office, data center)'}
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
               <FormField
                 control={form.control}
-                name="notes"
+                name="jurisdiction_id"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Poznámky' : 'Notes'}</FormLabel>
+                    <FormLabel>{locale === 'sk' ? 'Jurisdikcia' : 'Jurisdiction'} *</FormLabel>
+                    <Select onValueChange={field.onChange} value={field.value} disabled={loadingJurisdictions}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder={loadingJurisdictions ? (locale === 'sk' ? 'Načítavam...' : 'Loading...') : (locale === 'sk' ? 'Vyberte jurisdikciu' : 'Select jurisdiction')} />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {jurisdictions.map((j) => (
+                          <SelectItem key={j.id} value={j.id}>
+                            {locale === 'sk' ? j.name_sk : j.name_en} ({j.country_code})
+                            {j.gdpr_adequacy && ' ✓'}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormDescription>
+                      {locale === 'sk' ? 'Krajina alebo jurisdikcia tejto lokality. ✓ = Má rozhodnutie o primeranosti GDPR' : 'Country or jurisdiction of this location. ✓ = Has GDPR adequacy decision'}
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{locale === 'sk' ? 'Popis' : 'Description'}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Ďalšie poznámky o tejto lokalite...' : 'Additional notes about this location...'}
+                        placeholder={locale === 'sk' ? 'Popis lokality...' : 'Description of location...'}
                         rows={2}
                         {...field}
                       />
@@ -232,144 +214,67 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
             </div>
           </div>
 
-          {/* GDPR Adequacy Decision Section */}
+          {/* Address Details Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Rozhodnutie o primeranosti GDPR' : 'GDPR Adequacy Decision'}
+              {locale === 'sk' ? 'Adresa' : 'Address Details'}
             </h3>
 
             <div className="space-y-4">
-              <FormField
-                control={form.control}
-                name="adequacy_status"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Stav primeranosti' : 'Adequacy Status'} *</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="adequate">{locale === 'sk' ? 'Primeraná' : 'Adequate'}</SelectItem>
-                        <SelectItem value="not_adequate">{locale === 'sk' ? 'Neprimeraná' : 'Not Adequate'}</SelectItem>
-                        <SelectItem value="partial">{locale === 'sk' ? 'Čiastočná' : 'Partial'}</SelectItem>
-                        <SelectItem value="under_review">{locale === 'sk' ? 'Prehodnocuje sa' : 'Under Review'}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {adequacyStatus === 'adequate' && (
-                <div className="space-y-4">
-                  <FormField
-                    control={form.control}
-                    name="adequacy_decision_date"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{locale === 'sk' ? 'Dátum rozhodnutia' : 'Decision Date'}</FormLabel>
-                        <FormControl>
-                          <Input type="date" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-
-                  <FormField
-                    control={form.control}
-                    name="adequacy_decision_reference"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{locale === 'sk' ? 'Referencia rozhodnutia' : 'Decision Reference'}</FormLabel>
-                        <FormControl>
-                          <Input placeholder={locale === 'sk' ? 'napr., Rozhodnutie Komisie 2016/1250' : 'e.g., Commission Decision 2016/1250'} {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Transfer Safeguards Section */}
-          <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
-            <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Záruky prenosu' : 'Transfer Safeguards'}
-            </h3>
-
-            <div className="space-y-4">
-              <FormField
-                control={form.control}
-                name="safeguards_required"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                    <div className="space-y-0.5">
-                      <FormLabel className="text-base">
-                        {locale === 'sk' ? 'Vyžadujú sa záruky' : 'Safeguards Required'}
-                      </FormLabel>
-                      <FormDescription>
-                        {locale === 'sk'
-                          ? 'Či sú potrebné ďalšie záruky pre prenos údajov'
-                          : 'Whether additional safeguards are needed for data transfers'}
-                      </FormDescription>
-                    </div>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              {safeguardsRequired && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
-                  name="safeguards_description"
+                  name="city"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Popis záruk' : 'Safeguards Description'}</FormLabel>
+                      <FormLabel>{locale === 'sk' ? 'Mesto' : 'City'}</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder={locale === 'sk' ? 'Popíšte zavedené záruky (napr., štandardné zmluvné doložky, záväzné podnikové pravidlá)...' : 'Describe the safeguards in place (e.g., Standard Contractual Clauses, Binding Corporate Rules)...'}
-                          rows={3}
-                          {...field}
-                        />
+                        <Input placeholder={locale === 'sk' ? 'napr., Bratislava' : 'e.g., Bratislava'} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-              )}
+
+                {mode === 'edit' && (
+                  <FormField
+                    control={form.control}
+                    name="status"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{locale === 'sk' ? 'Stav' : 'Status'}</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="active">{locale === 'sk' ? 'Aktívna' : 'Active'}</SelectItem>
+                            <SelectItem value="inactive">{locale === 'sk' ? 'Neaktívna' : 'Inactive'}</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                )}
+              </div>
 
               <FormField
                 control={form.control}
-                name="data_localization_requirements"
+                name="address"
                 render={({ field }) => (
-                  <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                    <div className="space-y-0.5">
-                      <FormLabel className="text-base">
-                        {locale === 'sk' ? 'Požiadavky na lokalizáciu údajov' : 'Data Localization Requirements'}
-                      </FormLabel>
-                      <FormDescription>
-                        {locale === 'sk'
-                          ? 'Či táto jurisdikcia má zákony o lokalizácii údajov'
-                          : 'Whether this jurisdiction has data localization laws'}
-                      </FormDescription>
-                    </div>
+                  <FormItem>
+                    <FormLabel>{locale === 'sk' ? 'Úplná adresa' : 'Full Address'}</FormLabel>
                     <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
+                      <Textarea
+                        placeholder={locale === 'sk' ? 'napr., Príkladná 123, 811 02 Bratislava' : 'e.g., Example Street 123, 811 02 Bratislava'}
+                        rows={2}
+                        {...field}
                       />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
