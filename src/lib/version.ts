@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.35" as const
-export const VERSION_NAME = "🔥 CRITICAL: Data Category Delete Fix" as const
+export const VERSION = "3.25.36" as const
+export const VERSION_NAME = "🔥 CRITICAL: Vendors created_by/updated_by Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.36": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Vendors created_by/updated_by Fix",
+    features: [
+      "ROOT CAUSE: POST /api/v1/context/vendors failed with created_by column missing",
+      "ERROR: Could not find the 'created_by' column in schema cache",
+      "CRITICAL FIX: Override prepareCreateData() - skip created_by/updated_by",
+      "CRITICAL FIX: Override prepareUpdateData() - skip updated_by",
+      "PATTERN: Whitelist approach matching data-categories fix",
+      "POST /api/v1/context/vendors NOW WORKS"
+    ]
+  },
   "3.25.35": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Data Category Delete Fix",
