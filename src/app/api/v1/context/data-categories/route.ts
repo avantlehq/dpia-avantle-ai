@@ -55,8 +55,11 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     return await withOptionalAuth(async (context) => {
+      // Clone request to avoid body consumption issues in Next.js 16
+      const clonedRequest = request.clone();
+
       // Validate request body
-      const body = await request.json();
+      const body = await clonedRequest.json();
       const categoryData = validateBody(body, CreateDataCategoryRequestSchema);
 
       // Initialize context service with default anonymous context if null

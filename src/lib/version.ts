@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.30" as const
-export const VERSION_NAME = "🛡️ PREVENTIVE: Schema Workarounds All Repos" as const
+export const VERSION = "3.25.31" as const
+export const VERSION_NAME = "🔧 FIX: Request Body Clone Pattern (8 Routes)" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.31": {
+    date: "2026-01-17",
+    name: "🔧 FIX: Request Body Clone Pattern (8 Routes)",
+    features: [
+      "CRITICAL FIX: Apply request.clone() pattern to prevent 'Body has already been read' errors",
+      "FIXED ROUTES: data-categories/[id], locations/*, processing-activities/[id]",
+      "FIXED ROUTES: systems/*, vendors/*",
+      "PATTERN: Clone request before reading body in POST/PUT/DELETE handlers",
+      "PREVENTS: Next.js 16 middleware body consumption conflicts",
+      "CONTEXT: All Context API routes now use consistent body handling"
+    ]
+  },
   "3.25.30": {
     date: "2026-01-17",
     name: "🛡️ PREVENTIVE: Schema Workarounds All Repos",

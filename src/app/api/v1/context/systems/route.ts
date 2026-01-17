@@ -59,7 +59,8 @@ export async function POST(request: NextRequest) {
   try {
     return await withOptionalAuth(async (context) => {
       // Validate request body
-      const body = await request.json();
+      const clonedRequest = request.clone();
+      const body = await clonedRequest.json();
       const systemData = validateBody(body, CreateSystemRequestSchema);
 
       // Initialize context service with default anonymous context if null

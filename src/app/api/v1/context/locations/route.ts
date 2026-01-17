@@ -56,7 +56,8 @@ export async function POST(request: NextRequest) {
   try {
     return await withOptionalAuth(async (context) => {
       // Validate request body
-      const body = await request.json();
+      const clonedRequest = request.clone();
+      const body = await clonedRequest.json();
       const locationData = validateBody(body, CreatePhysicalLocationRequestSchema);
 
       // Initialize context service with default anonymous context if null

@@ -67,7 +67,8 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
       const { id } = await params;
 
       // Validate request body
-      const body = await request.json();
+      const clonedRequest = request.clone();
+      const body = await clonedRequest.json();
       const vendorData = validateBody(body, UpdateVendorRequestSchema);
 
       // Initialize context service with default anonymous context if null
