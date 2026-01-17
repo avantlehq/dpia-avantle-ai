@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.53" as const
-export const VERSION_NAME = "✅ FINAL FIX: Convert Empty Strings to NULL for DATE Fields" as const
+export const VERSION = "3.25.54" as const
+export const VERSION_NAME = "📚 Documentation Update: CLAUDE.md & Data Model" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.54": {
+    date: "2026-01-17",
+    name: "📚 Documentation Update: CLAUDE.md & Data Model",
+    features: [
+      "Updated CLAUDE.md with v3.25.53 session summary",
+      "Documented complete 5-layer fix chain for vendor role dropdown",
+      "Added Phase 2 migration documentation to CLAUDE.md",
+      "Updated docs/data-model.md to reflect v3.25.53 schema alignment",
+      "Marked all Context modules as fully operational with dropdown pre-selection working"
+    ],
+    fixes: [],
+    note: "Documentation now reflects completed database schema alignment and vendor role dropdown fix. Ready for next session."
+  },
   "3.25.53": {
     date: "2026-01-17",
     name: "✅ FINAL FIX: Convert Empty Strings to NULL for DATE Fields",

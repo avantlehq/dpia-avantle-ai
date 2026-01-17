@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.25.2 - Context Routes Fix & RLS Policies**
+**Current Version: 3.25.53 - Database Schema Alignment Complete**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -220,6 +220,58 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.25.53 - 2026-01-17**
+**✅ DATABASE SCHEMA ALIGNMENT COMPLETE: Phase 2 Migration & Vendor Role Fix**
+
+**MAJOR ACHIEVEMENT**: Completed full database schema alignment and fixed all dropdown pre-selection issues across Context modules
+
+**Database Migrations Executed:**
+- **Phase 2 Migration**: `20260117_context_schema_alignment.sql` - Added missing columns to all Context tables
+  - Added soft delete support (deleted_at) to processing_activities, vendors, physical_locations, data_categories, systems
+  - Added audit trail columns (created_by, updated_by) to all Context tables
+  - Added jurisdictions localized names (name_en, name_sk)
+  - Fixed physical_locations schema - added description, address, city, jurisdiction_id
+  - Added parent_id for hierarchical data categories
+  - Added special_category_basis for GDPR Article 9 compliance
+- **Vendor Columns Migration**: `20260117_vendors_missing_columns.sql` - Added vendor-specific fields
+  - Created vendor_role_type enum (processor, joint_controller, recipient, sub_processor)
+  - Added vendor_role, status, has_dpa, dpa_expires, location columns to vendors table
+
+**5-Layer Fix Chain for Vendor Role Dropdown Persistence:**
+1. **v3.25.48**: VendorRepository - Whitelisted vendor_role in prepareCreateData/prepareUpdateData
+2. **v3.25.49**: Database Migration - Added vendor_role column and enum type
+3. **v3.25.50**: TypeScript Interfaces - Added vendor_role to Vendor interface in types.ts
+4. **v3.25.51**: Zod Validation Schemas - Added vendor_role to CreateVendorRequestSchema/UpdateVendorRequestSchema
+5. **v3.25.52**: Empty String Handling - Added .or(z.literal('')) to accept empty strings from form
+6. **v3.25.53**: NULL Conversion - Transform empty strings to NULL before database insert/update
+
+**Fixes Applied:**
+- ✅ Vendor role dropdown now persists correctly (was reverting to "Processor")
+- ✅ Location form fields restored (description, address, city) after migration
+- ✅ Data category parent_id and special_category_basis now save correctly
+- ✅ All dropdown pre-selection issues resolved across Context modules
+
+**Technical Issues Resolved:**
+- 400 Bad Request: "Request body validation failed" - Zod schemas missing vendor_role
+- 500 Internal Server Error: "invalid input syntax for type date: ''" - Empty string to DATE column
+- TypeScript compilation errors: Interface missing vendor_role property
+- Repository blocking fields with outdated workarounds
+
+**Migration Documentation Created:**
+- `migrations/MIGRATION_INSTRUCTIONS.md` - Step-by-step guide for main migration
+- `migrations/MIGRATION_INSTRUCTIONS_VENDORS.md` - Vendor-specific migration guide
+- All migrations include verification queries and rollback scripts
+
+**Files Modified (6 versions deployed):**
+- v3.25.48: vendor.repository.ts, types.ts (Repository whitelist)
+- v3.25.49: Migration scripts created
+- v3.25.50: types.ts (TypeScript interfaces), vendor.repository.ts (findByIdWithRelations)
+- v3.25.51: schemas.ts (Zod validation)
+- v3.25.52: schemas.ts (Empty string acceptance)
+- v3.25.53: vendor.repository.ts (Empty string to NULL conversion)
+
+**Status**: All Context module forms now fully functional with correct dropdown pre-selection
 
 ### **v3.25.2 - 2026-01-15**
 **🔧 Context Routes Fix: Async Params & RLS Policies**
