@@ -1,299 +1,76 @@
 -- ============================================================================
 -- Jurisdictions Table - Insert EU/EEA and Common Countries
--- Version: 1.0.3
+-- Version: 1.0.4
 -- Date: 2026-01-17
--- Purpose: Insert all EU/EEA countries and common third countries
---
--- IMPORTANT: Run this AFTER 20260117_jurisdiction_names.sql
 -- Note: All jurisdictions use global system tenant/workspace (00000000-0000-0000-0000-000000000001)
 -- ============================================================================
 
 BEGIN;
 
--- Austria
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'AT', 'Austria', 'Rakúsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AT');
+-- EU Member States (26 + SK/GB already exist)
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Austria', 'AT', 'Austria', 'Rakúsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AT');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Belgium', 'BE', 'Belgium', 'Belgicko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'BE');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Bulgaria', 'BG', 'Bulgaria', 'Bulharsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'BG');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Croatia', 'HR', 'Croatia', 'Chorvátsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'HR');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Cyprus', 'CY', 'Cyprus', 'Cyprus', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CY');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Czech Republic', 'CZ', 'Czech Republic', 'Česká republika', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CZ');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Denmark', 'DK', 'Denmark', 'Dánsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'DK');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Estonia', 'EE', 'Estonia', 'Estónsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'EE');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Finland', 'FI', 'Finland', 'Fínsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'FI');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'France', 'FR', 'France', 'Francúzsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'FR');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Germany', 'DE', 'Germany', 'Nemecko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'DE');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Greece', 'GR', 'Greece', 'Grécko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'GR');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Hungary', 'HU', 'Hungary', 'Maďarsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'HU');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Ireland', 'IE', 'Ireland', 'Írsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IE');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Italy', 'IT', 'Italy', 'Taliansko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IT');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Latvia', 'LV', 'Latvia', 'Lotyšsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'LV');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Lithuania', 'LT', 'Lithuania', 'Litva', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'LT');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Luxembourg', 'LU', 'Luxembourg', 'Luxembursko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'LU');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Malta', 'MT', 'Malta', 'Malta', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'MT');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Netherlands', 'NL', 'Netherlands', 'Holandsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'NL');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Poland', 'PL', 'Poland', 'Poľsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'PL');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Portugal', 'PT', 'Portugal', 'Portugalsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'PT');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Romania', 'RO', 'Romania', 'Rumunsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'RO');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Slovenia', 'SI', 'Slovenia', 'Slovinsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'SI');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Spain', 'ES', 'Spain', 'Španielsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'ES');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Sweden', 'SE', 'Sweden', 'Švédsko', 'adequate', false, 'eu_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'SE');
 
--- Belgium
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'BE', 'Belgium', 'Belgicko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'BE');
+-- EEA Member States
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Iceland', 'IS', 'Iceland', 'Island', 'adequate', false, 'eea_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IS');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Liechtenstein', 'LI', 'Liechtenstein', 'Lichtenštajnsko', 'adequate', false, 'eea_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'LI');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Norway', 'NO', 'Norway', 'Nórsko', 'adequate', false, 'eea_member' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'NO');
 
--- Bulgaria
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'BG', 'Bulgaria', 'Bulharsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'BG');
+-- Third Countries with Adequacy
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Switzerland', 'CH', 'Switzerland', 'Švajčiarsko', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CH');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, notes) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Canada', 'CA', 'Canada', 'Kanada', 'adequate', false, 'third_country', 'Adequacy limited to commercial organizations under PIPEDA' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CA');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Japan', 'JP', 'Japan', 'Japonsko', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'JP');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'South Korea', 'KR', 'South Korea', 'Južná Kórea', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'KR');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'New Zealand', 'NZ', 'New Zealand', 'Nový Zéland', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'NZ');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Israel', 'IL', 'Israel', 'Izrael', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IL');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Argentina', 'AR', 'Argentina', 'Argentína', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AR');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Uruguay', 'UY', 'Uruguay', 'Uruguaj', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'UY');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Andorra', 'AD', 'Andorra', 'Andorra', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AD');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Faroe Islands', 'FO', 'Faroe Islands', 'Faerské ostrovy', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'FO');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Guernsey', 'GG', 'Guernsey', 'Guernsey', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'GG');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Isle of Man', 'IM', 'Isle of Man', 'Ostrov Man', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IM');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Jersey', 'JE', 'Jersey', 'Jersey', 'adequate', false, 'third_country' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'JE');
 
--- Croatia
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'HR', 'Croatia', 'Chorvátsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'HR');
+-- Update US to conditional
+UPDATE jurisdictions SET adequacy_status = 'conditional', safeguards_required = true, safeguards_description = 'Standard Contractual Clauses (SCCs) or EU-US Data Privacy Framework certification', jurisdiction_type = 'third_country', notes = 'No blanket adequacy decision. EU-US Data Privacy Framework provides conditional adequacy for certified organizations only.' WHERE country_code = 'US';
 
--- Cyprus
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'CY', 'Cyprus', 'Cyprus', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CY');
-
--- Czech Republic
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'CZ', 'Czech Republic', 'Česká republika', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CZ');
-
--- Denmark
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'DK', 'Denmark', 'Dánsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'DK');
-
--- Estonia
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'EE', 'Estonia', 'Estónsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'EE');
-
--- Finland
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'FI', 'Finland', 'Fínsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'FI');
-
--- France
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'FR', 'France', 'Francúzsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'FR');
-
--- Germany
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'DE', 'Germany', 'Nemecko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'DE');
-
--- Greece
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'GR', 'Greece', 'Grécko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'GR');
-
--- Hungary
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'HU', 'Hungary', 'Maďarsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'HU');
-
--- Ireland
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'IE', 'Ireland', 'Írsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IE');
-
--- Italy
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'IT', 'Italy', 'Taliansko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IT');
-
--- Latvia
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'LV', 'Latvia', 'Lotyšsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'LV');
-
--- Lithuania
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'LT', 'Lithuania', 'Litva', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'LT');
-
--- Luxembourg
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'LU', 'Luxembourg', 'Luxembursko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'LU');
-
--- Malta
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'MT', 'Malta', 'Malta', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'MT');
-
--- Netherlands
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'NL', 'Netherlands', 'Holandsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'NL');
-
--- Poland
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'PL', 'Poland', 'Poľsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'PL');
-
--- Portugal
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'PT', 'Portugal', 'Portugalsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'PT');
-
--- Romania
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'RO', 'Romania', 'Rumunsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'RO');
-
--- Slovenia
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'SI', 'Slovenia', 'Slovinsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'SI');
-
--- Spain
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'ES', 'Spain', 'Španielsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'ES');
-
--- Sweden
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'SE', 'Sweden', 'Švédsko', 'adequate', false, 'eu_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'SE');
-
--- Iceland (EEA)
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'IS', 'Iceland', 'Island', 'adequate', false, 'eea_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IS');
-
--- Liechtenstein (EEA)
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'LI', 'Liechtenstein', 'Lichtenštajnsko', 'adequate', false, 'eea_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'LI');
-
--- Norway (EEA)
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'NO', 'Norway', 'Nórsko', 'adequate', false, 'eea_member'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'NO');
-
--- Switzerland
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'CH', 'Switzerland', 'Švajčiarsko', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CH');
-
--- Canada
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, notes)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'CA', 'Canada', 'Kanada', 'adequate', false, 'third_country', 'Adequacy limited to commercial organizations under PIPEDA'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CA');
-
--- Japan
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'JP', 'Japan', 'Japonsko', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'JP');
-
--- South Korea
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'KR', 'South Korea', 'Južná Kórea', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'KR');
-
--- New Zealand
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'NZ', 'New Zealand', 'Nový Zéland', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'NZ');
-
--- Israel
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'IL', 'Israel', 'Izrael', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IL');
-
--- Argentina
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'AR', 'Argentina', 'Argentína', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AR');
-
--- Uruguay
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'UY', 'Uruguay', 'Uruguaj', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'UY');
-
--- Andorra
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'AD', 'Andorra', 'Andorra', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AD');
-
--- Faroe Islands
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'FO', 'Faroe Islands', 'Faerské ostrovy', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'FO');
-
--- Guernsey
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'GG', 'Guernsey', 'Guernsey', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'GG');
-
--- Isle of Man
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'IM', 'Isle of Man', 'Ostrov Man', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IM');
-
--- Jersey
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'JE', 'Jersey', 'Jersey', 'adequate', false, 'third_country'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'JE');
-
--- Update United States to conditional
-UPDATE jurisdictions SET
-  adequacy_status = 'conditional',
-  safeguards_required = true,
-  safeguards_description = 'Standard Contractual Clauses (SCCs) or EU-US Data Privacy Framework certification',
-  jurisdiction_type = 'third_country',
-  notes = 'No blanket adequacy decision. EU-US Data Privacy Framework provides conditional adequacy for certified organizations only.'
-WHERE country_code = 'US';
-
--- China
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'CN', 'China', 'Čína', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CN');
-
--- India
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'IN', 'India', 'India', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IN');
-
--- Brazil
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'BR', 'Brazil', 'Brazília', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'BR');
-
--- Russia
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description, data_localization_requirements)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'RU', 'Russia', 'Rusko', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) - Subject to data localization laws', true
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'RU');
-
--- Singapore
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'SG', 'Singapore', 'Singapur', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'SG');
-
--- Hong Kong
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'HK', 'Hong Kong', 'Hongkong', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'HK');
-
--- South Africa
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'ZA', 'South Africa', 'Južná Afrika', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'ZA');
-
--- Mexico
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'MX', 'Mexico', 'Mexiko', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'MX');
-
--- Turkey
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'TR', 'Turkey', 'Turecko', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'TR');
-
--- United Arab Emirates
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'AE', 'United Arab Emirates', 'Spojené arabské emiráty', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AE');
-
--- Ukraine
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'UA', 'Ukraine', 'Ukrajina', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'UA');
-
--- Serbia
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'RS', 'Serbia', 'Srbsko', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'RS');
-
--- Australia
-INSERT INTO jurisdictions (tenant_id, workspace_id, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description)
-SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'AU', 'Australia', 'Austrália', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)'
-WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AU');
+-- Third Countries without Adequacy
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'China', 'CN', 'China', 'Čína', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'CN');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'India', 'IN', 'India', 'India', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'IN');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Brazil', 'BR', 'Brazil', 'Brazília', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'BR');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description, data_localization_requirements) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Russia', 'RU', 'Russia', 'Rusko', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) - Subject to data localization laws', true WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'RU');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Singapore', 'SG', 'Singapore', 'Singapur', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'SG');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Hong Kong', 'HK', 'Hong Kong', 'Hongkong', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'HK');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'South Africa', 'ZA', 'South Africa', 'Južná Afrika', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'ZA');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Mexico', 'MX', 'Mexico', 'Mexiko', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'MX');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Turkey', 'TR', 'Turkey', 'Turecko', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'TR');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'United Arab Emirates', 'AE', 'United Arab Emirates', 'Spojené arabské emiráty', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AE');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Ukraine', 'UA', 'Ukraine', 'Ukrajina', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'UA');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Serbia', 'RS', 'Serbia', 'Srbsko', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'RS');
+INSERT INTO jurisdictions (tenant_id, workspace_id, name, country_code, name_en, name_sk, adequacy_status, safeguards_required, jurisdiction_type, safeguards_description) SELECT '00000000-0000-0000-0000-000000000001', '00000000-0000-0000-0000-000000000001', 'Australia', 'AU', 'Australia', 'Austrália', 'inadequate', true, 'third_country', 'Standard Contractual Clauses (SCCs) or Binding Corporate Rules (BCRs)' WHERE NOT EXISTS (SELECT 1 FROM jurisdictions WHERE country_code = 'AU');
 
 COMMIT;
-
--- Verify: SELECT COUNT(*) FROM jurisdictions; -- Should show 52
