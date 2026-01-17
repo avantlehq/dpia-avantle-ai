@@ -362,6 +362,11 @@ export const CreateVendorRequestSchema = z.object({
   website: UrlSchema.max(500).optional(),
   contact_email: EmailSchema.max(255).optional(),
   primary_contact: z.string().max(255).optional(),
+  vendor_role: VendorRoleSchema.optional(),
+  status: EntityStatusSchema.optional(),
+  has_dpa: z.boolean().optional(),
+  dpa_expires: DateOnlySchema.optional(),
+  location: z.string().max(100).optional(),
 });
 
 export const UpdateVendorRequestSchema = z.object({
@@ -370,7 +375,11 @@ export const UpdateVendorRequestSchema = z.object({
   website: UrlSchema.max(500).optional(),
   contact_email: EmailSchema.max(255).optional(),
   primary_contact: z.string().max(255).optional(),
+  vendor_role: VendorRoleSchema.optional(),
   status: EntityStatusSchema.optional(),
+  has_dpa: z.boolean().optional(),
+  dpa_expires: DateOnlySchema.optional(),
+  location: z.string().max(100).optional(),
 });
 
 export const CreateSystemRequestSchema = z.object({

@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.50" as const
-export const VERSION_NAME = "✅ Vendors: TypeScript Interface Fix - vendor_role Complete" as const
+export const VERSION = "3.25.51" as const
+export const VERSION_NAME = "🎯 CRITICAL: Vendor Zod Schema Fix - The Real Blocker" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,23 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.51": {
+    date: "2026-01-17",
+    name: "🎯 CRITICAL: Vendor Zod Schema Fix - The Real Blocker",
+    features: [
+      "Added vendor_role to CreateVendorRequestSchema (Zod validation)",
+      "Added vendor_role to UpdateVendorRequestSchema (Zod validation)",
+      "Added has_dpa, dpa_expires, location, status to both schemas",
+      "Uses VendorRoleSchema (nativeEnum) and DateOnlySchema for validation"
+    ],
+    fixes: [
+      "ROOT CAUSE: Zod schemas were stripping vendor_role from API requests",
+      "validateBody() in PUT/POST routes was filtering out vendor_role before repository",
+      "Form sent vendor_role → API validation removed it → Repository never received it",
+      "Database column existed, TypeScript interfaces correct, but Zod blocked the data"
+    ],
+    note: "THIS WAS THE REAL BLOCKER. API validation layer stripped vendor_role before it reached repository/database. Complete fix chain: DB (v3.25.49) + Repository (v3.25.48) + TypeScript (v3.25.50) + Zod Schemas (v3.25.51) = WORKING"
+  },
   "3.25.50": {
     date: "2026-01-17",
     name: "✅ Vendors: TypeScript Interface Fix - vendor_role Complete",
