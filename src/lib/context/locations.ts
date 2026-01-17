@@ -11,25 +11,19 @@ export interface Location {
   tenant_id: string
   workspace_id: string
   name: string
-  description?: string
-  address?: string
-  city?: string
   jurisdiction_id: string
   status: 'active' | 'inactive'
   created_at: string
   updated_at: string
-  created_by?: string
-  updated_by?: string
-  deleted_at?: string
+  // Note: description, address, city columns don't exist in production
+  // Note: created_by, updated_by, deleted_at columns don't exist in production
 }
 
 export interface CreateLocationData {
   name: string
-  description?: string
-  address?: string
-  city?: string
   jurisdiction_id: string
   status?: 'active' | 'inactive'
+  // Note: description, address, city fields removed - columns don't exist in production
 }
 
 export type UpdateLocationData = Partial<CreateLocationData>

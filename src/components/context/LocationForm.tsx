@@ -38,11 +38,9 @@ import { createLocation, updateLocation, type Location } from '@/lib/context/loc
 
 const locationSchema = z.object({
   name: z.string().min(1, 'Location name is required').max(255, 'Name too long'),
-  description: z.string().max(1000, 'Description too long').optional(),
-  address: z.string().max(500, 'Address too long').optional(),
-  city: z.string().max(100, 'City too long').optional(),
   jurisdiction_id: z.string().uuid('Please select a jurisdiction'),
   status: z.enum(['active', 'inactive']).optional(),
+  // Note: description, address, city columns don't exist in production database
 })
 
 type LocationFormData = z.infer<typeof locationSchema>
@@ -71,9 +69,6 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
     resolver: zodResolver(locationSchema),
     defaultValues: {
       name: initialData?.name || '',
-      description: initialData?.description || '',
-      address: initialData?.address || '',
-      city: initialData?.city || '',
       jurisdiction_id: initialData?.jurisdiction_id || '',
       status: initialData?.status || 'active',
     },
@@ -193,90 +188,29 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                 )}
               />
 
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Popis' : 'Description'}</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder={locale === 'sk' ? 'Popis lokality...' : 'Description of location...'}
-                        rows={2}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-          </div>
-
-          {/* Address Details Section */}
-          <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
-            <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Adresa' : 'Address Details'}
-            </h3>
-
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {mode === 'edit' && (
                 <FormField
                   control={form.control}
-                  name="city"
+                  name="status"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Mesto' : 'City'}</FormLabel>
-                      <FormControl>
-                        <Input placeholder={locale === 'sk' ? 'napr., Bratislava' : 'e.g., Bratislava'} {...field} />
-                      </FormControl>
+                      <FormLabel>{locale === 'sk' ? 'Stav' : 'Status'}</FormLabel>
+                      <Select onValueChange={field.onChange} value={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="active">{locale === 'sk' ? 'Aktívna' : 'Active'}</SelectItem>
+                          <SelectItem value="inactive">{locale === 'sk' ? 'Neaktívna' : 'Inactive'}</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-
-                {mode === 'edit' && (
-                  <FormField
-                    control={form.control}
-                    name="status"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{locale === 'sk' ? 'Stav' : 'Status'}</FormLabel>
-                        <Select onValueChange={field.onChange} value={field.value}>
-                          <FormControl>
-                            <SelectTrigger>
-                              <SelectValue />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value="active">{locale === 'sk' ? 'Aktívna' : 'Active'}</SelectItem>
-                            <SelectItem value="inactive">{locale === 'sk' ? 'Neaktívna' : 'Inactive'}</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                )}
-              </div>
-
-              <FormField
-                control={form.control}
-                name="address"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Úplná adresa' : 'Full Address'}</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder={locale === 'sk' ? 'napr., Príkladná 123, 811 02 Bratislava' : 'e.g., Example Street 123, 811 02 Bratislava'}
-                        rows={2}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              )}
             </div>
           </div>
 

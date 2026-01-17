@@ -30,7 +30,7 @@ export class PhysicalLocationRepository extends BaseRepository<
   }
 
   /**
-   * Override findMany - physical_locations table may be missing deleted_at column
+   * Override findMany - description, address, city, deleted_at columns don't exist
    */
   async findMany(params: PhysicalLocationQueryParams = {}): Promise<{
     data: PhysicalLocation[];
@@ -38,7 +38,7 @@ export class PhysicalLocationRepository extends BaseRepository<
   }> {
     const { page = 1, limit = 20, search, status, jurisdiction_id } = params;
 
-    // Direct query without deleted_at filter (column may not exist)
+    // Direct query without deleted_at filter (column doesn't exist)
     let query = this.client
       .from('physical_locations')
       .select('*', { count: 'exact' })
@@ -48,8 +48,9 @@ export class PhysicalLocationRepository extends BaseRepository<
       query = query.eq('status', status);
     }
 
+    // Search only by name (description, city, address columns don't exist)
     if (search) {
-      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%,city.ilike.%${search}%,address.ilike.%${search}%`);
+      query = query.ilike('name', `%${search}%`);
     }
 
     if (jurisdiction_id) {
@@ -103,19 +104,18 @@ export class PhysicalLocationRepository extends BaseRepository<
   }
 
   /**
-   * Override prepareCreateData - handle potential schema mismatches
+   * Override prepareCreateData - description, address, city columns don't exist in production
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareCreateData(data: CreatePhysicalLocationRequest): any {
     const allowedFields = {
       name: data.name,
-      description: data.description,
-      address: data.address,
-      city: data.city,
       jurisdiction_id: data.jurisdiction_id,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
+      // Note: description, address, city columns don't exist in production
       // Note: status has database default
+      // Note: created_by, updated_by columns don't exist in production
     };
 
     return Object.fromEntries(
@@ -124,17 +124,16 @@ export class PhysicalLocationRepository extends BaseRepository<
   }
 
   /**
-   * Override prepareUpdateData - handle potential schema mismatches
+   * Override prepareUpdateData - description, address, city columns don't exist in production
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareUpdateData(data: UpdatePhysicalLocationRequest): any {
     const allowedFields = {
       name: data.name,
-      description: data.description,
-      address: data.address,
-      city: data.city,
       jurisdiction_id: data.jurisdiction_id,
       status: data.status,
+      // Note: description, address, city columns don't exist in production
+      // Note: updated_by column doesn't exist in production
     };
 
     return Object.fromEntries(
@@ -196,6 +195,8 @@ export class PhysicalLocationRepository extends BaseRepository<
 
   /**
    * Get all physical locations with their jurisdictions
+   *
+   * NOTE: description, address, city columns don't exist - search by name only
    */
   async findManyWithJurisdictions(params: PhysicalLocationQueryParams = {}): Promise<{
     data: PhysicalLocation[];
@@ -221,9 +222,9 @@ export class PhysicalLocationRepository extends BaseRepository<
       query = query.eq('status', status);
     }
 
-    // Apply search filtering
+    // Search only by name (description, city, address columns don't exist)
     if (search) {
-      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%,city.ilike.%${search}%,address.ilike.%${search}%`);
+      query = query.ilike('name', `%${search}%`);
     }
 
     // Filter by jurisdiction
@@ -276,24 +277,18 @@ export class PhysicalLocationRepository extends BaseRepository<
 
   /**
    * Get locations by city
+   *
+   * NOTE: city column doesn't exist in production - method disabled
    */
-  async findByCity(city: string): Promise<PhysicalLocation[]> {
-    const { data, error } = await this.client
-      .from('physical_locations')
-      .select('*')
-      .ilike('city', `%${city}%`)
-      .eq('status', 'active')
-      .order('name', { ascending: true });
-
-    if (error) {
-      throw new Error(`Failed to fetch locations by city: ${error.message}`);
-    }
-
-    return data as PhysicalLocation[];
+  async findByCity(_city: string): Promise<PhysicalLocation[]> {
+    // city column doesn't exist in production - return empty array
+    return [];
   }
 
   /**
    * Get location statistics by jurisdiction
+   *
+   * NOTE: name_en column doesn't exist - using country_code as name
    */
   async getStatisticsByJurisdiction(): Promise<{
     jurisdiction_id: UUID;
@@ -306,7 +301,7 @@ export class PhysicalLocationRepository extends BaseRepository<
       .from('physical_locations')
       .select(`
         jurisdiction_id,
-        jurisdiction:jurisdiction_id(name_en, country_code, gdpr_adequacy)
+        jurisdiction:jurisdiction_id(country_code, gdpr_adequacy)
       `)
       .eq('status', 'active');
 
@@ -316,22 +311,22 @@ export class PhysicalLocationRepository extends BaseRepository<
 
     // Group by jurisdiction and count
     const stats = new Map();
-    
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (data as any[]).forEach(location => {
       const jurisdictionId = location.jurisdiction_id;
       const jurisdiction = location.jurisdiction;
-      
+
       if (!stats.has(jurisdictionId)) {
         stats.set(jurisdictionId, {
           jurisdiction_id: jurisdictionId,
-          jurisdiction_name: jurisdiction.name_en,
+          jurisdiction_name: jurisdiction.country_code, // Use country_code as name (name_en doesn't exist)
           country_code: jurisdiction.country_code,
           location_count: 0,
           gdpr_adequacy: jurisdiction.gdpr_adequacy,
         });
       }
-      
+
       stats.get(jurisdictionId).location_count += 1;
     });
 
@@ -456,21 +451,32 @@ export class PhysicalLocationRepository extends BaseRepository<
   }
 
   /**
-   * Override delete to check for usage
+   * Override delete to check for usage and use hard delete (deleted_at column doesn't exist)
    */
   async delete(id: UUID): Promise<void> {
     // Check if location is being used
     const usage = await this.getLocationUsage(id);
-    
+
     if (usage.total_usage > 0) {
       throw new Error('Cannot delete location that is being used by systems or vendors');
     }
 
-    await super.delete(id);
+    // Hard delete since deleted_at column doesn't exist
+    const { error } = await this.client
+      .from('physical_locations')
+      .delete()
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id);
+
+    if (error) {
+      throw new Error(`Failed to delete physical_locations: ${error.message}`);
+    }
   }
 
   /**
    * Search locations with advanced filters
+   *
+   * NOTE: description, address, city columns don't exist - search by name only
    */
   async advancedSearch(filters: {
     search?: string;
@@ -486,9 +492,9 @@ export class PhysicalLocationRepository extends BaseRepository<
         jurisdiction:jurisdiction_id(*)
       `);
 
-    // Apply search filter
+    // Search only by name (description, address columns don't exist)
     if (filters.search) {
-      query = query.or(`name.ilike.%${filters.search}%,description.ilike.%${filters.search}%,address.ilike.%${filters.search}%`);
+      query = query.ilike('name', `%${filters.search}%`);
     }
 
     // Apply status filter
@@ -501,10 +507,8 @@ export class PhysicalLocationRepository extends BaseRepository<
       query = query.in('jurisdiction_id', filters.jurisdictions);
     }
 
-    // Apply city filter
-    if (filters.cities?.length) {
-      query = query.in('city', filters.cities);
-    }
+    // City filter ignored (city column doesn't exist)
+    // if (filters.cities?.length) { ... }
 
     // Apply GDPR adequacy filter
     if (filters.gdpr_adequacy_only) {

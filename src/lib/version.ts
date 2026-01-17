@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.40" as const
-export const VERSION_NAME = "🔥 CRITICAL: Jurisdictions name_en/name_sk Fix" as const
+export const VERSION = "3.25.41" as const
+export const VERSION_NAME = "🔥 CRITICAL: Locations description/address/city Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,24 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.41": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Locations description/address/city Fix",
+    features: [
+      "Override PhysicalLocationRepository prepareCreateData/prepareUpdateData - skip description, address, city",
+      "Fixed 4 repository methods with search queries: findMany, findManyWithJurisdictions, getStatisticsByJurisdiction, advancedSearch",
+      "Disabled findByCity method - city column doesn't exist",
+      "Override delete() to use hard delete (deleted_at column doesn't exist)",
+      "Removed description, address, city fields from LocationForm",
+      "Updated Location and CreateLocationData interfaces to match database schema"
+    ],
+    fixes: [
+      "POST /api/v1/context/locations - 500 Database Error",
+      "ERROR: Could not find the 'description' column of 'physical_locations'",
+      "physical_locations table missing: description, address, city, created_by, updated_by, deleted_at"
+    ],
+    note: "Location form now only has: name (required), jurisdiction (required), status (edit only)"
+  },
   "3.25.40": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Jurisdictions name_en/name_sk Fix",
