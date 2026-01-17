@@ -48,13 +48,13 @@ export class VendorRepository extends BaseRepository<
     const allowedFields = {
       name: data.name,
       description: data.description,
-      website: data.website,
-      contact_email: data.contact_email,
+      website: data.website === '' ? null : data.website,
+      contact_email: data.contact_email === '' ? null : data.contact_email,
       primary_contact: data.primary_contact,
       vendor_role: data.vendor_role || 'processor', // Use provided value or default
       status: data.status,
       has_dpa: data.has_dpa,
-      dpa_expires: data.dpa_expires,
+      dpa_expires: data.dpa_expires === '' ? null : data.dpa_expires,
       location: data.location,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
@@ -74,13 +74,13 @@ export class VendorRepository extends BaseRepository<
     const allowedFields = {
       name: data.name,
       description: data.description,
-      website: data.website,
-      contact_email: data.contact_email,
+      website: data.website === '' ? null : data.website,
+      contact_email: data.contact_email === '' ? null : data.contact_email,
       primary_contact: data.primary_contact,
       vendor_role: data.vendor_role,
       status: data.status,
       has_dpa: data.has_dpa,
-      dpa_expires: data.dpa_expires,
+      dpa_expires: data.dpa_expires === '' ? null : data.dpa_expires,
       location: data.location,
       // Note: updated_by will be handled by database triggers
     };

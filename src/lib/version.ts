@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.52" as const
-export const VERSION_NAME = "🔧 Vendor Schema: Allow Empty Strings for Optional Fields" as const
+export const VERSION = "3.25.53" as const
+export const VERSION_NAME = "✅ FINAL FIX: Convert Empty Strings to NULL for DATE Fields" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.53": {
+    date: "2026-01-17",
+    name: "✅ FINAL FIX: Convert Empty Strings to NULL for DATE Fields",
+    features: [
+      "Convert empty strings to NULL in prepareCreateData for website, contact_email, dpa_expires",
+      "Convert empty strings to NULL in prepareUpdateData for website, contact_email, dpa_expires",
+      "PostgreSQL DATE fields now receive NULL instead of empty string ''"
+    ],
+    fixes: [
+      "500 Internal Server Error: 'invalid input syntax for type date: \"\"'",
+      "v3.25.52 allowed Zod to accept empty strings, but repository passed them to database",
+      "PostgreSQL DATE type rejects empty strings - requires NULL or valid date",
+      "Repository now transforms '' → null before database insert/update"
+    ],
+    note: "COMPLETE FIX CHAIN NOW WORKING: DB migration (v3.25.49) + Repository whitelist (v3.25.48) + TypeScript interfaces (v3.25.50) + Zod schemas (v3.25.51/52) + Empty string handling (v3.25.53) = VENDOR ROLE DROPDOWN PERSISTS"
+  },
   "3.25.52": {
     date: "2026-01-17",
     name: "🔧 Vendor Schema: Allow Empty Strings for Optional Fields",
