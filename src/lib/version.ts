@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.20" as const
-export const VERSION_NAME = "🔧 Fix: Missing Client in [id] Routes" as const
+export const VERSION = "3.25.21" as const
+export const VERSION_NAME = "🐛 Debug: POST Processing Activity Logging" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
