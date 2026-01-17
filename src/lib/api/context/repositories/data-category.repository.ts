@@ -120,19 +120,14 @@ export class DataCategoryRepository extends BaseRepository<
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareCreateData(data: CreateDataCategoryRequest): any {
-    // Filter out invalid enum value: "employment" not in production DB
-    const specialCategoryBasis = data.special_category_basis === 'employment'
-      ? null
-      : data.special_category_basis;
-
     const allowedFields = {
       name: data.name,
       description: data.description,
       category_type: data.category_type,
       sensitivity: data.sensitivity,
-      special_category_basis: specialCategoryBasis,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
+      // Note: special_category_basis column doesn't exist in production
       // Note: parent_id column doesn't exist in production
       // Note: is_standard and status have database defaults
     };
@@ -144,21 +139,15 @@ export class DataCategoryRepository extends BaseRepository<
 
   /**
    * Override prepareUpdateData - handle potential schema mismatches
-   * Note: Filter out invalid enum value "employment" for special_category_basis
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareUpdateData(data: UpdateDataCategoryRequest): any {
-    // Filter out invalid enum value: "employment" not in production DB
-    const specialCategoryBasis = data.special_category_basis === 'employment'
-      ? null
-      : data.special_category_basis;
-
     const allowedFields = {
       name: data.name,
       description: data.description,
       category_type: data.category_type,
       sensitivity: data.sensitivity,
-      special_category_basis: specialCategoryBasis,
+      // Note: special_category_basis column doesn't exist in production
       // Note: parent_id column doesn't exist in production
       // Note: is_standard and status are not in UpdateDataCategoryRequest type
     };

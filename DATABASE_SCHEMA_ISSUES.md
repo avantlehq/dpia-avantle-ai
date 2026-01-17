@@ -75,24 +75,23 @@ Production database is missing columns and enum values that TypeScript types dec
 ### 4. `data_categories`
 
 **Missing Columns:**
+- `special_category_basis` (ENUM) - **CONFIRMED v3.25.33** - POST failed with "Could not find the 'special_category_basis' column"
 - `parent_id` (UUID) - **CONFIRMED v3.25.32** - POST failed with "column data_categories.parent_id does not exist"
 - `deleted_at` (TIMESTAMP)
 - `created_by` (UUID)
 - `updated_by` (UUID)
 
-**Missing Enum Values:**
-- `special_category_basis` enum missing value: `'employment'`
-
 **Impact:**
+- Cannot track Article 9 GDPR special category legal basis
 - Cannot create hierarchical category structure
 - POST /api/v1/context/data-categories returned 500
 - nameExistsInParent validation failed
 
-**Workaround Applied:** v3.25.30, v3.25.32
+**Workaround Applied:** v3.25.30, v3.25.32, v3.25.33
 - Override `findMany()` - skip deleted_at filter
 - Override `findById()` - skip deleted_at filter
-- Override `prepareCreateData()` - whitelist fields, filter employment enum, skip parent_id
-- Override `prepareUpdateData()` - whitelist fields, filter employment enum, skip parent_id
+- Override `prepareCreateData()` - whitelist fields, skip special_category_basis, skip parent_id
+- Override `prepareUpdateData()` - whitelist fields, skip special_category_basis, skip parent_id
 - Override `nameExistsInParent()` - check name uniqueness globally instead of per-parent
 
 ---
@@ -213,7 +212,14 @@ CREATE INDEX IF NOT EXISTS idx_data_categories_parent_id
   ON data_categories(parent_id);
 
 -- ----------------------------------------------------------------------------
--- 6. Update existing records with default values
+-- 6. Add special_category_basis column for GDPR Article 9 compliance
+-- ----------------------------------------------------------------------------
+
+ALTER TABLE data_categories
+  ADD COLUMN IF NOT EXISTS special_category_basis special_category_basis DEFAULT NULL;
+
+-- ----------------------------------------------------------------------------
+-- 7. Update existing records with default values
 -- ----------------------------------------------------------------------------
 
 -- Set created_by/updated_by to first admin user for existing records
