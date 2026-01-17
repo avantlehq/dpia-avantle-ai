@@ -19,22 +19,26 @@ Test full CRUD operations on each module to discover all database issues.
 
 ### **1.1 Data Flows** (/context/data-flows)
 
-**Test Sequence:**
-1. Navigate to https://dpia.avantle.ai/en/context/data-flows
-2. Click "Add Data Flow" - create new flow with all fields
-3. Edit existing flow - change fields and save
-4. Delete flow - verify deletion works
+**Status:** ⚠️ **API NOT IMPLEMENTED**
 
-**Watch For:**
-- POST 500 errors on create
-- PUT 500 errors on update
-- DELETE 500 errors on delete
-- Check Vercel logs for specific column errors
+**Current Implementation:**
+- GET returns mock data (5 hardcoded flows)
+- POST returns 501 "This endpoint is a placeholder for future implementation"
+- PUT endpoint doesn't exist
+- DELETE endpoint doesn't exist
 
-**Document:**
-- Missing columns found
-- Enum value issues
-- Validation errors
+**Blocker:**
+Data flows API needs full implementation before database schema can be tested.
+
+**TODO (separate from migration):**
+1. Implement POST /api/v1/context/data-flows
+2. Implement PUT /api/v1/context/data-flows/[id]
+3. Implement DELETE /api/v1/context/data-flows/[id]
+4. Create data-flow.repository.ts
+5. Create data-flow.service.ts
+6. Then test for schema issues
+
+**Skip for now** - Focus on Vendors and Locations which have real endpoints.
 
 ---
 
