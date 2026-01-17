@@ -26,6 +26,8 @@ export class JurisdictionRepository {
 
   /**
    * Get all jurisdictions with pagination and filtering
+   *
+   * NOTE: name_en and name_sk columns don't exist in production - using country_code only
    */
   async findMany(params: JurisdictionQueryParams = {}): Promise<PaginatedResponse<Jurisdiction>> {
     const {
@@ -44,13 +46,13 @@ export class JurisdictionRepository {
       query = query.eq('gdpr_adequacy', gdpr_adequacy);
     }
 
-    // Apply search filtering
+    // Apply search filtering (only country_code - name columns don't exist)
     if (search) {
-      query = query.or(`name_en.ilike.%${search}%,name_sk.ilike.%${search}%,country_code.ilike.%${search}%`);
+      query = query.ilike('country_code', `%${search}%`);
     }
 
-    // Apply ordering
-    query = query.order('name_en', { ascending: true });
+    // Apply ordering by country_code (name_en doesn't exist)
+    query = query.order('country_code', { ascending: true });
 
     // Apply pagination
     const from = (page - 1) * limit;
@@ -116,13 +118,15 @@ export class JurisdictionRepository {
 
   /**
    * Get all EU/EEA jurisdictions (with GDPR adequacy)
+   *
+   * NOTE: name_en column doesn't exist - using country_code for ordering
    */
   async findEuEeaJurisdictions(): Promise<Jurisdiction[]> {
     const { data, error } = await this.client
       .from('jurisdictions')
       .select('*')
       .eq('gdpr_adequacy', true)
-      .order('name_en', { ascending: true });
+      .order('country_code', { ascending: true });
 
     if (error) {
       throw new Error(`Failed to fetch EU/EEA jurisdictions: ${error.message}`);
@@ -133,13 +137,15 @@ export class JurisdictionRepository {
 
   /**
    * Get jurisdictions with adequacy decisions
+   *
+   * NOTE: name_en column doesn't exist - using country_code for ordering
    */
   async findWithAdequacyDecision(): Promise<Jurisdiction[]> {
     const { data, error } = await this.client
       .from('jurisdictions')
       .select('*')
       .eq('gdpr_adequacy', true)
-      .order('name_en', { ascending: true });
+      .order('country_code', { ascending: true });
 
     if (error) {
       throw new Error(`Failed to fetch jurisdictions with adequacy decisions: ${error.message}`);
@@ -150,13 +156,15 @@ export class JurisdictionRepository {
 
   /**
    * Get jurisdictions without adequacy decisions
+   *
+   * NOTE: name_en column doesn't exist - using country_code for ordering
    */
   async findWithoutAdequacyDecision(): Promise<Jurisdiction[]> {
     const { data, error } = await this.client
       .from('jurisdictions')
       .select('*')
       .eq('gdpr_adequacy', false)
-      .order('name_en', { ascending: true });
+      .order('country_code', { ascending: true });
 
     if (error) {
       throw new Error(`Failed to fetch jurisdictions without adequacy decisions: ${error.message}`);
@@ -166,14 +174,16 @@ export class JurisdictionRepository {
   }
 
   /**
-   * Search jurisdictions by name (English or Slovak)
+   * Search jurisdictions by country code
+   *
+   * NOTE: name_en and name_sk columns don't exist - using country_code only
    */
   async search(searchTerm: string, limit: number = 10): Promise<Jurisdiction[]> {
     const { data, error } = await this.client
       .from('jurisdictions')
       .select('*')
-      .or(`name_en.ilike.%${searchTerm}%,name_sk.ilike.%${searchTerm}%,country_code.ilike.%${searchTerm}%`)
-      .order('name_en', { ascending: true })
+      .ilike('country_code', `%${searchTerm}%`)
+      .order('country_code', { ascending: true })
       .limit(limit);
 
     if (error) {
@@ -239,16 +249,18 @@ export class JurisdictionRepository {
 
   /**
    * Get popular jurisdictions for dropdowns
+   *
+   * NOTE: name_en column doesn't exist - using country_code for ordering
    */
   async getPopularJurisdictions(): Promise<Jurisdiction[]> {
     // Return commonly used jurisdictions (EU, US, UK, etc.)
     const popularCodes = ['SK', 'CZ', 'DE', 'US', 'GB', 'FR', 'AT', 'PL', 'HU', 'NL'];
-    
+
     const { data, error } = await this.client
       .from('jurisdictions')
       .select('*')
       .in('country_code', popularCodes)
-      .order('name_en', { ascending: true });
+      .order('country_code', { ascending: true });
 
     if (error) {
       throw new Error(`Failed to fetch popular jurisdictions: ${error.message}`);

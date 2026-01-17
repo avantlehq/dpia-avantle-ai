@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.39" as const
-export const VERSION_NAME = "🔧 Locations Form Rewrite (Schema Mismatch Fix)" as const
+export const VERSION = "3.25.40" as const
+export const VERSION_NAME = "🔥 CRITICAL: Jurisdictions name_en/name_sk Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.40": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Jurisdictions name_en/name_sk Fix",
+    features: [
+      "Override JurisdictionRepository methods to skip name_en/name_sk columns",
+      "Use country_code for search and ordering instead of missing name columns",
+      "Update LocationForm to display only country_code in dropdown (not names)",
+      "Fixed 6 repository methods: findMany, findEuEeaJurisdictions, findWithAdequacyDecision, findWithoutAdequacyDecision, search, getPopularJurisdictions"
+    ],
+    fixes: [
+      "GET /api/v1/context/jurisdictions - 500 Database Error",
+      "ERROR: column jurisdictions.name_en does not exist",
+      "Jurisdictions table doesn't have name_en or name_sk columns in production"
+    ],
+    note: "Jurisdictions dropdown now shows country codes (SK ✓, US, etc.) instead of full names"
+  },
   "3.25.39": {
     date: "2026-01-17",
     name: "🔧 Locations Form Rewrite (Schema Mismatch Fix)",
