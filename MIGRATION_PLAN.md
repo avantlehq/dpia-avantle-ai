@@ -83,16 +83,14 @@ Test full CRUD operations on each module to discover all database issues.
 **Test Sequence:**
 1. Navigate to https://dpia.avantle.ai/en/context/systems
 2. Verify create/edit work (already known to work)
-3. **DELETE operation** - verify deletion works
-4. Check if soft delete or hard delete
-
-**Watch For:**
-- DELETE 500 errors (soft delete issue)
-- Repository has `.is('deleted_at', null)` filters - may work if column exists
+3. **DELETE operation** - ✅ CONFIRMED WORKING
 
 **Status:**
-- GET/POST/PUT working
-- DELETE status unknown
+- ✅ GET/POST/PUT working
+- ✅ DELETE working
+- **CONCLUSION:** Systems table likely has deleted_at column OR repository using hard delete
+- Need to verify: Is this soft delete or hard delete?
+- Check database to confirm deleted_at column exists
 
 ---
 
@@ -388,7 +386,7 @@ If migration succeeds but code changes break:
 - Processing activities working with workarounds (v3.25.24-29)
 - Vendors GET working with workarounds (v3.25.28)
 - Locations have preventive fixes (v3.25.30)
-- Systems status partially unknown
+- **Systems DELETE confirmed working** - table may already have deleted_at column
 
 ---
 
