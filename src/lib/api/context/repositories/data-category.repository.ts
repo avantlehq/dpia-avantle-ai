@@ -169,30 +169,6 @@ export class DataCategoryRepository extends BaseRepository<
   }
 
   /**
-   * Override nameExistsInParent - parent_id column doesn't exist in production
-   * Check name uniqueness globally instead of per-parent
-   */
-  async nameExistsInParent(name: string, _parentId: UUID | null, excludeId?: UUID): Promise<boolean> {
-    let query = this.client
-      .from('data_categories')
-      .select('id')
-      .eq('name', name)
-      .eq('workspace_id', this.context.workspace_id);
-
-    if (excludeId) {
-      query = query.neq('id', excludeId);
-    }
-
-    const { data, error } = await query.maybeSingle();
-
-    if (error) {
-      throw new Error(`Failed to check category name existence: ${error.message}`);
-    }
-
-    return !!data;
-  }
-
-  /**
    * Apply specific filters for data categories
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -424,27 +400,30 @@ export class DataCategoryRepository extends BaseRepository<
 
   /**
    * Check if category name exists within the same parent
+   *
+   * NOTE: parent_id column doesn't exist in production database
+   * Checking name uniqueness globally instead of per-parent until migration applied
    */
-  async nameExistsInParent(name: string, parentId: UUID | null, excludeId?: UUID): Promise<boolean> {
+  async nameExistsInParent(name: string, _parentId: UUID | null, excludeId?: UUID): Promise<boolean> {
     let query = this.client
       .from('data_categories')
       .select('id')
       .eq('name', name)
-      .eq('status', 'active');
-
-    if (parentId) {
-      query = query.eq('parent_id', parentId);
-    } else {
-      query = query.is('parent_id', null);
-    }
+      .eq('workspace_id', this.context.workspace_id);
+    // Skip parent_id filter - column doesn't exist in production
+    // if (parentId) {
+    //   query = query.eq('parent_id', parentId);
+    // } else {
+    //   query = query.is('parent_id', null);
+    // }
 
     if (excludeId) {
       query = query.neq('id', excludeId);
     }
 
-    const { data, error } = await query.single();
+    const { data, error } = await query.maybeSingle();
 
-    if (error && error.code !== 'PGRST116') {
+    if (error) {
       throw new Error(`Failed to check category name existence: ${error.message}`);
     }
 
