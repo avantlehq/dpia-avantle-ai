@@ -94,27 +94,63 @@ export class ProcessingActivityRepository extends BaseRepository<
   }
 
   /**
-   * Override prepareCreateData - processing_activities table doesn't have created_by/updated_by columns
+   * Override prepareCreateData - processing_activities table schema mismatch
+   * Note: Table is missing: created_by, updated_by, deleted_at, data_source
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareCreateData(data: CreateProcessingActivityRequest): any {
-    return {
-      ...data,
+    // Whitelist of fields that actually exist in the production table
+    const allowedFields = {
+      name: data.name,
+      description: data.description,
+      purpose: data.purpose,
+      lawful_basis: data.lawful_basis,
+      lawful_basis_explanation: data.lawful_basis_explanation,
+      data_subject_categories: data.data_subject_categories,
+      special_category_basis: data.special_category_basis,
+      automated_decision_making: data.automated_decision_making,
+      profiling: data.profiling,
+      dpo_review_required: data.dpo_review_required,
+      review_date: data.review_date,
+      // Omit: data_source (column doesn't exist in production)
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
-      // Note: processing_activities table doesn't have created_by/updated_by columns
+      // Omit: created_by, updated_by (columns don't exist in production)
     };
+
+    // Remove undefined values
+    return Object.fromEntries(
+      Object.entries(allowedFields).filter(([_, v]) => v !== undefined)
+    );
   }
 
   /**
-   * Override prepareUpdateData - processing_activities table doesn't have updated_by column
+   * Override prepareUpdateData - processing_activities table schema mismatch
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareUpdateData(data: UpdateProcessingActivityRequest): any {
-    return {
-      ...data,
-      // Note: processing_activities table doesn't have updated_by column
+    // Whitelist of fields that actually exist in the production table
+    const allowedFields = {
+      name: data.name,
+      description: data.description,
+      purpose: data.purpose,
+      lawful_basis: data.lawful_basis,
+      lawful_basis_explanation: data.lawful_basis_explanation,
+      data_subject_categories: data.data_subject_categories,
+      special_category_basis: data.special_category_basis,
+      automated_decision_making: data.automated_decision_making,
+      profiling: data.profiling,
+      dpo_review_required: data.dpo_review_required,
+      review_date: data.review_date,
+      last_review_date: data.last_review_date,
+      status: data.status,
+      // Omit: data_source, updated_by (columns don't exist in production)
     };
+
+    // Remove undefined values
+    return Object.fromEntries(
+      Object.entries(allowedFields).filter(([_, v]) => v !== undefined)
+    );
   }
 
   /**
