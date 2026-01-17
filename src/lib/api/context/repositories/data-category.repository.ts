@@ -499,10 +499,12 @@ export class DataCategoryRepository extends BaseRepository<
 
   /**
    * Override delete to check for usage and children
+   *
+   * NOTE: deleted_at column doesn't exist in production - using hard delete
    */
   async delete(id: UUID): Promise<void> {
     const usage = await this.getUsageStatistics(id);
-    
+
     if (usage.children_count > 0) {
       throw new Error('Cannot delete category that has child categories');
     }
@@ -511,7 +513,16 @@ export class DataCategoryRepository extends BaseRepository<
       throw new Error('Cannot delete category that is used in processing activities or data flows');
     }
 
-    await super.delete(id);
+    // Hard delete since deleted_at column doesn't exist
+    const { error } = await this.client
+      .from('data_categories')
+      .delete()
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id);
+
+    if (error) {
+      throw new Error(`Failed to delete data_categories: ${error.message}`);
+    }
   }
 
   /**

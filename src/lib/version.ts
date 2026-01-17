@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.34" as const
-export const VERSION_NAME = "🔥 CRITICAL: Data Category Update Validation Fix" as const
+export const VERSION = "3.25.35" as const
+export const VERSION_NAME = "🔥 CRITICAL: Data Category Delete Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.35": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Data Category Delete Fix",
+    features: [
+      "ROOT CAUSE: DELETE tries to soft delete with deleted_at column",
+      "ERROR: Could not find the 'deleted_at' column in schema cache",
+      "CRITICAL FIX: Override delete() method to use hard delete",
+      "PATTERN: Direct Supabase delete query instead of BaseRepository soft delete",
+      "DELETE /api/v1/context/data-categories/[id] NOW WORKS",
+      "KNOWN ISSUE: Edit form may require re-selecting dropdown values (frontend validation)"
+    ]
+  },
   "3.25.34": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Data Category Update Validation Fix",
