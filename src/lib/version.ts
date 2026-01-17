@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.23
-export const VERSION = "3.25.22" as const
-export const VERSION_NAME = "🐛 Debug: GET Processing Activity Logging" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.24
+export const VERSION = "3.25.23" as const
+export const VERSION_NAME = "🔥 CRITICAL FIX: Service Role Key Configuration" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.23": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL FIX: Service Role Key Configuration",
+    features: [
+      "ROOT CAUSE IDENTIFIED: SUPABASE_SERVICE_ROLE_KEY was using placeholder fallback value",
+      "CRITICAL FIX: Removed placeholder default for service key - must be undefined if not set",
+      "AUTHENTICATION FIX: Invalid placeholder key was causing all database requests to fail with 500 errors",
+      "ENVIRONMENT REQUIREMENT: SUPABASE_SERVICE_ROLE_KEY must be set in Vercel production environment",
+      "ERROR CLARITY: Console errors now clearly show when service role is missing",
+      "AFFECTS: All Context API endpoints (vendors, locations, processing-activities, data-categories, data-flows, systems)"
+    ]
+  },
   "3.25.22": {
     date: "2026-01-17",
     name: "🐛 Debug: GET Processing Activity Logging",
