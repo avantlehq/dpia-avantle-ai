@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.10" as const
-export const VERSION_NAME = "🔧 Fix: Delete Button & API Client" as const
+export const VERSION = "3.25.11" as const
+export const VERSION_NAME = "🔧 Fix: All Systems API Endpoints" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.11": {
+    date: "2026-01-17",
+    name: "🔧 Fix: All Systems API Endpoints",
+    features: [
+      "CRITICAL FIX: Added client initialization to GET /api/v1/context/systems (list endpoint)",
+      "CRITICAL FIX: Added client initialization to POST /api/v1/context/systems (create endpoint)",
+      "COMPLETE FIX: All 5 systems API endpoints now have proper database client",
+      "DELETE NOW WORKING: Full CRUD operations functional (Create, Read, Update, Delete)",
+      "ARCHITECTURE: Consistent client initialization pattern across all endpoints",
+      "ALL ENDPOINTS: GET (list), POST, GET (by id), PUT, DELETE - all functional"
+    ]
+  },
   "3.25.10": {
     date: "2026-01-17",
     name: "🔧 Fix: Delete Button & API Client",
