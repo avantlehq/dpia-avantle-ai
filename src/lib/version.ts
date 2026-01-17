@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.54" as const
-export const VERSION_NAME = "📚 Documentation Update: CLAUDE.md & Data Model" as const
+export const VERSION = "3.26.0" as const
+export const VERSION_NAME = "🧹 Repository Cleanup & Jurisdiction Names" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,28 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.26.0": {
+    date: "2026-01-17",
+    name: "🧹 Repository Cleanup & Jurisdiction Names",
+    features: [
+      "Removed all Phase 1 workarounds from physical-location.repository.ts",
+      "Removed all Phase 1 workarounds from jurisdiction.repository.ts",
+      "Populated jurisdiction names (EN/SK) for all database jurisdictions",
+      "Updated LocationForm to display localized jurisdiction names instead of codes",
+      "physical-location: Restored full field support (description, address, city)",
+      "physical-location: Restored soft delete (deleted_at) instead of hard delete",
+      "jurisdiction: Restored name_en/name_sk searching and ordering",
+      "Created migration: 20260117_jurisdiction_names.sql for 52 countries",
+      "UX improvement: Users now see 'Germany' instead of 'DE' in dropdowns"
+    ],
+    fixes: [
+      "LocationForm.tsx: Added name_en and name_sk to Jurisdiction interface",
+      "jurisdiction.repository.ts: Changed all ordering from country_code to name_en",
+      "jurisdiction.repository.ts: Changed search from country_code only to name_en/name_sk/country_code",
+      "physical-location.repository.ts: Now saves jurisdiction_id with all optional fields"
+    ],
+    note: "Database schema alignment complete (v3.25.49). All temporary workarounds removed. Jurisdiction names properly localized. System fully operational."
+  },
   "3.25.54": {
     date: "2026-01-17",
     name: "📚 Documentation Update: CLAUDE.md & Data Model",

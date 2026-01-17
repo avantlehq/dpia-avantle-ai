@@ -30,7 +30,7 @@ export class PhysicalLocationRepository extends BaseRepository<
   }
 
   /**
-   * Override findMany - table has country_code, not jurisdiction_id
+   * Override findMany with soft delete and enhanced search
    */
   async findMany(params: PhysicalLocationQueryParams = {}): Promise<{
     data: PhysicalLocation[];
@@ -38,32 +38,23 @@ export class PhysicalLocationRepository extends BaseRepository<
   }> {
     const { page = 1, limit = 20, search, status, jurisdiction_id } = params;
 
-    // Direct query without deleted_at filter (column doesn't exist)
     let query = this.client
       .from('physical_locations')
       .select('*', { count: 'exact' })
-      .eq('workspace_id', this.context.workspace_id);
+      .eq('workspace_id', this.context.workspace_id)
+      .is('deleted_at', null); // Soft delete filter
 
     if (status) {
       query = query.eq('status', status);
     }
 
-    // Search only by name (description, city, address columns don't exist)
+    // Search across name, description, address, and city
     if (search) {
-      query = query.ilike('name', `%${search}%`);
+      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%,address.ilike.%${search}%,city.ilike.%${search}%`);
     }
 
-    // If filtering by jurisdiction_id, fetch country_code first
     if (jurisdiction_id) {
-      const { data: jurisdiction } = await this.client
-        .from('jurisdictions')
-        .select('country_code')
-        .eq('id', jurisdiction_id)
-        .single();
-
-      if (jurisdiction) {
-        query = query.eq('country_code', jurisdiction.country_code);
-      }
+      query = query.eq('jurisdiction_id', jurisdiction_id);
     }
 
     const { data, error, count } = await query
@@ -74,13 +65,8 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Physical locations query failed: ${error.message}`);
     }
 
-    // Enrich all locations with jurisdiction_id from country_code
-    const enrichedData = await Promise.all(
-      (data || []).map(location => this.enrichWithJurisdictionId(location))
-    );
-
     return {
-      data: enrichedData,
+      data: (data as PhysicalLocation[]) || [],
       pagination: {
         page,
         limit,
@@ -91,32 +77,13 @@ export class PhysicalLocationRepository extends BaseRepository<
   }
 
   /**
-   * Helper: Enrich location with jurisdiction_id from country_code
-   */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private async enrichWithJurisdictionId(location: any): Promise<PhysicalLocation> {
-    if (location.country_code) {
-      const { data: jurisdiction } = await this.client
-        .from('jurisdictions')
-        .select('id')
-        .eq('country_code', location.country_code)
-        .single();
-
-      if (jurisdiction) {
-        location.jurisdiction_id = jurisdiction.id;
-      }
-    }
-
-    return location as PhysicalLocation;
-  }
-
-  /**
-   * Override findById - physical_locations table may be missing deleted_at column
+   * Override findById with soft delete support
    */
   async findById(id: UUID, include?: string[]): Promise<PhysicalLocation | null> {
     let query = this.client
       .from('physical_locations')
-      .select('*');
+      .select('*')
+      .is('deleted_at', null); // Soft delete filter
 
     if (include?.length) {
       query = this.applyIncludes(query, include);
@@ -134,18 +101,17 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to fetch physical location: ${error.message}`);
     }
 
-    // Enrich with jurisdiction_id from country_code
-    return this.enrichWithJurisdictionId(data);
+    return data as PhysicalLocation;
   }
 
   /**
-   * Override prepareCreateData - table has country_code, not jurisdiction_id
+   * Override prepareCreateData to handle jurisdiction
    *
-   * NOTE: This method must fetch jurisdiction to get country_code
+   * NOTE: Fetches country_code for denormalization
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected async prepareCreateDataAsync(data: CreatePhysicalLocationRequest): Promise<any> {
-    // Fetch jurisdiction to get country_code
+    // Fetch jurisdiction to get country_code for denormalization
     const { data: jurisdiction, error: jurisdictionError } = await this.client
       .from('jurisdictions')
       .select('country_code')
@@ -158,14 +124,15 @@ export class PhysicalLocationRepository extends BaseRepository<
 
     const allowedFields = {
       name: data.name,
-      country_code: jurisdiction.country_code, // Table has country_code, not jurisdiction_id
+      jurisdiction_id: data.jurisdiction_id,
+      country_code: jurisdiction.country_code, // Denormalized for performance
       description: data.description,
       address: data.address,
       city: data.city,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
       // Note: status has database default
-      // Note: created_by, updated_by will be handled by database triggers after migration
+      // Note: created_by, updated_by will be handled by database triggers
     };
 
     return Object.fromEntries(
@@ -198,12 +165,11 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to create ${this.tableName}: ${error.message}`);
     }
 
-    // Enrich with jurisdiction_id from country_code
-    return this.enrichWithJurisdictionId(created);
+    return created as PhysicalLocation;
   }
 
   /**
-   * Override prepareUpdateData - table has country_code, not jurisdiction_id
+   * Override prepareUpdateData to handle jurisdiction
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected async prepareUpdateDataAsync(data: UpdatePhysicalLocationRequest): Promise<any> {
@@ -213,10 +179,10 @@ export class PhysicalLocationRepository extends BaseRepository<
       address: data.address,
       city: data.city,
       status: data.status,
-      // Note: updated_by will be handled by database triggers after migration
+      // Note: updated_by will be handled by database triggers
     };
 
-    // If jurisdiction_id provided, fetch country_code
+    // If jurisdiction_id provided, fetch country_code for denormalization
     if (data.jurisdiction_id) {
       const { data: jurisdiction, error: jurisdictionError } = await this.client
         .from('jurisdictions')
@@ -228,7 +194,8 @@ export class PhysicalLocationRepository extends BaseRepository<
         throw new Error('Invalid jurisdiction_id - jurisdiction not found');
       }
 
-      allowedFields.country_code = jurisdiction.country_code;
+      allowedFields.jurisdiction_id = data.jurisdiction_id;
+      allowedFields.country_code = jurisdiction.country_code; // Denormalized for performance
     }
 
     return Object.fromEntries(
@@ -263,8 +230,7 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to update ${this.tableName}: ${error.message}`);
     }
 
-    // Enrich with jurisdiction_id from country_code
-    return this.enrichWithJurisdictionId(updated);
+    return updated as PhysicalLocation;
   }
 
   /**
@@ -323,44 +289,40 @@ export class PhysicalLocationRepository extends BaseRepository<
 
   /**
    * Get locations by jurisdiction
-   *
-   * NOTE: Table has country_code, not jurisdiction_id
    */
   async findByJurisdiction(jurisdictionId: UUID): Promise<PhysicalLocation[]> {
-    // Fetch jurisdiction to get country_code
-    const { data: jurisdiction } = await this.client
-      .from('jurisdictions')
-      .select('country_code')
-      .eq('id', jurisdictionId)
-      .single();
-
-    if (!jurisdiction) {
-      return [];
-    }
-
     const { data, error } = await this.client
       .from('physical_locations')
       .select('*')
-      .eq('country_code', jurisdiction.country_code)
+      .eq('jurisdiction_id', jurisdictionId)
       .eq('status', 'active')
+      .is('deleted_at', null)
       .order('name', { ascending: true });
 
     if (error) {
       throw new Error(`Failed to fetch locations by jurisdiction: ${error.message}`);
     }
 
-    // Enrich all locations with jurisdiction_id from country_code
-    return Promise.all((data || []).map(location => this.enrichWithJurisdictionId(location)));
+    return (data as PhysicalLocation[]) || [];
   }
 
   /**
    * Get locations by city
-   *
-   * NOTE: city column doesn't exist in production - method disabled
    */
-  async findByCity(_city: string): Promise<PhysicalLocation[]> {
-    // city column doesn't exist in production - return empty array
-    return [];
+  async findByCity(city: string): Promise<PhysicalLocation[]> {
+    const { data, error } = await this.client
+      .from('physical_locations')
+      .select('*')
+      .ilike('city', city)
+      .eq('status', 'active')
+      .is('deleted_at', null)
+      .order('name', { ascending: true });
+
+    if (error) {
+      throw new Error(`Failed to fetch locations by city: ${error.message}`);
+    }
+
+    return (data as PhysicalLocation[]) || [];
   }
 
   /**
@@ -486,14 +448,14 @@ export class PhysicalLocationRepository extends BaseRepository<
       .from('physical_locations')
       .select('*')
       .eq('status', 'active')
+      .is('deleted_at', null)
       .order('name', { ascending: true });
 
     if (error) {
       throw new Error(`Failed to fetch available locations: ${error.message}`);
     }
 
-    // Enrich all locations with jurisdiction_id from country_code
-    return Promise.all((data || []).map(location => this.enrichWithJurisdictionId(location)));
+    return (data as PhysicalLocation[]) || [];
   }
 
   /**
@@ -532,7 +494,7 @@ export class PhysicalLocationRepository extends BaseRepository<
   }
 
   /**
-   * Override delete to check for usage and use hard delete (deleted_at column doesn't exist)
+   * Override delete to check for usage and use soft delete
    */
   async delete(id: UUID): Promise<void> {
     // Check if location is being used
@@ -542,10 +504,10 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error('Cannot delete location that is being used by systems or vendors');
     }
 
-    // Hard delete since deleted_at column doesn't exist
+    // Soft delete (set deleted_at timestamp)
     const { error } = await this.client
       .from('physical_locations')
-      .delete()
+      .update({ deleted_at: new Date().toISOString() })
       .eq('id', id)
       .eq('workspace_id', this.context.workspace_id);
 
@@ -556,8 +518,6 @@ export class PhysicalLocationRepository extends BaseRepository<
 
   /**
    * Search locations with advanced filters
-   *
-   * NOTE: Table has country_code, not jurisdiction_id
    */
   async advancedSearch(filters: {
     search?: string;
@@ -568,11 +528,12 @@ export class PhysicalLocationRepository extends BaseRepository<
   }): Promise<PhysicalLocation[]> {
     let query = this.client
       .from('physical_locations')
-      .select('*');
+      .select('*')
+      .is('deleted_at', null);
 
-    // Search only by name (description, address columns don't exist)
+    // Search across name, description, address, and city
     if (filters.search) {
-      query = query.ilike('name', `%${filters.search}%`);
+      query = query.or(`name.ilike.%${filters.search}%,description.ilike.%${filters.search}%,address.ilike.%${filters.search}%,city.ilike.%${filters.search}%`);
     }
 
     // Apply status filter
@@ -580,34 +541,27 @@ export class PhysicalLocationRepository extends BaseRepository<
       query = query.eq('status', filters.status);
     }
 
-    // Apply jurisdiction filter (convert jurisdiction IDs to country codes)
+    // Apply jurisdiction filter using jurisdiction_id
     if (filters.jurisdictions?.length) {
-      const { data: jurisdictions } = await this.client
-        .from('jurisdictions')
-        .select('country_code')
-        .in('id', filters.jurisdictions);
-
-      if (jurisdictions?.length) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const countryCodes = jurisdictions.map((j: any) => j.country_code);
-        query = query.in('country_code', countryCodes);
-      }
+      query = query.in('jurisdiction_id', filters.jurisdictions);
     }
 
-    // City filter ignored (city column doesn't exist)
-    // if (filters.cities?.length) { ... }
+    // Apply city filter
+    if (filters.cities?.length) {
+      query = query.in('city', filters.cities);
+    }
 
-    // Apply GDPR adequacy filter (convert to country codes)
+    // Apply GDPR adequacy filter (get jurisdiction IDs with adequacy)
     if (filters.gdpr_adequacy_only) {
       const { data: adequateJurisdictions } = await this.client
         .from('jurisdictions')
-        .select('country_code')
+        .select('id')
         .eq('gdpr_adequacy', true);
 
       if (adequateJurisdictions?.length) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const countryCodes = adequateJurisdictions.map((j: any) => j.country_code);
-        query = query.in('country_code', countryCodes);
+        const jurisdictionIds = adequateJurisdictions.map((j: any) => j.id);
+        query = query.in('jurisdiction_id', jurisdictionIds);
       }
     }
 
@@ -619,7 +573,6 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to perform advanced location search: ${error.message}`);
     }
 
-    // Enrich all locations with jurisdiction_id from country_code
-    return Promise.all((data || []).map(location => this.enrichWithJurisdictionId(location)));
+    return (data as PhysicalLocation[]) || [];
   }
 }

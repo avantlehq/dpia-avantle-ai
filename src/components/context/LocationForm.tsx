@@ -50,6 +50,8 @@ type LocationFormData = z.infer<typeof locationSchema>
 interface Jurisdiction {
   id: string
   country_code: string
+  name_en: string
+  name_sk: string
   gdpr_adequacy: boolean
   supervisory_authority?: string
 }
@@ -179,7 +181,7 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                       <SelectContent>
                         {jurisdictions.map((j) => (
                           <SelectItem key={j.id} value={j.id}>
-                            {j.country_code}
+                            {locale === 'sk' ? j.name_sk : j.name_en}
                             {j.gdpr_adequacy && ' ✓'}
                           </SelectItem>
                         ))}
