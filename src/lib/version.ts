@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.7" as const
-export const VERSION_NAME = "🔧 Fix: Server-Side Data Fetching" as const
+export const VERSION = "3.25.8" as const
+export const VERSION_NAME = "🔧 ESLint Fixes: Type Safety" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.8": {
+    date: "2026-01-17",
+    name: "🔧 ESLint Fixes: Type Safety",
+    features: [
+      "BUILD FIX: Replaced 'any' types with explicit type annotations in DataFlowModal.tsx",
+      "BUILD FIX: Replaced 'any' types with explicit type annotations in DataFlowForm.tsx",
+      "CODE CLEANUP: Removed unused 'watchFlowDirection' variable in DataFlowModal.tsx",
+      "TYPE SAFETY: Added proper types for system and vendor map functions",
+      "ESLINT COMPLIANCE: Zero TypeScript errors and ESLint warnings",
+      "PRODUCTION READY: Build now passes all quality checks"
+    ]
+  },
   "3.25.7": {
     date: "2026-01-17",
     name: "🔧 Fix: Server-Side Data Fetching",

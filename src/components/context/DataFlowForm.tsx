@@ -131,8 +131,8 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
           contextApiService.getVendors(),
         ])
 
-        setSystems((systemsResponse.data || []).map((sys: any) => ({ id: sys.id, name: sys.name })))
-        setVendors((vendorsResponse.data || []).map((vendor: any) => ({ id: vendor.id, name: vendor.name })))
+        setSystems((systemsResponse.data || []).map((sys: { id: string; name: string }) => ({ id: sys.id, name: sys.name })))
+        setVendors((vendorsResponse.data || []).map((vendor: { id: string; name: string }) => ({ id: vendor.id, name: vendor.name })))
       } catch (error) {
         console.error('Failed to fetch reference data:', error)
       }
