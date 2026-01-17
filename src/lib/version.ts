@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.26.0" as const
-export const VERSION_NAME = "🧹 Repository Cleanup & Jurisdiction Names" as const
-export const BUILD_DATE = "2026-01-17"
+export const VERSION = "3.27.0" as const
+export const VERSION_NAME = "🔍 Searchable Jurisdiction Select (Phase 1)" as const
+export const BUILD_DATE = "2026-01-18"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,28 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.27.0": {
+    date: "2026-01-18",
+    name: "🔍 Searchable Jurisdiction Select (Phase 1)",
+    features: [
+      "Created SelectCombobox: Generic searchable select for 13+ items with grouping and badges",
+      "Created JurisdictionSelect: Domain wrapper with EU/EEA/Third Country grouping",
+      "Created useJurisdictions: Centralized hook for fetching jurisdiction data",
+      "Searchable across name_en, name_sk, country_code with client-side filtering",
+      "Popular countries (SK, CZ, DE, US, GB, etc.) shown first in results",
+      "Adequacy badge (✓) displayed for jurisdictions with GDPR adequacy decisions",
+      "Keyboard accessible navigation (Arrow/Enter/Esc)",
+      "Mobile-friendly popover interface",
+      "Added cmdk@^1.0.0 for command palette pattern",
+      "Added shadcn/ui command and popover components"
+    ],
+    fixes: [
+      "UX: 58-item dropdown in LocationForm replaced with searchable combobox",
+      "LocationForm: Removed local jurisdiction fetching logic (moved to useJurisdictions hook)",
+      "Improved search performance with client-side filtering and debouncing"
+    ],
+    note: "Phase 1 implementation: Quick win for jurisdiction dropdown. Future phases will add SmartSelect orchestrator and additional renderers (segmented, pills, dropdown) for systematic deployment across all forms."
+  },
   "3.26.0": {
     date: "2026-01-17",
     name: "🧹 Repository Cleanup & Jurisdiction Names",
