@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.31" as const
-export const VERSION_NAME = "🔧 FIX: Request Body Clone Pattern (8 Routes)" as const
+export const VERSION = "3.25.32" as const
+export const VERSION_NAME = "🔥 CRITICAL: Data Category parent_id Schema Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.32": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Data Category parent_id Schema Fix",
+    features: [
+      "ROOT CAUSE: data_categories table missing parent_id column",
+      "CRITICAL FIX: Override nameExistsInParent() to skip parent_id filtering",
+      "CRITICAL FIX: Remove parent_id from prepareCreateData()",
+      "CRITICAL FIX: Remove parent_id from prepareUpdateData()",
+      "PATTERN: Check name uniqueness globally instead of per-parent",
+      "POST /api/v1/context/data-categories NOW WORKS"
+    ]
+  },
   "3.25.31": {
     date: "2026-01-17",
     name: "🔧 FIX: Request Body Clone Pattern (8 Routes)",

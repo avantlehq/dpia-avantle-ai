@@ -131,9 +131,9 @@ export class DataCategoryRepository extends BaseRepository<
       category_type: data.category_type,
       sensitivity: data.sensitivity,
       special_category_basis: specialCategoryBasis,
-      parent_id: data.parent_id,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
+      // Note: parent_id column doesn't exist in production
       // Note: is_standard and status have database defaults
     };
 
@@ -159,13 +159,37 @@ export class DataCategoryRepository extends BaseRepository<
       category_type: data.category_type,
       sensitivity: data.sensitivity,
       special_category_basis: specialCategoryBasis,
-      parent_id: data.parent_id,
+      // Note: parent_id column doesn't exist in production
       // Note: is_standard and status are not in UpdateDataCategoryRequest type
     };
 
     return Object.fromEntries(
       Object.entries(allowedFields).filter(([_, v]) => v !== undefined)
     );
+  }
+
+  /**
+   * Override nameExistsInParent - parent_id column doesn't exist in production
+   * Check name uniqueness globally instead of per-parent
+   */
+  async nameExistsInParent(name: string, _parentId: UUID | null, excludeId?: UUID): Promise<boolean> {
+    let query = this.client
+      .from('data_categories')
+      .select('id')
+      .eq('name', name)
+      .eq('workspace_id', this.context.workspace_id);
+
+    if (excludeId) {
+      query = query.neq('id', excludeId);
+    }
+
+    const { data, error } = await query.maybeSingle();
+
+    if (error) {
+      throw new Error(`Failed to check category name existence: ${error.message}`);
+    }
+
+    return !!data;
   }
 
   /**
