@@ -453,18 +453,19 @@ export default function DataFlowsPage() {
                           </td>
                           <td className="py-3 px-4 text-right">
                             <div className="flex items-center justify-end gap-2">
-                              <Link href={`/${locale}/context/data-flows/${flow.id}`}>
-                                <Button
-                                  variant="ghost"
-                                  size="sm"
-                                >
-                                  <Edit className="h-4 w-4" />
-                                </Button>
-                              </Link>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                title="Edit data flow"
+                                onClick={() => window.location.href = `/${locale}/context/data-flows/${flow.id}`}
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
                               <Button
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => handleDelete(flow)}
+                                title="Delete data flow"
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>

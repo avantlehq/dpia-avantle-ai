@@ -457,15 +457,14 @@ export default function LocationsPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Link href={`/${locale}/context/locations/${location.id}`}>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                title="Edit location"
-                              >
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                            </Link>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              title="Edit location"
+                              onClick={() => window.location.href = `/${locale}/context/locations/${location.id}`}
+                            >
+                              <Edit className="h-4 w-4" />
+                            </Button>
                             <Button
                               variant="ghost"
                               size="sm"

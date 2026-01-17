@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.2" as const
-export const VERSION_NAME = "🔧 Context Routes Fix: Async Params & RLS Policies" as const
+export const VERSION = "3.25.3" as const
+export const VERSION_NAME = "🔧 Context Action Buttons Fix" as const
 export const BUILD_DATE = "2026-01-15"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.3": {
+    date: "2026-01-15",
+    name: "🔧 Context Action Buttons Fix",
+    features: [
+      "BUTTON FIX: Fixed non-functional Edit and Delete buttons in all Context module list pages",
+      "CLICK HANDLING: Removed Link wrapper from Edit buttons causing click event conflicts",
+      "ALL MODULES FIXED: Systems, Vendors, Locations, Data Categories, Data Flows, Processing Activities",
+      "EDIT NAVIGATION: Edit buttons now use direct onClick navigation instead of Link wrapper",
+      "DELETE FUNCTIONALITY: Delete buttons working correctly in all Context list pages",
+      "UX IMPROVEMENT: Users can now click Edit/Delete buttons without issues"
+    ]
+  },
   "3.25.2": {
     date: "2026-01-15",
     name: "🔧 Context Routes Fix: Async Params & RLS Policies",

@@ -455,15 +455,14 @@ export default function VendorsPage() {
                         </td>
                         <td className="py-3 px-4 text-right">
                           <div className="flex items-center justify-end gap-2">
-                            <Link href={`/${locale}/context/vendors/${vendor.id}`}>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                title="Edit vendor"
-                              >
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                            </Link>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              title="Edit vendor"
+                              onClick={() => window.location.href = `/${locale}/context/vendors/${vendor.id}`}
+                            >
+                              <Edit className="h-4 w-4" />
+                            </Button>
                             <Button
                               variant="ghost"
                               size="sm"
