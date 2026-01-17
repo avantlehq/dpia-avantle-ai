@@ -69,7 +69,9 @@
       "Bash(then rm nul)",
       "Bash(fi)",
       "Bash(git reset:*)",
-      "Bash(psql:*)"
+      "Bash(psql:*)",
+      "Bash(ls:*)",
+      "Bash(npx shadcn@latest add:*)"
     ],
     "deny": [],
     "ask": [],

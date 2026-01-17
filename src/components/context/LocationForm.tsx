@@ -7,7 +7,7 @@
 
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -34,6 +34,7 @@ import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { ContextFormShell } from './ContextFormShell'
+import { JurisdictionSelect } from './JurisdictionSelect'
 import { createLocation, updateLocation, type Location } from '@/lib/context/locations'
 
 const locationSchema = z.object({
@@ -47,15 +48,6 @@ const locationSchema = z.object({
 
 type LocationFormData = z.infer<typeof locationSchema>
 
-interface Jurisdiction {
-  id: string
-  country_code: string
-  name_en: string
-  name_sk: string
-  gdpr_adequacy: boolean
-  supervisory_authority?: string
-}
-
 interface LocationFormProps {
   mode: 'create' | 'edit'
   locale: string
@@ -66,8 +58,6 @@ interface LocationFormProps {
 export function LocationForm({ mode, locale, locationId, initialData }: LocationFormProps) {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [jurisdictions, setJurisdictions] = useState<Jurisdiction[]>([])
-  const [loadingJurisdictions, setLoadingJurisdictions] = useState(true)
 
   const form = useForm<LocationFormData>({
     resolver: zodResolver(locationSchema),
@@ -80,24 +70,6 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
       status: initialData?.status || 'active',
     },
   })
-
-  // Fetch jurisdictions on mount
-  useEffect(() => {
-    const fetchJurisdictions = async () => {
-      try {
-        const response = await fetch('/api/v1/context/jurisdictions?limit=100')
-        if (!response.ok) throw new Error('Failed to fetch jurisdictions')
-        const result = await response.json()
-        setJurisdictions(result.data || [])
-      } catch (error) {
-        console.error('Error fetching jurisdictions:', error)
-        toast.error(locale === 'sk' ? 'Nepodarilo sa načítať jurisdikcie' : 'Failed to load jurisdictions')
-      } finally {
-        setLoadingJurisdictions(false)
-      }
-    }
-    fetchJurisdictions()
-  }, [locale])
 
   const onSubmit = async (data: LocationFormData) => {
     setIsSubmitting(true)
@@ -172,21 +144,14 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{locale === 'sk' ? 'Jurisdikcia' : 'Jurisdiction'} *</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value} disabled={loadingJurisdictions}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder={loadingJurisdictions ? (locale === 'sk' ? 'Načítavam...' : 'Loading...') : (locale === 'sk' ? 'Vyberte jurisdikciu' : 'Select jurisdiction')} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {jurisdictions.map((j) => (
-                          <SelectItem key={j.id} value={j.id}>
-                            {locale === 'sk' ? j.name_sk : j.name_en}
-                            {j.gdpr_adequacy && ' ✓'}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <FormControl>
+                      <JurisdictionSelect
+                        value={field.value}
+                        onChange={field.onChange}
+                        disabled={field.disabled}
+                        locale={locale}
+                      />
+                    </FormControl>
                     <FormDescription>
                       {locale === 'sk' ? 'Krajina alebo jurisdikcia tejto lokality. ✓ = Má rozhodnutie o primeranosti GDPR' : 'Country or jurisdiction of this location. ✓ = Has GDPR adequacy decision'}
                     </FormDescription>
