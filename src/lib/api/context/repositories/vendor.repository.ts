@@ -320,15 +320,26 @@ export class VendorRepository extends BaseRepository<
 
   /**
    * Override delete to check for usage
+   *
+   * NOTE: deleted_at column doesn't exist in production - using hard delete
    */
   async delete(id: UUID): Promise<void> {
     const usage = await this.getUsageStatistics(id);
-    
+
     if (usage.processing_activities_count > 0) {
       throw new Error('Cannot delete vendor that is used in processing activities');
     }
 
-    await super.delete(id);
+    // Hard delete since deleted_at column doesn't exist
+    const { error } = await this.client
+      .from('vendors')
+      .delete()
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id);
+
+    if (error) {
+      throw new Error(`Failed to delete vendors: ${error.message}`);
+    }
   }
 
   // Contract management methods

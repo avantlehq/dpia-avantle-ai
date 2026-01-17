@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.37" as const
-export const VERSION_NAME = "🔥 CRITICAL: Vendors vendor_role Required Field Fix" as const
+export const VERSION = "3.25.38" as const
+export const VERSION_NAME = "🔥 CRITICAL: Vendors Delete Fix (deleted_at)" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.38": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Vendors Delete Fix (deleted_at)",
+    features: [
+      "ROOT CAUSE: DELETE /api/v1/context/vendors/[id] failed with 500",
+      "ERROR: Could not find the 'deleted_at' column in schema cache",
+      "CRITICAL FIX: Override delete() method to use hard delete",
+      "PATTERN: Direct Supabase delete query instead of super.delete()",
+      "MAINTAINED: Usage validation before delete (processing activities check)",
+      "DELETE /api/v1/context/vendors/[id] NOW WORKS"
+    ]
+  },
   "3.25.37": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Vendors vendor_role Required Field Fix",
