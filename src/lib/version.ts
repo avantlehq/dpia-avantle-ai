@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.18" as const
-export const VERSION_NAME = "✅ Apply Delete Fixes to All Context Modules" as const
+export const VERSION = "3.25.19" as const
+export const VERSION_NAME = "🔧 Fix: Missing Supabase Client in API Routes" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.19": {
+    date: "2026-01-17",
+    name: "🔧 Fix: Missing Supabase Client in API Routes",
+    features: [
+      "CRITICAL FIX: Added createContextClient to processing-activities route (GET/POST)",
+      "CRITICAL FIX: Added createContextClient to vendors route (GET/POST)",
+      "CRITICAL FIX: Added createContextClient to locations route (GET/POST)",
+      "CRITICAL FIX: Added createContextClient to data-categories route (GET/POST)",
+      "ROOT CAUSE: ContextService requires Supabase client for database access",
+      "500 ERROR FIXED: Processing activities route now functional"
+    ]
+  },
   "3.25.18": {
     date: "2026-01-17",
     name: "✅ Apply Delete Fixes to All Context Modules",

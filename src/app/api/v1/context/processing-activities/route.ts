@@ -8,13 +8,14 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { ContextService } from '@/lib/api/context/services/context.service';
-import { 
+import {
   ProcessingActivityQueryParamsSchema,
-  CreateProcessingActivityRequestSchema 
+  CreateProcessingActivityRequestSchema
 } from '@/lib/api/context/schemas';
 import { withOptionalAuth } from '@/lib/api/context/middleware/auth';
 import { validateQuery, validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
+import { createContextClient } from '@/lib/api/context/supabase-client';
 
 /**
  * GET /api/v1/context/processing-activities
@@ -30,10 +31,11 @@ export async function GET(request: NextRequest) {
       // Initialize context service with default anonymous context if null
       const effectiveContext = context || {
         tenant_id: '00000000-0000-0000-0000-000000000001',
-        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        workspace_id: '00000000-0000-0000-0000-000000000001',
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Get processing activities
       const result = await contextService.processingActivities.getProcessingActivities(queryParams);
@@ -60,10 +62,11 @@ export async function POST(request: NextRequest) {
       // Initialize context service with default anonymous context if null
       const effectiveContext = context || {
         tenant_id: '00000000-0000-0000-0000-000000000001',
-        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        workspace_id: '00000000-0000-0000-0000-000000000001',
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Create processing activity
       const activity = await contextService.processingActivities.createProcessingActivity(activityData);

@@ -8,13 +8,14 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { ContextService } from '@/lib/api/context/services/context.service';
-import { 
+import {
   PhysicalLocationQueryParamsSchema,
-  CreatePhysicalLocationRequestSchema 
+  CreatePhysicalLocationRequestSchema
 } from '@/lib/api/context/schemas';
 import { withOptionalAuth } from '@/lib/api/context/middleware/auth';
 import { validateQuery, validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
+import { createContextClient } from '@/lib/api/context/supabase-client';
 
 /**
  * GET /api/v1/context/locations
@@ -30,10 +31,11 @@ export async function GET(request: NextRequest) {
       // Initialize context service with default anonymous context if null
       const effectiveContext = context || {
         tenant_id: '00000000-0000-0000-0000-000000000001',
-        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        workspace_id: '00000000-0000-0000-0000-000000000001',
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Get locations
       const result = await contextService.physicalLocations.getLocations(queryParams);
@@ -60,10 +62,11 @@ export async function POST(request: NextRequest) {
       // Initialize context service with default anonymous context if null
       const effectiveContext = context || {
         tenant_id: '00000000-0000-0000-0000-000000000001',
-        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        workspace_id: '00000000-0000-0000-0000-000000000001',
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Create location
       const location = await contextService.physicalLocations.createLocation(locationData);
