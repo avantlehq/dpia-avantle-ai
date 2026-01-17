@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.25
-export const VERSION = "3.25.24" as const
-export const VERSION_NAME = "🔥 CRITICAL FIX: Processing Activities Schema" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.26
+export const VERSION = "3.25.25" as const
+export const VERSION_NAME = "🔧 Fix: Clone Request Body for Next.js 16" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.25": {
+    date: "2026-01-17",
+    name: "🔧 Fix: Clone Request Body for Next.js 16",
+    features: [
+      "WORKAROUND: Clone request before reading body in POST handler",
+      "Next.js 16 FIX: Prevents 'Body has already been read' error",
+      "PATTERN: Use request.clone().json() instead of request.json()",
+      "FRAMEWORK ISSUE: Next.js 16 has body consumption quirks with middleware",
+      "TESTED: Resolves persistent POST 500 errors"
+    ]
+  },
   "3.25.24": {
     date: "2026-01-17",
     name: "🔥 CRITICAL FIX: Processing Activities Schema",

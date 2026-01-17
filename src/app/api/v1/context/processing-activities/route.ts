@@ -65,8 +65,11 @@ export async function POST(request: NextRequest) {
     return await withOptionalAuth(async (context) => {
       console.log('[POST /api/v1/context/processing-activities] Creating processing activity');
 
+      // Clone request to avoid body consumption issues in Next.js 16
+      const clonedRequest = request.clone();
+
       // Validate request body
-      const body = await request.json();
+      const body = await clonedRequest.json();
       const activityData = validateBody(body, CreateProcessingActivityRequestSchema);
       console.log('[POST /api/v1/context/processing-activities] Validation passed');
 
