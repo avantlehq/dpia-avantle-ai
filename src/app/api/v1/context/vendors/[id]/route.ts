@@ -13,6 +13,7 @@ import { UpdateVendorRequestSchema } from '@/lib/api/context/schemas';
 import { withOptionalAuth } from '@/lib/api/context/middleware/auth';
 import { validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
+import { createContextClient } from '@/lib/api/context/supabase-client';
 
 interface RouteContext {
   params: Promise<{
@@ -35,7 +36,8 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
         workspace_id: '00000000-0000-0000-0000-000000000001', 
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Get vendor
       const vendor = await contextService.vendors.getVendorById(id);
@@ -74,7 +76,8 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
         workspace_id: '00000000-0000-0000-0000-000000000001', 
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Update vendor
       const vendor = await contextService.vendors.updateVendor(id, vendorData);
@@ -102,7 +105,8 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
         workspace_id: '00000000-0000-0000-0000-000000000001', 
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Delete vendor
       await contextService.vendors.deleteVendor(id);

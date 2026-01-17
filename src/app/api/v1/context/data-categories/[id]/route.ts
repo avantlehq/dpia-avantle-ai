@@ -13,6 +13,7 @@ import { UpdateDataCategoryRequestSchema } from '@/lib/api/context/schemas';
 import { withOptionalAuth } from '@/lib/api/context/middleware/auth';
 import { validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
+import { createContextClient } from '@/lib/api/context/supabase-client';
 
 // Next.js 16 route context interface
 interface RouteContext {
@@ -36,7 +37,8 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
         workspace_id: '00000000-0000-0000-0000-000000000001', 
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Get data category
       const category = await contextService.dataCategories.getDataCategoryById(id);
@@ -75,7 +77,8 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
         workspace_id: '00000000-0000-0000-0000-000000000001', 
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Update data category
       const category = await contextService.dataCategories.updateDataCategory(id, categoryData);
@@ -103,7 +106,8 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
         workspace_id: '00000000-0000-0000-0000-000000000001', 
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Delete data category
       await contextService.dataCategories.deleteDataCategory(id);

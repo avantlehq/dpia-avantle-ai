@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.19" as const
-export const VERSION_NAME = "🔧 Fix: Missing Supabase Client in API Routes" as const
+export const VERSION = "3.25.20" as const
+export const VERSION_NAME = "🔧 Fix: Missing Client in [id] Routes" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.20": {
+    date: "2026-01-17",
+    name: "🔧 Fix: Missing Client in [id] Routes",
+    features: [
+      "CRITICAL FIX: Added createContextClient to processing-activities/[id] route (GET/PUT/DELETE)",
+      "CRITICAL FIX: Added createContextClient to vendors/[id] route (GET/PUT/DELETE)",
+      "CRITICAL FIX: Added createContextClient to locations/[id] route (GET/PUT/DELETE)",
+      "CRITICAL FIX: Added createContextClient to data-categories/[id] route (GET/PUT/DELETE)",
+      "DELETE ERROR FIXED: Processing activities DELETE now works",
+      "EDIT/UPDATE ERRORS FIXED: All individual entity routes functional"
+    ]
+  },
   "3.25.19": {
     date: "2026-01-17",
     name: "🔧 Fix: Missing Supabase Client in API Routes",

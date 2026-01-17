@@ -13,6 +13,7 @@ import { UpdateProcessingActivityRequestSchema } from '@/lib/api/context/schemas
 import { withOptionalAuth } from '@/lib/api/context/middleware/auth';
 import { validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
+import { createContextClient } from '@/lib/api/context/supabase-client';
 
 interface RouteContext {
   params: Promise<{
@@ -32,10 +33,11 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
       // Initialize context service with default anonymous context if null
       const effectiveContext = context || {
         tenant_id: '00000000-0000-0000-0000-000000000001',
-        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        workspace_id: '00000000-0000-0000-0000-000000000001',
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Get processing activity
       const activity = await contextService.processingActivities.getProcessingActivityById(id);
@@ -71,10 +73,11 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
       // Initialize context service with default anonymous context if null
       const effectiveContext = context || {
         tenant_id: '00000000-0000-0000-0000-000000000001',
-        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        workspace_id: '00000000-0000-0000-0000-000000000001',
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Update processing activity
       const activity = await contextService.processingActivities.updateProcessingActivity(id, activityData);
@@ -99,10 +102,11 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
       // Initialize context service with default anonymous context if null
       const effectiveContext = context || {
         tenant_id: '00000000-0000-0000-0000-000000000001',
-        workspace_id: '00000000-0000-0000-0000-000000000001', 
+        workspace_id: '00000000-0000-0000-0000-000000000001',
         sub: '00000000-0000-0000-0000-000000000001'
       };
-      const contextService = new ContextService(effectiveContext);
+      const client = createContextClient(effectiveContext);
+      const contextService = new ContextService(effectiveContext, client);
 
       // Delete processing activity
       await contextService.processingActivities.deleteProcessingActivity(id);
