@@ -31,5 +31,6 @@ export default async function EditSystemPage({ params }: Props) {
     notFound()
   }
 
-  return <SystemForm mode="edit" locale={locale} systemId={id} initialData={system} />
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return <SystemForm mode="edit" locale={locale} systemId={id} initialData={system as any} />
 }

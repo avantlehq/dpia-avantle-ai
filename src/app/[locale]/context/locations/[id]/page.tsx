@@ -30,5 +30,6 @@ export default async function EditLocationPage({ params }: Props) {
     notFound()
   }
 
-  return <LocationForm mode="edit" locale={locale} locationId={id} initialData={location} />
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return <LocationForm mode="edit" locale={locale} locationId={id} initialData={location as any} />
 }

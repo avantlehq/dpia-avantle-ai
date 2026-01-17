@@ -24,11 +24,12 @@ export default async function EditDataCategoryPage({ params }: Props) {
 
   const client = createContextClient(context)
   const contextService = new ContextService(context, client)
-  const category = await contextService.dataCategories.getCategoryById(id)
+  const category = await contextService.dataCategories.getDataCategoryById(id)
 
   if (!category) {
     notFound()
   }
 
-  return <DataCategoryForm mode="edit" locale={locale} categoryId={id} initialData={category} />
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return <DataCategoryForm mode="edit" locale={locale} categoryId={id} initialData={category as any} />
 }

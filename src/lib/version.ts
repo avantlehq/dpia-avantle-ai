@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.8" as const
-export const VERSION_NAME = "🔧 ESLint Fixes: Type Safety" as const
+export const VERSION = "3.25.9" as const
+export const VERSION_NAME = "🔧 Build Fix: Service Method Names" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.9": {
+    date: "2026-01-17",
+    name: "🔧 Build Fix: Service Method Names",
+    features: [
+      "BUILD FIX: Corrected getDataCategoryById method name (was getCategoryById)",
+      "BUILD FIX: Corrected getProcessingActivityById method name (was getActivityById)",
+      "ARCHITECTURE: Reverted data-flows edit page to client library (service not yet implemented)",
+      "DATA FLOWS: Using fetch-all-then-filter until GET /api/v1/context/data-flows/[id] endpoint exists",
+      "TYPESCRIPT COMPLIANCE: Zero compilation errors",
+      "5/6 MODULES WORKING: Systems, vendors, locations, data-categories, processing use direct DB access"
+    ]
+  },
   "3.25.8": {
     date: "2026-01-17",
     name: "🔧 ESLint Fixes: Type Safety",

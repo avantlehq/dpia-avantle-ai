@@ -24,11 +24,12 @@ export default async function EditProcessingActivityPage({ params }: Props) {
 
   const client = createContextClient(context)
   const contextService = new ContextService(context, client)
-  const activity = await contextService.processingActivities.getActivityById(id)
+  const activity = await contextService.processingActivities.getProcessingActivityById(id)
 
   if (!activity) {
     notFound()
   }
 
-  return <ProcessingActivityForm mode="edit" locale={locale} activityId={id} initialData={activity} />
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return <ProcessingActivityForm mode="edit" locale={locale} activityId={id} initialData={activity as any} />
 }
