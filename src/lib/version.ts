@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.21" as const
-export const VERSION_NAME = "🐛 Debug: POST Processing Activity Logging" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.23
+export const VERSION = "3.25.22" as const
+export const VERSION_NAME = "🐛 Debug: GET Processing Activity Logging" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,16 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.22": {
+    date: "2026-01-17",
+    name: "🐛 Debug: GET Processing Activity Logging",
+    features: [
+      "DIAGNOSTIC LOGGING: Added extensive console logging to GET /api/v1/context/processing-activities",
+      "ERROR TRACKING: Console logs at each step (query validation, client creation, service init, data fetch)",
+      "DEBUGGING: Will identify exact failure point in processing activities GET endpoint",
+      "INVESTIGATION: GET endpoint still returning 500 errors despite client initialization fixes"
+    ]
+  },
   "3.25.20": {
     date: "2026-01-17",
     name: "🔧 Fix: Missing Client in [id] Routes",

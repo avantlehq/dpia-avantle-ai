@@ -24,9 +24,12 @@ import { createContextClient } from '@/lib/api/context/supabase-client';
 export async function GET(request: NextRequest) {
   try {
     return await withOptionalAuth(async (context) => {
+      console.log('[GET /api/v1/context/processing-activities] Fetching processing activities');
+
       // Validate query parameters
       const url = new URL(request.url);
       const queryParams = validateQuery(url.searchParams, ProcessingActivityQueryParamsSchema);
+      console.log('[GET /api/v1/context/processing-activities] Query params validated:', queryParams);
 
       // Initialize context service with default anonymous context if null
       const effectiveContext = context || {
@@ -35,15 +38,20 @@ export async function GET(request: NextRequest) {
         sub: '00000000-0000-0000-0000-000000000001'
       };
       const client = createContextClient(effectiveContext);
+      console.log('[GET /api/v1/context/processing-activities] Client created');
+
       const contextService = new ContextService(effectiveContext, client);
+      console.log('[GET /api/v1/context/processing-activities] ContextService initialized');
 
       // Get processing activities
       const result = await contextService.processingActivities.getProcessingActivities(queryParams);
+      console.log('[GET /api/v1/context/processing-activities] Found', result.data.length, 'activities');
 
       return NextResponse.json(result);
     })(request);
 
   } catch (error) {
+    console.error('[GET /api/v1/context/processing-activities] Error:', error);
     return handleApiError(error);
   }
 }
