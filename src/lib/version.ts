@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.29
-export const VERSION = "3.25.28" as const
-export const VERSION_NAME = "🔥 CRITICAL FIX: Vendors Repository Schema" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.30
+export const VERSION = "3.25.29" as const
+export const VERSION_NAME = "🔥 CRITICAL: Enum Value Filter (employment)" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.29": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Enum Value Filter (employment)",
+    features: [
+      "ROOT CAUSE: production DB enum special_category_basis missing 'employment' value",
+      "TYPES MISMATCH: database.types.ts shows 'employment', but production DB rejects it",
+      "CRITICAL FIX: Map 'employment' to null in prepareCreateData()",
+      "CRITICAL FIX: Map 'employment' to null in prepareUpdateData()",
+      "POST /api/v1/context/processing-activities NOW WORKS",
+      "Processing activities can be created successfully"
+    ]
+  },
   "3.25.28": {
     date: "2026-01-17",
     name: "🔥 CRITICAL FIX: Vendors Repository Schema",
