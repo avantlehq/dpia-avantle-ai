@@ -5,11 +5,9 @@
  */
 
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { SystemForm } from '@/components/context/SystemForm'
-import { getSystem } from '@/lib/context/systems'
+import { ContextService } from '@/lib/api/context/services/context.service'
+import { createContextClient } from '@/lib/api/context/supabase-client'
 
 type Props = {
   params: Promise<{ locale: string; id: string }>
@@ -18,8 +16,16 @@ type Props = {
 export default async function EditSystemPage({ params }: Props) {
   const { locale, id } = await params
 
-  // Fetch system data (server-side)
-  const system = await getSystem(id)
+  // Server-side data fetching using repository directly (not HTTP API)
+  const context = {
+    tenant_id: '00000000-0000-0000-0000-000000000001',
+    workspace_id: '00000000-0000-0000-0000-000000000001',
+    sub: '00000000-0000-0000-0000-000000000001',
+  }
+
+  const client = createContextClient(context)
+  const contextService = new ContextService(context, client)
+  const system = await contextService.systems.getSystemById(id)
 
   if (!system) {
     notFound()

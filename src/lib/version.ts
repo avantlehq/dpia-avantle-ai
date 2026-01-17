@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.6" as const
-export const VERSION_NAME = "🔍 Debug: Service Role Client Logging" as const
+export const VERSION = "3.25.7" as const
+export const VERSION_NAME = "🔧 Fix: Server-Side Data Fetching" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.7": {
+    date: "2026-01-17",
+    name: "🔧 Fix: Server-Side Data Fetching",
+    features: [
+      "CRITICAL FIX: Edit pages now use repository directly instead of HTTP API",
+      "SERVER COMPONENTS: Removed relative URL fetch calls that fail server-side",
+      "DIRECT DATABASE ACCESS: ContextService.systems.getSystemById() bypasses HTTP layer",
+      "404 FIX: /context/systems/[id] pages now load correctly after creation",
+      "ARCHITECTURE: Server components call database directly, client components use API",
+      "ROOT CAUSE: Relative URLs in fetch() don't work in Next.js server components"
+    ]
+  },
   "3.25.6": {
     date: "2026-01-17",
     name: "🔍 Debug: Service Role Client Logging",

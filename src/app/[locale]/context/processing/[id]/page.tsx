@@ -6,7 +6,8 @@
 
 import { notFound } from 'next/navigation'
 import { ProcessingActivityForm } from '@/components/context/ProcessingActivityForm'
-import { getProcessingActivity } from '@/lib/context/processing-activities'
+import { ContextService } from '@/lib/api/context/services/context.service'
+import { createContextClient } from '@/lib/api/context/supabase-client'
 
 type Props = {
   params: Promise<{ locale: string; id: string }>
@@ -15,8 +16,15 @@ type Props = {
 export default async function EditProcessingActivityPage({ params }: Props) {
   const { locale, id } = await params
 
-  // Fetch processing activity data (server-side)
-  const activity = await getProcessingActivity(id)
+  const context = {
+    tenant_id: '00000000-0000-0000-0000-000000000001',
+    workspace_id: '00000000-0000-0000-0000-000000000001',
+    sub: '00000000-0000-0000-0000-000000000001',
+  }
+
+  const client = createContextClient(context)
+  const contextService = new ContextService(context, client)
+  const activity = await contextService.processingActivities.getActivityById(id)
 
   if (!activity) {
     notFound()
