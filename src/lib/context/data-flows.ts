@@ -59,8 +59,10 @@ export interface DataFlowsListResponse {
 }
 
 export async function getDataFlows(): Promise<DataFlow[]> {
+  // Add timestamp to bust any caching
+  const timestamp = Date.now()
   const response = await contextFetch<DataFlowsListResponse>(
-    '/api/v1/context/data-flows'
+    `/api/v1/context/data-flows?_t=${timestamp}`
   )
   return response.data
 }

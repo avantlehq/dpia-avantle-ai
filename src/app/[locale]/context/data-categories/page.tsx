@@ -125,8 +125,10 @@ export default function DataCategoriesPage() {
     setDeleteCategory({ id: category.id, name: category.name })
   }
 
-  const handleDeleteSuccess = () => {
-    fetchDataCategories() // Refresh the list
+  const handleDeleteSuccess = async () => {
+    console.log('[DataCategoriesPage] Delete successful, refreshing list...')
+    await fetchDataCategories() // Refresh the list
+    console.log('[DataCategoriesPage] List refreshed')
   }
 
   const handleCloseDeleteDialog = () => {

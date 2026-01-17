@@ -51,6 +51,7 @@ export class VendorRepository extends BaseRepository<
       .from('vendors')
       .select('*', { count: 'exact' })
       .eq('workspace_id', this.context.workspace_id)
+      .is('deleted_at', null) // CRITICAL: Exclude soft-deleted vendors
       .order('created_at', { ascending: false })
       .range((page - 1) * limit, page * limit - 1);
 
@@ -102,6 +103,7 @@ export class VendorRepository extends BaseRepository<
         )
       `)
       .eq('id', id)
+      .is('deleted_at', null) // CRITICAL: Exclude soft-deleted vendors
       .single();
 
     if (error) {

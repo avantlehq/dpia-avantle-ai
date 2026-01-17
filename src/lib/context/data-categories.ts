@@ -46,8 +46,10 @@ export interface DataCategoriesListResponse {
 }
 
 export async function getDataCategories(): Promise<DataCategory[]> {
+  // Add timestamp to bust any caching
+  const timestamp = Date.now()
   const response = await contextFetch<DataCategoriesListResponse>(
-    '/api/v1/context/data-categories'
+    `/api/v1/context/data-categories?_t=${timestamp}`
   )
   return response.data
 }

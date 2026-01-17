@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.17" as const
-export const VERSION_NAME = "🔧 Fix: ESLint Unused Variable" as const
+export const VERSION = "3.25.18" as const
+export const VERSION_NAME = "✅ Apply Delete Fixes to All Context Modules" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.18": {
+    date: "2026-01-17",
+    name: "✅ Apply Delete Fixes to All Context Modules",
+    features: [
+      "VENDOR REPOSITORY: Added .is('deleted_at', null) to VendorRepository.findMany()",
+      "VENDOR REPOSITORY: Added .is('deleted_at', null) to VendorRepository.findByIdWithRelations()",
+      "CACHE BUSTING: Added timestamp to getVendors(), getLocations(), getDataCategories(), getDataFlows(), getProcessingActivities()",
+      "ASYNC HANDLERS: Made handleDeleteSuccess async in vendors, locations, data-categories, data-flows, processing pages",
+      "LOGGING: Added console logs to all delete success handlers for debugging",
+      "CONSISTENCY: All 6 Context modules now have identical delete/refresh patterns"
+    ]
+  },
   "3.25.17": {
     date: "2026-01-17",
     name: "🔧 Fix: ESLint Unused Variable",

@@ -56,8 +56,10 @@ export interface ProcessingActivitiesListResponse {
 }
 
 export async function getProcessingActivities(): Promise<ProcessingActivity[]> {
+  // Add timestamp to bust any caching
+  const timestamp = Date.now()
   const response = await contextFetch<ProcessingActivitiesListResponse>(
-    '/api/v1/context/processing-activities'
+    `/api/v1/context/processing-activities?_t=${timestamp}`
   )
   return response.data
 }

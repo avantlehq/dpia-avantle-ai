@@ -120,8 +120,10 @@ export default function VendorsPage() {
     setDeleteVendor({ id: vendor.id, name: vendor.name })
   }
 
-  const handleDeleteSuccess = () => {
-    fetchVendors() // Refresh the list
+  const handleDeleteSuccess = async () => {
+    console.log('[VendorsPage] Delete successful, refreshing list...')
+    await fetchVendors() // Refresh the list
+    console.log('[VendorsPage] List refreshed')
   }
 
   const handleCloseDeleteDialog = () => {

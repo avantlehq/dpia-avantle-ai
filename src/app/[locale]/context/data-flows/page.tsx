@@ -120,8 +120,10 @@ export default function DataFlowsPage() {
     setFlowToDelete(null)
   }
 
-  const handleDeleteSuccess = () => {
-    fetchDataFlows()
+  const handleDeleteSuccess = async () => {
+    console.log('[DataFlowsPage] Delete successful, refreshing list...')
+    await fetchDataFlows()
+    console.log('[DataFlowsPage] List refreshed')
     handleDeleteDialogClose()
   }
 

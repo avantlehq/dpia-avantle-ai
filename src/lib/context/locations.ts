@@ -53,8 +53,10 @@ export interface LocationsListResponse {
 }
 
 export async function getLocations(): Promise<Location[]> {
+  // Add timestamp to bust any caching
+  const timestamp = Date.now()
   const response = await contextFetch<LocationsListResponse>(
-    '/api/v1/context/locations'
+    `/api/v1/context/locations?_t=${timestamp}`
   )
   return response.data
 }

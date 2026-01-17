@@ -51,8 +51,10 @@ export interface VendorsListResponse {
 }
 
 export async function getVendors(): Promise<Vendor[]> {
+  // Add timestamp to bust any caching
+  const timestamp = Date.now()
   const response = await contextFetch<VendorsListResponse>(
-    '/api/v1/context/vendors'
+    `/api/v1/context/vendors?_t=${timestamp}`
   )
   return response.data
 }

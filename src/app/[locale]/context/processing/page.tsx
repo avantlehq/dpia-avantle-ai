@@ -118,8 +118,10 @@ export default function ProcessingPage() {
     setDeleteActivity({ id: activity.id, name: activity.name })
   }
 
-  const handleDeleteSuccess = () => {
-    fetchProcessingActivities() // Refresh the list
+  const handleDeleteSuccess = async () => {
+    console.log('[ProcessingActivitiesPage] Delete successful, refreshing list...')
+    await fetchProcessingActivities() // Refresh the list
+    console.log('[ProcessingActivitiesPage] List refreshed')
   }
 
   const handleCloseDeleteDialog = () => {

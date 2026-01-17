@@ -140,8 +140,10 @@ export default function LocationsPage() {
     setDeleteLocation({ id: location.id, name: location.name })
   }
 
-  const handleDeleteSuccess = () => {
-    fetchLocations() // Refresh the list
+  const handleDeleteSuccess = async () => {
+    console.log('[LocationsPage] Delete successful, refreshing list...')
+    await fetchLocations() // Refresh the list
+    console.log('[LocationsPage] List refreshed')
   }
 
   const handleCloseDeleteDialog = () => {
