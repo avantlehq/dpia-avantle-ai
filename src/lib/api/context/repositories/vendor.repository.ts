@@ -48,14 +48,9 @@ export class VendorRepository extends BaseRepository<
     const allowedFields = {
       name: data.name,
       description: data.description,
-      vendor_type: data.vendor_type,
-      contact_email: data.contact_email,
-      contact_phone: data.contact_phone,
       website: data.website,
-      dpa_in_place: data.dpa_in_place,
-      dpa_expiry_date: data.dpa_expiry_date,
-      risk_level: data.risk_level,
-      status: data.status,
+      contact_email: data.contact_email,
+      primary_contact: data.primary_contact,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
       // Note: created_by and updated_by columns don't exist in production
@@ -74,13 +69,9 @@ export class VendorRepository extends BaseRepository<
     const allowedFields = {
       name: data.name,
       description: data.description,
-      vendor_type: data.vendor_type,
-      contact_email: data.contact_email,
-      contact_phone: data.contact_phone,
       website: data.website,
-      dpa_in_place: data.dpa_in_place,
-      dpa_expiry_date: data.dpa_expiry_date,
-      risk_level: data.risk_level,
+      contact_email: data.contact_email,
+      primary_contact: data.primary_contact,
       status: data.status,
       // Note: updated_by column doesn't exist in production
     };
