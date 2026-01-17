@@ -30,6 +30,147 @@ export class DataCategoryRepository extends BaseRepository<
   }
 
   /**
+   * Override findMany - data_categories table may be missing deleted_at column
+   */
+  async findMany(params: DataCategoryQueryParams = {}): Promise<{
+    data: DataCategory[];
+    pagination: { page: number; limit: number; total: number; pages: number };
+  }> {
+    const { page = 1, limit = 20, search, status, category_type, sensitivity, is_standard, parent_id } = params;
+
+    // Direct query without deleted_at filter (column may not exist)
+    let query = this.client
+      .from('data_categories')
+      .select('*', { count: 'exact' })
+      .eq('workspace_id', this.context.workspace_id);
+
+    if (status) {
+      query = query.eq('status', status);
+    }
+
+    if (search) {
+      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%`);
+    }
+
+    if (category_type) {
+      query = query.eq('category_type', category_type);
+    }
+
+    if (sensitivity) {
+      query = query.eq('sensitivity', sensitivity);
+    }
+
+    if (typeof is_standard === 'boolean') {
+      query = query.eq('is_standard', is_standard);
+    }
+
+    if (parent_id) {
+      query = query.eq('parent_id', parent_id);
+    }
+
+    const { data, error, count } = await query
+      .order('created_at', { ascending: false })
+      .range((page - 1) * limit, page * limit - 1);
+
+    if (error) {
+      throw new Error(`Data categories query failed: ${error.message}`);
+    }
+
+    return {
+      data: data as DataCategory[],
+      pagination: {
+        page,
+        limit,
+        total: count || 0,
+        pages: Math.ceil((count || 0) / limit),
+      },
+    };
+  }
+
+  /**
+   * Override findById - data_categories table may be missing deleted_at column
+   */
+  async findById(id: UUID, include?: string[]): Promise<DataCategory | null> {
+    let query = this.client
+      .from('data_categories')
+      .select('*');
+
+    if (include?.length) {
+      query = this.applyIncludes(query, include);
+    }
+
+    const { data, error } = await query
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id)
+      .single();
+
+    if (error) {
+      if (error.code === 'PGRST116') {
+        return null;
+      }
+      throw new Error(`Failed to fetch data category: ${error.message}`);
+    }
+
+    return data as DataCategory;
+  }
+
+  /**
+   * Override prepareCreateData - handle potential schema mismatches
+   * Note: Filter out invalid enum value "employment" for special_category_basis
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected prepareCreateData(data: CreateDataCategoryRequest): any {
+    // Filter out invalid enum value: "employment" not in production DB
+    const specialCategoryBasis = data.special_category_basis === 'employment'
+      ? null
+      : data.special_category_basis;
+
+    const allowedFields = {
+      name: data.name,
+      description: data.description,
+      category_type: data.category_type,
+      sensitivity: data.sensitivity,
+      special_category_basis: specialCategoryBasis,
+      is_standard: data.is_standard,
+      parent_id: data.parent_id,
+      status: data.status,
+      tenant_id: this.context.tenant_id,
+      workspace_id: this.context.workspace_id,
+    };
+
+    return Object.fromEntries(
+      Object.entries(allowedFields).filter(([_, v]) => v !== undefined)
+    );
+  }
+
+  /**
+   * Override prepareUpdateData - handle potential schema mismatches
+   * Note: Filter out invalid enum value "employment" for special_category_basis
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected prepareUpdateData(data: UpdateDataCategoryRequest): any {
+    // Filter out invalid enum value: "employment" not in production DB
+    const specialCategoryBasis = data.special_category_basis === 'employment'
+      ? null
+      : data.special_category_basis;
+
+    const allowedFields = {
+      name: data.name,
+      description: data.description,
+      category_type: data.category_type,
+      sensitivity: data.sensitivity,
+      special_category_basis: specialCategoryBasis,
+      is_standard: data.is_standard,
+      parent_id: data.parent_id,
+      status: data.status,
+    };
+
+    return Object.fromEntries(
+      Object.entries(allowedFields).filter(([_, v]) => v !== undefined)
+    );
+  }
+
+  /**
    * Apply specific filters for data categories
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

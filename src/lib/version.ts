@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.30
-export const VERSION = "3.25.29" as const
-export const VERSION_NAME = "🔥 CRITICAL: Enum Value Filter (employment)" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
+export const VERSION = "3.25.30" as const
+export const VERSION_NAME = "🛡️ PREVENTIVE: Schema Workarounds All Repos" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.30": {
+    date: "2026-01-17",
+    name: "🛡️ PREVENTIVE: Schema Workarounds All Repos",
+    features: [
+      "PREVENTIVE: Applied schema workarounds to physical_locations repository",
+      "PREVENTIVE: Applied schema workarounds to data_categories repository",
+      "DOCUMENTATION: Created DATABASE_SCHEMA_ISSUES.md with migration scripts",
+      "PATTERN: All Context repositories now use whitelist approach",
+      "PATTERN: All enum filters (employment) applied consistently",
+      "TECHNICAL DEBT: Documented proper fix with SQL migration scripts"
+    ]
+  },
   "3.25.29": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Enum Value Filter (employment)",

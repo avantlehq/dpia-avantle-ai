@@ -30,6 +30,119 @@ export class PhysicalLocationRepository extends BaseRepository<
   }
 
   /**
+   * Override findMany - physical_locations table may be missing deleted_at column
+   */
+  async findMany(params: PhysicalLocationQueryParams = {}): Promise<{
+    data: PhysicalLocation[];
+    pagination: { page: number; limit: number; total: number; pages: number };
+  }> {
+    const { page = 1, limit = 20, search, status, jurisdiction_id } = params;
+
+    // Direct query without deleted_at filter (column may not exist)
+    let query = this.client
+      .from('physical_locations')
+      .select('*', { count: 'exact' })
+      .eq('workspace_id', this.context.workspace_id);
+
+    if (status) {
+      query = query.eq('status', status);
+    }
+
+    if (search) {
+      query = query.or(`name.ilike.%${search}%,description.ilike.%${search}%,city.ilike.%${search}%,address.ilike.%${search}%`);
+    }
+
+    if (jurisdiction_id) {
+      query = query.eq('jurisdiction_id', jurisdiction_id);
+    }
+
+    const { data, error, count } = await query
+      .order('created_at', { ascending: false })
+      .range((page - 1) * limit, page * limit - 1);
+
+    if (error) {
+      throw new Error(`Physical locations query failed: ${error.message}`);
+    }
+
+    return {
+      data: data as PhysicalLocation[],
+      pagination: {
+        page,
+        limit,
+        total: count || 0,
+        pages: Math.ceil((count || 0) / limit),
+      },
+    };
+  }
+
+  /**
+   * Override findById - physical_locations table may be missing deleted_at column
+   */
+  async findById(id: UUID, include?: string[]): Promise<PhysicalLocation | null> {
+    let query = this.client
+      .from('physical_locations')
+      .select('*');
+
+    if (include?.length) {
+      query = this.applyIncludes(query, include);
+    }
+
+    const { data, error } = await query
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id)
+      .single();
+
+    if (error) {
+      if (error.code === 'PGRST116') {
+        return null;
+      }
+      throw new Error(`Failed to fetch physical location: ${error.message}`);
+    }
+
+    return data as PhysicalLocation;
+  }
+
+  /**
+   * Override prepareCreateData - handle potential schema mismatches
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected prepareCreateData(data: CreatePhysicalLocationRequest): any {
+    const allowedFields = {
+      name: data.name,
+      description: data.description,
+      address: data.address,
+      city: data.city,
+      jurisdiction_id: data.jurisdiction_id,
+      status: data.status,
+      tenant_id: this.context.tenant_id,
+      workspace_id: this.context.workspace_id,
+    };
+
+    return Object.fromEntries(
+      Object.entries(allowedFields).filter(([_, v]) => v !== undefined)
+    );
+  }
+
+  /**
+   * Override prepareUpdateData - handle potential schema mismatches
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected prepareUpdateData(data: UpdatePhysicalLocationRequest): any {
+    const allowedFields = {
+      name: data.name,
+      description: data.description,
+      address: data.address,
+      city: data.city,
+      jurisdiction_id: data.jurisdiction_id,
+      status: data.status,
+    };
+
+    return Object.fromEntries(
+      Object.entries(allowedFields).filter(([_, v]) => v !== undefined)
+    );
+  }
+
+  /**
    * Apply specific filters for physical locations
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
