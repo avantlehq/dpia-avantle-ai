@@ -41,17 +41,44 @@ export class VendorRepository extends BaseRepository<
   }
 
   /**
-   * Override findMany with simplified query - debug BaseRepository issues
+   * Override findById - vendors table doesn't have deleted_at column
+   */
+  async findById(id: UUID, include?: string[]): Promise<Vendor | null> {
+    let query = this.client
+      .from('vendors')
+      .select('*');
+
+    // Apply includes if supported
+    if (include?.length) {
+      query = this.applyIncludes(query, include);
+    }
+
+    const { data, error } = await query
+      .eq('id', id)
+      .eq('workspace_id', this.context.workspace_id)
+      .single();
+
+    if (error) {
+      if (error.code === 'PGRST116') {
+        return null;
+      }
+      throw new Error(`Failed to fetch vendor: ${error.message}`);
+    }
+
+    return data as Vendor;
+  }
+
+  /**
+   * Override findMany - vendors table doesn't have deleted_at column
    */
   async findMany(params: ListQueryParams = {}): Promise<PaginatedResponse<Vendor>> {
     const { page = 1, limit = 20 } = params;
 
-    // Simple direct query without complex BaseRepository logic
+    // Direct query without deleted_at filter (column doesn't exist)
     const { data, error, count } = await this.client
       .from('vendors')
       .select('*', { count: 'exact' })
       .eq('workspace_id', this.context.workspace_id)
-      .is('deleted_at', null) // CRITICAL: Exclude soft-deleted vendors
       .order('created_at', { ascending: false })
       .range((page - 1) * limit, page * limit - 1);
 
@@ -103,7 +130,7 @@ export class VendorRepository extends BaseRepository<
         )
       `)
       .eq('id', id)
-      .is('deleted_at', null) // CRITICAL: Exclude soft-deleted vendors
+      .eq('workspace_id', this.context.workspace_id)
       .single();
 
     if (error) {
@@ -125,7 +152,7 @@ export class VendorRepository extends BaseRepository<
         status: contract.status as ContractStatus
       })) || []
     };
-    
+
     return transformedData;
   }
 

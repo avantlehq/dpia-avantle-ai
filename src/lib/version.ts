@@ -1,6 +1,6 @@
-// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.28
-export const VERSION = "3.25.27" as const
-export const VERSION_NAME = "🔥 CRITICAL: Field Whitelist for Schema Mismatch" as const
+// Avantle Privacy Platform Version Information - Build Cache Buster v3.21.29
+export const VERSION = "3.25.28" as const
+export const VERSION_NAME = "🔥 CRITICAL FIX: Vendors Repository Schema" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,11 +14,23 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.28": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL FIX: Vendors Repository Schema",
+    features: [
+      "ROOT CAUSE: vendors table missing deleted_at column",
+      "CRITICAL FIX: Override findMany() to skip deleted_at filter",
+      "CRITICAL FIX: Override findById() to skip deleted_at filter",
+      "CRITICAL FIX: Update findByIdWithRelations() to remove deleted_at",
+      "GET /api/v1/context/vendors NOW WORKS",
+      "Context overview page no longer shows errors"
+    ]
+  },
   "3.25.27": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Field Whitelist for Schema Mismatch",
     features: [
-      "ROOT CAUSE: production table missing data_source column (types file out of sync)",
+      "ROOT CAUSE: processing_activities table missing data_source column",
       "CRITICAL FIX: Whitelist approach in prepareCreateData() - only send existing fields",
       "CRITICAL FIX: Whitelist approach in prepareUpdateData() - only send existing fields",
       "FIELDS EXCLUDED: data_source, created_by, updated_by, deleted_at",
