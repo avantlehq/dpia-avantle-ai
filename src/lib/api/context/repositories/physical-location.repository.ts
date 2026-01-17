@@ -159,11 +159,13 @@ export class PhysicalLocationRepository extends BaseRepository<
     const allowedFields = {
       name: data.name,
       country_code: jurisdiction.country_code, // Table has country_code, not jurisdiction_id
+      description: data.description,
+      address: data.address,
+      city: data.city,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
-      // Note: description, address, city columns don't exist in production
       // Note: status has database default
-      // Note: created_by, updated_by columns don't exist in production
+      // Note: created_by, updated_by will be handled by database triggers after migration
     };
 
     return Object.fromEntries(
@@ -207,9 +209,11 @@ export class PhysicalLocationRepository extends BaseRepository<
   protected async prepareUpdateDataAsync(data: UpdatePhysicalLocationRequest): Promise<any> {
     const allowedFields: Record<string, unknown> = {
       name: data.name,
+      description: data.description,
+      address: data.address,
+      city: data.city,
       status: data.status,
-      // Note: description, address, city columns don't exist in production
-      // Note: updated_by column doesn't exist in production
+      // Note: updated_by will be handled by database triggers after migration
     };
 
     // If jurisdiction_id provided, fetch country_code

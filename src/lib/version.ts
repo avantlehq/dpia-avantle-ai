@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.45" as const
-export const VERSION_NAME = "📋 Phase 1 Complete: DATABASE_SCHEMA_ISSUES.md Updated" as const
+export const VERSION = "3.25.46" as const
+export const VERSION_NAME = "✨ Location Fields Restored: description/address/city" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.46": {
+    date: "2026-01-17",
+    name: "✨ Location Fields Restored: description/address/city",
+    features: [
+      "Added description, address, city fields to LocationForm",
+      "Updated Location and CreateLocationData interfaces with new fields",
+      "Updated prepareCreateDataAsync to allow description/address/city",
+      "Updated prepareUpdateDataAsync to allow description/address/city",
+      "Added Textarea component for description field",
+      "All fields optional for backward compatibility"
+    ],
+    fixes: [],
+    note: "After migration, location forms now support full address details. Fields visible at /context/locations/new and /context/locations/[id]"
+  },
   "3.25.45": {
     date: "2026-01-17",
     name: "📋 Phase 1 Complete: DATABASE_SCHEMA_ISSUES.md Updated",

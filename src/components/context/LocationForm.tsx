@@ -39,8 +39,10 @@ import { createLocation, updateLocation, type Location } from '@/lib/context/loc
 const locationSchema = z.object({
   name: z.string().min(1, 'Location name is required').max(255, 'Name too long'),
   jurisdiction_id: z.string().uuid('Please select a jurisdiction'),
+  description: z.string().max(1000, 'Description too long').optional(),
+  address: z.string().max(500, 'Address too long').optional(),
+  city: z.string().max(100, 'City name too long').optional(),
   status: z.enum(['active', 'inactive']).optional(),
-  // Note: description, address, city columns don't exist in production database
 })
 
 type LocationFormData = z.infer<typeof locationSchema>
@@ -70,6 +72,9 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
     defaultValues: {
       name: initialData?.name || '',
       jurisdiction_id: initialData?.jurisdiction_id || '',
+      description: initialData?.description || '',
+      address: initialData?.address || '',
+      city: initialData?.city || '',
       status: initialData?.status || 'active',
     },
   })
@@ -183,6 +188,60 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                     <FormDescription>
                       {locale === 'sk' ? 'Krajina alebo jurisdikcia tejto lokality. ✓ = Má rozhodnutie o primeranosti GDPR' : 'Country or jurisdiction of this location. ✓ = Has GDPR adequacy decision'}
                     </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{locale === 'sk' ? 'Popis (voliteľné)' : 'Description (Optional)'}</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder={locale === 'sk' ? 'Podrobný popis lokality' : 'Detailed location description'}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      {locale === 'sk' ? 'Dodatočné informácie o lokalite' : 'Additional information about the location'}
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="address"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{locale === 'sk' ? 'Adresa (voliteľné)' : 'Address (Optional)'}</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder={locale === 'sk' ? 'napr., Hlavná 123' : 'e.g., Main Street 123'}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{locale === 'sk' ? 'Mesto (voliteľné)' : 'City (Optional)'}</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder={locale === 'sk' ? 'napr., Bratislava' : 'e.g., Bratislava'}
+                        {...field}
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
