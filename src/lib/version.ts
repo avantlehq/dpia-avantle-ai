@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.33" as const
-export const VERSION_NAME = "🔥 CRITICAL: Data Category special_category_basis Missing" as const
+export const VERSION = "3.25.34" as const
+export const VERSION_NAME = "🔥 CRITICAL: Data Category Update Validation Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.34": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Data Category Update Validation Fix",
+    features: [
+      "ROOT CAUSE: Update validation tries to query parent_id column",
+      "CRITICAL FIX: Disable validateParentChange() in updateDataCategory()",
+      "CRITICAL FIX: Disable special_category_basis validation in validateDataCategoryData()",
+      "CRITICAL FIX: Disable parent_id validation in validateDataCategoryData()",
+      "CRITICAL FIX: Override getChildCategories() to return empty array",
+      "PUT /api/v1/context/data-categories/[id] NOW WORKS"
+    ]
+  },
   "3.25.33": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Data Category special_category_basis Missing",

@@ -95,9 +95,10 @@ export class DataCategoryService {
     await this.validateDataCategoryData(validationData as any, id);
 
     // Special validation for parent changes
-    if (data.parent_id !== undefined && data.parent_id !== existingCategory.parent_id) {
-      await this.validateParentChange(id, data.parent_id);
-    }
+    // NOTE: Disabled - parent_id column doesn't exist in production database
+    // if (data.parent_id !== undefined && data.parent_id !== existingCategory.parent_id) {
+    //   await this.validateParentChange(id, data.parent_id);
+    // }
 
     // Update the category
     return await this.dataCategoryRepo.update(id, data);
@@ -509,27 +510,29 @@ export class DataCategoryService {
     }
 
     // Validate category type and special basis consistency
-    if (data.category_type === 'special' && !data.special_category_basis) {
-      errors.push('Special category data must have special category basis specified');
-    }
+    // NOTE: Disabled - special_category_basis column doesn't exist in production
+    // if (data.category_type === 'special' && !data.special_category_basis) {
+    //   errors.push('Special category data must have special category basis specified');
+    // }
 
-    if (data.category_type !== 'special' && data.special_category_basis) {
-      errors.push('Special category basis can only be set for special category data');
-    }
+    // if (data.category_type !== 'special' && data.special_category_basis) {
+    //   errors.push('Special category basis can only be set for special category data');
+    // }
 
     // Validate parent exists if specified
-    if (data.parent_id) {
-      const parent = await this.dataCategoryRepo.findById(data.parent_id);
-      if (!parent) {
-        errors.push('Invalid parent category specified');
-      }
-    }
+    // NOTE: Disabled - parent_id column doesn't exist in production
+    // if (data.parent_id) {
+    //   const parent = await this.dataCategoryRepo.findById(data.parent_id);
+    //   if (!parent) {
+    //     errors.push('Invalid parent category specified');
+    //   }
+    // }
 
     // Check name uniqueness within the same parent
     if (data.name) {
       const nameExists = await this.dataCategoryRepo.nameExistsInParent(
-        data.name.trim(), 
-        data.parent_id || null, 
+        data.name.trim(),
+        data.parent_id || null,
         excludeId
       );
       if (nameExists) {

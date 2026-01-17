@@ -298,20 +298,27 @@ export class DataCategoryRepository extends BaseRepository<
 
   /**
    * Get child categories
+   *
+   * NOTE: parent_id column doesn't exist in production database
+   * Returning empty array since hierarchical structure is not supported
    */
-  async getChildCategories(parentId: UUID): Promise<DataCategory[]> {
-    const { data, error } = await this.client
-      .from('data_categories')
-      .select('*')
-      .eq('parent_id', parentId)
-      .eq('status', 'active')
-      .order('name', { ascending: true });
+  async getChildCategories(_parentId: UUID): Promise<DataCategory[]> {
+    // parent_id column doesn't exist - no children possible
+    return [];
 
-    if (error) {
-      throw new Error(`Failed to fetch child categories: ${error.message}`);
-    }
-
-    return data as DataCategory[];
+    // Original implementation (requires parent_id column):
+    // const { data, error } = await this.client
+    //   .from('data_categories')
+    //   .select('*')
+    //   .eq('parent_id', parentId)
+    //   .eq('status', 'active')
+    //   .order('name', { ascending: true });
+    //
+    // if (error) {
+    //   throw new Error(`Failed to fetch child categories: ${error.message}`);
+    // }
+    //
+    // return data as DataCategory[];
   }
 
   /**
