@@ -47,7 +47,7 @@ export function DeleteSystemDialog({
         let errorData
         try {
           errorData = JSON.parse(errorText)
-        } catch (e) {
+        } catch {
           throw new Error(`Delete failed with status ${response.status}: ${errorText}`)
         }
         throw new Error(errorData.message || errorData.error || 'Failed to delete system')

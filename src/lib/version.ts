@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.16" as const
-export const VERSION_NAME = "🔧 Fix: SystemRepository Override Filter" as const
+export const VERSION = "3.25.17" as const
+export const VERSION_NAME = "🔧 Fix: ESLint Unused Variable" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.17": {
+    date: "2026-01-17",
+    name: "🔧 Fix: ESLint Unused Variable",
+    features: [
+      "BUILD FIX: Removed unused 'e' variable in DeleteSystemDialog catch block",
+      "ESLINT: Changed catch (e) to catch { } on line 50",
+      "CODE QUALITY: Zero ESLint warnings, build succeeds",
+      "PREREQUISITE: Enables deployment of v3.25.16 SystemRepository fix",
+      "DELETE FUNCTIONALITY: Ready to verify soft-delete filter works in production"
+    ]
+  },
   "3.25.16": {
     date: "2026-01-17",
     name: "🔧 Fix: SystemRepository Override Filter",
