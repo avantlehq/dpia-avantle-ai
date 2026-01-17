@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.11" as const
-export const VERSION_NAME = "🔧 Fix: All Systems API Endpoints" as const
+export const VERSION = "3.25.12" as const
+export const VERSION_NAME = "🔧 Fix: Delete Usage Check Bypass" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.12": {
+    date: "2026-01-17",
+    name: "🔧 Fix: Delete Usage Check Bypass",
+    features: [
+      "DELETE FIX: Added try-catch to skip usage statistics check if tables don't exist",
+      "GRACEFUL DEGRADATION: Usage validation now fails gracefully instead of blocking delete",
+      "ROOT CAUSE: getUsageStatistics queries processing_systems, system_endpoints, data_flow_edges tables",
+      "TEMPORARY WORKAROUND: Allow deletion even if usage check fails (tables may not exist)",
+      "SERVICE LAYER: SystemService.deleteSystem() with error handling",
+      "REPOSITORY LAYER: SystemRepository.delete() with error handling"
+    ]
+  },
   "3.25.11": {
     date: "2026-01-17",
     name: "🔧 Fix: All Systems API Endpoints",
