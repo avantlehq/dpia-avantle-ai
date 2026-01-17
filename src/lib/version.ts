@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.14" as const
-export const VERSION_NAME = "🔧 Fix: Filter Soft-Deleted Records" as const
+export const VERSION = "3.25.15" as const
+export const VERSION_NAME = "🔧 Fix: Force List Refresh After Delete" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.15": {
+    date: "2026-01-17",
+    name: "🔧 Fix: Force List Refresh After Delete",
+    features: [
+      "CACHE BUSTING: Added timestamp parameter to getSystems() to prevent caching",
+      "LOGGING: Added console logs to track delete and refresh flow",
+      "ASYNC FIX: handleDeleteSuccess now properly awaits fetchSystems()",
+      "LOADING STATE: Show loading indicator during list refresh",
+      "DIAGNOSTIC: Console shows 'Delete successful, refreshing list...' messages",
+      "ROOT CAUSE: Browser/CDN may cache GET requests despite cache:no-store"
+    ]
+  },
   "3.25.14": {
     date: "2026-01-17",
     name: "🔧 Fix: Filter Soft-Deleted Records",

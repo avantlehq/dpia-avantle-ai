@@ -52,11 +52,14 @@ export default function SystemsPage() {
   // Fetch systems from API
   const fetchSystems = async () => {
     try {
+      setIsLoading(true)
+      console.log('[SystemsPage] Fetching systems...')
       const { contextApiService } = await import('@/lib/context-api-service')
       const response = await contextApiService.getSystems()
+      console.log('[SystemsPage] Systems fetched:', response.data?.length || 0, 'systems')
       setSystems(response.data || [])
     } catch (error) {
-      console.error('Failed to fetch systems:', error)
+      console.error('[SystemsPage] Failed to fetch systems:', error)
       setSystems([])
     } finally {
       setIsLoading(false)
@@ -92,8 +95,10 @@ export default function SystemsPage() {
     setDeleteSystem({ id: system.id, name: system.name })
   }
 
-  const handleDeleteSuccess = () => {
-    fetchSystems() // Refresh the list
+  const handleDeleteSuccess = async () => {
+    console.log('[SystemsPage] Delete successful, refreshing list...')
+    await fetchSystems() // Refresh the list
+    console.log('[SystemsPage] List refreshed')
   }
 
   const handleCloseDeleteDialog = () => {

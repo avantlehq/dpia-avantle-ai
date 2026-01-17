@@ -49,8 +49,10 @@ export interface SystemsListResponse {
  * Get all systems
  */
 export async function getSystems(): Promise<System[]> {
+  // Add timestamp to bust any caching
+  const timestamp = Date.now()
   const response = await contextFetch<SystemsListResponse>(
-    '/api/v1/context/systems'
+    `/api/v1/context/systems?_t=${timestamp}`
   )
   return response.data
 }
