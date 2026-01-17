@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.44" as const
-export const VERSION_NAME = "🔥 CRITICAL: Data Categories 'anonymous' Enum Fix" as const
+export const VERSION = "3.25.45" as const
+export const VERSION_NAME = "📋 Phase 1 Complete: DATABASE_SCHEMA_ISSUES.md Updated" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.45": {
+    date: "2026-01-17",
+    name: "📋 Phase 1 Complete: DATABASE_SCHEMA_ISSUES.md Updated",
+    features: [
+      "Comprehensive DATABASE_SCHEMA_ISSUES.md documentation update",
+      "Added physical_locations critical schema mismatch (country_code vs jurisdiction_id)",
+      "Added jurisdictions missing columns (name_en, name_sk)",
+      "Added data_categories enum fix documentation ('anonymous' excluded)",
+      "Updated migration script with all new findings",
+      "Added detailed workaround revert instructions for 8 files",
+      "Updated version history (v3.25.39-44 documented)",
+      "Updated technical debt assessment"
+    ],
+    fixes: [],
+    note: "Phase 1 Testing Complete: All Context modules tested, all schema issues documented, migration plan ready"
+  },
   "3.25.44": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Data Categories 'anonymous' Enum Fix",
