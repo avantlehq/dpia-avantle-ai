@@ -155,7 +155,11 @@ export interface Vendor extends AuditFields {
   website: string | null;
   contact_email: string | null;
   primary_contact: string | null;
+  vendor_role: 'processor' | 'joint_controller' | 'recipient' | 'sub_processor';
   status: EntityStatus;
+  has_dpa: boolean;
+  dpa_expires: DateOnly | null;
+  location: string | null;
   contracts?: VendorContract[];
   locations?: PhysicalLocation[];
 }

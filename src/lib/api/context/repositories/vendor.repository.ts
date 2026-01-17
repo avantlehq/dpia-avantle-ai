@@ -191,11 +191,17 @@ export class VendorRepository extends BaseRepository<
     }
 
     // Transform the data to match Vendor type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const rawData = data as any;
     const transformedData: Vendor = {
       ...data,
+      vendor_role: rawData.vendor_role || 'processor',
+      status: data.status as EntityStatus,
+      has_dpa: rawData.has_dpa || false,
+      dpa_expires: rawData.dpa_expires || null,
+      location: rawData.location || null,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       locations: data.locations?.map((loc: any) => loc.physical_locations) || [],
-      status: data.status as EntityStatus,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       contracts: data.contracts?.map((contract: any) => ({
         ...contract,

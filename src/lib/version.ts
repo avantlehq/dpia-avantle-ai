@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.49" as const
-export const VERSION_NAME = "🔧 Vendors: Missing Columns Migration Script" as const
+export const VERSION = "3.25.50" as const
+export const VERSION_NAME = "✅ Vendors: TypeScript Interface Fix - vendor_role Complete" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.50": {
+    date: "2026-01-17",
+    name: "✅ Vendors: TypeScript Interface Fix - vendor_role Complete",
+    features: [
+      "Added vendor_role, has_dpa, dpa_expires, location to Vendor interface in types.ts",
+      "Updated findByIdWithRelations() to include new fields in transformedData",
+      "Used type assertion to handle database types not knowing about new columns"
+    ],
+    fixes: [
+      "Vendor interface was missing vendor_role - TypeScript filtered it from API responses",
+      "Repository returned data but TypeScript interface didn't declare fields",
+      "Edit form received data without vendor_role causing dropdown to default to 'processor'"
+    ],
+    note: "Complete fix chain: DB migration (v3.25.49) + Repository (v3.25.48) + TypeScript interfaces (v3.25.50) = Working dropdown"
+  },
   "3.25.49": {
     date: "2026-01-17",
     name: "🔧 Vendors: Missing Columns Migration Script",
