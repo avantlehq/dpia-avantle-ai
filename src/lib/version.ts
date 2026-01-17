@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.4" as const
-export const VERSION_NAME = "🔧 RLS Policies Cleanup & Route Cache Fix" as const
+export const VERSION = "3.25.5" as const
+export const VERSION_NAME = "🐛 Context API Fix: Direct Endpoint Calls" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.5": {
+    date: "2026-01-17",
+    name: "🐛 Context API Fix: Direct Endpoint Calls",
+    features: [
+      "CRITICAL FIX: getSystem() now calls direct endpoint /api/v1/context/systems/{id}",
+      "API OPTIMIZATION: Removed inefficient fetch-all-then-filter pattern",
+      "EDIT PAGES FIX: 404 errors on newly created systems edit pages resolved",
+      "PERFORMANCE: Single targeted API call instead of fetching entire systems list",
+      "DATA FRESHNESS: Edit pages now immediately show newly created systems",
+      "ROOT CAUSE: Previous implementation fetched all systems and filtered client-side"
+    ]
+  },
   "3.25.4": {
     date: "2026-01-17",
     name: "🔧 RLS Policies Cleanup & Route Cache Fix",

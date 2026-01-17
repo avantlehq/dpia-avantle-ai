@@ -60,8 +60,7 @@ export async function getSystems(): Promise<System[]> {
  */
 export async function getSystem(id: string): Promise<System | null> {
   try {
-    const systems = await getSystems()
-    return systems.find(s => s.id === id) || null
+    return await contextFetch<System>(`/api/v1/context/systems/${id}`)
   } catch (error) {
     console.error('Error fetching system:', error)
     return null
