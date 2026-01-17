@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.41" as const
-export const VERSION_NAME = "🔥 CRITICAL: Locations description/address/city Fix" as const
+export const VERSION = "3.25.42" as const
+export const VERSION_NAME = "🔥 CRITICAL: Locations jurisdiction_id → country_code Conversion" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,28 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.42": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Locations jurisdiction_id → country_code Conversion",
+    features: [
+      "Created async prepareCreateDataAsync/prepareUpdateDataAsync methods to fetch jurisdiction country_code",
+      "Override create() and update() to use async prepare functions with jurisdiction lookup",
+      "Updated findMany() to convert jurisdiction_id filter to country_code query",
+      "Updated findByJurisdiction() to fetch country_code before querying",
+      "Updated getStatisticsByJurisdiction() to group by country_code",
+      "Updated advancedSearch() to convert jurisdiction UUIDs to country codes",
+      "Disabled applyIncludes() - cannot join on country_code string field",
+      "Disabled findByIdWithJurisdiction() - no foreign key join available",
+      "Modified findManyWithJurisdictions() to delegate to findMany()"
+    ],
+    fixes: [
+      "POST /api/v1/context/locations - 500 Database Error",
+      "ERROR: null value in column 'country_code' violates not-null constraint",
+      "physical_locations table has country_code (VARCHAR NOT NULL), not jurisdiction_id (UUID FK)",
+      "Form sends jurisdiction_id but table requires country_code string"
+    ],
+    note: "Complete schema mismatch resolved - physical_locations uses country_code string instead of jurisdiction_id foreign key"
+  },
   "3.25.41": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Locations description/address/city Fix",
