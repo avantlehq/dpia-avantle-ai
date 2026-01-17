@@ -99,22 +99,30 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
     return await withOptionalAuth(async (context) => {
       const { id } = await params;
 
+      console.log('[DELETE /api/v1/context/systems/[id]] Deleting system:', id);
+      console.log('[DELETE /api/v1/context/systems/[id]] Auth context:', context);
+
       // Initialize context service with default anonymous context if null
       const effectiveContext = context || {
         tenant_id: '00000000-0000-0000-0000-000000000001',
         workspace_id: '00000000-0000-0000-0000-000000000001',
         sub: '00000000-0000-0000-0000-000000000001'
       };
+
+      console.log('[DELETE /api/v1/context/systems/[id]] Effective context:', effectiveContext);
+
       const client = createContextClient(effectiveContext);
       const contextService = new ContextService(effectiveContext, client);
 
       // Delete system
       await contextService.systems.deleteSystem(id);
 
+      console.log('[DELETE /api/v1/context/systems/[id]] Delete successful');
       return NextResponse.json({ message: 'IT system deleted successfully' });
     })(request);
 
   } catch (error) {
+    console.error('[DELETE /api/v1/context/systems/[id]] Error:', error);
     return handleApiError(error);
   }
 }

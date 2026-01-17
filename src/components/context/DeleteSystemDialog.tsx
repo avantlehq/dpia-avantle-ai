@@ -34,20 +34,33 @@ export function DeleteSystemDialog({
   const handleDelete = async () => {
     setIsDeleting(true)
     try {
+      console.log('[DeleteSystemDialog] Deleting system:', systemId)
       const response = await fetch(`/api/v1/context/systems/${systemId}`, {
         method: 'DELETE',
       })
 
+      console.log('[DeleteSystemDialog] Response status:', response.status)
+
       if (!response.ok) {
-        const error = await response.json()
-        throw new Error(error.message || 'Failed to delete system')
+        const errorText = await response.text()
+        console.error('[DeleteSystemDialog] Error response:', errorText)
+        let errorData
+        try {
+          errorData = JSON.parse(errorText)
+        } catch (e) {
+          throw new Error(`Delete failed with status ${response.status}: ${errorText}`)
+        }
+        throw new Error(errorData.message || errorData.error || 'Failed to delete system')
       }
+
+      const result = await response.json()
+      console.log('[DeleteSystemDialog] Delete successful:', result)
 
       toast.success('System deleted successfully')
       onSuccess()
       onClose()
     } catch (error) {
-      console.error('Error deleting system:', error)
+      console.error('[DeleteSystemDialog] Error deleting system:', error)
       toast.error(error instanceof Error ? error.message : 'Failed to delete system')
     } finally {
       setIsDeleting(false)
