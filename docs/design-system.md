@@ -135,6 +135,88 @@ import { ValidationPanel } from '@/components/validation/validation-panel'
 />
 ```
 
+**SelectCombobox (v3.27.0):**
+Generic searchable select component for 13+ items with grouping, badges, and popular items support.
+
+```tsx
+import { SelectCombobox } from '@/components/ui/select-combobox'
+
+// Basic usage
+<SelectCombobox
+  options={items}
+  value={selectedId}
+  onChange={setSelectedId}
+  getOptionValue={(item) => item.id}
+  getOptionLabel={(item) => item.name}
+  getOptionKeywords={(item) => [item.name, item.code]}
+  placeholder="Select an item..."
+  searchPlaceholder="Search..."
+  emptyMessage="No results found"
+/>
+
+// With grouping and badges
+<SelectCombobox
+  options={jurisdictions}
+  value={selectedJurisdiction}
+  onChange={setSelectedJurisdiction}
+  getOptionValue={(j) => j.id}
+  getOptionLabel={(j) => locale === 'sk' ? j.name_sk : j.name_en}
+  getOptionKeywords={(j) => [j.name_en, j.name_sk, j.country_code]}
+  groupBy={(j) => j.jurisdiction_type}
+  renderGroupHeader={(group) => <div className="font-semibold">{group}</div>}
+  getBadge={(j) => j.has_adequacy ? <Check className="h-4 w-4" /> : null}
+  popularItems={['SK', 'CZ', 'DE', 'US']}
+/>
+```
+
+**Props:**
+- `options` - Array of items to display
+- `value` - Currently selected value
+- `onChange` - Callback when selection changes
+- `getOptionValue` - Extract unique value from option
+- `getOptionLabel` - Extract display label from option
+- `getOptionKeywords` - Extract searchable keywords from option
+- `groupBy` - Optional grouping function
+- `renderGroupHeader` - Optional custom group header renderer
+- `getBadge` - Optional badge renderer for each option
+- `popularItems` - Optional array of values to show first
+- `placeholder` - Button placeholder text
+- `searchPlaceholder` - Search input placeholder
+- `emptyMessage` - No results message
+
+**Features:**
+- Client-side search filtering with debouncing
+- Keyboard navigation (Arrow keys, Enter, Esc)
+- Mobile-friendly popover positioning
+- Type-safe with TypeScript generics
+- Composition pattern (no ad-hoc mapping)
+
+**When to use:**
+- 13+ items requiring search functionality
+- Need for grouping or categorization
+- Popular items should appear first
+- Badges or indicators needed per item
+
+**JurisdictionSelect Example:**
+Domain-specific wrapper implementing SelectCombobox for jurisdiction selection.
+
+```tsx
+import { JurisdictionSelect } from '@/components/context/JurisdictionSelect'
+
+<JurisdictionSelect
+  value={jurisdictionId}
+  onChange={setJurisdictionId}
+  locale="sk"
+  disabled={false}
+/>
+```
+
+**Implementation Pattern:**
+1. Create generic SelectCombobox for reusability
+2. Create domain wrappers (e.g., JurisdictionSelect) for specific use cases
+3. Use composition pattern (getOptionValue, getOptionLabel, getOptionKeywords)
+4. Keep business logic in domain wrappers, not core component
+
 ### Navigation Components
 
 **WizardNavigation:**

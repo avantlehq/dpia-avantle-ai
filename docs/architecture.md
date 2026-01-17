@@ -167,13 +167,20 @@ interface AuthFlow {
 Design Tokens (CSS Variables)
 ├── Base UI Components (/components/ui/)
 │   ├── Button, Input, Select, Card
-│   ├── Form, Dialog, Progress
+│   ├── SelectCombobox (v3.27.0) - Searchable select for 13+ items
+│   ├── Form, Dialog, Progress, Command, Popover
 │   └── ThemeProvider, ThemeToggle
-├── Feature Components (/components/assessment/)
-│   ├── DynamicFormGenerator
-│   ├── WizardNavigation  
-│   ├── AssessmentCard
-│   └── RiskScoreDisplay
+├── Feature Components
+│   ├── Assessment (/components/assessment/)
+│   │   ├── DynamicFormGenerator
+│   │   ├── WizardNavigation
+│   │   ├── AssessmentCard
+│   │   └── RiskScoreDisplay
+│   └── Context (/components/context/) - v3.27.0
+│       ├── JurisdictionSelect - Domain wrapper for jurisdiction selection
+│       ├── SystemForm, VendorForm, LocationForm
+│       ├── DataFlowForm, DataCategoryForm, ProcessingActivityForm
+│       └── ContextFormShell - Shared form layout component
 └── Layout Components (/components/navigation/)
     ├── Topbar with ModuleNavigation
     ├── ModernSidebar with collapse

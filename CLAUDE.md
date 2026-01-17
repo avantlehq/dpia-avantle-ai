@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.25.53 - Database Schema Alignment Complete**
+**Current Version: 3.27.0 - Searchable Jurisdiction Select (Phase 1)**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -130,10 +130,18 @@ Backend API Services:
 
 ### **Form Control Rules**
 - **2 options**: Segmented control (Yes/No)
-- **3-8 options**: Pill group with rounded buttons  
-- **9+ options**: Searchable select dropdown
+- **3-8 options**: Pill group with rounded buttons
+- **9-12 options**: Standard select dropdown
+- **13+ options**: Searchable combobox (SelectCombobox) with grouping, popular items, badges
 - **Single CTA Rule**: One primary button per screen only
 - **Auto-save**: Debounced 2-second saves with status indicators
+
+### **Searchable Select System (v3.27.0)**
+- **SelectCombobox**: Generic component for 13+ items with search, grouping, badges, popular items
+- **JurisdictionSelect**: Domain wrapper with EU/EEA/Third Country grouping and adequacy badges
+- **useJurisdictions**: Centralized data fetching hook for jurisdiction data
+- **Implementation**: LocationForm uses JurisdictionSelect for 58-item jurisdiction dropdown
+- **Features**: Keyboard navigation, mobile-friendly popover, bilingual support, client-side filtering
 
 ## Database Architecture
 
@@ -220,6 +228,73 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.27.0 - 2026-01-18**
+**🔍 SEARCHABLE JURISDICTION SELECT: Phase 1 Quick Win Implementation**
+
+**PROBLEM SOLVED**: 58-item dropdown in LocationForm provided poor UX for jurisdiction selection
+
+**Components Created:**
+1. **SelectCombobox** (`src/components/ui/select-combobox.tsx`)
+   - Generic searchable select component for 13+ items
+   - Type-safe with TypeScript generics `<T>`
+   - Client-side search filtering with useMemo optimization
+   - Support for grouping, badges, popular items
+   - Composition pattern: getOptionValue, getOptionLabel, getOptionKeywords
+   - Keyboard accessible (Arrow/Enter/Esc navigation)
+
+2. **JurisdictionSelect** (`src/components/context/JurisdictionSelect.tsx`)
+   - Domain-specific wrapper for jurisdiction selection
+   - Groups by jurisdiction_type (EU Member States / EEA Countries / Third Countries)
+   - Displays adequacy badge (✓) for GDPR adequate jurisdictions
+   - Popular countries (SK, CZ, DE, US, GB, FR, AT, PL, HU, NL) shown first
+   - Bilingual label rendering (Slovak/English)
+
+3. **useJurisdictions** (`src/hooks/useJurisdictions.ts`)
+   - Centralized data fetching hook for jurisdiction data
+   - Removes duplicate fetching logic from forms
+   - Enables future caching implementation
+
+**Form Updates:**
+- **LocationForm**: Replaced standard Select with JurisdictionSelect
+- Removed local jurisdictions state and useEffect fetching
+- Improved UX: Searchable, grouped, filterable 58-item select
+
+**Dependencies Added:**
+- `cmdk@^1.0.0` - Command palette pattern for search functionality
+- `shadcn/ui command` - Command components
+- `shadcn/ui popover` - Popover positioning primitives
+
+**UX Improvements:**
+- ✅ Search across name_en, name_sk, country_code
+- ✅ Grouped display (EU/EEA/Third Countries)
+- ✅ Popular countries prioritized in results
+- ✅ Adequacy checkmarks for GDPR adequate jurisdictions
+- ✅ Keyboard navigation support
+- ✅ Mobile-friendly popover interface
+- ✅ Bilingual support (Slovak/English)
+
+**Architecture Pattern:**
+- Phase 1: Quick win for jurisdiction dropdown (COMPLETE)
+- Future Phase 2: SmartSelect orchestrator with threshold logic
+- Future Phase 3: Additional renderers (segmented, pills, standard dropdown)
+- Future Phase 4: Systematic deployment across all Context forms
+
+**Files Modified:**
+- `package.json` - Added cmdk dependency
+- `src/components/context/LocationForm.tsx` - Integrated JurisdictionSelect
+- `src/components/ui/select-combobox.tsx` - NEW (generic component)
+- `src/components/ui/command.tsx` - NEW (shadcn component)
+- `src/components/ui/popover.tsx` - NEW (shadcn component)
+- `src/components/context/JurisdictionSelect.tsx` - NEW (domain wrapper)
+- `src/hooks/useJurisdictions.ts` - NEW (data fetching hook)
+
+**Build Status**: ✓ Compiled successfully with zero errors
+**Git Commits**:
+- `7f8ee64` - JurisdictionSelect implementation
+- `ac8b6b7` - Version bump to v3.27.0
+
+---
 
 ### **v3.25.53 - 2026-01-17**
 **✅ DATABASE SCHEMA ALIGNMENT COMPLETE: Phase 2 Migration & Vendor Role Fix**
