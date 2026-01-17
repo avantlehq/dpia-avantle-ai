@@ -74,8 +74,13 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Physical locations query failed: ${error.message}`);
     }
 
+    // Enrich all locations with jurisdiction_id from country_code
+    const enrichedData = await Promise.all(
+      (data || []).map(location => this.enrichWithJurisdictionId(location))
+    );
+
     return {
-      data: data as PhysicalLocation[],
+      data: enrichedData,
       pagination: {
         page,
         limit,
@@ -83,6 +88,26 @@ export class PhysicalLocationRepository extends BaseRepository<
         pages: Math.ceil((count || 0) / limit),
       },
     };
+  }
+
+  /**
+   * Helper: Enrich location with jurisdiction_id from country_code
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private async enrichWithJurisdictionId(location: any): Promise<PhysicalLocation> {
+    if (location.country_code) {
+      const { data: jurisdiction } = await this.client
+        .from('jurisdictions')
+        .select('id')
+        .eq('country_code', location.country_code)
+        .single();
+
+      if (jurisdiction) {
+        location.jurisdiction_id = jurisdiction.id;
+      }
+    }
+
+    return location as PhysicalLocation;
   }
 
   /**
@@ -109,7 +134,8 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to fetch physical location: ${error.message}`);
     }
 
-    return data as PhysicalLocation;
+    // Enrich with jurisdiction_id from country_code
+    return this.enrichWithJurisdictionId(data);
   }
 
   /**
@@ -170,7 +196,8 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to create ${this.tableName}: ${error.message}`);
     }
 
-    return created as PhysicalLocation;
+    // Enrich with jurisdiction_id from country_code
+    return this.enrichWithJurisdictionId(created);
   }
 
   /**
@@ -232,7 +259,8 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to update ${this.tableName}: ${error.message}`);
     }
 
-    return updated as PhysicalLocation;
+    // Enrich with jurisdiction_id from country_code
+    return this.enrichWithJurisdictionId(updated);
   }
 
   /**
@@ -317,7 +345,8 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to fetch locations by jurisdiction: ${error.message}`);
     }
 
-    return data as PhysicalLocation[];
+    // Enrich all locations with jurisdiction_id from country_code
+    return Promise.all((data || []).map(location => this.enrichWithJurisdictionId(location)));
   }
 
   /**
@@ -451,10 +480,7 @@ export class PhysicalLocationRepository extends BaseRepository<
   async getAvailableLocations(): Promise<PhysicalLocation[]> {
     const { data, error } = await this.client
       .from('physical_locations')
-      .select(`
-        *,
-        jurisdiction:jurisdiction_id(*)
-      `)
+      .select('*')
       .eq('status', 'active')
       .order('name', { ascending: true });
 
@@ -462,7 +488,8 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to fetch available locations: ${error.message}`);
     }
 
-    return data as PhysicalLocation[];
+    // Enrich all locations with jurisdiction_id from country_code
+    return Promise.all((data || []).map(location => this.enrichWithJurisdictionId(location)));
   }
 
   /**
@@ -588,6 +615,7 @@ export class PhysicalLocationRepository extends BaseRepository<
       throw new Error(`Failed to perform advanced location search: ${error.message}`);
     }
 
-    return data as PhysicalLocation[];
+    // Enrich all locations with jurisdiction_id from country_code
+    return Promise.all((data || []).map(location => this.enrichWithJurisdictionId(location)));
   }
 }

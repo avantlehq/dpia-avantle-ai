@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.42" as const
-export const VERSION_NAME = "🔥 CRITICAL: Locations jurisdiction_id → country_code Conversion" as const
+export const VERSION = "3.25.43" as const
+export const VERSION_NAME = "🎯 UX Fix: Pre-select Jurisdiction in Edit Form" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,25 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.43": {
+    date: "2026-01-17",
+    name: "🎯 UX Fix: Pre-select Jurisdiction in Edit Form",
+    features: [
+      "Added enrichWithJurisdictionId() helper to reverse lookup jurisdiction_id from country_code",
+      "Updated findById() to enrich location with jurisdiction_id before returning",
+      "Updated findMany() to enrich all locations in results array",
+      "Updated create() and update() to enrich returned location",
+      "Updated findByJurisdiction() to enrich all locations",
+      "Updated getAvailableLocations() to enrich all locations",
+      "Updated advancedSearch() to enrich all locations"
+    ],
+    fixes: [
+      "Location edit form jurisdiction dropdown now pre-selects current value",
+      "Database stores country_code but API now returns jurisdiction_id to match TypeScript interfaces",
+      "Bidirectional translation: jurisdiction_id → country_code (write), country_code → jurisdiction_id (read)"
+    ],
+    note: "All read operations now translate country_code back to jurisdiction_id for form compatibility"
+  },
   "3.25.42": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Locations jurisdiction_id → country_code Conversion",
