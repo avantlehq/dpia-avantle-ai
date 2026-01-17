@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.5" as const
-export const VERSION_NAME = "🐛 Context API Fix: Direct Endpoint Calls" as const
+export const VERSION = "3.25.6" as const
+export const VERSION_NAME = "🔍 Debug: Service Role Client Logging" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.6": {
+    date: "2026-01-17",
+    name: "🔍 Debug: Service Role Client Logging",
+    features: [
+      "DEBUG LOGGING: Added detailed logging to createContextClient() function",
+      "SERVICE ROLE CHECK: Logs when service role client is unavailable",
+      "ENV VAR DIAGNOSTIC: Logs SUPABASE_SERVICE_ROLE_KEY presence",
+      "RLS TROUBLESHOOTING: Helps diagnose 500 errors from missing service role key",
+      "ERROR VISIBILITY: Console errors show exact reason for database failures",
+      "PRODUCTION DEBUG: Vercel logs will show if service role key is missing"
+    ]
+  },
   "3.25.5": {
     date: "2026-01-17",
     name: "🐛 Context API Fix: Direct Endpoint Calls",

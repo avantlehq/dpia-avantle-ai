@@ -91,11 +91,14 @@ export const createContextClient = (_contextClaims: {
 }) => {
   // Use service role client to bypass RLS since we handle workspace isolation in queries
   if (supabaseAdmin) {
+    console.log('[Context API] Using service role client for database operations');
     return supabaseAdmin;
   }
-  
+
   // Fallback to anon client if service role not available
-  console.warn('Service role not available, using anonymous client');
+  console.error('[Context API] CRITICAL: Service role not available! Check SUPABASE_SERVICE_ROLE_KEY env var. Using anonymous client (will likely fail due to RLS).');
+  console.error('[Context API] SUPABASE_SERVICE_ROLE_KEY exists:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
+  console.error('[Context API] supabaseAdmin null:', supabaseAdmin === null);
   return supabase;
 };
 
