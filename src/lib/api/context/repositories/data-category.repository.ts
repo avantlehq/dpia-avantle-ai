@@ -131,11 +131,10 @@ export class DataCategoryRepository extends BaseRepository<
       category_type: data.category_type,
       sensitivity: data.sensitivity,
       special_category_basis: specialCategoryBasis,
-      is_standard: data.is_standard,
       parent_id: data.parent_id,
-      status: data.status,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
+      // Note: is_standard and status have database defaults
     };
 
     return Object.fromEntries(
@@ -160,9 +159,8 @@ export class DataCategoryRepository extends BaseRepository<
       category_type: data.category_type,
       sensitivity: data.sensitivity,
       special_category_basis: specialCategoryBasis,
-      is_standard: data.is_standard,
       parent_id: data.parent_id,
-      status: data.status,
+      // Note: is_standard and status are not in UpdateDataCategoryRequest type
     };
 
     return Object.fromEntries(

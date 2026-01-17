@@ -113,9 +113,9 @@ export class PhysicalLocationRepository extends BaseRepository<
       address: data.address,
       city: data.city,
       jurisdiction_id: data.jurisdiction_id,
-      status: data.status,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
+      // Note: status has database default
     };
 
     return Object.fromEntries(
