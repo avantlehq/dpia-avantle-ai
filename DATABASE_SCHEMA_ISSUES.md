@@ -87,12 +87,16 @@ Production database is missing columns and enum values that TypeScript types dec
 - POST /api/v1/context/data-categories returned 500
 - nameExistsInParent validation failed
 
-**Workaround Applied:** v3.25.30, v3.25.32, v3.25.33
+**Workaround Applied:** v3.25.30, v3.25.32, v3.25.33, v3.25.34, v3.25.35
 - Override `findMany()` - skip deleted_at filter
 - Override `findById()` - skip deleted_at filter
 - Override `prepareCreateData()` - whitelist fields, skip special_category_basis, skip parent_id
 - Override `prepareUpdateData()` - whitelist fields, skip special_category_basis, skip parent_id
 - Override `nameExistsInParent()` - check name uniqueness globally instead of per-parent
+- Override `getChildCategories()` - return empty array (no hierarchy without parent_id)
+- Override `delete()` - hard delete instead of soft delete
+- Service: Disable `validateParentChange()` in updateDataCategory()
+- Service: Disable `special_category_basis` and `parent_id` validation in validateDataCategoryData()
 
 ---
 
@@ -276,8 +280,16 @@ Once migration is applied to production, **remove repository overrides** to use 
 4. **data-category.repository.ts**
    - Remove `findMany()` override
    - Remove `findById()` override
-   - Remove `prepareCreateData()` override (or simplify to not filter employment)
-   - Remove `prepareUpdateData()` override (or simplify to not filter employment)
+   - Remove `prepareCreateData()` override
+   - Remove `prepareUpdateData()` override
+   - Remove `nameExistsInParent()` override (restore parent_id filtering)
+   - Remove `getChildCategories()` override (restore parent_id query)
+   - Remove `delete()` override (use soft delete)
+
+5. **data-category.service.ts**
+   - Re-enable `validateParentChange()` call in updateDataCategory()
+   - Re-enable `special_category_basis` validation in validateDataCategoryData()
+   - Re-enable `parent_id` validation in validateDataCategoryData()
 
 ---
 
@@ -339,6 +351,10 @@ curl -X POST https://dpia.avantle.ai/api/v1/context/processing-activities \
 | v3.25.28 | 2026-01-17 | Vendors: deleted_at workaround |
 | v3.25.29 | 2026-01-17 | Processing activities: employment enum filter |
 | v3.25.30 | 2026-01-17 | Preventive: locations, data-categories |
+| v3.25.32 | 2026-01-17 | Data categories: parent_id missing (confirmed) |
+| v3.25.33 | 2026-01-17 | Data categories: special_category_basis missing (confirmed) |
+| v3.25.34 | 2026-01-17 | Data categories: validation + getChildCategories fix |
+| v3.25.35 | 2026-01-17 | Data categories: delete() hard delete fix |
 
 ---
 
