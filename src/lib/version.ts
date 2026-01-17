@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.47" as const
-export const VERSION_NAME = "✨ Data Categories: parent_id/special_category_basis Save Fix" as const
+export const VERSION = "3.25.48" as const
+export const VERSION_NAME = "✨ Vendors: vendor_role Dropdown Pre-selection Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.48": {
+    date: "2026-01-17",
+    name: "✨ Vendors: vendor_role Dropdown Pre-selection Fix",
+    features: [
+      "Updated prepareCreateData() to use data.vendor_role instead of hardcoded 'processor'",
+      "Updated prepareUpdateData() to allow vendor_role field",
+      "Added vendor_role, status, has_dpa, dpa_expires, location to allowedFields",
+      "Added vendor_role to CreateVendorRequest and UpdateVendorRequest TypeScript interfaces"
+    ],
+    fixes: [
+      "Vendor edit form vendor_role dropdown now pre-selects correctly",
+      "Vendor role selection persists after update (was reverting to 'Processor')",
+      "All vendor form dropdowns (status, has_dpa) now persist after update"
+    ],
+    note: "Vendor repository now accepts all form fields. Dropdown pre-selection working across all Context modules."
+  },
   "3.25.47": {
     date: "2026-01-17",
     name: "✨ Data Categories: parent_id/special_category_basis Save Fix",

@@ -375,6 +375,11 @@ export interface CreateVendorRequest {
   website?: string;
   contact_email?: string;
   primary_contact?: string;
+  vendor_role?: 'processor' | 'joint_controller' | 'recipient' | 'sub_processor';
+  status?: EntityStatus;
+  has_dpa?: boolean;
+  dpa_expires?: string;
+  location?: string;
 }
 
 export interface UpdateVendorRequest {
@@ -383,7 +388,11 @@ export interface UpdateVendorRequest {
   website?: string;
   contact_email?: string;
   primary_contact?: string;
+  vendor_role?: 'processor' | 'joint_controller' | 'recipient' | 'sub_processor';
   status?: EntityStatus;
+  has_dpa?: boolean;
+  dpa_expires?: string;
+  location?: string;
 }
 
 export interface CreateSystemRequest {

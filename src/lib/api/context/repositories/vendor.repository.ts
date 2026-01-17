@@ -41,8 +41,7 @@ export class VendorRepository extends BaseRepository<
   }
 
   /**
-   * Override prepareCreateData - created_by/updated_by columns don't exist in production
-   * NOTE: vendor_role is required in database but not in CreateVendorRequest type
+   * Override prepareCreateData - handle vendor-specific fields
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareCreateData(data: CreateVendorRequest): any {
@@ -52,10 +51,14 @@ export class VendorRepository extends BaseRepository<
       website: data.website,
       contact_email: data.contact_email,
       primary_contact: data.primary_contact,
-      vendor_role: 'processor', // Default value - database requires NOT NULL
+      vendor_role: data.vendor_role || 'processor', // Use provided value or default
+      status: data.status,
+      has_dpa: data.has_dpa,
+      dpa_expires: data.dpa_expires,
+      location: data.location,
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
-      // Note: created_by and updated_by columns don't exist in production
+      // Note: created_by and updated_by will be handled by database triggers
     };
 
     return Object.fromEntries(
@@ -64,7 +67,7 @@ export class VendorRepository extends BaseRepository<
   }
 
   /**
-   * Override prepareUpdateData - created_by/updated_by columns don't exist in production
+   * Override prepareUpdateData - handle vendor-specific fields
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareUpdateData(data: UpdateVendorRequest): any {
@@ -74,8 +77,12 @@ export class VendorRepository extends BaseRepository<
       website: data.website,
       contact_email: data.contact_email,
       primary_contact: data.primary_contact,
+      vendor_role: data.vendor_role,
       status: data.status,
-      // Note: updated_by column doesn't exist in production
+      has_dpa: data.has_dpa,
+      dpa_expires: data.dpa_expires,
+      location: data.location,
+      // Note: updated_by will be handled by database triggers
     };
 
     return Object.fromEntries(
