@@ -359,26 +359,26 @@ export const UpdatePhysicalLocationRequestSchema = z.object({
 export const CreateVendorRequestSchema = z.object({
   name: z.string().min(1).max(255),
   description: z.string().max(1000).optional(),
-  website: UrlSchema.max(500).optional(),
-  contact_email: EmailSchema.max(255).optional(),
+  website: UrlSchema.max(500).or(z.literal('')).optional(),
+  contact_email: EmailSchema.max(255).or(z.literal('')).optional(),
   primary_contact: z.string().max(255).optional(),
   vendor_role: VendorRoleSchema.optional(),
   status: EntityStatusSchema.optional(),
   has_dpa: z.boolean().optional(),
-  dpa_expires: DateOnlySchema.optional(),
+  dpa_expires: DateOnlySchema.or(z.literal('')).optional(),
   location: z.string().max(100).optional(),
 });
 
 export const UpdateVendorRequestSchema = z.object({
   name: z.string().min(1).max(255).optional(),
   description: z.string().max(1000).optional(),
-  website: UrlSchema.max(500).optional(),
-  contact_email: EmailSchema.max(255).optional(),
+  website: UrlSchema.max(500).or(z.literal('')).optional(),
+  contact_email: EmailSchema.max(255).or(z.literal('')).optional(),
   primary_contact: z.string().max(255).optional(),
   vendor_role: VendorRoleSchema.optional(),
   status: EntityStatusSchema.optional(),
   has_dpa: z.boolean().optional(),
-  dpa_expires: DateOnlySchema.optional(),
+  dpa_expires: DateOnlySchema.or(z.literal('')).optional(),
   location: z.string().max(100).optional(),
 });
 

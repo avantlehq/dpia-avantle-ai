@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.51" as const
-export const VERSION_NAME = "🎯 CRITICAL: Vendor Zod Schema Fix - The Real Blocker" as const
+export const VERSION = "3.25.52" as const
+export const VERSION_NAME = "🔧 Vendor Schema: Allow Empty Strings for Optional Fields" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.52": {
+    date: "2026-01-17",
+    name: "🔧 Vendor Schema: Allow Empty Strings for Optional Fields",
+    features: [
+      "Added .or(z.literal('')) to website, contact_email, dpa_expires in vendor schemas",
+      "Form can now send empty strings for optional fields without validation errors",
+      "Matches VendorForm behavior which allows empty strings for optional inputs"
+    ],
+    fixes: [
+      "400 Bad Request: 'Request body validation failed' when creating vendor",
+      "VendorForm sends empty strings ('') for unfilled optional fields",
+      "Zod schemas rejected empty strings - EmailSchema/UrlSchema/DateOnlySchema require valid format",
+      "Added .or(z.literal('')) to accept empty strings as valid input"
+    ],
+    note: "Form validation allows empty strings, API validation must match. Now vendor creation works."
+  },
   "3.25.51": {
     date: "2026-01-17",
     name: "🎯 CRITICAL: Vendor Zod Schema Fix - The Real Blocker",
