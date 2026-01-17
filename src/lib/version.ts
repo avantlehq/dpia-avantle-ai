@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.48" as const
-export const VERSION_NAME = "✨ Vendors: vendor_role Dropdown Pre-selection Fix" as const
+export const VERSION = "3.25.49" as const
+export const VERSION_NAME = "🔧 Vendors: Missing Columns Migration Script" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,23 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.49": {
+    date: "2026-01-17",
+    name: "🔧 Vendors: Missing Columns Migration Script",
+    features: [
+      "Created 20260117_vendors_missing_columns.sql migration script",
+      "Created MIGRATION_INSTRUCTIONS_VENDORS.md with step-by-step guide",
+      "Adds vendor_role, status, has_dpa, dpa_expires, location columns to vendors table",
+      "Creates vendor_role_type enum (processor, joint_controller, recipient, sub_processor)",
+      "Includes verification queries and rollback script"
+    ],
+    fixes: [
+      "Root cause identified: Repository fix in v3.25.48 not enough - database missing columns",
+      "VendorForm sends vendor_role but vendors table doesn't have the column",
+      "Migration script completes the fix started in v3.25.48"
+    ],
+    note: "User must run supplemental migration in Supabase SQL Editor to add missing columns. See MIGRATION_INSTRUCTIONS_VENDORS.md"
+  },
   "3.25.48": {
     date: "2026-01-17",
     name: "✨ Vendors: vendor_role Dropdown Pre-selection Fix",
