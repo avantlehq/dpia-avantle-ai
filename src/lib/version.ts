@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.13" as const
-export const VERSION_NAME = "🔍 Debug: Delete Error Logging" as const
+export const VERSION = "3.25.14" as const
+export const VERSION_NAME = "🔧 Fix: Filter Soft-Deleted Records" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.14": {
+    date: "2026-01-17",
+    name: "🔧 Fix: Filter Soft-Deleted Records",
+    features: [
+      "CRITICAL FIX: Added .is('deleted_at', null) filter to findMany() query",
+      "CRITICAL FIX: Added .is('deleted_at', null) filter to findById() query",
+      "DELETE NOW WORKS: Deleted systems disappear from list immediately",
+      "ROOT CAUSE: Delete was working (soft delete) but list showed deleted records",
+      "BASE REPOSITORY: All entities now exclude soft-deleted records from queries",
+      "APPLIES TO: Systems, vendors, locations, data-categories, data-flows, processing"
+    ]
+  },
   "3.25.13": {
     date: "2026-01-17",
     name: "🔍 Debug: Delete Error Logging",

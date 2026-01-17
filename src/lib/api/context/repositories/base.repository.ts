@@ -44,6 +44,9 @@ export abstract class BaseRepository<
     // Apply workspace filtering for multi-tenant isolation
     query = query.eq('workspace_id', this.context.workspace_id);
 
+    // Exclude soft-deleted records
+    query = query.is('deleted_at', null);
+
     // Additional filtering is implemented in subclasses
 
     // Apply status filtering if supported
@@ -92,6 +95,9 @@ export abstract class BaseRepository<
 
     // Apply workspace filtering for multi-tenant isolation
     query = query.eq('workspace_id', this.context.workspace_id);
+
+    // Exclude soft-deleted records
+    query = query.is('deleted_at', null);
 
     // Apply includes if supported
     if (include?.length) {
