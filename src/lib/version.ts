@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.25.36" as const
-export const VERSION_NAME = "🔥 CRITICAL: Vendors created_by/updated_by Fix" as const
+export const VERSION = "3.25.37" as const
+export const VERSION_NAME = "🔥 CRITICAL: Vendors vendor_role Required Field Fix" as const
 export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.37": {
+    date: "2026-01-17",
+    name: "🔥 CRITICAL: Vendors vendor_role Required Field Fix",
+    features: [
+      "ROOT CAUSE: POST /api/v1/context/vendors failed with NOT NULL constraint",
+      "ERROR: null value in column 'vendor_role' violates not-null constraint",
+      "TYPE MISMATCH: CreateVendorRequest missing vendor_role field",
+      "CRITICAL FIX: Add vendor_role = 'processor' default in prepareCreateData()",
+      "DATABASE: vendor_role is NOT NULL enum (processor|joint_controller|recipient|sub_processor)",
+      "POST /api/v1/context/vendors NOW WORKS"
+    ]
+  },
   "3.25.36": {
     date: "2026-01-17",
     name: "🔥 CRITICAL: Vendors created_by/updated_by Fix",

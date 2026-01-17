@@ -42,6 +42,7 @@ export class VendorRepository extends BaseRepository<
 
   /**
    * Override prepareCreateData - created_by/updated_by columns don't exist in production
+   * NOTE: vendor_role is required in database but not in CreateVendorRequest type
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected prepareCreateData(data: CreateVendorRequest): any {
@@ -51,6 +52,7 @@ export class VendorRepository extends BaseRepository<
       website: data.website,
       contact_email: data.contact_email,
       primary_contact: data.primary_contact,
+      vendor_role: 'processor', // Default value - database requires NOT NULL
       tenant_id: this.context.tenant_id,
       workspace_id: this.context.workspace_id,
       // Note: created_by and updated_by columns don't exist in production
