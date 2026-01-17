@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.22
-export const VERSION = "3.25.3" as const
-export const VERSION_NAME = "🔧 Context Action Buttons Fix" as const
-export const BUILD_DATE = "2026-01-15"
+export const VERSION = "3.25.4" as const
+export const VERSION_NAME = "🔧 RLS Policies Cleanup & Route Cache Fix" as const
+export const BUILD_DATE = "2026-01-17"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.25.4": {
+    date: "2026-01-17",
+    name: "🔧 RLS Policies Cleanup & Route Cache Fix",
+    features: [
+      "RLS POLICIES CLEANUP: Removed duplicate legacy policies using get_workspace_id() function",
+      "SUPABASE FIX: Cleaned up conflicting Row Level Security policies on systems table",
+      "POLICY CONSOLIDATION: Unified to single set of policies with service_role support",
+      "DELETE POLICY: Added missing systems_delete_policy for proper DELETE operations",
+      "API FUNCTIONALITY: POST /api/v1/context/systems now works correctly after policy cleanup",
+      "ROUTE CACHE FIX: Force Vercel redeploy to clear cached routes",
+      "EDIT ROUTES: Fixed 404 errors on /context/systems/[id] edit pages"
+    ]
+  },
   "3.25.3": {
     date: "2026-01-15",
     name: "🔧 Context Action Buttons Fix",
