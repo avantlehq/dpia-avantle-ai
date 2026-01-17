@@ -68,10 +68,17 @@ export class ProcessingActivityRepository extends BaseRepository<
   /**
    * Override findById - processing_activities table doesn't have deleted_at column
    */
-  async findById(id: UUID): Promise<ProcessingActivity | null> {
-    const { data, error } = await this.client
+  async findById(id: UUID, include?: string[]): Promise<ProcessingActivity | null> {
+    let query = this.client
       .from('processing_activities')
-      .select('*')
+      .select('*');
+
+    // Apply includes if supported
+    if (include?.length) {
+      query = this.applyIncludes(query, include);
+    }
+
+    const { data, error } = await query
       .eq('id', id)
       .eq('workspace_id', this.context.workspace_id)
       .single();
