@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.27.1" as const
-export const VERSION_NAME = "🎨 Dropdown Background Fix" as const
+export const VERSION = "3.27.2" as const
+export const VERSION_NAME = "✨ Dropdown Hover Highlight" as const
 export const BUILD_DATE = "2026-01-18"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.27.2": {
+    date: "2026-01-18",
+    name: "✨ Dropdown Hover Highlight",
+    features: [
+      "Added explicit hover:bg-[var(--surface-2)] to CommandItem for visible mouse hover feedback",
+      "Improved dropdown UX - items now clearly highlight when mouse moves over them",
+      "Keyboard navigation (Arrow keys) uses same highlight as mouse hover for consistency"
+    ],
+    fixes: [
+      "Fixed invisible hover state - bg-accent was too similar to background (#2A3946 vs #243240)",
+      "Replaced bg-accent with bg-[var(--surface-2)] for better contrast (#374151 in dark mode)",
+      "Organized CommandItem className into logical groups for maintainability"
+    ],
+    note: "User feedback: 'I can just write what i search for in dropdown menu' but no visual feedback on hover. Added explicit hover state using --surface-2 token for clear visual feedback in both dark/light modes."
+  },
   "3.27.1": {
     date: "2026-01-18",
     name: "🎨 Dropdown Background Fix",
