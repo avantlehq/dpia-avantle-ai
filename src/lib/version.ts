@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.27.2" as const
-export const VERSION_NAME = "✨ Dropdown Hover Highlight" as const
+export const VERSION = "3.27.3" as const
+export const VERSION_NAME = "💚 Green Adequacy Checkmark" as const
 export const BUILD_DATE = "2026-01-18"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.27.3": {
+    date: "2026-01-18",
+    name: "💚 Green Adequacy Checkmark",
+    features: [],
+    fixes: [
+      "Fixed adequacy checkmark color - now displays in green (#22c55e dark, #059669 light)",
+      "Changed from text-[var(--success)] to text-[var(--status-success)] (correct token)",
+      "Adequacy checkmarks now clearly indicate GDPR adequacy decision status",
+      "EU countries, UK, Switzerland, etc. show green ✓ on right side"
+    ],
+    note: "User question: 'btw some checkmark should be in green?' - Fixed token name. Was using --success (doesn't exist) instead of --status-success. Right-side checkmarks for jurisdictions with GDPR adequacy now properly display in green."
+  },
   "3.27.2": {
     date: "2026-01-18",
     name: "✨ Dropdown Hover Highlight",
