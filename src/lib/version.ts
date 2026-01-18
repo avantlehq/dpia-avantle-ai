@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.27.0" as const
-export const VERSION_NAME = "🔍 Searchable Jurisdiction Select (Phase 1)" as const
+export const VERSION = "3.27.1" as const
+export const VERSION_NAME = "🎨 Dropdown Background Fix" as const
 export const BUILD_DATE = "2026-01-18"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 5 versions only)
 // Complete history available in CHANGELOG.md
 export const CHANGELOG = {
+  "3.27.1": {
+    date: "2026-01-18",
+    name: "🎨 Dropdown Background Fix",
+    features: [],
+    fixes: [
+      "Dropdown backgrounds now use proper design tokens (--surface-1, --text-primary)",
+      "PopoverContent: Replaced bg-popover with bg-[var(--surface-1)]",
+      "Command: Replaced bg-popover with bg-[var(--surface-1)]",
+      "CommandInput: Added explicit border-[var(--border-default)]",
+      "Fixed transparent dropdown issue - dropdowns now have opaque backgrounds",
+      "Text is now clearly readable against dropdown backgrounds in both dark/light modes",
+      "Dropdowns properly separated from underlying page content"
+    ],
+    note: "Root cause: Tailwind bg-popover/text-popover-foreground classes not properly wired to CSS variables. Switched to explicit CSS variable syntax used throughout the project (bg-[var(--surface-1)]). Affects JurisdictionSelect and all Popover/Command-based components."
+  },
   "3.27.0": {
     date: "2026-01-18",
     name: "🔍 Searchable Jurisdiction Select (Phase 1)",
