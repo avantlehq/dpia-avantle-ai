@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.27.3" as const
-export const VERSION_NAME = "💚 Green Adequacy Checkmark" as const
+export const VERSION = "3.27.4" as const
+export const VERSION_NAME = "📋 Business Strategy Documentation" as const
 export const BUILD_DATE = "2026-01-18"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.27.4": {
+    date: "2026-01-18",
+    name: "📋 Business Strategy Documentation",
+    features: [
+      "Created comprehensive business-strategy.md documentation in /docs",
+      "Documented 3-module product strategy: Avantle Privacy, Risk, LMS",
+      "Defined go-to-market strategy: 90% white-label, 10% direct customers",
+      "Specified pilot scope: Context + Privacy modules only",
+      "Outlined 2026-2028 product roadmap with timeline",
+      "Documented competitive positioning and risk mitigation strategies"
+    ],
+    fixes: [],
+    note: "Strategic planning session outcome. Clarified product architecture: dpia.ai (marketing funnel) → avantle.ai (control plane) → privacy.avantle.ai (runtime). Risk and LMS modules will be separate products (risk.avantle.ai, lms.avantle.ai). Pilot focus on Avantle Privacy with Context + Privacy modules fully bilingual."
+  },
   "3.27.3": {
     date: "2026-01-18",
     name: "💚 Green Adequacy Checkmark",
