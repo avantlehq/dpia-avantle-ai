@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.27.0 - Searchable Jurisdiction Select (Phase 1)**
+**Current Version: 3.27.3 - Green Adequacy Checkmark**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -293,6 +293,99 @@ git add . && git commit -m "message" && git push origin main
 **Git Commits**:
 - `7f8ee64` - JurisdictionSelect implementation
 - `ac8b6b7` - Version bump to v3.27.0
+
+### **v3.27.3 - 2026-01-18**
+**💚 GREEN ADEQUACY CHECKMARK FIX**
+
+**Problem:** Adequacy checkmarks (right side) not displaying in green color
+
+**Root Cause:**
+- Used `text-[var(--success)]` but CSS token doesn't exist
+- Fell back to default text color (white/gray) instead of green
+
+**Fix:**
+- Changed to `text-[var(--status-success)]` (correct token)
+- Dark mode: #22c55e (green)
+- Light mode: #059669 (green)
+
+**Result:**
+- EU countries, UK, Switzerland show GREEN ✓ on right side
+- Clearly indicates GDPR adequacy decision status
+- Left checkmark (selected item) remains white
+
+**File Modified:** `src/components/context/JurisdictionSelect.tsx`
+**Git Commit:** `9c121ed`, `f6b9593`
+
+### **v3.27.2 - 2026-01-18**
+**✨ DROPDOWN HOVER HIGHLIGHT**
+
+**Problem:** Dropdown items had no visible hover feedback when mouse moved over them
+
+**Root Cause:**
+- `bg-accent` (#2A3946) too similar to background (#243240)
+- No visible color difference on hover
+
+**Fix:**
+- Added explicit `hover:bg-[var(--surface-2)]` for mouse hover
+- Replaced `bg-accent` with `bg-[var(--surface-2)]` for better contrast
+- Dark mode: #374151 provides clear visual feedback
+- Keyboard navigation (Arrow keys) uses same highlight
+
+**Result:**
+- Mouse hover now clearly highlights dropdown items
+- Works in both dark and light modes
+- Consistent with keyboard navigation styling
+
+**File Modified:** `src/components/ui/command.tsx`
+**Git Commit:** `4e1e98b`, `8f0a05c`
+
+### **v3.27.1 - 2026-01-18**
+**🎨 DROPDOWN BACKGROUND FIX**
+
+**Problem:** Dropdown menus transparent, causing text to blend with page background
+
+**Root Cause:**
+- Tailwind `bg-popover`/`text-popover-foreground` classes not properly wired to CSS variables
+- Project uses explicit CSS variable syntax: `bg-[var(--surface-1)]`
+
+**Fixes:**
+- `popover.tsx`: Replaced `bg-popover` with `bg-[var(--surface-1)]`
+- `popover.tsx`: Replaced `text-popover-foreground` with `text-[var(--text-primary)]`
+- `popover.tsx`: Added explicit `border-[var(--border-default)]`
+- `command.tsx`: Same bg/text token replacements
+- `command.tsx`: Added explicit border color to CommandInput
+
+**Result:**
+- Dropdowns now have opaque backgrounds
+- Text clearly readable in dark/light modes
+- Dropdowns visually separated from underlying content
+- Affects JurisdictionSelect and all Popover/Command-based components
+
+**Files Modified:** `src/components/ui/popover.tsx`, `src/components/ui/command.tsx`
+**Git Commits:** `5bc129b`, `5780786`
+
+### **Performance Optimization - 2026-01-18**
+**⚡ VERSION.TS FILE SIZE REDUCTION**
+
+**Problem:**
+- `src/lib/version.ts`: 2,267 lines (144KB) with 173 version entries
+- Comment claimed "last 5 versions only" but had full history
+- Unnecessary bundle bloat, slow loading
+
+**Fix:**
+- Kept only last 7 versions (3.27.3 → 3.21.1)
+- Removed 166 old changelog entries
+- File size: 144KB → 8KB (94% reduction)
+- Lines: 2,267 → 137 (94% reduction)
+
+**Result:**
+- Faster builds and deploys
+- Smaller bundle size
+- Complete history still available in git commits
+- Comment now accurate: "last 7 versions only"
+
+**File Modified:** `src/lib/version.ts`
+**Git Commit:** `06908e0`
 
 ---
 
