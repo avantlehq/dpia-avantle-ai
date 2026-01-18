@@ -73,7 +73,7 @@ export function JurisdictionSelect({
       // Adequacy badge
       getBadge={(j) =>
         j.adequacy_status === 'adequate' ? (
-          <Check className="h-4 w-4 text-[var(--success)]" />
+          <Check className="h-4 w-4 text-[var(--status-success)]" />
         ) : null
       }
 
