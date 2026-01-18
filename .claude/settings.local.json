@@ -71,7 +71,9 @@
       "Bash(git reset:*)",
       "Bash(psql:*)",
       "Bash(ls:*)",
-      "Bash(npx shadcn@latest add:*)"
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(wc:*)",
+      "Bash(du:*)"
     ],
     "deny": [],
     "ask": [],
