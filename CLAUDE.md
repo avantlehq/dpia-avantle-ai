@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.28.0 - Context Module i18n Refactor Complete**
+**Current Version: 3.28.1 - i18n Dictionary Fix**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -228,6 +228,29 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.28.1 - 2026-01-19**
+**🔧 CRITICAL HOTFIX: i18n Dictionary Location**
+
+**Problem:** Translation keys displaying as-is on production (e.g., `context.systems.systemType`, `context.common.configuration`)
+
+**Root Cause:** next-intl loads translations from `src/i18n/dictionaries/` not `messages/`. The v3.28.0 refactor added 310+ translation keys to wrong directory.
+
+**Fix:**
+- Copied full context namespace to `src/i18n/dictionaries/en.json` (310+ lines)
+- Copied full context namespace to `src/i18n/dictionaries/sk.json` (310+ lines)
+- All 6 Context modules now load proper translations in both languages
+- next-intl request.ts correctly resolves: `messages: (await import(\`./dictionaries/\${locale}.json\`)).default`
+
+**Files Modified:**
+- `src/i18n/dictionaries/en.json` - Added context namespace (622 lines added)
+- `src/i18n/dictionaries/sk.json` - Added context namespace (622 lines added)
+
+**Result:** All Context forms (Systems, Vendors, Locations, Data Categories, Data Flows, Processing Activities) now display properly translated UI text instead of translation keys.
+
+**Git Commits:**
+- `8fd37eb` - Dictionary file updates
+- `1635de8` - Version bump to 3.28.1
 
 ### **v3.28.0 - 2026-01-19**
 **🌐 CONTEXT MODULE I18N REFACTOR: Eliminated 230+ Hardcoded Ternary Translations**
