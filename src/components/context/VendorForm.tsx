@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useLocale, useTranslations } from 'next-intl'
 import {
   Form,
   FormControl,
@@ -37,6 +38,7 @@ import { toast } from 'sonner'
 import { ContextFormShell } from './ContextFormShell'
 import { createVendor, updateVendor, type Vendor } from '@/lib/context/vendors'
 
+// Phase 1: Zod validation messages remain in English (to be translated in Phase 2)
 const vendorSchema = z.object({
   name: z.string().min(1, 'Vendor name is required').max(100, 'Name too long'),
   description: z.string().max(500, 'Description too long').optional(),
@@ -54,14 +56,19 @@ type VendorFormData = z.infer<typeof vendorSchema>
 
 interface VendorFormProps {
   mode: 'create' | 'edit'
-  locale: string
   vendorId?: string
   initialData?: Vendor
 }
 
-export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormProps) {
+export function VendorForm({ mode, vendorId, initialData }: VendorFormProps) {
   const router = useRouter()
+  const locale = useLocale()
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // Translations
+  const tc = useTranslations('common')
+  const tcc = useTranslations('context.common')
+  const t = useTranslations('context.vendors')
 
   const form = useForm<VendorFormData>({
     resolver: zodResolver(vendorSchema),
@@ -86,18 +93,17 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
     try {
       if (mode === 'create') {
         await createVendor(data)
-        toast.success(locale === 'sk' ? 'Dodávateľ bol vytvorený' : 'Vendor created successfully')
+        toast.success(t('createdSuccess'))
       } else if (vendorId) {
         await updateVendor(vendorId, data)
-        toast.success(locale === 'sk' ? 'Dodávateľ bol aktualizovaný' : 'Vendor updated successfully')
+        toast.success(t('updatedSuccess'))
       }
 
       router.push(`/${locale}/context/vendors`)
       router.refresh()
     } catch (error) {
       console.error('Error saving vendor:', error)
-      toast.error(error instanceof Error ? error.message :
-        (locale === 'sk' ? 'Nepodarilo sa uložiť dodávateľa' : 'Failed to save vendor'))
+      toast.error(error instanceof Error ? error.message : t('failedSave'))
     } finally {
       setIsSubmitting(false)
     }
@@ -107,13 +113,8 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
     router.push(`/${locale}/context/vendors`)
   }
 
-  const title = mode === 'create'
-    ? (locale === 'sk' ? 'Nový dodávateľ' : 'New Vendor')
-    : (locale === 'sk' ? 'Upraviť dodávateľa' : 'Edit Vendor')
-
-  const description = mode === 'create'
-    ? (locale === 'sk' ? 'Pridať nového dodávateľa alebo spracovateľa údajov pre sledovanie súladu s GDPR a správu DPA.' : 'Add a new vendor or data processor for GDPR compliance tracking and DPA management.')
-    : (locale === 'sk' ? 'Aktualizovať informácie o dodávateľovi alebo spracovateľovi údajov.' : 'Update the vendor or data processor information.')
+  const title = mode === 'create' ? t('createTitle') : t('editTitle')
+  const description = mode === 'create' ? t('createDescription') : t('editDescription')
 
   return (
     <ContextFormShell
@@ -126,7 +127,7 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
           {/* Basic Information Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Základné informácie' : 'Basic Information'}
+              {tcc('basicInfo')}
             </h3>
 
             <div className="space-y-4">
@@ -135,9 +136,9 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Názov dodávateľa' : 'Vendor Name'} *</FormLabel>
+                    <FormLabel>{t('name')} *</FormLabel>
                     <FormControl>
-                      <Input placeholder={locale === 'sk' ? 'napr., Microsoft Corporation' : 'e.g., Microsoft Corporation'} {...field} />
+                      <Input placeholder={t('namePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -149,10 +150,10 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Popis' : 'Description'}</FormLabel>
+                    <FormLabel>{t('description')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Stručný popis služieb dodávateľa...' : 'Briefly describe the vendor\'s services...'}
+                        placeholder={t('descriptionPlaceholder')}
                         rows={3}
                         {...field}
                       />
@@ -168,7 +169,7 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                   name="vendor_role"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Rola dodávateľa' : 'Vendor Role'} *</FormLabel>
+                      <FormLabel>{t('vendorRole')} *</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -176,10 +177,10 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="processor">{locale === 'sk' ? 'Spracovateľ' : 'Processor'}</SelectItem>
-                          <SelectItem value="joint_controller">{locale === 'sk' ? 'Spoločný prevádzkovateľ' : 'Joint Controller'}</SelectItem>
-                          <SelectItem value="recipient">{locale === 'sk' ? 'Príjemca' : 'Recipient'}</SelectItem>
-                          <SelectItem value="sub_processor">{locale === 'sk' ? 'Podspracovateľ' : 'Sub-processor'}</SelectItem>
+                          <SelectItem value="processor">{t('roleProcessor')}</SelectItem>
+                          <SelectItem value="joint_controller">{t('roleJointController')}</SelectItem>
+                          <SelectItem value="recipient">{t('roleRecipient')}</SelectItem>
+                          <SelectItem value="sub_processor">{t('roleSubProcessor')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -192,7 +193,7 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                   name="status"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Stav' : 'Status'} *</FormLabel>
+                      <FormLabel>{t('status')} *</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -200,8 +201,8 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="active">{locale === 'sk' ? 'Aktívny' : 'Active'}</SelectItem>
-                          <SelectItem value="inactive">{locale === 'sk' ? 'Neaktívny' : 'Inactive'}</SelectItem>
+                          <SelectItem value="active">{tcc('active')}</SelectItem>
+                          <SelectItem value="inactive">{tcc('inactive')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -215,7 +216,7 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
           {/* Contact Information Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Kontaktné informácie' : 'Contact Information'}
+              {t('contact')}
             </h3>
 
             <div className="space-y-4">
@@ -224,9 +225,9 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                 name="primary_contact"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Primárny kontakt' : 'Primary Contact'}</FormLabel>
+                    <FormLabel>{t('contactPerson')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={locale === 'sk' ? 'Meno kontaktnej osoby' : 'Contact person name'} {...field} />
+                      <Input placeholder={t('contactPersonPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -238,11 +239,11 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                 name="contact_email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Kontaktný email' : 'Contact Email'}</FormLabel>
+                    <FormLabel>{t('email')}</FormLabel>
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder={locale === 'sk' ? 'kontakt@dodavatel.sk' : 'contact@vendor.com'}
+                        placeholder={t('emailPlaceholder')}
                         {...field}
                       />
                     </FormControl>
@@ -256,7 +257,7 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                 name="website"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Webová stránka' : 'Website'}</FormLabel>
+                    <FormLabel>{t('location')}</FormLabel>
                     <FormControl>
                       <Input
                         type="url"
@@ -274,9 +275,9 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Lokalita' : 'Location'}</FormLabel>
+                    <FormLabel>{t('location')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={locale === 'sk' ? 'napr., Spojené štáty' : 'e.g., United States'} {...field} />
+                      <Input placeholder={t('locationDescription')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -288,7 +289,7 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
           {/* DPA Compliance Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Súlad DPA' : 'DPA Compliance'}
+              {t('compliance')}
             </h3>
 
             <div className="space-y-4">
@@ -299,12 +300,10 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                   <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                     <div className="space-y-0.5">
                       <FormLabel className="text-base">
-                        {locale === 'sk' ? 'Zmluva o spracovaní údajov (DPA)' : 'Data Processing Agreement (DPA)'}
+                        {t('hasDpa')}
                       </FormLabel>
                       <FormDescription>
-                        {locale === 'sk'
-                          ? 'Či je s dodávateľom podpísaná zmluva DPA'
-                          : 'Whether a DPA is signed with this vendor'}
+                        {t('hasDpa')}
                       </FormDescription>
                     </div>
                     <FormControl>
@@ -323,7 +322,7 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
                   name="dpa_expires"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Dátum exspirácie DPA' : 'DPA Expiration Date'}</FormLabel>
+                      <FormLabel>{t('dpaExpires')}</FormLabel>
                       <FormControl>
                         <Input
                           type="date"
@@ -341,14 +340,11 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
           {/* Form Actions */}
           <div className="flex justify-end gap-3 pt-6 border-t border-[var(--border-default)]">
             <Button type="button" variant="outline" onClick={handleCancel}>
-              {locale === 'sk' ? 'Zrušiť' : 'Cancel'}
+              {tc('cancel')}
             </Button>
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {mode === 'create'
-                ? (locale === 'sk' ? 'Vytvoriť' : 'Create')
-                : (locale === 'sk' ? 'Uložiť' : 'Save')
-              }
+              {mode === 'create' ? tc('create') : tc('save')}
             </Button>
           </div>
         </form>

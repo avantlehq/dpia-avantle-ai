@@ -31,5 +31,5 @@ export default async function EditVendorPage({ params }: Props) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return <VendorForm mode="edit" locale={locale} vendorId={id} initialData={vendor as any} />
+  return <VendorForm mode="edit" vendorId={id} initialData={vendor as any} />
 }

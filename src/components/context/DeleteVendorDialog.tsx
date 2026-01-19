@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import { useTranslations } from 'next-intl'
 
 interface DeleteVendorDialogProps {
   isOpen: boolean
@@ -30,6 +31,8 @@ export function DeleteVendorDialog({
   vendorName,
 }: DeleteVendorDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false)
+  const tc = useTranslations('common')
+  const t = useTranslations('context.vendors')
 
   const handleDelete = async () => {
     setIsDeleting(true)
@@ -40,15 +43,15 @@ export function DeleteVendorDialog({
 
       if (!response.ok) {
         const error = await response.json()
-        throw new Error(error.message || 'Failed to delete vendor')
+        throw new Error(error.message || t('deleteFailed'))
       }
 
-      toast.success('Vendor deleted successfully')
+      toast.success(t('deleteSuccess'))
       onSuccess()
       onClose()
     } catch (error) {
       console.error('Error deleting vendor:', error)
-      toast.error(error instanceof Error ? error.message : 'Failed to delete vendor')
+      toast.error(error instanceof Error ? error.message : t('deleteFailed'))
     } finally {
       setIsDeleting(false)
     }
@@ -58,21 +61,20 @@ export function DeleteVendorDialog({
     <AlertDialog open={isOpen} onOpenChange={onClose}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Delete Vendor</AlertDialogTitle>
+          <AlertDialogTitle>{t('deleteTitle')}</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete <strong>&ldquo;{vendorName}&rdquo;</strong>?
-            This action cannot be undone and will remove all associated data, including DPA agreements and compliance records.
+            {t('deleteDescription')}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={onClose}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel onClick={onClose}>{tc('cancel')}</AlertDialogCancel>
           <Button
             variant="destructive"
             onClick={handleDelete}
             disabled={isDeleting}
           >
             {isDeleting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Delete Vendor
+            {tc('delete')}
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
