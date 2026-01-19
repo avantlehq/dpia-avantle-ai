@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.28.1 - i18n Dictionary Fix**
+**Current Version: 3.30.0 - Context List Pages i18n Refactor Complete**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -228,6 +228,57 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.30.0 - 2026-01-19**
+**🌐 CONTEXT LIST PAGES I18N REFACTOR COMPLETE**
+
+**PROBLEM DISCOVERED**: User reported critical gap in v3.28.0 Context i18n refactor - list pages remained entirely in English even on Slovak URLs.
+
+**User Report:** "čo sme vlastne prekladali. my sme neprekladali labels jednotlivych stran v context module ale iba čast vstupnych parametrov" - Translation: "what did we actually translate. we didn't translate labels of individual pages in context module but only part of input parameters."
+
+**Confirmation:** `/sk/context/systems` displayed same English content as `/en/context/systems` - all 6 Context list pages showed English on both language URLs.
+
+**Root Cause:** v3.28.0 refactor only covered form components (create/edit pages with /new and /[id] routes) but not list pages. Forms were bilingual but list pages were English-only.
+
+**Implementation:**
+- Created separate `context.pages` namespace to avoid conflict with existing `context.{module}` used by forms
+- Added 6 sub-namespaces: systems, vendors, locations, dataCategories, dataFlows, processing
+- Added ~180 total translation keys to both en.json and sk.json dictionaries
+- Refactored all 6 list page components to use `useTranslations('context.pages.{module}')`
+
+**Components Refactored:**
+1. **systems/page.tsx** - Headers, search, filters, status pills, table headers, footer
+2. **vendors/page.tsx** - DPA status badges, vendor counts, all UI elements
+3. **locations/page.tsx** - Adequacy status, jurisdiction filters, location stats
+4. **data-categories/page.tsx** - GDPR article classification, category types
+5. **data-flows/page.tsx** - Flow direction, encryption status, cross-border indicators
+6. **processing/page.tsx** - ROPA compliance, lawful basis, DPO review flags
+
+**Fixes:**
+- Fixed parsing error in processing/page.tsx where sed command wrapped t() calls in quotes
+- Removed quotes: `'{t('adjustFilters')}'` → `t('adjustFilters')`
+- All 6 pages build successfully with zero errors
+
+**Result:**
+- Context module now **fully bilingual** across both list pages AND forms
+- Slovak URLs (/sk/context/*) display Slovak text throughout
+- English URLs (/en/context/*) display English text throughout
+- Pattern matches existing `privacy.pages` namespace structure
+- Complete coverage: 6 list pages + 6 forms + 6 delete dialogs = 18 bilingual components
+
+**Files Modified:**
+- `src/i18n/dictionaries/en.json` - Added context.pages namespace (+180 keys)
+- `src/i18n/dictionaries/sk.json` - Added context.pages namespace (+180 keys)
+- `src/app/[locale]/context/systems/page.tsx` - Full i18n refactor
+- `src/app/[locale]/context/vendors/page.tsx` - Full i18n refactor
+- `src/app/[locale]/context/locations/page.tsx` - Full i18n refactor
+- `src/app/[locale]/context/data-categories/page.tsx` - Full i18n refactor
+- `src/app/[locale]/context/data-flows/page.tsx` - Full i18n refactor
+- `src/app/[locale]/context/processing/page.tsx` - Full i18n refactor
+- `src/lib/version.ts` - Version bump to 3.30.0
+- `package.json` - Version bump to 3.30.0
+
+**Git Commit:** `a9f7deb` - Version 3.30.0 deployed to production
 
 ### **v3.28.1 - 2026-01-19**
 **🔧 CRITICAL HOTFIX: i18n Dictionary Location**
@@ -559,9 +610,10 @@ git add . && git commit -m "message" && git push origin main
 - ~~Browser Back Button~~ ✅ RESOLVED in v3.25.0 - Standard browser navigation works correctly
 - ~~Context Routes 404 Errors~~ ✅ RESOLVED in v3.25.2 - Async params implementation for Next.js 15+
 - ~~Systems API 500 Errors~~ ✅ RESOLVED in v3.25.2 - RLS policies fixed for service_role, audit columns added
-- ~~Hardcoded Ternary Translations~~ ✅ RESOLVED in v3.28.0 - All Context modules migrated to next-intl, 230+ ternaries eliminated
+- ~~Hardcoded Ternary Translations~~ ✅ RESOLVED in v3.28.0 - All Context forms migrated to next-intl, 230+ ternaries eliminated
+- ~~Context List Pages English-only~~ ✅ RESOLVED in v3.30.0 - All 6 Context list pages fully bilingual, 180+ translation keys added
 
-**Current Status**: All major technical debt resolved. Platform fully functional. i18n architecture complete.
+**Current Status**: All major technical debt resolved. Platform fully functional. Context module i18n architecture complete (list pages + forms + dialogs all bilingual).
 
 ## Communication Style
 

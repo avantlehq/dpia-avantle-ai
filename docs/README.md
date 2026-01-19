@@ -2,7 +2,7 @@
 
 Welcome to the Avantle Privacy Platform developer documentation. This directory contains comprehensive technical documentation for developers working on the DPIA platform.
 
-**Latest Update (v3.25.2)**: Context routes fixed for Next.js 15+ async params compatibility. All /new and [id] edit pages updated. RLS policies and database schema corrected for API functionality.
+**Latest Update (v3.30.0)**: Context module list pages i18n refactor complete. All 6 Context list pages now fully bilingual (Slovak/English). Added ~180 translation keys to context.pages namespace.
 
 ## 📁 Documentation Structure
 
@@ -33,6 +33,32 @@ Welcome to the Avantle Privacy Platform developer documentation. This directory 
 4. Explore [Data Model](./data-model.md) for database interactions
 
 ## 📋 Recent Updates
+
+**Version 3.30.0** - Context List Pages i18n Refactor Complete ✅
+- **Complete Bilingual Support**: All 6 Context module list pages now fully bilingual (Slovak/English)
+- **Translation Namespace**: Added context.pages namespace with 6 sub-namespaces (~180 translation keys)
+- **Pages Refactored**: systems, vendors, locations, data-categories, data-flows, processing list pages
+- **Critical Gap Fixed**: v3.28.0 only translated forms, v3.30.0 completes list pages
+- **Slovak URLs Work**: /sk/context/* now displays Slovak text throughout (was English-only)
+- **Components Updated**: Headers, filters, status pills, table headers, empty states, footers
+- **Pattern Consistency**: useTranslations('context.pages.{module}') matches privacy.pages pattern
+- **Full Coverage**: Context module now 100% bilingual (18 components: 6 list pages + 6 forms + 6 dialogs)
+
+**Version 3.29.0** - Privacy Module i18n Refactor Complete ✅
+- **Privacy Module Bilingual**: Eliminated 44 hardcoded ternary translations across Privacy module
+- **Components Refactored**: assessments-table.tsx, privacy/page.tsx, assessments/page.tsx
+- **Translation Namespaces**: Added privacy.assessments and privacy.overview namespaces
+- **Server/Client Components**: Server components use getTranslations(), client use useTranslations()
+- **Status Labels**: All assessment statuses (Drafts, Overdue, Completed, In Progress) translated
+- **Quick Actions**: DPIA, LIA, TIA action labels fully localized
+
+**Version 3.28.0** - Context Forms i18n Refactor Complete ✅
+- **Context Forms Bilingual**: Eliminated 230+ hardcoded ternary translations across all Context forms
+- **Forms Refactored**: LocationForm, VendorForm, SystemForm, DataCategoryForm, DataFlowForm, ProcessingActivityForm
+- **Translation Namespaces**: Added context.common and 6 module-specific namespaces
+- **Delete Dialogs**: All 6 delete confirmation dialogs fully translated
+- **Architecture Pattern**: useLocale() for routing, useTranslations() for UI text
+- **Zero Locale Props**: Cleaner component APIs without locale prop passing
 
 **Version 3.25.2** - Context Routes Fix & RLS Policies ✅
 - **Next.js 15+ Compatibility**: Fixed all Context module routes to use async params (Promise<{ locale: string }>)
