@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.28.0" as const
-export const VERSION_NAME = "🌐 Context Module i18n Refactor Complete" as const
+export const VERSION = "3.28.1" as const
+export const VERSION_NAME = "🔧 i18n Dictionary Fix" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.28.1": {
+    date: "2026-01-19",
+    name: "🔧 i18n Dictionary Fix",
+    features: [],
+    fixes: [
+      "Fixed translation keys displaying as-is on production (context.systems.systemType, etc.)",
+      "Added context namespace to actual dictionary files (src/i18n/dictionaries/)",
+      "All Context modules now load proper translations in both English and Slovak",
+      "Previously was adding translations to wrong location (messages/ instead of dictionaries/)"
+    ],
+    note: "Critical hotfix. Root cause: next-intl loads from src/i18n/dictionaries/ not messages/. The i18n refactor in v3.28.0 added translations to the wrong directory. This patch moves 310+ translation keys to correct location. All 6 Context forms now display properly translated UI text."
+  },
   "3.28.0": {
     date: "2026-01-19",
     name: "🌐 Context Module i18n Refactor Complete",
