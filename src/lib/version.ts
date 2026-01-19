@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.29.0" as const
-export const VERSION_NAME = "🌐 Privacy Module i18n Refactor Complete" as const
+export const VERSION = "3.29.1" as const
+export const VERSION_NAME = "🔧 Data Categories Translation Keys Fix" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.29.1": {
+    date: "2026-01-19",
+    name: "🔧 Data Categories Translation Keys Fix",
+    features: [],
+    fixes: [
+      "Added missing translation keys for DataCategoryForm dropdown descriptions",
+      "Added typePersonal, typePersonalDesc, typeSpecial, typeSpecialDesc, typeCriminal, typeCriminalDesc",
+      "Added sensitivityPublicDesc, sensitivityInternalDesc, sensitivityConfidentialDesc, sensitivityRestrictedDesc",
+      "Added selectParentCategory placeholder text",
+      "Fixed translation keys displaying literally in data category edit forms",
+      "Both English and Slovak translations added for all missing keys"
+    ],
+    note: "Critical hotfix. DataCategoryForm component was using translation keys that were never added to dictionaries during v3.28.0 Context i18n refactor. Users saw raw keys like 'context.dataCategories.typePersonal' instead of translated text."
+  },
   "3.29.0": {
     date: "2026-01-19",
     name: "🌐 Privacy Module i18n Refactor Complete",
