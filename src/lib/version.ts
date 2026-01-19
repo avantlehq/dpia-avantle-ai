@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.27.4" as const
-export const VERSION_NAME = "📋 Business Strategy Documentation" as const
-export const BUILD_DATE = "2026-01-18"
+export const VERSION = "3.28.0" as const
+export const VERSION_NAME = "🌐 Context Module i18n Refactor Complete" as const
+export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,35 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.28.0": {
+    date: "2026-01-19",
+    name: "🌐 Context Module i18n Refactor Complete",
+    features: [
+      "Eliminated 230+ hardcoded ternary translations across all Context modules",
+      "Migrated all 6 Context forms to next-intl useTranslations() hooks",
+      "Removed locale props from all Context component interfaces",
+      "Centralized all UI strings in messages/en.json and messages/sk.json",
+      "Added context.common namespace for shared Context module strings",
+      "Added module-specific namespaces: context.locations, context.vendors, context.systems, context.dataCategories, context.dataFlows, context.processing",
+      "Refactored LocationForm: 26 ternary occurrences eliminated",
+      "Refactored VendorForm: 27 ternary occurrences eliminated",
+      "Refactored SystemForm: 24 ternary occurrences eliminated",
+      "Refactored DataCategoryForm: 43 ternary occurrences eliminated",
+      "Refactored DataFlowForm: 51 ternary occurrences eliminated",
+      "Refactored ProcessingActivityForm: 38 ternary occurrences eliminated",
+      "Refactored all 6 Delete Dialog components with translated strings",
+      "Updated all 12 page files (new/[id] routes) to remove locale prop passing",
+      "Converted dropdown options to direct translation keys",
+      "Removed unused option constant arrays to reduce code size"
+    ],
+    fixes: [
+      "Fixed SystemForm page file corruption from previous sed command",
+      "Fixed ProcessingActivity new page build error with locale prop",
+      "Zero ternary operators remaining in Context modules (verified)",
+      "All builds passing with zero TypeScript errors"
+    ],
+    note: "Major i18n architecture refactor. All Context module forms now use centralized translation system. Pattern: useLocale() for routing only, useTranslations() for all UI text. Eliminated technical debt from hardcoded ternary operators. 100% coverage across 6 modules, 6 delete dialogs, 12 page files."
+  },
   "3.27.4": {
     date: "2026-01-18",
     name: "📋 Business Strategy Documentation",
