@@ -1,11 +1,12 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
-import { 
+import {
   Target,
   Scale,
   Plane
 } from 'lucide-react'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -14,37 +15,36 @@ type Props = {
 // Privacy Overview - Module overview covering DPIA, LIA, TIA assessments
 export default async function PrivacyOverview({ params }: Props) {
   const { locale } = await params;
+  const t = await getTranslations('privacy.overview');
+
   return (
     <div className="space-y-6">
       {/* Header */}
       <div>
         <h1 className="text-2xl font-semibold text-foreground">
-          {locale === 'sk' ? 'Prehľad ochrany údajov' : 'Privacy Overview'}
+          {t('title')}
         </h1>
         <p className="text-muted-foreground">
-          {locale === 'sk' 
-            ? 'Centrálny prehľad všetkých hodnotení ochrany údajov a compliance aktivít'
-            : 'Central overview of all privacy assessments and compliance activities'
-          }
+          {t('description')}
         </p>
       </div>
 
       {/* Privacy Assessment Types Status */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">
-          {locale === 'sk' ? 'Hodnotenia ochrany údajov' : 'Privacy Assessments'}
+          {t('subtitle')}
         </h2>
-        
+
         {/* DPIA Status Pills */}
         <div className="space-y-4">
           <h3 className="text-md font-medium text-foreground">
-            {locale === 'sk' ? 'DPIA - Posúdenie vplyvu na ochranu údajov' : 'DPIA - Data Protection Impact Assessment'}
+            {t('dpia.title')}
           </h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
-            <Link 
+            <Link
               href={`/${locale}/assessments`}
               className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer text-decoration-none"
-              style={{ 
+              style={{
                 height: '38px',
                 paddingLeft: '12px',
                 paddingRight: '16px',
@@ -54,17 +54,17 @@ export default async function PrivacyOverview({ params }: Props) {
               }}
             >
               <span style={{ fontSize: '14px', color: '#9ca3af', fontWeight: '500' }}>
-                {locale === 'sk' ? 'Aktívne' : 'Active'}
+                {t('dpia.statusActive')}
               </span>
               <span style={{ fontSize: '16px', color: 'var(--text-primary)', fontWeight: '600' }}>
                 12
               </span>
             </Link>
 
-            <Link 
+            <Link
               href={`/${locale}/assessments`}
               className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer text-decoration-none"
-              style={{ 
+              style={{
                 height: '38px',
                 paddingLeft: '12px',
                 paddingRight: '16px',
@@ -74,17 +74,17 @@ export default async function PrivacyOverview({ params }: Props) {
               }}
             >
               <span style={{ fontSize: '14px', color: '#9ca3af', fontWeight: '500' }}>
-                {locale === 'sk' ? 'Prebieha' : 'In Progress'}
+                {t('dpia.statusInProgress')}
               </span>
               <span style={{ fontSize: '16px', color: 'var(--text-primary)', fontWeight: '600' }}>
                 5
               </span>
             </Link>
 
-            <Link 
+            <Link
               href={`/${locale}/assessments`}
               className="inline-flex items-center rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer text-decoration-none"
-              style={{ 
+              style={{
                 height: '38px',
                 paddingLeft: '12px',
                 paddingRight: '16px',
@@ -94,7 +94,7 @@ export default async function PrivacyOverview({ params }: Props) {
               }}
             >
               <span style={{ fontSize: '14px', color: '#9ca3af', fontWeight: '500' }}>
-                {locale === 'sk' ? 'Kritické' : 'Critical'}
+                {t('dpia.statusCritical')}
               </span>
               <span style={{ fontSize: '16px', color: 'var(--text-primary)', fontWeight: '600' }}>
                 2
@@ -106,12 +106,12 @@ export default async function PrivacyOverview({ params }: Props) {
         {/* LIA Status Pills */}
         <div className="space-y-4">
           <h3 className="text-md font-medium text-foreground">
-            {locale === 'sk' ? 'LIA - Posúdenie oprávneného záujmu' : 'LIA - Legitimate Interest Assessment'}
+            {t('lia.title')}
           </h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
-            <div 
+            <div
               className="inline-flex items-center rounded-lg"
-              style={{ 
+              style={{
                 height: '38px',
                 paddingLeft: '12px',
                 paddingRight: '16px',
@@ -121,7 +121,7 @@ export default async function PrivacyOverview({ params }: Props) {
               }}
             >
               <span style={{ fontSize: '14px', color: '#9ca3af', fontWeight: '500' }}>
-                {locale === 'sk' ? 'Čoskoro' : 'Coming Soon'}
+                {t('lia.statusComingSoon')}
               </span>
               <span style={{ fontSize: '16px', color: 'var(--text-primary)', fontWeight: '600' }}>
                 -
@@ -133,12 +133,12 @@ export default async function PrivacyOverview({ params }: Props) {
         {/* TIA Status Pills */}
         <div className="space-y-4">
           <h3 className="text-md font-medium text-foreground">
-            {locale === 'sk' ? 'TIA - Posúdenie vplyvu prenosu' : 'TIA - Transfer Impact Assessment'}
+            {t('tia.title')}
           </h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
-            <div 
+            <div
               className="inline-flex items-center rounded-lg"
-              style={{ 
+              style={{
                 height: '38px',
                 paddingLeft: '12px',
                 paddingRight: '16px',
@@ -148,7 +148,7 @@ export default async function PrivacyOverview({ params }: Props) {
               }}
             >
               <span style={{ fontSize: '14px', color: '#9ca3af', fontWeight: '500' }}>
-                {locale === 'sk' ? 'Čoskoro' : 'Coming Soon'}
+                {t('tia.statusComingSoon')}
               </span>
               <span style={{ fontSize: '16px', color: 'var(--text-primary)', fontWeight: '600' }}>
                 -
@@ -161,32 +161,32 @@ export default async function PrivacyOverview({ params }: Props) {
       {/* Quick Actions */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">
-          {locale === 'sk' ? 'Rýchle akcie' : 'Quick Actions'}
+          {t('quickActions')}
         </h2>
-        
+
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
           <Link href={`/${locale}/assessments`}>
             <Button variant="outline" className="gap-2">
               <Target className="h-4 w-4" />
-              {locale === 'sk' ? 'Spravovať DPIA' : 'Manage DPIA'}
+              {t('manageDpia')}
             </Button>
           </Link>
-          
+
           <Link href={`/${locale}/precheck`}>
             <Button variant="outline" className="gap-2">
               <Target className="h-4 w-4" />
-              {locale === 'sk' ? 'DPIA Kontrola' : 'DPIA Pre-check'}
+              {t('dpiaPrecheck')}
             </Button>
           </Link>
 
           <Button variant="outline" className="gap-2" disabled>
             <Scale className="h-4 w-4" />
-            {locale === 'sk' ? 'LIA (Čoskoro)' : 'LIA (Coming Soon)'}
+            {t('liaComingSoon')}
           </Button>
 
           <Button variant="outline" className="gap-2" disabled>
             <Plane className="h-4 w-4" />
-            {locale === 'sk' ? 'TIA (Čoskoro)' : 'TIA (Coming Soon)'}
+            {t('tiaComingSoon')}
           </Button>
         </div>
       </div>

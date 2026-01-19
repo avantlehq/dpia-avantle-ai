@@ -370,6 +370,74 @@
       "deleteFailed": "Nepodarilo sa vymazať činnosť spracovania"
     }
   },
+  "privacy": {
+    "assessments": {
+      "title": "Hodnotenia ochrany údajov",
+      "pageTitle": "DPIA Hodnotenia",
+      "pageDescription": "Spravujte vaše DPIA hodnotenia vplyvu na ochranu údajov",
+      "overviewTitle": "Prehľad DPIA",
+      "precheckTooltip": "Rýchle pred-hodnotenie na kontrolu, či je potrebná úplná DPIA",
+      "loading": "Načítavam hodnotenia...",
+      "errorTitle": "Chyba pri načítaní",
+      "errorDescription": "Nepodarilo sa načítať hodnotenia. Skúste to znova.",
+      "tryAgain": "Skúsiť znova",
+      "newAssessment": "Nové hodnotenie",
+      "noAssessments": "Nenašli sa žiadne hodnotenia",
+      "createFirst": "Vytvorte prvé hodnotenie ochrany údajov",
+      "statusDraft": "Návrh",
+      "statusDrafts": "Návrhy",
+      "statusInProgress": "Prebieha",
+      "statusCompleted": "Dokončené",
+      "statusOverdue": "Po termíne",
+      "statusReview": "Na kontrole",
+      "emptyTitle": "Pripravené na hodnotenie vplyvu na súkromie",
+      "emptyDescription": "Začnite kontrolou na určenie, či potrebujete úplnú DPIA, alebo vytvorte komplexné hodnotenie priamo.",
+      "startPrecheck": "Začať kontrolu",
+      "newDpia": "Nové DPIA",
+      "tableHeaderName": "Názov",
+      "tableHeaderStatus": "Stav",
+      "tableHeaderCreated": "Vytvorené",
+      "tableHeaderUpdated": "Upravené",
+      "tableHeaderActions": "Akcie",
+      "showingAssessments": "Zobrazuje sa {count} hodnotení",
+      "addNew": "Pridať nové",
+      "columns": {
+        "title": "Názov",
+        "status": "Stav",
+        "created": "Vytvorené",
+        "updated": "Posledná aktualizácia",
+        "riskScore": "Skóre rizika",
+        "actions": "Akcie"
+      }
+    },
+    "overview": {
+      "title": "Prehľad ochrany údajov",
+      "description": "Centrálny prehľad všetkých hodnotení ochrany údajov a compliance aktivít",
+      "subtitle": "Hodnotenia ochrany údajov",
+      "quickActions": "Rýchle akcie",
+      "manageDpia": "Spravovať DPIA",
+      "dpiaPrecheck": "DPIA Kontrola",
+      "liaComingSoon": "LIA (Čoskoro)",
+      "tiaComingSoon": "TIA (Čoskoro)",
+      "dpia": {
+        "title": "DPIA - Posúdenie vplyvu na ochranu údajov",
+        "description": "Systematický proces na identifikáciu a minimalizáciu rizík ochrany údajov",
+        "statusActive": "Aktívne",
+        "statusInProgress": "Prebieha",
+        "statusCritical": "Kritické"
+      },
+      "lia": {
+        "title": "LIA - Posúdenie oprávneného záujmu",
+        "description": "Vyhodnotenie oprávnených záujmov ako právneho základu pre spracovanie",
+        "statusComingSoon": "Čoskoro"
+      },
+      "tia": {
+        "title": "TIA - Posúdenie vplyvu prenosu",
+        "description": "Posúdenie rizík medzinárodných prenosov údajov",
+        "statusComingSoon": "Čoskoro"
+      }
+    }
+  },
   "dpia": {
     "precheck": {
       "title": "DPIA Kontrola",

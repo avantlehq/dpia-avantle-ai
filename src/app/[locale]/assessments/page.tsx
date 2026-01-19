@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 // No unused icons needed
 import Link from 'next/link'
 import { AssessmentsTable } from '@/components/assessments/assessments-table'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -12,43 +13,39 @@ type Props = {
 // DPIA Assessments Page - List and manage DPIA assessments specifically
 export default async function AssessmentsPage({ params }: Props) {
   const { locale } = await params;
+  const t = await getTranslations('privacy.assessments');
+
   return (
     <div className="space-y-6">
       {/* Header with CTAs - matching dashboard style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-foreground">
-            {locale === 'sk' ? 'DPIA Hodnotenia' : 'DPIA Assessments'}
+            {t('pageTitle')}
           </h1>
           <p className="text-muted-foreground">
-            {locale === 'sk' 
-              ? 'Spravujte vaše DPIA hodnotenia vplyvu na ochranu údajov'
-              : 'Manage your Data Protection Impact Assessments'
-            }
+            {t('pageDescription')}
           </p>
         </div>
         <div className="flex items-center" style={{ gap: '32px' }}>
           {/* Secondary CTA - Start Pre-check */}
           <Link href={`/${locale}/precheck`}>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="md"
-              title={locale === 'sk' 
-                ? 'Rýchle pred-hodnotenie na kontrolu, či je potrebná úplná DPIA'
-                : 'Quick pre-assessment to check if full DPIA is required'
-              }
+              title={t('precheckTooltip')}
             >
-              {locale === 'sk' ? 'Začať kontrolu' : 'Start Pre-check'}
+              {t('startPrecheck')}
             </Button>
           </Link>
-          
+
           {/* Primary CTA - New Assessment */}
           <Link href={`/${locale}/assessments/new`}>
-            <Button 
-              variant="primary" 
+            <Button
+              variant="primary"
               size="md"
             >
-              {locale === 'sk' ? 'Nové DPIA' : 'New DPIA'}
+              {t('newDpia')}
             </Button>
           </Link>
         </div>
@@ -57,15 +54,15 @@ export default async function AssessmentsPage({ params }: Props) {
       {/* DPIA Status Overview - matching dashboard pills */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">
-          {locale === 'sk' ? 'Prehľad DPIA' : 'DPIA Overview'}
+          {t('overviewTitle')}
         </h2>
-        
+
         {/* Status Pills Group - matching dashboard style */}
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
           {/* Completed Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -74,17 +71,17 @@ export default async function AssessmentsPage({ params }: Props) {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              {locale === 'sk' ? 'Dokončené' : 'Completed'}
+              {t('statusCompleted')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -95,9 +92,9 @@ export default async function AssessmentsPage({ params }: Props) {
           </div>
 
           {/* In Progress Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -106,17 +103,17 @@ export default async function AssessmentsPage({ params }: Props) {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              {locale === 'sk' ? 'Prebieha' : 'In Progress'}
+              {t('statusInProgress')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -127,9 +124,9 @@ export default async function AssessmentsPage({ params }: Props) {
           </div>
 
           {/* Drafts Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -138,17 +135,17 @@ export default async function AssessmentsPage({ params }: Props) {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              {locale === 'sk' ? 'Návrhy' : 'Drafts'}
+              {t('statusDrafts')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -159,9 +156,9 @@ export default async function AssessmentsPage({ params }: Props) {
           </div>
 
           {/* Overdue Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -170,17 +167,17 @@ export default async function AssessmentsPage({ params }: Props) {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              {locale === 'sk' ? 'Po termíne' : 'Overdue'}
+              {t('statusOverdue')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -199,11 +196,11 @@ export default async function AssessmentsPage({ params }: Props) {
       <Card className="avantle-border bg-card backdrop-blur-sm shadow-sm">
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            {locale === 'sk' ? 'DPIA Hodnotenia' : 'DPIA Assessments'}
+            {t('pageTitle')}
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <AssessmentsTable locale={locale} />
+          <AssessmentsTable />
         </CardContent>
       </Card>
     </div>

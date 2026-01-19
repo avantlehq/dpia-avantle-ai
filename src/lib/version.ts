@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.28.1" as const
-export const VERSION_NAME = "🔧 i18n Dictionary Fix" as const
+export const VERSION = "3.29.0" as const
+export const VERSION_NAME = "🌐 Privacy Module i18n Refactor Complete" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,31 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.29.0": {
+    date: "2026-01-19",
+    name: "🌐 Privacy Module i18n Refactor Complete",
+    features: [
+      "Eliminated 44 hardcoded ternary translations across Privacy module components",
+      "Migrated assessments-table.tsx to next-intl useTranslations() hooks (17 ternaries)",
+      "Migrated privacy/page.tsx to next-intl getTranslations() for server component (16 ternaries)",
+      "Migrated assessments/page.tsx to next-intl getTranslations() for server component (11 ternaries)",
+      "Added privacy.assessments namespace with comprehensive translation keys",
+      "Added privacy.overview namespace for privacy dashboard page",
+      "Centralized all Privacy module UI strings in src/i18n/dictionaries/",
+      "Added translation keys: pageTitle, pageDescription, overviewTitle, precheckTooltip",
+      "Added status labels: statusDrafts, statusOverdue, statusCompleted, statusInProgress",
+      "Added Quick Actions labels: manageDpia, dpiaPrecheck, liaComingSoon, tiaComingSoon",
+      "Server components use getTranslations() from 'next-intl/server'",
+      "Client components use useTranslations() and useLocale() hooks",
+      "Date formatting keeps legitimate locale usage (toLocaleDateString)"
+    ],
+    fixes: [
+      "Fixed missing translation keys in assessments page status pills",
+      "Corrected translation namespace structure for Privacy module",
+      "Build passing with zero TypeScript errors"
+    ],
+    note: "Complete i18n refactoring for Privacy module following Context module pattern. All hardcoded locale-based ternaries eliminated except legitimate date/number formatting. Privacy module now fully bilingual with centralized translation system."
+  },
   "3.28.1": {
     date: "2026-01-19",
     name: "🔧 i18n Dictionary Fix",

@@ -370,6 +370,74 @@
       "deleteFailed": "Failed to delete processing activity"
     }
   },
+  "privacy": {
+    "assessments": {
+      "title": "Privacy Assessments",
+      "pageTitle": "DPIA Assessments",
+      "pageDescription": "Manage your Data Protection Impact Assessments",
+      "overviewTitle": "DPIA Overview",
+      "precheckTooltip": "Quick pre-assessment to check if full DPIA is required",
+      "loading": "Loading assessments...",
+      "errorTitle": "Error loading assessments",
+      "errorDescription": "Failed to load assessments. Please try again.",
+      "tryAgain": "Try Again",
+      "newAssessment": "New Assessment",
+      "noAssessments": "No assessments found",
+      "createFirst": "Create your first privacy assessment to get started",
+      "statusDraft": "Draft",
+      "statusDrafts": "Drafts",
+      "statusInProgress": "In Progress",
+      "statusCompleted": "Completed",
+      "statusOverdue": "Overdue",
+      "statusReview": "Under Review",
+      "emptyTitle": "Ready to assess privacy impact",
+      "emptyDescription": "Start with a pre-check to determine if you need a full DPIA, or create a comprehensive assessment directly.",
+      "startPrecheck": "Start Pre-check",
+      "newDpia": "New DPIA",
+      "tableHeaderName": "Name",
+      "tableHeaderStatus": "Status",
+      "tableHeaderCreated": "Created",
+      "tableHeaderUpdated": "Updated",
+      "tableHeaderActions": "Actions",
+      "showingAssessments": "Showing {count} assessments",
+      "addNew": "Add New",
+      "columns": {
+        "title": "Title",
+        "status": "Status",
+        "created": "Created",
+        "updated": "Last Updated",
+        "riskScore": "Risk Score",
+        "actions": "Actions"
+      }
+    },
+    "overview": {
+      "title": "Privacy Overview",
+      "description": "Central overview of all privacy assessments and compliance activities",
+      "subtitle": "Privacy Assessments",
+      "quickActions": "Quick Actions",
+      "manageDpia": "Manage DPIA",
+      "dpiaPrecheck": "DPIA Pre-check",
+      "liaComingSoon": "LIA (Coming Soon)",
+      "tiaComingSoon": "TIA (Coming Soon)",
+      "dpia": {
+        "title": "DPIA - Data Protection Impact Assessment",
+        "description": "Systematic process to identify and minimize data protection risks",
+        "statusActive": "Active",
+        "statusInProgress": "In Progress",
+        "statusCritical": "Critical"
+      },
+      "lia": {
+        "title": "LIA - Legitimate Interest Assessment",
+        "description": "Evaluate legitimate interests as lawful basis for processing",
+        "statusComingSoon": "Coming Soon"
+      },
+      "tia": {
+        "title": "TIA - Transfer Impact Assessment",
+        "description": "Assess risks of international data transfers",
+        "statusComingSoon": "Coming Soon"
+      }
+    }
+  },
   "dpia": {
     "precheck": {
       "title": "DPIA Pre-Check",
