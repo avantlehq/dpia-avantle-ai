@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default async function EditDataCategoryPage({ params }: Props) {
-  const { locale, id } = await params
+  const { id } = await params
 
   const context = {
     tenant_id: '00000000-0000-0000-0000-000000000001',
@@ -31,5 +31,5 @@ export default async function EditDataCategoryPage({ params }: Props) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return <DataCategoryForm mode="edit" locale={locale} categoryId={id} initialData={category as any} />
+  return <DataCategoryForm mode="edit" categoryId={id} initialData={category as any} />
 }

@@ -6,12 +6,6 @@
 
 import { DataCategoryForm } from '@/components/context/DataCategoryForm'
 
-type Props = {
-  params: Promise<{ locale: string }>
-}
-
-export default async function NewDataCategoryPage({ params }: Props) {
-  const { locale } = await params
-
-  return <DataCategoryForm mode="create" locale={locale} />
+export default async function NewDataCategoryPage() {
+  return <DataCategoryForm mode="create" />
 }

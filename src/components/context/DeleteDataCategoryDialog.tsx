@@ -13,6 +13,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
+import { useTranslations } from 'next-intl'
 
 interface DeleteDataCategoryDialogProps {
   isOpen: boolean
@@ -30,6 +31,8 @@ export function DeleteDataCategoryDialog({
   categoryName,
 }: DeleteDataCategoryDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false)
+  const tc = useTranslations('common')
+  const t = useTranslations('context.dataCategories')
 
   const handleDelete = async () => {
     setIsDeleting(true)
@@ -40,15 +43,15 @@ export function DeleteDataCategoryDialog({
 
       if (!response.ok) {
         const error = await response.json()
-        throw new Error(error.message || 'Failed to delete data category')
+        throw new Error(error.message || t('deleteFailed'))
       }
 
-      toast.success('Data category deleted successfully')
+      toast.success(t('deleteSuccess'))
       onSuccess()
       onClose()
     } catch (error) {
       console.error('Error deleting data category:', error)
-      toast.error(error instanceof Error ? error.message : 'Failed to delete data category')
+      toast.error(error instanceof Error ? error.message : t('deleteFailed'))
     } finally {
       setIsDeleting(false)
     }
@@ -58,30 +61,20 @@ export function DeleteDataCategoryDialog({
     <AlertDialog open={isOpen} onOpenChange={onClose}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Delete Data Category</AlertDialogTitle>
+          <AlertDialogTitle>{t('deleteTitle')}</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete <strong>&ldquo;{categoryName}&rdquo;</strong>? 
-            This action cannot be undone and may impact:
-            <br />
-            <br />
-            • Processing activities that reference this category
-            <br />
-            • Data lineage and mapping relationships  
-            <br />
-            • GDPR compliance documentation
-            <br />
-            • Any child categories nested under this category
+            {t('deleteDescription')}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={onClose}>Cancel</AlertDialogCancel>
-          <Button 
-            variant="destructive" 
+          <AlertDialogCancel onClick={onClose}>{tc('cancel')}</AlertDialogCancel>
+          <Button
+            variant="destructive"
             onClick={handleDelete}
             disabled={isDeleting}
           >
             {isDeleting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Delete Category
+            {tc('delete')}
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>
