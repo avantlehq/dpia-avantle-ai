@@ -250,7 +250,7 @@ export class PhysicalLocationRepository extends BaseRepository<
    * NOTE: Table has country_code, not jurisdiction_id foreign key
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  protected applyIncludes(query: any, include: string[]): any {
+  protected applyIncludes(query: any, _include: string[]): any {
     // Jurisdiction join not possible - table only has country_code
     // Would need manual lookup after fetching
     return query.select('*');

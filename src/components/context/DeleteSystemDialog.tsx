@@ -28,7 +28,7 @@ export function DeleteSystemDialog({
   onClose,
   onSuccess,
   systemId,
-  systemName,
+  systemName: _systemName,
 }: DeleteSystemDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false)
   const tc = useTranslations('common')

@@ -28,7 +28,7 @@ export function DeleteVendorDialog({
   onClose,
   onSuccess,
   vendorId,
-  vendorName,
+  vendorName: _vendorName,
 }: DeleteVendorDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false)
   const tc = useTranslations('common')

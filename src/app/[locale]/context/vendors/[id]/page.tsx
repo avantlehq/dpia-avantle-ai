@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default async function EditVendorPage({ params }: Props) {
-  const { locale, id } = await params
+  const { locale: _locale, id } = await params
 
   const context = {
     tenant_id: '00000000-0000-0000-0000-000000000001',

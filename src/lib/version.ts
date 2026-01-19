@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.29.1" as const
-export const VERSION_NAME = "🔧 Data Categories Translation Keys Fix" as const
+export const VERSION = "3.29.2" as const
+export const VERSION_NAME = "🔧 ESLint Warnings Fix" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.29.2": {
+    date: "2026-01-19",
+    name: "🔧 ESLint Warnings Fix",
+    features: [],
+    fixes: [
+      "Removed unused AssessmentsTableProps interface",
+      "Prefixed unused 'include' parameter with underscore in physical-location.repository.ts",
+      "Added ARIA attributes (aria-controls) to SelectCombobox for accessibility compliance",
+      "Prefixed unused name parameters in all Delete dialogs (vendorName, systemName, locationName, flowName, categoryName)",
+      "Prefixed unused 'locale' variables in vendors/[id] and locations/[id] page components",
+      "Fixed all 10 ESLint warnings that were blocking CI/CD pipeline",
+      "Build now passes with zero errors and zero warnings"
+    ],
+    note: "CI/CD hotfix. GitHub Actions build was failing with 1 error and 10 warnings. All ESLint issues resolved."
+  },
   "3.29.1": {
     date: "2026-01-19",
     name: "🔧 Data Categories Translation Keys Fix",

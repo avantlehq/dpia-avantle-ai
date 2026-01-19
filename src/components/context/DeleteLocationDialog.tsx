@@ -28,7 +28,7 @@ export function DeleteLocationDialog({
   onClose,
   onSuccess,
   locationId,
-  locationName,
+  locationName: _locationName,
 }: DeleteLocationDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false)
   const tc = useTranslations('common')

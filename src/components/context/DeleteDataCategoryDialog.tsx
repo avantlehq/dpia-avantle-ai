@@ -28,7 +28,7 @@ export function DeleteDataCategoryDialog({
   onClose,
   onSuccess,
   categoryId,
-  categoryName,
+  categoryName: _categoryName,
 }: DeleteDataCategoryDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false)
   const tc = useTranslations('common')

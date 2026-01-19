@@ -27,7 +27,7 @@ export function DeleteDataFlowDialog({
   onClose,
   onSuccess,
   flowId,
-  flowName
+  flowName: _flowName
 }: DeleteDataFlowDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false)
   const tc = useTranslations('common')

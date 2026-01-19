@@ -16,8 +16,6 @@ interface Assessment {
   risk_score?: number
 }
 
-interface AssessmentsTableProps {}
-
 export function AssessmentsTable() {
   const locale = useLocale()
   const t = useTranslations('privacy.assessments')

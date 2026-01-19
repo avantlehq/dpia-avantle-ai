@@ -11,7 +11,7 @@
 
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useId } from 'react'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -60,6 +60,7 @@ export function SelectCombobox<T>({
 }: SelectComboboxProps<T>) {
   const [open, setOpen] = useState(false)
   const [search, setSearch] = useState('')
+  const listboxId = useId()
 
   // Filter by search
   const filteredOptions = useMemo(() => {
@@ -107,6 +108,7 @@ export function SelectCombobox<T>({
           type="button"
           role="combobox"
           aria-expanded={open}
+          aria-controls={listboxId}
           disabled={disabled}
           className={cn(
             "w-full flex items-center justify-between rounded-md border border-[var(--border-default)] bg-[var(--surface-1)] px-3 py-2 text-sm",
@@ -121,7 +123,7 @@ export function SelectCombobox<T>({
         </button>
       </PopoverTrigger>
       <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
-        <Command shouldFilter={false}>
+        <Command id={listboxId} shouldFilter={false}>
           <CommandInput
             placeholder={searchPlaceholder}
             value={search}
