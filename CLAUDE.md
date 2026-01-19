@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.27.3 - Green Adequacy Checkmark**
+**Current Version: 3.28.0 - Context Module i18n Refactor Complete**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -228,6 +228,46 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.28.0 - 2026-01-19**
+**🌐 CONTEXT MODULE I18N REFACTOR: Eliminated 230+ Hardcoded Ternary Translations**
+
+**ACHIEVEMENT**: Complete migration of all Context module forms to centralized next-intl translation system
+
+**Architecture Pattern Established:**
+- **useLocale()**: For routing purposes only (`/${locale}/context/...`)
+- **useTranslations()**: For all UI text rendering
+- **Message Namespaces**:
+  - `context.common` - Shared strings across all Context modules
+  - `context.locations`, `context.vendors`, `context.systems`, `context.dataCategories`, `context.dataFlows`, `context.processing` - Module-specific translations
+
+**Forms Refactored (6 modules):**
+1. **LocationForm** - 26 ternary occurrences eliminated
+2. **VendorForm** - 27 ternary occurrences eliminated
+3. **SystemForm** - 24 ternary occurrences eliminated
+4. **DataCategoryForm** - 43 ternary occurrences eliminated (most complex dropdowns)
+5. **DataFlowForm** - 51 ternary occurrences eliminated (largest refactor)
+6. **ProcessingActivityForm** - 38 ternary occurrences eliminated (GDPR Article 30 compliance)
+
+**Additional Components:**
+- All 6 Delete Dialog components refactored with translated strings
+- All 12 page files (new/[id] routes) updated to remove locale prop passing
+- Dropdown options converted to direct translation keys
+- Removed unused option constant arrays
+
+**Technical Improvements:**
+- Zero locale props in component interfaces - cleaner API
+- Centralized UI strings in messages/en.json and messages/sk.json
+- Removed 230+ hardcoded `locale === 'sk' ? 'text' : 'text'` ternaries
+- All builds passing with zero TypeScript errors
+- 100% coverage across all Context modules
+
+**Fixes:**
+- Fixed SystemForm page file corruption from previous sed command
+- Fixed ProcessingActivity new page build error with locale prop
+- Verified zero remaining ternaries in Context modules (only data field selection remains in JurisdictionSelect, which is correct)
+
+**Files Modified:** 18 files total (6 forms + 6 delete dialogs + 12 page files)
 
 ### **v3.27.0 - 2026-01-18**
 **🔍 SEARCHABLE JURISDICTION SELECT: Phase 1 Quick Win Implementation**
@@ -496,8 +536,9 @@ git add . && git commit -m "message" && git push origin main
 - ~~Browser Back Button~~ ✅ RESOLVED in v3.25.0 - Standard browser navigation works correctly
 - ~~Context Routes 404 Errors~~ ✅ RESOLVED in v3.25.2 - Async params implementation for Next.js 15+
 - ~~Systems API 500 Errors~~ ✅ RESOLVED in v3.25.2 - RLS policies fixed for service_role, audit columns added
+- ~~Hardcoded Ternary Translations~~ ✅ RESOLVED in v3.28.0 - All Context modules migrated to next-intl, 230+ ternaries eliminated
 
-**Current Status**: All major technical debt resolved. Platform fully functional.
+**Current Status**: All major technical debt resolved. Platform fully functional. i18n architecture complete.
 
 ## Communication Style
 
