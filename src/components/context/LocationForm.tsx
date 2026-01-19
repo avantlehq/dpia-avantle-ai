@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useLocale, useTranslations } from 'next-intl'
 import {
   Form,
   FormControl,
@@ -37,6 +38,7 @@ import { ContextFormShell } from './ContextFormShell'
 import { JurisdictionSelect } from './JurisdictionSelect'
 import { createLocation, updateLocation, type Location } from '@/lib/context/locations'
 
+// Phase 1: Zod validation messages remain in English (to be translated in Phase 2)
 const locationSchema = z.object({
   name: z.string().min(1, 'Location name is required').max(255, 'Name too long'),
   jurisdiction_id: z.string().uuid('Please select a jurisdiction'),
@@ -50,14 +52,19 @@ type LocationFormData = z.infer<typeof locationSchema>
 
 interface LocationFormProps {
   mode: 'create' | 'edit'
-  locale: string
   locationId?: string
   initialData?: Location
 }
 
-export function LocationForm({ mode, locale, locationId, initialData }: LocationFormProps) {
+export function LocationForm({ mode, locationId, initialData }: LocationFormProps) {
   const router = useRouter()
+  const locale = useLocale()
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // Translations
+  const tc = useTranslations('common')
+  const tcc = useTranslations('context.common')
+  const t = useTranslations('context.locations')
 
   const form = useForm<LocationFormData>({
     resolver: zodResolver(locationSchema),
@@ -76,18 +83,17 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
     try {
       if (mode === 'create') {
         await createLocation(data)
-        toast.success(locale === 'sk' ? 'Lokalita bola vytvorená' : 'Location created successfully')
+        toast.success(t('createdSuccess'))
       } else if (locationId) {
         await updateLocation(locationId, data)
-        toast.success(locale === 'sk' ? 'Lokalita bola aktualizovaná' : 'Location updated successfully')
+        toast.success(t('updatedSuccess'))
       }
 
       router.push(`/${locale}/context/locations`)
       router.refresh()
     } catch (error) {
       console.error('Error saving location:', error)
-      toast.error(error instanceof Error ? error.message :
-        (locale === 'sk' ? 'Nepodarilo sa uložiť lokalitu' : 'Failed to save location'))
+      toast.error(error instanceof Error ? error.message : t('failedSave'))
     } finally {
       setIsSubmitting(false)
     }
@@ -97,13 +103,8 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
     router.push(`/${locale}/context/locations`)
   }
 
-  const title = mode === 'create'
-    ? (locale === 'sk' ? 'Nová lokalita' : 'New Location')
-    : (locale === 'sk' ? 'Upraviť lokalitu' : 'Edit Location')
-
-  const description = mode === 'create'
-    ? (locale === 'sk' ? 'Pridať novú fyzickú lokalitu (kancelária, dátové centrum, zariadenie) s priradenou jurisdikciou.' : 'Add a new physical location (office, data center, facility) with assigned jurisdiction.')
-    : (locale === 'sk' ? 'Aktualizovať informácie o fyzickej lokalite.' : 'Update the physical location information.')
+  const title = mode === 'create' ? t('createTitle') : t('editTitle')
+  const description = mode === 'create' ? t('createDescription') : t('editDescription')
 
   return (
     <ContextFormShell
@@ -116,7 +117,7 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
           {/* Basic Information Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Základné informácie' : 'Basic Information'}
+              {tcc('basicInfo')}
             </h3>
 
             <div className="space-y-4">
@@ -125,12 +126,12 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Názov lokality' : 'Location Name'} *</FormLabel>
+                    <FormLabel>{t('name')} *</FormLabel>
                     <FormControl>
-                      <Input placeholder={locale === 'sk' ? 'napr., Hlavná kancelária Bratislava' : 'e.g., Main Office Bratislava'} {...field} />
+                      <Input placeholder={t('namePlaceholder')} {...field} />
                     </FormControl>
                     <FormDescription>
-                      {locale === 'sk' ? 'Názov fyzickej lokality (napr., kancelárie, dátové centrum)' : 'Name of the physical location (e.g., office, data center)'}
+                      {t('nameDescription')}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -142,7 +143,7 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                 name="jurisdiction_id"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Jurisdikcia' : 'Jurisdiction'} *</FormLabel>
+                    <FormLabel>{t('jurisdiction')} *</FormLabel>
                     <FormControl>
                       <JurisdictionSelect
                         value={field.value}
@@ -151,7 +152,7 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                       />
                     </FormControl>
                     <FormDescription>
-                      {locale === 'sk' ? 'Krajina alebo jurisdikcia tejto lokality. ✓ = Má rozhodnutie o primeranosti GDPR' : 'Country or jurisdiction of this location. ✓ = Has GDPR adequacy decision'}
+                      {t('jurisdictionDescription')}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -163,15 +164,15 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Popis (voliteľné)' : 'Description (Optional)'}</FormLabel>
+                    <FormLabel>{t('description')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Podrobný popis lokality' : 'Detailed location description'}
+                        placeholder={t('descriptionPlaceholder')}
                         {...field}
                       />
                     </FormControl>
                     <FormDescription>
-                      {locale === 'sk' ? 'Dodatočné informácie o lokalite' : 'Additional information about the location'}
+                      {t('descriptionHelp')}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -183,10 +184,10 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Adresa (voliteľné)' : 'Address (Optional)'}</FormLabel>
+                    <FormLabel>{t('address')}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={locale === 'sk' ? 'napr., Hlavná 123' : 'e.g., Main Street 123'}
+                        placeholder={t('addressPlaceholder')}
                         {...field}
                       />
                     </FormControl>
@@ -200,10 +201,10 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                 name="city"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Mesto (voliteľné)' : 'City (Optional)'}</FormLabel>
+                    <FormLabel>{t('city')}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={locale === 'sk' ? 'napr., Bratislava' : 'e.g., Bratislava'}
+                        placeholder={t('cityPlaceholder')}
                         {...field}
                       />
                     </FormControl>
@@ -218,7 +219,7 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                   name="status"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Stav' : 'Status'}</FormLabel>
+                      <FormLabel>{t('status')}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -226,8 +227,8 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="active">{locale === 'sk' ? 'Aktívna' : 'Active'}</SelectItem>
-                          <SelectItem value="inactive">{locale === 'sk' ? 'Neaktívna' : 'Inactive'}</SelectItem>
+                          <SelectItem value="active">{tcc('active')}</SelectItem>
+                          <SelectItem value="inactive">{tcc('inactive')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -241,14 +242,11 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
           {/* Form Actions */}
           <div className="flex justify-end gap-3 pt-6 border-t border-[var(--border-default)]">
             <Button type="button" variant="outline" onClick={handleCancel}>
-              {locale === 'sk' ? 'Zrušiť' : 'Cancel'}
+              {tc('cancel')}
             </Button>
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {mode === 'create'
-                ? (locale === 'sk' ? 'Vytvoriť' : 'Create')
-                : (locale === 'sk' ? 'Uložiť' : 'Save')
-              }
+              {mode === 'create' ? tc('create') : tc('save')}
             </Button>
           </div>
         </form>

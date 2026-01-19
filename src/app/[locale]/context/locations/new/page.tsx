@@ -6,12 +6,6 @@
 
 import { LocationForm } from '@/components/context/LocationForm'
 
-type Props = {
-  params: Promise<{ locale: string }>
-}
-
-export default async function NewLocationPage({ params }: Props) {
-  const { locale } = await params
-
-  return <LocationForm mode="create" locale={locale} />
+export default async function NewLocationPage() {
+  return <LocationForm mode="create" />
 }
