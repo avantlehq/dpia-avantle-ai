@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default async function EditSystemPage({ params }: Props) {
-  const { locale, id } = await params
+  const { id } = await params
 
   // Server-side data fetching using repository directly (not HTTP API)
   const context = {
@@ -32,5 +32,5 @@ export default async function EditSystemPage({ params }: Props) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return <SystemForm mode="edit" locale={locale} systemId={id} initialData={system as any} />
+  return <SystemForm mode="edit" systemId={id} initialData={system as any} />
 }

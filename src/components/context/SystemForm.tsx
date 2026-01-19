@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useLocale, useTranslations } from 'next-intl'
 import {
   Form,
   FormControl,
@@ -35,6 +36,7 @@ import { toast } from 'sonner'
 import { ContextFormShell } from './ContextFormShell'
 import { createSystem, updateSystem, type System } from '@/lib/context/systems'
 
+// Phase 1: Zod validation messages remain in English (to be translated in Phase 2)
 const systemSchema = z.object({
   name: z.string().min(1, 'System name is required').max(100, 'Name too long'),
   description: z.string().max(500, 'Description too long').optional(),
@@ -49,14 +51,19 @@ type SystemFormData = z.infer<typeof systemSchema>
 
 interface SystemFormProps {
   mode: 'create' | 'edit'
-  locale: string
   systemId?: string
   initialData?: System
 }
 
-export function SystemForm({ mode, locale, systemId, initialData }: SystemFormProps) {
+export function SystemForm({ mode, systemId, initialData }: SystemFormProps) {
   const router = useRouter()
+  const locale = useLocale()
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // Translations
+  const tc = useTranslations('common')
+  const tcc = useTranslations('context.common')
+  const t = useTranslations('context.systems')
 
   const form = useForm<SystemFormData>({
     resolver: zodResolver(systemSchema),
@@ -76,18 +83,17 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
     try {
       if (mode === 'create') {
         await createSystem(data)
-        toast.success(locale === 'sk' ? 'Systém bol vytvorený' : 'System created successfully')
+        toast.success(t('createdSuccess'))
       } else if (systemId) {
         await updateSystem(systemId, data)
-        toast.success(locale === 'sk' ? 'Systém bol aktualizovaný' : 'System updated successfully')
+        toast.success(t('updatedSuccess'))
       }
 
       router.push(`/${locale}/context/systems`)
       router.refresh() // Invalidate cache
     } catch (error) {
       console.error('Error saving system:', error)
-      toast.error(error instanceof Error ? error.message :
-        (locale === 'sk' ? 'Nepodarilo sa uložiť systém' : 'Failed to save system'))
+      toast.error(error instanceof Error ? error.message : t('failedSave'))
     } finally {
       setIsSubmitting(false)
     }
@@ -97,13 +103,8 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
     router.push(`/${locale}/context/systems`)
   }
 
-  const title = mode === 'create'
-    ? (locale === 'sk' ? 'Nový systém' : 'New System')
-    : (locale === 'sk' ? 'Upraviť systém' : 'Edit System')
-
-  const description = mode === 'create'
-    ? (locale === 'sk' ? 'Pridať nový IT systém pre sledovanie spracovania údajov a správu súladu.' : 'Add a new IT system for data processing tracking and compliance management.')
-    : (locale === 'sk' ? 'Aktualizovať informácie o IT systéme.' : 'Update the IT system information.')
+  const title = mode === 'create' ? t('createTitle') : t('editTitle')
+  const description = mode === 'create' ? t('createDescription') : t('editDescription')
 
   return (
     <ContextFormShell
@@ -116,7 +117,7 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
           {/* Basic Information Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Základné informácie' : 'Basic Information'}
+              {tcc('basicInfo')}
             </h3>
 
             <div className="space-y-4">
@@ -125,9 +126,9 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Názov systému' : 'System Name'} *</FormLabel>
+                    <FormLabel>{t('name')} *</FormLabel>
                     <FormControl>
-                      <Input placeholder={locale === 'sk' ? 'napr., Databáza zákazníkov' : 'e.g., Customer Database'} {...field} />
+                      <Input placeholder={t('namePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -139,10 +140,10 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Popis' : 'Description'}</FormLabel>
+                    <FormLabel>{t('description')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Stručný popis účelu systému...' : 'Briefly describe the system\'s purpose...'}
+                        placeholder={t('descriptionPlaceholder')}
                         rows={3}
                         {...field}
                       />
@@ -157,7 +158,7 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
           {/* System Configuration Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Konfigurácia systému' : 'System Configuration'}
+              {tcc('configuration')}
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -166,22 +167,22 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
                 name="system_type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Typ' : 'Type'} *</FormLabel>
+                    <FormLabel>{t('systemType')} *</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder={locale === 'sk' ? 'Vybrať typ' : 'Select type'} />
+                          <SelectValue placeholder={t('systemType')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="database">{locale === 'sk' ? 'Databáza' : 'Database'}</SelectItem>
-                        <SelectItem value="application">{locale === 'sk' ? 'Aplikácia' : 'Application'}</SelectItem>
-                        <SelectItem value="api">API</SelectItem>
-                        <SelectItem value="storage">{locale === 'sk' ? 'Úložisko' : 'Storage'}</SelectItem>
-                        <SelectItem value="analytics">{locale === 'sk' ? 'Analytika' : 'Analytics'}</SelectItem>
-                        <SelectItem value="crm">CRM</SelectItem>
-                        <SelectItem value="erp">ERP</SelectItem>
-                        <SelectItem value="other">{locale === 'sk' ? 'Iné' : 'Other'}</SelectItem>
+                        <SelectItem value="database">{t('typeDatabase')}</SelectItem>
+                        <SelectItem value="application">{t('typeApplication')}</SelectItem>
+                        <SelectItem value="api">{t('typeApi')}</SelectItem>
+                        <SelectItem value="storage">{t('typeStorage')}</SelectItem>
+                        <SelectItem value="analytics">{t('typeAnalytics')}</SelectItem>
+                        <SelectItem value="crm">{t('typeCrm')}</SelectItem>
+                        <SelectItem value="erp">{t('typeErp')}</SelectItem>
+                        <SelectItem value="other">{t('typeOther')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -194,7 +195,7 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
                 name="criticality"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Kritickosť' : 'Criticality'} *</FormLabel>
+                    <FormLabel>{t('criticality')} *</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -202,10 +203,10 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="low">{locale === 'sk' ? 'Nízka' : 'Low'}</SelectItem>
-                        <SelectItem value="medium">{locale === 'sk' ? 'Stredná' : 'Medium'}</SelectItem>
-                        <SelectItem value="high">{locale === 'sk' ? 'Vysoká' : 'High'}</SelectItem>
-                        <SelectItem value="critical">{locale === 'sk' ? 'Kritická' : 'Critical'}</SelectItem>
+                        <SelectItem value="low">{t('criticalityLow')}</SelectItem>
+                        <SelectItem value="medium">{t('criticalityMedium')}</SelectItem>
+                        <SelectItem value="high">{t('criticalityHigh')}</SelectItem>
+                        <SelectItem value="critical">{t('criticalityCritical')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -218,7 +219,7 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Stav' : 'Status'} *</FormLabel>
+                    <FormLabel>{t('status')} *</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -226,8 +227,8 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="active">{locale === 'sk' ? 'Aktívny' : 'Active'}</SelectItem>
-                        <SelectItem value="inactive">{locale === 'sk' ? 'Neaktívny' : 'Inactive'}</SelectItem>
+                        <SelectItem value="active">{tcc('active')}</SelectItem>
+                        <SelectItem value="inactive">{tcc('inactive')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -240,7 +241,7 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
           {/* Ownership & Contacts Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Vlastníctvo a kontakty' : 'Ownership & Contacts'}
+              {t('owner')}
             </h3>
 
             <div className="space-y-4">
@@ -249,9 +250,9 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
                 name="owner_team"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Vlastnícky tím' : 'Owner Team'}</FormLabel>
+                    <FormLabel>{t('owner')}</FormLabel>
                     <FormControl>
-                      <Input placeholder={locale === 'sk' ? 'napr., IT Prevádzka' : 'e.g., IT Operations'} {...field} />
+                      <Input placeholder={t('ownerPlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -263,10 +264,10 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
                 name="technical_contact"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Technický kontakt' : 'Technical Contact'}</FormLabel>
+                    <FormLabel>{t('technicalContact')}</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={locale === 'sk' ? 'technicky-kontakt@spolocnost.sk' : 'technical-contact@company.com'}
+                        placeholder={t('technicalContactPlaceholder')}
                         type="email"
                         {...field}
                       />
@@ -281,14 +282,11 @@ export function SystemForm({ mode, locale, systemId, initialData }: SystemFormPr
           {/* Form Actions */}
           <div className="flex justify-end gap-3 pt-6 border-t border-[var(--border-default)]">
             <Button type="button" variant="outline" onClick={handleCancel}>
-              {locale === 'sk' ? 'Zrušiť' : 'Cancel'}
+              {tc('cancel')}
             </Button>
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {mode === 'create'
-                ? (locale === 'sk' ? 'Vytvoriť' : 'Create')
-                : (locale === 'sk' ? 'Uložiť' : 'Save')
-              }
+              {mode === 'create' ? tc('create') : tc('save')}
             </Button>
           </div>
         </form>

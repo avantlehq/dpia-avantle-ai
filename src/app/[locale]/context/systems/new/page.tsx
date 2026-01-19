@@ -6,12 +6,6 @@
 
 import { SystemForm } from '@/components/context/SystemForm'
 
-type Props = {
-  params: Promise<{ locale: string }>
-}
-
-export default async function NewSystemPage({ params }: Props) {
-  const { locale } = await params
-
-  return <SystemForm mode="create" locale={locale} />
+export default async function NewSystemPage() {
+  return <SystemForm mode="create" />
 }
