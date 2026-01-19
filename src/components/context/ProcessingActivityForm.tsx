@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useLocale, useTranslations } from 'next-intl'
 import {
   Form,
   FormControl,
@@ -55,33 +56,19 @@ type ProcessingActivityFormData = z.infer<typeof processingActivitySchema>
 
 interface ProcessingActivityFormProps {
   mode: 'create' | 'edit'
-  locale: string
   activityId?: string
   initialData?: ProcessingActivity
 }
 
-const lawfulBasisOptions = [
-  { value: 'consent', label: { en: 'Consent', sk: 'Súhlas' } },
-  { value: 'contract', label: { en: 'Contract', sk: 'Zmluva' } },
-  { value: 'legal_obligation', label: { en: 'Legal obligation', sk: 'Právna povinnosť' } },
-  { value: 'vital_interests', label: { en: 'Vital interests', sk: 'Životne dôležité záujmy' } },
-  { value: 'public_task', label: { en: 'Public task', sk: 'Verejná úloha' } },
-  { value: 'legitimate_interests', label: { en: 'Legitimate interests', sk: 'Oprávnené záujmy' } },
-]
-
-const specialCategoryBasisOptions = [
-  { value: 'explicit_consent', label: { en: 'Explicit consent', sk: 'Výslovný súhlas' } },
-  { value: 'employment', label: { en: 'Employment', sk: 'Zamestnanecké právo' } },
-  { value: 'vital_interests', label: { en: 'Vital interests', sk: 'Životne dôležité záujmy' } },
-  { value: 'public_interest', label: { en: 'Public interest', sk: 'Verejný záujem' } },
-  { value: 'healthcare', label: { en: 'Healthcare', sk: 'Zdravotná starostlivosť' } },
-  { value: 'research', label: { en: 'Research', sk: 'Vedecký výskum' } },
-  { value: 'legal_claims', label: { en: 'Legal claims', sk: 'Právne nároky' } },
-]
-
-export function ProcessingActivityForm({ mode, locale, activityId, initialData }: ProcessingActivityFormProps) {
+export function ProcessingActivityForm({ mode, activityId, initialData }: ProcessingActivityFormProps) {
   const router = useRouter()
+  const locale = useLocale()
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // Translations
+  const tc = useTranslations('common')
+  const tcc = useTranslations('context.common')
+  const t = useTranslations('context.processing')
 
   const form = useForm<ProcessingActivityFormData>({
     resolver: zodResolver(processingActivitySchema),
@@ -112,10 +99,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
 
       if (mode === 'create') {
         await createProcessingActivity(submitData)
-        toast.success(locale === 'sk' ? 'Aktivita spracovania bola vytvorená' : 'Processing activity created successfully')
+        toast.success(t('createdSuccess'))
       } else if (activityId) {
         await updateProcessingActivity(activityId, submitData)
-        toast.success(locale === 'sk' ? 'Aktivita spracovania bola aktualizovaná' : 'Processing activity updated successfully')
+        toast.success(t('updatedSuccess'))
       }
 
       router.push(`/${locale}/context/processing`)
@@ -123,7 +110,7 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
     } catch (error) {
       console.error('Error saving processing activity:', error)
       toast.error(error instanceof Error ? error.message :
-        (locale === 'sk' ? 'Nepodarilo sa uložiť aktivitu spracovania' : 'Failed to save processing activity'))
+        t('failedSave'))
     } finally {
       setIsSubmitting(false)
     }
@@ -133,15 +120,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
     router.push(`/${locale}/context/processing`)
   }
 
-  const title = mode === 'create'
-    ? (locale === 'sk' ? 'Nová aktivita spracovania' : 'New Processing Activity')
-    : (locale === 'sk' ? 'Upraviť aktivitu spracovania' : 'Edit Processing Activity')
+  const title = mode === 'create' ? t('createTitle') : t('editTitle')
+  const description = mode === 'create' ? t('createDescription') : t('editDescription')
 
-  const description = mode === 'create'
-    ? (locale === 'sk' ? 'Vytvoriť novú aktivitu spracovania pre evidenciu podľa článku 30 GDPR (ROPA).' : 'Create a new processing activity for GDPR Article 30 Record of Processing Activities (ROPA) compliance.')
-    : (locale === 'sk' ? 'Aktualizovať informácie o aktivite spracovania.' : 'Update the processing activity information.')
-
-  const lang = locale === 'sk' ? 'sk' : 'en'
+  
 
   return (
     <ContextFormShell
@@ -154,7 +136,7 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
           {/* Basic Information Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Základné informácie' : 'Basic Information'}
+              {tcc('basicInfo')}
             </h3>
 
             <div className="space-y-4">
@@ -163,9 +145,9 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Názov aktivity' : 'Activity Name'} *</FormLabel>
+                    <FormLabel>{t('name')} *</FormLabel>
                     <FormControl>
-                      <Input placeholder={locale === 'sk' ? 'napr., Spracovanie zákazníckych údajov' : 'e.g., Customer Data Processing'} {...field} />
+                      <Input placeholder={t('namePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -177,10 +159,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Popis' : 'Description'}</FormLabel>
+                    <FormLabel>{t('description')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Popis aktivity spracovania...' : 'Describe the processing activity...'}
+                        placeholder={t('descriptionPlaceholder')}
                         rows={3}
                         {...field}
                       />
@@ -195,10 +177,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                 name="purpose"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Účel' : 'Purpose'} *</FormLabel>
+                    <FormLabel>{t('purpose')} *</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Popis účelu spracovania...' : 'Describe the purpose of processing...'}
+                        placeholder={t('purposePlaceholder')}
                         rows={3}
                         {...field}
                       />
@@ -213,7 +195,7 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
           {/* Legal Basis Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Právny základ' : 'Legal Basis'}
+              {t('legalBasis')}
             </h3>
 
             <div className="space-y-4">
@@ -222,7 +204,7 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                 name="lawful_basis"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Zákonný základ' : 'Lawful Basis'} *</FormLabel>
+                    <FormLabel>{t('lawfulBasis')} *</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -230,11 +212,12 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {lawfulBasisOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label[lang]}
-                          </SelectItem>
-                        ))}
+                        <SelectItem value="consent">{t('lawfulBasisConsent')}</SelectItem>
+                        <SelectItem value="contract">{t('lawfulBasisContract')}</SelectItem>
+                        <SelectItem value="legal_obligation">{t('lawfulBasisLegalObligation')}</SelectItem>
+                        <SelectItem value="vital_interests">{t('lawfulBasisVitalInterests')}</SelectItem>
+                        <SelectItem value="public_task">{t('lawfulBasisPublicTask')}</SelectItem>
+                        <SelectItem value="legitimate_interests">{t('lawfulBasisLegitimateInterests')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -247,10 +230,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                 name="lawful_basis_explanation"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Vysvetlenie zákonného základu' : 'Lawful Basis Explanation'}</FormLabel>
+                    <FormLabel>{t('lawfulBasisExplanation')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Dodatočné vysvetlenie zákonného základu...' : 'Provide additional explanation for the lawful basis...'}
+                        placeholder={t('lawfulBasisExplanationPlaceholder')}
                         rows={3}
                         {...field}
                       />
@@ -265,20 +248,22 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                 name="special_category_basis"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Základ pre osobitnú kategóriu (ak sa použije)' : 'Special Category Basis (if applicable)'}</FormLabel>
+                    <FormLabel>{t('specialCategoryBasis')}</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value || ''}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder={locale === 'sk' ? 'Vybrať základ pre osobitnú kategóriu' : 'Select special category basis'} />
+                          <SelectValue placeholder={t('selectSpecialCategoryBasis')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="none">{locale === 'sk' ? 'Žiadny' : 'None'}</SelectItem>
-                        {specialCategoryBasisOptions.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
-                            {option.label[lang]}
-                          </SelectItem>
-                        ))}
+                        <SelectItem value="none">{t('specialCategoryNone')}</SelectItem>
+                        <SelectItem value="explicit_consent">{t('specialCategoryExplicitConsent')}</SelectItem>
+                        <SelectItem value="employment">{t('specialCategoryEmployment')}</SelectItem>
+                        <SelectItem value="vital_interests">{t('specialCategoryVitalInterests')}</SelectItem>
+                        <SelectItem value="public_interest">{t('specialCategoryPublicInterest')}</SelectItem>
+                        <SelectItem value="healthcare">{t('specialCategoryHealthcare')}</SelectItem>
+                        <SelectItem value="research">{t('specialCategoryResearch')}</SelectItem>
+                        <SelectItem value="legal_claims">{t('specialCategoryLegalClaims')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -291,7 +276,7 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
           {/* Data Subjects & Source Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Subjekty údajov a zdroj' : 'Data Subjects & Source'}
+              {t('dataSubjectsSource')}
             </h3>
 
             <div className="space-y-4">
@@ -300,10 +285,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                 name="data_subject_categories"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Kategórie subjektov údajov' : 'Data Subject Categories'}</FormLabel>
+                    <FormLabel>{t('dataSubjectCategories')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'napr., Zákazníci, zamestnanci, návštevníci webu...' : 'e.g., Customers, employees, website visitors...'}
+                        placeholder={t('dataSubjectCategoriesPlaceholder')}
                         rows={2}
                         {...field}
                       />
@@ -318,10 +303,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                 name="data_source"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Zdroj údajov' : 'Data Source'}</FormLabel>
+                    <FormLabel>{t('dataSource')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Popis odkiaľ údaje pochádzajú...' : 'Describe where the data comes from...'}
+                        placeholder={t('dataSourcePlaceholder')}
                         rows={2}
                         {...field}
                       />
@@ -336,7 +321,7 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
           {/* Processing Characteristics Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Charakteristiky spracovania' : 'Processing Characteristics'}
+              {t('processingCharacteristics')}
             </h3>
 
             <div className="space-y-4">
@@ -347,12 +332,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                   <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                     <div className="space-y-0.5">
                       <FormLabel className="text-base">
-                        {locale === 'sk' ? 'Automatizované rozhodovanie' : 'Automated Decision Making'}
+                        {t('automatedDecisionMaking')}
                       </FormLabel>
                       <div className="text-sm text-muted-foreground">
-                        {locale === 'sk'
-                          ? 'Zahŕňa toto spracovanie automatizované rozhodovanie?'
-                          : 'Does this processing involve automated decision making?'}
+                        {t('automatedDecisionMakingDescription')}
                       </div>
                     </div>
                     <FormControl>
@@ -372,12 +355,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                   <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                     <div className="space-y-0.5">
                       <FormLabel className="text-base">
-                        {locale === 'sk' ? 'Profilovanie' : 'Profiling'}
+                        {t('profiling')}
                       </FormLabel>
                       <div className="text-sm text-muted-foreground">
-                        {locale === 'sk'
-                          ? 'Zahŕňa toto spracovanie profilovanie jednotlivcov?'
-                          : 'Does this processing involve profiling of individuals?'}
+                        {t('profilingDescription')}
                       </div>
                     </div>
                     <FormControl>
@@ -395,7 +376,7 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
           {/* Review Settings Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Nastavenia kontroly' : 'Review Settings'}
+              {t('reviewSettings')}
             </h3>
 
             <div className="space-y-4">
@@ -406,12 +387,10 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                   <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                     <div className="space-y-0.5">
                       <FormLabel className="text-base">
-                        {locale === 'sk' ? 'Vyžaduje sa kontrola DPO' : 'DPO Review Required'}
+                        {t('dpoReviewRequired')}
                       </FormLabel>
                       <div className="text-sm text-muted-foreground">
-                        {locale === 'sk'
-                          ? 'Vyžaduje táto aktivita kontrolu poverenou osobou (DPO)?'
-                          : 'Does this activity require DPO review?'}
+                        {t('dpoReviewRequiredDescription')}
                       </div>
                     </div>
                     <FormControl>
@@ -429,7 +408,7 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
                 name="review_date"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Dátum kontroly' : 'Review Date'}</FormLabel>
+                    <FormLabel>{t('reviewDate')}</FormLabel>
                     <FormControl>
                       <Input type="date" {...field} />
                     </FormControl>
@@ -443,13 +422,13 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
           {/* Form Actions */}
           <div className="flex justify-end gap-3 pt-6 border-t border-[var(--border-default)]">
             <Button type="button" variant="outline" onClick={handleCancel}>
-              {locale === 'sk' ? 'Zrušiť' : 'Cancel'}
+              {tc('cancel')}
             </Button>
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {mode === 'create'
-                ? (locale === 'sk' ? 'Vytvoriť' : 'Create')
-                : (locale === 'sk' ? 'Uložiť' : 'Save')
+                ? tc('create')
+                : tc('save')
               }
             </Button>
           </div>

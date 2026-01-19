@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default async function EditProcessingActivityPage({ params }: Props) {
-  const { locale, id } = await params
+  const { id } = await params
 
   const context = {
     tenant_id: '00000000-0000-0000-0000-000000000001',
@@ -31,5 +31,5 @@ export default async function EditProcessingActivityPage({ params }: Props) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return <ProcessingActivityForm mode="edit" locale={locale} activityId={id} initialData={activity as any} />
+  return <ProcessingActivityForm mode="edit" activityId={id} initialData={activity as any} />
 }
