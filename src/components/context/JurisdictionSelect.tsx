@@ -15,11 +15,11 @@
 import { SelectCombobox } from '@/components/ui/select-combobox'
 import { useJurisdictions } from '@/hooks/useJurisdictions'
 import { Check } from 'lucide-react'
+import { useLocale, useTranslations } from 'next-intl'
 
 interface JurisdictionSelectProps {
   value: string
   onChange: (value: string) => void
-  locale: string
   disabled?: boolean
 }
 
@@ -28,15 +28,17 @@ const POPULAR_CODES = ['SK', 'CZ', 'DE', 'US', 'GB', 'FR', 'AT', 'PL', 'HU', 'NL
 export function JurisdictionSelect({
   value,
   onChange,
-  locale,
   disabled,
 }: JurisdictionSelectProps) {
+  const locale = useLocale()
   const { jurisdictions, loading } = useJurisdictions()
+  const tc = useTranslations('common')
+  const t = useTranslations('context.jurisdictions')
 
   if (loading) {
     return (
       <div className="w-full rounded-md border border-[var(--border-default)] bg-[var(--surface-1)] px-3 py-2 text-sm text-[var(--text-tertiary)]">
-        {locale === 'sk' ? 'Načítavam...' : 'Loading...'}
+        {tc('loading')}
       </div>
     )
   }
@@ -48,20 +50,20 @@ export function JurisdictionSelect({
       onChange={onChange}
       disabled={disabled}
 
-      // Value extraction
+      // Value extraction (database content - NOT from messages)
       getOptionValue={(j) => j.id}
       getOptionLabel={(j) => locale === 'sk' ? j.name_sk : j.name_en}
       getOptionKeywords={(j) => [j.name_en, j.name_sk, j.country_code]}
 
-      // Grouping
+      // Grouping (UI labels - from messages)
       groupBy={(j) => {
         if (j.jurisdiction_type === 'eu_member_state') {
-          return locale === 'sk' ? 'Členské štáty EÚ' : 'EU Member States'
+          return t('euMemberStates')
         }
         if (j.jurisdiction_type === 'eea_country') {
-          return locale === 'sk' ? 'Krajiny EHP' : 'EEA Countries'
+          return t('eeaCountries')
         }
-        return locale === 'sk' ? 'Tretie krajiny' : 'Third Countries'
+        return t('thirdCountries')
       }}
 
       renderGroupHeader={(group) => (
@@ -80,10 +82,10 @@ export function JurisdictionSelect({
       // Popular first
       popularItems={POPULAR_CODES}
 
-      // i18n
-      placeholder={locale === 'sk' ? 'Vyberte jurisdikciu' : 'Select jurisdiction'}
-      searchPlaceholder={locale === 'sk' ? 'Hľadať krajinu...' : 'Search country...'}
-      emptyMessage={locale === 'sk' ? 'Žiadne výsledky' : 'No results'}
+      // i18n (UI chrome - from messages)
+      placeholder={t('searchPlaceholder')}
+      searchPlaceholder={t('searchPlaceholder')}
+      emptyMessage={t('noResults')}
     />
   )
 }

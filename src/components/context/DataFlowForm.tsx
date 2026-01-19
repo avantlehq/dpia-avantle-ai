@@ -199,7 +199,6 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
       title={title}
       description={description}
       backUrl={`/${locale}/context/data-flows`}
-      locale={locale}
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

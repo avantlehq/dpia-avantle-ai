@@ -120,7 +120,6 @@ export function VendorForm({ mode, locale, vendorId, initialData }: VendorFormPr
       title={title}
       description={description}
       backUrl={`/${locale}/context/vendors`}
-      locale={locale}
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

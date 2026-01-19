@@ -110,7 +110,6 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
       title={title}
       description={description}
       backUrl={`/${locale}/context/locations`}
-      locale={locale}
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -149,7 +148,6 @@ export function LocationForm({ mode, locale, locationId, initialData }: Location
                         value={field.value}
                         onChange={field.onChange}
                         disabled={field.disabled}
-                        locale={locale}
                       />
                     </FormControl>
                     <FormDescription>

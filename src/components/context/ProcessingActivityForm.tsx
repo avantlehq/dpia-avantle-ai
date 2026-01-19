@@ -148,7 +148,6 @@ export function ProcessingActivityForm({ mode, locale, activityId, initialData }
       title={title}
       description={description}
       backUrl={`/${locale}/context/processing`}
-      locale={locale}
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

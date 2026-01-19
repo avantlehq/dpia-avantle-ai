@@ -10,13 +10,13 @@
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { useTranslations } from 'next-intl'
 
 interface ContextFormShellProps {
   title: string
   description?: string
   backUrl: string
   backLabel?: string
-  locale: string
   children: React.ReactNode
 }
 
@@ -25,10 +25,11 @@ export function ContextFormShell({
   description,
   backUrl,
   backLabel,
-  locale,
   children,
 }: ContextFormShellProps) {
-  const defaultBackLabel = locale === 'sk' ? 'Späť na zoznam' : 'Back to list'
+  const t = useTranslations('common')
+
+  const defaultBackLabel = backLabel || t('back')
 
   return (
     <div className="max-w-4xl mx-auto py-8 px-4">
@@ -37,7 +38,7 @@ export function ContextFormShell({
         <Link href={backUrl}>
           <Button variant="ghost" size="sm">
             <ArrowLeft className="h-4 w-4 mr-2" />
-            {backLabel || defaultBackLabel}
+            {defaultBackLabel}
           </Button>
         </Link>
         <h1 className="text-2xl font-semibold mt-4" style={{ color: 'var(--text-primary)' }}>

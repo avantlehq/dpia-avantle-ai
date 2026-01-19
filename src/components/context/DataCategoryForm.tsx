@@ -184,7 +184,6 @@ export function DataCategoryForm({ mode, locale, categoryId, initialData }: Data
       title={title}
       description={description}
       backUrl={`/${locale}/context/data-categories`}
-      locale={locale}
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
