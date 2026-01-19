@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.29.2" as const
-export const VERSION_NAME = "🔧 ESLint Warnings Fix" as const
+export const VERSION = "3.29.3" as const
+export const VERSION_NAME = "🔧 Data Flows Translation Keys Fix" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.29.3": {
+    date: "2026-01-19",
+    name: "🔧 Data Flows Translation Keys Fix",
+    features: [],
+    fixes: [
+      "Added missing translation keys for DataFlowForm component",
+      "Added noSystem, noVendor - dropdown options for 'None' selection",
+      "Added toVendor - label for vendor destination field",
+      "Added selectDestinationVendor - placeholder for vendor dropdown",
+      "Added encryptionInTransitDescription - help text for encryption toggle",
+      "Added crossBorderTransferDescription - help text for cross-border toggle",
+      "Fixed 6 MISSING_MESSAGE browser console errors in data flows form",
+      "Both English and Slovak translations added for all missing keys"
+    ],
+    note: "Critical hotfix. DataFlowForm was using 6 translation keys that were never added during v3.28.0 Context i18n refactor. Users saw console errors and potentially missing UI labels."
+  },
   "3.29.2": {
     date: "2026-01-19",
     name: "🔧 ESLint Warnings Fix",
