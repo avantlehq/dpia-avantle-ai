@@ -26,6 +26,7 @@ import {
 } from '@/components/ui/select'
 import { DeleteVendorDialog } from '@/components/context/DeleteVendorDialog'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -67,6 +68,7 @@ const getVendorRoleColor = (role: VendorRole) => {
 export default function VendorsPage() {
   const params = useParams()
   const locale = params.locale as string
+  const t = useTranslations('context.pages.vendors')
   const [vendors, setVendors] = useState<Vendor[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedRole, setSelectedRole] = useState('')
@@ -135,12 +137,12 @@ export default function VendorsPage() {
       {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">Vendors & Processors</h1>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground">
-            Manage third-party data processors, vendors, and DPA agreements
+            {t('description')}
           </p>
         </div>
-        
+
         <Link href={`/${locale}/context/vendors/new`}>
           <Button
             variant="primary"
@@ -148,7 +150,7 @@ export default function VendorsPage() {
             className="gap-2"
           >
             <Plus className="h-4 w-4" />
-            Add Vendor
+            {t('addVendor')}
           </Button>
         </Link>
       </div>
@@ -156,7 +158,7 @@ export default function VendorsPage() {
       {/* Vendors Status Overview - matching assessments pills */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">
-          Vendors Overview
+          {t('overviewTitle')}
         </h2>
         
         {/* Status Pills Group - matching assessments style */}
@@ -180,10 +182,10 @@ export default function VendorsPage() {
                 fontWeight: '500'
               }}
             >
-              Active Vendors
+              {t('activeVendors')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -194,9 +196,9 @@ export default function VendorsPage() {
           </div>
 
           {/* Missing DPAs Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -205,17 +207,17 @@ export default function VendorsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              Missing DPAs
+              {t('needingDpaRenewal')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -226,9 +228,9 @@ export default function VendorsPage() {
           </div>
 
           {/* DPA Expiring Soon Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -237,17 +239,17 @@ export default function VendorsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              DPA Expiring Soon
+              {t('processors')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -258,9 +260,9 @@ export default function VendorsPage() {
           </div>
 
           {/* Inactive Vendors Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -269,14 +271,14 @@ export default function VendorsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              Inactive Vendors
+              {t('inactiveVendors')}
             </span>
             <span 
               style={{ 
@@ -296,19 +298,19 @@ export default function VendorsPage() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search vendors..."
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
           />
         </div>
-        
+
         <Select value={selectedRole} onValueChange={setSelectedRole}>
           <SelectTrigger className="w-52">
-            <SelectValue placeholder="Filter by role" />
+            <SelectValue placeholder={t('filterByRole')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Roles</SelectItem>
+            <SelectItem value="all">{t('allRoles')}</SelectItem>
             <SelectItem value="processor">Processor</SelectItem>
             <SelectItem value="joint_controller">Joint Controller</SelectItem>
             <SelectItem value="recipient">Recipient</SelectItem>
@@ -332,25 +334,25 @@ export default function VendorsPage() {
             <div className="flex items-center justify-center py-12">
               <div className="text-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                <p className="text-muted-foreground">Loading vendors...</p>
+                <p className="text-muted-foreground">{t('loading')}</p>
               </div>
             </div>
           ) : filteredVendors.length === 0 ? (
             <div className="text-center py-12">
               <Users className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
               <h3 className="text-lg font-medium text-foreground mb-2">
-                {searchQuery || selectedRole ? 'No vendors found' : 'Ready to manage vendors'}
+                {searchQuery || selectedRole ? t('noVendorsFound') : t('readyToManage')}
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery || selectedRole
-                  ? 'Try adjusting your filters or search query.'
-                  : 'Start by adding your first vendor or data processor to track DPA agreements.'
+                  ? t('adjustFilters')
+                  : t('noVendorsDescription')
                 }
               </p>
               <Link href={`/${locale}/context/vendors/new`}>
                 <Button variant="primary" className="gap-2">
                   <Plus className="h-4 w-4" />
-                  Add First Vendor
+                  {t('addFirstVendor')}
                 </Button>
               </Link>
             </div>
@@ -362,22 +364,22 @@ export default function VendorsPage() {
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Name
+                        {t('tableHeaderName')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Role
+                        {t('tableHeaderRole')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        DPA Status
+                        {t('tableHeaderDpa')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Location
+                        {t('tableHeaderLocation')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
                         Contact
                       </th>
                       <th className="text-right py-3 px-4 font-medium text-muted-foreground">
-                        Actions
+                        {t('tableHeaderActions')}
                       </th>
                     </tr>
                   </thead>
@@ -414,23 +416,23 @@ export default function VendorsPage() {
                             isDpaExpired(vendor.dpa_expires) ? (
                               <Badge variant="destructive">
                                 <AlertTriangle className="h-3 w-3 mr-1" />
-                                DPA Expired
+                                {t('dpaExpired')}
                               </Badge>
                             ) : isDpaExpiringSoon(vendor.dpa_expires) ? (
                               <Badge variant="outline" className="text-amber-600 border-amber-600">
                                 <AlertTriangle className="h-3 w-3 mr-1" />
-                                Expiring Soon
+                                {t('dpaExpiresSoon')}
                               </Badge>
                             ) : (
                               <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                                 <FileText className="h-3 w-3 mr-1" />
-                                Active
+                                {t('dpaActive')}
                               </Badge>
                             )
                           ) : (
                             <Badge variant="destructive">
                               <AlertTriangle className="h-3 w-3 mr-1" />
-                              Missing
+                              {t('dpaMissing')}
                             </Badge>
                           )}
                         </td>
@@ -460,7 +462,7 @@ export default function VendorsPage() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              title="Edit vendor"
+                              title={t('editVendor')}
                               onClick={() => window.location.href = `/${locale}/context/vendors/${vendor.id}`}
                             >
                               <Edit className="h-4 w-4" />
@@ -469,7 +471,7 @@ export default function VendorsPage() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleDeleteVendor(vendor)}
-                              title="Delete vendor"
+                              title={t('deleteVendor')}
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -484,12 +486,12 @@ export default function VendorsPage() {
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <p className="text-sm text-muted-foreground">
-                  Showing {filteredVendors.length} vendors
+                  {t('showingVendors', { count: filteredVendors.length })}
                 </p>
                 <Link href={`/${locale}/context/vendors/new`}>
                   <Button variant="outline" size="sm" className="gap-2">
                     <Plus className="h-4 w-4" />
-                    Add New
+                    {t('addNew')}
                   </Button>
                 </Link>
               </div>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import {
   ArrowRight,
   Plus,
@@ -82,6 +83,7 @@ const getCriticalityColor = (criticality?: Criticality) => {
 export default function DataFlowsPage() {
   const params = useParams()
   const locale = params?.locale as string || 'en'
+  const t = useTranslations('context.pages.dataFlows')
   const [dataFlows, setDataFlows] = useState<DataFlow[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedDirection, setSelectedDirection] = useState('')
@@ -148,7 +150,7 @@ export default function DataFlowsPage() {
       {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">Data Flows</h1>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground">
             Map and track data movement across systems and vendors
           </p>
@@ -161,7 +163,7 @@ export default function DataFlowsPage() {
             className="gap-2"
           >
             <Plus className="h-4 w-4" />
-            Add Data Flow
+            {t('addFlow')}
           </Button>
         </Link>
       </div>
@@ -169,12 +171,12 @@ export default function DataFlowsPage() {
       {/* Data Flows Status Overview - matching assessments pills */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">
-          Data Flows Overview
+          {t('overviewTitle')}
         </h2>
         
         {/* Status Pills Group - matching assessments style */}
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
-          {/* Active Flows Pill */}
+          {/* {t('activeFlows')} Pill */}
           <div 
             className="inline-flex items-center rounded-lg"
             style={{ 
@@ -193,7 +195,7 @@ export default function DataFlowsPage() {
                 fontWeight: '500'
               }}
             >
-              Active Flows
+              {t('activeFlows')}
             </span>
             <span 
               style={{ 
@@ -270,7 +272,7 @@ export default function DataFlowsPage() {
             </span>
           </div>
 
-          {/* Encrypted Flows Pill */}
+          {/* {t('encryptedFlows')} Pill */}
           <div 
             className="inline-flex items-center rounded-lg"
             style={{ 
@@ -289,7 +291,7 @@ export default function DataFlowsPage() {
                 fontWeight: '500'
               }}
             >
-              Encrypted Flows
+              {t('encryptedFlows')}
             </span>
             <span 
               style={{ 
@@ -318,10 +320,10 @@ export default function DataFlowsPage() {
         
         <Select value={selectedDirection} onValueChange={setSelectedDirection}>
           <SelectTrigger className="w-48">
-            <SelectValue placeholder="Filter by direction" />
+            <SelectValue placeholder={t('filterByDirection')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Directions</SelectItem>
+            <SelectItem value="all">{t('allDirections')}</SelectItem>
             <SelectItem value="inbound">Inbound</SelectItem>
             <SelectItem value="outbound">Outbound</SelectItem>
             <SelectItem value="bidirectional">Bidirectional</SelectItem>
@@ -483,12 +485,12 @@ export default function DataFlowsPage() {
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <p className="text-sm text-muted-foreground">
-                  Showing {filteredDataFlows.length} data flows
+                  {t('showingFlows', { count: filteredDataFlows.length })}
                 </p>
                 <Link href={`/${locale}/context/data-flows/new`}>
                   <Button variant="outline" size="sm" className="gap-2">
                     <Plus className="h-4 w-4" />
-                    Add New
+                    {t('addNew')}
                   </Button>
                 </Link>
               </div>

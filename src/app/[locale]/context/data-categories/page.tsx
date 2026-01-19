@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import {
   Plus,
   Search,
@@ -80,6 +81,7 @@ const getSensitivityColor = (sensitivity: DataCategory['sensitivity']) => {
 export default function DataCategoriesPage() {
   const params = useParams()
   const locale = params.locale as string
+  const t = useTranslations('context.pages.dataCategories')
   const [categories, setCategories] = useState<DataCategory[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedType, setSelectedType] = useState('')
@@ -140,12 +142,12 @@ export default function DataCategoriesPage() {
       {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">Data Categories</h1>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground">
-            Personal data classification and categorization for GDPR Article 6 & 9 compliance
+            {t('description')}
           </p>
         </div>
-        
+
         <Link href={`/${locale}/context/data-categories/new`}>
           <Button
             variant="primary"
@@ -153,7 +155,7 @@ export default function DataCategoriesPage() {
             className="gap-2"
           >
             <Plus className="h-4 w-4" />
-            Add Data Category
+            {t('addCategory')}
           </Button>
         </Link>
       </div>
@@ -161,12 +163,12 @@ export default function DataCategoriesPage() {
       {/* Data Categories Status Overview - matching assessments pills */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">
-          Data Categories Overview
+          {t('overviewTitle')}
         </h2>
         
         {/* Status Pills Group - matching assessments style */}
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
-          {/* Active Categories Pill */}
+          {/* {t('personalData')} Pill */}
           <div 
             className="inline-flex items-center rounded-lg"
             style={{ 
@@ -185,7 +187,7 @@ export default function DataCategoriesPage() {
                 fontWeight: '500'
               }}
             >
-              Active Categories
+              {t('personalData')}
             </span>
             <span 
               style={{ 
@@ -198,7 +200,7 @@ export default function DataCategoriesPage() {
             </span>
           </div>
 
-          {/* Special Categories Pill */}
+          {/* {t('specialCategories')} Pill */}
           <div 
             className="inline-flex items-center rounded-lg"
             style={{ 
@@ -217,7 +219,7 @@ export default function DataCategoriesPage() {
                 fontWeight: '500'
               }}
             >
-              Special Categories
+              {t('specialCategories')}
             </span>
             <span 
               style={{ 
@@ -312,7 +314,7 @@ export default function DataCategoriesPage() {
         {/* Category Type Filter */}
         <Select value={selectedType} onValueChange={setSelectedType}>
           <SelectTrigger className="w-56">
-            <SelectValue placeholder="Filter by type" />
+            <SelectValue placeholder={t('filterByArticle')} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Types</SelectItem>
@@ -326,7 +328,7 @@ export default function DataCategoriesPage() {
         {/* Sensitivity Filter */}
         <Select value={selectedSensitivity} onValueChange={setSelectedSensitivity}>
           <SelectTrigger className="w-48">
-            <SelectValue placeholder="Filter by sensitivity" />
+            <SelectValue placeholder={t('filterByArticle')} />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Sensitivity</SelectItem>
@@ -371,7 +373,7 @@ export default function DataCategoriesPage() {
               <Link href={`/${locale}/context/data-categories/new`}>
                 <Button variant="primary" className="gap-2">
                   <Plus className="h-4 w-4" />
-                  Add First Category
+                  {t('addFirstCategory')}
                 </Button>
               </Link>
             </div>
@@ -444,7 +446,7 @@ export default function DataCategoriesPage() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              title="Edit category"
+                              title={t('editCategory')}
                               onClick={() => window.location.href = `/${locale}/context/data-categories/${category.id}`}
                             >
                               <Edit className="h-4 w-4" />
@@ -453,7 +455,7 @@ export default function DataCategoriesPage() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleDelete(category)}
-                              title="Delete category"
+                              title={t('deleteCategory')}
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -468,12 +470,12 @@ export default function DataCategoriesPage() {
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <p className="text-sm text-muted-foreground">
-                  Showing {filteredCategories.length} data categories
+                  {t('showingCategories', { count: filteredCategories.length })}
                 </p>
                 <Link href={`/${locale}/context/data-categories/new`}>
                   <Button variant="outline" size="sm" className="gap-2">
                     <Plus className="h-4 w-4" />
-                    Add New
+                    {t('addNew')}
                   </Button>
                 </Link>
               </div>

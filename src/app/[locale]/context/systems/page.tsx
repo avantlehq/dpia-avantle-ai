@@ -22,6 +22,7 @@ import {
 } from '@/components/ui/select'
 import { DeleteSystemDialog } from '@/components/context/DeleteSystemDialog'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -41,6 +42,7 @@ type System = {
 export default function SystemsPage() {
   const params = useParams()
   const locale = params.locale as string
+  const t = useTranslations('context.pages.systems')
   const [systems, setSystems] = useState<System[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCriticality, setSelectedCriticality] = useState('')
@@ -110,9 +112,9 @@ export default function SystemsPage() {
       {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">IT Systems</h1>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground">
-            Manage IT systems and infrastructure components for data processing
+            {t('description')}
           </p>
         </div>
 
@@ -123,7 +125,7 @@ export default function SystemsPage() {
             className="gap-2"
           >
             <Plus className="h-4 w-4" />
-            Add System
+            {t('addSystem')}
           </Button>
         </Link>
       </div>
@@ -131,15 +133,15 @@ export default function SystemsPage() {
       {/* Systems Status Overview - matching assessments pills */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">
-          Systems Overview
+          {t('overviewTitle')}
         </h2>
-        
+
         {/* Status Pills Group - matching assessments style */}
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
           {/* Active Systems Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -148,17 +150,17 @@ export default function SystemsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              Active Systems
+              {t('activeSystems')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -169,9 +171,9 @@ export default function SystemsPage() {
           </div>
 
           {/* Critical Systems Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -180,17 +182,17 @@ export default function SystemsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              Critical Systems
+              {t('criticalSystems')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -201,9 +203,9 @@ export default function SystemsPage() {
           </div>
 
           {/* Needing Review Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -212,17 +214,17 @@ export default function SystemsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              Needing Review
+              {t('needingReview')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -233,9 +235,9 @@ export default function SystemsPage() {
           </div>
 
           {/* Inactive Systems Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -244,17 +246,17 @@ export default function SystemsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              Inactive Systems
+              {t('inactiveSystems')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -272,20 +274,20 @@ export default function SystemsPage() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search systems..."
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
           />
         </div>
-        
+
         {/* Criticality Filter */}
         <Select value={selectedCriticality} onValueChange={setSelectedCriticality}>
           <SelectTrigger className="w-48">
-            <SelectValue placeholder="Filter by criticality" />
+            <SelectValue placeholder={t('filterByCriticality')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Criticality</SelectItem>
+            <SelectItem value="all">{t('allCriticality')}</SelectItem>
             <SelectItem value="low">Low</SelectItem>
             <SelectItem value="medium">Medium</SelectItem>
             <SelectItem value="high">High</SelectItem>
@@ -309,25 +311,25 @@ export default function SystemsPage() {
             <div className="flex items-center justify-center py-12">
               <div className="text-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                <p className="text-muted-foreground">Loading systems...</p>
+                <p className="text-muted-foreground">{t('loading')}</p>
               </div>
             </div>
           ) : filteredSystems.length === 0 ? (
             <div className="text-center py-12">
               <Server className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
               <h3 className="text-lg font-medium text-foreground mb-2">
-                {searchQuery || selectedCriticality ? 'No systems found' : 'Ready to manage IT systems'}
+                {searchQuery || selectedCriticality ? t('noSystemsFound') : t('readyToManage')}
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery || selectedCriticality
-                  ? 'Try adjusting your filters or search query.'
-                  : 'Start by adding your first IT system to track and manage data processing infrastructure.'
+                  ? t('adjustFilters')
+                  : t('noSystemsDescription')
                 }
               </p>
               <Link href={`/${locale}/context/systems/new`}>
                 <Button variant="primary" className="gap-2">
                   <Plus className="h-4 w-4" />
-                  Add First System
+                  {t('addFirstSystem')}
                 </Button>
               </Link>
             </div>
@@ -339,22 +341,22 @@ export default function SystemsPage() {
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Name
+                        {t('tableHeaderName')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Type
+                        {t('tableHeaderType')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Status
+                        {t('tableHeaderStatus')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Criticality
+                        {t('tableHeaderCriticality')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Owner
+                        {t('tableHeaderOwner')}
                       </th>
                       <th className="text-right py-3 px-4 font-medium text-muted-foreground">
-                        Actions
+                        {t('tableHeaderActions')}
                       </th>
                     </tr>
                   </thead>
@@ -400,7 +402,7 @@ export default function SystemsPage() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              title="Edit system"
+                              title={t('editSystem')}
                               onClick={() => window.location.href = `/${locale}/context/systems/${system.id}`}
                             >
                               <Edit className="h-4 w-4" />
@@ -409,7 +411,7 @@ export default function SystemsPage() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleDeleteSystem(system)}
-                              title="Delete system"
+                              title={t('deleteSystem')}
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -424,12 +426,12 @@ export default function SystemsPage() {
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <p className="text-sm text-muted-foreground">
-                  Showing {filteredSystems.length} systems
+                  {t('showingSystems', { count: filteredSystems.length })}
                 </p>
                 <Link href={`/${locale}/context/systems/new`}>
                   <Button variant="outline" size="sm" className="gap-2">
                     <Plus className="h-4 w-4" />
-                    Add New
+                    {t('addNew')}
                   </Button>
                 </Link>
               </div>

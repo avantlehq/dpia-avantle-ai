@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import {
   MapPin,
   Plus,
@@ -87,6 +88,7 @@ const getAdequacyStatusColor = (status: AdequacyStatus) => {
 export default function LocationsPage() {
   const params = useParams()
   const locale = params?.locale as string || 'en'
+  const t = useTranslations('context.pages.locations')
 
   const [locations, setLocations] = useState<Location[]>([])
   const [searchQuery, setSearchQuery] = useState('')
@@ -155,12 +157,12 @@ export default function LocationsPage() {
       {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">Locations & Jurisdictions</h1>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground">
-            Manage data processing locations, jurisdictions, and adequacy decisions
+            {t('description')}
           </p>
         </div>
-        
+
         <Link href={`/${locale}/context/locations/new`}>
           <Button
             variant="primary"
@@ -168,7 +170,7 @@ export default function LocationsPage() {
             className="gap-2"
           >
             <Plus className="h-4 w-4" />
-            Add Location
+            {t('addLocation')}
           </Button>
         </Link>
       </div>
@@ -176,7 +178,7 @@ export default function LocationsPage() {
       {/* Locations Status Overview - matching assessments pills */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">
-          Locations Overview
+          {t('overviewTitle')}
         </h2>
         
         {/* Status Pills Group - matching assessments style */}
@@ -200,10 +202,10 @@ export default function LocationsPage() {
                 fontWeight: '500'
               }}
             >
-              Adequate Countries
+              {t('adequateCountries')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -214,9 +216,9 @@ export default function LocationsPage() {
           </div>
 
           {/* Third Countries Pill */}
-          <div 
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -225,17 +227,17 @@ export default function LocationsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              Third Countries
+              {t('thirdCountries')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -245,10 +247,10 @@ export default function LocationsPage() {
             </span>
           </div>
 
-          {/* Missing Safeguards Pill */}
-          <div 
+          {/* EU Locations Pill */}
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -257,17 +259,17 @@ export default function LocationsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              Missing Safeguards
+              {t('euLocations')}
             </span>
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '16px',
                 color: 'var(--text-primary)',
                 fontWeight: '600'
@@ -277,10 +279,10 @@ export default function LocationsPage() {
             </span>
           </div>
 
-          {/* Under Review Pill */}
-          <div 
+          {/* Active Locations Pill */}
+          <div
             className="inline-flex items-center rounded-lg"
-            style={{ 
+            style={{
               height: '38px',
               paddingLeft: '12px',
               paddingRight: '16px',
@@ -289,14 +291,14 @@ export default function LocationsPage() {
               gap: '8px'
             }}
           >
-            <span 
-              style={{ 
+            <span
+              style={{
                 fontSize: '14px',
                 color: '#9ca3af',
                 fontWeight: '500'
               }}
             >
-              Under Review
+              {t('activeLocations')}
             </span>
             <span 
               style={{ 
@@ -316,19 +318,19 @@ export default function LocationsPage() {
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
-            placeholder="Search locations..."
+            placeholder={t('searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
           />
         </div>
-        
+
         <Select value={selectedJurisdiction} onValueChange={setSelectedJurisdiction}>
           <SelectTrigger className="w-52">
-            <SelectValue placeholder="Filter by jurisdiction" />
+            <SelectValue placeholder={t('filterByAdequacy')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Jurisdictions</SelectItem>
+            <SelectItem value="all">{t('allJurisdictions')}</SelectItem>
             <SelectItem value="eu_member_state">EU Member State</SelectItem>
             <SelectItem value="eea_country">EEA Country</SelectItem>
             <SelectItem value="third_country">Third Country</SelectItem>
@@ -338,10 +340,10 @@ export default function LocationsPage() {
 
         <Select value={selectedAdequacy} onValueChange={setSelectedAdequacy}>
           <SelectTrigger className="w-52">
-            <SelectValue placeholder="Filter by adequacy" />
+            <SelectValue placeholder={t('filterByAdequacy')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Adequacy Status</SelectItem>
+            <SelectItem value="all">{t('allJurisdictions')}</SelectItem>
             <SelectItem value="adequate">Adequate</SelectItem>
             <SelectItem value="not_adequate">Not Adequate</SelectItem>
             <SelectItem value="partial">Partial</SelectItem>
@@ -366,25 +368,25 @@ export default function LocationsPage() {
             <div className="flex items-center justify-center py-12">
               <div className="text-center">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                <p className="text-muted-foreground">Loading locations...</p>
+                <p className="text-muted-foreground">{t('loading')}</p>
               </div>
             </div>
           ) : filteredLocations.length === 0 ? (
             <div className="text-center py-12">
               <MapPin className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
               <h3 className="text-lg font-medium text-foreground mb-2">
-                {searchQuery || selectedJurisdiction || selectedAdequacy ? 'No locations found' : 'Ready to manage jurisdictions'}
+                {searchQuery || selectedJurisdiction || selectedAdequacy ? t('noLocationsFound') : t('readyToManage')}
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery || selectedJurisdiction || selectedAdequacy
-                  ? 'Try adjusting your filters or search query.'
-                  : 'Start by adding your first processing location or jurisdiction for GDPR compliance tracking.'
+                  ? t('adjustFilters')
+                  : t('noLocationsDescription')
                 }
               </p>
               <Link href={`/${locale}/context/locations/new`}>
                 <Button variant="primary" className="gap-2">
                   <Plus className="h-4 w-4" />
-                  Add First Location
+                  {t('addFirstLocation')}
                 </Button>
               </Link>
             </div>
@@ -396,19 +398,19 @@ export default function LocationsPage() {
                   <thead>
                     <tr className="border-b border-border">
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Location
+                        {t('tableHeaderName')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Jurisdiction Type
+                        {t('tableHeaderType')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
-                        Adequacy Status
+                        {t('tableHeaderAdequacy')}
                       </th>
                       <th className="text-left py-3 px-4 font-medium text-muted-foreground">
                         Safeguards
                       </th>
                       <th className="text-right py-3 px-4 font-medium text-muted-foreground">
-                        Actions
+                        {t('tableHeaderActions')}
                       </th>
                     </tr>
                   </thead>
@@ -462,7 +464,7 @@ export default function LocationsPage() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              title="Edit location"
+                              title={t('editLocation')}
                               onClick={() => window.location.href = `/${locale}/context/locations/${location.id}`}
                             >
                               <Edit className="h-4 w-4" />
@@ -471,7 +473,7 @@ export default function LocationsPage() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleDeleteLocation(location)}
-                              title="Delete location"
+                              title={t('deleteLocation')}
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -486,12 +488,12 @@ export default function LocationsPage() {
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <p className="text-sm text-muted-foreground">
-                  Showing {filteredLocations.length} locations
+                  {t('showingLocations', { count: filteredLocations.length })}
                 </p>
                 <Link href={`/${locale}/context/locations/new`}>
                   <Button variant="outline" size="sm" className="gap-2">
                     <Plus className="h-4 w-4" />
-                    Add New
+                    {t('addNew')}
                   </Button>
                 </Link>
               </div>

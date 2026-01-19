@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.29.3" as const
-export const VERSION_NAME = "🔧 Data Flows Translation Keys Fix" as const
+export const VERSION = "3.30.0" as const
+export const VERSION_NAME = "🌐 Context List Pages i18n Refactor Complete" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,27 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.30.0": {
+    date: "2026-01-19",
+    name: "🌐 Context List Pages i18n Refactor Complete",
+    features: [
+      "Completed i18n refactoring for all 6 Context module list pages (systems, vendors, locations, data-categories, data-flows, processing)",
+      "Added context.pages namespace with 6 sub-namespaces containing ~180 total translation keys",
+      "All list pages now fully bilingual - Slovak (/sk URLs) and English (/en URLs)",
+      "Migrated all headers, search placeholders, filter labels, table headers to next-intl",
+      "Status pills (Active, Inactive, DPO Review, etc.) now properly translated",
+      "Empty states and no-results messages fully localized",
+      "Footer text with dynamic counts (e.g., 'Showing 5 systems') properly translated",
+      "Added translation keys to both src/i18n/dictionaries/en.json and sk.json"
+    ],
+    fixes: [
+      "Fixed parsing error in processing/page.tsx where sed wrapped t() calls in quotes",
+      "Removed quotes around translation function calls in ternary expressions",
+      "All 6 list pages build successfully with zero errors",
+      "Verified translation key structure matches existing privacy.pages pattern"
+    ],
+    note: "Critical gap from v3.28.0 Context i18n refactor resolved. v3.28.0 only translated form components (create/edit pages) but not list pages. User reported: '/sk/context/systems shows same English content as /en/context/systems'. This release completes the bilingual Context module by refactoring all list page UI elements. Pattern: useTranslations('context.pages.{module}') for list pages, separate from context.{module} used by forms."
+  },
   "3.29.3": {
     date: "2026-01-19",
     name: "🔧 Data Flows Translation Keys Fix",

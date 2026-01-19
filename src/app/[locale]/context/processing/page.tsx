@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 import {
   Plus,
   Search,
@@ -72,6 +73,7 @@ const getLawfulBasisColor = (basis: LawfulBasis) => {
 export default function ProcessingPage() {
   const params = useParams()
   const locale = params?.locale as string || 'en'
+  const t = useTranslations('context.pages.processing')
 
   const [activities, setActivities] = useState<ProcessingActivity[]>([])
   const [searchQuery, setSearchQuery] = useState('')
@@ -133,7 +135,7 @@ export default function ProcessingPage() {
       {/* Header - matching assessments style */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-foreground">Processing Activities</h1>
+          <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
           <p className="text-muted-foreground">
             Record of Processing Activities (ROPA) - GDPR Article 30 compliance
           </p>
@@ -146,7 +148,7 @@ export default function ProcessingPage() {
             className="gap-2"
           >
             <Plus className="h-4 w-4" />
-            Add Processing Activity
+            {t('addActivity')}
           </Button>
         </Link>
       </div>
@@ -154,12 +156,12 @@ export default function ProcessingPage() {
       {/* Processing Activities Status Overview - matching assessments pills */}
       <div className="space-y-5">
         <h2 className="text-lg font-medium text-foreground">
-          Processing Activities Overview
+          {t('overviewTitle')}
         </h2>
         
         {/* Status Pills Group - matching assessments style */}
         <div className="flex flex-wrap" style={{ gap: '12px' }}>
-          {/* Active Activities Pill */}
+          {/* {t('activeActivities')} Pill */}
           <div 
             className="inline-flex items-center rounded-lg"
             style={{ 
@@ -178,7 +180,7 @@ export default function ProcessingPage() {
                 fontWeight: '500'
               }}
             >
-              Active Activities
+              {t('activeActivities')}
             </span>
             <span 
               style={{ 
@@ -339,18 +341,18 @@ export default function ProcessingPage() {
             <div className="text-center py-12">
               <FileText className="h-16 w-16 mx-auto text-muted-foreground/50 mb-4" />
               <h3 className="text-lg font-medium text-foreground mb-2">
-                {searchQuery || selectedBasis ? 'No processing activities found' : 'Ready to build your ROPA'}
+                {searchQuery || selectedBasis ? t('noActivitiesFound') : t('readyToManage')}
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery || selectedBasis
-                  ? 'Try adjusting your filters or search query.'
-                  : 'Start building your Record of Processing Activities (ROPA) for GDPR Article 30 compliance.'
+                  ? t('adjustFilters')
+                  : t('noActivitiesDescription')
                 }
               </p>
               <Link href={`/${locale}/context/processing/new`}>
                 <Button variant="primary" className="gap-2">
                   <Plus className="h-4 w-4" />
-                  Add First Activity
+                  {t('addFirstActivity')}
                 </Button>
               </Link>
             </div>
@@ -438,7 +440,7 @@ export default function ProcessingPage() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              title="Edit activity"
+                              title={t('editActivity')}
                               onClick={() => window.location.href = `/${locale}/context/processing/${activity.id}`}
                             >
                               <Edit className="h-4 w-4" />
@@ -447,7 +449,7 @@ export default function ProcessingPage() {
                               variant="ghost"
                               size="sm"
                               onClick={() => handleDelete(activity)}
-                              title="Delete activity"
+                              title={t('deleteActivity')}
                             >
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -462,12 +464,12 @@ export default function ProcessingPage() {
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
                 <p className="text-sm text-muted-foreground">
-                  Showing {filteredActivities.length} processing activities
+                  {t('showingActivities', { count: filteredActivities.length })}
                 </p>
                 <Link href={`/${locale}/context/processing/new`}>
                   <Button variant="outline" size="sm" className="gap-2">
                     <Plus className="h-4 w-4" />
-                    Add New
+                    {t('addNew')}
                   </Button>
                 </Link>
               </div>
