@@ -12,6 +12,7 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { useLocale, useTranslations } from 'next-intl'
 import {
   Form,
   FormControl,
@@ -57,48 +58,21 @@ type DataFlowFormData = z.infer<typeof dataFlowSchema>
 
 interface DataFlowFormProps {
   mode: 'create' | 'edit'
-  locale: string
   flowId?: string
   initialData?: DataFlow
 }
 
-const flowDirectionOptions = [
-  { value: 'inbound', label: { en: 'Inbound', sk: 'Vstupný' }, description: { en: 'Data flowing into the organization', sk: 'Údaje plynúce do organizácie' } },
-  { value: 'outbound', label: { en: 'Outbound', sk: 'Výstupný' }, description: { en: 'Data flowing out of the organization', sk: 'Údaje plynúce z organizácie' } },
-  { value: 'bidirectional', label: { en: 'Bidirectional', sk: 'Obojsmerný' }, description: { en: 'Data flowing in both directions', sk: 'Údaje plynúce oboma smermi' } },
-  { value: 'internal', label: { en: 'Internal', sk: 'Interný' }, description: { en: 'Data flowing within the organization', sk: 'Údaje plynúce v rámci organizácie' } },
-]
-
-const criticalityOptions = [
-  { value: 'low', label: { en: 'Low', sk: 'Nízka' }, description: { en: 'Minimal impact if disrupted', sk: 'Minimálny dopad pri prerušení' } },
-  { value: 'medium', label: { en: 'Medium', sk: 'Stredná' }, description: { en: 'Moderate impact if disrupted', sk: 'Stredný dopad pri prerušení' } },
-  { value: 'high', label: { en: 'High', sk: 'Vysoká' }, description: { en: 'Significant impact if disrupted', sk: 'Značný dopad pri prerušení' } },
-  { value: 'critical', label: { en: 'Critical', sk: 'Kritická' }, description: { en: 'Business critical data flow', sk: 'Kritický dátový tok pre podnikanie' } },
-]
-
-const frequencyOptions = [
-  { value: 'Real-time', label: { en: 'Real-time', sk: 'V reálnom čase' } },
-  { value: 'Continuous', label: { en: 'Continuous', sk: 'Nepretržite' } },
-  { value: 'Hourly', label: { en: 'Hourly', sk: 'Každú hodinu' } },
-  { value: 'Daily', label: { en: 'Daily', sk: 'Denne' } },
-  { value: 'Weekly', label: { en: 'Weekly', sk: 'Týždenne' } },
-  { value: 'Monthly', label: { en: 'Monthly', sk: 'Mesačne' } },
-  { value: 'On-demand', label: { en: 'On-demand', sk: 'Na požiadanie' } },
-  { value: 'Batch', label: { en: 'Batch', sk: 'Dávkovo' } },
-]
-
-const volumeOptions = [
-  { value: 'Low (< 1GB)', label: { en: 'Low (< 1GB)', sk: 'Nízky (< 1GB)' } },
-  { value: 'Medium (1-10GB)', label: { en: 'Medium (1-10GB)', sk: 'Stredný (1-10GB)' } },
-  { value: 'High (10-100GB)', label: { en: 'High (10-100GB)', sk: 'Vysoký (10-100GB)' } },
-  { value: 'Very High (> 100GB)', label: { en: 'Very High (> 100GB)', sk: 'Veľmi vysoký (> 100GB)' } },
-]
-
-export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowFormProps) {
+export function DataFlowForm({ mode, flowId, initialData }: DataFlowFormProps) {
   const router = useRouter()
+  const locale = useLocale()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [systems, setSystems] = useState<Array<{ id: string; name: string }>>([])
   const [vendors, setVendors] = useState<Array<{ id: string; name: string }>>([])
+
+  // Translations
+  const tc = useTranslations('common')
+  const tcc = useTranslations('context.common')
+  const t = useTranslations('context.dataFlows')
 
   const form = useForm<DataFlowFormData>({
     resolver: zodResolver(dataFlowSchema),
@@ -163,18 +137,17 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
 
       if (mode === 'create') {
         await createDataFlow(submitData)
-        toast.success(locale === 'sk' ? 'Dátový tok bol vytvorený' : 'Data flow created successfully')
+        toast.success(t('createdSuccess'))
       } else if (flowId) {
         await updateDataFlow(flowId, submitData)
-        toast.success(locale === 'sk' ? 'Dátový tok bol aktualizovaný' : 'Data flow updated successfully')
+        toast.success(t('updatedSuccess'))
       }
 
       router.push(`/${locale}/context/data-flows`)
       router.refresh()
     } catch (error) {
       console.error('Error saving data flow:', error)
-      toast.error(error instanceof Error ? error.message :
-        (locale === 'sk' ? 'Nepodarilo sa uložiť dátový tok' : 'Failed to save data flow'))
+      toast.error(error instanceof Error ? error.message : t('failedSave'))
     } finally {
       setIsSubmitting(false)
     }
@@ -184,15 +157,8 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
     router.push(`/${locale}/context/data-flows`)
   }
 
-  const title = mode === 'create'
-    ? (locale === 'sk' ? 'Nový dátový tok' : 'New Data Flow')
-    : (locale === 'sk' ? 'Upraviť dátový tok' : 'Edit Data Flow')
-
-  const description = mode === 'create'
-    ? (locale === 'sk' ? 'Vytvoriť nový dátový tok pre mapovanie údajov a sledovanie súladu s GDPR.' : 'Create a new data flow for GDPR data mapping and compliance tracking.')
-    : (locale === 'sk' ? 'Aktualizovať informácie o dátovom toku.' : 'Update the data flow information.')
-
-  const lang = locale === 'sk' ? 'sk' : 'en'
+  const title = mode === 'create' ? t('createTitle') : t('editTitle')
+  const description = mode === 'create' ? t('createDescription') : t('editDescription')
 
   return (
     <ContextFormShell
@@ -205,7 +171,7 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
           {/* Basic Information Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Základné informácie' : 'Basic Information'}
+              {tcc('basicInfo')}
             </h3>
 
             <div className="space-y-4">
@@ -214,9 +180,9 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Názov toku' : 'Flow Name'} *</FormLabel>
+                    <FormLabel>{t('name')} *</FormLabel>
                     <FormControl>
-                      <Input placeholder={locale === 'sk' ? 'napr., Export zákazníckych údajov' : 'e.g., Customer Data Export'} {...field} />
+                      <Input placeholder={t('namePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -228,10 +194,10 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Popis' : 'Description'}</FormLabel>
+                    <FormLabel>{t('description')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Popis tohto dátového toku a aké údaje obsahuje...' : 'Describe this data flow and what data it includes...'}
+                        placeholder={t('descriptionPlaceholder')}
                         rows={3}
                         {...field}
                       />
@@ -246,10 +212,10 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                 name="purpose"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Účel' : 'Purpose'}</FormLabel>
+                    <FormLabel>{t('purpose')}</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder={locale === 'sk' ? 'Vysvetlite obchodný účel a nevyhnutnosť tohto dátového toku...' : 'Explain the business purpose and necessity of this data flow...'}
+                        placeholder={t('purposePlaceholder')}
                         rows={2}
                         {...field}
                       />
@@ -264,7 +230,7 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
           {/* Flow Configuration Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Konfigurácia toku' : 'Flow Configuration'}
+              {t('flowConfiguration')}
             </h3>
 
             <div className="space-y-4">
@@ -274,7 +240,7 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   name="flow_direction"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Smer toku' : 'Flow Direction'} *</FormLabel>
+                      <FormLabel>{t('direction')} *</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger>
@@ -282,14 +248,30 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {flowDirectionOptions.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              <div className="flex flex-col">
-                                <span className="font-medium">{option.label[lang]}</span>
-                                <span className="text-sm text-muted-foreground">{option.description[lang]}</span>
-                              </div>
-                            </SelectItem>
-                          ))}
+                          <SelectItem value="inbound">
+                            <div className="flex flex-col">
+                              <span className="font-medium">{t('directionInbound')}</span>
+                              <span className="text-sm text-muted-foreground">{t('directionInboundDesc')}</span>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="outbound">
+                            <div className="flex flex-col">
+                              <span className="font-medium">{t('directionOutbound')}</span>
+                              <span className="text-sm text-muted-foreground">{t('directionOutboundDesc')}</span>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="bidirectional">
+                            <div className="flex flex-col">
+                              <span className="font-medium">{t('directionBidirectional')}</span>
+                              <span className="text-sm text-muted-foreground">{t('directionBidirectionalDesc')}</span>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="internal">
+                            <div className="flex flex-col">
+                              <span className="font-medium">{t('directionInternal')}</span>
+                              <span className="text-sm text-muted-foreground">{t('directionInternalDesc')}</span>
+                            </div>
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -302,22 +284,38 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   name="criticality"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Kritickosť' : 'Criticality'}</FormLabel>
+                      <FormLabel>{t('criticality')}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value || ''}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder={locale === 'sk' ? 'Vybrať kritickosť' : 'Select criticality'} />
+                            <SelectValue placeholder={t('selectCriticality')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {criticalityOptions.map((option) => (
-                            <SelectItem key={option.value} value={option.value}>
-                              <div className="flex flex-col">
-                                <span className="font-medium">{option.label[lang]}</span>
-                                <span className="text-sm text-muted-foreground">{option.description[lang]}</span>
-                              </div>
-                            </SelectItem>
-                          ))}
+                          <SelectItem value="low">
+                            <div className="flex flex-col">
+                              <span className="font-medium">{tcc('criticalityLow')}</span>
+                              <span className="text-sm text-muted-foreground">{t('criticalityLowDesc')}</span>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="medium">
+                            <div className="flex flex-col">
+                              <span className="font-medium">{tcc('criticalityMedium')}</span>
+                              <span className="text-sm text-muted-foreground">{t('criticalityMediumDesc')}</span>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="high">
+                            <div className="flex flex-col">
+                              <span className="font-medium">{tcc('criticalityHigh')}</span>
+                              <span className="text-sm text-muted-foreground">{t('criticalityHighDesc')}</span>
+                            </div>
+                          </SelectItem>
+                          <SelectItem value="critical">
+                            <div className="flex flex-col">
+                              <span className="font-medium">{tcc('criticalityCritical')}</span>
+                              <span className="text-sm text-muted-foreground">{t('criticalityCriticalDesc')}</span>
+                            </div>
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -332,20 +330,23 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   name="frequency"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Frekvencia' : 'Frequency'}</FormLabel>
+                      <FormLabel>{t('frequency')}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value || ''}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder={locale === 'sk' ? 'Vybrať frekvenciu' : 'Select frequency'} />
+                            <SelectValue placeholder={t('selectFrequency')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="none">{locale === 'sk' ? 'Nešpecifikované' : 'Not specified'}</SelectItem>
-                          {frequencyOptions.map((freq) => (
-                            <SelectItem key={freq.value} value={freq.value}>
-                              {freq.label[lang]}
-                            </SelectItem>
-                          ))}
+                          <SelectItem value="none">{t('notSpecified')}</SelectItem>
+                          <SelectItem value="Real-time">{t('frequencyRealtime')}</SelectItem>
+                          <SelectItem value="Continuous">{t('frequencyContinuous')}</SelectItem>
+                          <SelectItem value="Hourly">{t('frequencyHourly')}</SelectItem>
+                          <SelectItem value="Daily">{t('frequencyDaily')}</SelectItem>
+                          <SelectItem value="Weekly">{t('frequencyWeekly')}</SelectItem>
+                          <SelectItem value="Monthly">{t('frequencyMonthly')}</SelectItem>
+                          <SelectItem value="On-demand">{t('frequencyOnDemand')}</SelectItem>
+                          <SelectItem value="Batch">{t('frequencyBatch')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -358,20 +359,19 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   name="volume_estimate"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Odhad objemu' : 'Volume Estimate'}</FormLabel>
+                      <FormLabel>{t('volume')}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value || ''}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder={locale === 'sk' ? 'Vybrať objem' : 'Select volume'} />
+                            <SelectValue placeholder={t('selectVolume')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="none">{locale === 'sk' ? 'Nešpecifikované' : 'Not specified'}</SelectItem>
-                          {volumeOptions.map((vol) => (
-                            <SelectItem key={vol.value} value={vol.value}>
-                              {vol.label[lang]}
-                            </SelectItem>
-                          ))}
+                          <SelectItem value="none">{t('notSpecified')}</SelectItem>
+                          <SelectItem value="Low (< 1GB)">{t('volumeLow')}</SelectItem>
+                          <SelectItem value="Medium (1-10GB)">{t('volumeMedium')}</SelectItem>
+                          <SelectItem value="High (10-100GB)">{t('volumeHigh')}</SelectItem>
+                          <SelectItem value="Very High (> 100GB)">{t('volumeVeryHigh')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -385,7 +385,7 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{locale === 'sk' ? 'Stav' : 'Status'} *</FormLabel>
+                    <FormLabel>{t('status')} *</FormLabel>
                     <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -393,8 +393,8 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="active">{locale === 'sk' ? 'Aktívny' : 'Active'}</SelectItem>
-                        <SelectItem value="inactive">{locale === 'sk' ? 'Neaktívny' : 'Inactive'}</SelectItem>
+                        <SelectItem value="active">{tcc('active')}</SelectItem>
+                        <SelectItem value="inactive">{tcc('inactive')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -407,13 +407,13 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
           {/* Flow Endpoints Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Koncové body toku' : 'Flow Endpoints'}
+              {t('flowEndpoints')}
             </h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <h4 className="text-md font-medium" style={{ color: 'var(--text-secondary)' }}>
-                  {locale === 'sk' ? 'Zdroj (Z)' : 'Source (From)'}
+                  {t('source')}
                 </h4>
 
                 <FormField
@@ -421,15 +421,15 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   name="from_system"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Zo systému' : 'From System'}</FormLabel>
+                      <FormLabel>{t('fromSystem')}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value || ''}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder={locale === 'sk' ? 'Vybrať zdrojový systém' : 'Select source system'} />
+                            <SelectValue placeholder={t('selectSourceSystem')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="none">{locale === 'sk' ? 'Žiadny systém' : 'No system'}</SelectItem>
+                          <SelectItem value="none">{t('noSystem')}</SelectItem>
                           {systems.map((system) => (
                             <SelectItem key={system.id} value={system.id}>
                               {system.name}
@@ -447,15 +447,15 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   name="from_vendor"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Od dodávateľa' : 'From Vendor'}</FormLabel>
+                      <FormLabel>{t('fromVendor')}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value || ''}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder={locale === 'sk' ? 'Vybrať zdrojového dodávateľa' : 'Select source vendor'} />
+                            <SelectValue placeholder={t('selectSourceVendor')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="none">{locale === 'sk' ? 'Žiadny dodávateľ' : 'No vendor'}</SelectItem>
+                          <SelectItem value="none">{t('noVendor')}</SelectItem>
                           {vendors.map((vendor) => (
                             <SelectItem key={vendor.id} value={vendor.id}>
                               {vendor.name}
@@ -471,7 +471,7 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
 
               <div className="space-y-4">
                 <h4 className="text-md font-medium" style={{ color: 'var(--text-secondary)' }}>
-                  {locale === 'sk' ? 'Cieľ (Do)' : 'Destination (To)'}
+                  {t('destination')}
                 </h4>
 
                 <FormField
@@ -479,15 +479,15 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   name="to_system"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'Do systému' : 'To System'}</FormLabel>
+                      <FormLabel>{t('toSystem')}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value || ''}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder={locale === 'sk' ? 'Vybrať cieľový systém' : 'Select destination system'} />
+                            <SelectValue placeholder={t('selectDestinationSystem')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="none">{locale === 'sk' ? 'Žiadny systém' : 'No system'}</SelectItem>
+                          <SelectItem value="none">{t('noSystem')}</SelectItem>
                           {systems.map((system) => (
                             <SelectItem key={system.id} value={system.id}>
                               {system.name}
@@ -505,15 +505,15 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   name="to_vendor"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>{locale === 'sk' ? 'K dodávateľovi' : 'To Vendor'}</FormLabel>
+                      <FormLabel>{t('toVendor')}</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value || ''}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder={locale === 'sk' ? 'Vybrať cieľového dodávateľa' : 'Select destination vendor'} />
+                            <SelectValue placeholder={t('selectDestinationVendor')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="none">{locale === 'sk' ? 'Žiadny dodávateľ' : 'No vendor'}</SelectItem>
+                          <SelectItem value="none">{t('noVendor')}</SelectItem>
                           {vendors.map((vendor) => (
                             <SelectItem key={vendor.id} value={vendor.id}>
                               {vendor.name}
@@ -532,7 +532,7 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
           {/* Security & Compliance Section */}
           <div className="bg-[var(--surface-1)] p-6 rounded-lg border border-[var(--border-default)]">
             <h3 className="text-lg font-medium mb-4" style={{ color: 'var(--text-primary)' }}>
-              {locale === 'sk' ? 'Bezpečnosť a súlad' : 'Security & Compliance'}
+              {t('securityCompliance')}
             </h3>
 
             <div className="space-y-4">
@@ -543,12 +543,10 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                     <div className="space-y-0.5">
                       <FormLabel className="text-base">
-                        {locale === 'sk' ? 'Šifrovanie počas prenosu' : 'Encryption in Transit'}
+                        {t('encryptionInTransit')}
                       </FormLabel>
                       <div className="text-sm text-muted-foreground">
-                        {locale === 'sk'
-                          ? 'Sú údaje šifrované počas prenosu (TLS/SSL)?'
-                          : 'Is data encrypted during transmission (TLS/SSL)?'}
+                        {t('encryptionInTransitDescription')}
                       </div>
                     </div>
                     <FormControl>
@@ -568,12 +566,10 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
                   <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                     <div className="space-y-0.5">
                       <FormLabel className="text-base">
-                        {locale === 'sk' ? 'Cezhraničný prenos' : 'Cross-Border Transfer'}
+                        {t('crossBorderTransfer')}
                       </FormLabel>
                       <div className="text-sm text-muted-foreground">
-                        {locale === 'sk'
-                          ? 'Prenáša tento tok údaje cez medzinárodné hranice?'
-                          : 'Does this flow transfer data across international borders?'}
+                        {t('crossBorderTransferDescription')}
                       </div>
                     </div>
                     <FormControl>
@@ -591,13 +587,13 @@ export function DataFlowForm({ mode, locale, flowId, initialData }: DataFlowForm
           {/* Form Actions */}
           <div className="flex justify-end gap-3 pt-6 border-t border-[var(--border-default)]">
             <Button type="button" variant="outline" onClick={handleCancel}>
-              {locale === 'sk' ? 'Zrušiť' : 'Cancel'}
+              {tc('cancel')}
             </Button>
             <Button type="submit" disabled={isSubmitting}>
               {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {mode === 'create'
-                ? (locale === 'sk' ? 'Vytvoriť' : 'Create')
-                : (locale === 'sk' ? 'Uložiť' : 'Save')
+                ? tc('create')
+                : tc('save')
               }
             </Button>
           </div>

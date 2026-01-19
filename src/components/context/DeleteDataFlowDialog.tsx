@@ -12,6 +12,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { Loader2, AlertTriangle } from 'lucide-react'
 import { toast } from 'sonner'
+import { useTranslations } from 'next-intl'
 
 interface DeleteDataFlowDialogProps {
   isOpen: boolean
@@ -29,6 +30,8 @@ export function DeleteDataFlowDialog({
   flowName
 }: DeleteDataFlowDialogProps) {
   const [isDeleting, setIsDeleting] = useState(false)
+  const tc = useTranslations('common')
+  const t = useTranslations('context.dataFlows')
 
   const handleDelete = async () => {
     if (!flowId) return
@@ -41,15 +44,15 @@ export function DeleteDataFlowDialog({
 
       if (!response.ok) {
         const error = await response.json()
-        throw new Error(error.message || 'Failed to delete data flow')
+        throw new Error(error.message || t('deleteFailed'))
       }
 
-      toast.success('Data flow deleted successfully')
+      toast.success(t('deleteSuccess'))
       onSuccess()
       onClose()
     } catch (error) {
       console.error('Error deleting data flow:', error)
-      toast.error(error instanceof Error ? error.message : 'Failed to delete data flow')
+      toast.error(error instanceof Error ? error.message : t('deleteFailed'))
     } finally {
       setIsDeleting(false)
     }
@@ -64,9 +67,9 @@ export function DeleteDataFlowDialog({
               <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
             </div>
             <div>
-              <AlertDialogTitle>Delete Data Flow</AlertDialogTitle>
+              <AlertDialogTitle>{t('deleteTitle')}</AlertDialogTitle>
               <AlertDialogDescription>
-                Are you sure you want to delete &ldquo;{flowName}&rdquo;?
+                {t('deleteDescription')}
               </AlertDialogDescription>
             </div>
           </div>
@@ -112,7 +115,7 @@ export function DeleteDataFlowDialog({
 
         <AlertDialogFooter>
           <Button variant="outline" onClick={onClose} disabled={isDeleting}>
-            Cancel
+            {tc('cancel')}
           </Button>
           <Button
             variant="destructive"
@@ -120,7 +123,7 @@ export function DeleteDataFlowDialog({
             disabled={isDeleting}
           >
             {isDeleting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Delete Data Flow
+            {tc('delete')}
           </Button>
         </AlertDialogFooter>
       </AlertDialogContent>

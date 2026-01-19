@@ -13,7 +13,7 @@ type Props = {
 }
 
 export default async function EditDataFlowPage({ params }: Props) {
-  const { locale, id } = await params
+  const { id } = await params
 
   // Note: Data flows service not yet implemented, using client library
   const flow = await getDataFlow(id)
@@ -23,5 +23,5 @@ export default async function EditDataFlowPage({ params }: Props) {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return <DataFlowForm mode="edit" locale={locale} flowId={id} initialData={flow as any} />
+  return <DataFlowForm mode="edit" flowId={id} initialData={flow as any} />
 }
