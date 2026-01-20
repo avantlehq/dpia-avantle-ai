@@ -7,8 +7,8 @@
       "privacy": "Privacy",
       "context": "Context",
       "risk": "Risk",
-      "controls": "Controls", 
-      "training": "Training",
+      "controls": "Controls",
+      "integrations": "Integrations",
       "trust": "Trust Center"
     },
     "pages": {
@@ -741,7 +741,7 @@
       "privacy": "Privacy Module",
       "risk": "Risk Module",
       "controls": "Controls Module",
-      "training": "Training Module",
+      "integrations": "Integrations Module",
       "trustCenter": "Trust Center"
     },
     "compliance": {

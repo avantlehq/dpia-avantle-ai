@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.30.4" as const
-export const VERSION_NAME = "🔥 CRITICAL FIX: Slovak Translations Now Work" as const
-export const BUILD_DATE = "2026-01-19"
+export const VERSION = "3.31.0" as const
+export const VERSION_NAME = "🔌 Replace Training Module with Integrations" as const
+export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.0": {
+    date: "2026-01-20",
+    name: "🔌 Replace Training Module with Integrations",
+    features: [
+      "Replaced Training module with Integrations across entire platform",
+      "Updated module configuration in modules.ts - changed icon from GraduationCap to Plug",
+      "Updated routing logic in modern-topbar.tsx for integrations module",
+      "Updated bilingual translations in en.json and sk.json (nav.modules and help.modules)",
+      "Created new Integrations overview page with ModuleComingSoon component",
+      "Updated help modules page - replaced Training entry with Integrations",
+      "Renamed route directories: training → integrations (both [locale] and non-localized)",
+      "Features planned: API Keys Management, Webhooks, SSO/SAML, OAuth 2.0, Third-party Connectors, Data Export Automation"
+    ],
+    fixes: [],
+    note: "Strategic pivot: Training module moved to future lms.avantle.ai product. Integrations module created as part of core dpia.avantle.ai platform to support API access, webhooks, and third-party connectors. Coming Soon page deployed with Q2 2026 timeline."
+  },
   "3.30.4": {
     date: "2026-01-19",
     name: "🔥 CRITICAL FIX: Slovak Translations Now Work",

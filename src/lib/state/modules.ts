@@ -1,12 +1,12 @@
 // Avantle Privacy Platform - Future-Proof Module Architecture
 // Following /privacy/... routing pattern for scalability
 
-import { 
+import {
   Database,
-  Shield, 
+  Shield,
   AlertTriangle,
   Lock,
-  GraduationCap,
+  Plug,
   CheckCircle,
   Server,
   FileText,
@@ -235,22 +235,22 @@ export const privacyModulesConfig: ModuleConfig[] = [
     ]
   },
 
-  // 5. TRAINING MODULE - Awareness & education
+  // 5. INTEGRATIONS MODULE - API access & automation
   {
-    id: 'training',
-    name: 'Training',
-    href: getLocaleHref('/training'),
-    icon: GraduationCap,
+    id: 'integrations',
+    name: 'Integrations',
+    href: getLocaleHref('/integrations'),
+    icon: Plug,
     color: 'var(--color-purple)',
-    description: 'Privacy awareness and training',
-    licenseRequired: 'training-management',
+    description: 'Connect external systems and manage API access',
+    licenseRequired: 'integrations',
     items: [
-      { 
-        id: 'training-overview',
-        name: 'Training Overview', 
-        href: getLocaleHref('/training'), 
+      {
+        id: 'integrations-overview',
+        name: 'Integrations Overview',
+        href: getLocaleHref('/integrations'),
         icon: LayoutDashboard,
-        description: 'Training dashboard',
+        description: 'API keys, webhooks, and connectors',
         disabled: true
       }
     ]

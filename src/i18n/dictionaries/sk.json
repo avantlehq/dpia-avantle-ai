@@ -8,7 +8,7 @@
       "context": "Kontext",
       "risk": "Riziko",
       "controls": "Kontroly",
-      "training": "Školenia",
+      "integrations": "Integrácie",
       "trust": "Centrum dôvery"
     },
     "pages": {
@@ -747,7 +747,7 @@
       "privacy": "Privacy modul",
       "risk": "Risk modul",
       "controls": "Controls modul",
-      "training": "Training modul",
+      "integrations": "Integračný modul",
       "trustCenter": "Trust Center"
     },
     "compliance": {

@@ -2,12 +2,12 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { 
+import {
   Database,
   Shield,
   AlertTriangle,
   Settings,
-  GraduationCap,
+  Plug,
   FileText,
   ArrowLeft,
   BookOpen,
@@ -65,14 +65,14 @@ export default function ModulesHelpPage() {
       features: ['Control Catalog', 'Compliance Mapping', 'Audit Trails', 'Effectiveness Testing']
     },
     {
-      module: 'training',
-      icon: <GraduationCap className="h-6 w-6 text-cyan-500" />,
-      title: t('modules.training'),
-      description: 'Privacy awareness training programs, certification tracking, compliance education, and knowledge assessment tools',
-      url: '/help/training',
-      moduleUrl: '/training',
+      module: 'integrations',
+      icon: <Plug className="h-6 w-6 text-purple-500" />,
+      title: t('modules.integrations'),
+      description: 'Connect external systems, manage API access, configure webhooks and automation',
+      url: '/help/integrations',
+      moduleUrl: '/integrations',
       available: false,
-      features: ['Training Programs', 'Certification Tracking', 'Knowledge Tests', 'Compliance Education']
+      features: ['API Keys Management', 'Webhook Configuration', 'SSO/SAML Integration', 'OAuth 2.0 Authorization', 'Third-party Connectors', 'Data Export Automation', 'Event Notifications', 'Audit Logs']
     },
     {
       module: 'trustCenter',

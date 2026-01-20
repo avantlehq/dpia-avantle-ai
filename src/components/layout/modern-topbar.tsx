@@ -83,7 +83,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
     if (activeModuleId === 'context') return `/${locale}/context` // Context Overview  
     if (activeModuleId === 'risk') return `/${locale}/risk` // Risk Overview
     if (activeModuleId === 'controls') return `/${locale}/controls` // Controls Overview
-    if (activeModuleId === 'training') return `/${locale}/training` // Training Overview
+    if (activeModuleId === 'integrations') return `/${locale}/integrations` // Integrations Overview
     if (activeModuleId === 'trust-center') return `/${locale}/trust-center` // Trust Center Overview
     return `/${locale}/dashboard` // Default fallback
   }, [activeModuleId, locale])
