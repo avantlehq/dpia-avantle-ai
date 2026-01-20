@@ -24,7 +24,10 @@ interface SidebarLinkProps {
 const SidebarLink = memo(function SidebarLink({ item, isActive, collapsed }: SidebarLinkProps) {
   const isDisabled = item.disabled
   const { t } = useTranslations('nav')
-  
+
+  // Force Vercel rebuild v3.31.3 - cache bust for integrations translations
+  console.log('[SidebarLink] Rendering:', item.id, '→', t(`pages.${item.id}`))
+
   // Optimized hover handlers with useCallback
   const handleMouseEnter = useCallback((e: React.MouseEvent) => {
     if (!isActive) {

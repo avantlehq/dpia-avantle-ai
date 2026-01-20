@@ -44,7 +44,10 @@ interface ModuleLinkProps {
 
 const ModuleLink = memo(function ModuleLink({ module, isActive }: ModuleLinkProps) {
   const { t } = useTranslations('nav')
-  
+
+  // Force Vercel rebuild v3.31.3 - cache bust for integrations translations
+  console.log('[ModuleLink] Rendering:', module.id, '→', t(`modules.${module.id}`))
+
   return (
     <Link 
       href={module.href}

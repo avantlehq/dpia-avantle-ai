@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.2" as const
-export const VERSION_NAME = "✅ Add Missing Integrations Translation Keys" as const
+export const VERSION = "3.31.3" as const
+export const VERSION_NAME = "🔧 Force Component Rebuild - Topbar & Sidebar" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.3": {
+    date: "2026-01-20",
+    name: "🔧 Force Component Rebuild - Topbar & Sidebar",
+    features: [],
+    fixes: [
+      "Added console.log to ModuleLink component in modern-topbar.tsx to force rebuild",
+      "Added console.log to SidebarLink component in modern-sidebar.tsx to force rebuild",
+      "User reported no change in v3.31.2 - translation keys still showing literally",
+      "Root cause: Vercel Turbopack served cached components despite dictionary updates",
+      "Solution: Modified both layout components to force cache invalidation",
+      "Browser console will show: [ModuleLink] Rendering: integrations → Integrations",
+      "Browser console will show: [SidebarLink] Rendering: integrations-overview → Integrations"
+    ],
+    note: "Critical cache-busting deployment. Same issue as v3.30.2 and v3.31.1 - Vercel refuses to rebuild components when only dictionaries change. Added runtime logging to both topbar and sidebar components to force Turbopack rebuild."
+  },
   "3.31.2": {
     date: "2026-01-20",
     name: "✅ Add Missing Integrations Translation Keys",
