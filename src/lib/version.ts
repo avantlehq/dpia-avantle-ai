@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.10" as const
-export const VERSION_NAME = "🗑️ Delete Conflicting next.config.mjs" as const
+export const VERSION = "3.31.11" as const
+export const VERSION_NAME = "🔄 Rename Module ID to api-integrations" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({

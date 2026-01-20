@@ -237,7 +237,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
 
   // 5. INTEGRATIONS MODULE - API access & automation
   {
-    id: 'integrations',
+    id: 'api-integrations',
     name: 'Integrations',
     href: getLocaleHref('/integrations'),
     icon: Plug,
@@ -246,7 +246,7 @@ export const privacyModulesConfig: ModuleConfig[] = [
     licenseRequired: 'integrations',
     items: [
       {
-        id: 'integrations-overview',
+        id: 'api-integrations-overview',
         name: 'Integrations Overview',
         href: getLocaleHref('/integrations'),
         icon: LayoutDashboard,

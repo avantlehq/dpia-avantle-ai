@@ -380,7 +380,8 @@
       "risk": "Riziko",
       "controls": "Kontroly",
       "trust": "Centrum dôvery",
-      "integrations": "Integrácie"
+      "integrations": "Integrácie",
+      "api-integrations": "Integrácie"
     },
     "pages": {
       "overview": "Prehľad",
@@ -406,7 +407,8 @@
       "trust-center": "Centrum dôvery",
       "integrations-overview": "Integrácie",
       "certifications": "Certifikáty",
-      "reports": "Správy"
+      "reports": "Správy",
+      "api-integrations-overview": "Integrácie"
     }
   }
 }

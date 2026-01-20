@@ -380,7 +380,8 @@
       "risk": "Risk",
       "controls": "Controls",
       "trust": "Trust Center",
-      "integrations": "Integrations"
+      "integrations": "Integrations",
+      "api-integrations": "Integrations"
     },
     "pages": {
       "overview": "Overview",
@@ -406,7 +407,8 @@
       "trust-center": "Trust Center",
       "integrations-overview": "Integrations",
       "certifications": "Certifications",
-      "reports": "Reports"
+      "reports": "Reports",
+      "api-integrations-overview": "Integrations"
     }
   }
 }
