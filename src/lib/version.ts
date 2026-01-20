@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.3" as const
-export const VERSION_NAME = "🔧 Force Component Rebuild - Topbar & Sidebar" as const
+export const VERSION = "3.31.4" as const
+export const VERSION_NAME = "🔥 Force Dictionary Reload - i18n Request" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.4": {
+    date: "2026-01-20",
+    name: "🔥 Force Dictionary Reload - i18n Request",
+    features: [],
+    fixes: [
+      "Modified src/i18n/request.ts to force dictionary cache invalidation",
+      "Added console.log and comments to force Turbopack rebuild of i18n loader",
+      "Console showed components rendering but t() returning literal keys",
+      "Root cause: Webpack/Turbopack caching JSON imports even when files change",
+      "Translation keys verified present: nav.modules.integrations, nav.pages.integrations-overview",
+      "JSON files validated: en.json and sk.json both valid and contain correct keys",
+      "Solution: Modified the import loader itself to force fresh dictionary load"
+    ],
+    note: "CRITICAL: Dictionary import cache issue. Console logs proved: [ModuleLink] Rendering: integrations → modules.integrations. Translation function called but keys not found despite being present in JSON files. Issue: Dynamic import statement `await import('./dictionaries/${locale}.json')` was cached by build system. Modified request.ts to force rebuild of dictionary loader."
+  },
   "3.31.3": {
     date: "2026-01-20",
     name: "🔧 Force Component Rebuild - Topbar & Sidebar",
