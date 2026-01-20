@@ -23,6 +23,9 @@ export default function ModulesHelpPage() {
   const { t } = useTranslations('help')
   const { locale } = useClientLocale()
 
+  // Force Vercel rebuild - v3.31.0 cache bust
+  console.log('[ModulesHelpPage] Locale:', locale, 'Integrations:', t('modules.integrations'))
+
   const moduleGuides = [
     {
       module: 'context',

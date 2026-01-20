@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.0" as const
-export const VERSION_NAME = "🔌 Replace Training Module with Integrations" as const
+export const VERSION = "3.31.1" as const
+export const VERSION_NAME = "🔧 Force Rebuild - Integrations Translation Cache" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.1": {
+    date: "2026-01-20",
+    name: "🔧 Force Rebuild - Integrations Translation Cache",
+    features: [],
+    fixes: [
+      "Added console.log to ModulesHelpPage to force Vercel rebuild",
+      "User reported seeing 'modules.integrations' literal text instead of translated strings",
+      "Root cause: Vercel build cache served old page.tsx file despite v3.31.0 having correct translation keys",
+      "Translation keys verified present in both en.json and sk.json (help.modules.integrations)",
+      "Solution: Modified page component with runtime logging to force cache invalidation"
+    ],
+    note: "Deployment cache fix. v3.31.0 had correct translation keys in dictionaries but Vercel served cached component. Same issue as v3.30.1/v3.30.2. Console log forces Turbopack to rebuild the page component."
+  },
   "3.31.0": {
     date: "2026-01-20",
     name: "🔌 Replace Training Module with Integrations",
