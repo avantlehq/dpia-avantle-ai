@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.30.2" as const
-export const VERSION_NAME = "🔧 Turbopack Cache Clear - Context i18n Fix" as const
+export const VERSION = "3.30.3" as const
+export const VERSION_NAME = "🐛 Debug Translation Function Output" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.30.3": {
+    date: "2026-01-19",
+    name: "🐛 Debug Translation Function Output",
+    features: [],
+    fixes: [
+      "Added console.log to output what t('title') and t('description') actually return",
+      "User confirmed locale switches correctly (sk/en in console) but text stays English",
+      "Need to diagnose if translation function returns Slovak text or English text",
+      "Will reveal if issue is: loading wrong dictionary, missing keys, or rendering problem"
+    ],
+    note: "Debugging deployment. Locale detection works (sk/en). Translation namespace correct (context.pages.systems). But page shows English text on both /sk and /en URLs. Added logging to see actual translation function return values."
+  },
   "3.30.2": {
     date: "2026-01-19",
     name: "🔧 Turbopack Cache Clear - Context i18n Fix",
