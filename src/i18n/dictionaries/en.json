@@ -1,7 +1,8 @@
 {
+  "_cacheKey": "2026-01-20T00:00:00Z-v3.31.5",
   "nav": {
     "home": "Home",
-    "workspace": "Workspace", 
+    "workspace": "Workspace",
     "more": "...",
     "modules": {
       "privacy": "Privacy",

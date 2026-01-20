@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.4" as const
-export const VERSION_NAME = "🔥 Force Dictionary Reload - i18n Request" as const
+export const VERSION = "3.31.5" as const
+export const VERSION_NAME = "💥 Add Cache Timestamp to JSON Files" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.5": {
+    date: "2026-01-20",
+    name: "💥 Add Cache Timestamp to JSON Files",
+    features: [],
+    fixes: [
+      "Added _cacheKey timestamp marker to en.json and sk.json dictionary files",
+      "Programmatic verification confirmed keys exist: nav.modules.integrations, nav.pages.integrations-overview",
+      "Browser console shows translation function called but returning literal keys",
+      "Root cause: Vercel edge cache or webpack JSON import cache",
+      "Solution: Modified JSON file structure itself with timestamp to force new bundle hash",
+      "Any change to JSON file content should invalidate webpack module cache"
+    ],
+    note: "CRITICAL ESCALATION: Translation keys verified present in source files but browser receives old dictionaries. Added _cacheKey field to JSON to force content hash change and invalidate all layers of caching (webpack module cache, Vercel edge cache, CDN cache). If this doesn't work, issue is in Vercel build system itself."
+  },
   "3.31.4": {
     date: "2026-01-20",
     name: "🔥 Force Dictionary Reload - i18n Request",
