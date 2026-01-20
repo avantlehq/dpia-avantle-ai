@@ -110,6 +110,8 @@ export default function SystemsPage() {
 
   // v3.30.1 - Force rebuild: Bilingual page with context.pages.systems translations
   console.log('[SystemsPage] Locale:', locale, 'Translation namespace: context.pages.systems')
+  console.log('[SystemsPage] t("title") returns:', t('title'))
+  console.log('[SystemsPage] t("description") returns:', t('description'))
 
   return (
     <div className="space-y-6">
