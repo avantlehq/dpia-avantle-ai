@@ -10,11 +10,12 @@ export default getRequestConfig(async ({ locale }) => {
     locale = defaultLocale;
   }
 
-  // Dynamic import with cache busting comment
-  console.log('[i18n/request] Loading dictionary for locale:', locale)
+  // RENAMED FILES: en.json → en-v2.json, sk.json → sk-v2.json (v3.31.7)
+  // Forces completely new import paths to bypass all webpack/Vercel cache
+  console.log('[i18n/request] Loading dictionary v2 for locale:', locale)
 
   return {
     locale,
-    messages: (await import(`./dictionaries/${locale}.json`)).default
+    messages: (await import(`./dictionaries/${locale}-v2.json`)).default
   };
 });

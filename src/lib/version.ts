@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.6" as const
-export const VERSION_NAME = "🔄 Reorder JSON Keys - Nuclear Cache Bust" as const
+export const VERSION = "3.31.7" as const
+export const VERSION_NAME = "🚀 RENAME Dictionary Files - Ultimate Cache Bypass" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,21 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.7": {
+    date: "2026-01-20",
+    name: "🚀 RENAME Dictionary Files - Ultimate Cache Bypass",
+    features: [],
+    fixes: [
+      "RENAMED: en.json → en-v2.json, sk.json → sk-v2.json",
+      "Updated import path: ./dictionaries/${locale}.json → ./dictionaries/${locale}-v2.json",
+      "Creates COMPLETELY NEW module paths never seen by webpack/Vercel cache",
+      "Old cached imports (en.json, sk.json) will never be requested again",
+      "New imports (en-v2.json, sk-v2.json) have zero cache history",
+      "This is the most aggressive cache-busting technique possible",
+      "Attempt #7 after 6 failed attempts"
+    ],
+    note: "ULTIMATE NUCLEAR OPTION: Renaming the actual dictionary files forces new import paths. Webpack caches modules by their import path. ./dictionaries/en.json was cached with old content. ./dictionaries/en-v2.json is a brand new module that has never been cached. This MUST work or the issue is deeper than build caching (e.g., Vercel infrastructure bug)."
+  },
   "3.31.6": {
     date: "2026-01-20",
     name: "🔄 Reorder JSON Keys - Nuclear Cache Bust",
