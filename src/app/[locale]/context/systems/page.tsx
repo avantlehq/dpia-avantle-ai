@@ -25,6 +25,7 @@ import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 // Force dynamic rendering to avoid SSR issues
+// v3.30.0 - Bilingual support with context.pages.systems namespace
 export const dynamic = 'force-dynamic'
 
 type System = {
