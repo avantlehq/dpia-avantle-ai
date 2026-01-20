@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.30.3" as const
-export const VERSION_NAME = "🐛 Debug Translation Function Output" as const
+export const VERSION = "3.30.4" as const
+export const VERSION_NAME = "🔥 CRITICAL FIX: Slovak Translations Now Work" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.30.4": {
+    date: "2026-01-19",
+    name: "🔥 CRITICAL FIX: Slovak Translations Now Work",
+    features: [],
+    fixes: [
+      "Fixed getMessages() in layout.tsx - was missing locale parameter",
+      "Changed from: await getMessages() → await getMessages({ locale })",
+      "Root cause: getMessages() without parameter defaulted to English dictionary for all locales",
+      "Debug logs revealed: Locale='sk' but t('title') returned 'IT Systems' instead of 'IT Systémy'",
+      "NextIntlClientProvider received English messages regardless of URL (/sk vs /en)",
+      "All Context list pages now display Slovak text on /sk URLs"
+    ],
+    note: "CRITICAL BUG FIX. v3.30.0-v3.30.3 had correct translation keys and page code, but layout.tsx passed wrong dictionary to client components. Sidebar worked (server-side translations), page content stayed English (client components received English messages). One-line fix: add { locale } parameter to getMessages()."
+  },
   "3.30.3": {
     date: "2026-01-19",
     name: "🐛 Debug Translation Function Output",

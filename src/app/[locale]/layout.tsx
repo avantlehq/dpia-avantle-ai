@@ -48,8 +48,9 @@ export default async function LocaleLayout({
   }
  
   // Providing all messages to the client
-  const messages = await getMessages();
- 
+  // CRITICAL FIX: Explicitly pass locale to getMessages() - was defaulting to 'en'
+  const messages = await getMessages({ locale });
+
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
