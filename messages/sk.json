@@ -369,5 +369,44 @@
       "deleteSuccess": "Činnosť spracovania bola vymazaná",
       "deleteFailed": "Nepodarilo sa vymazať činnosť spracovania"
     }
+  },
+  "nav": {
+    "home": "Domov",
+    "workspace": "Pracovný priestor",
+    "more": "...",
+    "modules": {
+      "privacy": "Ochrana údajov",
+      "context": "Kontext",
+      "risk": "Riziko",
+      "controls": "Kontroly",
+      "trust": "Centrum dôvery",
+      "integrations": "Integrácie"
+    },
+    "pages": {
+      "overview": "Prehľad",
+      "dashboard": "DPIA Hodnotenia",
+      "pre-check": "DPIA Kontrola",
+      "builder": "DPIA Tvorca",
+      "assessments": "Hodnotenia",
+      "templates": "Šablóny",
+      "exports": "Exporty",
+      "settings": "Nastavenia",
+      "data-mapping": "Mapovanie údajov",
+      "asset-inventory": "Inventár aktív",
+      "process-mapping": "Mapovanie procesov",
+      "risk-assessment": "Hodnotenie rizík",
+      "threat-modeling": "Modelovanie hrozieb",
+      "vulnerability-scan": "Skenovanie zraniteľností",
+      "control-catalog": "Katalóg kontrol",
+      "compliance-mapping": "Mapovanie compliance",
+      "audit-trails": "Audit záznamy",
+      "privacy-training": "Školenie ochrany údajov",
+      "certification": "Certifikácia",
+      "awareness": "Povedomie",
+      "trust-center": "Centrum dôvery",
+      "integrations-overview": "Integrácie",
+      "certifications": "Certifikáty",
+      "reports": "Správy"
+    }
   }
 }

@@ -369,5 +369,44 @@
       "deleteSuccess": "Processing activity deleted successfully",
       "deleteFailed": "Failed to delete processing activity"
     }
+  },
+  "nav": {
+    "home": "Home",
+    "workspace": "Workspace",
+    "more": "...",
+    "modules": {
+      "privacy": "Privacy",
+      "context": "Context",
+      "risk": "Risk",
+      "controls": "Controls",
+      "trust": "Trust Center",
+      "integrations": "Integrations"
+    },
+    "pages": {
+      "overview": "Overview",
+      "dashboard": "DPIA Assessments",
+      "pre-check": "DPIA Pre-Check",
+      "builder": "DPIA Builder",
+      "assessments": "Assessments",
+      "templates": "Templates",
+      "exports": "Exports",
+      "settings": "Settings",
+      "data-mapping": "Data Mapping",
+      "asset-inventory": "Asset Inventory",
+      "process-mapping": "Process Mapping",
+      "risk-assessment": "Risk Assessment",
+      "threat-modeling": "Threat Modeling",
+      "vulnerability-scan": "Vulnerability Scan",
+      "control-catalog": "Control Catalog",
+      "compliance-mapping": "Compliance Mapping",
+      "audit-trails": "Audit Trails",
+      "privacy-training": "Privacy Training",
+      "certification": "Certification",
+      "awareness": "Awareness",
+      "trust-center": "Trust Center",
+      "integrations-overview": "Integrations",
+      "certifications": "Certifications",
+      "reports": "Reports"
+    }
   }
 }

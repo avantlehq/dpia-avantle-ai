@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.7" as const
-export const VERSION_NAME = "🚀 RENAME Dictionary Files - Ultimate Cache Bypass" as const
+export const VERSION = "3.31.8" as const
+export const VERSION_NAME = "🐛 FIX: Add Keys to CORRECT Dictionary Files" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,22 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.8": {
+    date: "2026-01-20",
+    name: "🐛 FIX: Add Keys to CORRECT Dictionary Files",
+    features: [],
+    fixes: [
+      "FOUND THE BUG: App uses ./i18n/request.ts (root), NOT ./src/i18n/request.ts",
+      "Root request.ts loads from ./messages/en.json, NOT ./src/i18n/dictionaries/",
+      "We edited src/i18n/dictionaries/ for 7 versions (WRONG FILES)",
+      "App was loading from ./messages/en.json and ./messages/sk.json (CORRECT FILES)",
+      "Copied nav section from src/i18n/dictionaries/en-v2.json to messages/en.json",
+      "Copied nav section from src/i18n/dictionaries/sk-v2.json to messages/sk.json",
+      "Translation keys now in correct location: messages/en.json and messages/sk.json",
+      "User was right - not a cache issue, it was our bug"
+    ],
+    note: "CRITICAL BUG FIXED: Two i18n systems existed. Root ./i18n/request.ts loads from ./messages/, but we edited ./src/i18n/. Translation keys existed in wrong files for 7 versions. Now added to correct files."
+  },
   "3.31.7": {
     date: "2026-01-20",
     name: "🚀 RENAME Dictionary Files - Ultimate Cache Bypass",
