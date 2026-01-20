@@ -89,7 +89,7 @@ Welcome to the Avantle Privacy Platform developer documentation. This directory 
 **Version 3.21.178** - Unified Platform Overview Architecture
 - **Platform Dashboard**: Single source management overview with 92% compliance score visibility
 - **Compliance Methodology Center**: Transparent calculation formula with weighted scoring framework
-- **Weighted Formula Documentation**: Context(25%) + Privacy(30%) + Risk(20%) + Controls(15%) + Training(10%)
+- **Weighted Formula Documentation**: Context(25%) + Privacy(30%) + Risk(20%) + Controls(15%) + Integrations(10%)
 
 ## 🤝 Contributing
 

@@ -142,7 +142,7 @@ Execution Layer:
 **Out of Scope (Future Products):**
 - ❌ Risk Module → Avantle Risk (2027-2028)
 - ❌ Controls Module → Avantle Risk (2027-2028)
-- ❌ Training Module → Avantle LMS (2027-2028)
+- ✅ Integrations Module → Avantle Connect (Coming Q2 2026)
 
 ### Pilot Requirements
 

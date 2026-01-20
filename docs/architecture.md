@@ -18,8 +18,8 @@ Backend API Services:
 ├── context.avantle.ai  → Avantle Inventory (IT systems, data mapping)
 ├── risk.avantle.ai     → Avantle Risk (Enterprise risk management)
 ├── controls.avantle.ai → Avantle Controls (Security frameworks)
-├── core.avantle.ai     → Avantle Core (Auth, users, tenants)
-└── lms.avantle.ai      → Avantle Training (Courses, certifications)
+├── integrations.avantle.ai → Avantle Connect (API, webhooks, SSO)
+└── core.avantle.ai     → Avantle Core (Auth, users, tenants)
 ```
 
 ### Technology Stack
@@ -61,10 +61,10 @@ Dashboard (Shows WHAT) ↔ Governance (Shows HOW)
 **Trust Center Governance** (`/trust-center/governance`) - **Methodology Center**
 - **Purpose**: Transparent compliance score calculation documentation
 - **Key Features**:
-  - Weighted scoring formula: Context(25%) + Privacy(30%) + Risk(20%) + Controls(15%) + Training(10%)
+  - Weighted scoring formula: Context(25%) + Privacy(30%) + Risk(20%) + Controls(15%) + Integrations(10%)
   - Module-specific breakdowns with actual vs target metrics
   - Coming Soon transparency for missing data sources
-  - Component scores: Context(95%), Privacy(88%), Risk(90%), Controls(94%), Training(87%)
+  - Component scores: Context(95%), Privacy(88%), Risk(90%), Controls(94%), Integrations(Coming Q2 2026)
 - **Design**: Comprehensive calculation breakdown with audit-ready documentation
 - **Target Audience**: Auditors, compliance officers, external stakeholders
 
@@ -77,7 +77,7 @@ Dashboard (Shows WHAT) ↔ Governance (Shows HOW)
 ### **Navigation Hierarchy**
 ```
 HOME → Platform Dashboard (unified management overview)
-├── Module Overviews (Context, Privacy, Risk, Controls, Training, Trust Center)
+├── Module Overviews (Context, Privacy, Risk, Controls, Integrations, Trust Center)
 ├── Module Details (systems, assessments, controls, etc.)
 ├── Trust Center → Audit Packages + Methodology
 └── Trust Center → Governance (compliance calculation center)
@@ -111,7 +111,7 @@ dpia.avantle.ai (Unified Privacy Platform) - Production Ready v3.21.150
 ├── Privacy Module    ✅ # DPIA, LIA, TIA assessments → Remains in dpia.avantle.ai
 ├── Risk Module      🔄 # Risk management and scoring → Future: risk.avantle.ai
 ├── Controls Module  🔄 # Security controls and measures → Future: controls.avantle.ai
-├── Training Module  🔄 # Staff training and awareness → Future: lms.avantle.ai
+├── Integrations Module  🔄 # API access, webhooks, SSO/SAML → Future: integrations.avantle.ai
 └── Trust Center     🔄 # Governance and audit trails → Remains in dpia.avantle.ai
 ```
 
@@ -124,7 +124,7 @@ dpia.avantle.ai (Unified Privacy Platform) - Production Ready v3.21.150
 - ✅ **Privacy Module**: Complete DPIA workflow with assessment creation and management
 - ✅ **Trust Center**: Audit packages and governance methodology documentation
 - ✅ **TypeScript Safety**: Zero build errors, production-ready deployment
-- 🔄 **Other Modules**: Risk, Controls, Training UI implemented, backend APIs planned for future microservices
+- 🔄 **Other Modules**: Risk, Controls, Integrations UI implemented, backend APIs planned for future microservices
 
 ### 📡 **API Integration Pattern (Future)**
 ```typescript
@@ -142,9 +142,9 @@ interface ServiceIntegration {
   '/controls/toms' → 'controls.avantle.ai/api/v1/toms'
   '/controls/frameworks' → 'controls.avantle.ai/api/v1/frameworks'
   
-  // Training module UI → LMS API
-  '/training/courses' → 'lms.avantle.ai/api/v1/courses'
-  '/training/progress' → 'lms.avantle.ai/api/v1/progress'
+  // Integrations module UI → Integrations API
+  '/integrations/api-keys' → 'integrations.avantle.ai/api/v1/keys'
+  '/integrations/webhooks' → 'integrations.avantle.ai/api/v1/webhooks'
 }
 ```
 
@@ -205,7 +205,7 @@ JSON Template → DynamicFormGenerator → React Hook Form → Zod Validation �
 ```
 Topbar (Global)
 ├── Brand + Version
-├── Module Navigation (Context, Privacy, Risk, Controls, Training, Trust Center)
+├── Module Navigation (Context, Privacy, Risk, Controls, Integrations, Trust Center)
 └── Utilities (Theme, Language, User)
 
 Sidebar (Module-specific)

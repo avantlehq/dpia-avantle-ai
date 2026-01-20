@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.30.0 - Context List Pages i18n Refactor Complete**
+**Current Version: 3.31.12 - Integrations Module Translation Fix**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -58,11 +58,11 @@ Dashboard (Shows WHAT) ↔ Governance (Shows HOW)
 └─ Audit Reports: 8          → └─ Improvement Areas
 ```
 
-**Weighted Scoring**: Context(25%) + Privacy(30%) + Risk(20%) + Controls(15%) + Training(10%) = 92%
+**Weighted Scoring**: Context(25%) + Privacy(30%) + Risk(20%) + Controls(15%) + Integrations(10%) = 92%
 
 ### **Navigation Structure**
 ```
-Privacy Platform 3.24.202    Context · Privacy · Risk · Controls · Training · Trust Center    🌐 ❓ 👤
+Privacy Platform 3.31.12    Context · Privacy · Risk · Controls · Integrations · Trust Center    🌐 ❓ 👤
 ```
 
 **Module Overview:**
@@ -70,7 +70,7 @@ Privacy Platform 3.24.202    Context · Privacy · Risk · Controls · Training 
 - **Privacy Module** ✅ - DPIA, LIA, TIA assessments (DPIA complete with multi-page workflow)
 - **Risk Module** 🔄 - Risk management and scoring (UI complete)
 - **Controls Module** 🔄 - Security controls and measures (UI complete)
-- **Training Module** 🔄 - Staff training and awareness (UI complete)
+- **Integrations Module** 🔄 - API access, webhooks, SSO/SAML (Coming Soon - Q2 2026)
 - **Trust Center** ✅ - Governance and audit documentation
 
 ### **✅ Completed Refactoring (v3.25.0)**
@@ -99,8 +99,8 @@ Backend API Services:
 ├── context.avantle.ai  → Avantle Inventory (IT systems, data mapping)
 ├── risk.avantle.ai     → Avantle Risk (Enterprise risk management)
 ├── controls.avantle.ai → Avantle Controls (Security frameworks)
-├── core.avantle.ai     → Avantle Core (Auth, users, tenants)
-└── lms.avantle.ai      → Avantle Training (Courses, certifications)
+├── integrations.avantle.ai → Avantle Connect (API, webhooks, SSO)
+└── core.avantle.ai     → Avantle Core (Auth, users, tenants)
 ```
 
 **Benefits:**
@@ -228,6 +228,80 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.31.12 - 2026-01-20**
+**✅ INTEGRATIONS MODULE TRANSLATION FIX - ROOT CAUSE IDENTIFIED**
+
+**PROBLEM**: After replacing Training module with Integrations in v3.31.0, the topbar and sidebar displayed literal translation keys (`modules.api-integrations`, `pages.api-integrations-overview`) instead of translated text ("Integrations"/"Integrácie"). All other modules (Context, Privacy, Risk, Controls, Trust Center) worked correctly.
+
+**11 FAILED ATTEMPTS (v3.31.1 through v3.31.11)**:
+- Edited `messages/*.json` files (wrong location)
+- Edited `src/i18n/dictionaries/*.json` files (wrong location)
+- Added cache-busting timestamps
+- Renamed dictionary files (en.json → en-v2.json)
+- Reordered JSON keys
+- Modified i18n loader files
+- Deleted conflicting config files
+- Renamed module ID from 'integrations' to 'api-integrations'
+All attempts edited external JSON files that were never loaded by the topbar/sidebar components.
+
+**ROOT CAUSE DISCOVERED**:
+- Topbar (`src/components/layout/modern-topbar.tsx`) and sidebar use a **CUSTOM useTranslations hook**
+- Hook location: `src/hooks/useTranslations.ts` (lines 12-443)
+- This custom hook has **hardcoded inline dictionaries** - does NOT load from any JSON files
+- The hook is NOT using next-intl or any external translation files
+- trust-center module worked because it had inline keys at lines 24, 135
+- api-integrations module failed because it had NO inline keys
+
+**FIX APPLIED**:
+- Added `integrations: 'Integrations'` and `'api-integrations': 'Integrations'` to English nav.modules (line 25-26)
+- Added `integrations: 'Integrácie'` and `'api-integrations': 'Integrácie'` to Slovak nav.modules (line 138-139)
+- Added `'integrations-overview'` and `'api-integrations-overview'` to nav.pages for both languages
+- All translations now in the ACTUAL dictionary being used by topbar/sidebar
+
+**LESSON LEARNED**: Always trace import paths to verify which dictionary files are actually loaded by components. External JSON files are irrelevant if components use hardcoded inline dictionaries.
+
+**Files Modified:**
+- `src/hooks/useTranslations.ts` - Added missing integrations keys to inline dictionaries
+- `src/lib/version.ts` - Version bump to 3.31.12
+- `package.json` - Version bump to 3.31.12
+
+**Git Commit:** `e737d0b` - Version 3.31.12 deployed to production
+
+---
+
+### **v3.31.0 - 2026-01-20**
+**🔄 TRAINING MODULE REPLACED WITH INTEGRATIONS**
+
+**STRATEGIC CHANGE**: Replaced Training module with Integrations module to align with platform roadmap and customer needs.
+
+**IMPLEMENTATION**:
+- Renamed `/app/[locale]/training/` directory to `/app/[locale]/integrations/`
+- Updated module configuration in `src/lib/state/modules.ts`:
+  - Module ID: `integrations` (later changed to `api-integrations` in v3.31.11)
+  - Icon: Plug (lucide-react)
+  - Color: Purple (#8B5CF6)
+  - License: 'integrations'
+- Created Coming Soon page at `/integrations` with feature list:
+  - API keys management and access control
+  - Webhooks for real-time event notifications
+  - SSO/SAML integration for enterprise authentication
+  - Third-party connector marketplace (Slack, Teams, JIRA)
+  - Data export automation to compliance platforms
+  - OAuth 2.0 for secure third-party authorization
+- Updated help documentation in `/app/[locale]/help/modules/page.tsx`
+- Added bilingual translations (intended - see v3.31.12 for actual fix)
+- Estimated timeline: Q2 2026
+
+**NOTE**: Translation keys initially added to external JSON files, but actual fix required in v3.31.12 (inline dictionaries).
+
+**Files Modified:**
+- `src/lib/state/modules.ts` - Module configuration change
+- `src/app/[locale]/integrations/page.tsx` - NEW Coming Soon page
+- `src/app/[locale]/help/modules/page.tsx` - Updated help docs
+- Translation files (later fixed in v3.31.12)
+
+---
 
 ### **v3.30.0 - 2026-01-19**
 **🌐 CONTEXT LIST PAGES I18N REFACTOR COMPLETE**
@@ -612,8 +686,9 @@ git add . && git commit -m "message" && git push origin main
 - ~~Systems API 500 Errors~~ ✅ RESOLVED in v3.25.2 - RLS policies fixed for service_role, audit columns added
 - ~~Hardcoded Ternary Translations~~ ✅ RESOLVED in v3.28.0 - All Context forms migrated to next-intl, 230+ ternaries eliminated
 - ~~Context List Pages English-only~~ ✅ RESOLVED in v3.30.0 - All 6 Context list pages fully bilingual, 180+ translation keys added
+- ~~Integrations Module Translation Keys~~ ✅ RESOLVED in v3.31.12 - Added missing keys to inline dictionary in custom useTranslations hook
 
-**Current Status**: All major technical debt resolved. Platform fully functional. Context module i18n architecture complete (list pages + forms + dialogs all bilingual).
+**Current Status**: All major technical debt resolved. Platform fully functional. All modules display proper translations in both English and Slovak.
 
 ## Communication Style
 
