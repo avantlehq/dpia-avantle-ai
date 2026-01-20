@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.30.1" as const
-export const VERSION_NAME = "🔧 Force Rebuild - Context List Pages Deployment" as const
+export const VERSION = "3.30.2" as const
+export const VERSION_NAME = "🔧 Turbopack Cache Clear - Context i18n Fix" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.30.2": {
+    date: "2026-01-19",
+    name: "🔧 Turbopack Cache Clear - Context i18n Fix",
+    features: [],
+    fixes: [
+      "Added console.log statements to all 6 Context list page components to force Turbopack rebuild",
+      "User confirmed version 3.30.1 deployed but search found no 'context.pages.systems' in code",
+      "Root cause: Vercel Turbopack build cache served old page.tsx files despite version bump",
+      "Solution: Modified all 6 page.tsx files with runtime logging to force cache invalidation",
+      "Added diagnostic logging: 'Locale: X, Namespace: context.pages.Y' in browser console"
+    ],
+    note: "Critical deployment fix. v3.30.0 and v3.30.1 had correct code in git but Vercel Turbopack refused to rebuild page components. Added actual code changes (console.log) that Turbopack cannot cache through. When you see v3.30.2 + console logs about locale/namespace, Slovak translations will work."
+  },
   "3.30.1": {
     date: "2026-01-19",
     name: "🔧 Force Rebuild - Context List Pages Deployment",

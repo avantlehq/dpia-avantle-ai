@@ -108,6 +108,9 @@ export default function SystemsPage() {
     setDeleteSystem(null)
   }
 
+  // v3.30.1 - Force rebuild: Bilingual page with context.pages.systems translations
+  console.log('[SystemsPage] Locale:', locale, 'Translation namespace: context.pages.systems')
+
   return (
     <div className="space-y-6">
       {/* Header - matching assessments style */}
