@@ -2,7 +2,8 @@ import createNextIntlPlugin from 'next-intl/plugin'
 import type { NextConfig } from "next";
 import path from 'path'
 
-const withNextIntl = createNextIntlPlugin()
+// CRITICAL: Must specify exact path to i18n request file (v3.31.9)
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
 
 const nextConfig: NextConfig = {
   experimental: {

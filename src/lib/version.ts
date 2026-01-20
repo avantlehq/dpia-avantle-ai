@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.8" as const
-export const VERSION_NAME = "🐛 FIX: Add Keys to CORRECT Dictionary Files" as const
+export const VERSION = "3.31.9" as const
+export const VERSION_NAME = "⚙️ Explicitly Set i18n Path in Config" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
