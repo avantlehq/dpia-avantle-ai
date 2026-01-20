@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.5" as const
-export const VERSION_NAME = "💥 Add Cache Timestamp to JSON Files" as const
+export const VERSION = "3.31.6" as const
+export const VERSION_NAME = "🔄 Reorder JSON Keys - Nuclear Cache Bust" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.6": {
+    date: "2026-01-20",
+    name: "🔄 Reorder JSON Keys - Nuclear Cache Bust",
+    features: [],
+    fixes: [
+      "Moved integrations key to END of modules object (after trust)",
+      "Moved integrations-overview key to END of pages object (after trust-center)",
+      "Updated _cacheKey timestamp to force new content hash",
+      "Theory: Webpack might be caching object structure, not just content",
+      "Reordering keys changes JSON serialization completely",
+      "This is attempt #6 to break Vercel's persistent cache"
+    ],
+    note: "NUCLEAR OPTION: 5 previous attempts failed (v3.31.1-v3.31.5). Reordering JSON object keys changes the serialized string completely, forcing every layer of cache (webpack, Vercel, CDN, browser) to recognize this as new content. If this fails, we need manual Vercel cache purge or complete project rebuild."
+  },
   "3.31.5": {
     date: "2026-01-20",
     name: "💥 Add Cache Timestamp to JSON Files",

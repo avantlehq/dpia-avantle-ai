@@ -1,5 +1,5 @@
 {
-  "_cacheKey": "2026-01-20T00:00:00Z-v3.31.5",
+  "_cacheKey": "2026-01-20T00:00:01Z-v3.31.6",
   "nav": {
     "home": "Home",
     "workspace": "Workspace",
@@ -9,8 +9,8 @@
       "context": "Context",
       "risk": "Risk",
       "controls": "Controls",
-      "integrations": "Integrations",
-      "trust": "Trust Center"
+      "trust": "Trust Center",
+      "integrations": "Integrations"
     },
     "pages": {
       "overview": "Overview",
@@ -33,8 +33,8 @@
       "privacy-training": "Privacy Training",
       "certification": "Certification",
       "awareness": "Awareness",
-      "integrations-overview": "Integrations",
       "trust-center": "Trust Center",
+      "integrations-overview": "Integrations",
       "certifications": "Certifications",
       "reports": "Reports"
     }
