@@ -16,12 +16,14 @@ export function useTranslations(namespace?: string) {
           more: '...',
           modules: {
             privacy: 'Privacy',
-            context: 'Context', 
+            context: 'Context',
             risk: 'Risk',
             controls: 'Controls',
             training: 'Training',
             trust: 'Trust Center',
-            'trust-center': 'Trust Center'
+            'trust-center': 'Trust Center',
+            integrations: 'Integrations',
+            'api-integrations': 'Integrations'
           },
           pages: {
             overview: 'Overview',
@@ -50,7 +52,9 @@ export function useTranslations(namespace?: string) {
             policies: 'Privacy Policies',
             toms: 'TOMs',
             governance: 'Governance Overview',
-            'audit-packages': 'Audit Packages'
+            'audit-packages': 'Audit Packages',
+            'integrations-overview': 'Integrations',
+            'api-integrations-overview': 'Integrations'
           }
         },
         common: {
@@ -132,7 +136,9 @@ export function useTranslations(namespace?: string) {
             controls: 'Kontroly',
             training: 'Školenia',
             trust: 'Centrum dôvery',
-            'trust-center': 'Centrum dôvery'
+            'trust-center': 'Centrum dôvery',
+            integrations: 'Integrácie',
+            'api-integrations': 'Integrácie'
           },
           pages: {
             overview: 'Prehľad',
@@ -162,7 +168,9 @@ export function useTranslations(namespace?: string) {
             'audit-packages': 'Auditné balíky',
             lia: 'LIA',
             tia: 'TIA',
-            policies: 'Zásady'
+            policies: 'Zásady',
+            'integrations-overview': 'Integrácie',
+            'api-integrations-overview': 'Integrácie'
           }
         },
         common: {

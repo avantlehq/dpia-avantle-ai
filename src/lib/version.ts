@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.11" as const
-export const VERSION_NAME = "🔄 Rename Module ID to api-integrations" as const
+export const VERSION = "3.31.12" as const
+export const VERSION_NAME = "✅ ACTUAL BUG FIX: Inline Dictionary in useTranslations Hook" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,25 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.12": {
+    date: "2026-01-20",
+    name: "✅ ACTUAL BUG FIX: Inline Dictionary in useTranslations Hook",
+    features: [],
+    fixes: [
+      "ROOT CAUSE IDENTIFIED: useTranslations hook has HARDCODED inline dictionaries",
+      "Hook at src/hooks/useTranslations.ts contains embedded translations (lines 12-443)",
+      "This custom hook is NOT using messages/*.json OR next-intl at all",
+      "Topbar and sidebar use this custom hook, not next-intl's useTranslations",
+      "All 11 previous attempts edited external JSON files that were never loaded",
+      "trust-center worked because it had inline keys at lines 24, 135",
+      "api-integrations failed because it had NO inline keys",
+      "FIXED: Added integrations and api-integrations keys to inline dictionaries",
+      "Added nav.modules.integrations and nav.modules.api-integrations",
+      "Added nav.pages.integrations-overview and nav.pages.api-integrations-overview",
+      "Both English and Slovak translations now in the ACTUAL dictionary being used"
+    ],
+    note: "FINALLY FIXED: After 11 failed attempts editing external files, discovered the topbar/sidebar use a CUSTOM useTranslations hook with inline hardcoded dictionaries. All other modules worked because they had inline keys. Integrations was missing. Added all required keys to the inline dictionary."
+  },
   "3.31.8": {
     date: "2026-01-20",
     name: "🐛 FIX: Add Keys to CORRECT Dictionary Files",
