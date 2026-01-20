@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.1" as const
-export const VERSION_NAME = "🔧 Force Rebuild - Integrations Translation Cache" as const
+export const VERSION = "3.31.2" as const
+export const VERSION_NAME = "✅ Add Missing Integrations Translation Keys" as const
 export const BUILD_DATE = "2026-01-20"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.2": {
+    date: "2026-01-20",
+    name: "✅ Add Missing Integrations Translation Keys",
+    features: [],
+    fixes: [
+      "Added nav.pages.integrations-overview translation key to en.json and sk.json",
+      "Sidebar was using t('pages.integrations-overview') but key didn't exist",
+      "Fixed 'pages.integrations-overview' literal text displayed in sidebar",
+      "English: 'Integrations', Slovak: 'Integrácie'",
+      "Sidebar navigation now displays properly translated text"
+    ],
+    note: "Translation keys fix. User reported seeing 'modules.integrations' in topbar and 'pages.integrations-overview' in sidebar. Root cause: v3.31.0 added module but didn't add corresponding nav.pages translation key. Sidebar uses t('pages.${item.id}') pattern which needs nav.pages.integrations-overview."
+  },
   "3.31.1": {
     date: "2026-01-20",
     name: "🔧 Force Rebuild - Integrations Translation Cache",

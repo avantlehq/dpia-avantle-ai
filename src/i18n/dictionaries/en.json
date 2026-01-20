@@ -18,7 +18,7 @@
       "builder": "DPIA Builder",
       "assessments": "Assessments",
       "templates": "Templates",
-      "exports": "Exports", 
+      "exports": "Exports",
       "settings": "Settings",
       "data-mapping": "Data Mapping",
       "asset-inventory": "Asset Inventory",
@@ -32,6 +32,7 @@
       "privacy-training": "Privacy Training",
       "certification": "Certification",
       "awareness": "Awareness",
+      "integrations-overview": "Integrations",
       "trust-center": "Trust Center",
       "certifications": "Certifications",
       "reports": "Reports"
