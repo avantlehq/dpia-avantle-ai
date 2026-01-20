@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.30.0" as const
-export const VERSION_NAME = "🌐 Context List Pages i18n Refactor Complete" as const
+export const VERSION = "3.30.1" as const
+export const VERSION_NAME = "🔧 Force Rebuild - Context List Pages Deployment" as const
 export const BUILD_DATE = "2026-01-19"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.30.1": {
+    date: "2026-01-19",
+    name: "🔧 Force Rebuild - Context List Pages Deployment",
+    features: [],
+    fixes: [
+      "Force Vercel rebuild to clear build cache and deploy v3.30.0 page.tsx files",
+      "User reported sidebar translations work but main content stays English",
+      "Root cause: Vercel served cached old page.tsx files instead of new bilingual versions",
+      "Added comment to systems/page.tsx to trigger fresh build without cache"
+    ],
+    note: "Deployment fix. No code changes. v3.30.0 translations were correct but Vercel build cache prevented deployment. This patch forces fresh build to serve actual bilingual page.tsx files."
+  },
   "3.30.0": {
     date: "2026-01-19",
     name: "🌐 Context List Pages i18n Refactor Complete",
