@@ -84,6 +84,31 @@
     },
     "backToDashboard": "Späť na Dashboard"
   },
+  "privacy": {
+    "assessments": {
+      "pageTitle": "DPIA Hodnotenia",
+      "pageDescription": "Spravujte a sledujte hodnotenia vplyvu na ochranu údajov",
+      "overviewTitle": "DPIA Prehľad",
+      "precheckTooltip": "Rýchle vyhodnotenie podľa GDPR článku 35",
+      "startPrecheck": "Spustiť Predkontrol u",
+      "newDpia": "Nové DPIA",
+      "statusDraft": "Koncepty",
+      "statusInProgress": "Prebieha",
+      "statusCompleted": "Dokončené",
+      "statusReview": "Kontrola",
+      "statusOverdue": "Po termíne",
+      "loading": "Načítavam hodnotenia...",
+      "errorTitle": "Nepodarilo sa načítať hodnotenia",
+      "tryAgain": "Skúsiť znova",
+      "emptyTitle": "Zatiaľ žiadne hodnotenia",
+      "emptyDescription": "Začnite predkontrolou na určenie, či je DPIA potrebná, alebo vytvorte úplné DPIA hodnotenie priamo.",
+      "tableHeaderName": "Názov Hodnotenia",
+      "tableHeaderStatus": "Stav",
+      "tableHeaderCreated": "Vytvorené",
+      "tableHeaderUpdated": "Posledná Aktualizácia",
+      "tableHeaderActions": "Akcie"
+    }
+  },
   "context": {
     "common": {
       "basicInfo": "Základné informácie",

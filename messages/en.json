@@ -84,6 +84,31 @@
     },
     "backToDashboard": "Back to Dashboard"
   },
+  "privacy": {
+    "assessments": {
+      "pageTitle": "DPIA Assessments",
+      "pageDescription": "Manage and track your Data Protection Impact Assessments",
+      "overviewTitle": "DPIA Overview",
+      "precheckTooltip": "Quick GDPR Article 35 evaluation",
+      "startPrecheck": "Start Pre-check",
+      "newDpia": "New DPIA",
+      "statusDraft": "Drafts",
+      "statusInProgress": "In Progress",
+      "statusCompleted": "Completed",
+      "statusReview": "Review",
+      "statusOverdue": "Overdue",
+      "loading": "Loading assessments...",
+      "errorTitle": "Failed to load assessments",
+      "tryAgain": "Try Again",
+      "emptyTitle": "No assessments yet",
+      "emptyDescription": "Start with a pre-check to determine if a DPIA is required, or create a full DPIA assessment directly.",
+      "tableHeaderName": "Assessment Name",
+      "tableHeaderStatus": "Status",
+      "tableHeaderCreated": "Created",
+      "tableHeaderUpdated": "Last Updated",
+      "tableHeaderActions": "Actions"
+    }
+  },
   "context": {
     "common": {
       "basicInfo": "Basic Information",

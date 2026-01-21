@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.15" as const
-export const VERSION_NAME = "i18n Consolidation: Single Source of Truth" as const
+export const VERSION = "3.31.16" as const
+export const VERSION_NAME = "Privacy Module Translation Fix" as const
 export const BUILD_DATE = "2026-01-21"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,24 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.16": {
+    date: "2026-01-21",
+    name: "Privacy Module Translation Fix",
+    features: [
+      "✅ FIXED: Added privacy.assessments namespace to messages/en.json and messages/sk.json",
+      "Added 23 translation keys for Privacy assessments page and table components",
+      "All Privacy module pages now display proper translated text instead of keys"
+    ],
+    fixes: [
+      "FIXED: 'MISSING_MESSAGE: privacy.assessments (en)' console error",
+      "FIXED: Raw translation keys displayed on /assessments page",
+      "ROOT CAUSE: privacy.assessments namespace missing from messages/*.json",
+      "Components used useTranslations('privacy.assessments') but keys didn't exist",
+      "Added keys: pageTitle, pageDescription, statusDraft, statusInProgress, etc.",
+      "Both English and Slovak translations added"
+    ],
+    note: "Same pattern as Context module fix in v3.31.14. Privacy module components were using translation namespace that didn't exist in messages/*.json files. Added complete privacy.assessments namespace with all required keys."
+  },
   "3.31.15": {
     date: "2026-01-21",
     name: "i18n Consolidation: Single Source of Truth",
