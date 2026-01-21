@@ -106,7 +106,9 @@
       "tableHeaderStatus": "Status",
       "tableHeaderCreated": "Created",
       "tableHeaderUpdated": "Last Updated",
-      "tableHeaderActions": "Actions"
+      "tableHeaderActions": "Actions",
+      "showingAssessments": "Showing {count} assessment(s)",
+      "addNew": "Add New"
     }
   },
   "context": {

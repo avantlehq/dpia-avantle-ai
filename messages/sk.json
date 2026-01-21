@@ -106,7 +106,9 @@
       "tableHeaderStatus": "Stav",
       "tableHeaderCreated": "Vytvorené",
       "tableHeaderUpdated": "Posledná Aktualizácia",
-      "tableHeaderActions": "Akcie"
+      "tableHeaderActions": "Akcie",
+      "showingAssessments": "Zobrazuje sa {count} hodnotení",
+      "addNew": "Pridať Nové"
     }
   },
   "context": {

@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.16" as const
-export const VERSION_NAME = "Privacy Module Translation Fix" as const
+export const VERSION = "3.31.17" as const
+export const VERSION_NAME = "Privacy Module Translation Fix - Complete" as const
 export const BUILD_DATE = "2026-01-21"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,23 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.17": {
+    date: "2026-01-21",
+    name: "Privacy Module Translation Fix - Complete",
+    features: [
+      "✅ FIXED: Added remaining privacy.assessments translation keys",
+      "Added showingAssessments key with dynamic count parameter",
+      "Added addNew key for table footer button"
+    ],
+    fixes: [
+      "FIXED: 'MISSING_MESSAGE: privacy.assessments.showingAssessments (en)' console error",
+      "FIXED: 'MISSING_MESSAGE: privacy.assessments.addNew (en)' console error",
+      "v3.31.16 added main keys but missed table footer keys",
+      "AssessmentsTable footer uses t('showingAssessments', { count }) and t('addNew')",
+      "Both English and Slovak translations added"
+    ],
+    note: "Completing v3.31.16 fix. User reported 2 remaining missing keys in assessments table footer after initial fix."
+  },
   "3.31.16": {
     date: "2026-01-21",
     name: "Privacy Module Translation Fix",
