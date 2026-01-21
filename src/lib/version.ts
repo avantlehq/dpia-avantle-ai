@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.14" as const
-export const VERSION_NAME = "ACTUAL FIX: Context Pages in messages/*.json (CORRECT FILES)" as const
+export const VERSION = "3.31.15" as const
+export const VERSION_NAME = "i18n Consolidation: Single Source of Truth" as const
 export const BUILD_DATE = "2026-01-21"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,30 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.15": {
+    date: "2026-01-21",
+    name: "i18n Consolidation: Single Source of Truth",
+    features: [
+      "✅ REFACTORED: Consolidated dual i18n systems into single root /i18n/ location",
+      "Created /i18n/config.ts - Centralized configuration (moved from src/i18n/)",
+      "Created /i18n/client-utils.ts - Extracted only active functions (detectClientLocale, setClientLocale)",
+      "Updated tsconfig.json - Added @/i18n/* path mapping for absolute imports",
+      "Updated 2 import statements - useClientLocale hook and modules.ts state file",
+      "Deleted src/i18n/ directory - Removed 144KB of dead code (~2000 lines)",
+      "Fixed src/middleware.ts - Changed relative import to absolute @/i18n/config path"
+    ],
+    fixes: [
+      "DELETED DEAD CODE: src/i18n/keys.ts (150+ lines) - completely unused",
+      "DELETED DEAD CODE: src/i18n/request.ts (20 lines) - completely unused",
+      "DELETED DEAD CODE: src/i18n/dictionaries/en-v2.json (1117 lines) - never loaded",
+      "DELETED DEAD CODE: src/i18n/dictionaries/sk-v2.json (1000+ lines) - never loaded",
+      "DELETED DEAD CODE: src/i18n/utils.ts - Kept only 2 functions, removed 200+ lines",
+      "FIXED: Build error in middleware - TypeScript couldn't resolve './i18n/config'",
+      "ROOT CAUSE: Project had TWO i18n systems - root /i18n/ (active) and src/i18n/ (mostly dead)",
+      "All active functionality preserved - only dead code removed"
+    ],
+    note: "ARCHITECTURAL CLEANUP: Project had dual i18n systems causing confusion since v3.31.8. Consolidated into single root /i18n/ location. Deleted ~2000 lines of dead translation files and utilities. Build passes with zero errors. All Context pages work correctly."
+  },
   "3.31.14": {
     date: "2026-01-21",
     name: "ACTUAL FIX: Context Pages in messages/*.json (CORRECT FILES)",

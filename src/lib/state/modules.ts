@@ -22,7 +22,7 @@ import {
   BookOpen,
   type LucideIcon
 } from 'lucide-react'
-import { detectClientLocale } from '@/i18n/utils'
+import { detectClientLocale } from '@/i18n/client-utils'
 
 // Core module interface for Avantle Privacy Platform
 export interface ModuleConfig {

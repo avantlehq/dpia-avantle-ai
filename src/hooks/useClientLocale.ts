@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { detectClientLocale, setClientLocale } from '@/i18n/utils'
+import { detectClientLocale, setClientLocale } from '@/i18n/client-utils'
 import { type Locale, locales } from '@/i18n/config'
 
 export function useClientLocale() {
