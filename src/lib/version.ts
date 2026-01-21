@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.12" as const
-export const VERSION_NAME = "✅ ACTUAL BUG FIX: Inline Dictionary in useTranslations Hook" as const
-export const BUILD_DATE = "2026-01-20"
+export const VERSION = "3.31.13" as const
+export const VERSION_NAME = "Context Module List Pages - Complete Translation Fix (All 6 Modules)" as const
+export const BUILD_DATE = "2026-01-21"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,30 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.13": {
+    date: "2026-01-21",
+    name: "Context Module List Pages - Complete Translation Fix (All 6 Modules)",
+    features: [
+      "✅ SYSTEMS PAGE: Added 25+ translation keys (title, overview, status pills, table headers, actions)",
+      "✅ VENDORS PAGE: Added 30+ translation keys (DPA status badges, vendor roles, all UI elements)",
+      "✅ LOCATIONS PAGE: Added 25+ translation keys (adequacy status, jurisdiction filters)",
+      "✅ DATA CATEGORIES PAGE: Added 20+ translation keys (GDPR article classification)",
+      "✅ DATA FLOWS PAGE: Added 20+ translation keys (flow direction, encryption status)",
+      "✅ PROCESSING PAGE: Added 20+ translation keys (ROPA compliance, legal basis)",
+      "Added ~150 total translation keys across 6 Context list pages",
+      "Full bilingual support (English/Slovak) for all Context module list pages"
+    ],
+    fixes: [
+      "FIXED: Translation keys displaying as raw strings (context.pages.systems.activeSystems, etc.)",
+      "FIXED: Console error 'MISSING_MESSAGE: context.pages.systems (en)'",
+      "ROOT CAUSE: v3.30.0 claimed to add ~180 keys but only added minimal entries (title, description, features)",
+      "All 6 Context list pages had incomplete translation entries in context.pages namespace",
+      "Added complete translation sets to both en-v2.json and sk-v2.json dictionaries",
+      "Updated cache key to 2026-01-21T12:00:00Z-v3.31.13 to force dictionary reload",
+      "Verified build success with zero TypeScript/ESLint errors"
+    ],
+    note: "COMPLETE FIX for v3.30.0 incomplete implementation. All Context module list pages now fully bilingual with comprehensive translation coverage. User-reported issue on systems page resolved along with proactive fix for remaining 5 pages."
+  },
   "3.31.12": {
     date: "2026-01-20",
     name: "✅ ACTUAL BUG FIX: Inline Dictionary in useTranslations Hook",
