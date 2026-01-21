@@ -1,6 +1,71 @@
 # i18n Refactoring Plan: Consolidate to Single System
 
-## Current State Analysis (v3.31.14)
+**STATUS: ✅ COMPLETED IN v3.31.15 (2026-01-21)**
+
+## Refactoring Results
+
+### What Was Accomplished
+- **Consolidated dual i18n systems** into single root `/i18n/` location
+- **Deleted 144KB of dead code** (~2000 lines) from `src/i18n/` directory
+- **Created clean architecture** with single source of truth for translations
+- **Fixed middleware imports** from relative to absolute paths
+- **Updated tsconfig.json** with `@/i18n/*` path mapping
+- **Zero regressions** - all functionality preserved, build passes
+
+### Files Deleted
+- `src/i18n/keys.ts` (150+ lines) - hardcoded translation keys, never used
+- `src/i18n/request.ts` (20 lines) - old next-intl loader, never called
+- `src/i18n/utils.ts` (200+ lines) - removed dead functions, kept 2 active ones
+- `src/i18n/dictionaries/en-v2.json` (1117 lines) - never loaded by next-intl
+- `src/i18n/dictionaries/sk-v2.json` (1000+ lines) - never loaded by next-intl
+- `src/i18n/config.ts` - moved to `/i18n/config.ts`
+
+### Files Created
+- `/i18n/config.ts` - centralized locale configuration
+- `/i18n/client-utils.ts` - extracted 2 active functions (detectClientLocale, setClientLocale)
+
+### Files Updated
+- `tsconfig.json` - added `@/i18n/*` path mapping
+- `src/hooks/useClientLocale.ts` - updated import from `@/i18n/utils` to `@/i18n/client-utils`
+- `src/lib/state/modules.ts` - updated import from `@/i18n/utils` to `@/i18n/client-utils`
+- `src/middleware.ts` - changed from `./i18n/config` to `@/i18n/config`
+
+### Lessons Learned
+
+**Lesson 1: Always Verify Import Paths**
+- Problem: Developers edited `src/i18n/dictionaries/*.json` for 7+ versions
+- Reality: next-intl loads from `/messages/*.json` only
+- Solution: Trace imports to verify actual file usage before editing
+
+**Lesson 2: Dead Code Accumulates Quickly**
+- Problem: 2000 lines of dead code created confusion
+- Reality: Incomplete migration left orphaned files
+- Solution: Delete unused code immediately after migration
+
+**Lesson 3: Single Source of Truth Prevents Errors**
+- Problem: Two dictionary locations → developers edited wrong one
+- Reality: Confusion led to repeated mistakes (v3.31.8, v3.31.13)
+- Solution: Consolidate to one clear location
+
+**Lesson 4: Document Architecture Clearly**
+- Problem: No documentation of which files next-intl actually loads
+- Reality: Developers guessed and got it wrong repeatedly
+- Solution: Add architecture diagrams and critical rules to CLAUDE.md and docs/
+
+**Lesson 5: Test Both Language URLs**
+- Problem: Fixed English but broke Slovak (or vice versa)
+- Reality: Need to test `/en/` AND `/sk/` URLs after changes
+- Solution: Always test both locales before deployment
+
+### Git Commits
+- `39d43cd` - v3.31.15: i18n consolidation refactoring
+- `24fde6b` - v3.31.16: Added privacy.assessments namespace
+- `bb4a233` - v3.31.17: Added remaining privacy.assessments keys
+- `e9482c9` - v3.31.18: Removed debug console logs
+
+---
+
+## Original State Analysis (v3.31.14)
 
 ### Two i18n Systems Exist
 

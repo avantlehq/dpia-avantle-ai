@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.31.12 - Integrations Module Translation Fix**
+**Current Version: 3.31.18 - i18n Architecture Consolidated**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -143,6 +143,93 @@ Backend API Services:
 - **Implementation**: LocationForm uses JurisdictionSelect for 58-item jurisdiction dropdown
 - **Features**: Keyboard navigation, mobile-friendly popover, bilingual support, client-side filtering
 
+## Internationalization (i18n) Architecture
+
+**⚠️ CRITICAL: Single Source of Truth (Consolidated in v3.31.15)**
+
+### **i18n System Structure**
+```
+/i18n/
+  ├── config.ts          # Locale configuration, validation, storage keys
+  ├── client-utils.ts    # Client-side functions (detectClientLocale, setClientLocale)
+  └── request.ts         # next-intl server-side loader (loads from /messages/)
+
+/messages/
+  ├── en.json           # English translations - LOADED BY NEXT-INTL
+  └── sk.json           # Slovak translations - LOADED BY NEXT-INTL
+
+src/hooks/
+  └── useTranslations.ts # Custom hook with INLINE dictionaries (topbar/sidebar ONLY)
+```
+
+### **🔥 CRITICAL RULES FOR ADDING TRANSLATIONS**
+
+1. **For ALL pages and components** (Context, Privacy, forms, lists, etc.):
+   - ✅ ADD keys to `/messages/en.json` and `/messages/sk.json`
+   - ❌ NEVER edit `src/hooks/useTranslations.ts` (inline dictionaries for topbar/sidebar only)
+   - These files are loaded by next-intl's `./i18n/request.ts`
+
+2. **For topbar/sidebar navigation ONLY**:
+   - ✅ ADD keys to `src/hooks/useTranslations.ts` inline dictionaries
+   - This custom hook has hardcoded translations (NOT loaded from JSON)
+   - Affects: ModuleLink in topbar, SidebarLink in sidebar
+
+3. **Verification Steps**:
+   - Check import paths: `useTranslations('namespace')` from 'next-intl' → loads from `/messages/`
+   - Check import paths: Custom `useTranslations()` from '@/hooks/' → uses inline dictionaries
+   - Run build to verify no MISSING_MESSAGE console errors
+   - Test both `/en/` and `/sk/` URLs
+
+### **Translation Namespace Pattern**
+```typescript
+// Context module forms: context.{module}
+useTranslations('context.systems')      // SystemForm component
+useTranslations('context.vendors')      // VendorForm component
+
+// Context module lists: context.pages.{module}
+useTranslations('context.pages.systems')   // systems/page.tsx list page
+useTranslations('context.pages.vendors')   // vendors/page.tsx list page
+
+// Privacy module: privacy.{feature}
+useTranslations('privacy.assessments')  // assessments/page.tsx
+
+// Navigation (inline dictionaries): nav.{section}
+useTranslations('nav')                  // topbar/sidebar (custom hook)
+t('modules.privacy')                    // module names
+t('pages.dpia-precheck')               // page names
+```
+
+### **Common i18n Mistakes (Lessons Learned)**
+
+**❌ MISTAKE 1: Editing wrong dictionary files**
+- Problem: Adding keys to `src/i18n/dictionaries/*.json` (never loaded)
+- Solution: ALWAYS add to `/messages/en.json` and `/messages/sk.json`
+- History: Repeated in v3.31.8 and v3.31.13 before consolidation in v3.31.15
+
+**❌ MISTAKE 2: Forgetting namespace keys**
+- Problem: Component uses `useTranslations('privacy.assessments')` but namespace doesn't exist
+- Solution: Add complete namespace with all keys component needs
+- Example: v3.31.16 fixed missing `privacy.assessments` namespace
+
+**❌ MISTAKE 3: Incomplete key sets**
+- Problem: Adding main keys but missing footer/action keys
+- Solution: Search component code for ALL `t('...')` calls before adding keys
+- Example: v3.31.17 added missing `showingAssessments` and `addNew` keys
+
+**❌ MISTAKE 4: Assuming topbar/sidebar use next-intl**
+- Problem: Editing `/messages/*.json` for navigation translations
+- Solution: Navigation uses `src/hooks/useTranslations.ts` inline dictionaries
+- History: v3.31.12 discovered after 11 failed attempts
+
+### **Translation Workflow**
+1. Component uses `useTranslations('namespace.subnamespace')`
+2. Verify if it's navigation (topbar/sidebar) or regular component
+3. If navigation → Edit `src/hooks/useTranslations.ts` inline dictionaries
+4. If regular component → Edit `/messages/en.json` and `/messages/sk.json`
+5. Add ALL keys the component references (search for `t('...')` calls)
+6. Test both `/en/` and `/sk/` URLs
+7. Check browser console for MISSING_MESSAGE errors
+
 ## Database Architecture
 
 ### **Context Module Tables (✅ ALL 6 MODULES - COMPLETE CRUD)**
@@ -228,6 +315,168 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.31.18 - 2026-01-21**
+**🧹 DEBUG CONSOLE CLEANUP**
+
+**CLEANUP**:
+- Removed debug console.log from ModuleLink in modern-topbar.tsx
+- Removed debug console.log from SidebarLink in modern-sidebar.tsx
+- Console logs were added in v3.31.3 to force Turbopack rebuilds during translation debugging
+- Now that all translation issues are fixed, removed clutter from production console
+
+**Files Modified:**
+- `src/components/layout/modern-topbar.tsx` - Removed console.log line 49
+- `src/components/layout/modern-sidebar.tsx` - Removed console.log line 29
+- `src/lib/version.ts` - Version 3.31.18
+- `package.json` - Version 3.31.18
+
+**Git Commit:** `e9482c9`
+
+---
+
+### **v3.31.17 - 2026-01-21**
+**✅ PRIVACY MODULE TRANSLATION FIX - COMPLETE**
+
+**PROBLEM**: Missing footer translation keys in Privacy assessments table
+- Console error: `MISSING_MESSAGE: privacy.assessments.showingAssessments (en)`
+- Console error: `MISSING_MESSAGE: privacy.assessments.addNew (en)`
+
+**FIXED**:
+- Added `showingAssessments: "Showing {count} assessment(s)"` with dynamic count parameter
+- Added `addNew: "Add New"` for table footer button
+- Both English and Slovak translations
+
+**Files Modified:**
+- `messages/en.json` - Added 2 keys
+- `messages/sk.json` - Added 2 keys
+- `src/lib/version.ts` - Version 3.31.17
+- `package.json` - Version 3.31.17
+
+**Git Commit:** `bb4a233`
+
+---
+
+### **v3.31.16 - 2026-01-21**
+**✅ PRIVACY MODULE TRANSLATION FIX - INITIAL**
+
+**PROBLEM**: Privacy module displaying raw translation keys
+- Console error: `MISSING_MESSAGE: privacy.assessments (en)`
+- Raw translation keys displayed on /assessments page
+
+**ROOT CAUSE**:
+- `privacy.assessments` namespace missing from `/messages/*.json`
+- Components used `useTranslations('privacy.assessments')` but namespace didn't exist
+- Same pattern as Context module issue in v3.31.14
+
+**FIXED**:
+- Added `privacy.assessments` namespace to `/messages/en.json` and `/messages/sk.json`
+- Added 23 translation keys: pageTitle, pageDescription, statusDraft, statusInProgress, statusCompleted, statusReview, statusOverdue, loading, errorTitle, tryAgain, emptyTitle, emptyDescription, startPrecheck, newDpia, overviewTitle, precheckTooltip, tableHeader* keys
+
+**Files Modified:**
+- `messages/en.json` - Added 23 English translation keys
+- `messages/sk.json` - Added 23 Slovak translation keys
+- `src/lib/version.ts` - Version 3.31.16
+- `package.json` - Version 3.31.16
+
+**Git Commit:** `24fde6b`
+
+---
+
+### **v3.31.15 - 2026-01-21**
+**🎯 I18N CONSOLIDATION: SINGLE SOURCE OF TRUTH (MAJOR REFACTORING)**
+
+**PROBLEM**: Project had TWO i18n systems causing developer confusion
+- Root `/i18n/` (ACTIVE) - Used by next-intl, loads from `/messages/*.json`
+- `src/i18n/` (MOSTLY DEAD) - Contained ~2000 lines of unused code
+- Developers repeatedly edited wrong files (src/i18n/ instead of /messages/)
+
+**ARCHITECTURAL CLEANUP**:
+- Consolidated dual i18n systems into single root `/i18n/` location
+- Created `/i18n/config.ts` (moved from `src/i18n/config.ts`)
+- Created `/i18n/client-utils.ts` (extracted only 2 active functions: detectClientLocale, setClientLocale)
+- Updated `tsconfig.json` with `@/i18n/*` path mapping for absolute imports
+- Updated imports in `useClientLocale.ts` and `modules.ts`
+- Fixed `src/middleware.ts` - Changed relative import to absolute `@/i18n/config`
+
+**DEAD CODE DELETED** (~2000 lines, 144KB):
+- `src/i18n/keys.ts` (150+ lines) - completely unused
+- `src/i18n/request.ts` (20 lines) - completely unused
+- `src/i18n/utils.ts` (200+ lines) - kept only 2 functions, removed rest
+- `src/i18n/dictionaries/en-v2.json` (1117 lines) - never loaded
+- `src/i18n/dictionaries/sk-v2.json` (1000+ lines) - never loaded
+- `src/i18n/config.ts` (moved to root)
+
+**NEW STRUCTURE**:
+```
+/i18n/
+  ├── config.ts          # Centralized configuration
+  └── client-utils.ts    # Active client functions only
+/messages/
+  ├── en.json           # English translations (loaded by next-intl)
+  └── sk.json           # Slovak translations (loaded by next-intl)
+src/hooks/
+  └── useTranslations.ts # Custom hook with inline dictionaries (topbar/sidebar ONLY)
+```
+
+**LESSON LEARNED**:
+- Always verify which files are actually loaded by checking import paths
+- External JSON files are irrelevant if components use different sources
+- Single source of truth eliminates confusion
+
+**Files Modified:** 15 files (6 deleted, 2 created, 7 updated)
+- Net reduction: 2421 lines removed, 445 lines added
+- Build passes with zero errors
+
+**Git Commit:** `39d43cd`
+
+---
+
+### **v3.31.14 - 2026-01-21**
+**✅ CONTEXT MODULE TRANSLATION FIX - ROOT CAUSE**
+
+**PROBLEM**: Context module list pages displaying raw translation keys
+- Console error: `MISSING_MESSAGE: context.pages.systems (en)`
+- User reported: "i have a lang problem in Context module position systems. I see these kind of text: context.pages.systems.description"
+
+**ROOT CAUSE ANALYSIS**:
+- v3.31.13 added keys to `/src/i18n/dictionaries/en-v2.json` (WRONG FILES - never loaded)
+- App uses `./i18n/request.ts` (root) which loads from `../messages/${locale}.json`
+- This was REPEAT of v3.31.8 bug - edited wrong dictionary files AGAIN
+
+**FIXED**:
+- Added `context.pages` namespace to `/messages/en.json` and `/messages/sk.json` (CORRECT FILES)
+- Added all 6 Context list pages: systems, vendors, locations, dataCategories, dataFlows, processing
+- Added ~150 translation keys to both languages
+
+**Files Modified:**
+- `messages/en.json` - Added context.pages namespace
+- `messages/sk.json` - Added context.pages namespace
+- `src/lib/version.ts` - Version 3.31.14
+- `package.json` - Version 3.31.14
+
+**Git Commit:** `8d10157`
+
+---
+
+### **v3.31.13 - 2026-01-21**
+**❌ FAILED ATTEMPT: Wrong Dictionary Files (AGAIN)**
+
+**PROBLEM**: v3.31.13 attempted to fix Context translation issues but edited wrong files
+- Added ~150 translation keys to `src/i18n/dictionaries/en-v2.json` and `sk-v2.json`
+- These files are NEVER loaded by next-intl
+- Same mistake as v3.31.8 - edited src/i18n/ instead of /messages/
+
+**ROOT CAUSE**: Confusion from dual i18n systems
+- Developer didn't verify which files next-intl actually loads
+- Assumed src/i18n/dictionaries/ were the active files
+- Actually: next-intl loads from `/messages/*.json` only
+
+**LESSON**: This repeated failure led to v3.31.15 i18n consolidation refactoring
+
+**Git Commit:** (not recorded - failed deployment)
+
+---
 
 ### **v3.31.12 - 2026-01-20**
 **✅ INTEGRATIONS MODULE TRANSLATION FIX - ROOT CAUSE IDENTIFIED**

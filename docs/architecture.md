@@ -310,19 +310,94 @@ DatabaseService → Business Logic → API Routes → Frontend Components
 
 ## Internationalization Architecture
 
-### Translation System
+**Status**: Consolidated in v3.31.15 (2026-01-21) - Single Source of Truth
+
+### System Structure
 ```
-next-intl
-├── Locale Detection (/[locale]/ routes)
-├── Message Loading (messages/sk.json, messages/en.json)  
-├── Server/Client Components (useTranslations hook)
-└── Fallback Handling (English default)
+/i18n/                        # Root i18n configuration
+├── config.ts                 # Locale configuration, validation, storage
+├── client-utils.ts           # Client-side utilities (detectClientLocale, setClientLocale)
+└── request.ts                # next-intl server loader (loads from /messages/)
+
+/messages/                    # Translation dictionaries (LOADED BY NEXT-INTL)
+├── en.json                   # English translations
+└── sk.json                   # Slovak translations
+
+src/hooks/
+└── useTranslations.ts        # Custom hook with inline dictionaries (topbar/sidebar ONLY)
 ```
+
+### Translation Loading Flow
+```
+Page Component
+  │
+  ├─→ useTranslations('namespace') from 'next-intl'
+  │     │
+  │     └─→ next-intl loader (/i18n/request.ts)
+  │           │
+  │           └─→ Loads /messages/en.json or /messages/sk.json
+  │
+  └─→ Custom useTranslations() from '@/hooks/useTranslations'
+        │
+        └─→ Returns inline dictionaries (nav.modules, nav.pages)
+```
+
+### Critical Rules
+
+**✅ DO:**
+- Add translations to `/messages/en.json` and `/messages/sk.json` for ALL pages and components
+- Add translations to `src/hooks/useTranslations.ts` ONLY for topbar/sidebar navigation
+- Verify import paths: `from 'next-intl'` → uses `/messages/`, `from '@/hooks/'` → uses inline
+- Test both `/en/` and `/sk/` URLs after adding translations
+- Check browser console for MISSING_MESSAGE errors
+
+**❌ DON'T:**
+- Never create new dictionary files in src/i18n/ (directory deleted in v3.31.15)
+- Never assume next-intl loads from src/i18n/ (it loads from /messages/)
+- Never edit inline dictionaries for regular components (only for navigation)
+
+### Translation Namespace Patterns
+```typescript
+// Context module forms
+useTranslations('context.systems')           // SystemForm component
+useTranslations('context.vendors')           // VendorForm component
+
+// Context module list pages
+useTranslations('context.pages.systems')     // systems/page.tsx
+useTranslations('context.pages.vendors')     // vendors/page.tsx
+
+// Privacy module
+useTranslations('privacy.assessments')       // assessments/page.tsx
+
+// Navigation (custom hook with inline dictionaries)
+useTranslations('nav')                       // topbar/sidebar components
+t('modules.privacy')                         // module names
+t('pages.dpia-precheck')                     // page names
+```
+
+### Common Issues & Solutions
+
+**Issue 1: MISSING_MESSAGE errors in console**
+- Cause: Translation key doesn't exist in /messages/*.json
+- Solution: Add key to both /messages/en.json and /messages/sk.json
+- Example: v3.31.16 fixed `privacy.assessments` namespace
+
+**Issue 2: Navigation shows raw keys**
+- Cause: Translation key doesn't exist in inline dictionaries
+- Solution: Add key to src/hooks/useTranslations.ts inline dictionaries
+- Example: v3.31.12 fixed Integrations module keys
+
+**Issue 3: Only English displays on Slovak URLs**
+- Cause: Namespace exists but specific keys missing, OR layout.tsx not passing locale to getMessages()
+- Solution: Verify all t('...') calls have corresponding keys, check getMessages({ locale })
+- Example: v3.30.4 fixed getMessages() parameter
 
 ### Content Strategy
 - **UI**: Fully translated (Slovak/English)
 - **Legal Terms**: GDPR-compliant Slovak terminology
 - **Form Templates**: Multi-language field definitions
+- **Locale Detection**: URL-based (/[locale]/ routes), fallback to localStorage, cookies, browser language
+- **Default Locale**: English (en)
 
 ## Build & Deployment Architecture
 
