@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.17" as const
-export const VERSION_NAME = "Privacy Module Translation Fix - Complete" as const
+export const VERSION = "3.31.18" as const
+export const VERSION_NAME = "Remove Debug Console Logs" as const
 export const BUILD_DATE = "2026-01-21"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.18": {
+    date: "2026-01-21",
+    name: "Remove Debug Console Logs",
+    features: [],
+    fixes: [
+      "REMOVED: Debug console.log from ModuleLink in modern-topbar.tsx",
+      "REMOVED: Debug console.log from SidebarLink in modern-sidebar.tsx",
+      "Console logs were added in v3.31.3 to force Turbopack rebuilds",
+      "Now that translation issues are fixed, removed clutter from production console"
+    ],
+    note: "Cleanup: Removed debugging console.log statements that were added during v3.31.3 Integrations translation fix. These were only needed to force cache invalidation and now just clutter the browser console."
+  },
   "3.31.17": {
     date: "2026-01-21",
     name: "Privacy Module Translation Fix - Complete",
