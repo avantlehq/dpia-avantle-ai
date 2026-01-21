@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.13" as const
-export const VERSION_NAME = "Context Module List Pages - Complete Translation Fix (All 6 Modules)" as const
+export const VERSION = "3.31.14" as const
+export const VERSION_NAME = "ACTUAL FIX: Context Pages in messages/*.json (CORRECT FILES)" as const
 export const BUILD_DATE = "2026-01-21"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,29 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.14": {
+    date: "2026-01-21",
+    name: "ACTUAL FIX: Context Pages in messages/*.json (CORRECT FILES)",
+    features: [
+      "✅ FIXED: Added context.pages namespace to messages/en.json and messages/sk.json",
+      "✅ FIXED: All 6 Context list pages (systems, vendors, locations, dataCategories, dataFlows, processing)",
+      "Added 150+ translation keys to CORRECT dictionary files loaded by next-intl",
+      "Root cause: App uses /i18n/request.ts loading from /messages/*.json",
+      "v3.31.13 edited /src/i18n/dictionaries/*.json (WRONG FILES - never loaded)",
+      "Same mistake as v3.31.8 - edited src/ dictionaries instead of root messages/"
+    ],
+    fixes: [
+      "FIXED: 'MISSING_MESSAGE: context.pages.systems (en)' console error",
+      "FIXED: Raw translation keys displayed on all Context list pages",
+      "ROOT CAUSE: next.config.ts uses './i18n/request.ts' (root) not src/",
+      "ROOT request.ts loads from '../messages/${locale}.json' not src/i18n/",
+      "v3.31.13 added keys to src/i18n/dictionaries/en-v2.json (IGNORED by app)",
+      "Correct location: /messages/en.json and /messages/sk.json at project root",
+      "messages/en.json has context.locations, context.systems (forms) but NO context.pages",
+      "Added complete context.pages namespace with all 6 sub-modules to messages/*.json"
+    ],
+    note: "REPEAT OF v3.31.8 BUG: We edited wrong dictionary files AGAIN. App has TWO i18n systems: root /i18n/ (ACTIVE) and src/i18n/ (UNUSED). Must edit /messages/*.json NOT /src/i18n/dictionaries/*.json. This should be the FINAL fix."
+  },
   "3.31.13": {
     date: "2026-01-21",
     name: "Context Module List Pages - Complete Translation Fix (All 6 Modules)",
