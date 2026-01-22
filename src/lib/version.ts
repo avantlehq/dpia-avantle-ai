@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.32.3" as const
-export const VERSION_NAME = "Remove Platform Modules Overview" as const
+export const VERSION = "3.32.4" as const
+export const VERSION_NAME = "Delete Platform Modules Page" as const
 export const BUILD_DATE = "2026-01-22"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.32.4": {
+    date: "2026-01-22",
+    name: "Delete Platform Modules Page",
+    features: [],
+    fixes: [
+      "DELETED: /help/modules/page.tsx file completely removed",
+      "Route /en/help/modules now returns 404",
+      "No orphaned pages - clean codebase"
+    ],
+    note: "Completed cleanup from v3.32.3. Removed not just navigation item but the actual page file. Route no longer exists. Individual module help pages (/help/modules/context, etc.) still accessible."
+  },
   "3.32.3": {
     date: "2026-01-22",
     name: "Remove Platform Modules Overview",
