@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.32.0" as const
-export const VERSION_NAME = "Help Page UX Refactor: Executive-Friendly" as const
+export const VERSION = "3.32.1" as const
+export const VERSION_NAME = "Help Topbar: Utility Styling" as const
 export const BUILD_DATE = "2026-01-22"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,24 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.32.1": {
+    date: "2026-01-22",
+    name: "Help Topbar: Utility Styling",
+    features: [
+      "✅ SHORTENED: Help label from 'Help & Support' to 'Help' in topbar",
+      "✅ STYLED: Help tab now uses utility styling (muted text, subtle underline) instead of module pill",
+      "✅ REMOVED: Top-right help icon on desktop (redundant with topbar tab)",
+      "✅ KEPT: Top-right help icon on mobile (where topbar tabs may collapse)",
+      "Updated translations: EN 'Help', SK 'Pomoc'"
+    ],
+    fixes: [
+      "FIXED: Help appeared twice on desktop (topbar + utility icon)",
+      "FIXED: Help looked like core compliance module (Context/Privacy/Risk)",
+      "Help tab now: text-[var(--text-secondary)], border-b-2 on active instead of thick pill background",
+      "Help icon: Added md:hidden responsive class to show only on mobile"
+    ],
+    note: "Reduced visual weight of Help in topbar. Help remains accessible as first-class topbar entry but styled as utility (muted text, subtle underline). Removed redundant help icon on desktop using responsive classes. No changes to Help page content or sidebar structure."
+  },
   "3.32.0": {
     date: "2026-01-22",
     name: "Help Page UX Refactor: Executive-Friendly",

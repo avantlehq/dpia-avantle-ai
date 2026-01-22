@@ -45,21 +45,27 @@ interface ModuleLinkProps {
 const ModuleLink = memo(function ModuleLink({ module, isActive }: ModuleLinkProps) {
   const { t } = useTranslations('nav')
 
+  // Help gets utility styling (muted, subtle underline instead of pill)
+  const isHelp = module.id === 'help'
+
   return (
-    <Link 
+    <Link
       href={module.href}
       className={cn(
         "modern-nav-link px-1 py-3 text-sm font-medium transition-all duration-200",
         "focus:outline-none",
-        // Clear contrast between active and inactive  
+        // Clear contrast between active and inactive
         !isActive && "text-gray-400 hover:opacity-80"
         // Active color controlled by inline style for theme compatibility
       )}
       style={{
-        backgroundColor: isActive ? 'rgba(96, 165, 250, 0.15)' : 'transparent',
+        backgroundColor: isActive && !isHelp ? 'rgba(96, 165, 250, 0.15)' : 'transparent',
         padding: '8px 12px',
-        color: isActive ? 'var(--text-primary)' : '#9ca3af',
-        boxShadow: isActive ? 'inset 0 -2px 0 #60a5fa' : 'none',
+        color: isActive
+          ? (isHelp ? 'var(--text-secondary)' : 'var(--text-primary)')
+          : '#9ca3af',
+        boxShadow: isActive && !isHelp ? 'inset 0 -2px 0 #60a5fa' : 'none',
+        borderBottom: isActive && isHelp ? '2px solid var(--border-default)' : 'none',
         borderRadius: '4px'
       }}
       aria-current={isActive ? "page" : undefined}
@@ -165,13 +171,13 @@ export const ModernTopbar = memo(function ModernTopbar() {
         {/* Language Switcher */}
         <LanguageSwitcher />
 
-        {/* Help */}
-        <Link href={`/${locale}/help`}>
+        {/* Help - only visible on mobile (desktop has topbar Help tab) */}
+        <Link href={`/${locale}/help`} className="md:hidden">
           <Button
             variant="ghost"
             size="sm"
             className="h-9 w-9 p-0 border-none"
-            style={{ 
+            style={{
               backgroundColor: 'transparent',
               color: '#9ca3af',
               transition: 'all 0.2s ease'
@@ -186,7 +192,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
               const icon = e.currentTarget.querySelector('svg')
               if (icon) icon.style.color = '#9ca3af'
             }}
-            title="Help & Support"
+            title="Help"
           >
             <HelpCircle className="h-4 w-4" style={{ color: '#9ca3af', transition: 'color 0.2s ease' }} />
           </Button>

@@ -24,7 +24,7 @@ export function useTranslations(namespace?: string) {
             'trust-center': 'Trust Center',
             integrations: 'Integrations',
             'api-integrations': 'Integrations',
-            help: 'Help & Support'
+            help: 'Help'
           },
           pages: {
             overview: 'Overview',
@@ -200,7 +200,7 @@ export function useTranslations(namespace?: string) {
             'trust-center': 'Centrum dôvery',
             integrations: 'Integrácie',
             'api-integrations': 'Integrácie',
-            help: 'Pomoc a podpora'
+            help: 'Pomoc'
           },
           pages: {
             overview: 'Prehľad',
