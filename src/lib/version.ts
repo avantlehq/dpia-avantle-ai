@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.32.2" as const
-export const VERSION_NAME = "Fix: Help Icon Desktop Visibility" as const
+export const VERSION = "3.32.3" as const
+export const VERSION_NAME = "Remove Platform Modules Overview" as const
 export const BUILD_DATE = "2026-01-22"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.32.3": {
+    date: "2026-01-22",
+    name: "Remove Platform Modules Overview",
+    features: [],
+    fixes: [
+      "REMOVED: 'Platform Modules' overview page from Help sidebar",
+      "REMOVED: /help/modules route navigation item",
+      "Cleaned up translation keys: removed 'modules-overview' from EN and SK",
+      "Help sidebar now shows individual module help pages directly (Context, Privacy, Risk, etc.)"
+    ],
+    note: "Removed redundant Platform Modules overview page. Sidebar already lists all module help pages, so the overview was an unnecessary extra click. Users now navigate directly to the module help they need. The /help/modules page still exists (Coming Soon content) but is no longer in navigation."
+  },
   "3.32.2": {
     date: "2026-01-22",
     name: "Fix: Help Icon Desktop Visibility",

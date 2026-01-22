@@ -319,13 +319,6 @@ export const privacyModulesConfig: ModuleConfig[] = [
         disabled: true
       },
       {
-        id: 'modules-overview',
-        name: 'Platform Modules',
-        href: getLocaleHref('/help/modules'),
-        icon: Database,
-        description: 'Module guides overview'
-      },
-      {
         id: 'context-module',
         name: 'Context Module',
         href: getLocaleHref('/help/modules/context'),
