@@ -121,7 +121,48 @@ export function useTranslations(namespace?: string) {
           statusDescription: 'Check platform availability and performance',
           comingSoon: 'Coming Soon',
           tempMessage: 'Help Center Under Development',
-          tempDescription: 'We are building comprehensive help resources for privacy professionals. Check back soon for guides, tutorials, and support documentation.'
+          tempDescription: 'We are building comprehensive help resources for privacy professionals. Check back soon for guides, tutorials, and support documentation.',
+          backToDashboard: 'Back to Dashboard',
+          contactSupport: 'Contact Support',
+          sectionBeingPrepared: 'This section is being prepared',
+          helpSystemOverview: 'Help System Overview',
+          guidesAvailable: 'Guides Available',
+          articles: 'Articles',
+          languages: 'Languages',
+          available: 'Available',
+          inPreparation: 'In Preparation',
+          browseGuides: 'Browse Guides',
+          sections: {
+            gettingStarted: 'Getting Started',
+            documentation: 'Product Documentation',
+            support: 'Support & Troubleshooting'
+          },
+          categories: {
+            gettingStarted: {
+              title: 'Getting Started',
+              description: 'Learn the basics of the Avantle Privacy Platform'
+            },
+            compliance: {
+              title: 'GDPR Compliance',
+              description: 'Understanding GDPR requirements and how to meet them'
+            },
+            modules: {
+              title: 'Platform Modules',
+              description: 'Detailed guides for each module in the platform'
+            },
+            glossary: {
+              title: 'Privacy Glossary',
+              description: 'Key terms and definitions in privacy and data protection'
+            },
+            troubleshooting: {
+              title: 'Troubleshooting',
+              description: 'Common issues and how to resolve them'
+            },
+            api: {
+              title: 'API Documentation',
+              description: 'Integration guides and API reference'
+            }
+          }
         }
       },
       sk: {
@@ -304,7 +345,48 @@ export function useTranslations(namespace?: string) {
           statusDescription: 'Skontrolujte dostupnosť a výkonnosť platformy',
           comingSoon: 'Pripravuje sa',
           tempMessage: 'Help centrum sa vyvíja',
-          tempDescription: 'Budujeme komplexné zdroje pomoci pre odborníkov na ochranu súkromia. Čoskoro sa vráťte pre návody, tutoriály a dokumentáciu podpory.'
+          tempDescription: 'Budujeme komplexné zdroje pomoci pre odborníkov na ochranu súkromia. Čoskoro sa vráťte pre návody, tutoriály a dokumentáciu podpory.',
+          backToDashboard: 'Späť na dashboard',
+          contactSupport: 'Kontaktovať podporu',
+          sectionBeingPrepared: 'Táto sekcia sa pripravuje',
+          helpSystemOverview: 'Prehľad systému pomoci',
+          guidesAvailable: 'Dostupné návody',
+          articles: 'Články',
+          languages: 'Jazyky',
+          available: 'Dostupné',
+          inPreparation: 'Pripravuje sa',
+          browseGuides: 'Prehľadať návody',
+          sections: {
+            gettingStarted: 'Začíname',
+            documentation: 'Produktová dokumentácia',
+            support: 'Podpora a riešenie problémov'
+          },
+          categories: {
+            gettingStarted: {
+              title: 'Začíname',
+              description: 'Naučte sa základy Avantle Privacy Platform'
+            },
+            compliance: {
+              title: 'GDPR zhoda',
+              description: 'Pochopenie GDPR požiadaviek a ako ich splniť'
+            },
+            modules: {
+              title: 'Moduly platformy',
+              description: 'Podrobné návody pre každý modul v platforme'
+            },
+            glossary: {
+              title: 'Slovník ochrany údajov',
+              description: 'Kľúčové pojmy a definície v ochrane súkromia a údajov'
+            },
+            troubleshooting: {
+              title: 'Riešenie problémov',
+              description: 'Bežné problémy a ako ich vyriešiť'
+            },
+            api: {
+              title: 'API dokumentácia',
+              description: 'Návody na integráciu a API referencia'
+            }
+          }
         },
         context: {
           title: 'Prehľad kontextu',

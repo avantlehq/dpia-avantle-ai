@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.19" as const
-export const VERSION_NAME = "Privacy Overview & Debug Console Cleanup" as const
+export const VERSION = "3.31.20" as const
+export const VERSION_NAME = "Help Page Translations Complete" as const
 export const BUILD_DATE = "2026-01-22"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,27 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.20": {
+    date: "2026-01-22",
+    name: "Help Page Translations Complete",
+    features: [
+      "✅ ADDED: Complete help namespace translations to inline dictionary",
+      "Added 20+ translation keys for help page UI elements",
+      "Bilingual support for all help sections (Getting Started, Documentation, Support)",
+      "Category cards with proper status badges (Available / In Preparation)",
+      "Help system overview metrics fully translated"
+    ],
+    fixes: [
+      "FIXED: Help page displaying raw translation keys (inPreparation, categories.gettingStarted.description, etc.)",
+      "Added backToDashboard, contactSupport, sectionBeingPrepared keys",
+      "Added guidesAvailable, articles, languages metrics keys",
+      "Added sections.gettingStarted, sections.documentation, sections.support",
+      "Added complete categories structure with title/description for all 6 categories",
+      "Added available, inPreparation, browseGuides keys for CategoryCard component",
+      "Both English and Slovak translations in custom useTranslations hook"
+    ],
+    note: "Help page used custom useTranslations hook with inline dictionaries (not next-intl). User reported raw keys displayed on /en/help. Added complete help namespace structure with all required keys for page layout, metrics, sections, and category cards. Categories: Getting Started, GDPR Compliance, Platform Modules, Privacy Glossary, Troubleshooting, API Documentation."
+  },
   "3.31.19": {
     date: "2026-01-22",
     name: "Privacy Overview & Debug Console Cleanup",
