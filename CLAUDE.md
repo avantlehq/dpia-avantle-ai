@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.31.18 - i18n Architecture Consolidated**
+**Current Version: 3.32.4 - Help Module Complete**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -316,53 +316,139 @@ git add . && git commit -m "message" && git push origin main
 
 ## Recent Changes (Last Session)
 
-### **v3.31.18 - 2026-01-21**
-**🧹 DEBUG CONSOLE CLEANUP**
+### **v3.32.4 - 2026-01-22**
+**🗑️ DELETE PLATFORM MODULES PAGE**
 
 **CLEANUP**:
-- Removed debug console.log from ModuleLink in modern-topbar.tsx
-- Removed debug console.log from SidebarLink in modern-sidebar.tsx
-- Console logs were added in v3.31.3 to force Turbopack rebuilds during translation debugging
-- Now that all translation issues are fixed, removed clutter from production console
+- Deleted `/help/modules/page.tsx` completely
+- Route `/en/help/modules` now returns 404
+- No orphaned pages remaining
+- Completed cleanup from v3.32.3
 
 **Files Modified:**
-- `src/components/layout/modern-topbar.tsx` - Removed console.log line 49
-- `src/components/layout/modern-sidebar.tsx` - Removed console.log line 29
-- `src/lib/version.ts` - Version 3.31.18
-- `package.json` - Version 3.31.18
+- `src/app/[locale]/help/modules/page.tsx` - DELETED (334 lines removed)
+- `src/lib/version.ts` - Version 3.32.4
+- `package.json` - Version 3.32.4
 
-**Git Commit:** `e9482c9`
+**Git Commit:** `69eed2d`
 
 ---
 
-### **v3.31.17 - 2026-01-21**
-**✅ PRIVACY MODULE TRANSLATION FIX - COMPLETE**
+### **v3.32.3 - 2026-01-22**
+**🔄 REMOVE PLATFORM MODULES OVERVIEW**
 
-**PROBLEM**: Missing footer translation keys in Privacy assessments table
-- Console error: `MISSING_MESSAGE: privacy.assessments.showingAssessments (en)`
-- Console error: `MISSING_MESSAGE: privacy.assessments.addNew (en)`
+**REFACTOR**:
+- Removed "Platform Modules" from Help sidebar navigation
+- Deleted `modules-overview` nav item from modules.ts
+- Cleaned up translation keys (EN + SK)
+- Individual module help pages remain directly accessible
+
+**Rationale**: Platform Modules overview was redundant - sidebar already lists all module help pages
+
+**Files Modified:**
+- `src/lib/state/modules.ts` - Removed modules-overview item
+- `src/hooks/useTranslations.ts` - Removed EN/SK translation keys
+- `src/lib/version.ts` - Version 3.32.3
+- `package.json` - Version 3.32.3
+
+**Git Commit:** `c74ab87`
+
+---
+
+### **v3.32.2 - 2026-01-22**
+**🐛 FIX: HELP ICON DESKTOP VISIBILITY**
+
+**PROBLEM**: Help icon still visible on desktop despite md:hidden class
+
+**ROOT CAUSE**: Tailwind md:hidden had CSS specificity conflicts
 
 **FIXED**:
-- Added `showingAssessments: "Showing {count} assessment(s)"` with dynamic count parameter
-- Added `addNew: "Add New"` for table footer button
-- Both English and Slovak translations
+- Changed from Tailwind class to conditional rendering with `showAsDrawer` state
+- Uses existing SidebarContext for reliable desktop/mobile detection
+- Help icon now properly hidden on desktop, visible only on mobile
 
 **Files Modified:**
-- `messages/en.json` - Added 2 keys
-- `messages/sk.json` - Added 2 keys
-- `src/lib/version.ts` - Version 3.31.17
-- `package.json` - Version 3.31.17
+- `src/components/layout/modern-topbar.tsx` - Conditional rendering
+- `src/lib/version.ts` - Version 3.32.2
+- `package.json` - Version 3.32.2
 
-**Git Commit:** `bb4a233`
+**Git Commit:** `12ae6fe`
 
 ---
 
-### **v3.31.16 - 2026-01-21**
-**✅ PRIVACY MODULE TRANSLATION FIX - INITIAL**
+### **v3.32.1 - 2026-01-22**
+**⚙️ HELP TOPBAR: UTILITY STYLING**
 
-**PROBLEM**: Privacy module displaying raw translation keys
-- Console error: `MISSING_MESSAGE: privacy.assessments (en)`
-- Raw translation keys displayed on /assessments page
+**REFACTOR**:
+- Shortened label: "Help & Support" → "Help" (EN), "Pomoc a podpora" → "Pomoc" (SK)
+- Reduced visual weight: Help tab uses muted `text-secondary` color
+- Subtle active state: `border-b-2` instead of thick pill background
+- Removed redundancy: Top-right help icon hidden on desktop (md:hidden)
+- Mobile: Help icon still visible when tabs collapse
+
+**Goal**: Help styled as utility, not core compliance module
+
+**Files Modified:**
+- `src/hooks/useTranslations.ts` - Shortened labels
+- `src/components/layout/modern-topbar.tsx` - Conditional styling + icon hiding
+- `src/lib/version.ts` - Version 3.32.1
+- `package.json` - Version 3.32.1
+
+**Git Commit:** `786a152`
+
+---
+
+### **v3.32.0 - 2026-01-22**
+**🎨 HELP PAGE UX REFACTOR: EXECUTIVE-FRIENDLY**
+
+**MAJOR REFACTOR**:
+- Created **HelpActionBar** with search + Getting Started + Contact Support buttons
+- Created **HelpStats** component - replaced debug text with stat chips (Guides: 1, Articles: 12, Languages: 2)
+- Created **HelpSectionCard** - card-based layout with icons, status pills, CTAs
+- Created **StatusPill** - subtle Available/Coming soon variants
+- Added **client-side search** filtering by title/description
+- Added **empty state** for zero search results
+- Responsive layout: 2-column desktop, 1-column mobile
+- Reduced vertical whitespace for better above-the-fold content
+
+**Components Created:**
+- `src/components/help/HelpActionBar.tsx`
+- `src/components/help/HelpStats.tsx`
+- `src/components/help/HelpSectionCard.tsx`
+- `src/components/help/StatusPill.tsx`
+
+**Files Modified:**
+- `src/app/[locale]/help/page.tsx` - Complete refactor
+- `src/hooks/useTranslations.ts` - Added 6 translation keys (EN + SK)
+- `src/lib/version.ts` - Version 3.32.0
+- `package.json` - Version 3.32.0
+
+**Git Commit:** `e915128`
+
+---
+
+### **v3.31.21 - 2026-01-22**
+**📚 HELP MODULE SIDEBAR NAVIGATION**
+
+**IMPLEMENTATION**:
+- Added Help module to `privacyModulesConfig` with 13 navigation items
+- Created 11 placeholder help pages with HelpPlaceholder component
+- Added 26 translation keys (13 EN + 13 SK)
+- Help now shows module-specific sidebar instead of Privacy module items
+- All placeholder pages show "Coming Soon" cards with Q2 2026 timeline
+
+**Navigation Items:**
+- Help Overview, Getting Started, GDPR Compliance, Platform Modules, Context Module, Privacy Module, Risk Module, Controls Module, Integrations Module, Trust Center, Privacy Glossary, Troubleshooting, API Documentation
+
+**Files Modified:**
+- `src/lib/state/modules.ts` - Added Help module
+- `src/hooks/useTranslations.ts` - Added translation keys
+- `src/components/help/HelpPlaceholder.tsx` - NEW component
+- 11 placeholder pages created in `/help/*`
+- `src/lib/version.ts` - Version 3.31.21
+- `package.json` - Version 3.31.21
+
+**Git Commit:** `a56b1bc`
 
 **ROOT CAUSE**:
 - `privacy.assessments` namespace missing from `/messages/*.json`
