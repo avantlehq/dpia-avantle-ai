@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.20" as const
-export const VERSION_NAME = "Help Page Translations Complete" as const
+export const VERSION = "3.31.21" as const
+export const VERSION_NAME = "Help Module Sidebar Navigation" as const
 export const BUILD_DATE = "2026-01-22"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,28 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.21": {
+    date: "2026-01-22",
+    name: "Help Module Sidebar Navigation",
+    features: [
+      "✅ ADDED: Help module to platform navigation with 13 sidebar items",
+      "Created Help module configuration in modules.ts with HelpCircle icon",
+      "Added 13 navigation items: Help Overview, Getting Started, GDPR Compliance, Platform Modules, Context Module, Privacy Module, Risk Module, Controls Module, Integrations Module, Trust Center, Privacy Glossary, Troubleshooting, API Documentation",
+      "Added 26 translation keys to custom useTranslations hook (13 EN + 13 SK)",
+      "Created HelpPlaceholder component for consistent Coming Soon pages",
+      "Created 11 placeholder help pages with /help routes",
+      "All help pages show 'Coming Soon' cards with Q2 2026 timeline",
+      "Bilingual support for all help navigation items",
+      "Disabled state with tooltips for pages under development"
+    ],
+    fixes: [
+      "FIXED: Help page now shows Help-specific sidebar instead of Privacy module items",
+      "FIXED: Sidebar navigation now module-aware for /help routes",
+      "Added missing nav.modules.help and nav.pages.* translation keys",
+      "All help routes properly generated in Next.js build manifest"
+    ],
+    note: "Implementation of Help module sidebar navigation. Clicking Help in topbar now displays Help-specific navigation items in sidebar instead of irrelevant Privacy module items. Infrastructure already supported module-specific navigation - only needed to add Help module configuration and translation keys. All 11 placeholder pages created with consistent HelpPlaceholder component ready for future content."
+  },
   "3.31.20": {
     date: "2026-01-22",
     name: "Help Page Translations Complete",

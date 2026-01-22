@@ -23,7 +23,8 @@ export function useTranslations(namespace?: string) {
             trust: 'Trust Center',
             'trust-center': 'Trust Center',
             integrations: 'Integrations',
-            'api-integrations': 'Integrations'
+            'api-integrations': 'Integrations',
+            help: 'Help & Support'
           },
           pages: {
             overview: 'Overview',
@@ -54,7 +55,20 @@ export function useTranslations(namespace?: string) {
             governance: 'Governance Overview',
             'audit-packages': 'Audit Packages',
             'integrations-overview': 'Integrations',
-            'api-integrations-overview': 'Integrations'
+            'api-integrations-overview': 'Integrations',
+            'help-overview': 'Help Overview',
+            'getting-started': 'Getting Started',
+            'compliance': 'GDPR Compliance',
+            'modules-overview': 'Platform Modules',
+            'context-module': 'Context Module',
+            'privacy-module': 'Privacy Module',
+            'risk-module': 'Risk Module',
+            'controls-module': 'Controls Module',
+            'integrations-module': 'Integrations Module',
+            'trust-center-module': 'Trust Center',
+            'glossary': 'Privacy Glossary',
+            'troubleshooting': 'Troubleshooting',
+            'api': 'API Documentation'
           }
         },
         common: {
@@ -179,7 +193,8 @@ export function useTranslations(namespace?: string) {
             trust: 'Centrum dôvery',
             'trust-center': 'Centrum dôvery',
             integrations: 'Integrácie',
-            'api-integrations': 'Integrácie'
+            'api-integrations': 'Integrácie',
+            help: 'Pomoc a podpora'
           },
           pages: {
             overview: 'Prehľad',
@@ -211,7 +226,20 @@ export function useTranslations(namespace?: string) {
             tia: 'TIA',
             policies: 'Zásady',
             'integrations-overview': 'Integrácie',
-            'api-integrations-overview': 'Integrácie'
+            'api-integrations-overview': 'Integrácie',
+            'help-overview': 'Prehľad pomoci',
+            'getting-started': 'Začíname',
+            'compliance': 'GDPR zhoda',
+            'modules-overview': 'Moduly platformy',
+            'context-module': 'Modul Context',
+            'privacy-module': 'Modul Ochrana údajov',
+            'risk-module': 'Modul Riziko',
+            'controls-module': 'Modul Kontroly',
+            'integrations-module': 'Modul Integrácie',
+            'trust-center-module': 'Centrum dôvery',
+            'glossary': 'Slovník ochrany údajov',
+            'troubleshooting': 'Riešenie problémov',
+            'api': 'API dokumentácia'
           }
         },
         common: {

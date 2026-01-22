@@ -20,6 +20,9 @@ import {
   Scale,
   Plane,
   BookOpen,
+  HelpCircle,
+  Play,
+  Code2,
   type LucideIcon
 } from 'lucide-react'
 import { detectClientLocale } from '@/i18n/client-utils'
@@ -266,19 +269,133 @@ export const privacyModulesConfig: ModuleConfig[] = [
     description: 'Audit packages and compliance reporting',
     licenseRequired: 'trust-center',
     items: [
-      { 
+      {
         id: 'governance',
-        name: 'Governance Overview', 
-        href: getLocaleHref('/trust-center/governance'), 
+        name: 'Governance Overview',
+        href: getLocaleHref('/trust-center/governance'),
         icon: LayoutDashboard,
         description: 'Cross-module compliance status'
       },
-      { 
+      {
         id: 'audit-packages',
-        name: 'Audit Packages', 
-        href: getLocaleHref('/trust-center/audit-packages'), 
+        name: 'Audit Packages',
+        href: getLocaleHref('/trust-center/audit-packages'),
         icon: FileText,
         description: 'Compliance audit bundles'
+      }
+    ]
+  },
+
+  // 7. HELP - Documentation & support
+  {
+    id: 'help',
+    name: 'Help & Support',
+    href: getLocaleHref('/help'),
+    icon: HelpCircle,
+    color: 'var(--color-gray)',
+    description: 'Documentation and support resources',
+    items: [
+      {
+        id: 'help-overview',
+        name: 'Help Overview',
+        href: getLocaleHref('/help'),
+        icon: LayoutDashboard,
+        description: 'Help center home'
+      },
+      {
+        id: 'getting-started',
+        name: 'Getting Started',
+        href: getLocaleHref('/help/getting-started'),
+        icon: Play,
+        description: 'Platform basics',
+        disabled: true
+      },
+      {
+        id: 'compliance',
+        name: 'GDPR Compliance',
+        href: getLocaleHref('/help/compliance'),
+        icon: Shield,
+        description: 'GDPR requirements guide',
+        disabled: true
+      },
+      {
+        id: 'modules-overview',
+        name: 'Platform Modules',
+        href: getLocaleHref('/help/modules'),
+        icon: Database,
+        description: 'Module guides overview'
+      },
+      {
+        id: 'context-module',
+        name: 'Context Module',
+        href: getLocaleHref('/help/modules/context'),
+        icon: Database,
+        description: 'Context module help',
+        disabled: true
+      },
+      {
+        id: 'privacy-module',
+        name: 'Privacy Module',
+        href: getLocaleHref('/help/modules/privacy'),
+        icon: Shield,
+        description: 'Privacy module help',
+        disabled: true
+      },
+      {
+        id: 'risk-module',
+        name: 'Risk Module',
+        href: getLocaleHref('/help/modules/risk'),
+        icon: AlertTriangle,
+        description: 'Risk module help',
+        disabled: true
+      },
+      {
+        id: 'controls-module',
+        name: 'Controls Module',
+        href: getLocaleHref('/help/modules/controls'),
+        icon: Lock,
+        description: 'Controls module help',
+        disabled: true
+      },
+      {
+        id: 'integrations-module',
+        name: 'Integrations Module',
+        href: getLocaleHref('/help/modules/integrations'),
+        icon: Plug,
+        description: 'Integrations module help',
+        disabled: true
+      },
+      {
+        id: 'trust-center-module',
+        name: 'Trust Center',
+        href: getLocaleHref('/help/modules/trust-center'),
+        icon: CheckCircle,
+        description: 'Trust Center help',
+        disabled: true
+      },
+      {
+        id: 'glossary',
+        name: 'Privacy Glossary',
+        href: getLocaleHref('/help/glossary'),
+        icon: BookOpen,
+        description: 'Key terms and definitions',
+        disabled: true
+      },
+      {
+        id: 'troubleshooting',
+        name: 'Troubleshooting',
+        href: getLocaleHref('/help/troubleshooting'),
+        icon: AlertTriangle,
+        description: 'Common issues',
+        disabled: true
+      },
+      {
+        id: 'api',
+        name: 'API Documentation',
+        href: getLocaleHref('/help/api'),
+        icon: Code2,
+        description: 'Integration guides',
+        disabled: true
       }
     ]
   }
