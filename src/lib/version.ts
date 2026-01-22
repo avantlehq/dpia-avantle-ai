@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.32.1" as const
-export const VERSION_NAME = "Help Topbar: Utility Styling" as const
+export const VERSION = "3.32.2" as const
+export const VERSION_NAME = "Fix: Help Icon Desktop Visibility" as const
 export const BUILD_DATE = "2026-01-22"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.32.2": {
+    date: "2026-01-22",
+    name: "Fix: Help Icon Desktop Visibility",
+    features: [],
+    fixes: [
+      "FIXED: Help icon still visible on desktop despite md:hidden class",
+      "Changed from Tailwind md:hidden to conditional rendering with showAsDrawer state",
+      "Help icon now properly hidden on desktop, visible only on mobile/tablet",
+      "Uses existing SidebarContext state for consistent responsive behavior"
+    ],
+    note: "Hotfix for v3.32.1. Tailwind md:hidden class didn't work as expected. Replaced with conditional rendering using showAsDrawer from SidebarContext for reliable desktop/mobile detection."
+  },
   "3.32.1": {
     date: "2026-01-22",
     name: "Help Topbar: Utility Styling",

@@ -172,31 +172,33 @@ export const ModernTopbar = memo(function ModernTopbar() {
         <LanguageSwitcher />
 
         {/* Help - only visible on mobile (desktop has topbar Help tab) */}
-        <Link href={`/${locale}/help`} className="md:hidden">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="h-9 w-9 p-0 border-none"
-            style={{
-              backgroundColor: 'transparent',
-              color: '#9ca3af',
-              transition: 'all 0.2s ease'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)'
-              const icon = e.currentTarget.querySelector('svg')
-              if (icon) icon.style.color = '#60a5fa'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent'
-              const icon = e.currentTarget.querySelector('svg')
-              if (icon) icon.style.color = '#9ca3af'
-            }}
-            title="Help"
-          >
-            <HelpCircle className="h-4 w-4" style={{ color: '#9ca3af', transition: 'color 0.2s ease' }} />
-          </Button>
-        </Link>
+        {showAsDrawer && (
+          <Link href={`/${locale}/help`}>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="h-9 w-9 p-0 border-none"
+              style={{
+                backgroundColor: 'transparent',
+                color: '#9ca3af',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(96, 165, 250, 0.1)'
+                const icon = e.currentTarget.querySelector('svg')
+                if (icon) icon.style.color = '#60a5fa'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent'
+                const icon = e.currentTarget.querySelector('svg')
+                if (icon) icon.style.color = '#9ca3af'
+              }}
+              title="Help"
+            >
+              <HelpCircle className="h-4 w-4" style={{ color: '#9ca3af', transition: 'color 0.2s ease' }} />
+            </Button>
+          </Link>
+        )}
 
         {/* User Menu */}
         <DropdownMenu>
