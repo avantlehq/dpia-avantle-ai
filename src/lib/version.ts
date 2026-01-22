@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.21" as const
-export const VERSION_NAME = "Help Module Sidebar Navigation" as const
+export const VERSION = "3.32.0" as const
+export const VERSION_NAME = "Help Page UX Refactor: Executive-Friendly" as const
 export const BUILD_DATE = "2026-01-22"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,30 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.32.0": {
+    date: "2026-01-22",
+    name: "Help Page UX Refactor: Executive-Friendly",
+    features: [
+      "✅ REFACTORED: Help page main content for better scannability",
+      "Created HelpActionBar component with search, Getting Started, and Contact Support actions",
+      "Created HelpStats component - replaced debug text with compact stat chips (Guides: 1, Articles: 12, Languages: 2)",
+      "Created HelpSectionCard component - cards with icon, title, description, status pill, CTA button",
+      "Created StatusPill component - subtle Available (green dot) and Coming soon (gray) variants",
+      "Added client-side search filtering - filters cards by title/description",
+      "Added empty state when search yields no results",
+      "Responsive layout: desktop (action bar row + 2-column grid), mobile (wrapping + 1-column)",
+      "Reduced vertical whitespace - more content above the fold",
+      "Back to Dashboard moved to action bar (left side)",
+      "Added 6 translation keys (EN + SK): searchPlaceholder, gettingStartedButton, guides, comingSoonButton, noResults, tryAnother"
+    ],
+    fixes: [
+      "FIXED: Help System Overview no longer looks like debug text - now scannable stat chips",
+      "FIXED: Weak visual hierarchy - sections now clearly separated as cards",
+      "FIXED: Status labels too prominent - now subtle pills with low visual weight",
+      "FIXED: Poor scannability - cards use consistent icon-left + content + status-right pattern"
+    ],
+    note: "Major UX refactor of Help page main content. Implemented executive-friendly design with strong hierarchy, scannable stats, card-based sections, and client-side search. No changes to sidebar navigation. All components use existing design tokens and are fully bilingual."
+  },
   "3.31.21": {
     date: "2026-01-22",
     name: "Help Module Sidebar Navigation",

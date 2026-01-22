@@ -1,11 +1,8 @@
 'use client'
 
-import React from 'react'
-import Link from 'next/link'
-import { 
-  HelpCircle, 
-  Mail,
-  ArrowLeft,
+import React, { useState, useMemo } from 'react'
+import {
+  HelpCircle,
   BookOpen,
   Shield,
   Database,
@@ -13,17 +10,19 @@ import {
   Code2,
   Play
 } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { useTranslations } from '@/hooks/useTranslations'
 import { useClientLocale } from '@/hooks/useClientLocale'
-import { CategoryCard } from '@/components/help/CategoryCard'
+import { HelpActionBar } from '@/components/help/HelpActionBar'
+import { HelpStats } from '@/components/help/HelpStats'
+import { HelpSectionCard } from '@/components/help/HelpSectionCard'
 
 export default function HelpPage() {
   const { t } = useTranslations('help')
   const { locale } = useClientLocale()
-  
-  // Category definitions organized by sections
-  const gettingStartedCategories = [
+  const [searchQuery, setSearchQuery] = useState('')
+
+  // All help sections
+  const allSections = useMemo(() => [
     {
       id: 'gettingStarted',
       icon: <Play className="h-6 w-6 text-blue-500" />,
@@ -31,10 +30,7 @@ export default function HelpPage() {
       description: t('categories.gettingStarted.description'),
       url: '/help/getting-started',
       available: false
-    }
-  ]
-
-  const documentationCategories = [
+    },
     {
       id: 'compliance',
       icon: <Shield className="h-6 w-6 text-green-500" />,
@@ -58,10 +54,7 @@ export default function HelpPage() {
       description: t('categories.glossary.description'),
       url: '/help/glossary',
       available: false
-    }
-  ]
-
-  const supportCategories = [
+    },
     {
       id: 'troubleshooting',
       icon: <AlertTriangle className="h-6 w-6 text-orange-500" />,
@@ -78,135 +71,96 @@ export default function HelpPage() {
       url: '/help/api',
       available: false
     }
-  ]
+  ], [t])
 
-  // Calculate metrics
-  const _totalCategories = gettingStartedCategories.length + documentationCategories.length + supportCategories.length
-  const availableGuides = [...gettingStartedCategories, ...documentationCategories, ...supportCategories]
-    .filter(cat => cat.available).length
+  // Filter sections based on search query
+  const filteredSections = useMemo(() => {
+    if (!searchQuery.trim()) return allSections
+
+    const query = searchQuery.toLowerCase()
+    return allSections.filter(section =>
+      section.title.toLowerCase().includes(query) ||
+      section.description.toLowerCase().includes(query)
+    )
+  }, [allSections, searchQuery])
+
+  // Calculate stats
+  const stats = useMemo(() => [
+    {
+      label: t('guides'),
+      value: allSections.filter(s => s.available).length
+    },
+    {
+      label: t('articles'),
+      value: 12
+    },
+    {
+      label: t('languages'),
+      value: 2
+    }
+  ], [allSections, t])
 
   return (
-    <div className="space-y-8">
-      {/* Header with Primary Action */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div className="space-y-1">
-          <h1 className="text-3xl font-bold text-foreground flex items-center gap-3">
-            <HelpCircle className="h-8 w-8 text-blue-500" />
-            {t('title')}
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            {t('description')}
-          </p>
-        </div>
-        
-        <div className="flex items-center gap-3">
-          <Link href={`/${locale}/dashboard`}>
-            <Button variant="ghost" size="sm" className="gap-2">
-              <ArrowLeft className="h-4 w-4" />
-              {t('backToDashboard')}
-            </Button>
-          </Link>
-          
-          <Button 
-            disabled 
-            variant="primary" 
-            size="md"
-            className="gap-2 opacity-60 cursor-not-allowed"
-            title={t('sectionBeingPrepared')}
-          >
-            <Mail className="h-4 w-4" />
-            {t('contactSupport')}
-          </Button>
-        </div>
+    <div className="space-y-6">
+      {/* Page Header */}
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold text-[var(--text-primary)] flex items-center gap-3">
+          <HelpCircle className="h-8 w-8 text-blue-500" />
+          {t('title')}
+        </h1>
+        <p className="text-base text-[var(--text-secondary)] max-w-2xl">
+          {t('description')}
+        </p>
       </div>
 
-      {/* Compact Help System Overview */}
+      {/* Action Bar */}
+      <HelpActionBar
+        locale={locale}
+        searchValue={searchQuery}
+        onSearchChange={setSearchQuery}
+        labels={{
+          backToDashboard: t('backToDashboard'),
+          searchPlaceholder: t('searchPlaceholder'),
+          gettingStarted: t('gettingStartedButton'),
+          contactSupport: t('contactSupport'),
+          sectionBeingPrepared: t('sectionBeingPrepared')
+        }}
+      />
+
+      {/* Stats */}
+      <HelpStats stats={stats} />
+
+      {/* Sections List */}
       <div className="space-y-4">
-        <h2 className="text-lg font-medium text-foreground">
-          {t('helpSystemOverview')}
-        </h2>
-        
-        <div className="flex flex-wrap gap-4">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
-            <span className="text-sm font-medium text-muted-foreground">
-              {t('guidesAvailable')}:
-            </span>
-            <span className="text-base font-semibold text-foreground">
-              {availableGuides}
-            </span>
+        {filteredSections.length > 0 ? (
+          <div className="grid gap-4 lg:grid-cols-2">
+            {filteredSections.map((section) => (
+              <HelpSectionCard
+                key={section.id}
+                icon={section.icon}
+                title={section.title}
+                description={section.description}
+                available={section.available}
+                url={section.url}
+                locale={locale}
+                availableLabel={t('available')}
+                soonLabel={t('inPreparation')}
+                browseLabel={t('browseGuides')}
+                comingSoonLabel={t('comingSoonButton')}
+              />
+            ))}
           </div>
-          
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
-            <span className="text-sm font-medium text-muted-foreground">
-              {t('articles')}:
-            </span>
-            <span className="text-base font-semibold text-foreground">
-              12
-            </span>
+        ) : (
+          <div className="text-center py-12 px-4 bg-[var(--surface-1)] border border-[var(--border-default)] rounded-lg">
+            <p className="text-lg font-medium text-[var(--text-primary)] mb-2">
+              {t('noResults')}
+            </p>
+            <p className="text-sm text-[var(--text-secondary)]">
+              {t('tryAnother')}
+            </p>
           </div>
-          
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted/50 rounded-lg">
-            <span className="text-sm font-medium text-muted-foreground">
-              {t('languages')}:
-            </span>
-            <span className="text-base font-semibold text-foreground">
-              2
-            </span>
-          </div>
-        </div>
+        )}
       </div>
-
-      {/* Getting Started Section */}
-      <div className="space-y-6">
-        <h2 className="text-xl font-semibold text-foreground">
-          {t('sections.gettingStarted')}
-        </h2>
-        
-        <div className="grid gap-6 md:grid-cols-2">
-          {gettingStartedCategories.map((category) => (
-            <CategoryCard
-              key={category.id}
-              {...category}
-              locale={locale}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Product Documentation Section */}
-      <div className="space-y-6">
-        <h2 className="text-xl font-semibold text-foreground">
-          {t('sections.documentation')}
-        </h2>
-        
-        <div className="grid gap-6 md:grid-cols-2">
-          {documentationCategories.map((category) => (
-            <CategoryCard
-              key={category.id}
-              {...category}
-              locale={locale}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Support & Troubleshooting Section */}
-      <div className="space-y-6">
-        <h2 className="text-xl font-semibold text-foreground">
-          {t('sections.support')}
-        </h2>
-        
-        <div className="grid gap-6 md:grid-cols-2">
-          {supportCategories.map((category) => (
-            <CategoryCard
-              key={category.id}
-              {...category}
-              locale={locale}
-            />
-          ))}
-        </div>
-      </div>
-
     </div>
   )
 }
