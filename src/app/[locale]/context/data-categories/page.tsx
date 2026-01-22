@@ -128,17 +128,13 @@ export default function DataCategoriesPage() {
   }
 
   const handleDeleteSuccess = async () => {
-    console.log('[DataCategoriesPage] Delete successful, refreshing list...')
     await fetchDataCategories() // Refresh the list
-    console.log('[DataCategoriesPage] List refreshed')
   }
 
   const handleCloseDeleteDialog = () => {
     setDeleteCategory(null)
   }
 
-  // v3.30.1 - Force rebuild: Bilingual translations active
-  console.log("[Page] Locale:", locale, "Namespace: context.pages")
   return (
     <div className="space-y-6">
       {/* Header - matching assessments style */}

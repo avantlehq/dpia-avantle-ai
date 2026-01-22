@@ -56,10 +56,8 @@ export default function SystemsPage() {
   const fetchSystems = async () => {
     try {
       setIsLoading(true)
-      console.log('[SystemsPage] Fetching systems...')
       const { contextApiService } = await import('@/lib/context-api-service')
       const response = await contextApiService.getSystems()
-      console.log('[SystemsPage] Systems fetched:', response.data?.length || 0, 'systems')
       setSystems(response.data || [])
     } catch (error) {
       console.error('[SystemsPage] Failed to fetch systems:', error)
@@ -99,19 +97,12 @@ export default function SystemsPage() {
   }
 
   const handleDeleteSuccess = async () => {
-    console.log('[SystemsPage] Delete successful, refreshing list...')
     await fetchSystems() // Refresh the list
-    console.log('[SystemsPage] List refreshed')
   }
 
   const handleCloseDeleteDialog = () => {
     setDeleteSystem(null)
   }
-
-  // v3.30.1 - Force rebuild: Bilingual page with context.pages.systems translations
-  console.log('[SystemsPage] Locale:', locale, 'Translation namespace: context.pages.systems')
-  console.log('[SystemsPage] t("title") returns:', t('title'))
-  console.log('[SystemsPage] t("description") returns:', t('description'))
 
   return (
     <div className="space-y-6">

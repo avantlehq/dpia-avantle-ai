@@ -109,6 +109,30 @@
       "tableHeaderActions": "Akcie",
       "showingAssessments": "Zobrazuje sa {count} hodnotení",
       "addNew": "Pridať Nové"
+    },
+    "overview": {
+      "title": "Modul Ochrana údajov",
+      "description": "Spravujte DPIA, LIA a TIA hodnotenia pre GDPR zhodu",
+      "subtitle": "Prehľad stavu hodnotení",
+      "dpia": {
+        "title": "Posúdenie vplyvu na ochranu údajov (DPIA)",
+        "statusActive": "Aktívne",
+        "statusInProgress": "Prebieha",
+        "statusCritical": "Kritické"
+      },
+      "lia": {
+        "title": "Posúdenie oprávneného záujmu (LIA)",
+        "statusComingSoon": "Čoskoro"
+      },
+      "tia": {
+        "title": "Posúdenie vplyvu prenosu (TIA)",
+        "statusComingSoon": "Čoskoro"
+      },
+      "quickActions": "Rýchle akcie",
+      "manageDpia": "Spravovať DPIA",
+      "dpiaPrecheck": "DPIA Predkontrola",
+      "liaComingSoon": "LIA (Čoskoro)",
+      "tiaComingSoon": "TIA (Čoskoro)"
     }
   },
   "context": {

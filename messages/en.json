@@ -109,6 +109,30 @@
       "tableHeaderActions": "Actions",
       "showingAssessments": "Showing {count} assessment(s)",
       "addNew": "Add New"
+    },
+    "overview": {
+      "title": "Privacy Module",
+      "description": "Manage DPIA, LIA, and TIA assessments for GDPR compliance",
+      "subtitle": "Assessment Status Overview",
+      "dpia": {
+        "title": "Data Protection Impact Assessment (DPIA)",
+        "statusActive": "Active",
+        "statusInProgress": "In Progress",
+        "statusCritical": "Critical"
+      },
+      "lia": {
+        "title": "Legitimate Interest Assessment (LIA)",
+        "statusComingSoon": "Coming Soon"
+      },
+      "tia": {
+        "title": "Transfer Impact Assessment (TIA)",
+        "statusComingSoon": "Coming Soon"
+      },
+      "quickActions": "Quick Actions",
+      "manageDpia": "Manage DPIA",
+      "dpiaPrecheck": "DPIA Pre-check",
+      "liaComingSoon": "LIA (Coming Soon)",
+      "tiaComingSoon": "TIA (Coming Soon)"
     }
   },
   "context": {

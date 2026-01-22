@@ -123,9 +123,7 @@ export default function DataFlowsPage() {
   }
 
   const handleDeleteSuccess = async () => {
-    console.log('[DataFlowsPage] Delete successful, refreshing list...')
     await fetchDataFlows()
-    console.log('[DataFlowsPage] List refreshed')
     handleDeleteDialogClose()
   }
 
@@ -145,8 +143,6 @@ export default function DataFlowsPage() {
     return { from, to }
   }
 
-  // v3.30.1 - Force rebuild: Bilingual translations active
-  console.log("[Page] Locale:", locale, "Namespace: context.pages")
   return (
     <div className="space-y-6">
       {/* Header - matching assessments style */}

@@ -123,17 +123,13 @@ export default function VendorsPage() {
   }
 
   const handleDeleteSuccess = async () => {
-    console.log('[VendorsPage] Delete successful, refreshing list...')
     await fetchVendors() // Refresh the list
-    console.log('[VendorsPage] List refreshed')
   }
 
   const handleCloseDeleteDialog = () => {
     setDeleteVendor(null)
   }
 
-  // v3.30.1 - Force rebuild: Bilingual translations active
-  console.log("[Page] Locale:", locale, "Namespace: context.pages")
   return (
     <div className="space-y-6">
       {/* Header - matching assessments style */}

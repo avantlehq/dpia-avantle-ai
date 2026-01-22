@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.31.18" as const
-export const VERSION_NAME = "Remove Debug Console Logs" as const
-export const BUILD_DATE = "2026-01-21"
+export const VERSION = "3.31.19" as const
+export const VERSION_NAME = "Privacy Overview & Debug Console Cleanup" as const
+export const BUILD_DATE = "2026-01-22"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,28 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.31.19": {
+    date: "2026-01-22",
+    name: "Privacy Overview & Debug Console Cleanup",
+    features: [
+      "✅ ADDED: privacy.overview namespace to messages/en.json and messages/sk.json",
+      "Added complete translations for Privacy module overview page (/privacy)",
+      "Bilingual support for DPIA, LIA, TIA status sections",
+      "Quick Actions section fully translated (Manage DPIA, DPIA Pre-check, Coming Soon features)"
+    ],
+    fixes: [
+      "REMOVED: All console.log debug statements from 6 Context list pages",
+      "Cleaned systems/page.tsx - removed 7 console.log statements",
+      "Cleaned vendors/page.tsx - removed 3 console.log statements",
+      "Cleaned locations/page.tsx - removed 3 console.log statements",
+      "Cleaned data-categories/page.tsx - removed 3 console.log statements",
+      "Cleaned data-flows/page.tsx - removed 3 console.log statements",
+      "Cleaned processing/page.tsx - removed 3 console.log statements",
+      "FIXED: Privacy overview page now displays proper translations instead of missing keys",
+      "Browser console no longer cluttered with [SystemsPage], [Page] debug logs"
+    ],
+    note: "Final translation cleanup. User reported two remaining issues: (1) /en/privacy page missing translations, (2) Context pages spamming browser console with debug logs. Added missing privacy.overview namespace with 15+ translation keys for DPIA/LIA/TIA status sections. Removed all debug console.log statements added during v3.30.0-v3.30.3 translation debugging. Console now clean in production."
+  },
   "3.31.18": {
     date: "2026-01-21",
     name: "Remove Debug Console Logs",

@@ -121,17 +121,13 @@ export default function ProcessingPage() {
   }
 
   const handleDeleteSuccess = async () => {
-    console.log('[ProcessingActivitiesPage] Delete successful, refreshing list...')
     await fetchProcessingActivities() // Refresh the list
-    console.log('[ProcessingActivitiesPage] List refreshed')
   }
 
   const handleCloseDeleteDialog = () => {
     setDeleteActivity(null)
   }
 
-  // v3.30.1 - Force rebuild: Bilingual translations active
-  console.log("[Page] Locale:", locale, "Namespace: context.pages")
   return (
     <div className="space-y-6">
       {/* Header - matching assessments style */}
