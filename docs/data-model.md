@@ -598,23 +598,32 @@ vendors (
 
 -- Data Flows Mapping
 data_flows (
-  id: uuid PRIMARY KEY,
-  workspace_id: uuid REFERENCES workspaces(id),
-  name: text NOT NULL,
+  id: uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  tenant_id: uuid NOT NULL,
+  workspace_id: uuid NOT NULL,
+  name: varchar(255) NOT NULL,
   description: text,
-  source_system_id: uuid REFERENCES systems(id),
-  destination_system_id: uuid REFERENCES systems(id),
-  processing_activity_id: uuid REFERENCES processing_activities(id),
-  data_categories: uuid[] REFERENCES data_categories(id),
-  flow_type: flow_type, -- 'collection', 'processing', 'sharing', 'transfer', 'deletion'
-  frequency: frequency, -- 'real_time', 'hourly', 'daily', 'weekly', 'monthly', 'on_demand'
-  volume: text,
-  encryption_in_transit: boolean DEFAULT false,
-  encryption_at_rest: boolean DEFAULT false,
-  created_at: timestamptz DEFAULT now(),
-  updated_at: timestamptz DEFAULT now(),
-  metadata: jsonb
+  purpose: text,
+  flow_direction: flow_direction NOT NULL, -- 'inbound', 'outbound', 'bidirectional', 'internal'
+  frequency: varchar(255),
+  volume_estimate: varchar(255),
+  criticality: varchar(50),
+  status: varchar(50) DEFAULT 'active' NOT NULL,
+  from_system: uuid REFERENCES systems(id) ON DELETE SET NULL,
+  to_system: uuid REFERENCES systems(id) ON DELETE SET NULL,
+  from_vendor: uuid REFERENCES vendors(id) ON DELETE SET NULL,
+  to_vendor: uuid REFERENCES vendors(id) ON DELETE SET NULL,
+  encryption_in_transit: boolean DEFAULT true NOT NULL,
+  cross_border_transfer: boolean DEFAULT false NOT NULL,
+  created_at: timestamptz DEFAULT now() NOT NULL,
+  updated_at: timestamptz DEFAULT now() NOT NULL,
+  created_by: uuid NOT NULL,
+  updated_by: uuid NOT NULL,
+  deleted_at: timestamptz
 );
+-- ✅ IMPLEMENTED v3.35.0 - Full database backend with repository/service pattern
+-- Indexes: tenant_id, workspace_id, from_system, to_system, from_vendor, to_vendor, flow_direction, cross_border_transfer
+-- RLS: workspace_isolation + service_role_bypass
 
 -- Locations/Jurisdictions
 locations (
@@ -640,8 +649,7 @@ CREATE TYPE legal_basis AS ENUM ('consent', 'contract', 'legal_obligation', 'vit
 CREATE TYPE data_category_type AS ENUM ('personal', 'special', 'pseudonymized', 'anonymous');
 CREATE TYPE sensitivity_level AS ENUM ('public', 'internal', 'confidential', 'restricted');
 CREATE TYPE vendor_type AS ENUM ('processor', 'joint_controller', 'sub_processor', 'service_provider');
-CREATE TYPE flow_type AS ENUM ('collection', 'processing', 'sharing', 'transfer', 'deletion');
-CREATE TYPE frequency AS ENUM ('real_time', 'hourly', 'daily', 'weekly', 'monthly', 'on_demand');
+CREATE TYPE flow_direction AS ENUM ('inbound', 'outbound', 'bidirectional', 'internal'); -- ✅ IMPLEMENTED v3.35.0
 ```
 
 ### Context API Service Structure

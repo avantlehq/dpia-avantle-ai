@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.32.4 - Help Module Complete**
+**Current Version: 3.35.3 - Data Flows Full Database Implementation**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -32,7 +32,7 @@ dpia table ako root            // nie je škálovateľné
 - **Vendor Management**: Multi-page CRUD (/vendors/new, /vendors/[id]) with DPA tracking, jurisdiction monitoring, vendor role classification
 - **Location Management**: Multi-page CRUD (/locations/new, /locations/[id]) with GDPR adequacy decisions, transfer safeguards (SCCs, BCRs)
 - **Data Category Management**: Multi-page CRUD (/data-categories/new, /data-categories/[id]) with Article 6 & 9 classification, parent/child hierarchy
-- **Data Flow Mapping**: Multi-page CRUD (/data-flows/new, /data-flows/[id]) with encryption monitoring, cross-border transfer detection
+- **Data Flow Mapping**: ✅ FULL DATABASE BACKEND - Multi-page CRUD (/data-flows/new, /data-flows/[id]) with encryption monitoring, cross-border transfer detection, endpoint tracking (system-to-system, system-to-vendor flows)
 - **Processing Activities**: Multi-page CRUD (/processing/new, /processing/[id]) with ROPA compliance, lawful basis tracking, DPO review flags
 - **Context API Endpoints**: All functional - `/api/v1/context/{systems,vendors,locations,data-flows,data-categories,processing-activities}`
 - **DPIA Workflow**: Pre-check (8 questions) + Builder (4 sections) + PDF export with localized assessment routes
@@ -237,7 +237,7 @@ t('pages.dpia-precheck')               // page names
 - **Vendors** ✅ - Third-party processors with DPA tracking, expiration monitoring, vendor role classification
 - **Locations** ✅ - Jurisdictions with GDPR adequacy decisions, transfer safeguards (SCCs/BCRs), data localization flags
 - **Data Categories** ✅ - GDPR Article 6 & 9 classification with legal basis validation and parent/child hierarchy
-- **Data Flows** ✅ - Flow mapping with direction tracking, encryption monitoring, cross-border transfer detection
+- **Data Flows** ✅ - **FULL DATABASE BACKEND (v3.35.0)** - Flow mapping with endpoints (from_system, to_system, from_vendor, to_vendor), direction tracking, encryption monitoring (encryption_in_transit), cross-border transfer detection (cross_border_transfer)
 - **Processing Activities** ✅ - ROPA compliance with Article 30 requirements, lawful basis, DPO review flags
 
 **Implementation Pattern**: Multi-page workflow (Create/Edit via full pages with routes, Delete via lightweight confirmation modals)
@@ -315,6 +315,136 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.35.3 - 2026-01-24**
+**🔧 FIX: DATA FLOW EDIT PAGE SERVER-SIDE FETCHING**
+
+**PROBLEM**: 404 error when editing data flows via `/en/context/data-flows/[id]`
+
+**ROOT CAUSE**: Edit page used client library (`getDataFlow()`) which doesn't work in server components - relative URLs fail during SSR
+
+**FIXED**:
+- Changed from client library to `ContextService` for server-side data fetching
+- Pattern now matches systems, vendors, locations pages
+- Server components access database via repository, no HTTP calls
+- Edit page loads data flow correctly before rendering
+
+**Files Modified:**
+- `src/app/[locale]/context/data-flows/[id]/page.tsx` - Server-side fetching with ContextService
+- `src/lib/version.ts` - Version 3.35.3
+- `package.json` - Version 3.35.3
+
+**Git Commit:** `9aee5c2`
+
+---
+
+### **v3.35.2 - 2026-01-24**
+**🔧 DATABASE TYPES UPDATE**
+
+**PROBLEM**: TypeScript build error - endpoint columns missing from database types
+
+**ROOT CAUSE**: Migration added columns to database but `database.types.ts` wasn't updated
+
+**FIXED**:
+- Manually updated `src/lib/api/context/database.types.ts`
+- Added `from_system`, `to_system`, `from_vendor`, `to_vendor` columns (string | null)
+- Added `encryption_in_transit`, `cross_border_transfer` columns (boolean)
+- Added foreign key relationships to systems and vendors tables
+- Updated Row, Insert, and Update type definitions
+
+**Files Modified:**
+- `src/lib/api/context/database.types.ts` - Added 6 new columns
+- `src/lib/version.ts` - Version 3.35.2
+- `package.json` - Version 3.35.2
+
+**Git Commit:** `191ef0a`
+
+---
+
+### **v3.35.1 - 2026-01-24**
+**🔧 TYPESCRIPT TYPE SAFETY FIX**
+
+**PROBLEM**: ESLint build error - "Unexpected any" in data-flows route
+
+**ROOT CAUSE**: Query parameters cast as `any` violates ESLint rules
+
+**FIXED**:
+- Imported `FlowDirection`, `Criticality`, `EntityStatus` types
+- Replaced `as any` with proper type assertions: `as FlowDirection | undefined`
+- Query parameters now properly typed with undefined union types
+
+**Files Modified:**
+- `src/app/api/v1/context/data-flows/route.ts` - Type imports and assertions
+- `src/lib/version.ts` - Version 3.35.1
+- `package.json` - Version 3.35.1
+
+**Git Commit:** `d4f77e6`
+
+---
+
+### **v3.35.0 - 2026-01-24**
+**🚀 DATA FLOWS FULL DATABASE IMPLEMENTATION**
+
+**ACHIEVEMENT**: Complete replacement of mock data with full database backend for Data Flows
+
+**IMPLEMENTATION**:
+- Created `data-flow.repository.ts` - BaseRepository extension with relations support
+- Created `data-flow.service.ts` - Business logic with endpoint validation
+- Added `DataFlowService` to `ContextService`
+- Replaced all mock API routes with real database operations
+- Created database migration: `20260124_create_data_flows_table.sql`
+
+**Database Schema**:
+- Created `data_flows` table with all columns
+- Created `flow_direction` enum (inbound, outbound, bidirectional, internal)
+- Endpoint columns: `from_system`, `to_system`, `from_vendor`, `to_vendor` (UUID references)
+- Security columns: `encryption_in_transit`, `cross_border_transfer` (BOOLEAN)
+- Indexes for multi-tenancy, foreign keys, and query optimization
+- RLS policies: workspace isolation + service_role bypass
+- Updated_at trigger for automatic timestamp updates
+
+**API Updates**:
+- GET `/api/v1/context/data-flows` - List flows with filters
+- POST `/api/v1/context/data-flows` - Create flow
+- GET `/api/v1/context/data-flows/[id]` - Get single flow
+- PUT `/api/v1/context/data-flows/[id]` - Update flow
+- DELETE `/api/v1/context/data-flows/[id]` - Soft delete flow
+
+**Type Updates**:
+- Updated `DataFlow`, `CreateDataFlowRequest`, `UpdateDataFlowRequest` interfaces
+- Updated Zod schemas with endpoint and security validations
+- Added `DataFlowQueryParams` with filter support
+
+**Translation Keys**:
+- Added 43+ translation keys for Data Flows form (EN + SK)
+- Endpoint labels, direction descriptions, criticality descriptions
+- Frequency/volume options, security field descriptions
+
+**Files Created:**
+- `src/lib/api/context/repositories/data-flow.repository.ts` - NEW (163 lines)
+- `src/lib/api/context/services/data-flow.service.ts` - NEW (127 lines)
+- `migrations/20260124_create_data_flows_table.sql` - NEW (110 lines)
+- `migrations/20260124_create_data_flows_table_rollback.sql` - NEW (17 lines)
+
+**Files Modified:**
+- `src/app/api/v1/context/data-flows/route.ts` - Real database operations
+- `src/app/api/v1/context/data-flows/[id]/route.ts` - Real database operations
+- `src/lib/api/context/services/context.service.ts` - Added DataFlowService
+- `src/lib/api/context/types.ts` - Updated DataFlow interfaces
+- `src/lib/api/context/schemas.ts` - Updated Zod schemas
+- `messages/en.json` - Added 43 translation keys
+- `messages/sk.json` - Added 43 translation keys
+
+**RESULT**:
+- ✅ Created flows persist to database and appear in list
+- ✅ Updates modify actual database records
+- ✅ Deletes use soft delete pattern (deleted_at)
+- ✅ Full validation with foreign key constraints
+- ✅ Complete bilingual support (EN/SK)
+
+**Git Commits:** `687ce09`, `3a79939`
+
+---
 
 ### **v3.32.4 - 2026-01-22**
 **🗑️ DELETE PLATFORM MODULES PAGE**
@@ -1022,8 +1152,9 @@ All attempts edited external JSON files that were never loaded by the topbar/sid
 - ~~Hardcoded Ternary Translations~~ ✅ RESOLVED in v3.28.0 - All Context forms migrated to next-intl, 230+ ternaries eliminated
 - ~~Context List Pages English-only~~ ✅ RESOLVED in v3.30.0 - All 6 Context list pages fully bilingual, 180+ translation keys added
 - ~~Integrations Module Translation Keys~~ ✅ RESOLVED in v3.31.12 - Added missing keys to inline dictionary in custom useTranslations hook
+- ~~Data Flows Mock Data~~ ✅ RESOLVED in v3.35.0 - Full database backend implemented with repository/service pattern
 
-**Current Status**: All major technical debt resolved. Platform fully functional. All modules display proper translations in both English and Slovak.
+**Current Status**: All major technical debt resolved. Platform fully functional. All modules display proper translations in both English and Slovak. All 6 Context modules have complete database CRUD operations.
 
 ## Communication Style
 
