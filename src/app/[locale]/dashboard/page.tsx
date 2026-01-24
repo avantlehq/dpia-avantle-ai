@@ -1,5 +1,5 @@
 import React from 'react'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -7,10 +7,8 @@ type Props = {
 
 export default async function PlatformDashboard({ params }: Props) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations('dashboard.platform')
-
-  // Debug: Log locale and translation test
-  console.log('[Dashboard] Locale:', locale, 'Title translation:', t('title'))
 
   return (
     <div className="space-y-6">

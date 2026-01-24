@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.33.2" as const
-export const VERSION_NAME = "Dashboard Debug Logging" as const
+export const VERSION = "3.33.3" as const
+export const VERSION_NAME = "Dashboard setRequestLocale Fix" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,18 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.33.3": {
+    date: "2026-01-24",
+    name: "Dashboard setRequestLocale Fix",
+    features: [],
+    fixes: [
+      "FIXED: Added setRequestLocale(locale) before getTranslations",
+      "Sets request locale context explicitly for server component",
+      "Dashboard should now display Slovak translations on /sk/dashboard",
+      "Pattern: setRequestLocale → getTranslations → render"
+    ],
+    note: "Translation keys exist in messages/sk.json but weren't loading. Added setRequestLocale(locale) to explicitly set request locale context before calling getTranslations. This ensures next-intl knows which locale to use for server-side translations."
+  },
   "3.33.1": {
     date: "2026-01-24",
     name: "Fix Dashboard Server Component",
