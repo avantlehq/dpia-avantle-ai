@@ -148,12 +148,15 @@ export async function GET(request: NextRequest, { params }: RouteContext) {
 
 /**
  * PUT /api/v1/context/data-flows/[id]
- * Update data flow (placeholder)
+ * Update data flow (mock implementation)
  */
 export async function PUT(request: NextRequest, { params }: RouteContext) {
   try {
     return await withOptionalAuth(async (_context) => {
       const { id } = await params;
+
+      // Parse request body
+      const body = await request.json();
 
       // Find data flow in mock data
       const dataFlow = mockDataFlows.find(flow => flow.id === id);
@@ -165,12 +168,17 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
         );
       }
 
-      // Placeholder - in real implementation would update database
-      return NextResponse.json({
-        success: false,
-        error: 'Data flow update not yet implemented',
-        message: 'This endpoint is a placeholder for future implementation'
-      }, { status: 501 });
+      // Mock implementation - merge updates and return
+      // Note: Actual persistence not possible with stateless mock data
+      // In real implementation, would update database
+      const updatedFlow = {
+        ...dataFlow,
+        ...body,
+        id: dataFlow.id, // Preserve ID
+        updated_at: new Date().toISOString().split('T')[0]
+      };
+
+      return NextResponse.json(updatedFlow);
 
     })(request);
 
@@ -181,7 +189,7 @@ export async function PUT(request: NextRequest, { params }: RouteContext) {
 
 /**
  * DELETE /api/v1/context/data-flows/[id]
- * Delete data flow (placeholder)
+ * Delete data flow (mock implementation)
  */
 export async function DELETE(request: NextRequest, { params }: RouteContext) {
   try {
@@ -198,12 +206,13 @@ export async function DELETE(request: NextRequest, { params }: RouteContext) {
         );
       }
 
-      // Placeholder - in real implementation would delete from database
+      // Mock implementation - return success
+      // Note: Actual deletion not possible with stateless mock data
+      // In real implementation, would delete from database
       return NextResponse.json({
-        success: false,
-        error: 'Data flow deletion not yet implemented',
-        message: 'This endpoint is a placeholder for future implementation'
-      }, { status: 501 });
+        message: 'Data flow deleted successfully',
+        success: true
+      });
 
     })(request);
 

@@ -116,17 +116,27 @@ export async function GET(request: NextRequest) {
 
 /**
  * POST /api/v1/context/data-flows
- * Create new data flow (placeholder)
+ * Create new data flow (mock implementation)
  */
 export async function POST(request: NextRequest) {
   try {
     return await withOptionalAuth(async (_context) => {
-      // Placeholder for creating data flows
-      return NextResponse.json({
-        success: false,
-        error: 'Data flow creation not yet implemented',
-        message: 'This endpoint is a placeholder for future implementation'
-      }, { status: 501 });
+      // Parse request body
+      const body = await request.json();
+
+      // Mock implementation - generate ID and return created flow
+      // Note: Actual persistence not possible with stateless mock data
+      // In real implementation, would save to database
+      const newFlow = {
+        id: `${mockDataFlows.length + 1}`,
+        tenant_id: '00000000-0000-0000-0000-000000000001',
+        workspace_id: '00000000-0000-0000-0000-000000000001',
+        ...body,
+        created_at: new Date().toISOString().split('T')[0],
+        updated_at: new Date().toISOString().split('T')[0]
+      };
+
+      return NextResponse.json(newFlow, { status: 201 });
 
     })(request);
   } catch (error) {
