@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.34.7" as const
-export const VERSION_NAME = "Data Flows CRUD Operations" as const
+export const VERSION = "3.34.8" as const
+export const VERSION_NAME = "ESLint Fix: Remove Unused Import" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,17 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.34.8": {
+    date: "2026-01-24",
+    name: "ESLint Fix: Remove Unused Import",
+    features: [],
+    fixes: [
+      "FIXED: ESLint error in assessments-table.tsx",
+      "Removed unused 'Plus' import from lucide-react",
+      "Build now passes without errors"
+    ],
+    note: "Quick fix for build error. Plus icon was imported but never used after pagination implementation."
+  },
   "3.34.7": {
     date: "2026-01-24",
     name: "Data Flows CRUD Operations",
