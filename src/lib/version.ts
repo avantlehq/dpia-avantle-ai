@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.35.1" as const
-export const VERSION_NAME = "TypeScript Type Safety Fix" as const
+export const VERSION = "3.35.2" as const
+export const VERSION_NAME = "Database Types Update" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.35.2": {
+    date: "2026-01-24",
+    name: "Database Types Update",
+    features: [],
+    fixes: [
+      "FIXED: TypeScript build error - endpoint columns missing from database types",
+      "Added from_system, to_system, from_vendor, to_vendor to data_flows table types",
+      "Added encryption_in_transit, cross_border_transfer boolean columns",
+      "Added foreign key relationships to systems and vendors tables",
+      "Updated Row, Insert, and Update type definitions",
+      "Build now passes with correct type checking"
+    ],
+    note: "Critical fix for v3.35.0. Database migration added endpoint columns but TypeScript types weren't updated. Manually added all missing column definitions to database.types.ts to match actual database schema."
+  },
   "3.35.1": {
     date: "2026-01-24",
     name: "TypeScript Type Safety Fix",

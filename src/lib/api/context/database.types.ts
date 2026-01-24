@@ -312,15 +312,21 @@ export type Database = {
           created_at: string
           created_by: string
           criticality: string | null
+          cross_border_transfer: boolean
           deleted_at: string | null
           description: string | null
+          encryption_in_transit: boolean
           flow_direction: Database['public']['Enums']['flow_direction']
           frequency: string | null
+          from_system: string | null
+          from_vendor: string | null
           id: string
           name: string
           purpose: string | null
           status: string
           tenant_id: string
+          to_system: string | null
+          to_vendor: string | null
           updated_at: string
           updated_by: string
           volume_estimate: string | null
@@ -330,15 +336,21 @@ export type Database = {
           created_at?: string
           created_by: string
           criticality?: string | null
+          cross_border_transfer?: boolean
           deleted_at?: string | null
           description?: string | null
+          encryption_in_transit?: boolean
           flow_direction: Database['public']['Enums']['flow_direction']
           frequency?: string | null
+          from_system?: string | null
+          from_vendor?: string | null
           id?: string
           name: string
           purpose?: string | null
           status?: string
           tenant_id: string
+          to_system?: string | null
+          to_vendor?: string | null
           updated_at?: string
           updated_by: string
           volume_estimate?: string | null
@@ -348,21 +360,56 @@ export type Database = {
           created_at?: string
           created_by?: string
           criticality?: string | null
+          cross_border_transfer?: boolean
           deleted_at?: string | null
           description?: string | null
+          encryption_in_transit?: boolean
           flow_direction?: Database['public']['Enums']['flow_direction']
           frequency?: string | null
+          from_system?: string | null
+          from_vendor?: string | null
           id?: string
           name?: string
           purpose?: string | null
           status?: string
           tenant_id?: string
+          to_system?: string | null
+          to_vendor?: string | null
           updated_at?: string
           updated_by?: string
           volume_estimate?: string | null
           workspace_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "data_flows_from_system_fkey"
+            columns: ["from_system"]
+            isOneToOne: false
+            referencedRelation: "systems"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "data_flows_to_system_fkey"
+            columns: ["to_system"]
+            isOneToOne: false
+            referencedRelation: "systems"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "data_flows_from_vendor_fkey"
+            columns: ["from_vendor"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "data_flows_to_vendor_fkey"
+            columns: ["to_vendor"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       jurisdictions: {
         Row: {
