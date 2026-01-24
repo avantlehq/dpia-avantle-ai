@@ -90,7 +90,7 @@ export default function DataFlowsPage() {
   const [selectedDirection, setSelectedDirection] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 20
+  const itemsPerPage = 3
 
   // Delete dialog states only
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)

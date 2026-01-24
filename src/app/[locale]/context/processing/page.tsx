@@ -81,7 +81,7 @@ export default function ProcessingPage() {
   const [selectedBasis, setSelectedBasis] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 20
+  const itemsPerPage = 3
 
   // Delete dialog state only
   const [deleteActivity, setDeleteActivity] = useState<{ id: string; name: string } | null>(null)

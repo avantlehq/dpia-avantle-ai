@@ -75,7 +75,7 @@ export default function VendorsPage() {
   const [selectedRole, setSelectedRole] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 20
+  const itemsPerPage = 3
 
   // Delete dialog state only (modal-to-page refactoring complete)
   const [deleteVendor, setDeleteVendor] = useState<{ id: string; name: string } | null>(null)

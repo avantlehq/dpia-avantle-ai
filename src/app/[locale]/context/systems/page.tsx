@@ -50,7 +50,7 @@ export default function SystemsPage() {
   const [selectedCriticality, setSelectedCriticality] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 20
+  const itemsPerPage = 3
 
   // Delete dialog state only (modal-to-page refactoring complete)
   const [deleteSystem, setDeleteSystem] = useState<{ id: string; name: string } | null>(null)

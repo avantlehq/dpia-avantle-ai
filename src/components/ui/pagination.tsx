@@ -32,8 +32,8 @@ export function Pagination({ currentPage, totalPages, onPageChange, className = 
     }
   }
 
-  // Don't show pagination if there's only 1 page or no pages
-  if (totalPages <= 1) {
+  // Don't show pagination if there are no pages
+  if (totalPages === 0) {
     return null
   }
 

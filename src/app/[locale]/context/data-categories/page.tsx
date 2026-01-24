@@ -89,7 +89,7 @@ export default function DataCategoriesPage() {
   const [selectedSensitivity, setSelectedSensitivity] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 20
+  const itemsPerPage = 3
 
   // Delete dialog state
   const [deleteCategory, setDeleteCategory] = useState<{ id: string; name: string } | null>(null)

@@ -97,7 +97,7 @@ export default function LocationsPage() {
   const [selectedAdequacy, setSelectedAdequacy] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 20
+  const itemsPerPage = 3
 
   // Delete dialog state
   const [deleteLocation, setDeleteLocation] = useState<{ id: string; name: string } | null>(null)
