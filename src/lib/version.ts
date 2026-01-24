@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.34.9" as const
-export const VERSION_NAME = "Fix Data Flows Mock Scope" as const
+export const VERSION = "3.34.10" as const
+export const VERSION_NAME = "Context Common Criticality Keys" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,23 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.34.10": {
+    date: "2026-01-24",
+    name: "Context Common Criticality Keys",
+    features: [
+      "✅ ADDED: 4 criticality keys to context.common namespace",
+      "Added criticalityLow, criticalityMedium, criticalityHigh, criticalityCritical",
+      "Keys used across multiple Context forms (Data Flows, Systems, etc.)",
+      "All keys added to both English and Slovak translations"
+    ],
+    fixes: [
+      "FIXED: MISSING_MESSAGE errors for criticality labels in Data Flows form",
+      "Console errors: context.common.criticalityLow/Medium/High/Critical",
+      "DataFlowForm criticality dropdown now displays translated labels",
+      "Complete bilingual support for criticality options"
+    ],
+    note: "DataFlowForm was using tcc('criticalityLow') etc. from context.common namespace but those keys didn't exist. Added all 4 criticality label keys to context.common so they can be reused across all Context module forms."
+  },
   "3.34.9": {
     date: "2026-01-24",
     name: "Fix Data Flows Mock Scope",

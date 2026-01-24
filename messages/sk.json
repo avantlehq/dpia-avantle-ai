@@ -168,7 +168,11 @@
       "inactive": "Neaktívna",
       "yes": "Áno",
       "no": "Nie",
-      "required": "Povinné"
+      "required": "Povinné",
+      "criticalityLow": "Nízka",
+      "criticalityMedium": "Stredná",
+      "criticalityHigh": "Vysoká",
+      "criticalityCritical": "Kritická"
     },
     "locations": {
       "title": "Lokality",
