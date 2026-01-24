@@ -27,6 +27,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Pagination } from '@/components/ui/pagination'
 import { DeleteLocationDialog } from '@/components/context/DeleteLocationDialog'
 
 // Force dynamic rendering to avoid SSR issues
@@ -95,6 +96,8 @@ export default function LocationsPage() {
   const [selectedJurisdiction, setSelectedJurisdiction] = useState('')
   const [selectedAdequacy, setSelectedAdequacy] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 20
 
   // Delete dialog state
   const [deleteLocation, setDeleteLocation] = useState<{ id: string; name: string } | null>(null)
@@ -118,15 +121,26 @@ export default function LocationsPage() {
   }, [])
 
   const filteredLocations = locations.filter(location => {
-    const matchesSearch = !searchQuery || 
+    const matchesSearch = !searchQuery ||
       location.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       location.country_code.toLowerCase().includes(searchQuery.toLowerCase())
-    
+
     const matchesJurisdiction = !selectedJurisdiction || selectedJurisdiction === 'all' || location.jurisdiction_type === selectedJurisdiction
     const matchesAdequacy = !selectedAdequacy || selectedAdequacy === 'all' || location.adequacy_status === selectedAdequacy
-    
+
     return matchesSearch && matchesJurisdiction && matchesAdequacy
   })
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredLocations.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedLocations = filteredLocations.slice(startIndex, endIndex)
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery, selectedJurisdiction, selectedAdequacy])
 
   const getAdequacyIcon = (status: AdequacyStatus) => {
     switch (status) {
@@ -413,7 +427,7 @@ export default function LocationsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredLocations.map((location) => (
+                    {paginatedLocations.map((location) => (
                       <tr key={location.id} className="border-b border-border hover:bg-muted/50">
                         <td className="py-3 px-4">
                           <div className="space-y-1">
@@ -485,15 +499,11 @@ export default function LocationsPage() {
               
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
-                <p className="text-sm text-muted-foreground">
-                  {t('showingLocations', { count: filteredLocations.length })}
-                </p>
-                <Link href={`/${locale}/context/locations/new`}>
-                  <Button variant="outline" size="sm" className="gap-2">
-                    <Plus className="h-4 w-4" />
-                    {t('addNew')}
-                  </Button>
-                </Link>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
               </div>
             </div>
           )}

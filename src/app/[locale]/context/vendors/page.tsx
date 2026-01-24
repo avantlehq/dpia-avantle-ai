@@ -24,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Pagination } from '@/components/ui/pagination'
 import { DeleteVendorDialog } from '@/components/context/DeleteVendorDialog'
 import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
@@ -98,14 +99,25 @@ export default function VendorsPage() {
   }, [])
 
   const filteredVendors = vendors.filter(vendor => {
-    const matchesSearch = !searchQuery || 
+    const matchesSearch = !searchQuery ||
       vendor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       vendor.description?.toLowerCase().includes(searchQuery.toLowerCase())
-    
+
     const matchesRole = !selectedRole || selectedRole === 'all' || vendor.vendor_role === selectedRole
-    
+
     return matchesSearch && matchesRole
   })
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredVendors.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedVendors = filteredVendors.slice(startIndex, endIndex)
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery, selectedRole])
 
   const isDpaExpiringSoon = (dpaExpires?: string) => {
     if (!dpaExpires) return false
@@ -384,7 +396,7 @@ export default function VendorsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredVendors.map((vendor) => (
+                    {paginatedVendors.map((vendor) => (
                       <tr key={vendor.id} className="border-b border-border hover:bg-muted/50">
                         <td className="py-3 px-4">
                           <div className="space-y-1">
@@ -488,12 +500,11 @@ export default function VendorsPage() {
                 <p className="text-sm text-muted-foreground">
                   {t('showingVendors', { count: filteredVendors.length })}
                 </p>
-                <Link href={`/${locale}/context/vendors/new`}>
-                  <Button variant="outline" size="sm" className="gap-2">
-                    <Plus className="h-4 w-4" />
-                    {t('addNew')}
-                  </Button>
-                </Link>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
               </div>
             </div>
           )}

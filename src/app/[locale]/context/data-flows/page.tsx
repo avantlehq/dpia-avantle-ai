@@ -26,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Pagination } from '@/components/ui/pagination'
 import { DeleteDataFlowDialog } from '@/components/context/DeleteDataFlowDialog'
 
 // Force dynamic rendering to avoid SSR issues
@@ -88,6 +89,8 @@ export default function DataFlowsPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedDirection, setSelectedDirection] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 20
 
   // Delete dialog states only
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
@@ -128,14 +131,25 @@ export default function DataFlowsPage() {
   }
 
   const filteredDataFlows = dataFlows.filter(flow => {
-    const matchesSearch = !searchQuery || 
+    const matchesSearch = !searchQuery ||
       flow.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       flow.description?.toLowerCase().includes(searchQuery.toLowerCase())
-    
+
     const matchesDirection = !selectedDirection || selectedDirection === 'all' || flow.flow_direction === selectedDirection
-    
+
     return matchesSearch && matchesDirection
   })
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredDataFlows.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedFlows = filteredDataFlows.slice(startIndex, endIndex)
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery, selectedDirection])
 
   const getFlowEndpoints = (flow: DataFlow) => {
     const from = flow.from_system || flow.from_vendor || 'Unknown'
@@ -395,7 +409,7 @@ export default function DataFlowsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredDataFlows.map((flow) => {
+                    {paginatedFlows.map((flow) => {
                       const endpoints = getFlowEndpoints(flow)
                       return (
                         <tr key={flow.id} className="border-b border-border hover:bg-muted/50">
@@ -482,15 +496,11 @@ export default function DataFlowsPage() {
               
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
-                <p className="text-sm text-muted-foreground">
-                  {t('showingFlows', { count: filteredDataFlows.length })}
-                </p>
-                <Link href={`/${locale}/context/data-flows/new`}>
-                  <Button variant="outline" size="sm" className="gap-2">
-                    <Plus className="h-4 w-4" />
-                    {t('addNew')}
-                  </Button>
-                </Link>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
               </div>
             </div>
           )}

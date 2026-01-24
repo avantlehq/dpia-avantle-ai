@@ -25,6 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Pagination } from '@/components/ui/pagination'
 import { DeleteProcessingActivityDialog } from '@/components/context/DeleteProcessingActivityDialog'
 
 // Force dynamic rendering to avoid SSR issues
@@ -79,6 +80,8 @@ export default function ProcessingPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedBasis, setSelectedBasis] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 20
 
   // Delete dialog state only
   const [deleteActivity, setDeleteActivity] = useState<{ id: string; name: string } | null>(null)
@@ -102,14 +105,25 @@ export default function ProcessingPage() {
   }, [])
 
   const filteredActivities = activities.filter(activity => {
-    const matchesSearch = !searchQuery || 
+    const matchesSearch = !searchQuery ||
       activity.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       activity.purpose.toLowerCase().includes(searchQuery.toLowerCase())
-    
+
     const matchesBasis = !selectedBasis || selectedBasis === 'all' || activity.lawful_basis === selectedBasis
-    
+
     return matchesSearch && matchesBasis
   })
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredActivities.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedActivities = filteredActivities.slice(startIndex, endIndex)
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery, selectedBasis])
 
   const isReviewOverdue = (reviewDate?: string) => {
     if (!reviewDate) return false
@@ -382,7 +396,7 @@ export default function ProcessingPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredActivities.map((activity) => (
+                    {paginatedActivities.map((activity) => (
                       <tr key={activity.id} className="border-b border-border hover:bg-muted/50">
                         <td className="py-3 px-4">
                           <div className="space-y-1">
@@ -461,15 +475,11 @@ export default function ProcessingPage() {
               
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
-                <p className="text-sm text-muted-foreground">
-                  {t('showingActivities', { count: filteredActivities.length })}
-                </p>
-                <Link href={`/${locale}/context/processing/new`}>
-                  <Button variant="outline" size="sm" className="gap-2">
-                    <Plus className="h-4 w-4" />
-                    {t('addNew')}
-                  </Button>
-                </Link>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
               </div>
             </div>
           )}

@@ -24,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { Pagination } from '@/components/ui/pagination'
 import { DeleteDataCategoryDialog } from '@/components/context/DeleteDataCategoryDialog'
 
 // Force dynamic rendering to avoid SSR issues
@@ -87,6 +88,8 @@ export default function DataCategoriesPage() {
   const [selectedType, setSelectedType] = useState('')
   const [selectedSensitivity, setSelectedSensitivity] = useState('')
   const [isLoading, setIsLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 20
 
   // Delete dialog state
   const [deleteCategory, setDeleteCategory] = useState<{ id: string; name: string } | null>(null)
@@ -110,18 +113,29 @@ export default function DataCategoriesPage() {
   }, [])
 
   const filteredCategories = categories.filter(category => {
-    const matchesSearch = !searchQuery || 
+    const matchesSearch = !searchQuery ||
       category.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       category.description?.toLowerCase().includes(searchQuery.toLowerCase())
-    
-    const matchesType = !selectedType || selectedType === 'all' || 
+
+    const matchesType = !selectedType || selectedType === 'all' ||
       category.category_type === selectedType
-      
-    const matchesSensitivity = !selectedSensitivity || selectedSensitivity === 'all' || 
+
+    const matchesSensitivity = !selectedSensitivity || selectedSensitivity === 'all' ||
       category.sensitivity === selectedSensitivity
-    
+
     return matchesSearch && matchesType && matchesSensitivity
   })
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredCategories.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedCategories = filteredCategories.slice(startIndex, endIndex)
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [searchQuery, selectedType, selectedSensitivity])
 
   const handleDelete = (category: DataCategory) => {
     setDeleteCategory({ id: category.id, name: category.name })
@@ -403,7 +417,7 @@ export default function DataCategoriesPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {filteredCategories.map((category) => (
+                    {paginatedCategories.map((category) => (
                       <tr key={category.id} className="border-b border-border hover:bg-muted/50">
                         <td className="py-3 px-4">
                           <div className="space-y-1">
@@ -467,15 +481,11 @@ export default function DataCategoriesPage() {
               
               {/* Table Footer */}
               <div className="flex items-center justify-between pt-4 border-t border-border">
-                <p className="text-sm text-muted-foreground">
-                  {t('showingCategories', { count: filteredCategories.length })}
-                </p>
-                <Link href={`/${locale}/context/data-categories/new`}>
-                  <Button variant="outline" size="sm" className="gap-2">
-                    <Plus className="h-4 w-4" />
-                    {t('addNew')}
-                  </Button>
-                </Link>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
               </div>
             </div>
           )}
