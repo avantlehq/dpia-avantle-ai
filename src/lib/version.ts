@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.34.3" as const
-export const VERSION_NAME = "Pagination: Privacy Assessments Table" as const
+export const VERSION = "3.34.4" as const
+export const VERSION_NAME = "Data Categories Translation Keys" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,28 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.34.4": {
+    date: "2026-01-24",
+    name: "Data Categories Translation Keys",
+    features: [
+      "✅ ADDED: 29 missing translation keys to context.dataCategories namespace",
+      "Added keys for all dropdown placeholders: selectCategoryType, selectSensitivity, selectSpecialCategoryBasis, selectParentCategory",
+      "Added all GDPR category type labels: typePersonal, typeSpecial, typeCriminal",
+      "Added all category type descriptions: typePersonalDesc, typeSpecialDesc, typeCriminalDesc",
+      "Added all special category basis descriptions: basisExplicitConsentDesc, basisEmploymentDesc, basisVitalInterestsDesc, etc.",
+      "Added all sensitivity level descriptions: sensitivityPublicDesc, sensitivityInternalDesc, sensitivityConfidentialDesc, sensitivityRestrictedDesc",
+      "Added hierarchy keys: gdprClassification, categoryHierarchy, noParent",
+      "Added standard category toggle: isStandard, isStandardDescription",
+      "All keys added to both English (messages/en.json) and Slovak (messages/sk.json)"
+    ],
+    fixes: [
+      "FIXED: MISSING_MESSAGE console errors on Data Categories form",
+      "Console errors: gdprClassification, categoryHierarchy, selectCategoryType",
+      "All dropdown options now display translated text instead of translation keys",
+      "Complete bilingual support for all Data Categories form fields"
+    ],
+    note: "DataCategoryForm component was using 48 translation keys but only 19 existed in messages/*.json files. Added all 29 missing keys with proper English and Slovak translations. Form now displays correctly without any MISSING_MESSAGE errors."
+  },
   "3.33.3": {
     date: "2026-01-24",
     name: "Dashboard setRequestLocale Fix",
