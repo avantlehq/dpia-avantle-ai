@@ -9,6 +9,8 @@ export default async function PlatformDashboard({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations('dashboard.platform')
 
+  // Debug: Log locale and translation test
+  console.log('[Dashboard] Locale:', locale, 'Title translation:', t('title'))
 
   return (
     <div className="space-y-6">
