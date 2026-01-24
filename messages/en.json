@@ -10,7 +10,14 @@
     "delete": "Delete",
     "edit": "Edit",
     "create": "Create",
-    "export": "Export"
+    "export": "Export",
+    "pagination": {
+      "page": "Page",
+      "of": "of",
+      "previous": "Previous",
+      "next": "Next",
+      "showing": "Showing"
+    }
   },
   "auth": {
     "login": "Sign In",

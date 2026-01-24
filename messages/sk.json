@@ -10,7 +10,14 @@
     "delete": "Vymazať",
     "edit": "Upraviť",
     "create": "Vytvoriť",
-    "export": "Exportovať"
+    "export": "Exportovať",
+    "pagination": {
+      "page": "Strana",
+      "of": "z",
+      "previous": "Predchádzajúca",
+      "next": "Ďalšia",
+      "showing": "Zobrazené"
+    }
   },
   "auth": {
     "login": "Prihlásenie",
