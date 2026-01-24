@@ -9,6 +9,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ContextService } from '@/lib/api/context/services/context.service';
 import { CreateDataFlowRequestSchema } from '@/lib/api/context/schemas';
+import { FlowDirection, Criticality, EntityStatus } from '@/lib/api/context/types';
 import { withOptionalAuth } from '@/lib/api/context/middleware/auth';
 import { validateBody } from '@/lib/api/context/middleware/validation';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
@@ -44,9 +45,9 @@ export async function GET(request: NextRequest) {
       const result = await contextService.dataFlows.getDataFlows({
         page,
         limit,
-        flow_direction: flow_direction as any,
-        criticality: criticality as any,
-        status: status as any,
+        flow_direction: flow_direction as FlowDirection | undefined,
+        criticality: criticality as Criticality | undefined,
+        status: status as EntityStatus | undefined,
         cross_border_transfer,
       });
 

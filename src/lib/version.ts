@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.35.0" as const
-export const VERSION_NAME = "Data Flows Database Implementation" as const
+export const VERSION = "3.35.1" as const
+export const VERSION_NAME = "TypeScript Type Safety Fix" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.35.1": {
+    date: "2026-01-24",
+    name: "TypeScript Type Safety Fix",
+    features: [],
+    fixes: [
+      "FIXED: ESLint build error - 'Unexpected any' in data-flows route",
+      "Replaced 'as any' type assertions with proper type unions",
+      "Added FlowDirection, Criticality, EntityStatus imports",
+      "Query parameters now properly typed as 'Type | undefined'",
+      "Build passes with zero TypeScript errors and warnings"
+    ],
+    note: "Build fix for v3.35.0. Query parameters from searchParams.get() were being cast as 'any' which violated ESLint rules. Changed to proper type assertions with undefined union types."
+  },
   "3.35.0": {
     date: "2026-01-24",
     name: "Data Flows Database Implementation",
