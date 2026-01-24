@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.34.5" as const
-export const VERSION_NAME = "Data Flows [id] Route Fix" as const
+export const VERSION = "3.34.6" as const
+export const VERSION_NAME = "Data Flows Translation Keys" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,29 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.34.6": {
+    date: "2026-01-24",
+    name: "Data Flows Translation Keys",
+    features: [
+      "✅ ADDED: 43 missing translation keys to context.dataFlows namespace",
+      "Added direction descriptions: directionInboundDesc, directionOutboundDesc, directionBidirectionalDesc, directionInternalDesc",
+      "Added criticality keys: criticality, selectCriticality, criticalityLowDesc/MediumDesc/HighDesc/CriticalDesc",
+      "Added frequency options: selectFrequency, frequencyRealtime/Continuous/Hourly/Daily/Weekly/Monthly/OnDemand/Batch",
+      "Added volume options: selectVolume, volumeLow/Medium/High/VeryHigh",
+      "Added endpoint keys: flowEndpoints, source, destination, fromSystem/fromVendor, toSystem/toVendor",
+      "Added selectors: selectSourceSystem/Vendor, selectDestinationSystem/Vendor, noSystem, noVendor",
+      "Added descriptions: encryptionInTransitDescription, crossBorderTransferDescription",
+      "Added notSpecified for optional dropdown values",
+      "All keys added to both English (messages/en.json) and Slovak (messages/sk.json)"
+    ],
+    fixes: [
+      "FIXED: MISSING_MESSAGE console errors on Data Flows form",
+      "Console errors: flowEndpoints, source, destination, frequency options",
+      "All dropdown options and descriptions now display translated text",
+      "Complete bilingual support for all Data Flows form fields"
+    ],
+    note: "DataFlowForm component was using 60+ translation keys but only 17 existed in messages/*.json files. Added all 43 missing keys with proper English and Slovak translations. Form now displays correctly without any MISSING_MESSAGE errors."
+  },
   "3.34.5": {
     date: "2026-01-24",
     name: "Data Flows [id] Route Fix",
