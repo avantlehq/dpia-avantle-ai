@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.34.2" as const
-export const VERSION_NAME = "Pagination: Always Show + Test Mode" as const
+export const VERSION = "3.34.3" as const
+export const VERSION_NAME = "Pagination: Privacy Assessments Table" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({

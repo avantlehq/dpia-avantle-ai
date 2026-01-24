@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
+import { Pagination } from '@/components/ui/pagination'
 import { AssessmentActions } from '@/components/dashboard/assessment-actions'
 import { Target, Plus } from 'lucide-react'
 import Link from 'next/link'
@@ -23,6 +24,8 @@ export function AssessmentsTable() {
   const [assessments, setAssessments] = useState<Assessment[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 3
 
   useEffect(() => {
     fetchAssessments()
@@ -140,6 +143,12 @@ export function AssessmentsTable() {
     )
   }
 
+  // Pagination logic
+  const totalPages = Math.ceil(assessments.length / itemsPerPage)
+  const startIndex = (currentPage - 1) * itemsPerPage
+  const endIndex = startIndex + itemsPerPage
+  const paginatedAssessments = assessments.slice(startIndex, endIndex)
+
   return (
     <div className="space-y-4">
       {/* Table */}
@@ -165,7 +174,7 @@ export function AssessmentsTable() {
             </tr>
           </thead>
           <tbody>
-            {assessments.map((assessment) => (
+            {paginatedAssessments.map((assessment) => (
               <tr key={assessment.id} className="border-b border-border hover:bg-muted/50">
                 <td className="py-3 px-4">
                   <Link 
@@ -202,12 +211,11 @@ export function AssessmentsTable() {
         <p className="text-sm text-muted-foreground">
           {t('showingAssessments', { count: assessments.length })}
         </p>
-        <Link href={`/${locale}/assessments/new`}>
-          <Button variant="outline" size="sm" className="gap-2">
-            <Plus className="h-4 w-4" />
-            {t('addNew')}
-          </Button>
-        </Link>
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </div>
   )
