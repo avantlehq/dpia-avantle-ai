@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.34.4" as const
-export const VERSION_NAME = "Data Categories Translation Keys" as const
+export const VERSION = "3.34.5" as const
+export const VERSION_NAME = "Data Flows [id] Route Fix" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,23 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.34.5": {
+    date: "2026-01-24",
+    name: "Data Flows [id] Route Fix",
+    features: [
+      "✅ CREATED: GET /api/v1/context/data-flows/[id] endpoint",
+      "Added PUT and DELETE placeholder endpoints for data flows",
+      "Individual data flow pages now load correctly",
+      "Mock data includes all required fields (tenant_id, workspace_id, updated_at)"
+    ],
+    fixes: [
+      "FIXED: 404 errors when accessing individual data flow pages",
+      "Console error: GET /sk/context/data-flows/1 404 (Not Found)",
+      "Updated getDataFlow() client library to use proper endpoint instead of fetch-all-then-filter",
+      "Server-side rendering now works for data flow edit pages"
+    ],
+    note: "Data flows module was missing [id] route handler. Client library was using fetch-all-then-filter pattern which doesn't work in server components. Created proper [id] route with GET endpoint that returns individual data flows from mock data array."
+  },
   "3.34.4": {
     date: "2026-01-24",
     name: "Data Categories Translation Keys",

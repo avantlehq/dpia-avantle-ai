@@ -69,10 +69,7 @@ export async function getDataFlows(): Promise<DataFlow[]> {
 
 export async function getDataFlow(id: string): Promise<DataFlow | null> {
   try {
-    // Note: No GET /api/v1/context/data-flows/[id] endpoint exists yet
-    // Using fetch-all-then-filter approach (won't work server-side)
-    const flows = await getDataFlows()
-    return flows.find(f => f.id === id) || null
+    return await contextFetch<DataFlow>(`/api/v1/context/data-flows/${id}`)
   } catch (error) {
     console.error('Error fetching data flow:', error)
     return null
