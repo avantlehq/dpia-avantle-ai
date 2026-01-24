@@ -16,6 +16,7 @@ import { VendorRepository } from '../repositories/vendor.repository';
 import { SystemRepository } from '../repositories/system.repository';
 import { DataCategoryRepository } from '../repositories/data-category.repository';
 import { ProcessingActivityRepository } from '../repositories/processing-activity.repository';
+import { DataFlowRepository } from '../repositories/data-flow.repository';
 
 import { JurisdictionService } from './jurisdiction.service';
 import { PhysicalLocationService } from './physical-location.service';
@@ -23,6 +24,7 @@ import { VendorService } from './vendor.service';
 import { SystemService } from './system.service';
 import { DataCategoryService } from './data-category.service';
 import { ProcessingActivityService } from './processing-activity.service';
+import { DataFlowService } from './data-flow.service';
 
 export class ContextService {
   private client: SupabaseClient<Database>;
@@ -35,6 +37,7 @@ export class ContextService {
   private systemRepo: SystemRepository;
   private dataCategoryRepo: DataCategoryRepository;
   private processingActivityRepo: ProcessingActivityRepository;
+  private dataFlowRepo: DataFlowRepository;
 
   // Service instances
   public readonly jurisdictions: JurisdictionService;
@@ -43,6 +46,7 @@ export class ContextService {
   public readonly systems: SystemService;
   public readonly dataCategories: DataCategoryService;
   public readonly processingActivities: ProcessingActivityService;
+  public readonly dataFlows: DataFlowService;
 
   constructor(context: ContextClaims, client?: SupabaseClient<Database>) {
     this.context = context;
@@ -55,6 +59,7 @@ export class ContextService {
     this.systemRepo = new SystemRepository(context, client);
     this.dataCategoryRepo = new DataCategoryRepository(context, client);
     this.processingActivityRepo = new ProcessingActivityRepository(context, client);
+    this.dataFlowRepo = new DataFlowRepository(context, client);
 
     // Initialize services
     this.jurisdictions = new JurisdictionService(this.jurisdictionRepo);
@@ -68,6 +73,7 @@ export class ContextService {
       this.dataCategoryRepo,
       this.vendorRepo
     );
+    this.dataFlows = new DataFlowService(this.dataFlowRepo, this.systemRepo, this.vendorRepo);
   }
 
   /**

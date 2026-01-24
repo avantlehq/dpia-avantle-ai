@@ -263,6 +263,12 @@ export interface DataFlow extends AuditFields {
   volume_estimate: string | null;
   criticality: Criticality | null;
   status: EntityStatus;
+  from_system: UUID | null;
+  to_system: UUID | null;
+  from_vendor: UUID | null;
+  to_vendor: UUID | null;
+  encryption_in_transit: boolean;
+  cross_border_transfer: boolean;
   edges?: DataFlowEdge[];
   data_categories?: DataCategory[];
 }
@@ -523,6 +529,13 @@ export interface CreateDataFlowRequest {
   frequency?: string;
   volume_estimate?: string;
   criticality?: Criticality;
+  status?: EntityStatus;
+  from_system?: UUID;
+  to_system?: UUID;
+  from_vendor?: UUID;
+  to_vendor?: UUID;
+  encryption_in_transit?: boolean;
+  cross_border_transfer?: boolean;
 }
 
 export interface UpdateDataFlowRequest {
@@ -534,6 +547,12 @@ export interface UpdateDataFlowRequest {
   volume_estimate?: string;
   criticality?: Criticality;
   status?: EntityStatus;
+  from_system?: UUID;
+  to_system?: UUID;
+  from_vendor?: UUID;
+  to_vendor?: UUID;
+  encryption_in_transit?: boolean;
+  cross_border_transfer?: boolean;
 }
 
 export interface CreateDataFlowEdgeRequest {
@@ -683,6 +702,8 @@ export interface ProcessingActivityQueryParams extends ListQueryParams {
 export interface DataFlowQueryParams extends ListQueryParams {
   flow_direction?: FlowDirection;
   criticality?: Criticality;
+  status?: EntityStatus;
+  cross_border_transfer?: boolean;
 }
 
 // Error types

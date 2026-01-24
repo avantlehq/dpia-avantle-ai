@@ -50,11 +50,13 @@ export interface CreateDataFlowData {
 export type UpdateDataFlowData = Partial<CreateDataFlowData>
 
 export interface DataFlowsListResponse {
+  success: boolean
   data: DataFlow[]
   meta: {
     total: number
     page: number
     limit: number
+    pages: number
   }
 }
 

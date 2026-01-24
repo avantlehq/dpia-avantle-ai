@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.34.10" as const
-export const VERSION_NAME = "Context Common Criticality Keys" as const
+export const VERSION = "3.35.0" as const
+export const VERSION_NAME = "Data Flows Database Implementation" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,33 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.35.0": {
+    date: "2026-01-24",
+    name: "Data Flows Database Implementation",
+    features: [
+      "✅ IMPLEMENTED: Full database-backed CRUD for data flows",
+      "Created data-flow.repository.ts with BaseRepository pattern",
+      "Created data-flow.service.ts with validation logic",
+      "Added DataFlowService to ContextService",
+      "Updated database migration: 20260124_data_flows_endpoints.sql",
+      "Added endpoint fields: from_system, to_system, from_vendor, to_vendor",
+      "Added security fields: encryption_in_transit, cross_border_transfer",
+      "Updated Zod schemas with endpoint and security validations",
+      "Updated DataFlow, CreateDataFlowRequest, UpdateDataFlowRequest types",
+      "Replaced mock API with real database operations",
+      "Created flows now persist to database",
+      "Updates modify actual database records",
+      "Deletes use soft delete pattern"
+    ],
+    fixes: [
+      "FIXED: Created flows now appear in list (database persistence)",
+      "FIXED: Updates persist across page refreshes",
+      "FIXED: Deletes remove flows from list permanently",
+      "Removed all mock data from API routes",
+      "Full validation with foreign key constraints"
+    ],
+    note: "Complete replacement of mock implementation with full database backend. Data flows now fully functional with persistence. Migration required: Run 20260124_data_flows_endpoints.sql to add endpoint columns to data_flows table."
+  },
   "3.34.10": {
     date: "2026-01-24",
     name: "Context Common Criticality Keys",

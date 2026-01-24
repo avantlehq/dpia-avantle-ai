@@ -519,6 +519,13 @@ export const CreateDataFlowRequestSchema = z.object({
   frequency: z.string().max(255).optional(),
   volume_estimate: z.string().max(255).optional(),
   criticality: CriticalitySchema.optional(),
+  status: EntityStatusSchema.optional(),
+  from_system: UUIDSchema.optional(),
+  to_system: UUIDSchema.optional(),
+  from_vendor: UUIDSchema.optional(),
+  to_vendor: UUIDSchema.optional(),
+  encryption_in_transit: z.boolean().optional(),
+  cross_border_transfer: z.boolean().optional(),
 });
 
 export const UpdateDataFlowRequestSchema = z.object({
@@ -530,6 +537,12 @@ export const UpdateDataFlowRequestSchema = z.object({
   volume_estimate: z.string().max(255).optional(),
   criticality: CriticalitySchema.optional(),
   status: EntityStatusSchema.optional(),
+  from_system: UUIDSchema.optional(),
+  to_system: UUIDSchema.optional(),
+  from_vendor: UUIDSchema.optional(),
+  to_vendor: UUIDSchema.optional(),
+  encryption_in_transit: z.boolean().optional(),
+  cross_border_transfer: z.boolean().optional(),
 });
 
 export const CreateDataFlowEdgeRequestSchema = z.object({
