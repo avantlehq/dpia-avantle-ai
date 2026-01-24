@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.35.2" as const
-export const VERSION_NAME = "Database Types Update" as const
+export const VERSION = "3.35.3" as const
+export const VERSION_NAME = "Fix Data Flow Edit Page" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.35.3": {
+    date: "2026-01-24",
+    name: "Fix Data Flow Edit Page",
+    features: [],
+    fixes: [
+      "FIXED: 404 error when editing data flows",
+      "Changed from client library (contextFetch) to ContextService for server-side data fetching",
+      "Server components cannot use relative URLs - need direct service access",
+      "Pattern now matches systems, vendors, locations pages",
+      "Edit page now loads data flow correctly from database"
+    ],
+    note: "Server component was using client library which doesn't work with relative URLs during SSR. Changed to use ContextService directly like other Context modules."
+  },
   "3.35.2": {
     date: "2026-01-24",
     name: "Database Types Update",
