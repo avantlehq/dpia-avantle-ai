@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -7,7 +7,7 @@ type Props = {
 
 export default async function PlatformDashboard({ params }: Props) {
   const { locale } = await params;
-  const t = useTranslations('dashboard.platform')
+  const t = await getTranslations('dashboard.platform')
 
 
   return (

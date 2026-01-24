@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.33.0" as const
-export const VERSION_NAME = "Dashboard i18n Refactor" as const
+export const VERSION = "3.33.1" as const
+export const VERSION_NAME = "Fix Dashboard Server Component" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.33.1": {
+    date: "2026-01-24",
+    name: "Fix Dashboard Server Component",
+    features: [],
+    fixes: [
+      "FIXED: Server Components render error on dashboard page",
+      "Changed useTranslations (client hook) to getTranslations (server function)",
+      "Import from 'next-intl/server' instead of 'next-intl'",
+      "Added await to getTranslations call",
+      "Dashboard now renders correctly in production"
+    ],
+    note: "Critical hotfix for v3.33.0. Dashboard page is async server component but used client-side useTranslations hook. Server components must use getTranslations from 'next-intl/server'. Same pattern as privacy/page.tsx and assessments/page.tsx."
+  },
   "3.33.0": {
     date: "2026-01-24",
     name: "Dashboard i18n Refactor",
