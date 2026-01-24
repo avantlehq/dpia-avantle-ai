@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.34.8" as const
-export const VERSION_NAME = "ESLint Fix: Remove Unused Import" as const
+export const VERSION = "3.34.9" as const
+export const VERSION_NAME = "Fix Data Flows Mock Scope" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,19 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.34.9": {
+    date: "2026-01-24",
+    name: "Fix Data Flows Mock Scope",
+    features: [],
+    fixes: [
+      "FIXED: TypeScript build error in data-flows route",
+      "Error: Cannot find name 'mockDataFlows' in POST handler",
+      "Moved mockDataFlows array outside function scope to module level",
+      "Both GET and POST handlers can now access mock data",
+      "Build passes successfully"
+    ],
+    note: "The mockDataFlows array was defined inside the GET handler, making it inaccessible to the POST handler. Moved to module level so both handlers can access it."
+  },
   "3.34.8": {
     date: "2026-01-24",
     name: "ESLint Fix: Remove Unused Import",

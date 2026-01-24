@@ -10,15 +10,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { withOptionalAuth } from '@/lib/api/context/middleware/auth';
 import { handleApiError } from '@/lib/api/context/middleware/error-handler';
 
-/**
- * GET /api/v1/context/data-flows
- * List data flows with mock data (API endpoint placeholder)
- */
-export async function GET(request: NextRequest) {
-  try {
-    return await withOptionalAuth(async (_context) => {
-      // Mock data flows - in a real implementation, this would fetch from database
-      const mockDataFlows = [
+// Mock data flows - in a real implementation, this would fetch from database
+const mockDataFlows = [
         {
           id: '1',
           name: 'Customer CRM to Analytics',
@@ -101,6 +94,13 @@ export async function GET(request: NextRequest) {
         }
       ];
 
+/**
+ * GET /api/v1/context/data-flows
+ * List data flows with mock data
+ */
+export async function GET(request: NextRequest) {
+  try {
+    return await withOptionalAuth(async (_context) => {
       return NextResponse.json({
         success: true,
         data: mockDataFlows,
