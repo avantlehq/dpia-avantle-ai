@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslations } from 'next-intl'
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -6,25 +7,26 @@ type Props = {
 
 export default async function PlatformDashboard({ params }: Props) {
   const { locale } = await params;
+  const t = useTranslations('dashboard.platform')
 
 
   return (
     <div className="space-y-6">
       {/* Header - Status Monitoring Focus */}
       <div>
-        <h1 className="text-2xl font-semibold text-foreground">Platform Dashboard</h1>
+        <h1 className="text-2xl font-semibold text-foreground">{t('title')}</h1>
         <p className="text-muted-foreground">
-          Monitor your privacy compliance status and identify priority areas
+          {t('description')}
         </p>
       </div>
 
       {/* Platform Status Overview - Primary content section matching Context module */}
       <div className="space-y-5">
-        <h2 className="text-lg font-medium text-foreground">Platform Status</h2>
-        
+        <h2 className="text-lg font-medium text-foreground">{t('platformStatus')}</h2>
+
         {/* Status Cards - Row 1: Overall Health */}
         <div>
-          <h3 className="text-sm font-medium text-muted-foreground mb-3">Overall Health</h3>
+          <h3 className="text-sm font-medium text-muted-foreground mb-3">{t('overallHealth')}</h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
             {/* Active Modules */}
             <div 
@@ -38,14 +40,14 @@ export default async function PlatformDashboard({ params }: Props) {
                 gap: '8px'
               }}
             >
-              <span 
-                style={{ 
+              <span
+                style={{
                   fontSize: '14px',
                   color: '#9ca3af',
                   fontWeight: '500'
                 }}
               >
-                Active Modules
+                {t('activeModules')}
               </span>
               <span 
                 style={{ 
@@ -70,14 +72,14 @@ export default async function PlatformDashboard({ params }: Props) {
                 gap: '8px'
               }}
             >
-              <span 
-                style={{ 
+              <span
+                style={{
                   fontSize: '14px',
                   color: '#9ca3af',
                   fontWeight: '500'
                 }}
               >
-                Critical Items
+                {t('criticalItems')}
               </span>
               <span 
                 style={{ 
@@ -102,14 +104,14 @@ export default async function PlatformDashboard({ params }: Props) {
                 gap: '8px'
               }}
             >
-              <span 
-                style={{ 
+              <span
+                style={{
                   fontSize: '14px',
                   color: '#9ca3af',
                   fontWeight: '500'
                 }}
               >
-                Reviews Needed
+                {t('reviewsNeeded')}
               </span>
               <span 
                 style={{ 
@@ -135,16 +137,16 @@ export default async function PlatformDashboard({ params }: Props) {
                 gap: '8px',
                 textDecoration: 'none'
               }}
-              title="Click to view compliance score calculation methodology"
+              title={t('complianceScoreTooltip')}
             >
-              <span 
-                style={{ 
+              <span
+                style={{
                   fontSize: '14px',
                   color: '#9ca3af',
                   fontWeight: '500'
                 }}
               >
-                Compliance Score
+                {t('complianceScore')}
               </span>
               <span 
                 style={{ 
@@ -170,7 +172,7 @@ export default async function PlatformDashboard({ params }: Props) {
         
         {/* Status Cards - Row 2: Compliance & Audit Metrics */}
         <div>
-          <h3 className="text-sm font-medium text-muted-foreground mb-3">Compliance & Audit</h3>
+          <h3 className="text-sm font-medium text-muted-foreground mb-3">{t('complianceAudit')}</h3>
           <div className="flex flex-wrap" style={{ gap: '12px' }}>
             {/* Audit Reports */}
             <div 
@@ -184,14 +186,14 @@ export default async function PlatformDashboard({ params }: Props) {
                 gap: '8px'
               }}
             >
-              <span 
-                style={{ 
+              <span
+                style={{
                   fontSize: '14px',
                   color: '#9ca3af',
                   fontWeight: '500'
                 }}
               >
-                Audit Reports
+                {t('auditReports')}
               </span>
               <span 
                 style={{ 
@@ -216,14 +218,14 @@ export default async function PlatformDashboard({ params }: Props) {
                 gap: '8px'
               }}
             >
-              <span 
-                style={{ 
+              <span
+                style={{
                   fontSize: '14px',
                   color: '#9ca3af',
                   fontWeight: '500'
                 }}
               >
-                Certifications
+                {t('certifications')}
               </span>
               <span 
                 style={{ 
@@ -248,14 +250,14 @@ export default async function PlatformDashboard({ params }: Props) {
                 gap: '8px'
               }}
             >
-              <span 
-                style={{ 
+              <span
+                style={{
                   fontSize: '14px',
                   color: '#9ca3af',
                   fontWeight: '500'
                 }}
               >
-                DPIA Active
+                {t('dpiaActive')}
               </span>
               <span 
                 style={{ 
@@ -280,23 +282,23 @@ export default async function PlatformDashboard({ params }: Props) {
                 gap: '8px'
               }}
             >
-              <span 
-                style={{ 
+              <span
+                style={{
                   fontSize: '14px',
                   color: '#9ca3af',
                   fontWeight: '500'
                 }}
               >
-                Last Updated
+                {t('lastUpdated')}
               </span>
-              <span 
-                style={{ 
+              <span
+                style={{
                   fontSize: '16px',
                   color: 'var(--text-primary)',
                   fontWeight: '600'
                 }}
               >
-                Jan 2026
+                {t('lastUpdatedValue')}
               </span>
             </div>
           </div>

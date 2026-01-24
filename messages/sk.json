@@ -37,6 +37,23 @@
       "in_progress": "Prebieha",
       "submitted": "Odoslané",
       "completed": "Dokončené"
+    },
+    "platform": {
+      "title": "Dashboard Platformy",
+      "description": "Monitorujte stav GDPR compliance a identifikujte prioritné oblasti",
+      "platformStatus": "Stav Platformy",
+      "overallHealth": "Celkové Zdravie",
+      "complianceAudit": "Zhoda a Audit",
+      "activeModules": "Aktívne Moduly",
+      "criticalItems": "Kritické Položky",
+      "reviewsNeeded": "Vyžadujú Kontrolu",
+      "complianceScore": "Skóre Zhody",
+      "complianceScoreTooltip": "Kliknite pre zobrazenie metodológie výpočtu skóre zhody",
+      "auditReports": "Auditné Správy",
+      "certifications": "Certifikácie",
+      "dpiaActive": "DPIA Aktívne",
+      "lastUpdated": "Posledná Aktualizácia",
+      "lastUpdatedValue": "Jan 2026"
     }
   },
   "wizard": {

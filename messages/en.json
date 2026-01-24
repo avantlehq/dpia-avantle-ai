@@ -37,6 +37,23 @@
       "in_progress": "In Progress",
       "submitted": "Submitted",
       "completed": "Completed"
+    },
+    "platform": {
+      "title": "Platform Dashboard",
+      "description": "Monitor your privacy compliance status and identify priority areas",
+      "platformStatus": "Platform Status",
+      "overallHealth": "Overall Health",
+      "complianceAudit": "Compliance & Audit",
+      "activeModules": "Active Modules",
+      "criticalItems": "Critical Items",
+      "reviewsNeeded": "Reviews Needed",
+      "complianceScore": "Compliance Score",
+      "complianceScoreTooltip": "Click to view compliance score calculation methodology",
+      "auditReports": "Audit Reports",
+      "certifications": "Certifications",
+      "dpiaActive": "DPIA Active",
+      "lastUpdated": "Last Updated",
+      "lastUpdatedValue": "Jan 2026"
     }
   },
   "wizard": {

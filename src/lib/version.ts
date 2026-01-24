@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.32.4" as const
-export const VERSION_NAME = "Delete Platform Modules Page" as const
-export const BUILD_DATE = "2026-01-22"
+export const VERSION = "3.33.0" as const
+export const VERSION_NAME = "Dashboard i18n Refactor" as const
+export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,26 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.33.0": {
+    date: "2026-01-24",
+    name: "Dashboard i18n Refactor",
+    features: [
+      "✅ REFACTORED: Dashboard page to use next-intl translation system",
+      "Added dashboard.platform namespace with 14 translation keys",
+      "Bilingual support for all dashboard UI elements (English/Slovak)",
+      "Migrated from hardcoded English strings to centralized translations",
+      "All metric labels translated: Active Modules, Critical Items, Reviews Needed, etc.",
+      "Platform Status and Compliance sections fully localized",
+      "Tooltip text for Compliance Score link translated"
+    ],
+    fixes: [
+      "FIXED: Dashboard page displayed only English text regardless of locale",
+      "FIXED: /sk/dashboard now shows Slovak translations",
+      "FIXED: /en/dashboard shows English translations",
+      "Eliminated all hardcoded English strings from dashboard page"
+    ],
+    note: "Dashboard page now follows same i18n pattern as Context and Privacy modules. Uses useTranslations('dashboard.platform') hook. All UI text centralized in messages/en.json and messages/sk.json. Zero hardcoded strings remaining."
+  },
   "3.32.4": {
     date: "2026-01-22",
     name: "Delete Platform Modules Page",
