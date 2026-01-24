@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.33.3" as const
-export const VERSION_NAME = "Dashboard setRequestLocale Fix" as const
+export const VERSION = "3.33.4" as const
+export const VERSION_NAME = "ESLint Fix" as const
 export const BUILD_DATE = "2026-01-24"
 
 export const getVersionInfo = () => ({

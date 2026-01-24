@@ -44,7 +44,7 @@ export function HelpPlaceholder({ title, description, icon }: HelpPlaceholderPro
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="text-muted-foreground">
-            This help section is currently being prepared. We're building comprehensive documentation for privacy professionals.
+            This help section is currently being prepared. We&apos;re building comprehensive documentation for privacy professionals.
           </p>
           <p className="text-sm text-muted-foreground">
             Expected availability: Q2 2026
