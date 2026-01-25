@@ -8,8 +8,6 @@ import {
   MapPin,
   Plus,
   Search,
-  Edit,
-  Trash2,
   Globe,
   Shield,
   AlertTriangle,
@@ -29,6 +27,7 @@ import {
 } from '@/components/ui/select'
 import { Pagination } from '@/components/ui/pagination'
 import { DeleteLocationDialog } from '@/components/context/DeleteLocationDialog'
+import { ContextTableActions } from '@/components/context/ContextTableActions'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -430,16 +429,21 @@ export default function LocationsPage() {
                     {paginatedLocations.map((location) => (
                       <tr key={location.id} className="border-b border-border hover:bg-muted/50">
                         <td className="py-3 px-4">
-                          <div className="space-y-1">
+                          <Link
+                            href={`/${locale}/context/locations/${location.id}`}
+                            className="block space-y-1 group"
+                          >
                             <div className="flex items-center gap-2">
                               <Flag className="h-4 w-4 text-muted-foreground" />
-                              <div className="font-medium text-foreground">{location.name}</div>
+                              <div className="font-medium text-foreground group-hover:text-blue-600 transition-colors">
+                                {location.name}
+                              </div>
                               <span className="text-sm text-muted-foreground font-mono">({location.country_code})</span>
                             </div>
                             {location.notes && (
                               <div className="text-sm text-muted-foreground">{location.notes}</div>
                             )}
-                          </div>
+                          </Link>
                         </td>
                         <td className="py-3 px-4">
                           <Badge className={getJurisdictionTypeColor(location.jurisdiction_type)}>
@@ -472,24 +476,14 @@ export default function LocationsPage() {
                           </div>
                         </td>
                         <td className="py-3 px-4 text-right">
-                          <div className="flex items-center justify-end gap-2">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              title={t('editLocation')}
-                              onClick={() => window.location.href = `/${locale}/context/locations/${location.id}`}
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleDeleteLocation(location)}
-                              title={t('deleteLocation')}
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
+                          <ContextTableActions
+                            itemId={location.id}
+                            itemName={location.name}
+                            module="locations"
+                            onDelete={() => handleDeleteLocation(location)}
+                            editLabel={t('editLocation')}
+                            deleteLabel={t('deleteLocation')}
+                          />
                         </td>
                       </tr>
                     ))}

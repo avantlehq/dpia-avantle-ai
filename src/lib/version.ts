@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.35.3" as const
-export const VERSION_NAME = "Fix Data Flow Edit Page" as const
-export const BUILD_DATE = "2026-01-24"
+export const VERSION = "3.36.0" as const
+export const VERSION_NAME = "Context Tables UX Unification" as const
+export const BUILD_DATE = "2026-01-25"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,20 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.36.0": {
+    date: "2026-01-25",
+    name: "Context Tables UX Unification",
+    features: [
+      "Implemented clickable row navigation in all 6 Context module tables",
+      "Added kebab menu (DropdownMenu) for table actions - replaced 2-icon pattern",
+      "Created reusable ContextTableActions component",
+      "Unified UX pattern with DPIA Assessments module",
+      "Row hover now shows visual feedback with blue text on name column",
+      "Actions dropdown includes Edit and Delete with proper spacing and destructive styling"
+    ],
+    fixes: [],
+    note: "Major UX improvement bringing Context module tables in line with DPIA Assessments. Kebab menu provides cleaner interface and scales better for future actions (Duplicate, Export, Archive). All 6 modules now have consistent interaction patterns."
+  },
   "3.35.3": {
     date: "2026-01-24",
     name: "Fix Data Flow Edit Page",

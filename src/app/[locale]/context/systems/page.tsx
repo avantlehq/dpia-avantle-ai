@@ -5,8 +5,6 @@ import Link from 'next/link'
 import {
   Plus,
   Search,
-  Edit,
-  Trash2,
   Server
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -22,6 +20,7 @@ import {
 } from '@/components/ui/select'
 import { Pagination } from '@/components/ui/pagination'
 import { DeleteSystemDialog } from '@/components/context/DeleteSystemDialog'
+import { ContextTableActions } from '@/components/context/ContextTableActions'
 import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
@@ -375,12 +374,17 @@ export default function SystemsPage() {
                     {paginatedSystems.map((system) => (
                       <tr key={system.id} className="border-b border-border hover:bg-muted/50">
                         <td className="py-3 px-4">
-                          <div className="space-y-1">
-                            <div className="font-medium text-foreground">{system.name}</div>
+                          <Link
+                            href={`/${locale}/context/systems/${system.id}`}
+                            className="block space-y-1 group"
+                          >
+                            <div className="font-medium text-foreground group-hover:text-blue-600 transition-colors">
+                              {system.name}
+                            </div>
                             {system.description && (
                               <div className="text-sm text-muted-foreground">{system.description}</div>
                             )}
-                          </div>
+                          </Link>
                         </td>
                         <td className="py-3 px-4 text-muted-foreground">
                           {system.system_type || '-'}
@@ -409,24 +413,14 @@ export default function SystemsPage() {
                           {system.owner_team || '-'}
                         </td>
                         <td className="py-3 px-4 text-right">
-                          <div className="flex items-center justify-end gap-2">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              title={t('editSystem')}
-                              onClick={() => window.location.href = `/${locale}/context/systems/${system.id}`}
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleDeleteSystem(system)}
-                              title={t('deleteSystem')}
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
+                          <ContextTableActions
+                            itemId={system.id}
+                            itemName={system.name}
+                            module="systems"
+                            onDelete={() => handleDeleteSystem(system)}
+                            editLabel={t('editSystem')}
+                            deleteLabel={t('deleteSystem')}
+                          />
                         </td>
                       </tr>
                     ))}

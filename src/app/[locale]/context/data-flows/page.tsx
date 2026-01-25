@@ -8,8 +8,6 @@ import {
   ArrowRight,
   Plus,
   Search,
-  Edit,
-  Trash2,
   Globe,
   AlertTriangle,
   Network,
@@ -28,6 +26,7 @@ import {
 } from '@/components/ui/select'
 import { Pagination } from '@/components/ui/pagination'
 import { DeleteDataFlowDialog } from '@/components/context/DeleteDataFlowDialog'
+import { ContextTableActions } from '@/components/context/ContextTableActions'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -414,15 +413,20 @@ export default function DataFlowsPage() {
                       return (
                         <tr key={flow.id} className="border-b border-border hover:bg-muted/50">
                           <td className="py-3 px-4">
-                            <div className="space-y-1">
-                              <div className="font-medium text-foreground">{flow.name}</div>
+                            <Link
+                              href={`/${locale}/context/data-flows/${flow.id}`}
+                              className="block space-y-1 group"
+                            >
+                              <div className="font-medium text-foreground group-hover:text-blue-600 transition-colors">
+                                {flow.name}
+                              </div>
                               {flow.description && (
                                 <div className="text-sm text-muted-foreground">{flow.description}</div>
                               )}
                               {flow.purpose && (
                                 <div className="text-xs text-muted-foreground">Purpose: {flow.purpose}</div>
                               )}
-                            </div>
+                            </Link>
                           </td>
                           <td className="py-3 px-4">
                             <Badge className={getFlowDirectionColor(flow.flow_direction)}>
@@ -468,24 +472,14 @@ export default function DataFlowsPage() {
                             </div>
                           </td>
                           <td className="py-3 px-4 text-right">
-                            <div className="flex items-center justify-end gap-2">
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                title="Edit data flow"
-                                onClick={() => window.location.href = `/${locale}/context/data-flows/${flow.id}`}
-                              >
-                                <Edit className="h-4 w-4" />
-                              </Button>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => handleDelete(flow)}
-                                title="Delete data flow"
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </div>
+                            <ContextTableActions
+                              itemId={flow.id}
+                              itemName={flow.name}
+                              module="data-flows"
+                              onDelete={() => handleDelete(flow)}
+                              editLabel={t('editFlow')}
+                              deleteLabel={t('deleteFlow')}
+                            />
                           </td>
                         </tr>
                       )

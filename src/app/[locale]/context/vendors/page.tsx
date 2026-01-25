@@ -6,8 +6,6 @@ import {
   Users,
   Plus,
   Search,
-  Edit,
-  Trash2,
   Mail,
   ExternalLink,
   FileText,
@@ -26,6 +24,7 @@ import {
 } from '@/components/ui/select'
 import { Pagination } from '@/components/ui/pagination'
 import { DeleteVendorDialog } from '@/components/context/DeleteVendorDialog'
+import { ContextTableActions } from '@/components/context/ContextTableActions'
 import { useParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
@@ -399,23 +398,23 @@ export default function VendorsPage() {
                     {paginatedVendors.map((vendor) => (
                       <tr key={vendor.id} className="border-b border-border hover:bg-muted/50">
                         <td className="py-3 px-4">
-                          <div className="space-y-1">
-                            <div className="font-medium text-foreground">{vendor.name}</div>
+                          <Link
+                            href={`/${locale}/context/vendors/${vendor.id}`}
+                            className="block space-y-1 group"
+                          >
+                            <div className="font-medium text-foreground group-hover:text-blue-600 transition-colors">
+                              {vendor.name}
+                            </div>
                             {vendor.description && (
                               <div className="text-sm text-muted-foreground">{vendor.description}</div>
                             )}
                             {vendor.website && (
-                              <a 
-                                href={vendor.website} 
-                                target="_blank" 
-                                rel="noopener noreferrer"
-                                className="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1"
-                              >
+                              <span className="text-xs text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 flex items-center gap-1">
                                 <ExternalLink className="h-3 w-3" />
                                 Website
-                              </a>
+                              </span>
                             )}
-                          </div>
+                          </Link>
                         </td>
                         <td className="py-3 px-4">
                           <Badge className={getVendorRoleColor(vendor.vendor_role)}>
@@ -470,24 +469,14 @@ export default function VendorsPage() {
                           </div>
                         </td>
                         <td className="py-3 px-4 text-right">
-                          <div className="flex items-center justify-end gap-2">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              title={t('editVendor')}
-                              onClick={() => window.location.href = `/${locale}/context/vendors/${vendor.id}`}
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleDeleteVendor(vendor)}
-                              title={t('deleteVendor')}
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
+                          <ContextTableActions
+                            itemId={vendor.id}
+                            itemName={vendor.name}
+                            module="vendors"
+                            onDelete={() => handleDeleteVendor(vendor)}
+                            editLabel={t('editVendor')}
+                            deleteLabel={t('deleteVendor')}
+                          />
                         </td>
                       </tr>
                     ))}

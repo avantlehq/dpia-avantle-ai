@@ -7,8 +7,6 @@ import { useTranslations } from 'next-intl'
 import {
   Plus,
   Search,
-  Edit,
-  Trash2,
   AlertTriangle,
   Calendar,
   Scale,
@@ -27,6 +25,7 @@ import {
 } from '@/components/ui/select'
 import { Pagination } from '@/components/ui/pagination'
 import { DeleteProcessingActivityDialog } from '@/components/context/DeleteProcessingActivityDialog'
+import { ContextTableActions } from '@/components/context/ContextTableActions'
 
 // Force dynamic rendering to avoid SSR issues
 export const dynamic = 'force-dynamic'
@@ -399,12 +398,17 @@ export default function ProcessingPage() {
                     {paginatedActivities.map((activity) => (
                       <tr key={activity.id} className="border-b border-border hover:bg-muted/50">
                         <td className="py-3 px-4">
-                          <div className="space-y-1">
-                            <div className="font-medium text-foreground">{activity.name}</div>
+                          <Link
+                            href={`/${locale}/context/processing/${activity.id}`}
+                            className="block space-y-1 group"
+                          >
+                            <div className="font-medium text-foreground group-hover:text-blue-600 transition-colors">
+                              {activity.name}
+                            </div>
                             {activity.description && (
                               <div className="text-sm text-muted-foreground">{activity.description}</div>
                             )}
-                          </div>
+                          </Link>
                         </td>
                         <td className="py-3 px-4">
                           <div className="text-sm text-foreground max-w-xs">
@@ -448,24 +452,14 @@ export default function ProcessingPage() {
                           </div>
                         </td>
                         <td className="py-3 px-4 text-right">
-                          <div className="flex items-center justify-end gap-2">
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              title={t('editActivity')}
-                              onClick={() => window.location.href = `/${locale}/context/processing/${activity.id}`}
-                            >
-                              <Edit className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleDelete(activity)}
-                              title={t('deleteActivity')}
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
+                          <ContextTableActions
+                            itemId={activity.id}
+                            itemName={activity.name}
+                            module="processing"
+                            onDelete={() => handleDelete(activity)}
+                            editLabel={t('editActivity')}
+                            deleteLabel={t('deleteActivity')}
+                          />
                         </td>
                       </tr>
                     ))}
