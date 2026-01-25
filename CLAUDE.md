@@ -23,7 +23,7 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.35.3 - Data Flows Full Database Implementation**
+**Current Version: 3.36.0 - Context Tables UX Unification**
 **URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
 
 ### ✅ **Core Features Complete**
@@ -315,6 +315,57 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.36.0 - 2026-01-25**
+**🎨 CONTEXT TABLES UX UNIFICATION: CLICKABLE ROWS + KEBAB MENU**
+
+**ACHIEVEMENT**: Unified table interaction pattern across all 6 Context modules to match DPIA Assessments UX
+
+**IMPLEMENTED FEATURES**:
+1. **Clickable Row Navigation** - Name column now links to edit page with hover effect (blue text)
+2. **Kebab Menu (DropdownMenu)** - Replaced 2-icon pattern with single MoreVertical dropdown
+3. **Reusable Component** - Created `ContextTableActions` for all Context modules
+4. **Visual Consistency** - Matches DPIA Assessments table interaction pattern
+5. **Scalable Design** - Easy to add future actions (Duplicate, Export, Archive)
+6. **Bilingual Support** - Translation labels for Edit/Delete in EN/SK
+
+**COMPONENTS CREATED**:
+- `src/components/context/ContextTableActions.tsx` - Generic kebab menu component
+  - Props: itemId, itemName, module, onDelete, editLabel, deleteLabel
+  - Uses shadcn/ui DropdownMenu with Radix UI primitives
+  - Module types: systems | vendors | locations | data-categories | data-flows | processing
+
+**PAGES MODIFIED (6)**:
+- `src/app/[locale]/context/systems/page.tsx`
+- `src/app/[locale]/context/vendors/page.tsx`
+- `src/app/[locale]/context/locations/page.tsx`
+- `src/app/[locale]/context/data-categories/page.tsx`
+- `src/app/[locale]/context/data-flows/page.tsx`
+- `src/app/[locale]/context/processing/page.tsx`
+
+**CHANGES PER PAGE**:
+- Removed Edit, Trash2 icon imports (no longer needed)
+- Added ContextTableActions import
+- Wrapped name cell in `<Link>` with group hover styling
+- Replaced 2-button actions with single ContextTableActions component
+- Translation keys already existed (no new keys needed)
+
+**UX BENEFITS**:
+- **Cleaner UI**: 1 icon instead of 2-3 buttons per row
+- **Mobile-friendly**: Dropdown better on touch devices than multiple icons
+- **Consistent**: Identical pattern with DPIA Assessments module
+- **Future-proof**: Ready for additional actions without UI clutter
+
+**VERSION MANAGEMENT**:
+- Version: 3.35.3 → 3.36.0
+- `package.json` updated to 3.36.0
+- Changelog entry with 6 features documented
+
+**BUILD STATUS**: ✓ pnpm build SUCCESS - zero errors, 109 routes generated
+
+**Git Commit:** `e0a3334`
+
+---
 
 ### **v3.35.3 - 2026-01-24**
 **🔧 FIX: DATA FLOW EDIT PAGE SERVER-SIDE FETCHING**
