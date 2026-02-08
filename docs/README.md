@@ -2,7 +2,7 @@
 
 Welcome to the Avantle Privacy Platform developer documentation. This directory contains comprehensive technical documentation for developers working on the DPIA platform.
 
-**Latest Update (v3.30.0)**: Context module list pages i18n refactor complete. All 6 Context list pages now fully bilingual (Slovak/English). Added ~180 translation keys to context.pages namespace.
+**Latest Update (v3.37.1)**: Temporary authentication system complete with login page, route protection, and logout functionality. Platform now requires authentication for all protected routes.
 
 ## 📁 Documentation Structure
 
@@ -11,7 +11,12 @@ Welcome to the Avantle Privacy Platform developer documentation. This directory 
 - **[Architecture](./architecture.md)** - System architecture, module structure, and technical decisions
 - **[Data Model](./data-model.md)** - Database schema, entity relationships, and data flow
 - **[Database Schema Diagrams](./data-model-mermaid.md)** - Interactive Mermaid.js ER diagrams and comprehensive data dictionary
-- **[API Reference](./api-reference.md)** - REST endpoints, authentication, and integration patterns
+- **[Business Strategy](./business-strategy.md)** - Product strategy, go-to-market plan, and roadmap
+- **[i18n Refactoring Plan](./i18n-refactoring-plan.md)** - Internationalization architecture and translation workflow
+
+### Implementation Guides
+- **[Login Page Implementation](./LOGIN-PAGE-PROMPT.md)** - Complete guide for temporary authentication system setup
+- **[Session 2026-02-08](./SESSION-2026-02-08.md)** - Development session notes: authentication system implementation
 
 ### Development Guides
 - **[Getting Started](./getting-started.md)** - Setup, installation, and first contribution
@@ -33,6 +38,28 @@ Welcome to the Avantle Privacy Platform developer documentation. This directory 
 4. Explore [Data Model](./data-model.md) for database interactions
 
 ## 📋 Recent Updates
+
+**Version 3.37.1** - Logout Functionality ✅
+- **Logout Implementation**: Functional logout button in user dropdown menu
+- **Session Termination**: POST /api/auth/logout clears authentication cookie
+- **Locale-Aware Redirect**: Auto-redirects to /en/login or /sk/login based on current locale
+- **Error Handling**: Forces redirect even if API call fails (network resilience)
+- **User Display**: Shows actual username "toplegal26" instead of generic "Demo User"
+- **Workflow Complete**: Click "Sign out" → API call → Cookie deleted → Redirect to login
+
+**Version 3.37.0** - Temporary Authentication System ✅
+- **Login Page**: Full-page form at /en/login and /sk/login matching DPIA design
+- **Fixed Credentials**: Username "toplegal26", Password "tvarohacek26" (temporary hardcoded)
+- **Route Protection**: Middleware redirects all unauthenticated requests to login page
+- **Session Management**: Cookie-based sessions (7-day expiration, httpOnly, secure in production)
+- **API Endpoints**: POST /api/auth/login (authentication), POST /api/auth/logout (session cleanup)
+- **Bilingual Support**: Complete EN/SK translations for login page (10 keys each)
+- **Design System Match**: Inter font, dark theme (#192734), design tokens, error states
+- **Form Validation**: Red borders, error messages, loading states with spinner
+- **Auto-Redirect**: Successful login redirects to /dashboard
+- **Compact Form**: max-w-sm (384px) for optimal UX
+- **Documentation**: Complete implementation guide in LOGIN-PAGE-PROMPT.md (420 lines)
+- **Security Notes**: ⚠️ Temporary solution - replace with Supabase Auth/NextAuth before production
 
 **Version 3.30.0** - Context List Pages i18n Refactor Complete ✅
 - **Complete Bilingual Support**: All 6 Context module list pages now fully bilingual (Slovak/English)

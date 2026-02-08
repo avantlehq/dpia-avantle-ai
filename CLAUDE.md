@@ -23,8 +23,8 @@ dpia table ako root            // nie je škálovateľné
 
 ## Project Status
 
-**Current Version: 3.36.0 - Context Tables UX Unification**
-**URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL**
+**Current Version: 3.37.1 - Logout Functionality**
+**URL**: https://dpia.avantle.ai - **LIVE & FULLY FUNCTIONAL WITH AUTHENTICATION**
 
 ### ✅ **Core Features Complete**
 - **Context Module Multi-page Workflow**: Complete refactor from modal overlays to full-page forms with deep linking, browser navigation, and improved mobile UX
@@ -315,6 +315,89 @@ git add . && git commit -m "message" && git push origin main
 **Usage**: New developers start with `/docs/README.md`, AI assistance uses CLAUDE.md context
 
 ## Recent Changes (Last Session)
+
+### **v3.37.1 - 2026-02-08**
+**🚪 LOGOUT FUNCTIONALITY IMPLEMENTATION**
+
+**ACHIEVEMENT**: Complete logout workflow with session termination and redirect
+
+**IMPLEMENTED FEATURES**:
+1. **Functional Logout Button** - User dropdown menu now has working "Sign out" option
+2. **API Integration** - Calls POST /api/auth/logout to clear session cookie
+3. **Locale-Aware Redirect** - Auto-redirects to /en/login or /sk/login based on current locale
+4. **Error Handling** - Forces redirect even if API call fails (network issues, etc.)
+5. **User Display Update** - Shows actual username "toplegal26" instead of generic "Demo User"
+6. **Session Termination** - Cookie properly deleted, user must re-authenticate
+
+**FILES MODIFIED**:
+- `src/components/layout/modern-topbar.tsx` - Added handleLogout handler, updated user menu
+- `src/lib/version.ts` - Version 3.37.1, changelog entry
+- `package.json` - Version 3.37.1
+
+**WORKFLOW**:
+1. User clicks User icon (top-right corner)
+2. Dropdown opens with user info and actions
+3. User clicks "Sign out"
+4. Handler calls /api/auth/logout API
+5. API deletes dpia_auth cookie
+6. User redirected to login page
+7. Middleware blocks access until re-authentication
+
+**BUILD STATUS**: ✓ pnpm build SUCCESS - zero errors, 113 routes generated
+
+**Git Commit:** `d037afe`
+
+---
+
+### **v3.37.0 - 2026-02-08**
+**🔐 TEMPORARY LOGIN AUTHENTICATION SYSTEM**
+
+**ACHIEVEMENT**: Complete authentication barrier with login page, API endpoints, and route protection
+
+**IMPLEMENTED FEATURES**:
+1. **Login Page** - Full-page form at /en/login and /sk/login with DPIA design match
+2. **Fixed Credentials** - Username: toplegal26, Password: tvarohacek26 (hardcoded for temp use)
+3. **Route Protection Middleware** - All routes redirect to login when not authenticated
+4. **Cookie-Based Sessions** - 7-day expiration, httpOnly, secure in production
+5. **Login API** - POST /api/auth/login validates credentials and sets session cookie
+6. **Logout API** - POST /api/auth/logout clears session cookie
+7. **Bilingual Support** - Complete EN/SK translations for all login page text
+8. **Design System Match** - Inter font, dark theme (#192734), design tokens, error states
+9. **Form Validation** - Red borders, error messages, loading states with spinner
+10. **Auto-Redirect** - Successful login redirects to /dashboard
+11. **Compact Form Width** - max-w-sm (384px) for better UX
+
+**FILES CREATED**:
+- `src/app/[locale]/login/page.tsx` - Login page component (117 lines)
+- `src/app/api/auth/login/route.ts` - Login API endpoint with credential validation
+- `src/app/api/auth/logout/route.ts` - Logout API endpoint for session cleanup
+- `docs/LOGIN-PAGE-PROMPT.md` - Complete implementation guide (420 lines)
+
+**FILES MODIFIED**:
+- `middleware.ts` - Route protection logic (30 lines)
+- `messages/en.json` - Added auth.login namespace with 10 translation keys
+- `messages/sk.json` - Added auth.login namespace with 10 translation keys
+- `src/lib/version.ts` - Version 3.37.0, changelog entry
+- `package.json` - Version 3.37.0
+
+**MIDDLEWARE LOGIC**:
+- Public paths: /login, /_next, /favicon.ico, /api/auth/login
+- Protected paths: Everything else
+- No auth cookie → Redirect to /{locale}/login
+- Valid auth cookie → Allow access
+
+**SECURITY NOTES**:
+- ⚠️ TEMPORARY SOLUTION: Fixed credentials hardcoded
+- No password hashing (credentials in plain text)
+- No brute force protection
+- No session encryption beyond httpOnly cookie
+- Replace with Supabase Auth / NextAuth before production
+
+**BUILD STATUS**: ✓ pnpm build SUCCESS - zero errors, 113 routes generated
+
+**Git Commits:** `c9f93d7` (main implementation), `faf3f72` (form width fix)
+
+---
 
 ### **v3.36.0 - 2026-01-25**
 **🎨 CONTEXT TABLES UX UNIFICATION: CLICKABLE ROWS + KEBAB MENU**
