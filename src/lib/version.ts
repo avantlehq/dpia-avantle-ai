@@ -1,6 +1,6 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.37.0" as const
-export const VERSION_NAME = "Temporary Login Authentication" as const
+export const VERSION = "3.37.1" as const
+export const VERSION_NAME = "Logout Functionality" as const
 export const BUILD_DATE = "2026-02-08"
 
 export const getVersionInfo = () => ({
@@ -14,6 +14,23 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.37.1": {
+    date: "2026-02-08",
+    name: "Logout Functionality",
+    features: [
+      "Implemented functional logout button in user dropdown menu",
+      "Added handleLogout handler - calls POST /api/auth/logout API",
+      "Auto-redirect to login page after logout (locale-aware)",
+      "Updated user display - shows 'toplegal26' instead of 'Demo User'",
+      "Error handling - forces redirect even if API call fails",
+      "Removed 'disabled' attribute from Sign out menu item",
+      "Cookie session properly cleared on logout"
+    ],
+    fixes: [
+      "FIXED: Login form width reduced from max-w-md (448px) to max-w-sm (384px)"
+    ],
+    note: "Complete logout workflow now functional. User clicks 'Sign out' → API clears cookie → Redirect to login page. Session terminated properly."
+  },
   "3.37.0": {
     date: "2026-02-08",
     name: "Temporary Login Authentication",

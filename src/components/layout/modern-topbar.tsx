@@ -82,6 +82,18 @@ export const ModernTopbar = memo(function ModernTopbar() {
   const versionInfo = useMemo(() => getVersionInfo(), [])
   const { toggle, isCollapsed, isMobileOpen, showAsDrawer } = useSidebarContext()
   const { locale } = useClientLocale()
+
+  // Logout handler
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' })
+      window.location.href = `/${locale}/login`
+    } catch (error) {
+      console.error('Logout failed:', error)
+      // Force redirect even if API call fails
+      window.location.href = `/${locale}/login`
+    }
+  }
   
   // Memoize context-aware home link based on active module with locale
   const homeLink = useMemo(() => {
@@ -230,8 +242,8 @@ export const ModernTopbar = memo(function ModernTopbar() {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>
               <div className="space-y-1">
-                <div className="font-medium">Demo User</div>
-                <div className="text-xs text-muted-foreground">demo@avantle.ai</div>
+                <div className="font-medium">toplegal26</div>
+                <div className="text-xs text-muted-foreground">Temporary User</div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
@@ -239,7 +251,7 @@ export const ModernTopbar = memo(function ModernTopbar() {
               <Settings className="h-4 w-4 mr-2" />
               Settings
             </DropdownMenuItem>
-            <DropdownMenuItem disabled>
+            <DropdownMenuItem onClick={handleLogout}>
               <LogOut className="h-4 w-4 mr-2" />
               Sign out
             </DropdownMenuItem>
