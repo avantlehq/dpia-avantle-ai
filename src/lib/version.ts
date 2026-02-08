@@ -1,7 +1,7 @@
 // Avantle Privacy Platform Version Information - Build Cache Buster v3.21.31
-export const VERSION = "3.36.0" as const
-export const VERSION_NAME = "Context Tables UX Unification" as const
-export const BUILD_DATE = "2026-01-25"
+export const VERSION = "3.37.0" as const
+export const VERSION_NAME = "Temporary Login Authentication" as const
+export const BUILD_DATE = "2026-02-08"
 
 export const getVersionInfo = () => ({
   version: VERSION,
@@ -14,6 +14,25 @@ export const getVersionInfo = () => ({
 // Recent version changelog (last 7 versions only)
 // Complete history available in git commits
 export const CHANGELOG = {
+  "3.37.0": {
+    date: "2026-02-08",
+    name: "Temporary Login Authentication",
+    features: [
+      "Implemented temporary login page at /en/login and /sk/login",
+      "Fixed credentials authentication (username: toplegal26, password: tvarohacek26)",
+      "Route protection middleware - all routes redirect to login when not authenticated",
+      "Cookie-based session management (7-day expiration, httpOnly, secure in production)",
+      "Created login API endpoint: POST /api/auth/login with credential validation",
+      "Created logout API endpoint: POST /api/auth/logout for session cleanup",
+      "Bilingual support - complete EN/SK translations for login page",
+      "Design fully matches DPIA platform (Inter font, dark theme, design tokens)",
+      "Form validation with error states (red borders, error messages)",
+      "Loading states with spinner during authentication",
+      "Auto-redirect to dashboard after successful login"
+    ],
+    fixes: [],
+    note: "⚠️ TEMPORARY SOLUTION: Fixed credentials hardcoded for testing. Replace with proper authentication system (Supabase Auth, NextAuth) before production. No password hashing, no brute force protection, no session encryption beyond httpOnly cookie. Implemented as authentication barrier until full user management system is ready."
+  },
   "3.36.0": {
     date: "2026-01-25",
     name: "Context Tables UX Unification",

@@ -20,7 +20,18 @@
     }
   },
   "auth": {
-    "login": "Sign In",
+    "login": {
+      "title": "DPIA Platform Login",
+      "subtitle": "Automated GDPR Data Protection Impact Assessments",
+      "usernameLabel": "Username",
+      "usernamePlaceholder": "Enter your username",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "loginButton": "Sign In",
+      "invalidCredentials": "Invalid username or password",
+      "loginError": "An error occurred. Please try again.",
+      "logoutButton": "Sign Out"
+    },
     "signup": "Sign Up",
     "logout": "Sign Out",
     "email": "Email",

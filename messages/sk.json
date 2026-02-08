@@ -20,7 +20,18 @@
     }
   },
   "auth": {
-    "login": "Prihlásenie",
+    "login": {
+      "title": "Prihlásenie do DPIA Platformy",
+      "subtitle": "Automatizované GDPR posúdenia vplyvu na ochranu údajov",
+      "usernameLabel": "Používateľské meno",
+      "usernamePlaceholder": "Zadajte používateľské meno",
+      "passwordLabel": "Heslo",
+      "passwordPlaceholder": "Zadajte heslo",
+      "loginButton": "Prihlásiť sa",
+      "invalidCredentials": "Neplatné používateľské meno alebo heslo",
+      "loginError": "Vyskytla sa chyba. Skúste to prosím znova.",
+      "logoutButton": "Odhlásiť sa"
+    },
     "signup": "Registrácia",
     "logout": "Odhlásiť sa",
     "email": "E-mail",
